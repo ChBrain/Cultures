@@ -1,0 +1,54 @@
+name: Build PDFs by Region
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pandoc and LaTeX
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y pandoc texlive-latex-base texlive-fonts-recommended
+
+      - name: Build PDFs
+        run: |
+          mkdir -p dist
+
+          for region in africa americas asia europe oceania; do
+            echo "Building ${region}..."
+
+            files=$(find regions/${region} -name "*.md" | sort)
+
+            > /tmp/${region}_combined.md
+            prev_country=""
+            for f in $files; do
+              country=$(echo $f | cut -d'/' -f3)
+              if [ "$country" != "$prev_country" ] && [ -n "$prev_country" ]; then
+                echo -e "\n\\newpage\n" >> /tmp/${region}_combined.md
+              fi
+              cat "$f" >> /tmp/${region}_combined.md
+              echo -e "\n\n" >> /tmp/${region}_combined.md
+              prev_country=$country
+            done
+
+            pandoc /tmp/${region}_combined.md \
+              --from markdown \
+              --to pdf \
+              --pdf-engine=pdflatex \
+              -V geometry:margin=2cm \
+              -V fontsize=11pt \
+              -V title="Cultures - $(echo ${region} | sed 's/\b\(.\)/\u\1/g')" \
+              -V date="$(date +%Y-%m-%d)" \
+              -o dist/cultures-${region}.pdf
+          done
+
+      - name: Upload as artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: cultures-pdfs
+          path: dist/*.pdf
+          retention-days: 14
