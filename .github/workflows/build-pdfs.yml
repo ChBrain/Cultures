@@ -9,10 +9,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install pandoc and LaTeX
+      - name: Install dependencies
         run: |
           sudo apt-get update -q
-          sudo apt-get install -y pandoc texlive-latex-base texlive-fonts-recommended
+          sudo apt-get install -y pandoc
+          pip install weasyprint
 
       - name: Build PDFs
         run: |
@@ -28,7 +29,7 @@ jobs:
             for f in $files; do
               country=$(echo $f | cut -d'/' -f3)
               if [ "$country" != "$prev_country" ] && [ -n "$prev_country" ]; then
-                echo -e "\n\\newpage\n" >> /tmp/${region}_combined.md
+                echo -e "\n---\n" >> /tmp/${region}_combined.md
               fi
               cat "$f" >> /tmp/${region}_combined.md
               echo -e "\n\n" >> /tmp/${region}_combined.md
@@ -38,11 +39,9 @@ jobs:
             pandoc /tmp/${region}_combined.md \
               --from markdown \
               --to pdf \
-              --pdf-engine=pdflatex \
-              -V geometry:margin=2cm \
-              -V fontsize=11pt \
-              -V title="Cultures - $(echo ${region} | sed 's/\b\(.\)/\u\1/g')" \
-              -V date="$(date +%Y-%m-%d)" \
+              --pdf-engine=weasyprint \
+              --metadata title="Cultures - $(echo ${region} | sed 's/\b\(.\)/\u\1/g')" \
+              --metadata date="$(date +%Y-%m-%d)" \
               -o dist/cultures-${region}.pdf
           done
 
