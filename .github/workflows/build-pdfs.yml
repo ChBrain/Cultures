@@ -5,6 +5,9 @@ on:
   release:
     types: [created]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -39,7 +42,7 @@ jobs:
             done
 
             pandoc /tmp/${region}_combined.md \
-              --from markdown \
+              --from markdown-yaml_metadata_block \
               --to pdf \
               --pdf-engine=weasyprint \
               --metadata title="Cultures - $(echo ${region} | sed 's/\b\(.\)/\u\1/g')" \
