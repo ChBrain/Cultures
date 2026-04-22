@@ -37,7 +37,7 @@ Download one or more region packs and upload their files to the same project:
 | Asia | 49 | [cultures-asia.zip](https://github.com/ChBrain/Cultures/releases/latest/download/cultures-asia.zip) | [cultures-asia.pdf](https://github.com/ChBrain/Cultures/releases/latest/download/cultures-asia.pdf) |
 | Europe | 48 | [cultures-europe.zip](https://github.com/ChBrain/Cultures/releases/latest/download/cultures-europe.zip) | [cultures-europe.pdf](https://github.com/ChBrain/Cultures/releases/latest/download/cultures-europe.pdf) |
 | Oceania | 13 | [cultures-oceania.zip](https://github.com/ChBrain/Cultures/releases/latest/download/cultures-oceania.zip) | [cultures-oceania.pdf](https://github.com/ChBrain/Cultures/releases/latest/download/cultures-oceania.pdf) |
-| All regions | 198 | [cultures-full.zip](https://github.com/ChBrain/Cultures/releases/latest/download/cultures-full.zip) | - |
+| All regions | 198 | [cultures-full.zip](https://github.com/ChBrain/Cultures/releases/latest/download/cultures-full.zip) | [cultures-full.pdf](https://github.com/ChBrain/Cultures/releases/latest/download/cultures-full.pdf) |
 
 You can install multiple region packs into the same project. The world runs with whatever cultures are present.
 

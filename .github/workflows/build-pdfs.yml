@@ -50,6 +50,16 @@ jobs:
               -o dist/cultures-${region}.pdf
           done
 
+          echo "Building full..."
+          cat /tmp/africa_combined.md /tmp/americas_combined.md /tmp/asia_combined.md /tmp/europe_combined.md /tmp/oceania_combined.md > /tmp/full_combined.md
+          pandoc /tmp/full_combined.md \
+            --from markdown-yaml_metadata_block \
+            --to pdf \
+            --pdf-engine=weasyprint \
+            --metadata title="Cultures - All Regions" \
+            --metadata date="$(date +%Y-%m-%d)" \
+            -o dist/cultures-full.pdf
+
       - name: Upload to release
         if: github.event_name == 'release'
         uses: softprops/action-gh-release@v2
