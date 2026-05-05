@@ -1,4 +1,4 @@
-# Cultures [↓](https://github.com/ChBrain/Cultures/releases/latest/download/cultures-full.zip)
+# Cultures
 
 *198 cultural positions. Each one already running. Each one holding what it holds.*
 
@@ -22,9 +22,15 @@ Hundreds of personas. People doing ordinary work carrying a cultural position th
 
 **Step 1 - Install the engine** (once per project)
 
-Download [engine.zip](https://github.com/ChBrain/Cultures/releases/latest/download/engine.zip) and upload all files to your AI project.
+Download the engine zip for your platform and upload all files to your AI project.
 
 The engine defines how the world runs. It must be present before adding any cultures.
+
+| Platform | Download |
+|----------|----------|
+| Claude.ai | [engine-claude.zip](https://github.com/ChBrain/Cultures/releases/latest/download/engine_claude.zip) |
+| Microsoft Copilot | [engine-copilot.zip](https://github.com/ChBrain/Cultures/releases/latest/download/engine_copilot.zip) |
+| Google Gemini | [engine-gemini.zip](https://github.com/ChBrain/Cultures/releases/latest/download/engine_gemini.zip) |
 
 **Step 2 - Add the cultures you need**
 
@@ -50,7 +56,12 @@ Open a conversation in your AI project. Bring what you have.
 ## Structure
 
 ```
-engine/       instructions, process, stack
+engine/
+  claude/     instructions for Claude.ai
+  copilot/    instructions for Microsoft Copilot
+  gemini/     instructions for Google Gemini
+  stack.md    shared architecture
+  process_world_is_spinning.md
 regions/
   europe/     48 cultures
   africa/     53 cultures
