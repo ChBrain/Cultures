@@ -18,8 +18,10 @@ jobs:
         run: |
           mkdir -p dist
 
-          # engine only
-          zip -r dist/engine.zip engine/
+          # engine per platform (shared files + platform-specific instructions)
+          for platform in claude copilot gemini; do
+            zip -j dist/engine_${platform}.zip engine/${platform}/instructions.md engine/stack.md engine/process_world_is_spinning.md
+          done
 
           # per region - no engine
           for region in africa americas asia europe oceania; do
