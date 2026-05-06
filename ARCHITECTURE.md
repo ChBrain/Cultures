@@ -32,7 +32,8 @@ Owner format depends on type:
 
 | Type | Owner content |
 |------|---------------|
-| position | `- Project: Cultures` (country anchor, no parent inside the world) |
+| position (culture) | `- Project: Cultures` (country anchor, no parent inside the world) |
+| position (gender)  | TBD - see Gender Position |
 | place | `- Project: Cultures` (country locale, no parent inside the world) |
 | piece | `- Place: [<Place Name>](culture_<adj>_place_<name>.md)` |
 | persona | `- Project: Cultures` |
@@ -93,6 +94,7 @@ All filenames use ASCII characters only. Underscores separate words. No hyphens 
 - `regions/<region>/<country>/persona_<name>.md`
 - `engine/<file>.md` for engine root files
 - `engine/<platform>/<file>.md` for per-AI instructions
+- *Gender position files: location and naming TBD - see Gender Position.*
 
 `<adj>` is the lowercase culture adjective (e.g. `german`, `french`, `japanese`).
 `<descriptor>` and `<name>` use ASCII lowercase with underscores.
@@ -108,7 +110,7 @@ All filenames use ASCII characters only. Underscores separate words. No hyphens 
 ```mermaid
 erDiagram
     REGION   ||--o{ COUNTRY  : "folder contains"
-    COUNTRY  ||--|| POSITION : "exactly one"
+    COUNTRY  ||--|| POSITION : "exactly one (culture)"
     COUNTRY  ||--|{ PIECE    : "one or more"
     COUNTRY  ||--|{ PLACE    : "one or more"
     COUNTRY  ||--|{ PERSONA  : "two or more, mixed gender"
@@ -116,7 +118,8 @@ erDiagram
     PIECE    }o--|| PLACE    : "Owner: Place"
     PLACE    ||--|| POSITION : "Holds: position"
     PLACE    ||--o{ PIECE    : "Holds: pieces"
-    PERSONA  }o--|| POSITION : "Title or Projection links position"
+    PERSONA  }o--|| POSITION : "Title or Projection links culture position"
+    PERSONA  }o--|| GENDER_POSITION : "links gender position (TBD)"
 ```
 
 ### Minimum per country
@@ -126,7 +129,7 @@ Every country folder must contain at least:
 - **1 position** (exactly one - position is the country's anchor)
 - **1 piece**
 - **1 place**
-- **2 personas**, with at least one male and at least one female
+- **2 personas**, with at least one male and at least one female (gender resolved via the [Gender Position](#gender-position) link, once defined)
 
 More is allowed; less is a validation error.
 
@@ -135,8 +138,9 @@ More is allowed; less is a validation error.
 - Folder structure is the authority: `regions/<region>/<country>/` owns every file for that country.
 - Each piece declares its place in Owner. The linked place must exist as a sibling in the same country folder.
 - Each place's Holds lists the country's position and one or more pieces. Both must exist as siblings.
-- Each persona links to the country's position. The link target must exist as a sibling.
-- All cross-file links inside a country resolve to a sibling in the same folder. Engine references use a relative path up to `engine/`.
+- Each persona links to the country's culture position. The link target must exist as a sibling.
+- Each persona links to a gender position. The link target lives outside the country folder; resolution rules TBD with the Gender Position type.
+- All cross-file links inside a country resolve to a sibling in the same folder. Engine and gender-position references use a relative path to their canonical location.
 
 Sync failures (broken sibling link, piece pointing at a place that does not exist, persona projecting onto a missing position, place listing a position or piece that is not a sibling) are validation errors.
 
@@ -146,6 +150,8 @@ Sync failures (broken sibling link, piece pointing at a place that does not exis
 
 The country's operating logic. The structural anchor of the country folder. **Exactly one per country.**
 
+In Cultures, "position" is a generic concept: any operating logic that a persona carries. The country's culture position is one kind. The gender position (defined below) is another. This section describes the **culture position**; the gender position has its own section because its location, sections, and cardinality are not yet settled.
+
 **Sections in order:** `Owner`, `Has`, `Orders`, `Loses`, `Drives`.
 
 - **Has** is what the position carries before the persona arrives. Lists the country's pieces by link.
@@ -154,6 +160,31 @@ The country's operating logic. The structural anchor of the country folder. **Ex
 - **Drives** is what the position does on the loss - how it persists past the cost.
 
 **Naming:** `culture_<adj>_position.md`
+
+---
+
+## Gender Position
+
+*To be defined.* This section names the concept; the contract is not yet specified.
+
+Gender is itself a position-type entity, parallel to the culture position. A persona carries **both**: their country's culture position (the operating logic of the place they grew up in) and a gender position (the operating logic of the gender they carry). The two positions press at the same time, and the persona's behaviour emerges from their interaction.
+
+The persona minimum (two per country, mixed gender) only becomes machine-enforceable once the gender position type and the persona->gender link are specified.
+
+### Open spec items
+
+- **Section set** - does a gender position use the culture-position section list (`Owner`, `Has`, `Orders`, `Loses`, `Drives`), or its own? The shared list would let validators reuse L2 logic. A different list would acknowledge that gender carries differently from culture.
+- **File type and location** - candidates:
+  - `engine/position_gender_<x>.md` (alongside other universal engine entities)
+  - new top-level `positions/` folder for cross-cultural positions
+  - `engine/positions/` sub-folder
+- **Naming** - `position_gender_male.md`, `position_gender_female.md`, ... or a different stem.
+- **Cardinality** - does the world ship with exactly two (male, female) or with more (non-binary, etc.)? The persona-mixed-gender rule needs at least two; the upper bound is an authorial choice.
+- **Persona link format** - where in the persona file does the gender position link appear? Candidates: a `## Gender` section, a line in `## Owner`, an addition to `## Title`. The choice determines what L2 reads.
+- **Owner of a gender position** - what does the gender position's own Owner block say? Likely `- Project: Cultures`, but worth confirming.
+- **Existing personas** - all current persona files predate this concept. Each will need a gender position assigned during migration.
+
+Until this section is filled in, L2 cannot enforce the mixed-gender persona rule. The L2 validator should treat the constraint as deferred (pass vacuously) and start enforcing once the type lands.
 
 ---
 
@@ -191,10 +222,12 @@ The capital city or defining location where the country's position does its dail
 
 A person doing ordinary work carrying a cultural position they did not choose. **At least two per country, with at least one male and at least one female.** More personas, and additional gender identities, are allowed; the floor is mixed-gender representation.
 
+A persona carries two positions: their country's **culture position** and a **gender position** (see [Gender Position](#gender-position)). Both link targets must resolve.
+
 **Sections in order:** `Owner`, `Title`, `Projection`, `Action`, `Shadow`, `Tell`.
 
 - **Title** identifies the persona within the country. Existing files diverge: some use a role/profession in one phrase (`Secondary school history teacher`); others use a position-and-piece link chain (`[German](...) -> [Unfinished Reckoning](...)`). One convention must be chosen; see Open.
-- **Projection** is what the persona shows in the room. Body and posture, prose form. The link to the country's position appears either here or in Title (depending on the convention chosen).
+- **Projection** is what the persona shows in the room. Body and posture, prose form. The link to the country's culture position appears either here or in Title (depending on the convention chosen). The gender position link location is TBD with the Gender Position type.
 - **Action** is what the persona produces under pressure - the cue.
 - **Shadow** is what the persona cannot see while producing the action.
 - **Tell** is the small involuntary signal that the position is active.
@@ -241,7 +274,7 @@ The single author-facing rule: **every file basename in a deployed bundle is uni
 
 - **Owner anchor for top-level files** - `- *` (current, undocumented) vs `- Project: Cultures` (proposed). This architecture stipulates `- Project: Cultures`; existing `- *` files need migration.
 - **Persona basename uniqueness** - either prefix with the culture adjective or keep personas country-scoped (no flat deploy of personas).
-- **Persona gender encoding** - the minimum-two-with-mixed-gender rule requires gender to be machine-readable. Existing files imply gender by name and pronouns, which is not reliably testable. Proposed: explicit `**Gender:** female | male | other` line in the Owner block, or a dedicated `## Gender` section. Decision pending; without it, the gender constraint cannot be enforced by L2.
+- **Gender Position type** - the type itself needs to be defined. See [Gender Position](#gender-position) for the open spec items. Until this is settled, the persona mixed-gender rule cannot be enforced by L2.
 - **Persona Title convention** - `persona_hanna.md` uses Title for role/profession; `persona_thomas.md` uses Title for the position-and-piece link chain. Pick one. The choice determines whether the position-link L2 rule reads Title or Projection.
 - **Footer canonicalisation** - `engine/stack.md` uses `... - CULTURES`; this architecture stipulates `... - KAI Worlds`.
 - **BOM cleanup** - several existing files start with U+FEFF; non-conformant with the encoding rule.
