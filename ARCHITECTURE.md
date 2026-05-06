@@ -109,23 +109,33 @@ All filenames use ASCII characters only. Underscores separate words. No hyphens 
 erDiagram
     REGION   ||--o{ COUNTRY  : "folder contains"
     COUNTRY  ||--|| POSITION : "exactly one"
-    COUNTRY  ||--o{ PIECE    : "one or more"
-    COUNTRY  ||--o{ PLACE    : "one or more"
-    COUNTRY  ||--o{ PERSONA  : "zero or more"
+    COUNTRY  ||--|{ PIECE    : "one or more"
+    COUNTRY  ||--|{ PLACE    : "one or more"
+    COUNTRY  ||--|{ PERSONA  : "two or more, mixed gender"
     POSITION ||--o{ PIECE    : "Has section links pieces"
     PIECE    }o--|| PLACE    : "Owner: Place"
     PLACE    ||--|| POSITION : "Holds: position"
     PLACE    ||--o{ PIECE    : "Holds: pieces"
-    PERSONA  }o--|| POSITION : "Projection body links position"
+    PERSONA  }o--|| POSITION : "Title or Projection links position"
 ```
 
-Key constraints:
+### Minimum per country
 
-- Each country folder contains exactly one position file. Position is the country's anchor.
-- Each country folder contains one or more pieces. Each piece declares its place in Owner.
-- Each country folder contains one or more places. Each place's Holds lists the country's position and one or more pieces.
-- Each country folder contains zero or more personas. Each persona references its country's position in the Projection prose body.
+Every country folder must contain at least:
+
+- **1 position** (exactly one - position is the country's anchor)
+- **1 piece**
+- **1 place**
+- **2 personas**, with at least one male and at least one female
+
+More is allowed; less is a validation error.
+
+### Cross-file constraints
+
 - Folder structure is the authority: `regions/<region>/<country>/` owns every file for that country.
+- Each piece declares its place in Owner. The linked place must exist as a sibling in the same country folder.
+- Each place's Holds lists the country's position and one or more pieces. Both must exist as siblings.
+- Each persona links to the country's position. The link target must exist as a sibling.
 - All cross-file links inside a country resolve to a sibling in the same folder. Engine references use a relative path up to `engine/`.
 
 Sync failures (broken sibling link, piece pointing at a place that does not exist, persona projecting onto a missing position, place listing a position or piece that is not a sibling) are validation errors.
@@ -134,7 +144,7 @@ Sync failures (broken sibling link, piece pointing at a place that does not exis
 
 ## Position
 
-The country's operating logic. The structural anchor of the country folder. Exactly one per country.
+The country's operating logic. The structural anchor of the country folder. **Exactly one per country.**
 
 **Sections in order:** `Owner`, `Has`, `Orders`, `Loses`, `Drives`.
 
@@ -149,7 +159,7 @@ The country's operating logic. The structural anchor of the country folder. Exac
 
 ## Piece
 
-The load-bearing historical moment, document, or symbol without which the position's logic loses its shape. One or more per country.
+The load-bearing historical moment, document, or symbol without which the position's logic loses its shape. **At least one per country**, more allowed.
 
 **Sections in order:** `Owner`, `Place`, `Load Bearing`, `Apparent`, `Yearbook`.
 
@@ -164,7 +174,7 @@ The load-bearing historical moment, document, or symbol without which the positi
 
 ## Place
 
-The capital city or defining location where the country's position does its daily work. One or more per country.
+The capital city or defining location where the country's position does its daily work. **At least one per country**, more allowed.
 
 **Sections in order:** `Owner`, `Shown`, `Holds`, `Offers`, `Withheld`.
 
@@ -179,12 +189,12 @@ The capital city or defining location where the country's position does its dail
 
 ## Persona
 
-A person doing ordinary work carrying a cultural position they did not choose. Zero or more per country.
+A person doing ordinary work carrying a cultural position they did not choose. **At least two per country, with at least one male and at least one female.** More personas, and additional gender identities, are allowed; the floor is mixed-gender representation.
 
 **Sections in order:** `Owner`, `Title`, `Projection`, `Action`, `Shadow`, `Tell`.
 
-- **Title** is the persona's role or profession in one phrase.
-- **Projection** is what the persona shows in the room. The first line links the persona to the country's position: `<Name> is [<Adjective>](culture_<adj>_position.md).`
+- **Title** identifies the persona within the country. Existing files diverge: some use a role/profession in one phrase (`Secondary school history teacher`); others use a position-and-piece link chain (`[German](...) -> [Unfinished Reckoning](...)`). One convention must be chosen; see Open.
+- **Projection** is what the persona shows in the room. Body and posture, prose form. The link to the country's position appears either here or in Title (depending on the convention chosen).
 - **Action** is what the persona produces under pressure - the cue.
 - **Shadow** is what the persona cannot see while producing the action.
 - **Tell** is the small involuntary signal that the position is active.
@@ -231,6 +241,8 @@ The single author-facing rule: **every file basename in a deployed bundle is uni
 
 - **Owner anchor for top-level files** - `- *` (current, undocumented) vs `- Project: Cultures` (proposed). This architecture stipulates `- Project: Cultures`; existing `- *` files need migration.
 - **Persona basename uniqueness** - either prefix with the culture adjective or keep personas country-scoped (no flat deploy of personas).
+- **Persona gender encoding** - the minimum-two-with-mixed-gender rule requires gender to be machine-readable. Existing files imply gender by name and pronouns, which is not reliably testable. Proposed: explicit `**Gender:** female | male | other` line in the Owner block, or a dedicated `## Gender` section. Decision pending; without it, the gender constraint cannot be enforced by L2.
+- **Persona Title convention** - `persona_hanna.md` uses Title for role/profession; `persona_thomas.md` uses Title for the position-and-piece link chain. Pick one. The choice determines whether the position-link L2 rule reads Title or Projection.
 - **Footer canonicalisation** - `engine/stack.md` uses `... - CULTURES`; this architecture stipulates `... - KAI Worlds`.
 - **BOM cleanup** - several existing files start with U+FEFF; non-conformant with the encoding rule.
 - **Engine section contracts** - the section shape for `engine/stack.md` and for per-platform instruction files is not yet specified.
