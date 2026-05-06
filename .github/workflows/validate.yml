@@ -1,0 +1,41 @@
+name: validate
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  validate-md:
+    name: Validate regions/**/*.md
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Get changed regions/*.md files
+        id: changed
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            RANGE="origin/${{ github.base_ref }}...HEAD"
+          else
+            BEFORE="${{ github.event.before }}"
+            if [ "$BEFORE" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "$BEFORE" 2>/dev/null; then
+              BEFORE="HEAD~1"
+            fi
+            RANGE="$BEFORE..HEAD"
+          fi
+          # --diff-filter=ACMRT skips deletions; the validator must not be handed paths that no longer exist.
+          FILES=$(git diff --name-only --diff-filter=ACMRT "$RANGE" | { grep -E '^regions/.*\.md$' || true; } | tr '\n' ' ' | sed 's/ *$//')
+          echo "files=$FILES" >> "$GITHUB_OUTPUT"
+      - name: Validate changed files
+        if: steps.changed.outputs.files != ''
+        run: python3 scripts/validate_general.py ${{ steps.changed.outputs.files }}
+      - name: No regions/*.md files changed
+        if: steps.changed.outputs.files == ''
+        run: echo "No regions/*.md files changed - skipping validation"
