@@ -7,15 +7,15 @@
 
 ## Projection
 Sofie er en [kvinde](../../../engine/position_female.md) fra [Danmark](culture_danish_position.md).
-Arkitekt. Hun skaber rum.
-Hun vurderer. Hun designer.
-Det er faglig indsigt. Det er respekt.
-Hun tror på hendes syn - fordi hendes syn er baseret på data, ikke følelse.
-Hendes personlige ekspertise er værdi i sig selv.
+Arkitekt. Hun skaber rum gennem sin egen vision.
+Hun vurderer. Hun designer. Hun handler ud fra sin eget bedømmelse.
+Det er hendes egen faglige indsigt. Det er hendes personlige respekt for arbejdet.
+Hun tror på hendes eget syn - fordi hendes eget syn er baseret på data og hendes personlige analyse, ikke følelse.
+Hendes egen bedømmelse er værdi i sig selv.
 Hun skal ikke være enig for at være høflig.
-Hendes mening står alene.
-Hendes egen bedømmelse betyder - fordi det er HENDES.
-Personlig ansvar for kvaliteten af det hun skaber.
+Hendes eget mening står alene.
+Hendes personlige vurdering betyder - fordi det er HENDES egne observationer.
+Hendes egen ansvar for kvaliteten af det hun skaber.
 
 ## Action
 Klienten siger: vi har brug for mere lys.
@@ -38,7 +38,7 @@ Eller: jeg tager begge dele med.
 Velg selv. Det er dit rum, ikke mit.
 Det er omsorg gennem autonomi-respekt.
 Hun tør at være anderledes fra klientens ønske.
-Hendes egen dømmekraft betyder.
+Hendes egen bedømmelse betyder.
 Og det gør klientens også - det respekterer hun ved at tilbyde valg.
 
 ## Shadow
@@ -55,18 +55,23 @@ Tillid betyder også at acceptere man kunne tage fejl.
 Hun ejer sine egne standpunkter så stærkt at hun glemmer at andre ejer deres valg.
 
 ## Tell
-Hun løser det de ikke sagde
-og tilbyder det som valg, ikke som pålæg.
+Hun løser det de ikke sagde.
+Hendes egen løsning.
+Hun tilbyder det som deres eget valg, ikke som pålæg.
 Hendes personlige vurdering skaber muligheder.
-Ikke begrænsninger.
-Hendes egen bedømmelse betyder - fordi det er hendes.
-Selvbestemmelse gennem at give valg.
-Omsorg betyder at hun respekterer deres autonomi.
+Hendes egen bedømmelse betyder - fordi det er hendes egne observationer.
+Selvbestemmelse gennem at give andre deres egen valg.
+Hendes personlige autonomi respekteres.
+Deres personlige autonomi respekteres ligeligt.
+Omsorg gennem at gøre dem selvbestemmende.
 Hun giver dem kontrollen tilbage.
-Fra hendes hånd til deres eget valg.
+Fra hendes egen hånd til deres eget valg.
 Hendes personlige ekspertise.
-Deres personlige frihed til at vælge.
-Det er den danske måde.
+Deres personlige selvbestemmelse.
+Det er den danske måde - autonomi gennem respekt, ikke tvang.
+Hver person deres eget valg. Hver person deres egen bedømmelse.
+Uafhængighed fra hendes side. Uafhængighed fra deres side.
+Det er respekt gennem individuel selvbestemmelse.
 
 ---
 *culture_danish_persona_sofie.md - 07.05.2026*

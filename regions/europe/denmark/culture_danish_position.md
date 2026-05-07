@@ -10,8 +10,9 @@ Personlig vurdering.
 Egen bedømmelse.
 Selvbestemmelse.
 Din personlige indsigt betyder.
-Hendes egen dømmekraft betyder.
+Hendes egen bedømmelse betyder.
 Hans eget valg betyder.
+Individuelt ansvar for egen tanke.
 
 Lighed.
 Ligestilling.
@@ -21,23 +22,35 @@ Alle mennesker ligeværdige.
 Personlig autonomi = lighed mellem mennesker.
 Ligeværd gennem autonomi.
 
-Personlig frihed.
-Selv-styre.
+Personlig autonomi.
+Selvbestemmelse.
 Egen vejviser.
-Individuel ansvar for dine valg.
+Individuel ansvar.
+Din egen bedømmelse til at vejlede dig.
+Respekt gennem omsorg for din autonomi.
 
 ## Orders
 Tro på din egen vurdering.
 Gør dine egne valg.
 Din personlige bedømmelse først.
 Selvbestemmelse over alt.
-Her og nu betyder alt.
+Autonomi betyder du bestemmer selv.
+Din egen indsigt betyder.
+Hendes egen indsigt betyder.
+Hans eget valg betyder.
+Respekt gennem at lade andre være autonome.
+Omsorg gennem empati for deres egen position.
+Empati gennem at forstå deres egen bedømmelse.
+Vær pragmatisk. Ret kurs hvis det ikke virker.
+Fleksibilitet omkring faste regler.
+Tilpas til det der virker, ikke til hvad der plejer.
 
 ## Loses
 Lydighed uden eget valg.
 Tvang til at være enig.
 Hierarki over personlig autonomi.
 Påtvingelse af andres vurdering.
+Manglende selvkontrol omkring egen autonomi.
 
 ## Drives
 På tabet:

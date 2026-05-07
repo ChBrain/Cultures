@@ -6,19 +6,19 @@
 
 ## Shown
 Byen er mindre end den lyder.
-Cykelstier. Som transport. Som frihed.
-Personlig frihed til at bevæge sig selv.
-Ingen lykkedes uden at hver enkelt person valgte det.
-Den flade horisont. Ingen bygning dominerer.
+Cykelstier. Som transport. Som hver persons eget valg gennem personlig frihed.
+Hver enkelt person valgte autonomt at være der.
+Den flade horisont. Ingen bygning dominerer gennem magt.
 Kanalen. Nyhavn. Tivoli.
 Farven der kom tilbage da skibene forsvandt.
-Det mennesker bygger for folk, ikke for monumenter.
+Det mennesker bygger for mennesker, ikke for monumenter.
 Folketing. Et kammer. 179 sæder.
 Ingen overhus. Ingen senat.
-Beslutningen tages her.
-Eller den ændres her.
+Hver persons stemme betyder ligeligt.
+Beslutningen tages her gennem dialog.
+Eller den ændres her gennem ny egen vurdering.
 Alt kan omvurderes hvis virkeligheden ændrer sig.
-Fleksibilitet gennem samarbejde blandt ligeværdige mennesker.
+Omsorg gennem fleksibilitet blandt autonome mennesker.
 
 ## Holds
 Den danske position - [Dansk](culture_danish_position.md).
@@ -27,19 +27,24 @@ Frederiksberg. Christiania. Begge inden for samme by.
 Begge holder sig.
 Det betyder: der er plads til mange måder at leve på.
 Samme by, forskellige normer - og det accepteres.
-Omsorg gennem at lade mennesker være forskellige.
-Omhu for andres valg.
-Fællesskab gennem frihed - ikke gennem tvang.
-Hver person værdifuld.
-Hver valg respekteret.
+Omsorg gennem at respektere andres egen autonomi.
+Empati for hver persons eget valg.
+Fællesskab gennem personlig selvbestemmelse - ikke gennem tvang.
+Hver person værdifuld gennem sin egen vurdering.
+Hver persons egen valg respekteret.
+Pragmatisk omkring at forskellige mennesker har forskellige behov.
+Fleksibel omkring normer - hvis det virker for nogle, virker det.
+Tilpasning til virkelighed, ikke til idealer.
 
 ## Offers
 [Hygge](culture_danish_process_hygge.md) kører her.
 Ikke som turistattraktion.
-Som daglig betingelse.
+Som daglig betingelse gennem omsorg for hinanden.
+Medmenneskelig empatien løber gennem hele byen.
 Den der ikke mærker den
 er ikke udenfor rummet.
 De er bare ikke med endnu.
+Og det accepteres med omsorg, ikke tvang.
 
 ## Withheld
 Hvad mennesker tænker hjemme.
