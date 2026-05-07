@@ -7,10 +7,11 @@
 
 ## Projection
 Lars er en [mand](../../../engine/position_male.md) fra [Danmark](culture_danish_position.md).
-Ingeniør. Han ved hvad han ved.
-Han ved hvad han ikke ved.
-Han siger begge dele højt.
-Det er ikke arrogance. Det er respekt for tiden.
+Ingeniør. Han ved hvad han ved. Han ved hvad han ikke ved.
+Uafhængig tænker. Egen bedømmelse altid først.
+Han siger begge dele højt - sin vurdering, sine tvivl.
+Det er ikke arrogance. Det er personlig ansvar.
+Autonomi betyder at handle på hvad han selv ser.
 
 ## Action
 I teammødet: nogen præsenterer en løsning der ikke virker.
