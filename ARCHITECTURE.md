@@ -59,7 +59,47 @@ Patterns:
 - **Clarity:** No Unicode replacement character (U+FFFD `�`).
 
 ---
+## Sourcing & IP Standards
 
+These rules apply to all content files across all countries.
+
+### Sourcing Principle
+
+All content is authored with this core principle:
+
+**"Use facts (which are not copyrightable) carried in the author's own expression."**
+
+- **Facts** (sourced): Historical events, geographical locations, cultural references, Hofstede scores
+- **Expression** (original): How those facts are narrated, framed, and integrated into positions, pieces, and places
+
+This mirrors Autobahn's approach and ensures originality while respecting factual accuracy.
+
+### Source Hierarchy
+
+Factual claims are verified against sources in this order of preference:
+
+1. **Official sources:** Government institutions, cultural organizations, official archives
+2. **Academic sources:** University press, historical societies, peer-reviewed research
+3. **Secondary sources:** Wikipedia (for widely-known facts), encyclopedias
+4. **Journalistic sources:** Newspapers, media archives, reporting
+5. **Local knowledge:** Direct observation, expert interviews (documented)
+
+Each country's REFERENCES.md documents the sourcing hierarchy applied to that country's content.
+
+### IP Safeguards
+
+**Close-paraphrase risk:** Occasional accidental close-paraphrase may occur despite care. If you identify potential IP concerns:
+
+1. Open a GitHub issue with:
+   - The file and specific passage
+   - The suspected source
+   - A link to the original source
+2. Describe the pattern (identical phrasing, structure, or fact ordering)
+3. The validation layer L4d (plagiarism heuristics) will flag patterns for review
+
+**Resolution:** Confirmed issues are rewritten in original expression. REFERENCES.md documents the protocol.
+
+---
 ## General
 
 ### Title
