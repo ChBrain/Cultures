@@ -1,10 +1,6 @@
 # ARCHITECTURE.md
 
-*Cultures world architecture. Based on [KAI HACKS AI Architecture](https://kaihacks.ai/architecture.html).*
-
-*This document describes the architecture decisions for the Cultures world.*
-
-*First shot - derived primarily from the Germany sample (position, piece, place, persona). Divergent shapes in other countries will surface as validation findings, not silent acceptance.*
+*Cultures world architecture.*
 
 ---
 
@@ -12,94 +8,54 @@
 
 ### Title
 
-Each authored file opens with a `# Type: Name` heading followed by a `## Tagline` line on the next line.
+Each file opens with `# Type: Name` followed by `## Tagline`.
 
+Examples:
 - `# Position: German`
 - `# Piece: The Unfinished Reckoning`
 - `# Place: Berlin`
 - `# Persona: Hanna`
-- `# Process: The World is Spinning`
-
-The tagline is a single declarative sentence in title case ending with a period.
-
----
 
 ### Owner
 
-Every authored file has an `## Owner` block. It anchors the file to the world and identifies its structural parent.
+Every file has an `## Owner` block anchoring it to the world.
 
-Owner format depends on type:
-
-| Type | Owner content |
-|------|---------------|
-| position | `- Project: Cultures` (country anchor, no parent inside the world) |
-| place | `- Project: Cultures` (country locale, no parent inside the world) |
-| piece | `- Place: [<Place Name>](culture_<adj>_place_<name>.md)` |
+| Type | Owner |
+|------|-------|
+| position | `- Project: Cultures` |
+| place | `- Project: Cultures` |
+| piece | `- Place: [Place Name](culture_<adj>_place_<name>.md)` |
 | persona | `- Project: Cultures` |
-| process | `- Project: Cultures` |
-| engine (stack, instructions) | `- Project: Cultures` |
-
-> **Open:** several existing files use `- *` as the Owner anchor. The asterisk is undocumented. This architecture standardises on `- Project: Cultures` for top-level files; `- *` files need migration. See "To document".
-
----
 
 ### Sections
 
-Section names and order are **per file type**. No section may be omitted or reordered within its type. Cultures does not use a single global section list (this differs from Autobahn).
-
-Section sets are defined per type below.
-
----
+Section order is fixed per file type. See below.
 
 ### Footer
 
-Every file closes with a version footer on its own line, preceded by a blank line:
-
-`vX.Y.Z - KAI Worlds`
-
-Above the version footer, files carry a single italic file-stamp line:
-
-`*<basename>.md - DD.MM.YYYY*`
-
-The basename matches the file's actual basename; the date is the file's authoring or last-edit date in `DD.MM.YYYY` format.
-
-> **Open:** `engine/stack.md` currently uses `v0.1.0 - CULTURES`. Architecture canonicalises on `... - KAI Worlds`.
-
----
+```
+vX.Y.Z - KAI Worlds
+```
 
 ### Version
 
-Versioning follows semantic versioning: `major.minor.patch`. The bump-type / pre-commit / version-sync workflow from Autobahn is not yet adopted; see "To document".
-
----
+Semantic versioning: `major.minor.patch`.
 
 ### Encoding
 
-Files are UTF-8, no byte-order mark.
-
-> **Open:** several existing files start with U+FEFF. They are non-conformant and need cleanup.
-
----
+UTF-8, no byte-order mark.
 
 ### Filenames
 
-All filenames use ASCII characters only. Underscores separate words. No hyphens or special characters (no accented letters, no eszett, no other diacritics). Every file basename in a deployed bundle is unique.
+ASCII only. Underscores separate words. No hyphens or diacritics. Every basename unique.
 
-**Patterns:**
-
+Patterns:
 - `regions/<region>/<country>/culture_<adj>_position.md`
 - `regions/<region>/<country>/culture_<adj>_piece_<descriptor>.md`
 - `regions/<region>/<country>/culture_<adj>_place_<descriptor>.md`
 - `regions/<region>/<country>/persona_<name>.md`
-- `engine/<file>.md` for engine root files
-- `engine/<platform>/<file>.md` for per-AI instructions
 
-`<adj>` is the lowercase culture adjective (e.g. `german`, `french`, `japanese`).
-`<descriptor>` and `<name>` use ASCII lowercase with underscores.
-
-> **Open:** `persona_<name>.md` does not carry the culture adjective. Two countries can collide on `persona_anna.md` in a flat deploy. Either:
-> a) prefix personas with the culture adjective: `persona_<adj>_<name>.md`, or
-> b) scope persona basenames per country (deploy bundles must therefore not flatten personas).
+`<adj>` = lowercase culture adjective (e.g., `german`, `french`).
 
 ---
 
@@ -107,51 +63,42 @@ All filenames use ASCII characters only. Underscores separate words. No hyphens 
 
 ```mermaid
 erDiagram
-    REGION   ||--o{ COUNTRY  : "folder contains"
-    COUNTRY  ||--|| POSITION : "exactly one"
-    COUNTRY  ||--|{ PIECE    : "one or more"
-    COUNTRY  ||--|{ PLACE    : "one or more"
-    COUNTRY  ||--|{ PERSONA  : "two or more, mixed gender"
-    POSITION ||--o{ PIECE    : "Has section links pieces"
-    PIECE    }o--|| PLACE    : "Owner: Place"
-    PLACE    ||--|| POSITION : "Holds: position"
-    PLACE    ||--o{ PIECE    : "Holds: pieces"
-    PERSONA  }o--|| POSITION : "Title or Projection links position"
+    REGION ||--o{ COUNTRY : "folder"
+    COUNTRY ||--|| POSITION : "anchor"
+    COUNTRY ||--o{ PIECE : "holds"
+    COUNTRY ||--o{ PLACE : "holds"
+    COUNTRY ||--o{ PERSONA : "holds"
+    PIECE }o--|| PLACE : "belongs to"
+    PLACE ||--o{ POSITION : "lists"
+    PLACE ||--o{ PIECE : "lists"
+    PERSONA }o--|| POSITION : "carries"
 ```
 
-### Minimum per country
+---
 
-Every country folder must contain at least:
+## Minimum per Country
 
-- **1 position** (exactly one - position is the country's anchor)
-- **1 piece**
-- **1 place**
-- **2 personas**, with at least one projecting as male and at least one projecting as female (formal definition pending - see [Persona](#persona) and the related Open question)
+Every country folder must contain:
 
-More is allowed; less is a validation error.
+- **1 position** (exactly one - the country's anchor)
+- **1 piece** (historical moment or symbol)
+- **1 place** (capital or defining location)
+- **2 personas** (at least one male, at least one female)
 
-### Cross-file constraints
-
-- Folder structure is the authority: `regions/<region>/<country>/` owns every file for that country.
-- Each piece declares its place in Owner. The linked place must exist as a sibling in the same country folder.
-- Each place's Holds lists the country's position and one or more pieces. Both must exist as siblings.
-- Each persona links to the country's position. The link target must exist as a sibling.
-- All cross-file links inside a country resolve to a sibling in the same folder. Engine references use a relative path up to `engine/`.
-
-Sync failures (broken sibling link, piece pointing at a place that does not exist, persona projecting onto a missing position, place listing a position or piece that is not a sibling) are validation errors.
+More of each is allowed.
 
 ---
 
 ## Position
 
-The country's operating logic. The structural anchor of the country folder. **Exactly one per country.**
+The country's operating logic.
 
-**Sections in order:** `Owner`, `Has`, `Orders`, `Loses`, `Drives`.
+**Sections:** `Owner`, `Has`, `Orders`, `Loses`, `Drives`.
 
-- **Has** is what the position carries before the persona arrives. Lists the country's pieces by link.
-- **Orders** is what the position commands - the action it produces under pressure.
-- **Loses** is what the position cannot keep when the order is followed - the cost the persona pays.
-- **Drives** is what the position does on the loss - how it persists past the cost.
+- **Has**: Lists the country's pieces by link.
+- **Orders**: The action the position commands.
+- **Loses**: The cost paid when the order is followed.
+- **Drives**: How the position persists past the cost.
 
 **Naming:** `culture_<adj>_position.md`
 
@@ -159,31 +106,73 @@ The country's operating logic. The structural anchor of the country folder. **Ex
 
 ## Piece
 
-The load-bearing historical moment, document, or symbol without which the position's logic loses its shape. **At least one per country**, more allowed.
+A historical moment, document, or symbol essential to the position's logic.
 
-**Sections in order:** `Owner`, `Place`, `Load Bearing`, `Apparent`, `Yearbook`.
+**Sections:** `Owner`, `Place`, `Load Bearing`, `Apparent`, `Yearbook`.
 
-- **Place** restates the piece's geographic anchor (mirroring the Owner block) and describes the physical location.
-- **Load Bearing** is what fails if the piece is removed. The position becomes incoherent without this.
-- **Apparent** is what is visible today - monuments, media, traces.
-- **Yearbook** is the dated timeline of events that made the piece what it is.
+- **Load Bearing**: What fails if this piece is removed.
+- **Apparent**: What is visible today.
+- **Yearbook**: Dated timeline of events.
 
-**Naming:** `culture_<adj>_piece_<descriptor>.md` where `<descriptor>` names the piece (e.g. `unfinished_reckoning`, `basic_law`).
+**Naming:** `culture_<adj>_piece_<descriptor>.md`
 
 ---
 
 ## Place
 
-The capital city or defining location where the country's position does its daily work. **At least one per country**, more allowed.
+The capital or defining location where the position does its daily work.
 
-**Sections in order:** `Owner`, `Shown`, `Holds`, `Offers`, `Withheld`.
+**Sections:** `Owner`, `Shown`, `Holds`, `Offers`, `Withheld`.
 
-- **Shown** is what is visible in the place - landscape, infrastructure, signage.
-- **Holds** lists the position and the pieces anchored to the place, by link.
-- **Offers** is what the place makes available to a person standing there - the room it opens.
-- **Withheld** is what the place does not show without effort - what requires seeking.
+- **Shown**: What is visible - landscape, infrastructure, signage.
+- **Holds**: Lists this place's position and pieces.
+- **Offers**: What the place makes available.
+- **Withheld**: What requires seeking to see.
 
-**Naming:** `culture_<adj>_place_<descriptor>.md` where `<descriptor>` names the locale (e.g. `berlin`).
+**Naming:** `culture_<adj>_place_<descriptor>.md`
+
+---
+
+## Persona
+
+A person carrying the position they did not choose. Minimum two per country (one male, one female).
+
+Gender is expressed through **PAST**:
+
+- **Projection**: What the persona shows.
+- **Action**: What they do when pressed.
+- **Shadow**: What they cannot see about themselves.
+- **Tell**: The involuntary signal where Shadow leaks.
+
+**Sections:** `Owner`, `Projection`, `Action`, `Shadow`, `Tell`.
+
+**Naming:** `persona_<name>.md`
+
+---
+
+## Folder Structure
+
+```
+regions/
+  africa/
+    country/
+      culture_adj_position.md
+      culture_adj_piece_descriptor.md
+      culture_adj_place_descriptor.md
+      persona_name1.md
+      persona_name2.md
+  americas/
+  asia/
+  europe/
+  oceania/
+engine/
+  stack.md
+  process_world_is_spinning.md
+```
+
+Region values: `africa`, `americas`, `asia`, `europe`, `oceania`.
+
+Country folder names: ASCII lowercase with underscores.
 
 ---
 
