@@ -4,15 +4,24 @@
 
 This folder contains culture content for Germany: historical personas, cultural pieces, and geographical places that represent German society and identity.
 
+## Quick Start
+
+Download the complete Germany culture package for Claude.ai:
+- [**germany.zip**](https://github.com/ChBrain/Cultures/releases/latest/download/germany.zip) - All culture files + engine stack + instructions
+
+The zip contains all culture files flattened at root level with links rewritten for Claude consumption.
+
 ## Content Overview
 
 | File | Type | Purpose |
 |------|------|---------|
 | `culture_german_position.md` | Position | German culture (state role) - narrative anchor |
+| `culture_german_persona_brigitte.md` | Persona | Brigitte - Familienrecht lawyer from Berlin (b. 1960) |
+| `culture_german_persona_christian.md` | Persona | Christian - Banker character |
 | `culture_german_place_berlin.md` | Place | Berlin - capital city as geographical anchor |
-| `culture_german_piece_unfinished_reckoning.md` | Piece | Post-WWII reconciliation - cultural artifact/concept |
-| `persona_hanna.md` | Persona | Hanna - feminine archetype/character |
-| `persona_thomas.md` | Persona | Thomas - masculine archetype/character |
+| `culture_german_piece_grundgesetz.md` | Piece | Grundgesetz - West German constitution (1949) |
+| `culture_german_language_hochdeutsch.md` | Language | Standard German (Hochdeutsch) - linguistic anchor |
+| `culture_german_process_erinnern.md` | Process | Remembering/Reckoning (Erinnern) - post-conflict healing |
 
 ## Hofstede Cultural Dimensions - Germany
 
@@ -44,10 +53,12 @@ These dimensions inform the **Position** (how Germany operates), **Pieces** (his
 | File | Audit Status | Verified | Auditor | Date |
 |------|--------------|----------|---------|------|
 | `culture_german_position.md` | pending | - | - | - |
+| `culture_german_persona_brigitte.md` | pending | - | - | - |
+| `culture_german_persona_christian.md` | pending | - | - | - |
 | `culture_german_place_berlin.md` | pending | - | - | - |
-| `culture_german_piece_unfinished_reckoning.md` | pending | - | - | - |
-| `persona_hanna.md` | pending | - | - | - |
-| `persona_thomas.md` | pending | - | - | - |
+| `culture_german_piece_grundgesetz.md` | pending | - | - | - |
+| `culture_german_language_hochdeutsch.md` | pending | - | - | - |
+| `culture_german_process_erinnern.md` | pending | - | - | - |
 
 Audit verdicts: **clean** (fully verified), **minor** (one minor inaccuracy), **issues** (factual error or paraphrase risk).
 

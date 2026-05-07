@@ -43,6 +43,8 @@ def get_file_type(path: Path) -> str | None:
         return "piece"
     elif name.startswith("culture_") and "_place_" in name:
         return "place"
+    elif name.startswith("culture_") and "_persona_" in name:
+        return "persona"
     elif name.startswith("persona_"):
         return "persona"
     return None
@@ -57,7 +59,10 @@ def extract_sections(text: str) -> list[str]:
 def validate_persona_gender_links(text: str) -> list[Issue]:
     """Validate that persona Projection contains gender position link.
     
-    Personas must include: [man](../../../engine/position_male.md) or [woman](../../../engine/position_female.md)
+    Personas must include gender link to engine positions:
+    - Root-relative: [man](engine/position_male.md) or [woman](engine/position_female.md)
+    - Folder-relative: [man](../../../engine/position_male.md) or [woman](../../../engine/position_female.md)
+    - Or localized: [Mann] or [Frau] for German personas, etc.
     Also requires culture link: culture_[culture]_position.md
     """
     issues: list[Issue] = []
@@ -73,17 +78,29 @@ def validate_persona_gender_links(text: str) -> list[Issue]:
     
     projection_text = projection_match.group(1)
     
-    # Check for gender link: [man] or [woman] with link to engine position
-    # Accept both ../../ and ../../../ paths for flexibility during migration
-    has_male_link = bool(re.search(r"\[man\]\s*\(\s*\.\.\/\.\.\/\.\.\/engine\/position_male\.md\s*\)", projection_text)) or \
-                    bool(re.search(r"\[man\]\s*\(\s*\.\.\/\.\.\/engine\/position_male\.md\s*\)", projection_text))
-    has_female_link = bool(re.search(r"\[woman\]\s*\(\s*\.\.\/\.\.\/\.\.\/engine\/position_female\.md\s*\)", projection_text)) or \
-                      bool(re.search(r"\[woman\]\s*\(\s*\.\.\/\.\.\/engine\/position_female\.md\s*\)", projection_text))
+    # Check for gender link: [man]/[Mann] or [woman]/[Frau] with link to engine position
+    # Accept multiple path formats and multiple languages
+    has_male_link = bool(
+        re.search(r"\[man\]\s*\(\s*engine\/position_male\.md\s*\)", projection_text) or
+        re.search(r"\[Mann\]\s*\(\s*engine\/position_male\.md\s*\)", projection_text) or
+        re.search(r"\[man\]\s*\(\s*\.\.\/\.\.\/\.\.\/engine\/position_male\.md\s*\)", projection_text) or
+        re.search(r"\[Mann\]\s*\(\s*\.\.\/\.\.\/\.\.\/engine\/position_male\.md\s*\)", projection_text) or
+        re.search(r"\[man\]\s*\(\s*\.\.\/\.\.\/engine\/position_male\.md\s*\)", projection_text) or
+        re.search(r"\[Mann\]\s*\(\s*\.\.\/\.\.\/engine\/position_male\.md\s*\)", projection_text)
+    )
+    has_female_link = bool(
+        re.search(r"\[woman\]\s*\(\s*engine\/position_female\.md\s*\)", projection_text) or
+        re.search(r"\[Frau\]\s*\(\s*engine\/position_female\.md\s*\)", projection_text) or
+        re.search(r"\[woman\]\s*\(\s*\.\.\/\.\.\/\.\.\/engine\/position_female\.md\s*\)", projection_text) or
+        re.search(r"\[Frau\]\s*\(\s*\.\.\/\.\.\/\.\.\/engine\/position_female\.md\s*\)", projection_text) or
+        re.search(r"\[woman\]\s*\(\s*\.\.\/\.\.\/engine\/position_female\.md\s*\)", projection_text) or
+        re.search(r"\[Frau\]\s*\(\s*\.\.\/\.\.\/engine\/position_female\.md\s*\)", projection_text)
+    )
     
     if not (has_male_link or has_female_link):
         issues.append(Issue(
             error="persona Projection missing gender position link",
-            verdict="Add [man](../../../engine/position_male.md) or [woman](../../../engine/position_female.md) as first line of Projection",
+            verdict="Add [man](engine/position_male.md) or [woman](engine/position_female.md) (or localized: [Mann] / [Frau]) as first element of Projection",
         ))
     
     # Check for culture link (should also be in Projection)
