@@ -129,6 +129,53 @@ Section order is fixed per file type. See below.
 
 ---
 
+## Gender Position Framework
+
+**Gender positions are universal, engine-level files** that exist above the culture layer. Every persona links to both a gender position and a culture position.
+
+### Universal Gender Positions
+
+- `engine/position_male.md` - Male gender position (applies to all cultures)
+- `engine/position_female.md` - Female gender position (applies to all cultures)
+
+These positions describe the social/embodied role that gender confers, independent of culture. Gender is a layer that intersects with culture; every persona exists at the intersection of both.
+
+### Gender Linking Pattern
+
+All persona files include gender position links in the **Projection** section:
+
+```markdown
+## Projection
+[Name] is a [man/woman](../../engine/position_male.md / position_female.md)
+from [Country](../../engine/position_[culture].md).
+[Persona-specific projection content...]
+```
+
+Examples:
+- Male persona: `Thomas is a [man](../../engine/position_male.md) from [Germany](../../engine/position_german.md).`
+- Female persona: `Hanna is a [woman](../../engine/position_female.md) from [Germany](../../engine/position_german.md).`
+
+### Linking Mechanics
+
+- **From:** `regions/REGION/COUNTRY/persona_*.md`
+- **To gender:** `../../engine/position_male.md` or `../../engine/position_female.md`
+- **To culture:** `../../engine/position_[culture].md` or `culture_[culture]_position.md` (local reference)
+
+The double `../../` accounts for depth: `regions/europe/germany/` goes up two levels to reach `engine/`.
+
+### All New Personas
+
+Every new persona created must:
+1. Include gender position link (mandatory)
+2. Include culture position link (mandatory)
+3. Maintain persona-specific projection content
+
+### Existing Personas
+
+Existing personas are updated to include gender position links on next edit (no retroactive bulk update required).
+
+---
+
 ## Hofstede Foundation
 
 Every culture is rooted in **Hofstede's Cultural Dimensions Theory**, a framework identifying six measurable dimensions of cultural variation:
@@ -271,9 +318,18 @@ The capital or defining location where the position does its daily work.
 
 A person carrying the position they did not choose. Minimum two per country (one male, one female).
 
+Every persona intersects gender and culture. The **Projection** section establishes both:
+
+```markdown
+## Projection
+[Name] is a [man/woman](../../engine/position_male.md / position_female.md)
+from [Country](../../engine/position_[culture].md).
+[Persona-specific projection content...]
+```
+
 Gender is expressed through **PAST**:
 
-- **Projection**: What the persona shows.
+- **Projection**: Gender position link + culture position link + what the persona shows.
 - **Action**: What they do when pressed.
 - **Shadow**: What they cannot see about themselves.
 - **Tell**: The involuntary signal where Shadow leaks.
@@ -281,6 +337,11 @@ Gender is expressed through **PAST**:
 **Sections:** `Owner`, `Projection`, `Action`, `Shadow`, `Tell`.
 
 **Naming:** `persona_<name>.md`
+
+**Gender Link Requirements:**
+- Male persona: `[man](../../engine/position_male.md)`
+- Female persona: `[woman](../../engine/position_female.md)`
+- Non-binary/other: Document in Projection (design TBD)
 
 ---
 
@@ -300,6 +361,8 @@ regions/
   europe/
   oceania/
 engine/
+  position_male.md
+  position_female.md
   stack.md
   process_world_is_spinning.md
 ```
