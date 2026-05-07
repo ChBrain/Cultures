@@ -2,8 +2,8 @@
 ## Title: Rechtsanwältin
 
 ## Owner
-- **Project:** Cultures
-- **Culture:** Germany
+- Project: Cultures
+- Culture: Germany
 
 Eine Frau, die gelernt hat, dass Präzision schützt.
 Sie hat noch nie einen Fall verloren, den sie hätte gewinnen können.

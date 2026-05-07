@@ -2,8 +2,8 @@
 ## Title: Softwareentwickler
 
 ## Owner
-- **Project:** Cultures
-- **Culture:** Germany
+- Project: Cultures
+- Culture: Germany
 
 Ein Mann, der die Vergangenheit gründlich gelernt hat.
 

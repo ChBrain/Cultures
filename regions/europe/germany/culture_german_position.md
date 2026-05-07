@@ -1,8 +1,8 @@
 # Position: German
 
 ## Owner
-- **Project:** Cultures
-- **Culture:** Germany
+- Project: Cultures
+- Culture: Germany
 
 ## Has
 Die Wahrheit.

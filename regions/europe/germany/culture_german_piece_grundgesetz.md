@@ -1,8 +1,8 @@
 # Piece: Grundgesetz
 
 ## Owner
-- **Project:** Cultures
-- **Culture:** Germany
+- Project: Cultures
+- Culture: Germany
 
 ## Place
 Bonn. 1948.

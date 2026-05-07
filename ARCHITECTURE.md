@@ -116,16 +116,22 @@ Examples:
 
 ### Owner
 
-Every file has an `## Owner` block anchoring it to the world.
+Every file has an `## Owner` block anchoring it to the world. The block is exactly two list items, in this order:
 
-| Type | Owner |
-|------|-------|
-| position | `- Project: Cultures` |
-| place | `- Project: Cultures` |
-| piece | `- Place: [Place Name](culture_<adj>_place_<name>.md)` |
-| persona | `- Project: Cultures` |
-| language | `- Project: Cultures` |
-| process | `- Project: Cultures` |
+```
+## Owner
+- Project: Cultures
+- <Tier>: <Value>
+```
+
+The second tier names the file's scope:
+
+| Location | Second tier |
+|----------|-------------|
+| `engine/*.md` (universal) | `- Scope: Universal` |
+| `regions/<region>/<country>/*.md` (any region file: position, piece, place, persona, language, process) | `- Culture: <Country>` (English display name, e.g. `Germany`) |
+
+No bold, no link decoration, no extra lines. The list-bullet is `-`. Anything else (`- *`, `- **Project:** Cultures`, suffixes like `— Americas`, second-tier `Place:` links) is a legacy artefact slated for migration; the L2 validator will reject these on changed files going forward.
 
 ### Sections
 
@@ -389,7 +395,7 @@ Gender lives across PAST. A persona who projects female, acts in coherent regist
 
 ### Section contents
 
-- **Owner** is `- Project: Cultures`.
+- **Owner** is the canonical two-line block (see Owner above): `- Project: Cultures` then `- Culture: <Country>`.
 - **Title** is a plain role or profession (`Rechtsanwältin`, `Softwareentwickler`). It identifies the persona within the country. Title carries no links — the position link lives in Projection.
 - **Position link:** the first line of Projection carries both the gender position link and the country position link. Pattern: `[<gender>](../../../engine/position_<gender>.md) aus [<Country>](culture_<adj>_position.md).`
 - **Projection / Action / Shadow / Tell** as defined under PAST.
@@ -545,7 +551,7 @@ If you find potential plagiarism or factual errors:
 
 ## To document
 
-- **Owner anchor for top-level files** - `- *` (current, undocumented) vs `- Project: Cultures` (proposed). This architecture stipulates `- Project: Cultures`; existing `- *` files need migration.
+- **Legacy Owner-block migration** - the canonical Owner block is locked (see Owner above). The L2 validator enforces it on changed files. The corpus still contains hundreds of legacy shapes (`- *` placeholders, bolded `- **Project:**`, `— Americas` suffixes, `- Place: [...]` second tiers); these will fail validation when their file is next touched.
 - **Mixed-gender minimum: formal definition and enforcement** - gender lives across PAST. A persona who projects female may technically be male in their Shadow (gender-fluid, transitioning, performing). The mixed-gender rule ("at least one male, at least one female") needs a precise reading: does it count Projection, the technical body in Shadow, or both? And how does the L2 validator read it? Projection is prose; the technical body, when it differs, surfaces in Shadow or Tell. Until the reading is specified, the constraint cannot be enforced mechanically and L2 treats it as deferred.
 - **Footer canonicalisation** - `engine/stack.md` uses `... - CULTURES`; this architecture stipulates `... - KAI Worlds`.
 - **BOM cleanup** - several existing files start with U+FEFF; non-conformant with the encoding rule.
