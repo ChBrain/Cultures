@@ -1,26 +1,41 @@
-# Place: Copenhagen
-## Location: Denmark
+# Place: København
 
 ## Owner
-- *
+- Project: Cultures
+- Culture: Denmark
+
 ## Shown
-- The Folketing. The parliament. One chamber. 179 seats.
-- The harbour front. Nyhavn. Coloured buildings, restored.
-- The cycling infrastructure. More bicycles than cars in the city centre.
-- The flat skyline. No building dominates.
+Byen er mindre end den lyder.
+Cykelstier. Ikke som infrastruktur - som holdning.
+Den flade horisont. Ingen bygning dominerer.
+Kanalen. Nyhavn. Farven der kom tilbage
+da skibene forsvandt.
+Folketing. Et kammer. 179 sæder.
+Ingen overhus. Ingen senat.
+Beslutningen tages her - eller den var allerede taget.
 
 ## Holds
-- The Denmark position - [Danish](culture_danish_position.md)
-- [Jante Law](culture_danish_piece_jante_law.md)
+Den danske position - [Dansk](culture_danish_position.md).
+[Janteloven](culture_danish_piece_janteloven.md).
+Frederiksberg. Christiania. Begge inden for samme by.
+Begge holder sig.
 
 ## Offers
-- The room where the Denmark position does its daily work.
-- [The World is Spinning](../../../engine/process_world_is_spinning.md) - runs here daily.
+[Hygge](culture_danish_process_hygge.md) kører her.
+Ikke som turistattraktion.
+Som daglig betingelse.
+Den der ikke mærker den
+er ikke udenfor rummet.
+De er bare ikke med endnu.
 
 ## Withheld
-- The consensus that was reached before the meeting started. The meeting is where it is ratified, not where it is made.
+Konsensus der var nået inden mødet startede.
+Mødet er ikke hvor beslutningen træffes.
+Mødet er hvor den bliver til.
+Den der tror de kan ændre den i rummet
+har ikke forstået hvornår rummet begyndte.
 
 ---
-*culture_danish_place_copenhagen.md - 02.04.2026*
+*culture_danish_place_copenhagen.md - 07.05.2026*
 
-v0.2.0 - KAI Worlds
+v0.1.0 - KAI Worlds

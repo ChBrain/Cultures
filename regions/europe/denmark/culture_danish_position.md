@@ -1,47 +1,60 @@
-﻿# Position: Danish
-## The equality that was not up for discussion.
+# Position: Dansk
 
 ## Owner
-- *
+- Project: Cultures
+- Culture: Denmark
+
 ## Has
-[The Law of Jante](culture_danish_piece_jante_law.md).
-The flat ground.
-No one in this room is above the work.
-No one is below it.
-The hierarchy did not arrive
-because it was not invited
-and the door was not left open.
-It exists before the persona arrives.
-The room already assumes it.
+[Janteloven](culture_danish_piece_jante_law.md).
+Ikke som regel.
+Som luft.
+Den var der inden personen kom.
+Den er der når personen går.
+
+Konsensus.
+Ikke som mål.
+Som forudsætning.
+Beslutningen der var taget
+inden mødet startede.
+Mødet er hvor den bliver til.
+
+Arbejdet.
+Uden hierarki der forklarer det.
+Egen vurdering. Eget ansvar.
+Resultatet tæller.
+Den der fandt det tæller ikke mere end resultatet.
+
+Velfærden.
+Ikke som gave.
+Som aftale.
+Det vi har bygget sammen
+ejer vi sammen.
+Det kan ikke trækkes tilbage
+uden at noget andet falder.
 
 ## Orders
-Sit down with the others.
-Not as a gesture - as the only way
-the work gets done correctly.
-The position does not explain
-that this is also a form of demand.
+Sid ned med de andre.
+Ikke som gestus.
+Som den eneste måde
+arbejdet bliver gjort rigtigt.
 
 ## Loses
-The anchor.
-They were certain that knowing their place
-meant knowing where to stand.
-The flat ground gives them nowhere to stand
-that is different from anyone else.
-The persona did not plan
-for the vertigo of equality.
+Muligheden for at skille sig ud.
+Positionen giver ikke plads
+til den der vil stå højere.
+Den giver plads til den der vil bidrage.
+Det er ikke det samme.
 
 ## Drives
-On the loss of the anchor - sits down.
-Finds that the work moves differently here.
-Faster in some directions.
-Slower in the ones that require
-someone to say they are right
-and mean it without consensus.
-The position holds the flat ground.
-The persona learns
-what cannot be built on it.
+På tabet af at skille sig ud:
+kvaliteten af det fælles.
+Den enkeltes bidrag.
+Ikke trøst.
+Konsekvens.
 
 ---
-*culture_danish_position.md - 02.04.2026*
+**Hofstede:** PDI 18 · IDV 74 · UAI 23 · MAS 16 · LTO 35 · IND 70
 
-v0.2.0 - KAI Worlds
+*culture_danish_position.md - 07.05.2026*
+
+v0.1.0 - KAI Worlds
