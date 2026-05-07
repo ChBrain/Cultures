@@ -6,72 +6,48 @@
 
 ## Has
 Lighed.
-Demokratisk samfund uden autoriteter der bestemmer.
-Ligestilling som fundament.
-Ikke som ideal der skal nås.
-Som virkelighed der skal værnes.
+Mennesker på lige niveau uden hierarki.
+Ligestilling som udgangspunkt, ikke som mål.
+Demokratisk samfund først.
 Alle mennesker er værdifulde.
-Ikke på trods af deres forskel.
-På grund af den.
-Respekt er grundlaget, ikke økonomisk eller social position.
+Ikke fordi de tjener noget.
+Fordi de eksisterer.
 
-[Janteloven](culture_danish_piece_jante_law.md).
-Tillid til lighed, ikke regel mod stolthed.
-Den tillader at hver person har deres stemme.
-Den forhindrer at én person overtager rummet.
-Ikke gennem straf. Gennem respekt.
-Ligestilling er grundlag.
-
-Samarbejde uden kommando.
-Samordning blandt ligeværdige mennesker.
-Ingen eneste person bestemmer uden dialog.
-Ligestilling betyder dialog først.
+[Janteloven](culture_danish_piece_janteloven.md).
+Tillid til lighed gennem demokrati.
+Lighed betyder at hver person har stemme.
+Ingen hierarki.
+Ingen status til at bestemme.
 Respekt mellem mennesker - ikke mellem niveauer.
-Den der ved mest om problemet løser det.
-Morgen kan det være en anden.
 
-Velfærden.
-Vi bygger sammen.
-Vi nyder sammen.
-Det kan splittes uden at noget falder.
-Hver person er også værd for sig selv.
+Den der ved mest løser problemet.
+I morgen kan det være en anden.
+Ligestilling gennem samarbejde.
+Samordning blandt ligeværdige mennesker.
+Kommando findes ikke her.
 
 ## Orders
-Tro på din egen dømmekraft. Personlig vurdering. Egen bedømmelse.
-Du er ansvarlig for dine valg.
-Autonomi betyder du må vælge selv.
-Uafhængighed betyder du skal tænke selv først.
-
-Sit ned med de anden fordi du valgte det.
-Lyt med empati. Bid til med omhu.
-Skift mening når det giver mening for DIG.
-Fleksibilitet blandt mennesker der hver er selvbestemmende.
-Ingen skal have ret hele tiden.
-Ingen skal have ret alene.
-Samarbejd fordi det gør dit arbejde bedre.
-Ikke fordi du skal.
+Tro på hvad du ser.
+Sige det højt uden straf.
+Lyt til andre som ligeværdige mennesker.
+Demokratisk dialog først.
+Respekt for hver person betyder respekt for deres tanke.
+Her og nu betyder alt.
+Nu betyder ikke senere.
 
 ## Loses
-Muligheden for at være falsk eller at skjule dig selv.
-Demokrati betyder du må være autentisk.
-Personlig stemme er forventet, ikke valgfri.
-Din individuelle stemme betyder.
-
-Mulighed for at være uafhængig uden at dele.
-I demokrati må du sige hvad du mener.
-Tavshed betyder uansvarlighed.
-Privat holdning delt munder ud i fælles handling.
-Respekt betyder jeg hører dine egne tanker.
+Status uden at tjene løsningen.
+Hierarki til at bestemme hvem der har ret.
+Autoritetet til at lyde som sandhed.
+Lydighed uden spørgsmål.
 
 ## Drives
 På tabet:
-Autenticitet.
-Kvaliteten af samarbejde gennem omsorg for hinanden.
-Hver person bringer sin personlige selvbestemmelse.
-Empati for andre mens man holder sin egen grænse.
-Ikke gennem kompromis. Gennem ægthed.
-Fællesskab af mennesker som er helt til stede.
-Ikke fællesskab af mennesker som skyder selv.
+Lighed.
+Ligestilling.
+Demokrati.
+Respekt mellem mennesker på lige niveau.
+Fælles løsninger gennem dialog.
 
 ---
 **Hofstede:** PDI 18 · IDV 74 · UAI 23 · MAS 16 · LTO 35 · IND 70

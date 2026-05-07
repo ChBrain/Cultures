@@ -7,6 +7,8 @@
 ## Shown
 Byen er mindre end den lyder.
 Cykelstier. Som transport. Som frihed.
+Personlig frihed til at bevæge sig selv.
+Ingen lykkedes uden at hver enkelt person valgte det.
 Den flade horisont. Ingen bygning dominerer.
 Kanalen. Nyhavn. Tivoli.
 Farven der kom tilbage da skibene forsvandt.
@@ -16,6 +18,7 @@ Ingen overhus. Ingen senat.
 Beslutningen tages her.
 Eller den ændres her.
 Alt kan omvurderes hvis virkeligheden ændrer sig.
+Fleksibilitet gennem samarbejde blandt ligeværdige mennesker.
 
 ## Holds
 Den danske position - [Dansk](culture_danish_position.md).
@@ -24,7 +27,8 @@ Frederiksberg. Christiania. Begge inden for samme by.
 Begge holder sig.
 Det betyder: der er plads til mange måder at leve på.
 Samme by, forskellige normer - og det accepteres.
-Fleksibilitet holder byen sammen.
+Fleksibilitet gennem omsorg holder byen sammen.
+Samarbejde blandt mennesker der hver er frie til at vælge.
 
 ## Offers
 [Hygge](culture_danish_process_hygge.md) kører her.

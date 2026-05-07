@@ -17,7 +17,10 @@ Forkortelsen af samfundet.
 Fjern den og den [danske](culture_danish_position.md) lighed mister sin genkendelse.
 Janteloven betyder: vi stoler på hinanden.
 Ikke gennem kontrol.
-Gennem respekt.
+Gennem respekt for hver persons egen dømmekraft.
+Hendes personlige bedømmelse betyder.
+Hans egen vurdering betyder.
+Tillid betyder at acceptere andre mennesker er autonome.
 Den der misbruger tilliden mærker det.
 Gennem stilhed. Ikke gennem straf.
 Gennem at andre træffer sig tilbage.

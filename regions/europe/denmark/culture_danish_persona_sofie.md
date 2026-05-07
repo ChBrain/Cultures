@@ -11,6 +11,11 @@ Arkitekt. Hun skaber rum.
 Hun vurderer. Hun designer.
 Det er faglig indsigt. Det er respekt.
 Hun tror på hendes syn - fordi hendes syn er baseret på data, ikke følelse.
+Hendes personlige ekspertise er værdi i sig selv.
+Hun skal ikke være enig for at være høflig.
+Hendes mening står alene.
+Hendes egen bedømmelse betyder - fordi det er HENDES.
+Personlig ansvar for kvaliteten af det hun skaber.
 
 ## Action
 Klienten siger: vi har brug for mere lys.
@@ -26,6 +31,9 @@ Klienten protesterer: vi bad om lys.
 Sofie: ja. Men I behøver ikke lys. I behøver rum der fungerer.
 Eller: jeg tager begge dele med.
 Samarbejde betyder: jeg siger hvad jeg ser.
+Hun tør at være anderledes end klienten.
+Hendes egen dømmekraft er ikke underordnet deres ønsker.
+Det er respekt - ikke overens kommelse.
 
 ## Shadow
 Hun definerer rummet.
@@ -38,10 +46,16 @@ Rummet er bygget på hendes værdier.
 Det passer til nogen.
 Ikke altid dem der bad om det.
 Tillid betyder også at acceptere man kunne tage fejl.
+Hun ejer sine egne standpunkter så stærkt at hun glemmer at andre ejer deres valg.
 
 ## Tell
 Hun løser det de ikke sagde
-og håber de forsår at hun tilbyder dette som valg, ikke som pålæg.
+og tilbyder det som valg, ikke som pålæg.
+Samarbejde betyder at hun respekterer deres autonomi.
+Hendes egen vurdering skaber muligheder.
+Ikke begrænsninger.
+Omsorg betyder at hun giver dem kontrollen tilbage.
+Fra hendes hånd til deres valg.
 
 ---
 *culture_danish_persona_sofie.md - 07.05.2026*

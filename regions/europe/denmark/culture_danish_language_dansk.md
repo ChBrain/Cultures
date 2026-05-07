@@ -32,12 +32,22 @@ Accent der viser hvor du står.
 Hvad du tænker.
 Hvad du tør sige.
 Din egen vurdering betyder.
+Min frihed til at mene noget.
+Hver person deres eget perspektiv.
+Her og nu betyder fuldt nærvær.
+Ikke planlagt hvad du skal høre.
+Straks fra øjeblikket jeg ser noget, siger jeg det.
 
 ## Orders
 Sig det.
 Kort.
 Nu. Ikke senere.
+Her og nu betyder alt.
+Øjeblikket kommer én gang.
+Du skal være til stede for det.
+Spontan indsigt er vigtig.
 Hver ord skal bære vægt.
+Din stemme har værdi netop nu.
 Stille pauser er ikke tomhed - det er tanke.
 Den der ikke forstår, spørger.
 Svaret er præcist.
