@@ -8,37 +8,38 @@
 Kein Ort, dem sie gehört.
 Kein Dorf, das sie als Muttersprache spricht.
 Sie wurde geschrieben, bevor sie gesprochen wurde.
-Luther hat sie aus der Kanzleisprache gezogen.
-Die Grammatik kam vor den Sprechern.
+Luther hat sie aus der Kanzleisprache gezogen - und die Sprecher dazu.
+Die Grammatik kam vor den Sprechern. Und blieb.
 
 Die Norm.
 Was übrig bleibt, wenn der Dialekt abgezogen wird.
 Was in der Schule unterrichtet wird.
 Was im Rundfunk gesprochen wird.
-Was im Vertrag steht.
+Was im Vertrag steht - und in jedem Gespräch danach gilt.
 
 Die Sprache der Institutionen.
 Der Gesetze.
 Des Grundgesetzes.
+Die Sprache, die Kontinuität trägt von einer Gegenwart zur nächsten.
 
 ## Orders
 Klar sein.
-Der Satz trägt seine eigene Last.
-Er erklärt sich nicht zweimal.
-Wer nicht versteht, liest noch einmal.
-Die Sprache wartet nicht.
+Der Satz trägt seine Bedeutung.
+Er verpflichtet unmittelbar.
+Wer nicht versteht, kann nachfragen - die Antwort ist präzise, nicht warm.
 
 ## Loses
 Wer nur Hochdeutsch spricht,
-verrät nichts von sich.
+hat keine Privatsphäre.
+Jeder Fehler ist hörbar.
 
 ## Drives
 Auf den Verlust der Wärme:
-präziser werden.
+Präzision.
 Was die Sprache an Nähe nicht bietet,
-bietet sie an Genauigkeit.
-Das ist kein Trost.
-Das ist ein Angebot.
+bietet sie an Geltung - für diese Stunde und die nächste.
+Das ist nicht Trost.
+Das ist eine Verpflichtung.
 
 ---
 *culture_german_language_hochdeutsch.md - 07.05.2026*

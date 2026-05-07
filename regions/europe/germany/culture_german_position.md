@@ -5,36 +5,39 @@
 - Culture: Germany
 
 ## Has
-Die Wahrheit.
-Bevor der Raum bereit ist.
-Bevor sie eingeladen wurde.
+Die Frage.
+Zuerst.
+Nicht als Höflichkeit.
+Als Recht.
 
-Der unausgesprochene Vertrag:
-Präzision ist geschuldet.
-Direktheit ist Respekt.
-Unklarheit ist ein Problem,
-das jemand anderes hinterlassen hat.
+Die Arbeit.
+Eigenverantwortlich.
+Das Ergebnis zählt, nicht die Hierarchie.
 
-Das [Grundgesetz](culture_german_piece_grundgesetz.md).
-Nicht als Dokument.
-Als Boden.
+[Das Grundgesetz](culture_german_piece_grundgesetz.md).
+Nicht als Befehl.
+Als demokratischer Rahmen - alle gleich darunter.
+
+Die Pragmatik.
+Regeln gelten - können aber befragt werden.
+Gleichberechtigung in der Befragung.
 
 ## Orders
-Benennen.
-Jetzt.
-Die Position erklärt nicht,
-dass das eine Form von Fürsorge ist.
+Verfechten.
+Mit Verdienst, nicht Titel.
+Auf die beste Lösung kommt es an, nicht wer sie findet.
 
 ## Loses
-Die Leichtigkeit.
+Die Mehrdeutigkeit.
 
 ## Drives
-Auf den Verlust der Leichtigkeit:
-Präzision.
+Lösen.
+Mit Struktur.
+Auf den Widerstand:
+Systematisch vorgehen.
 
 ---
 **Hofstede:** PDI Low · IDV High · UAI High · MAS High · LTO Very High · IND Low
-Levels and sources: see README.
 
 *culture_german_position.md - 07.05.2026*
 

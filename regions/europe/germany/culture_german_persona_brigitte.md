@@ -10,16 +10,16 @@
 - Geboren: 1960.
 
 ## Projection
-Rechtsanwältin. Die Wiedervereinigung war eine Unterbrechung, nicht ein Anfang. Regeln sind Schutz.
+Rechtsanwältin. Die Wiedervereinigung war eine Unterbrechung, nicht ein Anfang. Sie entscheidet autonom - Regeln sind ihr Werkzeug, nicht ihre Meisterin.
 
 ## Action
-Sie wartet, bis die Mandantin aufgehört hat zu weinen. Dann stellt sie die Frage, die sie vorher gestellt hätte. Die Verfahren sind korrekt. Das ist das Beste, das sie geben kann.
+Sie wartet, bis die Mandantin aufgehört hat zu weinen. Dann stellt sie die Frage, die sie vorher hätte stellen können. Die Strategie wird von ihr, nicht von einem Precedent, bestimmt. Sie gewinnt Fälle - weil sie selbst denkt, nicht weil sie Regeln befolgt.
 
 ## Shadow
-Ein korrektes Urteil ist ein gutes Ergebnis. Schwäche wird durch Klarheit bewältigt.
+Die beste Strategie erfordert persönliche Urteilskraft. Sie verlässt sich auf ihr Wissen, ihre Entscheidungen, ihre Art. Exzellenz ist, was sie tut.
 
 ## Tell
-Die Frage ist dieselbe. Der Ton verrät, dass sie nicht dieselbe ist.
+Die Frage ist die gleiche. Die Antwort zeigt, wer denkt - nicht wer gehorcht.
 
 ---
 *culture_german_persona_brigitte.md - 07.05.2026*

@@ -18,9 +18,10 @@ Ohne es verliert die [German](culture_german_position.md) Position ihren Grund.
 *Die Würde des Menschen ist unantastbar.*
 Artikel 1. Nicht abänderbar.
 Das Bundesverfassungsgericht setzt es durch.
-Es hat Gesetze gekippt.
-Die Gesetze änderten sich.
+Es hat Gesetze gekippt - die Gesetze änderten sich.
 Das Gericht blieb.
+Aber es war kooperativ mit Gesellschaft und Bundestag.
+Das Grundgesetz war flexibel genug, sich ohne Zerstörung zu entwickeln.
 
 ## Apparent
 *Die Würde des Menschen ist unantastbar.*
@@ -29,10 +30,11 @@ Vor allem anderen.
 Das Grundgesetz hängt in deutschen Klassenzimmern.
 Es liegt in Behörden aus.
 Neu eingebürgerte Deutsche erhalten ein Exemplar.
+Die Rücksicht auf gemeinschaft ist strukturell verankert.
 Das Bundesverfassungsgericht in Karlsruhe.
 Kein Schmuckbau.
 Ein Arbeitsgericht.
-Es tagt noch.
+Es tagt noch - und hört zu.
 
 ## Yearbook
 9 n. Chr.: Varusschlacht. Rom zieht sich hinter den Rhein zurück; kein gemeinsames Recht beginnt hier.
