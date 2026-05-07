@@ -94,44 +94,48 @@ def generate_readme(country_name: str, scores: dict | None) -> str:
             rows.append(f"| {dim} | {score} | {level} - {meaning} |")
         
         table = "\n".join(rows)
-        hofstede_section = f"""## Hofstede Cultural Dimensions
+        hofstede_section = f"""## Hofstede Cultural Dimensions - {country_name.replace('_', ' ').title()}
 
-This culture is rooted in Hofstede's Cultural Dimensions framework. These scores are **empirical research** from Hofstede's multi-country studies:
+{country_name.replace('_', ' ').title()}'s cultural profile measured against Hofstede's framework:
 
-| Dimension | Score | Meaning |
+| Dimension | Score | Profile |
 |-----------|-------|---------|
 {table}
+
+**Source:** Hofstede et al. (2010). Empirical research published in *Cultures and Organizations*.
 
 ### How Dimensions Shape This Culture
 
 The six dimensions inform the **Position** (how the culture operates), **Pieces** (historical moments where dimensions intersected), **Place** (where dimensions are visible daily), and **Personas** (how individuals navigate these cultural pressures).
-
-**Source:** Hofstede, G., Hofstede, G. J., & Minkov, M. (2010). *Cultures and Organizations: Software of the Mind* (3rd rev. ed.). New York: McGraw-Hill.
 
 ---
 
 """
     else:
         # No Hofstede data - provide template for best judgment approximation
-        hofstede_section = """## Hofstede Cultural Dimensions
+        hofstede_section = """## Hofstede Cultural Dimensions - Approximation
 
 This culture does not have published Hofstede research. Use the table below with **best judgment approximation** based on historical, social, and economic factors:
 
 | Dimension | Score | Reasoning |
 |-----------|-------|-----------|
-| PDI | TBD | Replace TBD: Research power distance orientation |
-| IDV | TBD | Replace TBD: Research individualism vs. collectivism |
-| UAI | TBD | Replace TBD: Research tolerance for uncertainty |
-| MAS | TBD | Replace TBD: Research achievement vs. care orientation |
-| LTO | TBD | Replace TBD: Research long-term vs. short-term focus |
-| IND | TBD | Replace TBD: Research indulgence vs. restraint |
+| PDI | TBD | Research power distance orientation |
+| IDV | TBD | Research individualism vs. collectivism |
+| UAI | TBD | Research tolerance for uncertainty |
+| MAS | TBD | Research achievement vs. care orientation |
+| LTO | TBD | Research long-term vs. short-term focus |
+| IND | TBD | Research indulgence vs. restraint |
 
 **Source:** Best judgment approximation - see REFERENCES.md for reasoning.
+
+### How Dimensions Shape This Culture
+
+The six dimensions inform the **Position**, **Pieces**, **Place**, and **Personas**.
 
 ---
 
 """
-    
+        
     content = f"""# {country_name.replace('_', ' ').title()} - Culture Content
 
 This folder contains culture content for {country_name.replace('_', ' ').lower()}: historical personas, cultural pieces, and geographical places that represent {country_name.replace('_', ' ').lower()} society and identity.
@@ -145,44 +149,7 @@ This folder contains culture content for {country_name.replace('_', ' ').lower()
 | `culture_*_piece_*.md` | Piece | Historical moment or cultural artifact/concept |
 | `persona_*.md` | Persona | Character carrying the culture's position |
 
-## Sourcing Principle
-
-This content is authored by Kai Schlueter with AI-assisted drafting. The core principle mirrors Autobahn's approach:
-
-**"Use facts (which are not copyrightable) carried in the author's own expression."**
-
-- **Facts** (sourced): Historical events, geographical locations, cultural references
-- **Expression** (original): How those facts are narrated, framed, and integrated
-
-## Source Verification
-
-All factual claims in place/piece/position files are traceable to authoritative sources documented in [REFERENCES.md](REFERENCES.md).
-
-### Source Hierarchy (verification order):
-
-1. Official government / institutional sources
-2. Academic references (university press, historical societies)
-3. Secondary sources (Wikipedia, encyclopedias)
-4. Journalistic reporting (newspapers, media archives)
-5. Direct observation / local knowledge
-
-See [REFERENCES.md](REFERENCES.md) for the complete source registry and audit trail.
-
-## Plagiarism & Close-Paraphrase Risk
-
-**Plagiarism safeguard:** Occasional close-paraphrase or factual drift may slip through. If you spot potential IP concerns, please open a GitHub issue with:
-1. The file and specific passage
-2. The suspected source
-3. A link to the original
-
 {hofstede_section}
-
-## File Standards
-
-- **Encoding:** UTF-8, no BOM
-- **Sections:** Required per file type
-- **Language:** English-only (local proper names and places allowed; non-English sentences must be translated)
-- **Sources:** Every factual claim should be verifiable
 
 ## Content Audit Status
 
@@ -191,6 +158,8 @@ See [REFERENCES.md](REFERENCES.md) for the complete source registry and audit tr
 | (pending) | pending | - | - | - |
 
 Audit verdicts: **clean** (fully verified), **minor** (one minor inaccuracy), **issues** (factual error or paraphrase risk).
+
+See [REFERENCES.md](REFERENCES.md) for source attribution and sourcing methodology.
 
 ---
 
