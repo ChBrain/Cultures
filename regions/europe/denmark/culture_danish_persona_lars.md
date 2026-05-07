@@ -6,7 +6,7 @@
 - Culture: Denmark
 
 ## Projection
-Lars er en [mand](position_male.md) fra [Danmark](culture_danish_position.md).
+Lars er en [mand](../../../engine/position_male.md) fra [Danmark](culture_danish_position.md).
 Ingeniør. Han finder selv ud af det.
 Han er i rummet.
 Han lytter. Han bidrager når det er hans tur.

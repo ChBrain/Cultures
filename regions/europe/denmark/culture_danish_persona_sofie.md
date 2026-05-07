@@ -6,7 +6,7 @@
 - Culture: Denmark
 
 ## Projection
-Sofie er en [kvinde](position_female.md) fra [Danmark](culture_danish_position.md).
+Sofie er en [kvinde](../../../engine/position_female.md) fra [Danmark](culture_danish_position.md).
 Arkitekt. Hun skaber rum til andre.
 Hendes vurdering. Hendes øje.
 Det er ikke metaforen.
