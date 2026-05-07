@@ -15,10 +15,14 @@ L1a all files          encoding (UTF-8 no BOM), filenames (ASCII), em-dash, trai
 L1b all files          English-only prose (configurable, exception list for proper nouns)
 L2  per-file typed     section structure per file type (position, piece, place, persona)
 L3  within countries   link integrity (markdown links resolve, no orphaned files)
-L4  per-country        culture completeness (minimum file requirements per country)
+L4a per-country        culture completeness (minimum file requirements per country)
+L4b per-country        audit README with status tables
+L4c per-country        audit table consistency (entries match actual files)
+L4d per-country        IP/plagiarism heuristics (Wikipedia patterns, date anchors)
+L4e per-country        Hofstede dimension alignment (position reflects claimed dimensions)
 ```
 
-L0 gates everything. L1a gates L1b. L1b gates L2. L2 gates L3. L3 gates L4.
+L0 gates everything. L1a gates L1b. L1b gates L2. L2 gates L3. L3 gates L4a. L4a gates L4b. L4b gates L4c. L4c gates L4d. L4d gates L4e.
 
 **All are hard-block jobs** - fail PR if any layer fails (no soft warnings).
 
@@ -165,7 +169,7 @@ python3 tests/validate_links.py
 
 ---
 
-## Layer 4: Culture completeness
+## Layer 4a: Culture completeness
 
 **Scope:** Per-country folders in `regions/REGION/COUNTRY/`
 
@@ -190,25 +194,159 @@ Validates that each country has minimum required files per ARCHITECTURE.md.
 > See [ARCHITECTURE.md - Minimum per Country](../ARCHITECTURE.md#minimum-per-country) for rationale
 
 **Scripts:**
-- `tests/validate_culture.py` - L4 orchestrator (calls L4a completeness)
 - `tests/validate_culture_completeness.py` - L4a completeness enforcer
-
-**Reusability:** L4 is Cultures-specific (country structure). Not copied to other worlds.
 
 **Example:**
 ```bash
-python3 tests/validate_culture.py regions/europe/germany/
+python3 tests/validate_culture_completeness.py regions/europe/germany/
 # OK: Culture completeness validation passed
 
 # With violation (incomplete country):
-python3 tests/validate_culture.py regions/africa/algeria/
+python3 tests/validate_culture_completeness.py regions/africa/algeria/
 # FAIL: Pieces required but not found (0/1)
 #   verdict: Create exactly 1 file: culture_algerian_piece_*.md in regions/africa/algeria/
 ```
 
-**Future extension:**
-- L4b: Gender validation (2+ personas should represent gender diversity)
-- L4c: Relationship checks (place/piece/persona internal links)
+---
+
+## Layer 4b: Audit README with status tables
+
+**Scope:** Per-country folders in `regions/REGION/COUNTRY/`
+
+Validates that each country folder contains README.md with a Content Audit Status table documenting all content files.
+
+**Requirements:**
+- `README.md` exists in country folder
+- File contains `## Content Audit Status` section (case-insensitive header)
+- Section includes a markdown table with columns: `File`, `Status`, `Audit Notes`
+- Table has at least one entry
+- All entries match actual content files in the folder
+
+**Verdict when failed:** Create/update README.md with Content Audit Status table (template provided)
+
+**Architecture traceability:**
+> See [ARCHITECTURE.md - Hofstede Foundation](../ARCHITECTURE.md#hofstede-foundation) for audit documentation requirements
+
+**Script:** `tests/validate_audit_readme.py`
+
+**Example:**
+```bash
+python3 tests/validate_audit_readme.py regions/europe/germany/
+# OK: Audit README validation passed
+
+# With violation (missing status table):
+python3 tests/validate_audit_readme.py regions/africa/algeria/
+# FAIL regions/africa/algeria/README.md: Missing Content Audit Status table
+#   verdict: Add Content Audit Status section with table entries for all content files
+```
+
+---
+
+## Layer 4c: Audit table consistency
+
+**Scope:** Per-country folders in `regions/REGION/COUNTRY/`
+
+Validates that the Content Audit Status table in README.md matches actual content files. Detects orphaned files (in folder but not listed in audit table) and missing entries (listed in table but file doesn't exist).
+
+**Requirements:**
+- All files listed in audit table exist in folder
+- All content files in folder are listed in audit table
+- No orphans (files with no audit entry)
+- No stale entries (audit entries for missing files)
+
+**Verdict when failed:** Update README.md audit table to match actual files, or move/delete orphaned files
+
+**Script:** `tests/validate_audit_consistency.py`
+
+**Example:**
+```bash
+python3 tests/validate_audit_consistency.py regions/europe/germany/
+# OK: Audit consistency validation passed
+
+# With violation (orphaned file):
+python3 tests/validate_audit_consistency.py regions/africa/algeria/
+# FAIL regions/africa/algeria/: Orphaned file culture_algerian_piece_old.md not in README audit table
+#   verdict: Add entry to audit table in README.md, or delete the file
+```
+
+---
+
+## Layer 4d: IP/plagiarism heuristics
+
+**Scope:** Per-country content files in `regions/REGION/COUNTRY/`
+
+Detects heuristic patterns that suggest accidental close-paraphrase copying or Wikipedia-style plagiarism. This is an **advisory layer** (warnings only, not hard-block).
+
+**Patterns detected:**
+1. **Wikipedia-style construction:** Multiple instances of `[word] is a [noun] [in/located in/situated in/found in] [place]`
+   - Example: "Berlin is a city in Germany. The museum is a building in the city."
+   - Threshold: 2+ instances flags warning
+
+2. **Date-anchored constructions:** Multiple instances of `The [noun] [verb] [in/on date]`
+   - Example: "The war ended in 1945. The city was rebuilt in 1946."
+   - Threshold: 3+ instances flags warning
+
+3. **REFERENCES.md plagiarism protocol:** Validates that `REFERENCES.md` documents sourcing approach
+   - Must include section on plagiarism detection/paraphrase protocol
+   - Required if content was adapted from other sources
+
+**Verdict when failed (warnings only):** Advisory - review sourcing and update REFERENCES.md if content was adapted
+
+**Script:** `tests/validate_plagiarism.py`
+
+**Output:** WARN prefix (advisory, not hard-block)
+
+**Example:**
+```bash
+python3 tests/validate_plagiarism.py regions/europe/germany/
+# OK: Plagiarism heuristics passed (no warnings)
+
+# With warning (advisory):
+python3 tests/validate_plagiarism.py regions/africa/algeria/
+# WARN regions/africa/algeria/culture_algerian_position.md: Wikipedia-style pattern detected (2 instances)
+#   verdict: review sourcing - if content was adapted, update REFERENCES.md with plagiarism protocol
+```
+
+---
+
+## Layer 4e: Hofstede dimension alignment
+
+**Scope:** Per-country position files in `regions/REGION/COUNTRY/`
+
+Validates that the position file (culture's operating logic) actually contains keywords reflecting the Hofstede dimensions claimed in the country's README.
+
+**Requirements:**
+- Country README contains Hofstede section with dimension scores (PDI, IDV, UAI, MAS, LTO, IND)
+- Position file contains keywords matching those dimensions
+- Minimum keywords found per dimension (0 keywords = weak alignment warning)
+
+**Dimension keyword mapping:**
+- **PDI (Power Distance Index):** Low: equal, merit, question; High: hierarchy, authority, obey, deference
+- **IDV (Individualism):** Low: collective, group, harmony; High: individual, personal, autonomy, self
+- **UAI (Uncertainty Avoidance):** Low: risk, flexible, adapt; High: rules, structure, precision, control
+- **MAS (Masculinity):** Low: cooperation, care, compassion; High: compete, achieve, excellence, success
+- **LTO (Long-Term Orientation):** Low: tradition, immediate, present; High: long-term, planning, future, foundation
+- **IND (Indulgence):** Low: restraint, discipline, control; High: enjoy, gratification, freedom, pleasure
+
+**Verdict when failed (warnings only):** Review position file - add keywords reflecting claimed dimensions, or adjust README dimensions to match position
+
+**Script:** `tests/validate_hofstede_alignment.py`
+
+**Output:** WARN prefix (advisory - checks content alignment, not a hard-block)
+
+**Architecture traceability:**
+> See [ARCHITECTURE.md - Hofstede Foundation](../ARCHITECTURE.md#application-in-cultures) for dimension application guidance
+
+**Example:**
+```bash
+python3 tests/validate_hofstede_alignment.py regions/europe/germany/
+# OK: Hofstede alignment validation passed
+
+# With warning (weak alignment):
+python3 tests/validate_hofstede_alignment.py regions/africa/algeria/
+# WARN regions/africa/algeria/culture_algerian_position.md: Weak Hofstede alignment on dimension LTO (0 keywords found)
+#   verdict: review position file - add keywords reflecting long-term orientation, or adjust README scores
+```
 
 ---
 
@@ -219,7 +357,7 @@ setup (compute changed files)
   ↓
 L0-stamp-check (validation stamp exists)
   ↓
-L1a-general (encoding, filenames, em-dash, newline)
+L1-general (encoding, filenames, em-dash, newline)
   ↓
 L1b-language (English-only prose)
   ↓
@@ -227,12 +365,20 @@ L2-sections (section structure per file type)
   ↓
 L3-links (link integrity, no orphaned files)
   ↓
-L4-culture (culture completeness per country)
+L4a-completeness (minimum files per country)
+  ↓
+L4b-audit-readme (README with status tables)
+  ↓
+L4c-audit-consistency (audit table matches files)
+  ↓
+L4d-plagiarism (heuristic patterns - advisory)
+  ↓
+L4e-hofstede-alignment (dimension keywords - advisory)
   ↓
 ✅ PR passes
 ```
 
-Each job depends on previous job. All are hard-block (fail PR if fail).
+Each job depends on previous job. L4d and L4e are advisory (warnings only, do not block PR). All others are hard-block (fail PR if fail).
 
 ---
 
@@ -275,8 +421,12 @@ git config core.hooksPath .githooks
 | `tests/validate_language.py` | L1b | all files | ✅ Complete |
 | `tests/validate_sections.py` | L2 | typed files | ✅ Complete |
 | `tests/validate_links.py` | L3 | all files | ✅ Complete (reusable) |
-| `tests/validate_culture.py` | L4 orchestrator | orchestrator | ✅ Complete |
 | `tests/validate_culture_completeness.py` | L4a | per-country | ✅ Complete |
+| `tests/validate_audit_readme.py` | L4b | per-country | ✅ Complete |
+| `tests/validate_audit_consistency.py` | L4c | per-country | ✅ Complete |
+| `tests/validate_plagiarism.py` | L4d | per-country | ✅ Complete (advisory) |
+| `tests/validate_hofstede_alignment.py` | L4e | per-country | ✅ Complete (advisory) |
+| `tests/validate_culture.py` | L4 orchestrator | orchestrator | ✅ Complete |
 | `tests/findings.py` | shared | data structure | ✅ Complete |
 | `tests/language_exceptions.txt` | L1b | exceptions | ✅ Complete (template) |
 | `tests/requirements.txt` | dependencies | env setup | ✅ Complete |
@@ -295,7 +445,12 @@ git config core.hooksPath .githooks
 - `validate_sections.py` (L2) - adjust section maps per architecture
 
 **Cultures-specific only:**
-- `validate_culture.py` + `validate_culture_completeness.py` (L4 country logic)
+- `validate_culture_completeness.py` (L4a - country structure)
+- `validate_audit_readme.py` (L4b - audit documentation)
+- `validate_audit_consistency.py` (L4c - audit table consistency)
+- `validate_plagiarism.py` (L4d - IP safety for content-heavy worlds)
+- `validate_hofstede_alignment.py` (L4e - Hofstede framework specific to Cultures)
+- `validate_culture.py` (L4 orchestrator)
 
 ---
 
@@ -307,6 +462,15 @@ python3 tests/validate_general.py regions/europe/germany/*.md
 python3 tests/validate_language.py regions/europe/germany/*.md
 python3 tests/validate_sections.py regions/europe/germany/*.md
 python3 tests/validate_links.py regions/europe/germany/*.md
+python3 tests/validate_culture_completeness.py regions/europe/germany/*.md
+python3 tests/validate_audit_readme.py regions/europe/germany/*.md
+python3 tests/validate_audit_consistency.py regions/europe/germany/*.md
+python3 tests/validate_plagiarism.py regions/europe/germany/*.md
+python3 tests/validate_hofstede_alignment.py regions/europe/germany/*.md
+```
+
+**Using the orchestrator (L4 only):**
+```bash
 python3 tests/validate_culture.py regions/europe/germany/*.md
 ```
 
@@ -316,7 +480,11 @@ python3 tests/validate_general.py
 python3 tests/validate_language.py
 python3 tests/validate_sections.py
 python3 tests/validate_links.py
-python3 tests/validate_culture.py
+python3 tests/validate_culture_completeness.py
+python3 tests/validate_audit_readme.py
+python3 tests/validate_audit_consistency.py
+python3 tests/validate_plagiarism.py
+python3 tests/validate_hofstede_alignment.py
 ```
 
 **Pre-commit hook locally:**
@@ -333,16 +501,21 @@ ALLOWED_LANGUAGES=english,german python3 tests/validate_language.py
 
 ## Baselines
 
-**Germany (5 files):**
-- L1a: 4/5 fail (BOM) → auto-fixed by pre-commit hook
-- L1b: ✅ 5/5 pass English-only
-- L2: ✅ 5/5 pass structure
-- L3: ✅ 5/5 pass links
-- L4: ✅ Pass completeness
+**Germany (7 files: 1 position, 1 piece, 1 place, 2 personas, README, REFERENCES):**
+- L1a: ✅ UTF-8, ASCII filenames, no em-dash, trailing newline
+- L1b: ✅ English-only prose
+- L2: ✅ Section structure per file type
+- L3: ✅ Link integrity (no broken/orphaned files)
+- L4a: ✅ Completeness (1 position, 1 piece, 1 place, 2 personas)
+- L4b: ✅ README with Hofstede audit table
+- L4c: ✅ Audit table consistency
+- L4d: ✅ No plagiarism heuristics warnings
+- L4e: ✅ Strong Hofstede alignment (all 6 dimensions reflected in position)
 
 **Full scan (31 countries):**
-- L3: 0 broken links, ~247 orphaned files (expected - internal linking TBD)
-- L4: 5 countries complete, 26 incomplete (content work in progress)
+- L1a-L3: Germany ✅ pass; 30 others vary (incomplete content)
+- L4a: 5 countries complete, 26 incomplete (content work in progress)
+- L4b-L4e: Germany ✅ fully compliant; others incomplete until scaffolded
 
 ---
 
