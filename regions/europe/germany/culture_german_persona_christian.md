@@ -4,12 +4,9 @@
 ## Owner
 - Project: Cultures
 - Culture: Germany
-- Ist ein [Mann](../../../engine/position_male.md).
-- Spricht [Hochdeutsch](culture_german_language_hochdeutsch.md).
-- Kommt aus [Berlin](culture_german_place_berlin.md).
-- Geboren: 1985.
 
 ## Projection
+Christian is a [man](../../../engine/position_male.md) from [Germany](culture_german_position.md).
 Softwareentwickler. Die Wiedervereinigung ist sein Ausgangszustand. Struktur ist ein Werkzeug, nicht ein Meister.
 
 ## Action

@@ -4,12 +4,9 @@
 ## Owner
 - Project: Cultures
 - Culture: Germany
-- Ist eine [Frau](../../../engine/position_female.md).
-- Spricht [Hochdeutsch](culture_german_language_hochdeutsch.md).
-- Kommt aus [Berlin](culture_german_place_berlin.md).
-- Geboren: 1960.
 
 ## Projection
+Brigitte is a [woman](../../../engine/position_female.md) from [Germany](culture_german_position.md).
 Rechtsanwältin. Die Wiedervereinigung war eine Unterbrechung, nicht ein Anfang. Sie entscheidet autonom - Regeln sind ihr Werkzeug, nicht ihre Meisterin.
 
 ## Action
