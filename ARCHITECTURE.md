@@ -48,7 +48,9 @@ Patterns:
 - `regions/<region>/<country>/culture_<adj>_position.md`
 - `regions/<region>/<country>/culture_<adj>_piece_<descriptor>.md`
 - `regions/<region>/<country>/culture_<adj>_place_<descriptor>.md`
-- `regions/<region>/<country>/persona_<name>.md`
+- `regions/<region>/<country>/culture_<adj>_persona_<name>.md`
+- `regions/<region>/<country>/culture_<adj>_language_<descriptor>.md`
+- `regions/<region>/<country>/culture_<adj>_process_<descriptor>.md`
 
 `<adj>` = lowercase culture adjective (e.g., `german`, `french`).
 
@@ -122,6 +124,8 @@ Every file has an `## Owner` block anchoring it to the world.
 | place | `- Project: Cultures` |
 | piece | `- Place: [Place Name](culture_<adj>_place_<name>.md)` |
 | persona | `- Project: Cultures` |
+| language | `- Project: Cultures` |
+| process | `- Project: Cultures` |
 
 ### Sections
 
@@ -251,10 +255,13 @@ erDiagram
     COUNTRY ||--o{ PIECE : "holds"
     COUNTRY ||--o{ PLACE : "holds"
     COUNTRY ||--o{ PERSONA : "holds"
+    COUNTRY ||--o{ LANGUAGE : "holds"
+    COUNTRY ||--o{ PROCESS : "holds"
     PIECE }o--|| PLACE : "belongs to"
     PLACE ||--o{ POSITION : "lists"
     PLACE ||--o{ PIECE : "lists"
     PERSONA }o--|| POSITION : "carries"
+    PROCESS }o--|| POSITION : "initiated by"
 ```
 
 ---
@@ -267,6 +274,8 @@ Every country folder must contain:
 - **1 piece** (historical moment or symbol)
 - **1 place** (capital or defining location)
 - **2 personas** (at least one male, at least one female)
+- **1 language** (the linguistic anchor)
+- **1 process** (a culture-level recurring mechanism)
 
 More of each is allowed.
 
@@ -316,9 +325,45 @@ The capital or defining location where the position does its daily work.
 
 ---
 
+## Language
+
+A linguistic anchor of the culture - the standard, dialect, or register through which the culture speaks itself into existence. The section set is identical to Position: Language is operating logic for a linguistic anchor.
+
+**Sections:** `Owner`, `Has`, `Orders`, `Loses`, `Drives`.
+
+- **Has**: What the language carries (norms, institutions, registers).
+- **Orders**: What the language demands of speakers.
+- **Loses**: The cost of speaking it.
+- **Drives**: How the language persists past the cost.
+
+**Naming:** `culture_<adj>_language_<descriptor>.md`
+
+Example: `culture_german_language_hochdeutsch.md`.
+
+---
+
+## Process (culture-level)
+
+A recurring mechanism through which the culture's position acts in time. Engine-level processes (`engine/process_*.md`) describe world-level loops; culture-level processes describe culture-specific loops, initiated by the culture's position.
+
+**Sections:** `Owner`, `Initiated by`, `Direction`, `Lever`, `Echo`.
+
+- **Initiated by**: The position (or sub-position) that triggers the process.
+- **Direction**: Where the process pushes the culture.
+- **Lever**: The mechanism that does the work.
+- **Echo**: What remains after the process completes.
+
+**Naming:** `culture_<adj>_process_<descriptor>.md`
+
+Example: `culture_german_process_erinnern.md`.
+
+---
+
 ## Persona
 
-A person carrying the position they did not choose. Minimum two per country (one male, one female).
+A person doing ordinary work carrying a cultural position they did not choose. **At least two per country, with at least one projecting as male and at least one projecting as female.** More personas, and additional gender expressions, are welcome; the floor is mixed-gender representation.
+
+A persona links to its country's position. Gender is **not** a separate entity the persona links to - it is expressed through the persona's behaviour, distributed across the **PAST** framework (Projection, Action, Shadow, Tell). Like culture, gender is something a person performs, hides, and lets slip - not a tag they carry.
 
 Every persona intersects gender and culture. The **Projection** section establishes both:
 
@@ -328,58 +373,6 @@ Every persona intersects gender and culture. The **Projection** section establis
 from [Country](../../../engine/position_[culture].md).
 [Persona-specific projection content...]
 ```
-
-Gender is expressed through **PAST**:
-
-- **Projection**: Gender position link + culture position link + what the persona shows.
-- **Action**: What they do when pressed.
-- **Shadow**: What they cannot see about themselves.
-- **Tell**: The involuntary signal where Shadow leaks.
-
-**Sections:** `Owner`, `Projection`, `Action`, `Shadow`, `Tell`.
-
-**Naming:** `persona_<name>.md`
-
-**Gender Link Requirements:**
-- Male persona: `[man](../../../engine/position_male.md)`
-- Female persona: `[woman](../../../engine/position_female.md)`
-- Non-binary/other: Document in Projection (design TBD)
-
----
-
-## Folder Structure
-
-```
-regions/
-  africa/
-    country/
-      culture_adj_position.md
-      culture_adj_piece_descriptor.md
-      culture_adj_place_descriptor.md
-      persona_name1.md
-      persona_name2.md
-  americas/
-  asia/
-  europe/
-  oceania/
-engine/
-  position_male.md
-  position_female.md
-  stack.md
-  process_world_is_spinning.md
-```
-
-Region values: `africa`, `americas`, `asia`, `europe`, `oceania`.
-
-Country folder names: ASCII lowercase with underscores.
-
----
-
-## Persona
-
-A person doing ordinary work carrying a cultural position they did not choose. **At least two per country, with at least one projecting as male and at least one projecting as female.** More personas, and additional gender expressions, are welcome; the floor is mixed-gender representation.
-
-A persona links to its country's position. Gender is **not** a separate entity the persona links to - it is expressed through the persona's behaviour, distributed across the **PAST** framework (Projection, Action, Shadow, Tell). Like culture, gender is something a person performs, hides, and lets slip - not a tag they carry.
 
 **Sections in order:** `Owner`, `Title`, `Projection`, `Action`, `Shadow`, `Tell`.
 
@@ -401,7 +394,42 @@ Gender lives across PAST. A persona who projects female, acts in coherent regist
 - **Position link:** every persona links to their country's position. The link appears in either Title or the first line of Projection (current files diverge); see Open.
 - **Projection / Action / Shadow / Tell** as defined under PAST.
 
-**Naming:** `persona_<name>.md` (see naming Open question).
+**Naming:** `culture_<adj>_persona_<name>.md`
+
+**Gender Link Requirements:**
+- Male persona: `[man](../../../engine/position_male.md)`
+- Female persona: `[woman](../../../engine/position_female.md)`
+- Non-binary/other: Document in Projection (design TBD)
+
+---
+
+## Folder Structure
+
+```
+regions/
+  africa/
+    country/
+      culture_adj_position.md
+      culture_adj_piece_descriptor.md
+      culture_adj_place_descriptor.md
+      culture_adj_persona_name1.md
+      culture_adj_persona_name2.md
+      culture_adj_language_descriptor.md
+      culture_adj_process_descriptor.md
+  americas/
+  asia/
+  europe/
+  oceania/
+engine/
+  position_male.md
+  position_female.md
+  stack.md
+  process_world_is_spinning.md
+```
+
+Region values: `africa`, `americas`, `asia`, `europe`, `oceania`.
+
+Country folder names: ASCII lowercase with underscores.
 
 ---
 
@@ -423,7 +451,7 @@ The engine is the world frame - the rules that make the world run regardless of 
 - `engine/process_world_is_spinning.md` - the master loop process all places connect to.
 - `engine/<platform>/` - per-AI instructions for `claude/`, `copilot/`, `gemini/`. Each platform sub-folder carries the engine pieces in the form that platform expects.
 
-Process files use the section set: `Owner`, `Initiated by`, `Direction`, `Lever`, `Echo`.
+Engine and culture-level processes share the section set: `Owner`, `Initiated by`, `Direction`, `Lever`, `Echo`. Engine processes describe world-level loops (`engine/process_*.md`); culture-level processes describe culture-specific loops and live in country folders (see Process section above).
 
 > **To formalise:** the section contracts for `stack.md` and the per-platform instruction files are not yet specified.
 
@@ -435,7 +463,7 @@ The world deploys flat to an AI project: every file lands in one folder. The rel
 
 The single author-facing rule: **every file basename in a deployed bundle is unique**.
 
-> **Open:** the per-region bundle currently flattens personas alongside cultures. Combined with personas not carrying the culture adjective, two countries can collide. See the persona naming Open question.
+The `culture_<adj>_*` prefix on every culture-scoped file (position, piece, place, persona, language, process) ensures basename uniqueness across countries when bundles flatten.
 
 ---
 
@@ -518,9 +546,8 @@ If you find potential plagiarism or factual errors:
 ## To document
 
 - **Owner anchor for top-level files** - `- *` (current, undocumented) vs `- Project: Cultures` (proposed). This architecture stipulates `- Project: Cultures`; existing `- *` files need migration.
-- **Persona basename uniqueness** - either prefix with the culture adjective or keep personas country-scoped (no flat deploy of personas).
 - **Mixed-gender minimum: formal definition and enforcement** - gender lives across PAST. A persona who projects female may technically be male in their Shadow (gender-fluid, transitioning, performing). The mixed-gender rule ("at least one male, at least one female") needs a precise reading: does it count Projection, the technical body in Shadow, or both? And how does the L2 validator read it? Projection is prose; the technical body, when it differs, surfaces in Shadow or Tell. Until the reading is specified, the constraint cannot be enforced mechanically and L2 treats it as deferred.
-- **Persona Title convention** - `persona_hanna.md` uses Title for role/profession; `persona_thomas.md` uses Title for the position-and-piece link chain. Pick one. The choice determines whether the position-link L2 rule reads Title or Projection.
+- **Persona Title convention** - existing personas diverge: some use Title for role/profession (`Rechtsanwältin`); others use Title for a position-and-piece link chain. Pick one. The choice determines whether the position-link L2 rule reads Title or Projection.
 - **Footer canonicalisation** - `engine/stack.md` uses `... - CULTURES`; this architecture stipulates `... - KAI Worlds`.
 - **BOM cleanup** - several existing files start with U+FEFF; non-conformant with the encoding rule.
 - **Engine section contracts** - the section shape for `engine/stack.md` and for per-platform instruction files is not yet specified.
