@@ -32,10 +32,10 @@ Die Leichtigkeit.
 Auf den Verlust der Leichtigkeit:
 Präzision.
 
+---
 **Hofstede:** PDI Low · IDV High · UAI High · MAS High · LTO Very High · IND Low
 Levels and sources: see README.
 
----
 *culture_german_position.md - 07.05.2026*
 
 v0.1.0 - KAI Worlds
