@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+"""Pre-commit hook: L1 validation + L0 stamp + BOM stripping.
+
+This hook ensures that:
+1. UTF-8 BOM is stripped from staged files (PowerShell cleanup)
+2. L1 validation (general format rules) passes
+3. L2 validation (section structure per file type) passes
+4. .validation-stamp is written with current tree hash
+"""
+from __future__ import annotations
+
+import subprocess
+import sys
+from pathlib import Path
+
+UTF8_BOM = b"\xef\xbb\xbf"
+
+
+def run_git(*args: str) -> str:
+    """Run git command and return output."""
+    result = subprocess.run(
+        ["git", *args],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    return result.stdout.strip()
+
+
+def strip_bom_from_staged_files() -> list[str]:
+    """Strip UTF-8 BOM from any staged text file that has one.
+
+    PowerShell Set-Content writes BOM regardless of .editorconfig. Stripping
+    at commit time keeps the repository clean without requiring each tool/shell
+    to be configured correctly.
+
+    Returns a list of file paths that were fixed.
+    """
+    staged = run_git("diff", "--cached", "--name-only")
+    fixed = []
+    for rel in staged.splitlines():
+        path = Path(rel)
+        if not path.exists() or path.suffix not in {".md", ".txt", ".py", ".sh", ".json"}:
+            continue
+        raw = path.read_bytes()
+        if raw.startswith(UTF8_BOM):
+            path.write_bytes(raw[3:])
+            subprocess.run(["git", "add", rel], check=False)
+            fixed.append(rel)
+    return fixed
+
+
+def main() -> int:
+    # Strip BOM from staged files before any other checks.
+    # Transparent fix for PowerShell Set-Content BOM injection.
+    fixed = strip_bom_from_staged_files()
+    if fixed:
+        for f in fixed:
+            print(f"  (stripped UTF-8 BOM from {f})")
+
+    # Guard: prevent direct commits to main branch
+    current_branch = run_git("rev-parse", "--abbrev-ref", "HEAD")
+    if current_branch == "main":
+        print("❌ ERROR: Direct commits to main are forbidden")
+        print("")
+        print("Create a feature branch first:")
+        print("  git checkout -b feat/<name>")
+        print("")
+        return 1
+
+    # Run validators (L1 general, L2 per-type). CI only checks the stamp; keep costs low.
+    validators = [
+        [sys.executable, "tests/validate_general.py"],
+        [sys.executable, "tests/validate_sections.py"],
+    ]
+    for cmd in validators:
+        result = subprocess.run(cmd, capture_output=True, text=True, check=False)
+        if result.returncode != 0:
+            label = cmd[1].split("/")[-1]
+            print(f"❌ VALIDATION FAILED: {label}")
+            print("")
+            print(result.stdout.strip())
+            print("")
+            return 1
+
+    # Write validation stamp: hash of the content tree, excluding the stamp file itself
+    # (removing stamp from index avoids a circular hash dependency).
+    subprocess.run(["git", "rm", "--cached", "--ignore-unmatch", ".validation-stamp"],
+                   capture_output=True, check=False)
+    tree_hash = run_git("write-tree")
+    Path(".validation-stamp").write_text(tree_hash + "\n", encoding="utf-8")
+    subprocess.run(["git", "add", ".validation-stamp"], check=False)
+    print(f"+ Validation stamp written ({tree_hash[:12]})")
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

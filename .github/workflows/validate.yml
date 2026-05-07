@@ -7,17 +7,16 @@ on:
     branches: [main]
 
 jobs:
-  validate-md:
-    name: Validate regions/**/*.md
+  setup:
+    name: Setup - Compute changed files
     runs-on: ubuntu-latest
+    outputs:
+      any: ${{ steps.changed.outputs.any }}
+      files: ${{ steps.changed.outputs.files }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
       - name: Get changed regions/*.md files
         id: changed
         run: |
@@ -32,10 +31,65 @@ jobs:
           fi
           # --diff-filter=ACMRT skips deletions; the validator must not be handed paths that no longer exist.
           FILES=$(git diff --name-only --diff-filter=ACMRT "$RANGE" | { grep -E '^regions/.*\.md$' || true; } | tr '\n' ' ' | sed 's/ *$//')
+          ANY=$(if [ -z "$FILES" ]; then echo "false"; else echo "true"; fi)
+          echo "any=$ANY" >> "$GITHUB_OUTPUT"
           echo "files=$FILES" >> "$GITHUB_OUTPUT"
-      - name: Validate changed files
-        if: steps.changed.outputs.files != ''
-        run: python3 scripts/validate_general.py ${{ steps.changed.outputs.files }}
-      - name: No regions/*.md files changed
-        if: steps.changed.outputs.files == ''
-        run: echo "No regions/*.md files changed - skipping validation"
+
+  L0-stamp-check:
+    name: L0 - Validation stamp gate
+    needs: [setup]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check validation stamp exists
+        run: |
+          if [ ! -f ".validation-stamp" ]; then
+            echo "❌ VALIDATION FAILED: .validation-stamp missing"
+            echo ""
+            echo "This file records that local validators passed before commit."
+            echo "Run locally to generate it:"
+            echo "  git config core.hooksPath .githooks"
+            echo "  scripts/setup-hooks.sh  # or setup-hooks.bat on Windows"
+            echo "  git commit --amend -m 'your message'"
+            exit 1
+          fi
+          echo "✓ Validation stamp present"
+
+  L1-general:
+    name: L1 - General file format
+    needs: [setup, L0-stamp-check]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate general format
+        run: python3 tests/validate_general.py ${{ needs.setup.outputs.files }}
+
+  L2-sections:
+    name: L2 - Section structure
+    needs: [setup, L1-general]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate section structure
+        run: python3 tests/validate_sections.py ${{ needs.setup.outputs.files }}
+
+  no-changes:
+    name: No regions/*.md files changed
+    needs: [setup]
+    if: needs.setup.outputs.any == 'false'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "No regions/*.md files changed - skipping validation"
