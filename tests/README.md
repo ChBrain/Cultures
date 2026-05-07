@@ -367,7 +367,7 @@ Two passes:
 
 **Script:** `tests/validate_hofstede_alignment.py`
 
-**Output:** `FAIL` for structure issues, `WARN` for alignment issues. Exit code is 1 if either occurs.
+**Output:** `FAIL` for structure issues (hard-block), `WARN` for alignment issues (advisory). Exit code is 1 only if a structure issue exists; alignment warnings print but do not fail CI. Per the language policy, position files are written in the culture's native language and the keyword bag is English, so alignment warnings on non-English content are expected — multilingual keyword bags are a future project.
 
 **Architecture traceability:**
 > See [ARCHITECTURE.md - Hofstede Foundation](../ARCHITECTURE.md#application-in-cultures) for dimension application guidance

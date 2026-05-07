@@ -3,25 +3,32 @@
 
 Two passes per country:
 
-1. Structure (FAIL): README has a `## Hofstede` section, a score table with
-   all six dimensions filled in (PDI, IDV, UAI, MAS, LTO, IND), a source
-   line, and REFERENCES.md cites Hofstede. If the country has a culture
-   position file, it should reference the dimensions.
+1. Structure (FAIL, hard-block): README has a `## Hofstede` section, a
+   score table with all six dimensions filled in (PDI, IDV, UAI, MAS, LTO,
+   IND), a source line, and REFERENCES.md cites Hofstede. If the country
+   has a culture position file, it should reference the dimensions.
 
-2. Alignment (WARN): given the scores from the README, the position file's
-   keywords should match the expected polarity for each dimension.
+2. Alignment (WARN, advisory): given the scores from the README, the
+   position file's keywords should match the expected polarity for each
+   dimension.
 
 Alignment depends on structure: if scores cannot be extracted from the
 README, the alignment pass is skipped for that country (otherwise it would
 silently pass with no findings).
+
+The alignment keyword bag is English. Per the language policy, position
+files are written in the culture's native language, so alignment warnings
+on non-English content are expected and currently informational only —
+hence advisory. Multilingual keyword bags are a future project.
 
 Both passes share the same `extract_hofstede_scores` parser, so dimension
 presence in the structure pass and score extraction in the alignment pass
 agree on what counts as a valid score row.
 
 Exit status:
-  0 if every country passes structure and has no alignment warnings,
-  1 otherwise.
+  0 if every country passes the structure pass (alignment warnings ignored
+    for the exit code).
+  1 if any country has a structure issue.
 
 Usage:
   tests/validate_hofstede_alignment.py            # all countries
@@ -301,7 +308,7 @@ def main(argv: list[str]) -> int:
             f"\nHofstede: {len(all_structure)} structure issue(s), "
             f"{len(all_alignment)} alignment warning(s) across {len(countries)} country(ies)"
         )
-        return 1
+        return 1 if all_structure else 0
 
     print(f"OK: {len(countries)} countries pass Hofstede structure + alignment")
     return 0
