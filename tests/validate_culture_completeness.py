@@ -55,7 +55,8 @@ def validate_country(country_path: str, files: list[Path]) -> list[Issue]:
     positions = [f for f in files if "_position.md" in f.name]
     pieces = [f for f in files if "_piece_" in f.name]
     places = [f for f in files if "_place_" in f.name]
-    personas = [f for f in files if f.name.startswith("persona_")]
+    # Recognize both naming patterns: persona_*.md (legacy) and culture_*_persona_*.md (new)
+    personas = [f for f in files if f.name.startswith("persona_") or "_persona_" in f.name]
     
     # Check position count (exactly 1)
     if len(positions) == 0:
@@ -87,7 +88,7 @@ def validate_country(country_path: str, files: list[Path]) -> list[Issue]:
     if len(personas) < 2:
         issues.append(Issue(
             error=f"{country_path}: Too few personas ({len(personas)})",
-            verdict="Create at least 2 persona files: persona_<name>.md (minimum: 1 male, 1 female)"
+            verdict="Create at least 2 persona files: persona_<name>.md or culture_<adj>_persona_<name>.md (minimum: 1 male, 1 female)"
         ))
     
     return issues
