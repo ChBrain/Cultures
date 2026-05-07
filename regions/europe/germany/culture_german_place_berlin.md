@@ -50,4 +50,4 @@
 ---
 *culture_german_place_berlin.md - 02.04.2026*
 
-v0.2.0 - KAI Worlds
+v0.1.0 - KAI Worlds

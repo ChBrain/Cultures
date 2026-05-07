@@ -97,4 +97,4 @@ It is called unfinished because it is.
 *The Basic Law is the answer. This is the question the answer responds to.*
 *The reckoning is why the truth cannot wait.*
 
-v0.2.0 - KAI Worlds
+v0.1.0 - KAI Worlds

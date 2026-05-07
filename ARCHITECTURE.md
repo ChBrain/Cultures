@@ -2,6 +2,62 @@
 
 *Cultures world architecture.*
 
+**Concept:** Built on KAI HACKS AI Architecture and KAIWorlds framework.
+
+**Project Scope:** All content files in `regions/` tree must conform to these rules.
+
+---
+
+## Global File Standards
+
+These rules apply to **all** content files (`.md`) in the repository:
+
+### Encoding
+
+- **Character set:** UTF-8 only
+- **Byte-order mark:** Forbidden (UTF-8 no BOM)
+
+### Line Endings
+
+- **Standard:** POSIX LF (`\n`) only
+- **Forbidden:** Windows CRLF (`\r\n`)
+- **Enforcement:** Git `.gitattributes` normalizes on commit; pre-commit hook strips CRLF on stage
+
+### Trailing Newline
+
+- **Required:** Every file must end with exactly one trailing newline (`\n`)
+- **Rationale:** POSIX standard; prevents Git diffs showing "\ No newline at end of file"
+
+### Footer
+
+Every content file ends with a footer line:
+
+```
+v0.1.0 - KAI Worlds
+```
+
+- **Format:** `vX.Y.Z - KAI Worlds` where X.Y.Z matches repo version
+- **Placement:** Final line of file (after trailing newline from content)
+- **Required in:** All positions, pieces, places, personas
+
+### Filenames
+
+ASCII only. Underscores separate words. No hyphens or diacritics. Every basename unique.
+
+Patterns:
+- `regions/<region>/<country>/culture_<adj>_position.md`
+- `regions/<region>/<country>/culture_<adj>_piece_<descriptor>.md`
+- `regions/<region>/<country>/culture_<adj>_place_<descriptor>.md`
+- `regions/<region>/<country>/persona_<name>.md`
+
+`<adj>` = lowercase culture adjective (e.g., `german`, `french`).
+
+### Style
+
+- **Em-dashes:** Forbidden (U+2014 `—`). Use hyphens (`-`) instead.
+- **Ambiguity:** No literal Unicode escape sequences (`\uXXXX`).
+- **Clarity:** No Unicode replacement character (U+FFFD `�`).
+
 ---
 
 ## General
@@ -30,32 +86,6 @@ Every file has an `## Owner` block anchoring it to the world.
 ### Sections
 
 Section order is fixed per file type. See below.
-
-### Footer
-
-```
-vX.Y.Z - KAI Worlds
-```
-
-### Version
-
-Semantic versioning: `major.minor.patch`.
-
-### Encoding
-
-UTF-8, no byte-order mark.
-
-### Filenames
-
-ASCII only. Underscores separate words. No hyphens or diacritics. Every basename unique.
-
-Patterns:
-- `regions/<region>/<country>/culture_<adj>_position.md`
-- `regions/<region>/<country>/culture_<adj>_piece_<descriptor>.md`
-- `regions/<region>/<country>/culture_<adj>_place_<descriptor>.md`
-- `regions/<region>/<country>/persona_<name>.md`
-
-`<adj>` = lowercase culture adjective (e.g., `german`, `french`).
 
 ---
 
