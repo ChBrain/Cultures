@@ -279,11 +279,13 @@ Every country folder must contain:
 - **1 position** (exactly one - the country's anchor)
 - **1 piece** (historical moment or symbol)
 - **1 place** (capital or defining location)
-- **2 personas** (at least one male, at least one female)
+- **2 personas** (at least one linking the male position, at least one linking the female position - see below)
 - **1 language** (the linguistic anchor)
 - **1 process** (a culture-level recurring mechanism)
 
 More of each is allowed.
+
+**Mixed-gender minimum:** A persona's gender, for this rule, is the engine position the persona links in its `## Projection` section. A persona linking `engine/position_male.md` counts as male; linking `engine/position_female.md` counts as female. A persona linking both contributes to both counts (gender-fluid, transitioning, performing). Every country requires at least one persona linking male AND at least one linking female. The L4a validator enforces this from the link target alone, language-agnostic.
 
 ---
 
@@ -552,7 +554,7 @@ If you find potential plagiarism or factual errors:
 ## To document
 
 - **Legacy Owner-block migration** - the canonical Owner block is locked (see Owner above). The L2 validator enforces it on changed files. The corpus still contains hundreds of legacy shapes (`- *` placeholders, bolded `- **Project:**`, `— Americas` suffixes, `- Place: [...]` second tiers); these will fail validation when their file is next touched.
-- **Mixed-gender minimum: formal definition and enforcement** - gender lives across PAST. A persona who projects female may technically be male in their Shadow (gender-fluid, transitioning, performing). The mixed-gender rule ("at least one male, at least one female") needs a precise reading: does it count Projection, the technical body in Shadow, or both? And how does the L2 validator read it? Projection is prose; the technical body, when it differs, surfaces in Shadow or Tell. Until the reading is specified, the constraint cannot be enforced mechanically and L2 treats it as deferred.
+- **Legacy mixed-gender coverage** - the rule is locked (see Mixed-gender minimum above) and L4a enforces it on changed countries. Most legacy countries currently have personas without engine gender links; they will fail the country check when any of their files is next touched.
 - **BOM cleanup** - several existing files start with U+FEFF; non-conformant with the encoding rule. The pre-commit hook strips BOMs from staged files; legacy files retain theirs until next touched.
 - **Engine section contracts** - the section shape for `engine/stack.md` and for per-platform instruction files is not yet specified.
 - **Versioning workflow** - bump-type declaration, pre-commit hook, version sync from Autobahn not yet adopted.

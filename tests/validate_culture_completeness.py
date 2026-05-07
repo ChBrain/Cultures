@@ -9,11 +9,39 @@ Checks that each country folder has the minimum required files per ARCHITECTURE.
 """
 from __future__ import annotations
 
+import re
 import sys
 from pathlib import Path
 from collections import defaultdict
 
 from findings import Issue
+
+
+MALE_LINK_RE = re.compile(r"\]\s*\(\s*[^)]*position_male\.md\s*\)")
+FEMALE_LINK_RE = re.compile(r"\]\s*\(\s*[^)]*position_female\.md\s*\)")
+PROJECTION_RE = re.compile(r"^## Projection\s*$(.+?)^## ", re.MULTILINE | re.DOTALL)
+
+
+def persona_gender_links(file_path: Path) -> tuple[bool, bool]:
+    """Return (has_male_link, has_female_link) for a persona file.
+
+    Reads the ## Projection section and looks for engine gender position
+    links by target only (language-agnostic on link text).
+    """
+    try:
+        text = file_path.read_text(encoding="utf-8")
+    except Exception:
+        return (False, False)
+
+    m = PROJECTION_RE.search(text)
+    if not m:
+        return (False, False)
+
+    projection = m.group(1)
+    return (
+        bool(MALE_LINK_RE.search(projection)),
+        bool(FEMALE_LINK_RE.search(projection)),
+    )
 
 
 def find_country_folders() -> dict[str, list[Path]]:
@@ -90,7 +118,30 @@ def validate_country(country_path: str, files: list[Path]) -> list[Issue]:
             error=f"{country_path}: Too few personas ({len(personas)})",
             verdict="Create at least 2 persona files: persona_<name>.md or culture_<adj>_persona_<name>.md (minimum: 1 male, 1 female)"
         ))
-    
+
+    # Mixed-gender minimum: at least one persona must link the male position,
+    # and at least one must link the female position. Gender is determined by
+    # the engine position the persona links in its ## Projection section.
+    male_personas = 0
+    female_personas = 0
+    for p in personas:
+        has_male, has_female = persona_gender_links(p)
+        if has_male:
+            male_personas += 1
+        if has_female:
+            female_personas += 1
+
+    if personas and male_personas < 1:
+        issues.append(Issue(
+            error=f"{country_path}: No persona links the male position",
+            verdict="At least one persona's ## Projection must link engine/position_male.md",
+        ))
+    if personas and female_personas < 1:
+        issues.append(Issue(
+            error=f"{country_path}: No persona links the female position",
+            verdict="At least one persona's ## Projection must link engine/position_female.md",
+        ))
+
     return issues
 
 
