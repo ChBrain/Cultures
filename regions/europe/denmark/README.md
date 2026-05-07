@@ -20,8 +20,8 @@ The zip contains all culture files flattened at root level with links rewritten 
 | `culture_danish_process_hygge.md` | Process | Hygge - the art of coziness and shared comfort |
 | `culture_danish_piece_janteloven.md` | Piece | Janteloven (Law of Jante) - social code prohibiting standing out |
 | `culture_danish_place_copenhagen.md` | Place | Copenhagen - capital city as social anchor |
-| `culture_danish_persona_lars.md` | Persona | Lars - Engineer from Copenhagen (consensus builder) |
-| `culture_danish_persona_sofie.md` | Persona | Sofie - Project manager from Copenhagen (team facilitator) |
+| `culture_danish_persona_lars.md` | Persona | Lars - Engineer from Copenhagen (autonomous judgment) |
+| `culture_danish_persona_sofie.md` | Persona | Sofie - Architect from Copenhagen (expertise + choice) |
 
 ## Hofstede Cultural Dimensions - Denmark
 
@@ -40,13 +40,14 @@ Denmark's cultural profile measured against Hofstede's framework:
 
 ### How Dimensions Shape Danish Culture
 
-- **Very Low PDI + High IDV:** Danish society is exceptionally egalitarian. Hierarchy is questioned and must be earned through competence and respect, not position. Individual voice matters equally.
-- **Very Low UAI:** Danes are comfortable with change, ambiguity, and informal structures. Rules exist but are questioned and adapted pragmatically.
-- **Very Low MAS:** Cooperation and consensus-building are paramount. Competition is downplayed. Success is measured in collective well-being, not individual achievement.
-- **Moderate-Low LTO:** Present-moment enjoyment (hygge) balances pragmatic planning. Relationships and immediate quality of life matter more than long-term sacrifice.
-- **High IND:** Work-life balance is valued. Leisure, comfort (hygge), and enjoying time together are culturally sanctioned, not seen as self-indulgence.
+**The Autonomy-Restraint Paradox:** Danish culture uniquely combines extreme individual autonomy (PDI 18, IDV 74) with extreme restraint from imposing (MAS 16). Each Dane claims their own judgment passionately and independently—then respects everyone else's equally. No one defers to hierarchy; everyone defers to others' autonomy.
 
-These dimensions inform the **[Position](culture_danish_position.md)** (how Denmark operates through consensus and equality), **Pieces** (Janteloven as a cultural rule against standing out), **Place** (Copenhagen as a walkable, human-centered city), and **Personas** (how individuals navigate consensus without ego). The position file carries a Hofstede footer naming the six dimensions; the levels and sources live here.
+- **Very Low PDI + Very High IDV:** Radical equality and personal autonomy. Hierarchy is minimized; everyone's judgment matters equally. Janteloven enforces this paradox—don't claim superiority, but do claim your own autonomy.
+- **Very Low UAI:** Pragmatism over rules. Danes adapt to what works rather than defend fixed systems. Ambiguity is acceptable; improvisation is valued.
+- **Very Low MAS + Very High IND:** Cooperation over competition; care over conquest. Enjoyment is legitimate. Hygge (present-moment togetherness) is culturally celebrated, not indulgent.
+- **Low LTO:** Present-moment focus. Relationships and immediate quality of life matter more than long-term sacrifice. Flexibility over rigid planning.
+
+These dimensions inform the **[Position](culture_danish_position.md)** (how Denmark operates through equality and autonomy), **Pieces** (Janteloven as cultural code enforcing the paradox), **Place** (Copenhagen as infrastructure reflecting individual choice and shared care), and **Personas** (how individuals express autonomy while respecting others'). The position file carries a Hofstede footer naming the six dimensions; the levels and sources live here.
 
 ## Content Audit Status
 
