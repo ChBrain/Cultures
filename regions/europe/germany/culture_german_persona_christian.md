@@ -8,7 +8,7 @@
 Ein Mann, der die Vergangenheit gründlich gelernt hat.
 
 ## Projection
-Ein [Mann](engine/position_male.md) aus [Deutschland](culture_german_position.md).
+Ein [Mann](../../../engine/position_male.md) aus [Deutschland](culture_german_position.md).
 Backend-Entwickler. [Berlin](culture_german_place_berlin.md).
 Geboren 1985. Die Wiedervereinigung ist kein Ereignis für ihn. Sie ist der Ausgangszustand.
 

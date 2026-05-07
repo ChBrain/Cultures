@@ -146,22 +146,24 @@ All persona files include gender position links in the **Projection** section:
 
 ```markdown
 ## Projection
-[Name] is a [man/woman](../../engine/position_male.md / position_female.md)
-from [Country](../../engine/position_[culture].md).
+[Name] is a [man/woman](../../../engine/position_male.md / position_female.md)
+from [Country](../../../engine/position_[culture].md).
 [Persona-specific projection content...]
 ```
 
 Examples:
-- Male persona: `Thomas is a [man](../../engine/position_male.md) from [Germany](../../engine/position_german.md).`
-- Female persona: `Hanna is a [woman](../../engine/position_female.md) from [Germany](../../engine/position_german.md).`
+- Male persona: `Thomas is a [man](../../../engine/position_male.md) from [Germany](../../../engine/position_german.md).`
+- Female persona: `Hanna is a [woman](../../../engine/position_female.md) from [Germany](../../../engine/position_german.md).`
 
 ### Linking Mechanics
 
 - **From:** `regions/REGION/COUNTRY/persona_*.md`
-- **To gender:** `../../engine/position_male.md` or `../../engine/position_female.md`
-- **To culture:** `../../engine/position_[culture].md` or `culture_[culture]_position.md` (local reference)
+- **To gender:** `../../../engine/position_male.md` or `../../../engine/position_female.md`
+- **To culture:** `../../../engine/position_[culture].md` or `culture_[culture]_position.md` (local reference)
 
-The double `../../` accounts for depth: `regions/europe/germany/` goes up two levels to reach `engine/`.
+The triple `../../../` accounts for depth: `regions/europe/germany/` goes up three levels to reach the repo root, then into `engine/`.
+
+**Canonical form is the only supported form.** Cross-level links (persona → engine, and any future region → engine) MUST use directory-relative paths with `../../../` — not bare `engine/...` (which renders as a sibling-directory link in every Markdown renderer) and not `/engine/...` (which only works in some surfaces). The link validator enforces this: paths are resolved relative to the source file's directory only, with no repo-root fallback.
 
 ### All New Personas
 
@@ -322,8 +324,8 @@ Every persona intersects gender and culture. The **Projection** section establis
 
 ```markdown
 ## Projection
-[Name] is a [man/woman](../../engine/position_male.md / position_female.md)
-from [Country](../../engine/position_[culture].md).
+[Name] is a [man/woman](../../../engine/position_male.md / position_female.md)
+from [Country](../../../engine/position_[culture].md).
 [Persona-specific projection content...]
 ```
 
@@ -339,8 +341,8 @@ Gender is expressed through **PAST**:
 **Naming:** `persona_<name>.md`
 
 **Gender Link Requirements:**
-- Male persona: `[man](../../engine/position_male.md)`
-- Female persona: `[woman](../../engine/position_female.md)`
+- Male persona: `[man](../../../engine/position_male.md)`
+- Female persona: `[woman](../../../engine/position_female.md)`
 - Non-binary/other: Document in Projection (design TBD)
 
 ---
