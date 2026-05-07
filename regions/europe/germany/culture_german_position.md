@@ -32,8 +32,8 @@ Die Leichtigkeit.
 Auf den Verlust der Leichtigkeit:
 Präzision.
 
-**Hofstede:** PDI niedrig · IDV hoch · UAI hoch · MAS hoch · LTO sehr hoch · IND niedrig
-Quellen und Begründung in der README.
+**Hofstede:** PDI Low · IDV High · UAI High · MAS High · LTO Very High · IND Low-Moderate
+Levels and sources: see README.
 
 ---
 *culture_german_position.md - 07.05.2026*
