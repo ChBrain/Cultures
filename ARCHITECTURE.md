@@ -136,10 +136,10 @@ Both approaches are valid; the key is transparency about sourcing.
 Rather than pre-populating all countries with README/REFERENCES at once, documentation is scaffolded on-demand as countries are touched:
 
 1. **Infrastructure:** `data/hofstede_scores.json` contains 50+ countries with empirical scores
-2. **Generator:** `scripts/scaffold_all_hofstede.py` creates README.md and REFERENCES.md for any country
+2. **Generator:** `scripts/scaffold_country.py` creates README.md and REFERENCES.md for any country
 3. **Workflow:** When you start a country, run:
    ```bash
-   python3 scripts/scaffold_all_hofstede.py --apply COUNTRY
+   python3 scripts/scaffold_country.py --apply COUNTRY
    git add regions/REGION/COUNTRY/{README,REFERENCES}.md
    # Then run validators and edit as needed
    ```
