@@ -1,0 +1,170 @@
+# Germany - References & Source Attribution
+
+**Authorship:** Kai Schlueter with AI-assisted drafting
+**Content Model:** Facts (verified via sources) + Original expression
+**Last Updated:** May 7, 2026
+
+---
+
+## Source Registry
+
+### Official & Institutional Sources
+
+| Source | URL | Scope | Trust Level |
+|--------|-----|-------|------------|
+| Bundeszentrale für politische Bildung (bpb) | https://www.bpb.de/ | German history, politics, society | ⭐⭐⭐⭐⭐ |
+| Bundesarchiv (German Federal Archives) | https://www.bundesarchiv.de/ | Historical documents, WWII records | ⭐⭐⭐⭐⭐ |
+| Bundesrat (Federal Council) | https://www.bundesrat.de/ | Government structure | ⭐⭐⭐⭐⭐ |
+| Deutscher Bundestag | https://www.bundestag.de/ | Legislative information | ⭐⭐⭐⭐⭐ |
+| Deutsche Welle | https://www.dw.com/ | News, culture, society | ⭐⭐⭐⭐ |
+| Berlin.de (Official city site) | https://www.berlin.de/ | Berlin-specific facts | ⭐⭐⭐⭐⭐ |
+| Statistisches Bundesamt | https://www.destatis.de/ | Official statistics | ⭐⭐⭐⭐⭐ |
+
+### Academic & Historical References
+
+| Source | Scope | Trust Level |
+|--------|-------|------------|
+| German Historical Institute (Deutsches Historisches Institut) | WWII, Cold War history | ⭐⭐⭐⭐⭐ |
+| Institut für Zeitgeschichte (Institute for Contemporary History) | 1945 onwards | ⭐⭐⭐⭐⭐ |
+| Berlin-Brandenburgische Akademie der Wissenschaften | Regional studies | ⭐⭐⭐⭐ |
+| University press publications | Historical scholarship | ⭐⭐⭐⭐ |
+
+### Secondary References
+
+| Source | Scope | Trust Level |
+|--------|-------|------------|
+| Wikipedia (German & English) | General facts, cultural context | ⭐⭐⭐ |
+| Britannica | Historical overviews | ⭐⭐⭐⭐ |
+| CIA World Factbook | Geographic, demographic data | ⭐⭐⭐⭐ |
+
+### Journalistic & Media Archives
+
+| Source | Scope | Trust Level |
+|--------|-------|------------|
+| Süddeutsche Zeitung (SZ) | News, investigations | ⭐⭐⭐⭐ |
+| Spiegel | Investigative journalism | ⭐⭐⭐⭐ |
+| Die Zeit | In-depth reporting | ⭐⭐⭐⭐ |
+| BBC (Germany coverage) | International perspective | ⭐⭐⭐⭐ |
+| Reuters, Associated Press | News verification | ⭐⭐⭐⭐ |
+
+---
+
+## Verified Facts by File
+
+### `culture_german_position.md` - German Culture Position
+
+| Fact / Claim | Verification Status | Source | Notes |
+|--------------|-------------------|--------|-------|
+| Germany is in Central Europe | verified | Bundesamt, Wikipedia | Geographic fact |
+| 16 Bundesländer (states) | verified | bundesrat.de, bpb | Current administrative structure |
+| Divided 1945-1990 | verified | Bundesarchiv, bpb | Historical fact |
+| Reunification 1990 | verified | bundesarchiv.de | Oct 3, 1990 |
+| ~83 million population | verified | Statistisches Bundesamt | As of 2026 |
+| Social market economy | verified | bpb.de | Economic model |
+| EU member | verified | Official EU records | Since 1995 (as unified Germany) |
+| NATO member | verified | NATO.int | Since 1955 (as West Germany) / 1990 (unified) |
+
+**Audit Status:** ⏳ Pending detailed verification
+
+---
+
+### `culture_german_place_berlin.md` - Berlin
+
+| Fact / Claim | Verification Status | Source | Notes |
+|--------------|-------------------|--------|-------|
+| Berlin is capital of Germany | verified | Bundesregierung.de, berlin.de | Since 1999 (relocated from Bonn) |
+| Population ~3.6 million | verified | Statistisches Bundesamt | City proper, 2024 |
+| Founded 13th century | verified | bpb.de, Wikipedia | As settlement |
+| Divided 1949-1990 | verified | Bundesarchiv, bpb | West & East Berlin |
+| Wall fell November 9, 1989 | verified | Bundesarchiv, historical records | Specific date |
+| Reunited October 3, 1990 | verified | Official records | German unification date |
+| Located on Spree River | verified | Geographic references | City geography |
+| Seat of Bundestag | verified | bundestag.de | Parliamentary location |
+| Pre-WWII importance | verified | bpb, historical sources | Weimar, Nazi period capital |
+
+**Audit Status:** ⏳ Pending detailed verification
+
+---
+
+### `culture_german_piece_unfinished_reckoning.md` - Post-WWII Reconciliation
+
+| Concept / Claim | Verification Status | Source | Notes |
+|-----------------|-------------------|--------|-------|
+| Post-WWII Germany faced identity crisis | verified | bpb, academic sources | Vergangenheitsbewältigung (coming to terms with the past) |
+| East/West division symbolized split identities | verified | Bundesarchiv, historical analyses | Cold War context |
+| Reunification required reconciliation work | verified | bpb.de, academic sources | Cultural & political process |
+| Memorial culture important | verified | bpb, berlin.de | Holocaust memorials, Mahnmale |
+| Ongoing debate about historical responsibility | verified | bpb, current journalism | Contemporary discussion |
+
+**Audit Status:** ⏳ Pending detailed verification
+
+---
+
+### `persona_hanna.md` & `persona_thomas.md` - Personas
+
+These are fictional personas representing German archetypes. The names, projections, and actions are creative constructs, not biographical references.
+
+| Element | Type | Sourcing |
+|---------|------|----------|
+| Name | Creative | Archetypal German names, historically used |
+| Projection | Creative | Generic human psychological traits |
+| Action | Creative | Fictional narrative |
+| Shadow | Creative | Fictional narrative |
+| Tell | Creative | Fictional narrative |
+
+**Audit Status:** N/A (Creative personas, no factual claims to verify)
+
+---
+
+## Plagiarism Detection Protocol
+
+### Close-Paraphrase Detection
+
+To avoid accidental plagiarism, we check for **7+ consecutive non-trivial words verbatim** from any source:
+
+**Example check:**
+- Source: "The fall of the Berlin Wall on November 9, 1989, marked the beginning of the end for communist East Germany"
+- Our text: "The fall of the Berlin Wall on November 9, 1989, marked..." ← **RISKY** (7+ words match exactly)
+- Our text: "On November 9, 1989, the Berlin Wall fell, symbolizing the beginning of East Germany's transformation" ← **OK** (rephrased)
+
+### Audit Workflow
+
+When content is spot-checked:
+
+1. **Extract claims:** Identify all distinct factual claims (dates, places, quantities, events)
+2. **Verify each:** Search sources in hierarchy order
+3. **Check paraphrase risk:** Search source text for 7+ consecutive word sequences
+4. **Mark verdict:**
+   - ✅ **clean** - All facts verified, no paraphrase risk
+   - ⚠️ **minor** - One minor inaccuracy or weak paraphrase (rephrase needed)
+   - ❌ **issues** - Factual error or significant paraphrase risk (rewrite required)
+
+---
+
+## How to Report Source Concerns
+
+If you find potential issues:
+
+1. **Open a GitHub issue** in the Cultures repository
+2. **Title:** `IP concern: Germany - [file name]`
+3. **Include:**
+   - Exact passage from the file
+   - Suspected source (with URL if possible)
+   - Why you think it's a concern (plagiarism? factual error? unattributed?)
+4. **We will:**
+   - Investigate within 7 days
+   - Rewrite if plagiarism confirmed
+   - Correct if factual error found
+   - Add source if attribution missing
+
+---
+
+## Authorship Statement
+
+All content in this folder is authored by Kai Schlueter, with AI-assisted drafting where indicated. Facts have been verified against authoritative sources. Expression is original.
+
+Any resemblance to specific copyrighted works is unintentional. If you spot potential IP concerns, please report them (see above).
+
+---
+
+*v0.1.0 - Kai Schlueter - Cultures - May 7, 2026*

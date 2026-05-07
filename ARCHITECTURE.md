@@ -240,6 +240,82 @@ The single author-facing rule: **every file basename in a deployed bundle is uni
 
 ---
 
+## Source Attribution & IP Protection
+
+To avoid accidental intellectual property theft, each country folder includes two files that document sourcing and verify facts:
+
+### README.md (per country)
+
+Located at `regions/<region>/<country>/README.md`.
+
+**Contents:**
+- Overview of the country's content (position, pieces, places, personas)
+- Sourcing principle: "Facts (verified via sources) + Original expression"
+- Source hierarchy (official → academic → secondary)
+- Plagiarism safeguard (how to report concerns)
+- Content audit status table
+
+**Purpose:** Public documentation of content origin and verification process.
+
+### REFERENCES.md (per country)
+
+Located at `regions/<region>/<country>/REFERENCES.md`.
+
+**Contents:**
+- Authorship statement (Kai Schlueter, AI-assisted)
+- Source registry (official institutions, academic, media, Wikipedia)
+- Verified facts table (per file - what facts, where verified, audit status)
+- Plagiarism detection protocol (7+ word check, audit workflow)
+- How to report IP concerns (GitHub issue template)
+
+**Purpose:** Detailed source documentation and audit trail for reviewers and auditors.
+
+### Sourcing Model
+
+Following Autobahn's principle:
+
+**"Use facts (which are not copyrightable) carried in the author's own expression."**
+
+- **Facts**: Historical events, geographical locations, cultural references (sourced)
+- **Expression**: How facts are narrated, framed, integrated into positions/pieces/personas (original)
+
+### Verification Hierarchy
+
+When verifying facts in place/piece/position files:
+
+1. **Official government / institutional sources** (ministries, archives, official city sites)
+2. **Academic references** (universities, historical societies, peer-reviewed)
+3. **Secondary sources** (Wikipedia, encyclopedias, major media)
+4. **Journalistic reporting** (newspapers, news agencies, media archives)
+
+### Plagiarism Detection
+
+**Risk threshold:** 7+ consecutive non-trivial words verbatim from any source.
+
+**Example:**
+- Source: "The fall of the Berlin Wall on November 9, 1989, marked the beginning of the end..."
+- Our text (risky): "The fall of the Berlin Wall on November 9, 1989, marked..." ← Matches exactly, rewrite needed
+- Our text (safe): "On November 9, 1989, the Berlin Wall fell, symbolizing the start of East Germany's transformation..." ← Paraphrased
+
+### Audit Workflow
+
+Spot-check protocol for sampled content:
+
+1. Extract all distinct factual claims (dates, places, quantities, events)
+2. Verify each against hierarchical source list
+3. Search source text for paraphrase risk (7+ word sequences)
+4. Mark verdict: **clean** (verified, no risk), **minor** (one small issue), **issues** (factual error or paraphrase risk)
+
+### Reporting IP Concerns
+
+If you find potential plagiarism or factual errors:
+
+1. Open a GitHub issue: `IP concern: [Country] - [File name]`
+2. Include: exact passage, suspected source (with URL), why it concerns you
+3. We will investigate within 7 days and rewrite if confirmed
+
+---
+
 ## To document
 
 - **Owner anchor for top-level files** - `- *` (current, undocumented) vs `- Project: Cultures` (proposed). This architecture stipulates `- Project: Cultures`; existing `- *` files need migration.
