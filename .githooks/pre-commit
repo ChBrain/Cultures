@@ -1,11 +1,16 @@
-#!/usr/bin/env python3
-"""Pre-commit hook: L1 validation + L0 stamp + BOM stripping.
+﻿#!/usr/bin/env python3
+"""Pre-commit hook: L0-L4 validation + BOM stripping.
 
 This hook ensures that:
 1. UTF-8 BOM is stripped from staged files (PowerShell cleanup)
-2. L1 validation (general format rules) passes
-3. L2 validation (section structure per file type) passes
-4. .validation-stamp is written with current tree hash
+2. L1a validation (general format rules) passes
+3. L1b validation (English-only language policy) passes
+4. L2 validation (section structure per file type) passes
+5. L3 validation (link integrity) passes
+6. L4 validation (culture completeness) passes
+7. .validation-stamp is written with current tree hash
+
+All validations must pass before commit. CI will verify the stamp gate is present.
 """
 from __future__ import annotations
 
@@ -61,23 +66,27 @@ def main() -> int:
     # Guard: prevent direct commits to main branch
     current_branch = run_git("rev-parse", "--abbrev-ref", "HEAD")
     if current_branch == "main":
-        print("❌ ERROR: Direct commits to main are forbidden")
+        print("Γ¥î ERROR: Direct commits to main are forbidden")
         print("")
         print("Create a feature branch first:")
         print("  git checkout -b feat/<name>")
         print("")
         return 1
 
-    # Run validators (L1 general, L2 per-type). CI only checks the stamp; keep costs low.
+    # Run validators (L1a general, L1b language, L2 structure, L3 links, L4 culture).
+    # CI verifies the stamp gate; keep costs low by running validators here.
     validators = [
         [sys.executable, "tests/validate_general.py"],
+        [sys.executable, "tests/validate_language.py"],
         [sys.executable, "tests/validate_sections.py"],
+        [sys.executable, "tests/validate_links.py"],
+        [sys.executable, "tests/validate_culture.py"],
     ]
     for cmd in validators:
         result = subprocess.run(cmd, capture_output=True, text=True, check=False)
         if result.returncode != 0:
             label = cmd[1].split("/")[-1]
-            print(f"❌ VALIDATION FAILED: {label}")
+            print(f"Γ¥î VALIDATION FAILED: {label}")
             print("")
             print(result.stdout.strip())
             print("")
