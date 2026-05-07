@@ -390,8 +390,8 @@ Gender lives across PAST. A persona who projects female, acts in coherent regist
 ### Section contents
 
 - **Owner** is `- Project: Cultures`.
-- **Title** identifies the persona within the country. Existing files diverge: some use a role/profession in one phrase (`Secondary school history teacher`); others use a position-and-piece link chain (`[German](...) -> [Unfinished Reckoning](...)`). One convention must be chosen; see Open.
-- **Position link:** every persona links to their country's position. The link appears in either Title or the first line of Projection (current files diverge); see Open.
+- **Title** is a plain role or profession (`Rechtsanwältin`, `Softwareentwickler`). It identifies the persona within the country. Title carries no links — the position link lives in Projection.
+- **Position link:** the first line of Projection carries both the gender position link and the country position link. Pattern: `[<gender>](../../../engine/position_<gender>.md) aus [<Country>](culture_<adj>_position.md).`
 - **Projection / Action / Shadow / Tell** as defined under PAST.
 
 **Naming:** `culture_<adj>_persona_<name>.md`
@@ -547,7 +547,6 @@ If you find potential plagiarism or factual errors:
 
 - **Owner anchor for top-level files** - `- *` (current, undocumented) vs `- Project: Cultures` (proposed). This architecture stipulates `- Project: Cultures`; existing `- *` files need migration.
 - **Mixed-gender minimum: formal definition and enforcement** - gender lives across PAST. A persona who projects female may technically be male in their Shadow (gender-fluid, transitioning, performing). The mixed-gender rule ("at least one male, at least one female") needs a precise reading: does it count Projection, the technical body in Shadow, or both? And how does the L2 validator read it? Projection is prose; the technical body, when it differs, surfaces in Shadow or Tell. Until the reading is specified, the constraint cannot be enforced mechanically and L2 treats it as deferred.
-- **Persona Title convention** - existing personas diverge: some use Title for role/profession (`Rechtsanwältin`); others use Title for a position-and-piece link chain. Pick one. The choice determines whether the position-link L2 rule reads Title or Projection.
 - **Footer canonicalisation** - `engine/stack.md` uses `... - CULTURES`; this architecture stipulates `... - KAI Worlds`.
 - **BOM cleanup** - several existing files start with U+FEFF; non-conformant with the encoding rule.
 - **Engine section contracts** - the section shape for `engine/stack.md` and for per-platform instruction files is not yet specified.

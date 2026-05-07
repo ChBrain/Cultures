@@ -1,5 +1,5 @@
 # Persona: Christian
-## Title: [Softwareentwickler](culture_german_position.md)
+## Title: Softwareentwickler
 
 ## Owner
 - **Project:** Cultures

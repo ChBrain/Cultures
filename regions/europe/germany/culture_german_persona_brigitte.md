@@ -1,5 +1,5 @@
 # Persona: Brigitte
-## Title: [Rechtsanwältin](culture_german_position.md)
+## Title: Rechtsanwältin
 
 ## Owner
 - **Project:** Cultures
