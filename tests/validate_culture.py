@@ -5,6 +5,8 @@ Calls child validators that enforce Cultures-specific requirements.
 
 Child validators:
 - L4a: validate_culture_completeness.py - per-country minimum file set
+- L4b: validate_audit_readme.py - per-country README with audit status table
+- L4c: validate_audit_consistency.py - audit table matches actual files
 """
 from __future__ import annotations
 
@@ -66,12 +68,17 @@ def validate(changed_files: list[Path] | None = None) -> list[Issue]:
     """
     issues = []
     
-    # L4a: Completeness
+    # L4a: Completeness (minimum files per country)
     completeness_issues = run_child_validator("tests/validate_culture_completeness.py", changed_files)
     issues.extend(completeness_issues)
     
-    # More child validators can be added here in the future
-    # L4b: Gender distribution, L4c: etc.
+    # L4b: README audit table presence
+    readme_issues = run_child_validator("tests/validate_audit_readme.py", changed_files)
+    issues.extend(readme_issues)
+    
+    # L4c: Audit table consistency
+    consistency_issues = run_child_validator("tests/validate_audit_consistency.py", changed_files)
+    issues.extend(consistency_issues)
     
     return issues
 
