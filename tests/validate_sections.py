@@ -57,13 +57,15 @@ def extract_sections(text: str) -> list[str]:
 
 
 def validate_persona_gender_links(text: str) -> list[Issue]:
-    """Validate that persona Projection contains gender position link.
+    """Validate that persona Projection contains gender position links.
     
-    Personas must include gender link to engine positions:
-    - Root-relative: [man](engine/position_male.md) or [woman](engine/position_female.md)
-    - Folder-relative: [man](../../../engine/position_male.md) or [woman](../../../engine/position_female.md)
-    - Or localized: [Mann] or [Frau] for German personas, etc.
-    Also requires culture link: culture_[culture]_position.md
+    Link validation is language-agnostic: check only the link targets (in parentheses),
+    not the link text (in brackets). This supports any language for the link text.
+    
+    Requires:
+    - Link to position_male.md (any path format, any link text)
+    - Link to position_female.md (any path format, any link text)
+    - Link to culture_*_position.md (any path format, any link text)
     """
     issues: list[Issue] = []
     
@@ -78,38 +80,24 @@ def validate_persona_gender_links(text: str) -> list[Issue]:
     
     projection_text = projection_match.group(1)
     
-    # Check for gender link: [man]/[Mann] or [woman]/[Frau] with link to engine position
-    # Accept multiple path formats and multiple languages
-    has_male_link = bool(
-        re.search(r"\[man\]\s*\(\s*engine\/position_male\.md\s*\)", projection_text) or
-        re.search(r"\[Mann\]\s*\(\s*engine\/position_male\.md\s*\)", projection_text) or
-        re.search(r"\[man\]\s*\(\s*\.\.\/\.\.\/\.\.\/engine\/position_male\.md\s*\)", projection_text) or
-        re.search(r"\[Mann\]\s*\(\s*\.\.\/\.\.\/\.\.\/engine\/position_male\.md\s*\)", projection_text) or
-        re.search(r"\[man\]\s*\(\s*\.\.\/\.\.\/engine\/position_male\.md\s*\)", projection_text) or
-        re.search(r"\[Mann\]\s*\(\s*\.\.\/\.\.\/engine\/position_male\.md\s*\)", projection_text)
-    )
-    has_female_link = bool(
-        re.search(r"\[woman\]\s*\(\s*engine\/position_female\.md\s*\)", projection_text) or
-        re.search(r"\[Frau\]\s*\(\s*engine\/position_female\.md\s*\)", projection_text) or
-        re.search(r"\[woman\]\s*\(\s*\.\.\/\.\.\/\.\.\/engine\/position_female\.md\s*\)", projection_text) or
-        re.search(r"\[Frau\]\s*\(\s*\.\.\/\.\.\/\.\.\/engine\/position_female\.md\s*\)", projection_text) or
-        re.search(r"\[woman\]\s*\(\s*\.\.\/\.\.\/engine\/position_female\.md\s*\)", projection_text) or
-        re.search(r"\[Frau\]\s*\(\s*\.\.\/\.\.\/engine\/position_female\.md\s*\)", projection_text)
-    )
+    # Check for gender links: look ONLY at link targets in (), ignore link text in []
+    # Pattern: any text in [] followed by link to position_male.md or position_female.md
+    has_male_link = bool(re.search(r"\]\s*\(\s*[^)]*position_male\.md\s*\)", projection_text))
+    has_female_link = bool(re.search(r"\]\s*\(\s*[^)]*position_female\.md\s*\)", projection_text))
     
     if not (has_male_link or has_female_link):
         issues.append(Issue(
             error="persona Projection missing gender position link",
-            verdict="Add [man](engine/position_male.md) or [woman](engine/position_female.md) (or localized: [Mann] / [Frau]) as first element of Projection",
+            verdict="Add link to position_male.md or position_female.md (e.g., [Name](engine/position_male.md))",
         ))
     
-    # Check for culture link (should also be in Projection)
-    has_culture_link = bool(re.search(r"\[.+?\]\s*\(\s*culture_.+_position\.md\s*\)", projection_text))
+    # Check for culture link: any link to culture_*_position.md
+    has_culture_link = bool(re.search(r"\]\s*\(\s*[^)]*culture_[^)]*_position\.md\s*\)", projection_text))
     
     if not has_culture_link:
         issues.append(Issue(
             error="persona Projection missing culture position link",
-            verdict="Add culture position link after gender link: [Country](culture_[culture]_position.md)",
+            verdict="Add link to culture_*_position.md (e.g., [Country](culture_german_position.md))",
         ))
     
     return issues
