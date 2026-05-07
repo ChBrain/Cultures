@@ -131,6 +131,26 @@ Every country's README must include:
 
 Both approaches are valid; the key is transparency about sourcing.
 
+### Scaffolding Approach
+
+Rather than pre-populating all countries with README/REFERENCES at once, documentation is scaffolded on-demand as countries are touched:
+
+1. **Infrastructure:** `data/hofstede_scores.json` contains 50+ countries with empirical scores
+2. **Generator:** `scripts/scaffold_all_hofstede.py` creates README.md and REFERENCES.md for any country
+3. **Workflow:** When you start a country, run:
+   ```bash
+   python3 scripts/scaffold_all_hofstede.py --apply COUNTRY
+   git add regions/REGION/COUNTRY/{README,REFERENCES}.md
+   # Then run validators and edit as needed
+   ```
+4. **Baseline:** Germany is the canonical template - all scaffolded countries follow this structure
+
+This approach:
+- Avoids bulk generation of 200+ files
+- Ensures consistency (same templates, same validator checks)
+- Allows human review of Hofstede sourcing before content is written
+- Keeps the baseline (Germany) as the reference standard for all future countries
+
 ---
 
 ## File Relationships
