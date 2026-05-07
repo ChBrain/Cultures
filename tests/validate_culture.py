@@ -7,6 +7,8 @@ Child validators:
 - L4a: validate_culture_completeness.py - per-country minimum file set
 - L4b: validate_audit_readme.py - per-country README with audit status table
 - L4c: validate_audit_consistency.py - audit table matches actual files
+- L4d: validate_plagiarism.py - IP/plagiarism heuristics
+- L4e: validate_hofstede_alignment.py - position reflects Hofstede dimensions
 """
 from __future__ import annotations
 
@@ -79,6 +81,14 @@ def validate(changed_files: list[Path] | None = None) -> list[Issue]:
     # L4c: Audit table consistency
     consistency_issues = run_child_validator("tests/validate_audit_consistency.py", changed_files)
     issues.extend(consistency_issues)
+    
+    # L4d: IP/plagiarism heuristics (warnings only)
+    plagiarism_issues = run_child_validator("tests/validate_plagiarism.py", changed_files)
+    issues.extend(plagiarism_issues)
+    
+    # L4e: Hofstede dimension alignment
+    hofstede_align_issues = run_child_validator("tests/validate_hofstede_alignment.py", changed_files)
+    issues.extend(hofstede_align_issues)
     
     return issues
 
