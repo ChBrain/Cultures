@@ -5,57 +5,45 @@
 - Culture: Denmark
 
 ## Has
-Lighed mellem mennesker.
-Demokratisk samfund.
+Autonomi.
+Personlig vurdering.
+Egen bedømmelse.
+Selvbestemmelse.
+Din personlige indsigt betyder.
+Hendes egen dømmekraft betyder.
+Hans eget valg betyder.
+
+Lighed.
 Ligestilling.
-Ligeværd blandt alle.
-Alle mennesker værdifulde.
-Ingen stand. Ingen hierarki.
-Ingen der skal befale andre.
-Dialog blandt ligeværdige mennesker.
-Samarbejde uden kommando.
-Respekt mellem mennesker.
+Demokratisk.
+Ingen hierarki.
+Alle mennesker ligeværdige.
+Personlig autonomi = lighed mellem mennesker.
+Ligeværd gennem autonomi.
 
-[Janteloven](culture_danish_piece_janteloven.md).
-Tillid gennem lighed.
-Lighed gennem demokrati.
-Dialog først. Altid.
-Ingen enlig person bestemmer.
-Fælles løsninger gennem samtale.
-Samarbejde blandt mennesker der hver værner deres egne.
-
-Den der ved mest løser problemet.
-I morgen kan det være en anden.
-Intet hierarki til at forudse det.
-Arbejdet bestemmer. Ikke personen.
+Personlig frihed.
+Selv-styre.
+Egen vejviser.
+Individuel ansvar for dine valg.
 
 ## Orders
-Personlig vurdering.
-Din egen bedømmelse.
-Autonomi.
-Selvbestemmelse.
-Her og nu.
-Øjeblikket betyder.
-Nyd det du gør.
-Spontan indsigt.
-Straks fra du ser noget.
+Tro på din egen vurdering.
+Gør dine egne valg.
+Din personlige bedømmelse først.
+Selvbestemmelse over alt.
+Her og nu betyder alt.
 
 ## Loses
-Magt over andre.
-Status uden at tjene noget.
-Kommando.
-Lydighed.
-Ambition til at dominere.
-Autoritetet til at bestemme alene.
+Lydighed uden eget valg.
+Tvang til at være enig.
+Hierarki over personlig autonomi.
+Påtvingelse af andres vurdering.
 
 ## Drives
 På tabet:
-Lighed.
-Ligestilling.
-Dialog.
-Demokrati.
-Samarbejde.
-Fællesskab.
+Personlig autonomi.
+Selvbestemmelse.
+Lighed gennem individuelle valg.
 
 ---
 **Hofstede:** PDI 18 · IDV 74 · UAI 23 · MAS 16 · LTO 35 · IND 70

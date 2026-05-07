@@ -27,8 +27,11 @@ Frederiksberg. Christiania. Begge inden for samme by.
 Begge holder sig.
 Det betyder: der er plads til mange måder at leve på.
 Samme by, forskellige normer - og det accepteres.
-Fleksibilitet gennem omsorg holder byen sammen.
-Samarbejde blandt mennesker der hver er frie til at vælge.
+Omsorg gennem at lade mennesker være forskellige.
+Omhu for andres valg.
+Fællesskab gennem frihed - ikke gennem tvang.
+Hver person værdifuld.
+Hver valg respekteret.
 
 ## Offers
 [Hygge](culture_danish_process_hygge.md) kører her.

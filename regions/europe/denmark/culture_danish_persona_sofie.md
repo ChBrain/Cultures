@@ -22,18 +22,24 @@ Klienten siger: vi har brug for mere lys.
 Sofie høre det.
 Hun høre også hvad de ikke siger.
 Deres dagligliv. Deres arbejdsflow. Deres mønstre.
-Hun spørger: hvordan bruger I rummet?
+Hun spørger: hvordan bruger I rummet? Det er ikke høflighed. Det er hendes egen metode.
+Hendes personlige vurdering.
 Klienten svarer.
 Sofie ser at lys er det halve problem.
 Rummet er dårligt layout.
-Hun siger begge dele højt.
+Hun deler hvad hun ser: begge problemerne.
+Hendes egen bedømmelse. Ikke tvivl. Ikke forhandling. Bare hvad hun ser.
 Klienten protesterer: vi bad om lys.
-Sofie: ja. Men I behøver ikke lys. I behøver rum der fungerer.
+Sofie: ja. Men her er mit tilbud.
+Hun siger det ikke som direktiv.
+Hun siger det som valg for klienten.
+I behøver ikke lys. I behøver rum der fungerer.
 Eller: jeg tager begge dele med.
-Samarbejde betyder: jeg siger hvad jeg ser.
-Hun tør at være anderledes end klienten.
-Hendes egen dømmekraft er ikke underordnet deres ønsker.
-Det er respekt - ikke overens kommelse.
+Velg selv. Det er dit rum, ikke mit.
+Det er omsorg gennem autonomi-respekt.
+Hun tør at være anderledes fra klientens ønske.
+Hendes egen dømmekraft betyder.
+Og det gør klientens også - det respekterer hun ved at tilbyde valg.
 
 ## Shadow
 Hun definerer rummet.
@@ -51,11 +57,16 @@ Hun ejer sine egne standpunkter så stærkt at hun glemmer at andre ejer deres v
 ## Tell
 Hun løser det de ikke sagde
 og tilbyder det som valg, ikke som pålæg.
-Samarbejde betyder at hun respekterer deres autonomi.
-Hendes egen vurdering skaber muligheder.
+Hendes personlige vurdering skaber muligheder.
 Ikke begrænsninger.
-Omsorg betyder at hun giver dem kontrollen tilbage.
-Fra hendes hånd til deres valg.
+Hendes egen bedømmelse betyder - fordi det er hendes.
+Selvbestemmelse gennem at give valg.
+Omsorg betyder at hun respekterer deres autonomi.
+Hun giver dem kontrollen tilbage.
+Fra hendes hånd til deres eget valg.
+Hendes personlige ekspertise.
+Deres personlige frihed til at vælge.
+Det er den danske måde.
 
 ---
 *culture_danish_persona_sofie.md - 07.05.2026*

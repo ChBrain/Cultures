@@ -8,7 +8,7 @@
 Den [danske](culture_danish_position.md) træder ind i et rum.
 Ikke alle rum.
 Rummet ved det uden personen skal sige det.
-[Janteloven](culture_danish_piece_jante_law.md) er valgfrit her.
+[Janteloven](culture_danish_piece_janteloven.md) er valgfrit her.
 Reglerne er i pausemodus.
 Hygge opstår når folk vælger at være sammen uden at skulle noget.
 Ikke planlagt.
@@ -22,8 +22,7 @@ Med en stemning.
 Nu betyder kun nu.
 Ikke hvad der kommer efter.
 Ikke hvad der var før.
-Det der er indenfor
-er nok.
+Det der er indenfor er nok.
 
 ## Lever
 Kraften: valget om at være sammen uden håb.
