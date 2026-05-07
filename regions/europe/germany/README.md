@@ -12,6 +12,33 @@ This folder contains culture content for Germany: historical personas, cultural 
 | `persona_hanna.md` | Persona | Hanna - feminine archetype/character |
 | `persona_thomas.md` | Persona | Thomas - masculine archetype/character |
 
+## Hofstede Cultural Dimensions
+
+Germany is rooted in Hofstede's Cultural Dimensions framework. These scores are **empirical research** from Hofstede's multi-country studies:
+
+| Dimension | Score | Meaning |
+|-----------|-------|----------|
+| Power Distance (PDI) | 35 | **Low** - Equality valued; hierarchy questioned |
+| Individualism (IDV) | 67 | **High** - Individual achievement and autonomy prioritized |
+| Uncertainty Avoidance (UAI) | 65 | **High** - Rules, structure, and planning preferred |
+| Masculinity (MAS) | 66 | **High** - Competitiveness, achievement valued |
+| Long-Term Orientation (LTO) | 83 | **Very High** - Long-term planning and adaptation emphasized |
+| Indulgence (IND) | 40 | **Low-Moderate** - Restraint and self-discipline emphasized |
+
+### How Dimensions Shape German Culture
+
+- **Low PDI + High IDV:** Germans value equality and individual merit. Hierarchy exists but is questioned and must be justified by competence.
+- **High UAI:** Strong preference for rules, planning, and structured processes. Visible in engineering precision, bureaucratic systems, and legal frameworks.
+- **High MAS:** Achievement and competition matter. Success is measured in tangible outcomes.
+- **Very High LTO:** Long-term strategic thinking. Investment in education, infrastructure, and future planning.
+- **Low-Moderate IND:** Balance between enjoying life and self-discipline. Work/life integration rather than pure indulgence.
+
+These dimensions inform the **Position** (how Germany operates), **Pieces** (historical moments where dimensions collided), **Place** (Berlin's infrastructure and social patterns), and **Personas** (how individuals navigate these cultural pressures).
+
+**Source:** Hofstede, G., Hofstede, G. J., & Minkov, M. (2010). *Cultures and Organizations: Software of the Mind* (3rd rev. ed.). New York: McGraw-Hill.
+
+---
+
 ## Sourcing Principle
 
 This content is authored by Kai Schlueter with AI-assisted drafting. The core principle mirrors Autobahn's approach:

@@ -89,6 +89,50 @@ Section order is fixed per file type. See below.
 
 ---
 
+## Hofstede Foundation
+
+Every culture is rooted in **Hofstede's Cultural Dimensions Theory**, a framework identifying six measurable dimensions of cultural variation:
+
+### Six Dimensions
+
+1. **Power Distance Index (PDI):** How much people accept unequal power distribution. Low PDI cultures emphasize equality; high PDI accept hierarchy as natural.
+
+2. **Individualism (IDV):** Individual vs. collective orientation. High IDV prioritizes personal achievement and autonomy; low IDV emphasizes group harmony and loyalty.
+
+3. **Uncertainty Avoidance Index (UAI):** Comfort with ambiguity and risk. High UAI seek rules, structure, and predictability; low UAI are more flexible and tolerant of uncertainty.
+
+4. **Masculinity (MAS):** Assertiveness and competitiveness vs. caring and cooperation. High MAS cultures value achievement and competition; low MAS prioritize relationships and quality of life.
+
+5. **Long-Term Orientation (LTO):** Future focus and adaptation vs. past/present focus and tradition. High LTO prioritize long-term planning; low LTO emphasize immediate results and tradition.
+
+6. **Indulgence (IND):** Gratification of desires vs. restraint. High IND allow relatively free gratification; low IND show self-discipline and restraint.
+
+Each dimension scores 0-100. Hofstede research provides published scores for most countries based on empirical surveys.
+
+### Application in Cultures
+
+- **Position** embodies the culture's operating logic shaped by these dimensions
+- **Pieces** represent historical moments when dimensions intersected, creating pressure
+- **Places** show where dimensions are visible in daily life
+- **Personas** carry the tension of living within a culture's dimensional profile
+
+### Documentation Requirements
+
+Every country's README must include:
+
+1. **Hofstede Summary Table:** Listing all six dimensions with scores
+2. **Source:** Either empirical Hofstede research (published scores) or best judgment with reasoning
+3. **Explanation:** How these dimensions shape the position, pieces, places, and personas
+
+### Empirical vs. Approximation
+
+- **If empirical research exists:** Use published Hofstede scores and cite the source
+- **If no empirical data exists:** Use best judgment approximation, clearly labeled as "Approximation" with reasoning explaining how scores were derived
+
+Both approaches are valid; the key is transparency about sourcing.
+
+---
+
 ## File Relationships
 
 ```mermaid

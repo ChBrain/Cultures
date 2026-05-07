@@ -29,6 +29,14 @@
 | Berlin-Brandenburgische Akademie der Wissenschaften | Regional studies | ⭐⭐⭐⭐ |
 | University press publications | Historical scholarship | ⭐⭐⭐⭐ |
 
+### Cultural Dimensions Research
+
+| Source | Scope | Trust Level |
+|--------|-------|------------||
+| Hofstede Insights (hofstede-insights.com) | Cultural Dimensions scores by country | ⭐⭐⭐⭐⭐ |
+| Hofstede, G., Hofstede, G. J., & Minkov, M. (2010). *Cultures and Organizations* | Foundational research on 6 dimensions | ⭐⭐⭐⭐⭐ |
+| ITIM International (geert-hofstede.com) | Original Hofstede research database | ⭐⭐⭐⭐⭐ |
+
 ### Secondary References
 
 | Source | Scope | Trust Level |
@@ -46,6 +54,23 @@
 | Die Zeit | In-depth reporting | ⭐⭐⭐⭐ |
 | BBC (Germany coverage) | International perspective | ⭐⭐⭐⭐ |
 | Reuters, Associated Press | News verification | ⭐⭐⭐⭐ |
+
+---
+
+## Hofstede Dimensions Sourcing
+
+### Germany's Scores (Empirical Research)
+
+| Dimension | Score | Source | Publication |
+|-----------|-------|--------|-------------|
+| Power Distance (PDI) | 35 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
+| Individualism (IDV) | 67 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
+| Uncertainty Avoidance (UAI) | 65 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
+| Masculinity (MAS) | 66 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
+| Long-Term Orientation (LTO) | 83 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
+| Indulgence (IND) | 40 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
+
+**Status:** Empirical - All scores derived from Hofstede's peer-reviewed multi-country research.
 
 ---
 
