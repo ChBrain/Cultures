@@ -46,7 +46,7 @@ Germany's cultural profile measured against Hofstede's framework:
 - **Very High LTO:** Long-term strategic thinking. Investment in education, infrastructure, and future planning.
 - **Low-Moderate IND:** Balance between enjoying life and self-discipline. Work/life integration rather than pure indulgence.
 
-These dimensions inform the **Position** (how Germany operates), **Pieces** (historical moments where dimensions collided), **Place** (Berlin's infrastructure and social patterns), and **Personas** (how individuals navigate these cultural pressures).
+These dimensions inform the **[Position](culture_german_position.md)** (how Germany operates), **Pieces** (historical moments where dimensions collided), **Place** (Berlin's infrastructure and social patterns), and **Personas** (how individuals navigate these cultural pressures). The position file carries a Hofstede footer naming the six dimensions; the levels and sources live here.
 
 ## Content Audit Status
 
