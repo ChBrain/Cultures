@@ -353,7 +353,29 @@ Two passes:
 
 **Alignment pass (WARN):** given the scores parsed in the structure pass, the position file's keywords should match the expected polarity for each dimension. Skipped for a country if no scores could be extracted (otherwise the country would silently pass the alignment check it should have failed).
 
-**Dimension keyword mapping:**
+**Multilingual keyword framework:**
+
+The validator automatically detects content language and applies language-specific keyword bags. Supported languages:
+
+- **English (en):** PDI, IDV, UAI, MAS, LTO, IND keywords in English
+- **German (de):** PDI, IDV, UAI, MAS, LTO, IND keywords in German
+
+When a language is not supported, the validator issues an advisory warning with actionable instructions:
+```
+WARN country/culture_position.md: language 'fr' not yet supported for Hofstede alignment
+  verdict: add language 'fr' keyword bags to DIMENSION_KEYWORDS_BY_LANGUAGE in validate_hofstede_alignment.py; 
+           use DIMENSION_KEYWORDS_BY_LANGUAGE['en'] as template
+```
+
+To add support for a new language:
+1. Add new language entry to `DIMENSION_KEYWORDS_BY_LANGUAGE` in `tests/validate_hofstede_alignment.py`
+2. Map each of the six dimensions (PDI, IDV, UAI, MAS, LTO, IND) to two polarity variants: "high" and "low"
+3. For each variant, provide a list of 6-10 keywords that signal that dimension-polarity combination
+4. Example: German UAI-high keywords include "präzision", "direktheit", "struktur", "regel", "klarheit"
+
+The language detection heuristic looks for language-specific markers (articles, characters, common words). See `detect_language()` in `validate_hofstede_alignment.py` for details.
+
+**Dimension keyword mapping (English reference):**
 - **PDI (Power Distance Index):** Low: equal, merit, question; High: hierarchy, authority, obey, deference
 - **IDV (Individualism):** Low: collective, group, harmony; High: individual, personal, autonomy, self
 - **UAI (Uncertainty Avoidance):** Low: risk, flexible, adapt; High: rules, structure, precision, control
@@ -364,10 +386,11 @@ Two passes:
 **Verdicts:**
 - Structure failure: add the missing section/rows/source/citation as indicated.
 - Alignment warning: review the position file — add keywords reflecting claimed dimensions, or adjust README dimensions to match the position.
+- Language not supported: add the language's keyword bags to `DIMENSION_KEYWORDS_BY_LANGUAGE` (see instructions above).
 
 **Script:** `tests/validate_hofstede_alignment.py`
 
-**Output:** `FAIL` for structure issues (hard-block), `WARN` for alignment issues (advisory). Exit code is 1 only if a structure issue exists; alignment warnings print but do not fail CI. Per the language policy, position files are written in the culture's native language and the keyword bag is English, so alignment warnings on non-English content are expected — multilingual keyword bags are a future project.
+**Output:** `FAIL` for structure issues (hard-block), `WARN` for alignment issues and unsupported languages (advisory). Exit code is 1 only if a structure issue exists.
 
 **Architecture traceability:**
 > See [ARCHITECTURE.md - Hofstede Foundation](../ARCHITECTURE.md#application-in-cultures) for dimension application guidance
@@ -375,12 +398,14 @@ Two passes:
 **Example:**
 ```bash
 python3 tests/validate_hofstede_alignment.py regions/europe/germany/
-# OK: Hofstede alignment validation passed
+# OK: Hofstede alignment validation passed [de]
+#   (German content, all supported dimensions evaluated)
 
-# With warning (weak alignment):
-python3 tests/validate_hofstede_alignment.py regions/africa/algeria/
-# WARN regions/africa/algeria/culture_algerian_position.md: Weak Hofstede alignment on dimension LTO (0 keywords found)
-#   verdict: review position file - add keywords reflecting long-term orientation, or adjust README scores
+# With warning (unsupported language):
+python3 tests/validate_hofstede_alignment.py regions/europe/france/
+# WARN regions/europe/france/culture_french_position.md: language 'fr' not yet supported for Hofstede alignment
+#   verdict: add language 'fr' keyword bags to DIMENSION_KEYWORDS_BY_LANGUAGE in validate_hofstede_alignment.py; 
+#            use DIMENSION_KEYWORDS_BY_LANGUAGE['en'] as template
 ```
 
 ---

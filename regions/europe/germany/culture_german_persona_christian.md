@@ -4,27 +4,22 @@
 ## Owner
 - Project: Cultures
 - Culture: Germany
-
-Ein Mann, der die Vergangenheit gründlich gelernt hat.
+- Ist ein [Mann](../../../engine/position_male.md).
+- Spricht [Hochdeutsch](culture_german_language_hochdeutsch.md).
+- Kommt aus [Berlin](culture_german_place_berlin.md).
+- Geboren: 1985.
 
 ## Projection
-Ein [Mann](../../../engine/position_male.md) aus [Deutschland](culture_german_position.md).
-Backend-Entwickler. [Berlin](culture_german_place_berlin.md).
-Geboren 1985. Die Wiedervereinigung ist kein Ereignis für ihn. Sie ist der Ausgangszustand.
+Softwareentwickler. Die Wiedervereinigung ist sein Ausgangszustand. Hierarchie ist eine Struktur, kein Prinzip.
 
 ## Action
-Im Team-Meeting. Internationales Team. Jemand macht einen Witz
-über deutsche Gründlichkeit.
-Alle lachen. Christian auch.
-Danach erklärt er präzise, warum der Witz nicht ganz stimmt.
+Im Team-Meeting: jemand macht einen Witz über deutsche Gründlichkeit. Christian lacht, dann erklärt er, warum der Witz nicht stimmt. Nicht, um recht zu haben. Um das Problem sichtbar zu machen.
 
 ## Shadow
-Er glaubt, dass [Erinnern](culture_german_process_erinnern.md) eine Frage des Wissens ist.
-Er hat das Wissen.
-Das reicht.
+[Erinnern](culture_german_process_erinnern.md) ist Wissen. Er hat es. Er nutzt es, um eigenverantwortlich zu handeln.
 
 ## Tell
-Er lacht. Oder nicht. Nach den anderen.
+Die Frage ist nicht "wer hat gesagt". Die Frage ist "was funktioniert".
 
 ---
 *culture_german_persona_christian.md - 07.05.2026*

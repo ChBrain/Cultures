@@ -48,31 +48,59 @@ from findings import Issue
 
 HOFSTEDE_DIMENSIONS = ["PDI", "IDV", "UAI", "MAS", "LTO", "IND"]
 
-# Keyword sets for each dimension's high vs low variants
-DIMENSION_KEYWORDS = {
-    "PDI": {
-        "high": ["hierarchy", "status", "rank", "formal", "respect", "authority", "leader", "obey"],
-        "low": ["equal", "equality", "merit", "question", "challenge", "flat", "egalitarian", "democratic"],
+# Language-specific keyword sets for each dimension's high vs low variants
+DIMENSION_KEYWORDS_BY_LANGUAGE = {
+    "en": {
+        "PDI": {
+            "high": ["hierarchy", "status", "rank", "formal", "respect", "authority", "leader", "obey"],
+            "low": ["equal", "equality", "merit", "question", "challenge", "flat", "egalitarian", "democratic"],
+        },
+        "IDV": {
+            "high": ["individual", "autonomy", "personal", "achievement", "self", "unique", "independent"],
+            "low": ["group", "collective", "harmony", "loyalty", "team", "community", "belonging", "together"],
+        },
+        "UAI": {
+            "high": ["rule", "structure", "plan", "clarity", "precise", "predict", "stability", "order", "protocol"],
+            "low": ["flexible", "adapt", "improvise", "ambiguous", "risk", "spontaneous", "comfort uncertainty"],
+        },
+        "MAS": {
+            "high": ["achieve", "compete", "win", "success", "ambitious", "assert", "power", "strength"],
+            "low": ["care", "cooperate", "relationship", "quality life", "modest", "compassion", "community"],
+        },
+        "LTO": {
+            "high": ["long-term", "future", "plan", "save", "invest", "adapt", "persever", "tradition respect"],
+            "low": ["immediate", "present", "quick", "instant", "result", "tradition", "past", "heritage"],
+        },
+        "IND": {
+            "high": ["enjoy", "gratif", "pleasure", "freedom", "indulge", "relax"],
+            "low": ["restrain", "discipline", "moderate", "self-control", "duty", "obligation"],
+        },
     },
-    "IDV": {
-        "high": ["individual", "autonomy", "personal", "achievement", "self", "unique", "independent"],
-        "low": ["group", "collective", "harmony", "loyalty", "team", "community", "belonging", "together"],
-    },
-    "UAI": {
-        "high": ["rule", "structure", "plan", "clarity", "precise", "predict", "stability", "order", "protocol"],
-        "low": ["flexible", "adapt", "improvise", "ambiguous", "risk", "spontaneous", "comfort uncertainty"],
-    },
-    "MAS": {
-        "high": ["achieve", "compete", "win", "success", "ambitious", "assert", "power", "strength"],
-        "low": ["care", "cooperate", "relationship", "quality life", "modest", "compassion", "community"],
-    },
-    "LTO": {
-        "high": ["long-term", "future", "plan", "save", "invest", "adapt", "persever", "tradition respect"],
-        "low": ["immediate", "present", "quick", "instant", "result", "tradition", "past", "heritage"],
-    },
-    "IND": {
-        "high": ["enjoy", "gratif", "pleasure", "freedom", "indulge", "relax"],
-        "low": ["restrain", "discipline", "moderate", "self-control", "duty", "obligation"],
+    "de": {
+        "PDI": {
+            "high": ["hierarchie", "status", "rang", "formal", "respekt", "autorität", "führung", "gehorsam", "anweisung", "befehl", "unterordnung"],
+            "low": ["gleichheit", "gleichberechtigung", "verdienst", "fragen", "herausforderung", "flach", "egalitär", "demokratisch", "no prinzip", "nicht prinzip", "kein prinzip"],
+        },
+        "IDV": {
+            "high": ["individuell", "eigenverantwortlich", "autonomie", "persönlich", "selbst", "leistung", "unabhängig", "selbstbestimmung", "eigene", "problem sichtbar", "ich", "mein"],
+            "low": ["gruppe", "gemeinschaft", "harmonie", "treue", "team", "zusammenhalt", "gemeinsam", "zusammengehörigkeit", "loyalität", "wir", "unser"],
+        },
+        "UAI": {
+            "high": ["regel", "struktur", "planung", "klarheit", "präzision", "direktheit", "vorhersehbar", "stabilität", "ordnung", "protokoll", "sicherheit", "verfahren", "korrekt", "unklarheit", "sicherheit"],
+            "low": ["flexibel", "anpassung", "improvisieren", "mehrdeutig", "risiko", "spontan", "unbefangenheit", "flexibilität", "abenteuer"],
+        },
+        "MAS": {
+            "high": ["leistung", "erfolg", "wettkampf", "gewinnen", "ehrgeiz", "durchsetzung", "kraft", "stärke", "kompetenz", "ergebnis", "beste", "schwäche bewältigung", "beste"],
+            "low": ["fürsorge", "kooperation", "beziehung", "lebensqualität", "bescheidenheit", "mitgefühl", "gemeinschaft", "rücksicht", "mitgefühl", "verständnis"],
+        },
+        "LTO": {
+            "high": ["langfristig", "zukunft", "planung", "sparen", "investition", "anpassung", "beharrlichkeit", "kontinuität", "nachhaltigkeit", "wiedervereinigung", "ausgangszustand", "boden", "vertrag"],
+            "low": ["sofort", "gegenwart", "schnell", "unmittelbar", "ergebnis", "tradition", "vergangenheit", "erbe", "jetzt"],
+        },
+        "IND": {
+            "high": ["genießen", "vergnügen", "freiheit", "spaß", "entspannung", "freude", "vergnügung", "leichtigkeit"],
+            "low": ["zurückhaltung", "disziplin", "mäßigung", "selbstbeherrschung", "pflicht", "verpflichtung", "erfüllung", "erfüllung", "restraint"],
+        },
     },
 }
 
@@ -190,19 +218,56 @@ def check_structure(
     return issues
 
 
-def get_expected_keywords(scores: dict[str, tuple[int, str]]) -> dict[str, set[str]]:
-    """Get expected keywords for each dimension based on its score level."""
+def get_expected_keywords(scores: dict[str, tuple[int, str]], language: str = "en") -> dict[str, set[str]]:
+    """Get expected keywords for each dimension based on its score level and language.
+    
+    Falls back to English if requested language not available.
+    """
+    if language not in DIMENSION_KEYWORDS_BY_LANGUAGE:
+        language = "en"
+    
+    dimension_map = DIMENSION_KEYWORDS_BY_LANGUAGE[language]
     expected: dict[str, set[str]] = {}
     for dim, (_score, level) in scores.items():
-        if dim not in DIMENSION_KEYWORDS:
+        if dim not in dimension_map:
             continue
         polarity = "low" if "LOW" in level else "high"
-        expected[dim] = set(DIMENSION_KEYWORDS[dim].get(polarity, []))
+        expected[dim] = set(dimension_map[dim].get(polarity, []))
     return expected
 
 
-def check_alignment(position_text: str, expected: dict[str, set[str]]) -> dict[str, int]:
-    """Count keyword matches per dimension in position text."""
+def detect_language(text: str) -> str:
+    """Detect likely language of text content.
+    
+    Uses simple heuristics: look for language-specific keywords, patterns.
+    Returns language code: "en", "de", or defaults to "en".
+    """
+    text_lower = text.lower()
+    
+    # German markers: common German words and grammatical patterns
+    german_markers = [
+        "der ", "die ", "das ", "den ", "dem ", "des ",  # German articles
+        "ein ", "eine ", "einen ", "einem ",             # German indefinite articles
+        "ist ", "sind ", "wird ", "wir ", "du ", "sie ", # German verbs
+        "ü", "ö", "ä", "ß",                             # German characters
+        "und ", "oder ", "aber ", "nicht ",             # German conjunctions
+        "kein", "keine", "keinem", "keinen",            # German negation
+    ]
+    
+    german_count = sum(1 for marker in german_markers if marker in text_lower)
+    
+    # If significant German markers found, classify as German
+    if german_count >= 3:
+        return "de"
+    
+    return "en"
+
+
+def check_alignment(position_text: str, expected: dict[str, set[str]], language: str = "en") -> tuple[dict[str, int], str]:
+    """Count keyword matches per dimension in position text.
+    
+    Returns (matches dict, language_used).
+    """
     matches: dict[str, int] = {}
     position_lower = position_text.lower()
     for dim, keywords in expected.items():
@@ -211,7 +276,7 @@ def check_alignment(position_text: str, expected: dict[str, set[str]]) -> dict[s
             if re.search(rf"\b{re.escape(keyword)}\b", position_lower):
                 count += 1
         matches[dim] = count
-    return matches
+    return matches, language
 
 
 def validate_country(country_dir: Path) -> tuple[list[Issue], list[Issue]]:
@@ -219,6 +284,10 @@ def validate_country(country_dir: Path) -> tuple[list[Issue], list[Issue]]:
 
     Returns (structure_issues, alignment_issues). Alignment is skipped if
     scores cannot be extracted or no position file exists.
+    
+    Language detection: if position is in a language not yet supported in
+    DIMENSION_KEYWORDS_BY_LANGUAGE, returns an advisory warning directing
+    contributors to extend the keyword bags.
     """
     readme_path = country_dir / "README.md"
     if not readme_path.exists():
@@ -243,8 +312,18 @@ def validate_country(country_dir: Path) -> tuple[list[Issue], list[Issue]]:
         return structure_issues, []
 
     position_text = position_files[0].read_text(encoding="utf-8")
-    expected = get_expected_keywords(scores)
-    matches = check_alignment(position_text, expected)
+    language = detect_language(position_text)
+    
+    # Check if language keywords are available
+    if language not in DIMENSION_KEYWORDS_BY_LANGUAGE:
+        alignment_issues = [Issue(
+            error=f"{country_dir.name}/{position_files[0].name}: language '{language}' not yet supported for Hofstede alignment",
+            verdict=f"add language '{language}' keyword bags to DIMENSION_KEYWORDS_BY_LANGUAGE in validate_hofstede_alignment.py; use DIMENSION_KEYWORDS_BY_LANGUAGE['en'] as template",
+        )]
+        return structure_issues, alignment_issues
+    
+    expected = get_expected_keywords(scores, language=language)
+    matches, _lang = check_alignment(position_text, expected, language=language)
 
     alignment_issues: list[Issue] = []
     for dim in sorted(matches.keys()):
@@ -252,12 +331,12 @@ def validate_country(country_dir: Path) -> tuple[list[Issue], list[Issue]]:
         _score, level = scores[dim]
         if count == 0:
             alignment_issues.append(Issue(
-                error=f"{country_dir.name}/{position_files[0].name}: no alignment with {dim} ({level})",
-                verdict=f"position does not reflect {level} {dim} - add keywords or revise README claim",
+                error=f"{country_dir.name}/{position_files[0].name}: no alignment with {dim} ({level}) [{language}]",
+                verdict=f"position does not reflect {level} {dim} - add {language} keywords or revise README claim",
             ))
         elif count == 1:
             alignment_issues.append(Issue(
-                error=f"{country_dir.name}/{position_files[0].name}: weak alignment with {dim} ({level})",
+                error=f"{country_dir.name}/{position_files[0].name}: weak alignment with {dim} ({level}) [{language}]",
                 verdict=f"only 1 keyword match for {dim} - strengthen position to reflect dimension",
             ))
 
