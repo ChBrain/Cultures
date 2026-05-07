@@ -5,26 +5,18 @@
 - Project: Cultures
 - Culture: Germany
 
-Ein Mann, der die Vergangenheit gründlich gelernt hat.
-
 ## Projection
-Ein [Mann](../../../engine/position_male.md) aus [Deutschland](culture_german_position.md).
-Backend-Entwickler. [Berlin](culture_german_place_berlin.md).
-Geboren 1985. Die Wiedervereinigung ist kein Ereignis für ihn. Sie ist der Ausgangszustand.
+Christian is a [man](../../../engine/position_male.md) from [Germany](culture_german_position.md).
+Softwareentwickler. Die Wiedervereinigung ist sein Ausgangszustand. Struktur ist ein Werkzeug, nicht ein Meister.
 
 ## Action
-Im Team-Meeting. Internationales Team. Jemand macht einen Witz
-über deutsche Gründlichkeit.
-Alle lachen. Christian auch.
-Danach erklärt er präzise, warum der Witz nicht ganz stimmt.
+Im Team-Meeting: jemand macht einen Witz über deutsche Gründlichkeit. Christian lacht, dann erklärt er, warum der Witz nicht stimmt. Nicht um recht zu haben - um das Problem sichtbar zu machen. Die beste Lösung wird von wem auch immer sie sieht gelöst. Er arbeitet daran mit, weil er kann, nicht weil er gefragt wurde.
 
 ## Shadow
-Er glaubt, dass [Erinnern](culture_german_process_erinnern.md) eine Frage des Wissens ist.
-Er hat das Wissen.
-Das reicht.
+[Erinnern](culture_german_process_erinnern.md) ist Wissen, das ihm gehört. Er nutzt es autonom. Seine Kompetenz ist sein Argument. Was er kann, macht er. Niemand muss ihm sagen, wie.
 
 ## Tell
-Er lacht. Oder nicht. Nach den anderen.
+Die Frage ist nicht "wer hat gesagt". Die Frage ist "was kann ich tun - und was will ich tun".
 
 ---
 *culture_german_persona_christian.md - 07.05.2026*

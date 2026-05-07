@@ -20,11 +20,12 @@ L4b per-country        audit README with status tables
 L4c per-country        audit table consistency (entries match actual files)
 L4d per-country        IP/plagiarism heuristics (Wikipedia patterns, date anchors)
 L4e per-country        Hofstede structure + dimension alignment (README has section/scores/sources, position reflects claimed dimensions)
+L4f per-country        Hofstede derived vs declared (content keywords derive 0-100 scores, compare to README declared scores)
 ```
 
-L0 gates everything. L1a gates L1b. L1b gates L2. L2 gates L3. L3 gates L4a. L4a gates L4b. L4b gates L4c. L4c gates L4d. L4d gates L4e.
+L0 gates everything. L1a gates L1b. L1b gates L2. L2 gates L3. L3 gates L4a. L4a gates L4b. L4b gates L4c. L4c gates L4d. L4d gates L4e. L4e gates L4f.
 
-**All are hard-block jobs** - fail PR if any layer fails (no soft warnings).
+**L0-L4e are hard-block jobs** (fail PR if any fails). **L4f is advisory** (warns if gap > ±10, does not block PR).
 
 ---
 
@@ -353,7 +354,29 @@ Two passes:
 
 **Alignment pass (WARN):** given the scores parsed in the structure pass, the position file's keywords should match the expected polarity for each dimension. Skipped for a country if no scores could be extracted (otherwise the country would silently pass the alignment check it should have failed).
 
-**Dimension keyword mapping:**
+**Multilingual keyword framework:**
+
+The validator automatically detects content language and applies language-specific keyword bags. Supported languages:
+
+- **English (en):** PDI, IDV, UAI, MAS, LTO, IND keywords in English
+- **German (de):** PDI, IDV, UAI, MAS, LTO, IND keywords in German
+
+When a language is not supported, the validator issues an advisory warning with actionable instructions:
+```
+WARN country/culture_position.md: language 'fr' not yet supported for Hofstede alignment
+  verdict: add language 'fr' keyword bags to DIMENSION_KEYWORDS_BY_LANGUAGE in validate_hofstede_alignment.py; 
+           use DIMENSION_KEYWORDS_BY_LANGUAGE['en'] as template
+```
+
+To add support for a new language:
+1. Add new language entry to `DIMENSION_KEYWORDS_BY_LANGUAGE` in `tests/validate_hofstede_alignment.py`
+2. Map each of the six dimensions (PDI, IDV, UAI, MAS, LTO, IND) to two polarity variants: "high" and "low"
+3. For each variant, provide a list of 6-10 keywords that signal that dimension-polarity combination
+4. Example: German UAI-high keywords include "präzision", "direktheit", "struktur", "regel", "klarheit"
+
+The language detection heuristic looks for language-specific markers (articles, characters, common words). See `detect_language()` in `validate_hofstede_alignment.py` for details.
+
+**Dimension keyword mapping (English reference):**
 - **PDI (Power Distance Index):** Low: equal, merit, question; High: hierarchy, authority, obey, deference
 - **IDV (Individualism):** Low: collective, group, harmony; High: individual, personal, autonomy, self
 - **UAI (Uncertainty Avoidance):** Low: risk, flexible, adapt; High: rules, structure, precision, control
@@ -364,10 +387,11 @@ Two passes:
 **Verdicts:**
 - Structure failure: add the missing section/rows/source/citation as indicated.
 - Alignment warning: review the position file — add keywords reflecting claimed dimensions, or adjust README dimensions to match the position.
+- Language not supported: add the language's keyword bags to `DIMENSION_KEYWORDS_BY_LANGUAGE` (see instructions above).
 
 **Script:** `tests/validate_hofstede_alignment.py`
 
-**Output:** `FAIL` for structure issues (hard-block), `WARN` for alignment issues (advisory). Exit code is 1 only if a structure issue exists; alignment warnings print but do not fail CI. Per the language policy, position files are written in the culture's native language and the keyword bag is English, so alignment warnings on non-English content are expected — multilingual keyword bags are a future project.
+**Output:** `FAIL` for structure issues (hard-block), `WARN` for alignment issues and unsupported languages (advisory). Exit code is 1 only if a structure issue exists.
 
 **Architecture traceability:**
 > See [ARCHITECTURE.md - Hofstede Foundation](../ARCHITECTURE.md#application-in-cultures) for dimension application guidance
@@ -375,12 +399,76 @@ Two passes:
 **Example:**
 ```bash
 python3 tests/validate_hofstede_alignment.py regions/europe/germany/
-# OK: Hofstede alignment validation passed
+# OK: Hofstede alignment validation passed [de]
+#   (German content, all supported dimensions evaluated)
 
-# With warning (weak alignment):
-python3 tests/validate_hofstede_alignment.py regions/africa/algeria/
-# WARN regions/africa/algeria/culture_algerian_position.md: Weak Hofstede alignment on dimension LTO (0 keywords found)
-#   verdict: review position file - add keywords reflecting long-term orientation, or adjust README scores
+# With warning (unsupported language):
+python3 tests/validate_hofstede_alignment.py regions/europe/france/
+# WARN regions/europe/france/culture_french_position.md: language 'fr' not yet supported for Hofstede alignment
+#   verdict: add language 'fr' keyword bags to DIMENSION_KEYWORDS_BY_LANGUAGE in validate_hofstede_alignment.py; 
+#            use DIMENSION_KEYWORDS_BY_LANGUAGE['en'] as template
+```
+
+---
+
+## Layer 4f: Hofstede derived vs declared scores
+
+**Scope:** Per-country `README.md` and all `culture_*_*.md` files in `regions/REGION/COUNTRY/`
+
+Validates that **declared Hofstede scores in README match the actual content embodied in all culture files**. This is an **advisory layer** (warnings only, not hard-block).
+
+**Model:** Content is the source of truth. The validator:
+1. Scans all `culture_*.md` files per country (position, piece, place, persona, language files)
+2. Counts high/low keywords for each Hofstede dimension using language-specific keyword bags
+3. Derives 0-100 scores per dimension based on keyword distribution
+4. Compares derived scores to declared scores in README
+5. Flags gaps as WARN (±10 to ±20) or advisory (> ±20)
+
+**Tolerance thresholds:**
+- **Excellent:** Gap ≤ ±5 (content and declared are well-aligned)
+- **Pass:** Gap ≤ ±10 (acceptable - minor misalignment tolerated)
+- **Warn:** Gap ≤ ±20 (advisory - review content or declared score)
+- **Fail (advisory):** Gap > ±20 (significant mismatch - investigate)
+
+**Two decision paths when gaps exist:**
+
+**Option A - Update README:**
+If the content authentically embodies a dimension at a high/low level, update README declared score to match derived score. Example: if German content emphasizes precision/rules (UAI-high), derived UAI=100, then change README UAI from 65 → 100.
+
+**Option B - Rewrite content:**
+If README declared scores represent the desired target cultural profile, rewrite content to add/reduce keywords matching the declared dimension-polarity. Example: if Germany should be UAI=65 (moderate uncertainty aversion), reduce precision/rule keywords and add risk-taking/flexibility language.
+
+**Multilingual keyword bags (same as L4e):**
+- **English (en):** all 6 dimensions
+- **German (de):** all 6 dimensions
+- Add new languages to `tests/validate_hofstede_derived.py` by extending `DIMENSION_KEYWORDS_BY_LANGUAGE`
+
+**Output format:** Gap report per country/dimension with status (excellent/pass/warn/fail).
+
+**Verdict:** If gap > ±10, investigate. If gap > ±20, strongly consider content revision or README correction.
+
+**Script:** `tests/validate_hofstede_derived.py`
+
+**Output:** Exit code 1 if any gap > ±10 (advisory warnings), exit code 0 if all gaps ≤ ±10
+
+**Example:**
+```bash
+python3 tests/validate_hofstede_derived.py
+# === Hofstede Derived Score Report ===
+# 
+# germany:
+#   Dim | Declared | Derived | Gap | Status
+#   ----|----------|---------|-----|--------
+#   PDI  |       35 |     100 |  65 | ✗ fail
+#   UAI  |       65 |     100 |  35 | ✗ fail
+#   IDV  |       67 |      50 |  17 | ~ warn
+#   LTO  |       83 |     100 |  17 | ~ warn
+#   MAS  |       66 |      75 |   9 | ✓ pass
+#   IND  |       40 |      33 |   7 | ✓ pass
+#
+# verdict (options):
+# A - Update README: PDI→100, UAI→100, IDV→50, LTO→100 (match content)
+# B - Rewrite content: reduce PDI/UAI to ~65, increase IDV to ~67
 ```
 
 ---
@@ -410,10 +498,12 @@ L4d-plagiarism (heuristic patterns - advisory)
   ↓
 L4e-hofstede-alignment (dimension keywords - advisory)
   ↓
+L4f-hofstede-derived (derived vs declared scores - advisory)
+  ↓
 ✅ PR passes
 ```
 
-Each job depends on previous job. L4d and L4e are advisory (warnings only, do not block PR). All others are hard-block (fail PR if fail).
+L0-L4e are hard-block (fail PR if fail). L4d-L4f are advisory (warn if issues, do not block PR).
 
 ---
 
@@ -461,6 +551,7 @@ git config core.hooksPath .githooks
 | `tests/validate_audit_consistency.py` | L4c | per-country | ✅ Complete |
 | `tests/validate_plagiarism.py` | L4d | per-country | ✅ Complete (advisory) |
 | `tests/validate_hofstede_alignment.py` | L4e | per-country | ✅ Complete (advisory) |
+| `tests/validate_hofstede_derived.py` | L4f | per-country | ✅ Complete (advisory) |
 | `tests/validate_culture.py` | L4 orchestrator | orchestrator | ✅ Complete |
 | `tests/findings.py` | shared | data structure | ✅ Complete |
 | `tests/language_exceptions.txt` | L1b | exceptions | ✅ Complete (template) |

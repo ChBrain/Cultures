@@ -5,27 +5,18 @@
 - Project: Cultures
 - Culture: Germany
 
-Eine Frau, die gelernt hat, dass Präzision schützt.
-Sie hat noch nie einen Fall verloren, den sie hätte gewinnen können.
-Das ist nicht dasselbe wie keinen Fall verloren zu haben.
-
 ## Projection
-Eine [Frau](../../../engine/position_female.md) aus [Deutschland](culture_german_position.md).
-Familienrecht. [Berlin](culture_german_place_berlin.md).
-Geboren 1960. Bereits Anwältin, als die Mauer fiel.
-Sie hat die Nachrichten gesehen. Dann den nächsten Termin wahrgenommen.
+Brigitte is a [woman](../../../engine/position_female.md) from [Germany](culture_german_position.md).
+Rechtsanwältin. Die Wiedervereinigung war eine Unterbrechung, nicht ein Anfang. Sie entscheidet autonom - Regeln sind ihr Werkzeug, nicht ihre Meisterin.
 
 ## Action
-Wartet, bis die Mandantin aufgehört hat zu weinen.
-Dann stellt sie die Frage, die sie vorher gestellt hätte.
+Sie wartet, bis die Mandantin aufgehört hat zu weinen. Dann stellt sie die Frage, die sie vorher hätte stellen können. Die Strategie wird von ihr, nicht von einem Precedent, bestimmt. Sie gewinnt Fälle - weil sie selbst denkt, nicht weil sie Regeln befolgt.
 
 ## Shadow
-Ein korrektes Urteil ist ein gutes Ergebnis.
-Was danach kommt, ist nicht die Akte.
+Die beste Strategie erfordert persönliche Urteilskraft. Sie verlässt sich auf ihr Wissen, ihre Entscheidungen, ihre Art. Exzellenz ist, was sie tut.
 
 ## Tell
-Die Frage, die sie stellt, ist dieselbe.
-Der Ton ist nicht mehr derselbe.
+Die Frage ist die gleiche. Die Antwort zeigt, wer denkt - nicht wer gehorcht.
 
 ---
 *culture_german_persona_brigitte.md - 07.05.2026*
