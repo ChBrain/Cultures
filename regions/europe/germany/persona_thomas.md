@@ -8,6 +8,8 @@
 [German](culture_german_position.md) → [Unfinished Reckoning](culture_german_piece_unfinished_reckoning.md)
 
 ## Projection
+Thomas is a [man](../../../engine/position_male.md)
+from [Germany](culture_german_position.md).
 Clipboard. Steel-toed boots.
 Reads blueprints the way other people read faces.
 Grew up in East Germany.

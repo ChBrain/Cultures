@@ -54,6 +54,50 @@ def extract_sections(text: str) -> list[str]:
     return [m.group(1) for m in re.finditer(pattern, text, re.MULTILINE)]
 
 
+def validate_persona_gender_links(text: str) -> list[Issue]:
+    """Validate that persona Projection contains gender position link.
+    
+    Personas must include: [man](../../../engine/position_male.md) or [woman](../../../engine/position_female.md)
+    Also requires culture link: culture_[culture]_position.md
+    """
+    issues: list[Issue] = []
+    
+    # Find Projection section
+    projection_match = re.search(r"^## Projection$(.+?)^##", text, re.MULTILINE | re.DOTALL)
+    if not projection_match:
+        issues.append(Issue(
+            error="persona missing ## Projection section",
+            verdict="Add section ## Projection with gender and culture position links",
+        ))
+        return issues
+    
+    projection_text = projection_match.group(1)
+    
+    # Check for gender link: [man] or [woman] with link to engine position
+    # Accept both ../../ and ../../../ paths for flexibility during migration
+    has_male_link = bool(re.search(r"\[man\]\s*\(\s*\.\.\/\.\.\/\.\.\/engine\/position_male\.md\s*\)", projection_text)) or \
+                    bool(re.search(r"\[man\]\s*\(\s*\.\.\/\.\.\/engine\/position_male\.md\s*\)", projection_text))
+    has_female_link = bool(re.search(r"\[woman\]\s*\(\s*\.\.\/\.\.\/\.\.\/engine\/position_female\.md\s*\)", projection_text)) or \
+                      bool(re.search(r"\[woman\]\s*\(\s*\.\.\/\.\.\/engine\/position_female\.md\s*\)", projection_text))
+    
+    if not (has_male_link or has_female_link):
+        issues.append(Issue(
+            error="persona Projection missing gender position link",
+            verdict="Add [man](../../../engine/position_male.md) or [woman](../../../engine/position_female.md) as first line of Projection",
+        ))
+    
+    # Check for culture link (should also be in Projection)
+    has_culture_link = bool(re.search(r"\[.+?\]\s*\(\s*culture_.+_position\.md\s*\)", projection_text))
+    
+    if not has_culture_link:
+        issues.append(Issue(
+            error="persona Projection missing culture position link",
+            verdict="Add culture position link after gender link: [Country](culture_[culture]_position.md)",
+        ))
+    
+    return issues
+
+
 def validate(path: Path) -> list[Issue]:
     """Validate file structure."""
     issues: list[Issue] = []
@@ -90,6 +134,11 @@ def validate(path: Path) -> list[Issue]:
             error=f"{file_type} sections are out of order",
             verdict=f"Reorder sections: {', '.join(required)}",
         ))
+
+    # Persona-specific: validate gender position links in Projection
+    if file_type == "persona":
+        gender_issues = validate_persona_gender_links(text)
+        issues.extend(gender_issues)
 
     return issues
 

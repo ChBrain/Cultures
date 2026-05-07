@@ -1,5 +1,7 @@
 # Germany - Culture Content
 
+**Language(s):** German (Hochdeutsch)
+
 This folder contains culture content for Germany: historical personas, cultural pieces, and geographical places that represent German society and identity.
 
 ## Content Overview

@@ -121,19 +121,38 @@ Per-file only. No cross-file reads. Enforces required sections per file type.
 - Extra sections allowed after required ones
 - Sections are case-insensitive for detection but must be formatted as `## Section Name`
 
-**Verdict when failed:** Add missing section in correct position, or reorder existing sections (specific instruction provided)
+**Gender position linking (personas only):**
+- Every persona's `## Projection` section must begin with gender and culture position links
+- Pattern: `[Name] is a [man/woman]([gender link]) from [Country]([culture link]).`
+- Gender links point to universal engine positions: `[man](../../../engine/position_male.md)` or `[woman](../../../engine/position_female.md)`
+- Culture links point to local culture position: `[Country](culture_[culture]_position.md)`
+- These links establish the persona's intersection of universal gender and specific cultural context
+- Example:
+  ```
+  ## Projection
+  Thomas is a [man](../../../engine/position_male.md)
+  from [Germany](culture_german_position.md).
+  [Additional projection content...]
+  ```
+
+**Verdict when failed:** Add missing section in correct position, or add gender/culture links to Projection (specific instruction provided)
 
 **Script:** `tests/validate_sections.py`
 
 **Example:**
 ```bash
-python3 tests/validate_sections.py regions/europe/germany/persona_hanna.md
-# OK: 1 files passed section validation
+python3 tests/validate_sections.py regions/europe/germany/persona_hanna.md regions/europe/germany/persona_thomas.md
+# OK: 2 files passed section validation
 
-# With violation:
-# FAIL regions/europe/germany/persona_thomas.md
+# With violation (missing section):
+# FAIL regions/europe/germany/persona_unknown.md
 #   - missing required section: ## Shadow
 #   verdict: add section in order: Owner, Projection, Action, Shadow, Tell
+
+# With violation (missing gender link):
+# FAIL regions/europe/germany/persona_old.md
+#   - persona Projection missing gender position link
+#   verdict: Add [man](../../../engine/position_male.md) or [woman](../../../engine/position_female.md) as first line of Projection
 ```
 
 ---
@@ -146,8 +165,12 @@ Checks that all markdown links `[text](target.md)` resolve to existing files. De
 
 - **General purpose:** No region-specific rules - reusable across all worlds
 - **Link pattern:** Markdown syntax `[text](file.md)` in prose
-- **Resolution:** Relative to source file directory (e.g., link from `regions/europe/germany/persona_hanna.md` to `../../../africa/algeria/piece.md` resolves correctly)
-- **Orphaned files:** Detected by full scan (no internal links pointing to it)
+- **Resolution strategies:** Relative to source file, with support for cross-level links
+  1. Local links (same directory): `[text](filename.md)`
+  2. Relative paths: `[text](../../../africa/algeria/piece.md)` from `regions/europe/germany/`
+  3. Cross-level links: `[text](../../../engine/position_male.md)` from any persona in `regions/REGION/COUNTRY/`
+  4. Repository-root paths: Fallback via ARCHITECTURE.md anchor detection
+- **Orphaned files:** Detected by full scan (no internal links pointing to it, regions-only)
 
 **Verdict when failed:** Fix broken link target, or delete orphaned file (specific instruction provided)
 
@@ -155,8 +178,12 @@ Checks that all markdown links `[text](target.md)` resolve to existing files. De
 
 **Example:**
 ```bash
-# On Germany files only (CI mode):
-python3 tests/validate_links.py regions/europe/germany/culture_german_position.md
+# On Germany personas with gender links (CI mode):
+python3 tests/validate_links.py regions/europe/germany/persona_hanna.md regions/europe/germany/persona_thomas.md
+# OK: Link validation passed
+
+# On single country:
+python3 tests/validate_links.py regions/europe/germany/
 # OK: Link validation passed
 
 # Full scan (development mode):
@@ -180,7 +207,9 @@ Validates that each country has minimum required files per ARCHITECTURE.md.
 | Position files | exactly 1 | Yes - error if 0 or >1 |
 | Piece files | at least 1 | Yes - error if 0 |
 | Place files | at least 1 | Yes - error if 0 |
-| Persona files | at least 2 | Yes - error if <2 (note: gender diversity expected) |
+| Persona files | at least 2 | Yes - error if <2 (note: gender diversity + position intersection) |
+| Gender links in personas | per persona | Yes - error if missing from Projection |
+| Culture links in personas | per persona | Yes - error if missing from Projection |
 
 **Detection:**
 - Position: `culture_*_position.md` (exactly 1 per country)
@@ -454,6 +483,71 @@ git config core.hooksPath .githooks
 
 ---
 
+## Gender position framework (Engine-level)
+
+**Overview:** Every persona embodies the intersection of a universal gender position and a specific cultural position. This framework operates at the engine level (above all cultures) and is enforced by L2 (section structure) and L3 (link integrity).
+
+**Universal gender positions** (in `engine/`):
+- `position_male.md` - The body read as a claim before it speaks; assumption of agency conferred not requested
+- `position_female.md` - The body read as an invitation before it speaks; expectation of accommodation assumed not negotiated
+
+These are NOT culture-specific. They apply universally and establish the baseline gender dynamic independent of cultural context.
+
+**Linking pattern (mandatory for all personas):**
+
+Every persona's `## Projection` section begins with gender and culture links:
+
+```markdown
+## Projection
+[Name] is a [man/woman]([gender link]) from [Country]([culture link]).
+[Additional projection content...]
+```
+
+Example (Thomas, Germany):
+```markdown
+## Projection
+Thomas is a [man](../../../engine/position_male.md)
+from [Germany](culture_german_position.md).
+Clipboard. Steel-toed boots.
+[rest of projection...]
+```
+
+Example (Hanna, Germany):
+```markdown
+## Projection
+Hanna is a [woman](../../../engine/position_female.md)
+from [Germany](culture_german_position.md).
+Stands at the front of the room.
+[rest of projection...]
+```
+
+**Why this matters:**
+- Gender + culture intersection reveals how universal positions materialize in specific cultural contexts
+- Thomas (male/German) carries the claim of agency within German hierarchy/precision culture
+- Hanna (female/German) carries the accommodation expectation within German hierarchy/precision culture
+- Same gender, different culture = different manifestation; same culture, different gender = different manifestation
+
+**Validation enforcement:**
+- **L2 (validate_sections.py):** Checks that personas have both gender and culture links in Projection
+  - If missing: `verdict: Add [man/woman](../../../engine/position_male.md / position_female.md) as first line of Projection`
+- **L3 (validate_links.py):** Checks that links resolve correctly across the `regions/REGION/COUNTRY/` → `engine/` path
+  - Cross-level path: `../../../engine/position_male.md` from `regions/europe/germany/persona_thomas.md`
+  - Culture path: `culture_german_position.md` (local reference)
+
+**Requirements for new personas:**
+- All new personas must include gender links (mandatory)
+- Existing personas should be updated on next edit (no retroactive bulk update)
+- Scaffolding templates must generate gender link pattern by default
+
+**Baseline (Germany - Production Ready):**
+- ✅ persona_thomas.md: Has gender + culture links
+- ✅ persona_hanna.md: Has gender + culture links
+- ✅ L2 validation: Both pass
+- ✅ L3 validation: All links resolve correctly
+- ✅ Full E2E: All 9 layers pass (L0-L4e)
+
+---
+
 ## Testing locally
 
 **Full validation on changed files (CI simulation):**
@@ -501,12 +595,12 @@ ALLOWED_LANGUAGES=english,german python3 tests/validate_language.py
 
 ## Baselines
 
-**Germany (7 files: 1 position, 1 piece, 1 place, 2 personas, README, REFERENCES):**
+**Germany (7 files: 1 position, 1 piece, 1 place, 2 personas + gender links, README, REFERENCES):**
 - L1a: ✅ UTF-8, ASCII filenames, no em-dash, trailing newline
 - L1b: ✅ English-only prose
-- L2: ✅ Section structure per file type
-- L3: ✅ Link integrity (no broken/orphaned files)
-- L4a: ✅ Completeness (1 position, 1 piece, 1 place, 2 personas)
+- L2: ✅ Section structure per file type + gender position links in both personas
+- L3: ✅ Link integrity (no broken/orphaned files, cross-level links resolve: `../../../engine/position_*.md`)
+- L4a: ✅ Completeness (1 position, 1 piece, 1 place, 2 personas with gender/culture links)
 - L4b: ✅ README with Hofstede audit table
 - L4c: ✅ Audit table consistency
 - L4d: ✅ No plagiarism heuristics warnings

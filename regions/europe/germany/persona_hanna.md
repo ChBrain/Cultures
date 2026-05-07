@@ -8,7 +8,8 @@
 Secondary school history teacher
 
 ## Projection
-Hanna is [German](culture_german_position.md).
+Hanna is a [woman](../../../engine/position_female.md)
+from [Germany](culture_german_position.md).
 Stands at the front of the room.
 Good posture - not performed, habitual.
 Short hair, silver at the temples, not coloured.
