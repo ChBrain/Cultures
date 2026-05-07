@@ -13,27 +13,19 @@ Som virkelighed der skal værnes.
 Alle mennesker er værdifulde.
 Ikke på trods af deres forskel.
 På grund af den.
-Respekt er grundlaget. Ikke status.
-Ikke hierarki.
+Respekt er grundlaget, ikke økonomisk eller social position.
 
 [Janteloven](culture_danish_piece_jante_law.md).
 Tillid til lighed, ikke regel mod stolthed.
 Den tillader at hver person har deres stemme.
 Den forhindrer at én person overtager rummet.
 Ikke gennem straf. Gennem respekt.
-
-Individuelt valg.
-Personlig vurdering. Autonomi.
-Hver person tænker selv.
-Hver person handler selv.
-Selvbestemmelse er rettighed, ikke privilegium.
-Samlet. Ikke sammensat.
-Forskellighed gør arbejdet stærkere.
+Ligestilling er grundlag.
 
 Samarbejde uden kommando.
-Fællesskab uden hierarki.
-Ingen ledelse der tvinger.
-Ingen autoritet der bestemmer uden dialog.
+Samordning blandt ligeværdige mennesker.
+Ingen eneste person bestemmer uden dialog.
+Ligestilling betyder dialog først.
 Respekt mellem mennesker - ikke mellem niveauer.
 Den der ved mest om problemet løser det.
 Morgen kan det være en anden.
@@ -45,31 +37,31 @@ Det kan splittes uden at noget falder.
 Hver person er også værd for sig selv.
 
 ## Orders
-Tro på din egen dømmekraft.
-Personlig vurdering før ekspertise.
-Autonomi betyder også ansvar.
+Tro på din egen dømmekraft. Personlig vurdering. Egen bedømmelse.
+Du er ansvarlig for dine valg.
+Autonomi betyder du må vælge selv.
+Uafhængighed betyder du skal tænke selv først.
 
-Sit ned med de anden.
+Sit ned med de anden fordi du valgte det.
 Lyt med empati. Bid til med omhu.
-Skift mening når det giver mening.
-Fleksibilitet er styrke, ikke svaghed.
+Skift mening når det giver mening for DIG.
+Fleksibilitet blandt mennesker der hver er selvbestemmende.
 Ingen skal have ret hele tiden.
 Ingen skal have ret alene.
-Samarbejd fordi det gør arbejdet bedre.
+Samarbejd fordi det gør dit arbejde bedre.
 Ikke fordi du skal.
 
 ## Loses
-Muligheden for at være falsk.
-Uden hierarki at gemme sig under.
-Uden status at hænge sig i.
-Authenticity er mandated.
-Personlig stemme er forventet.
+Muligheden for at være falsk eller at skjule dig selv.
+Demokrati betyder du må være autentisk.
+Personlig stemme er forventet, ikke valgfri.
+Din individuelle stemme betyder.
 
-Muligheden for at påtvinge eller kommandere.
-Ingen kan sige: sådan skal det være.
-Uden autoritet bag det.
-Persuasion kræver at rummet køber det.
-Magt uden legitimitet er stilhed.
+Mulighed for at være uafhængig uden at dele.
+I demokrati må du sige hvad du mener.
+Tavshed betyder uansvarlighed.
+Privat holdning delt munder ud i fælles handling.
+Respekt betyder jeg hører dine egne tanker.
 
 ## Drives
 På tabet:

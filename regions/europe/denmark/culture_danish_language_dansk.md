@@ -23,7 +23,7 @@ Grundloven.
 Folkeskolen.
 Radioen.
 Det der binder - uden at gøre det til et ritual.
-Respekt uden hierarki.
+Respekt mellem mennesker på lige niveau.
 
 Personlig stemme.
 Autonomi gennem sproget.
