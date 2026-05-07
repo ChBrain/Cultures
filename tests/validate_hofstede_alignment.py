@@ -1,19 +1,31 @@
 #!/usr/bin/env python3
-"""Hofstede dimension alignment validation.
+"""Hofstede validation: structure + dimension alignment.
 
-Checks that a culture's Position file actually reflects the Hofstede dimensions
-documented in the README. This prevents declaring one dimensional profile while
-writing a position that contradicts it.
+Two passes per country:
 
-The validator reads Hofstede scores from README, extracts expected keywords/concepts
-for each dimension, and verifies the position file contains matching language.
+1. Structure (FAIL): README has a `## Hofstede` section, a score table with
+   all six dimensions filled in (PDI, IDV, UAI, MAS, LTO, IND), a source
+   line, and REFERENCES.md cites Hofstede. If the country has a culture
+   position file, it should reference the dimensions.
+
+2. Alignment (WARN): given the scores from the README, the position file's
+   keywords should match the expected polarity for each dimension.
+
+Alignment depends on structure: if scores cannot be extracted from the
+README, the alignment pass is skipped for that country (otherwise it would
+silently pass with no findings).
+
+Both passes share the same `extract_hofstede_scores` parser, so dimension
+presence in the structure pass and score extraction in the alignment pass
+agree on what counts as a valid score row.
 
 Exit status:
-  0 if alignment is good, 1 if mismatches found.
+  0 if every country passes structure and has no alignment warnings,
+  1 otherwise.
 
 Usage:
   tests/validate_hofstede_alignment.py            # all countries
-  tests/validate_hofstede_alignment.py FILE...    # specific files
+  tests/validate_hofstede_alignment.py FILE...    # files in same country only
 """
 from __future__ import annotations
 
@@ -26,6 +38,8 @@ sys.path.insert(0, str(HERE))
 
 from findings import Issue
 
+
+HOFSTEDE_DIMENSIONS = ["PDI", "IDV", "UAI", "MAS", "LTO", "IND"]
 
 # Keyword sets for each dimension's high vs low variants
 DIMENSION_KEYWORDS = {
@@ -55,14 +69,21 @@ DIMENSION_KEYWORDS = {
     },
 }
 
+POSITION_DIMENSION_REF = re.compile(
+    r"hofstede|power distance|individualism|uncertainty avoidance|"
+    r"masculinity|long-term orientation|indulgence|"
+    r"\b(?:PDI|IDV|UAI|MAS|LTO|IND)\b",
+    re.IGNORECASE,
+)
+
 
 def find_country_folders() -> list[Path]:
-    """Find all country folders with content."""
+    """Find all country folders that contain culture content."""
     root = Path(__file__).resolve().parent.parent
     regions = root / "regions"
     if not regions.is_dir():
         return []
-    
+
     countries = []
     for region_dir in sorted(regions.iterdir()):
         if not region_dir.is_dir() or region_dir.name.startswith("."):
@@ -70,148 +91,219 @@ def find_country_folders() -> list[Path]:
         for country_dir in sorted(region_dir.iterdir()):
             if not country_dir.is_dir() or country_dir.name.startswith("."):
                 continue
-            if list(country_dir.glob("culture_*_position.md")):
+            content_files = (
+                list(country_dir.glob("culture_*.md"))
+                + list(country_dir.glob("persona_*.md"))
+            )
+            if content_files:
                 countries.append(country_dir)
     return countries
 
 
 def extract_hofstede_scores(readme_text: str) -> dict[str, tuple[int, str]]:
-    """Extract Hofstede scores and their descriptions from README.
-    
-    Returns: {dimension: (score, description)}
+    """Extract Hofstede scores from README.
+
+    Matches table rows of either form:
+      `| PDI | 35 | **Low** ... |`
+      `| Power Distance (PDI) | 35 | **Low** ... |`
+
+    The first cell must contain the dimension code as a whole word; the
+    second must be a bare integer; the third must open with `**Low`,
+    `**High`, or `**Very High` (further qualifiers like `**Low-Moderate**`
+    are accepted and read as the leading level). Header rows, prose
+    mentions, score ranges, and missing bold markers are intentionally not
+    counted: structure and alignment must agree on the same notion of a
+    "valid score row".
+
+    Returns: {dimension: (score, level)}
     """
-    scores = {}
-    
-    # Pattern: "| PDI | 35 | **Low** - ..."
-    pattern = r"\|\s*(PDI|IDV|UAI|MAS|LTO|IND)\s*\|\s*(\d+)\s*\|\s*\*\*(Low|High|Very High)[^\|]*\|"
-    
+    scores: dict[str, tuple[int, str]] = {}
+    pattern = (
+        r"\|[^|\n]*\b(PDI|IDV|UAI|MAS|LTO|IND)\b[^|\n]*\|"
+        r"\s*(\d+)\s*\|"
+        r"\s*\*\*(Low|High|Very High)[^\|\n]*\|"
+    )
     for match in re.finditer(pattern, readme_text, re.IGNORECASE):
         dim = match.group(1).upper()
         score = int(match.group(2))
         level = match.group(3).upper()
         scores[dim] = (score, level)
-    
     return scores
+
+
+def check_structure(
+    country_name: str,
+    country_dir: Path,
+    readme_text: str,
+    scores: dict[str, tuple[int, str]],
+) -> list[Issue]:
+    """Structure pass: README section, score completeness, sources, citations."""
+    issues: list[Issue] = []
+
+    if not re.search(r"##\s+Hofstede", readme_text, re.IGNORECASE):
+        issues.append(Issue(
+            error=f"{country_name}: README missing Hofstede section",
+            verdict="add `## Hofstede Cultural Dimensions` section to README",
+        ))
+        return issues
+
+    missing = [d for d in HOFSTEDE_DIMENSIONS if d not in scores]
+    if missing:
+        issues.append(Issue(
+            error=f"{country_name}: Hofstede scores incomplete",
+            verdict=(
+                f"add table rows `| DIM | NN | **Low/High/Very High** ... |` "
+                f"for: {', '.join(missing)}"
+            ),
+        ))
+
+    if not re.search(r"hofstede|empirical|research", readme_text, re.IGNORECASE):
+        issues.append(Issue(
+            error=f"{country_name}: Hofstede scores lack source attribution",
+            verdict="add source line: '**Source:** Hofstede Insights' or explain if approximation",
+        ))
+
+    references_path = country_dir / "REFERENCES.md"
+    if references_path.exists():
+        if "Hofstede" not in references_path.read_text(encoding="utf-8"):
+            issues.append(Issue(
+                error=f"{country_name}: REFERENCES.md missing Hofstede citation",
+                verdict="add Hofstede source entry: author, book/database, URL, trust level",
+            ))
+
+    position_files = list(country_dir.glob("culture_*_position.md"))
+    if position_files:
+        position_text = position_files[0].read_text(encoding="utf-8")
+        if not POSITION_DIMENSION_REF.search(position_text):
+            issues.append(Issue(
+                error=f"{country_name}/{position_files[0].name}: no Hofstede dimension references",
+                verdict="add explanation of how position embodies/reflects Hofstede dimensions",
+            ))
+
+    return issues
 
 
 def get_expected_keywords(scores: dict[str, tuple[int, str]]) -> dict[str, set[str]]:
     """Get expected keywords for each dimension based on its score level."""
-    expected = {}
-    
-    for dim, (score, level) in scores.items():
+    expected: dict[str, set[str]] = {}
+    for dim, (_score, level) in scores.items():
         if dim not in DIMENSION_KEYWORDS:
             continue
-        
-        keywords = DIMENSION_KEYWORDS[dim].copy()
-        
-        # Determine if this dimension is "high" or "low"
-        # Special cases: PDI/UAI/MAS are named intuitively (high = the named trait)
-        # IDV: high = individualism, low = collectivism
-        # LTO: high = long-term, low = short-term
-        # IND: high = indulgence, low = restraint
-        
-        if "Low" in level or "low" in level:
-            # Use the "low" keywords for this dimension
-            expected[dim] = set(keywords.get("low", []))
-        else:
-            # Use the "high" keywords
-            expected[dim] = set(keywords.get("high", []))
-    
+        polarity = "low" if "LOW" in level else "high"
+        expected[dim] = set(DIMENSION_KEYWORDS[dim].get(polarity, []))
     return expected
 
 
 def check_alignment(position_text: str, expected: dict[str, set[str]]) -> dict[str, int]:
-    """Count keyword matches for each dimension in position text."""
-    matches = {}
+    """Count keyword matches per dimension in position text."""
+    matches: dict[str, int] = {}
     position_lower = position_text.lower()
-    
     for dim, keywords in expected.items():
         count = 0
         for keyword in keywords:
-            # Use word boundary matching to avoid partial matches
             if re.search(rf"\b{re.escape(keyword)}\b", position_lower):
                 count += 1
         matches[dim] = count
-    
     return matches
 
 
-def validate_country(country_dir: Path) -> list[Issue]:
-    """Validate Hofstede alignment for a single country."""
-    issues = []
-    
+def validate_country(country_dir: Path) -> tuple[list[Issue], list[Issue]]:
+    """Run structure pass then alignment pass.
+
+    Returns (structure_issues, alignment_issues). Alignment is skipped if
+    scores cannot be extracted or no position file exists.
+    """
     readme_path = country_dir / "README.md"
     if not readme_path.exists():
-        return []
-    
+        structure_issues = [Issue(
+            error=f"{country_dir.name}: README.md not found",
+            verdict="create README.md with Hofstede section",
+        )]
+        return structure_issues, []
+
+    readme_text = readme_path.read_text(encoding="utf-8")
+    scores = extract_hofstede_scores(readme_text)
+
+    structure_issues = check_structure(
+        country_dir.name, country_dir, readme_text, scores,
+    )
+
+    if not scores:
+        return structure_issues, []
+
     position_files = list(country_dir.glob("culture_*_position.md"))
     if not position_files:
-        return []
-    
-    readme_text = readme_path.read_text(encoding="utf-8")
+        return structure_issues, []
+
     position_text = position_files[0].read_text(encoding="utf-8")
-    
-    # Extract claimed Hofstede scores
-    scores = extract_hofstede_scores(readme_text)
-    if not scores:
-        return []  # No Hofstede section to validate against
-    
-    # Get expected keywords
     expected = get_expected_keywords(scores)
-    
-    # Check alignment
     matches = check_alignment(position_text, expected)
-    
-    # Report findings
+
+    alignment_issues: list[Issue] = []
     for dim in sorted(matches.keys()):
         count = matches[dim]
-        score, level = scores[dim]
-        
+        _score, level = scores[dim]
         if count == 0:
-            # No keywords found for this dimension
-            issues.append(Issue(
-                error=f"{country_dir.name}/culture_*_position.md: no alignment with {dim} ({level})",
+            alignment_issues.append(Issue(
+                error=f"{country_dir.name}/{position_files[0].name}: no alignment with {dim} ({level})",
                 verdict=f"position does not reflect {level} {dim} - add keywords or revise README claim",
             ))
         elif count == 1:
-            # Only one keyword - weak alignment
-            issues.append(Issue(
-                error=f"{country_dir.name}/culture_*_position.md: weak alignment with {dim} ({level})",
+            alignment_issues.append(Issue(
+                error=f"{country_dir.name}/{position_files[0].name}: weak alignment with {dim} ({level})",
                 verdict=f"only 1 keyword match for {dim} - strengthen position to reflect dimension",
             ))
-    
-    return issues
+
+    return structure_issues, alignment_issues
+
+
+def _resolve_targets(argv: list[str]) -> list[Path]:
+    if len(argv) <= 1:
+        return find_country_folders()
+    targets: set[Path] = set()
+    regions = {"africa", "americas", "asia", "europe", "oceania"}
+    for arg in argv[1:]:
+        path = Path(arg)
+        if not path.exists():
+            continue
+        for part in path.parents:
+            if part.parent.name in regions:
+                targets.add(part)
+                break
+    return sorted(targets)
 
 
 def main(argv: list[str]) -> int:
-    if len(argv) > 1:
-        # Validate specific files' countries
-        targets = set()
-        for arg in argv[1:]:
-            path = Path(arg)
-            if path.exists():
-                for part in path.parents:
-                    if part.parent.name in ["africa", "americas", "asia", "europe", "oceania"]:
-                        targets.add(part)
-                        break
-        countries = sorted(targets)
-    else:
-        countries = find_country_folders()
-    
-    all_issues = []
+    countries = _resolve_targets(argv)
+    if not countries:
+        print("No countries found")
+        return 0
+
+    all_structure: list[Issue] = []
+    all_alignment: list[Issue] = []
     for country_dir in countries:
-        issues = validate_country(country_dir)
-        all_issues.extend(issues)
-    
-    if all_issues:
-        for issue in all_issues:
-            print(f"WARN {issue.error}")
-            if issue.verdict:
-                print(f"  verdict: {issue.verdict}")
-        print(f"\nHofstede alignment: {len(all_issues)} potential mismatch(es) found")
+        structure_issues, alignment_issues = validate_country(country_dir)
+        all_structure.extend(structure_issues)
+        all_alignment.extend(alignment_issues)
+
+    for issue in all_structure:
+        print(f"FAIL {issue.error}")
+        if issue.verdict:
+            print(f"  verdict: {issue.verdict}")
+    for issue in all_alignment:
+        print(f"WARN {issue.error}")
+        if issue.verdict:
+            print(f"  verdict: {issue.verdict}")
+
+    total = len(all_structure) + len(all_alignment)
+    if total:
+        print(
+            f"\nHofstede: {len(all_structure)} structure issue(s), "
+            f"{len(all_alignment)} alignment warning(s) across {len(countries)} country(ies)"
+        )
         return 1
-    
-    print(f"OK: {len(countries)} countries have positions aligned with Hofstede dimensions")
+
+    print(f"OK: {len(countries)} countries pass Hofstede structure + alignment")
     return 0
 
 
