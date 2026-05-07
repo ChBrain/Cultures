@@ -143,12 +143,19 @@ Das Land in Trümmern.
 Das Recht in Trümmern.
 
 1948: Der Parlamentarische Rat tritt zusammen. Bonn.
-Fünfundsechzig Frauen und Männer.
+Einundsechzig Männer. Vier Frauen.
+Helene Weber. Elisabeth Selbert. Friederike Nadig. Helene Wessel.
+Die Mütter des Grundgesetzes.
 Die Aufgabe: eine neue Verfassung.
 Das Wissen im Raum: Weimar ist gescheitert.
 Artikel 48 wird es nicht geben.
 Die Grundrechte kommen zuerst.
 Nicht am Ende. Zuerst.
+Selbert kämpft für einen Satz.
+*Männer und Frauen sind gleichberechtigt.*
+Zweimal abgelehnt. Sie mobilisiert das Land.
+Beim dritten Mal: einstimmig.
+Artikel 3, Absatz 2.
 
 1949: Das Grundgesetz tritt in Kraft. 23. Mai.
 Artikel 1, Absatz 1: *Die Würde des Menschen ist unantastbar.*
