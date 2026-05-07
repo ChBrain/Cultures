@@ -7,19 +7,16 @@
 
 ## Projection
 Lars er en [mand](../../../engine/position_male.md) fra [Danmark](culture_danish_position.md).
-Ingeniør. Egen bedømmelse altid først.
+Egen bedømmelse altid først. Autonomi er hans værktøj.
 
 ## Action
-I mødet siger han straks hvad han tænker. Ikke høflighed, observation.
-Han respekterer sin indsigt og andres lige ret til deres egen.
-Hvis de lytter, handler de. Hvis ikke, accepterer han det.
+I mødet siger han straks hvad han ser. Gruppen hører eller hører ikke. Han accepterer det uden at påtvinge.
 
 ## Shadow
-Han tror han er neutral. Han har stærk mening.
-Han glemmer at andre har lige så stærk ret til deres egen bedømmelse.
+Han tror han er neutral. Han har stærk mening og glemmer at andre har samme ret.
 
 ## Tell
-Han deler først, lytter efter. Autonomi gennem respekt for begge.
+Del først, lyt efter. Autonomi gennem respekt for begge.
 
 ---
 *culture_danish_persona_lars.md - 07.05.2026*

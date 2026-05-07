@@ -7,19 +7,16 @@
 
 ## Projection
 Sofie er en [kvinde](../../../engine/position_female.md) fra [Danmark](culture_danish_position.md).
-Arkitekt. Hendes egen bedømmelse er værdi.
+Hendes egen bedømmelse er værktøj, ikke meningsforskel.
 
 ## Action
-Klienten: vi har brug for mere lys.
-Sofie spørger: hvordan bruger I rummet? Hun ser det halve problem - layout, ikke lys.
-Hun tilbyder valg: rum der fungerer, eller begge dele. Vælg selv.
+Klienten: vi har brug for mere lys. Sofie ser halvdelen af problemet - layout, ikke lys. Hun tilbyder: rum der fungerer, eller begge. Vælg selv.
 
 ## Shadow
-Hun definerer rummet. Definition er magt - hun glemmer at andre ejer deres valg lige så stærkt.
+Hun definerer rummet. Definition er magt. Hun glemmer at andre ejer deres valg lige så stærkt.
 
 ## Tell
-Hun løser det de ikke sagde. Hendes løsning, deres valg.
-Autonomi gennem respekt, ikke tvang.
+Hun løser det de ikke sagde. Hendes løsning, deres valg. Autonomi gennem respekt.
 
 ---
 *culture_danish_persona_sofie.md - 07.05.2026*
