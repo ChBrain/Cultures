@@ -2,8 +2,104 @@
 
 *Cultures world architecture.*
 
+**Concept:** Built on KAI HACKS AI Architecture and KAIWorlds framework.
+
+**Project Scope:** All content files in `regions/` tree must conform to these rules.
+
 ---
 
+## Global File Standards
+
+These rules apply to **all** content files (`.md`) in the repository:
+
+### Encoding
+
+- **Character set:** UTF-8 only
+- **Byte-order mark:** Forbidden (UTF-8 no BOM)
+
+### Line Endings
+
+- **Standard:** POSIX LF (`\n`) only
+- **Forbidden:** Windows CRLF (`\r\n`)
+- **Enforcement:** Git `.gitattributes` normalizes on commit; pre-commit hook strips CRLF on stage
+
+### Trailing Newline
+
+- **Required:** Every file must end with exactly one trailing newline (`\n`)
+- **Rationale:** POSIX standard; prevents Git diffs showing "\ No newline at end of file"
+
+### Footer
+
+Every content file ends with a footer line:
+
+```
+v0.1.0 - KAI Worlds
+```
+
+- **Format:** `vX.Y.Z - KAI Worlds` where X.Y.Z matches repo version
+- **Placement:** Final line of file (after trailing newline from content)
+- **Required in:** All positions, pieces, places, personas
+
+### Filenames
+
+ASCII only. Underscores separate words. No hyphens or diacritics. Every basename unique.
+
+Patterns:
+- `regions/<region>/<country>/culture_<adj>_position.md`
+- `regions/<region>/<country>/culture_<adj>_piece_<descriptor>.md`
+- `regions/<region>/<country>/culture_<adj>_place_<descriptor>.md`
+- `regions/<region>/<country>/persona_<name>.md`
+
+`<adj>` = lowercase culture adjective (e.g., `german`, `french`).
+
+### Style
+
+- **Em-dashes:** Forbidden (U+2014 `—`). Use hyphens (`-`) instead.
+- **Ambiguity:** No literal Unicode escape sequences (`\uXXXX`).
+- **Clarity:** No Unicode replacement character (U+FFFD `�`).
+
+---
+## Sourcing & IP Standards
+
+These rules apply to all content files across all countries.
+
+### Sourcing Principle
+
+All content is authored with this core principle:
+
+**"Use facts (which are not copyrightable) carried in the author's own expression."**
+
+- **Facts** (sourced): Historical events, geographical locations, cultural references, Hofstede scores
+- **Expression** (original): How those facts are narrated, framed, and integrated into positions, pieces, and places
+
+This mirrors Autobahn's approach and ensures originality while respecting factual accuracy.
+
+### Source Hierarchy
+
+Factual claims are verified against sources in this order of preference:
+
+1. **Official sources:** Government institutions, cultural organizations, official archives
+2. **Academic sources:** University press, historical societies, peer-reviewed research
+3. **Secondary sources:** Wikipedia (for widely-known facts), encyclopedias
+4. **Journalistic sources:** Newspapers, media archives, reporting
+5. **Local knowledge:** Direct observation, expert interviews (documented)
+
+Each country's REFERENCES.md documents the sourcing hierarchy applied to that country's content.
+
+### IP Safeguards
+
+**Close-paraphrase risk:** Occasional accidental close-paraphrase may occur despite care. If you identify potential IP concerns:
+
+1. Open a GitHub issue with:
+   - The file and specific passage
+   - The suspected source
+   - A link to the original source
+2. Describe the pattern (identical phrasing, structure, or fact ordering)
+3. The validation layer L4d (plagiarism heuristics) will flag patterns for review
+
+**Resolution:** Confirmed issues are rewritten in original expression. REFERENCES.md documents the protocol.
+
+---
 ## General
 
 ### Title
@@ -31,31 +127,116 @@ Every file has an `## Owner` block anchoring it to the world.
 
 Section order is fixed per file type. See below.
 
-### Footer
+---
 
+## Gender Position Framework
+
+**Gender positions are universal, engine-level files** that exist above the culture layer. Every persona links to both a gender position and a culture position.
+
+### Universal Gender Positions
+
+- `engine/position_male.md` - Male gender position (applies to all cultures)
+- `engine/position_female.md` - Female gender position (applies to all cultures)
+
+These positions describe the social/embodied role that gender confers, independent of culture. Gender is a layer that intersects with culture; every persona exists at the intersection of both.
+
+### Gender Linking Pattern
+
+All persona files include gender position links in the **Projection** section:
+
+```markdown
+## Projection
+[Name] is a [man/woman](../../engine/position_male.md / position_female.md)
+from [Country](../../engine/position_[culture].md).
+[Persona-specific projection content...]
 ```
-vX.Y.Z - KAI Worlds
-```
 
-### Version
+Examples:
+- Male persona: `Thomas is a [man](../../engine/position_male.md) from [Germany](../../engine/position_german.md).`
+- Female persona: `Hanna is a [woman](../../engine/position_female.md) from [Germany](../../engine/position_german.md).`
 
-Semantic versioning: `major.minor.patch`.
+### Linking Mechanics
 
-### Encoding
+- **From:** `regions/REGION/COUNTRY/persona_*.md`
+- **To gender:** `../../engine/position_male.md` or `../../engine/position_female.md`
+- **To culture:** `../../engine/position_[culture].md` or `culture_[culture]_position.md` (local reference)
 
-UTF-8, no byte-order mark.
+The double `../../` accounts for depth: `regions/europe/germany/` goes up two levels to reach `engine/`.
 
-### Filenames
+### All New Personas
 
-ASCII only. Underscores separate words. No hyphens or diacritics. Every basename unique.
+Every new persona created must:
+1. Include gender position link (mandatory)
+2. Include culture position link (mandatory)
+3. Maintain persona-specific projection content
 
-Patterns:
-- `regions/<region>/<country>/culture_<adj>_position.md`
-- `regions/<region>/<country>/culture_<adj>_piece_<descriptor>.md`
-- `regions/<region>/<country>/culture_<adj>_place_<descriptor>.md`
-- `regions/<region>/<country>/persona_<name>.md`
+### Existing Personas
 
-`<adj>` = lowercase culture adjective (e.g., `german`, `french`).
+Existing personas are updated to include gender position links on next edit (no retroactive bulk update required).
+
+---
+
+## Hofstede Foundation
+
+Every culture is rooted in **Hofstede's Cultural Dimensions Theory**, a framework identifying six measurable dimensions of cultural variation:
+
+### Six Dimensions
+
+1. **Power Distance Index (PDI):** How much people accept unequal power distribution. Low PDI cultures emphasize equality; high PDI accept hierarchy as natural.
+
+2. **Individualism (IDV):** Individual vs. collective orientation. High IDV prioritizes personal achievement and autonomy; low IDV emphasizes group harmony and loyalty.
+
+3. **Uncertainty Avoidance Index (UAI):** Comfort with ambiguity and risk. High UAI seek rules, structure, and predictability; low UAI are more flexible and tolerant of uncertainty.
+
+4. **Masculinity (MAS):** Assertiveness and competitiveness vs. caring and cooperation. High MAS cultures value achievement and competition; low MAS prioritize relationships and quality of life.
+
+5. **Long-Term Orientation (LTO):** Future focus and adaptation vs. past/present focus and tradition. High LTO prioritize long-term planning; low LTO emphasize immediate results and tradition.
+
+6. **Indulgence (IND):** Gratification of desires vs. restraint. High IND allow relatively free gratification; low IND show self-discipline and restraint.
+
+Each dimension scores 0-100. Hofstede research provides published scores for most countries based on empirical surveys.
+
+### Application in Cultures
+
+- **Position** embodies the culture's operating logic shaped by these dimensions
+- **Pieces** represent historical moments when dimensions intersected, creating pressure
+- **Places** show where dimensions are visible in daily life
+- **Personas** carry the tension of living within a culture's dimensional profile
+
+### Documentation Requirements
+
+Every country's README must include:
+
+1. **Hofstede Summary Table:** Listing all six dimensions with scores
+2. **Source:** Either empirical Hofstede research (published scores) or best judgment with reasoning
+3. **Explanation:** How these dimensions shape the position, pieces, places, and personas
+
+### Empirical vs. Approximation
+
+- **If empirical research exists:** Use published Hofstede scores and cite the source
+- **If no empirical data exists:** Use best judgment approximation, clearly labeled as "Approximation" with reasoning explaining how scores were derived
+
+Both approaches are valid; the key is transparency about sourcing.
+
+### Scaffolding Approach
+
+Rather than pre-populating all countries with README/REFERENCES at once, documentation is scaffolded on-demand as countries are touched:
+
+1. **Infrastructure:** `data/hofstede_scores.json` contains 50+ countries with empirical scores
+2. **Generator:** `scripts/scaffold_country.py` creates README.md and REFERENCES.md for any country
+3. **Workflow:** When you start a country, run:
+   ```bash
+   python3 scripts/scaffold_country.py --apply COUNTRY
+   git add regions/REGION/COUNTRY/{README,REFERENCES}.md
+   # Then run validators and edit as needed
+   ```
+4. **Baseline:** Germany is the canonical template - all scaffolded countries follow this structure
+
+This approach:
+- Avoids bulk generation of 200+ files
+- Ensures consistency (same templates, same validator checks)
+- Allows human review of Hofstede sourcing before content is written
+- Keeps the baseline (Germany) as the reference standard for all future countries
 
 ---
 
@@ -137,9 +318,18 @@ The capital or defining location where the position does its daily work.
 
 A person carrying the position they did not choose. Minimum two per country (one male, one female).
 
+Every persona intersects gender and culture. The **Projection** section establishes both:
+
+```markdown
+## Projection
+[Name] is a [man/woman](../../engine/position_male.md / position_female.md)
+from [Country](../../engine/position_[culture].md).
+[Persona-specific projection content...]
+```
+
 Gender is expressed through **PAST**:
 
-- **Projection**: What the persona shows.
+- **Projection**: Gender position link + culture position link + what the persona shows.
 - **Action**: What they do when pressed.
 - **Shadow**: What they cannot see about themselves.
 - **Tell**: The involuntary signal where Shadow leaks.
@@ -147,6 +337,11 @@ Gender is expressed through **PAST**:
 **Sections:** `Owner`, `Projection`, `Action`, `Shadow`, `Tell`.
 
 **Naming:** `persona_<name>.md`
+
+**Gender Link Requirements:**
+- Male persona: `[man](../../engine/position_male.md)`
+- Female persona: `[woman](../../engine/position_female.md)`
+- Non-binary/other: Document in Projection (design TBD)
 
 ---
 
@@ -166,6 +361,8 @@ regions/
   europe/
   oceania/
 engine/
+  position_male.md
+  position_female.md
   stack.md
   process_world_is_spinning.md
 ```
@@ -237,6 +434,82 @@ The world deploys flat to an AI project: every file lands in one folder. The rel
 The single author-facing rule: **every file basename in a deployed bundle is unique**.
 
 > **Open:** the per-region bundle currently flattens personas alongside cultures. Combined with personas not carrying the culture adjective, two countries can collide. See the persona naming Open question.
+
+---
+
+## Source Attribution & IP Protection
+
+To avoid accidental intellectual property theft, each country folder includes two files that document sourcing and verify facts:
+
+### README.md (per country)
+
+Located at `regions/<region>/<country>/README.md`.
+
+**Contents:**
+- Overview of the country's content (position, pieces, places, personas)
+- Sourcing principle: "Facts (verified via sources) + Original expression"
+- Source hierarchy (official → academic → secondary)
+- Plagiarism safeguard (how to report concerns)
+- Content audit status table
+
+**Purpose:** Public documentation of content origin and verification process.
+
+### REFERENCES.md (per country)
+
+Located at `regions/<region>/<country>/REFERENCES.md`.
+
+**Contents:**
+- Authorship statement (Kai Schlueter, AI-assisted)
+- Source registry (official institutions, academic, media, Wikipedia)
+- Verified facts table (per file - what facts, where verified, audit status)
+- Plagiarism detection protocol (7+ word check, audit workflow)
+- How to report IP concerns (GitHub issue template)
+
+**Purpose:** Detailed source documentation and audit trail for reviewers and auditors.
+
+### Sourcing Model
+
+Following Autobahn's principle:
+
+**"Use facts (which are not copyrightable) carried in the author's own expression."**
+
+- **Facts**: Historical events, geographical locations, cultural references (sourced)
+- **Expression**: How facts are narrated, framed, integrated into positions/pieces/personas (original)
+
+### Verification Hierarchy
+
+When verifying facts in place/piece/position files:
+
+1. **Official government / institutional sources** (ministries, archives, official city sites)
+2. **Academic references** (universities, historical societies, peer-reviewed)
+3. **Secondary sources** (Wikipedia, encyclopedias, major media)
+4. **Journalistic reporting** (newspapers, news agencies, media archives)
+
+### Plagiarism Detection
+
+**Risk threshold:** 7+ consecutive non-trivial words verbatim from any source.
+
+**Example:**
+- Source: "The fall of the Berlin Wall on November 9, 1989, marked the beginning of the end..."
+- Our text (risky): "The fall of the Berlin Wall on November 9, 1989, marked..." ← Matches exactly, rewrite needed
+- Our text (safe): "On November 9, 1989, the Berlin Wall fell, symbolizing the start of East Germany's transformation..." ← Paraphrased
+
+### Audit Workflow
+
+Spot-check protocol for sampled content:
+
+1. Extract all distinct factual claims (dates, places, quantities, events)
+2. Verify each against hierarchical source list
+3. Search source text for paraphrase risk (7+ word sequences)
+4. Mark verdict: **clean** (verified, no risk), **minor** (one small issue), **issues** (factual error or paraphrase risk)
+
+### Reporting IP Concerns
+
+If you find potential plagiarism or factual errors:
+
+1. Open a GitHub issue: `IP concern: [Country] - [File name]`
+2. Include: exact passage, suspected source (with URL), why it concerns you
+3. We will investigate within 7 days and rewrite if confirmed
 
 ---
 

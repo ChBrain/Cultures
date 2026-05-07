@@ -62,6 +62,13 @@ def validate(path: Path) -> list[Issue]:
 
     raw = path.read_bytes()
 
+    # Check for CRLF line endings (Windows)
+    if b"\r\n" in raw:
+        issues.append(Issue(
+            error="contains Windows CRLF line endings (\\r\\n)",
+            verdict="convert to POSIX LF line endings (\\n) - use `dos2unix` or Git auto-normalization",
+        ))
+
     if raw.startswith(b"\xef\xbb\xbf"):
         issues.append(Issue(
             error="starts with UTF-8 BOM",
@@ -99,6 +106,30 @@ def validate(path: Path) -> list[Issue]:
             error="contains literal Unicode escape sequences",
             verdict="decode each `\\uXXXX` to its UTF-8 character",
         ))
+
+    # Check for footer in content files (culture_*, persona_*)
+    if any(pattern in path.name for pattern in ["culture_", "persona_"]):
+        # Count footer occurrences
+        footer_matches = list(re.finditer(r"v\d+\.\d+\.\d+ - KAI Worlds", text))
+        
+        if len(footer_matches) == 0:
+            issues.append(Issue(
+                error="missing footer",
+                verdict="add footer line: `v0.1.0 - KAI Worlds`",
+            ))
+        elif len(footer_matches) > 1:
+            issues.append(Issue(
+                error=f"multiple footers found ({len(footer_matches)})",
+                verdict="remove duplicate footers; footer should appear exactly once at end of file",
+            ))
+        else:
+            # Single footer found - verify it's on last line
+            lines = text.rstrip('\n').split('\n')
+            if lines and not re.match(r"v\d+\.\d+\.\d+ - KAI Worlds", lines[-1]):
+                issues.append(Issue(
+                    error="footer not on last line of file",
+                    verdict="move footer to final line (after all content)",
+                ))
 
     return issues
 

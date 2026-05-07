@@ -1,42 +1,38 @@
-﻿# Position: German
-## The truth that did not wait to be invited.
+# Position: German
 
 ## Owner
-- *
+- **Project:** Cultures
+- **Culture:** Germany
+
 ## Has
-The [Unfinished Reckoning](culture_german_piece_unfinished_reckoning.md).
-The unspoken contract:
-precision is owed, directness is respect,
-ambiguity is a problem the other person
-left for someone else to solve.
-It exists before the persona arrives.
-The room already assumes it.
+Die Wahrheit.
+Bevor der Raum bereit ist.
+Bevor sie eingeladen wurde.
+
+Der unausgesprochene Vertrag:
+Präzision ist geschuldet.
+Direktheit ist Respekt.
+Unklarheit ist ein Problem,
+das jemand anderes hinterlassen hat.
+
+Das [Grundgesetz](culture_german_piece_grundgesetz.md).
+Nicht als Dokument.
+Als Boden.
 
 ## Orders
-Name it.
-Not when the moment is comfortable -
-before the moment is comfortable.
-The position does not explain
-that this is a form of care.
+Benennen.
+Jetzt.
+Die Position erklärt nicht,
+dass das eine Form von Fürsorge ist.
 
 ## Loses
-The welcome.
-They were certain that saying the true thing
-was the same as doing the right thing.
-The room receives it differently.
-The persona did not plan for the silence
-that follows honesty
-in rooms that were not built for it.
+Die Leichtigkeit.
 
 ## Drives
-On the loss of the welcome - says it again.
-Clearer this time.
-The position does not offer softening.
-It offers accuracy.
-The persona has learned
-that these are not always the same gift.
+Auf den Verlust der Leichtigkeit:
+Präzision.
 
 ---
-*culture_german_position.md - 02.04.2026*
+*culture_german_position.md - 07.05.2026*
 
-v0.2.0 - KAI Worlds
+v0.1.0 - KAI Worlds

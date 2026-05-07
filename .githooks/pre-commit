@@ -73,24 +73,20 @@ def main() -> int:
         print("")
         return 1
 
-    # Run validators (L1a general, L1b language, L2 structure, L3 links, L4 culture).
-    # CI verifies the stamp gate; keep costs low by running validators here.
-    validators = [
-        [sys.executable, "tests/validate_general.py"],
-        [sys.executable, "tests/validate_language.py"],
-        [sys.executable, "tests/validate_sections.py"],
-        [sys.executable, "tests/validate_links.py"],
-        [sys.executable, "tests/validate_culture.py"],
-    ]
-    for cmd in validators:
-        result = subprocess.run(cmd, capture_output=True, text=True, check=False)
-        if result.returncode != 0:
-            label = cmd[1].split("/")[-1]
-            print(f"Γ¥î VALIDATION FAILED: {label}")
-            print("")
-            print(result.stdout.strip())
-            print("")
-            return 1
+    # Run validation orchestrator (L1a → L1b → L2 → L3 → L4).
+    # Note: L0 (stamp gate) verification only happens in CI after commit.
+    result = subprocess.run(
+        [sys.executable, "scripts/validate.py"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        print(f"Γ¥î VALIDATION FAILED")
+        print("")
+        print(result.stdout.strip())
+        print("")
+        return 1
 
     # Write validation stamp: hash of the content tree, excluding the stamp file itself
     # (removing stamp from index avoids a circular hash dependency).

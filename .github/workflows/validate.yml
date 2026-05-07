@@ -116,8 +116,8 @@ jobs:
       - name: Validate link integrity
         run: python3 tests/validate_links.py ${{ needs.setup.outputs.files }}
 
-  L4-culture:
-    name: L4 - Culture completeness
+  L4a-completeness:
+    name: L4a - Culture completeness
     needs: [setup, L3-links]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
@@ -128,7 +128,63 @@ jobs:
         with:
           python-version: '3.11'
       - name: Validate culture completeness
-        run: python3 tests/validate_culture.py ${{ needs.setup.outputs.files }}
+        run: python3 tests/validate_culture_completeness.py ${{ needs.setup.outputs.files }}
+
+  L4b-audit-readme:
+    name: L4b - Audit README status tables
+    needs: [setup, L4a-completeness]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate audit README
+        run: python3 tests/validate_audit_readme.py ${{ needs.setup.outputs.files }}
+
+  L4c-audit-consistency:
+    name: L4c - Audit table consistency
+    needs: [setup, L4b-audit-readme]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate audit consistency
+        run: python3 tests/validate_audit_consistency.py ${{ needs.setup.outputs.files }}
+
+  L4d-plagiarism:
+    name: L4d - IP/plagiarism heuristics
+    needs: [setup, L4c-audit-consistency]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate plagiarism heuristics
+        run: python3 tests/validate_plagiarism.py ${{ needs.setup.outputs.files }}
+
+  L4e-hofstede-alignment:
+    name: L4e - Hofstede dimension alignment
+    needs: [setup, L4d-plagiarism]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate Hofstede alignment
+        run: python3 tests/validate_hofstede_alignment.py ${{ needs.setup.outputs.files }}
 
   no-changes:
     name: No regions/*.md files changed
