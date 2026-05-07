@@ -15,13 +15,13 @@ The zip contains all culture files flattened at root level with links rewritten 
 
 | File | Type | Purpose |
 |------|------|---------|
-| `culture_german_position.md` | Position | German culture (state role) - narrative anchor |
-| `culture_german_persona_brigitte.md` | Persona | Brigitte - Familienrecht lawyer from Berlin (b. 1960) |
-| `culture_german_persona_christian.md` | Persona | Christian - Backend-Entwickler from Berlin (b. 1985) |
-| `culture_german_place_berlin.md` | Place | Berlin - capital city as geographical anchor |
-| `culture_german_piece_grundgesetz.md` | Piece | Grundgesetz - West German constitution (1949) |
+| `culture_german_position.md` | Culture | German culture (state role) - narrative anchor |
 | `culture_german_language_hochdeutsch.md` | Language | Standard German (Hochdeutsch) - linguistic anchor |
 | `culture_german_process_erinnern.md` | Process | Remembering/Reckoning (Erinnern) - post-conflict healing |
+| `culture_german_piece_grundgesetz.md` | Piece | Grundgesetz - West German constitution (1949) |
+| `culture_german_place_berlin.md` | Place | Berlin - capital city as geographical anchor |
+| `culture_german_persona_brigitte.md` | Persona | Brigitte - Familienrecht lawyer from Berlin (b. 1960) |
+| `culture_german_persona_christian.md` | Persona | Christian - Backend-Entwickler from Berlin (b. 1985) |
 
 ## Hofstede Cultural Dimensions - Germany
 
