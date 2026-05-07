@@ -1,4 +1,4 @@
-﻿# Persona: Thomas
+# Persona: Thomas
 ## 52. Municipal building inspector. Dresden.
 
 ## Owner

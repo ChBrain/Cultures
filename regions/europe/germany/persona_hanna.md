@@ -1,4 +1,4 @@
-﻿# Persona: Hanna
+# Persona: Hanna
 ## 47. Secondary school history teacher. Munich.
 
 ## Owner

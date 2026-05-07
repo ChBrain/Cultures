@@ -1,4 +1,4 @@
-﻿# Position: German
+# Position: German
 ## The truth that did not wait to be invited.
 
 ## Owner

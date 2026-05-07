@@ -1,4 +1,4 @@
-﻿# Piece: The Unfinished Reckoning
+# Piece: The Unfinished Reckoning
 ## The thing Germany keeps looking at because it cannot stop.
 
 ## Owner
