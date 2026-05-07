@@ -45,6 +45,10 @@ def get_file_type(path: Path) -> str | None:
         return "place"
     elif name.startswith("culture_") and "_persona_" in name:
         return "persona"
+    elif name.startswith("culture_") and "_language_" in name:
+        return "language"
+    elif name.startswith("culture_") and "_process_" in name:
+        return "process"
     elif name.startswith("persona_"):
         return "persona"
     return None
@@ -54,6 +58,87 @@ def extract_sections(text: str) -> list[str]:
     """Extract all section headings (##) from the file."""
     pattern = r"^## (.+?)$"
     return [m.group(1) for m in re.finditer(pattern, text, re.MULTILINE)]
+
+
+def validate_owner_shape(text: str, path: Path) -> list[Issue]:
+    """Enforce the canonical Owner block.
+
+    Required form, exactly two list items in order:
+        ## Owner
+        - Project: Cultures
+        - Culture: <Country>      (files under regions/)
+        - Scope: Universal        (files under engine/)
+
+    No bold, no link decoration, no extra lines, no suffixes.
+    """
+    issues: list[Issue] = []
+
+    m = re.search(r"^## Owner\s*$\n((?:[^\n]*\n?){0,6})", text, re.MULTILINE)
+    if not m:
+        return issues
+
+    body = m.group(1)
+    list_lines = []
+    for raw in body.split("\n"):
+        line = raw.rstrip()
+        if not line:
+            if list_lines:
+                break
+            continue
+        if not line.startswith("- "):
+            break
+        list_lines.append(line)
+
+    is_engine = any(part == "engine" for part in path.parts)
+    expected_tier = "Scope" if is_engine else "Culture"
+
+    if len(list_lines) != 2:
+        issues.append(Issue(
+            error=f"Owner block must be exactly two list items; found {len(list_lines)}",
+            verdict=(
+                "Owner is exactly two lines:\n"
+                "  - Project: Cultures\n"
+                f"  - {expected_tier}: <value>"
+            ),
+        ))
+        return issues
+
+    if list_lines[0] != "- Project: Cultures":
+        issues.append(Issue(
+            error=f"Owner first line must be '- Project: Cultures'; got {list_lines[0]!r}",
+            verdict="Replace with: - Project: Cultures (no bold, no suffix)",
+        ))
+
+    second = list_lines[1]
+    tier_match = re.match(r"^- (Culture|Scope): (.+?)\s*$", second)
+    if not tier_match:
+        issues.append(Issue(
+            error=f"Owner second line must be '- {expected_tier}: <value>'; got {second!r}",
+            verdict=f"Replace with: - {expected_tier}: <value> (no bold, no link)",
+        ))
+        return issues
+
+    tier_kind = tier_match.group(1)
+    tier_value = tier_match.group(2).strip()
+
+    if tier_kind != expected_tier:
+        location = "engine/" if is_engine else "regions/"
+        issues.append(Issue(
+            error=f"Owner second tier must be '{expected_tier}' for files in {location}; got '{tier_kind}'",
+            verdict=f"Use: - {expected_tier}: <value>",
+        ))
+    elif expected_tier == "Scope" and tier_value != "Universal":
+        issues.append(Issue(
+            error=f"Engine Owner Scope must be 'Universal'; got {tier_value!r}",
+            verdict="Use: - Scope: Universal",
+        ))
+    elif expected_tier == "Culture" and not tier_value:
+        issues.append(Issue(
+            error="Owner Culture value is empty",
+            verdict="Use: - Culture: <Country>",
+        ))
+
+    return issues
 
 
 def validate_persona_gender_links(text: str) -> list[Issue]:
@@ -107,38 +192,44 @@ def validate(path: Path) -> list[Issue]:
     """Validate file structure."""
     issues: list[Issue] = []
 
-    file_type = get_file_type(path)
-    if not file_type:
-        # Not a typed file; skip validation
-        return issues
-
     try:
         text = path.read_text(encoding="utf-8")
     except Exception as exc:
         return [Issue(error=f"Could not read file: {exc}", verdict=None)]
 
+    # Owner-shape check applies to any file with an ## Owner section,
+    # independent of file type (catches language/process/engine too).
+    if "## Owner" in text:
+        issues.extend(validate_owner_shape(text, path))
+
+    file_type = get_file_type(path)
+    if not file_type:
+        # Not a typed file; skip the rest (section set, persona links).
+        return issues
+
     sections = extract_sections(text)
-    required = SECTION_REQUIREMENTS[file_type]
+    required = SECTION_REQUIREMENTS.get(file_type)
 
-    # Check each required section exists
-    for req in required:
-        if req not in sections:
+    if required:
+        # Check each required section exists
+        for req in required:
+            if req not in sections:
+                issues.append(Issue(
+                    error=f"{file_type} missing required section: ## {req}",
+                    verdict=f"Add section ## {req}",
+                ))
+
+        # Check section order (first N required sections should appear in order)
+        found_indices = []
+        for req in required:
+            if req in sections:
+                found_indices.append(sections.index(req))
+
+        if found_indices and found_indices != sorted(found_indices):
             issues.append(Issue(
-                error=f"{file_type} missing required section: ## {req}",
-                verdict=f"Add section ## {req}",
+                error=f"{file_type} sections are out of order",
+                verdict=f"Reorder sections: {', '.join(required)}",
             ))
-
-    # Check section order (first N required sections should appear in order)
-    found_indices = []
-    for req in required:
-        if req in sections:
-            found_indices.append(sections.index(req))
-
-    if found_indices and found_indices != sorted(found_indices):
-        issues.append(Issue(
-            error=f"{file_type} sections are out of order",
-            verdict=f"Reorder sections: {', '.join(required)}",
-        ))
 
     # Persona-specific: validate gender position links in Projection
     if file_type == "persona":

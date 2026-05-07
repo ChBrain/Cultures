@@ -1,8 +1,8 @@
 # Process: Erinnern
 
 ## Owner
-- **Project:** Cultures
-- **Culture:** Germany
+- Project: Cultures
+- Culture: Germany
 
 ## Initiated by
 Der [German](culture_german_position.md) betritt einen Raum.

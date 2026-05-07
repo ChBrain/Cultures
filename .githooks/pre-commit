@@ -73,20 +73,29 @@ def main() -> int:
         print("")
         return 1
 
-    # Run validation orchestrator (L1a → L1b → L2 → L3 → L4).
-    # Note: L0 (stamp gate) verification only happens in CI after commit.
-    result = subprocess.run(
-        [sys.executable, "scripts/validate.py"],
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    if result.returncode != 0:
-        print(f"Γ¥î VALIDATION FAILED")
-        print("")
-        print(result.stdout.strip())
-        print("")
-        return 1
+    # Run validation orchestrator (L1a → L1b → L2 → L3 → L4) on staged
+    # content files only. This matches CI's scope (regions/*.md changed in
+    # the diff) so legacy files in untouched paths don't block unrelated
+    # commits while migrations are in flight.
+    staged = run_git("diff", "--cached", "--name-only", "--diff-filter=ACMRT")
+    staged_content = [
+        f for f in staged.splitlines()
+        if f.endswith(".md") and f.startswith("regions/")
+    ]
+
+    if staged_content:
+        result = subprocess.run(
+            [sys.executable, "scripts/validate.py", *staged_content],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if result.returncode != 0:
+            print(f"Γ¥î VALIDATION FAILED")
+            print("")
+            print(result.stdout.strip())
+            print("")
+            return 1
 
     # Write validation stamp: hash of the content tree, excluding the stamp file itself
     # (removing stamp from index avoids a circular hash dependency).

@@ -17,7 +17,7 @@ The zip contains all culture files flattened at root level with links rewritten 
 |------|------|---------|
 | `culture_german_position.md` | Position | German culture (state role) - narrative anchor |
 | `culture_german_persona_brigitte.md` | Persona | Brigitte - Familienrecht lawyer from Berlin (b. 1960) |
-| `culture_german_persona_christian.md` | Persona | Christian - Banker character |
+| `culture_german_persona_christian.md` | Persona | Christian - Backend-Entwickler from Berlin (b. 1985) |
 | `culture_german_place_berlin.md` | Place | Berlin - capital city as geographical anchor |
 | `culture_german_piece_grundgesetz.md` | Piece | Grundgesetz - West German constitution (1949) |
 | `culture_german_language_hochdeutsch.md` | Language | Standard German (Hochdeutsch) - linguistic anchor |
@@ -34,7 +34,7 @@ Germany's cultural profile measured against Hofstede's framework:
 | Uncertainty Avoidance (UAI) | 65 | **High** - Rules, structure, and planning preferred |
 | Masculinity (MAS) | 66 | **High** - Competitiveness, achievement valued |
 | Long-Term Orientation (LTO) | 83 | **Very High** - Long-term planning and adaptation emphasized |
-| Indulgence (IND) | 40 | **Low-Moderate** - Restraint and self-discipline emphasized |
+| Indulgence (IND) | 40 | **Low** - Restrained pole; gratification regulated by social norms |
 
 **Source:** Hofstede et al. (2010). Empirical research published in *Cultures and Organizations*.
 
@@ -44,9 +44,9 @@ Germany's cultural profile measured against Hofstede's framework:
 - **High UAI:** Strong preference for rules, planning, and structured processes. Visible in engineering precision, bureaucratic systems, and legal frameworks.
 - **High MAS:** Achievement and competition matter. Success is measured in tangible outcomes.
 - **Very High LTO:** Long-term strategic thinking. Investment in education, infrastructure, and future planning.
-- **Low-Moderate IND:** Balance between enjoying life and self-discipline. Work/life integration rather than pure indulgence.
+- **Low IND:** Restraint over indulgence. Gratification of desires is regulated by social norms; deferred reward and self-discipline carry more weight than immediate enjoyment.
 
-These dimensions inform the **Position** (how Germany operates), **Pieces** (historical moments where dimensions collided), **Place** (Berlin's infrastructure and social patterns), and **Personas** (how individuals navigate these cultural pressures).
+These dimensions inform the **[Position](culture_german_position.md)** (how Germany operates), **Pieces** (historical moments where dimensions collided), **Place** (Berlin's infrastructure and social patterns), and **Personas** (how individuals navigate these cultural pressures). The position file carries a Hofstede footer naming the six dimensions; the levels and sources live here.
 
 ## Content Audit Status
 

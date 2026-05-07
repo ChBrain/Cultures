@@ -1,8 +1,8 @@
 # Place: Berlin
 
 ## Owner
-- **Project:** Cultures
-- **Culture:** Germany
+- Project: Cultures
+- Culture: Germany
 
 ## Shown
 Die Stadt ist groß. Weiter als erwartet.

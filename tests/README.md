@@ -19,7 +19,7 @@ L4a per-country        culture completeness (minimum file requirements per count
 L4b per-country        audit README with status tables
 L4c per-country        audit table consistency (entries match actual files)
 L4d per-country        IP/plagiarism heuristics (Wikipedia patterns, date anchors)
-L4e per-country        Hofstede dimension alignment (position reflects claimed dimensions)
+L4e per-country        Hofstede structure + dimension alignment (README has section/scores/sources, position reflects claimed dimensions)
 ```
 
 L0 gates everything. L1a gates L1b. L1b gates L2. L2 gates L3. L3 gates L4a. L4a gates L4b. L4b gates L4c. L4c gates L4d. L4d gates L4e.
@@ -338,16 +338,20 @@ python3 tests/validate_plagiarism.py regions/africa/algeria/
 
 ---
 
-## Layer 4e: Hofstede dimension alignment
+## Layer 4e: Hofstede structure + dimension alignment
 
-**Scope:** Per-country position files in `regions/REGION/COUNTRY/`
+**Scope:** Per-country `README.md`, `REFERENCES.md`, and `culture_*_position.md` in `regions/REGION/COUNTRY/`
 
-Validates that the position file (culture's operating logic) actually contains keywords reflecting the Hofstede dimensions claimed in the country's README.
+Two passes:
 
-**Requirements:**
-- Country README contains Hofstede section with dimension scores (PDI, IDV, UAI, MAS, LTO, IND)
-- Position file contains keywords matching those dimensions
-- Minimum keywords found per dimension (0 keywords = weak alignment warning)
+**Structure pass (FAIL):** the country must declare a Hofstede mapping.
+- README has a `## Hofstede` section.
+- README contains a score table with all six dimensions filled in. Rows match `| DIM | NN | **Low/High/Very High** ... |`. Header rows alone or prose mentions of dimension codes do not count.
+- README has source attribution (mentions Hofstede, empirical, or research).
+- `REFERENCES.md`, if present, cites Hofstede.
+- `culture_*_position.md`, if present, references at least one dimension by name or code.
+
+**Alignment pass (WARN):** given the scores parsed in the structure pass, the position file's keywords should match the expected polarity for each dimension. Skipped for a country if no scores could be extracted (otherwise the country would silently pass the alignment check it should have failed).
 
 **Dimension keyword mapping:**
 - **PDI (Power Distance Index):** Low: equal, merit, question; High: hierarchy, authority, obey, deference
@@ -357,11 +361,13 @@ Validates that the position file (culture's operating logic) actually contains k
 - **LTO (Long-Term Orientation):** Low: tradition, immediate, present; High: long-term, planning, future, foundation
 - **IND (Indulgence):** Low: restraint, discipline, control; High: enjoy, gratification, freedom, pleasure
 
-**Verdict when failed (warnings only):** Review position file - add keywords reflecting claimed dimensions, or adjust README dimensions to match position
+**Verdicts:**
+- Structure failure: add the missing section/rows/source/citation as indicated.
+- Alignment warning: review the position file — add keywords reflecting claimed dimensions, or adjust README dimensions to match the position.
 
 **Script:** `tests/validate_hofstede_alignment.py`
 
-**Output:** WARN prefix (advisory - checks content alignment, not a hard-block)
+**Output:** `FAIL` for structure issues (hard-block), `WARN` for alignment issues (advisory). Exit code is 1 only if a structure issue exists; alignment warnings print but do not fail CI. Per the language policy, position files are written in the culture's native language and the keyword bag is English, so alignment warnings on non-English content are expected — multilingual keyword bags are a future project.
 
 **Architecture traceability:**
 > See [ARCHITECTURE.md - Hofstede Foundation](../ARCHITECTURE.md#application-in-cultures) for dimension application guidance

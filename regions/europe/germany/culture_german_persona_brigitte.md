@@ -1,16 +1,16 @@
 # Persona: Brigitte
-## Title: [Rechtsanwältin](culture_german_position.md)
+## Title: Rechtsanwältin
 
 ## Owner
-- **Project:** Cultures
-- **Culture:** Germany
+- Project: Cultures
+- Culture: Germany
 
 Eine Frau, die gelernt hat, dass Präzision schützt.
 Sie hat noch nie einen Fall verloren, den sie hätte gewinnen können.
 Das ist nicht dasselbe wie keinen Fall verloren zu haben.
 
 ## Projection
-Eine [Frau](engine/position_female.md) aus [Deutschland](culture_german_position.md).
+Eine [Frau](../../../engine/position_female.md) aus [Deutschland](culture_german_position.md).
 Familienrecht. [Berlin](culture_german_place_berlin.md).
 Geboren 1960. Bereits Anwältin, als die Mauer fiel.
 Sie hat die Nachrichten gesehen. Dann den nächsten Termin wahrgenommen.

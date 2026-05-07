@@ -5,7 +5,7 @@ This validator checks that all markdown links resolve to existing files
 and detects orphaned files (exist but are never referenced).
 
 Works for any world structure. Scans from regions/ and engine/ directories.
-Supports cross-level links (e.g., ../../engine/position_*.md from regions/*/*/persona_*.md).
+Supports cross-level links (e.g., ../../../engine/position_*.md from regions/REGION/COUNTRY/persona_*.md).
 """
 from __future__ import annotations
 
@@ -47,40 +47,27 @@ def extract_links(text: str) -> list[str]:
 
 def resolve_link(link: str, from_file: Path) -> Path | None:
     """Resolve a link relative to the source file's directory.
-    
+
+    Per ARCHITECTURE.md "Linking Mechanics", links are resolved against the
+    source file's directory only. Bare `engine/foo.md` (root-style) and
+    `/engine/foo.md` (absolute-style) are rejected: they pass a naive validator
+    but break in actual Markdown renderers.
+
     Args:
         link: Link target (e.g., "culture_german_place_berlin.md", "../../../engine/position_male.md")
         from_file: The file containing the link
-        
+
     Returns:
         Resolved path if link exists, or None if resolution fails.
     """
-    # Find repository root by looking for ARCHITECTURE.md
-    repo_root = from_file.parent
-    while repo_root != repo_root.parent:  # Stop at filesystem root
-        if (repo_root / "ARCHITECTURE.md").exists():
-            break
-        repo_root = repo_root.parent
-    
-    # Strategy 1: If link is just a filename, resolve relative to source file's directory
+    # Filename-only: resolve relative to source file's directory
     if "/" not in link and "\\" not in link:
         resolved = from_file.parent / link
-        if resolved.exists():
-            return resolved
-        return None
-    
-    # Strategy 2: If link contains path separators, resolve relative to source file's directory
-    # This handles relative paths like ../../engine/position_male.md
+        return resolved if resolved.exists() else None
+
+    # Path-containing: resolve relative to source file's directory
     resolved = (from_file.parent / link).resolve()
-    if resolved.exists():
-        return resolved
-    
-    # Strategy 3: Try from repository root (for paths like engine/position_male.md)
-    resolved = (repo_root / link).resolve()
-    if resolved.exists():
-        return resolved
-    
-    return None
+    return resolved if resolved.exists() else None
 
 
 def validate(changed_files: list[Path] | None = None) -> list[Issue]:

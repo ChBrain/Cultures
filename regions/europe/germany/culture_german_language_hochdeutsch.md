@@ -1,8 +1,8 @@
 # Language: Hochdeutsch
 
 ## Owner
-- **Project:** Cultures
-- **Culture:** Germany
+- Project: Cultures
+- Culture: Germany
 
 ## Has
 Kein Ort, dem sie gehört.
