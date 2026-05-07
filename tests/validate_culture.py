@@ -1,0 +1,102 @@
+#!/usr/bin/env python3
+"""L4 validator: Culture-specific rules (Cultures orchestrator).
+
+Calls child validators that enforce Cultures-specific requirements.
+
+Child validators:
+- L4a: validate_culture_completeness.py - per-country minimum file set
+"""
+from __future__ import annotations
+
+import subprocess
+import sys
+from pathlib import Path
+
+from findings import Issue
+
+
+def run_child_validator(script: str, changed_files: list[Path] | None = None) -> list[Issue]:
+    """Run a child validator script and parse its output.
+    
+    Args:
+        script: Path to validator script (e.g., "tests/validate_culture_completeness.py")
+        changed_files: Optional list of files to check (passed as args to script)
+        
+    Returns:
+        List of Issue objects from the validator output.
+    """
+    issues = []
+    
+    cmd = [sys.executable, script]
+    if changed_files:
+        cmd.extend(str(f) for f in changed_files)
+    
+    result = subprocess.run(cmd, capture_output=True, text=True, check=False)
+    
+    # Parse output - each FAIL line starts an issue
+    lines = result.stdout.strip().split("\n")
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        if line.startswith("FAIL "):
+            error = line[5:]  # Remove "FAIL " prefix
+            verdict = None
+            # Check next line for verdict
+            if i + 1 < len(lines) and lines[i + 1].startswith("  verdict: "):
+                verdict = lines[i + 1][11:]  # Remove "  verdict: " prefix
+                i += 2
+            else:
+                i += 1
+            issues.append(Issue(error=error, verdict=verdict))
+        else:
+            i += 1
+    
+    return issues
+
+
+def validate(changed_files: list[Path] | None = None) -> list[Issue]:
+    """Validate all Cultures-specific rules via child validators.
+    
+    Args:
+        changed_files: If provided, only check files/countries affected by changes.
+                      Otherwise check all.
+    
+    Returns:
+        List of all Issue objects from all child validators.
+    """
+    issues = []
+    
+    # L4a: Completeness
+    completeness_issues = run_child_validator("tests/validate_culture_completeness.py", changed_files)
+    issues.extend(completeness_issues)
+    
+    # More child validators can be added here in the future
+    # L4b: Gender distribution, L4c: etc.
+    
+    return issues
+
+
+def main(argv: list[str]) -> int:
+    """Entry point. Args are file paths (optional)."""
+    changed_files = None
+    if len(argv) > 1:
+        changed_files = [Path(f) for f in argv[1:]]
+    
+    issues = validate(changed_files)
+    
+    if not issues:
+        print(f"OK: Culture validation passed")
+        return 0
+    
+    # Print issues
+    for issue in issues:
+        print(f"FAIL {issue.error}")
+        if issue.verdict:
+            print(f"  verdict: {issue.verdict}")
+    
+    print(f"\n{len(issues)} culture validation issues found")
+    return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv))
