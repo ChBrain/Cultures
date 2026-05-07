@@ -7,33 +7,39 @@
 ## Initiated by
 Den [danske](culture_danish_position.md) træder ind i et rum.
 Ikke alle rum.
-Men rummet ved det inden personen gør.
-[Janteloven](culture_danish_piece_jante_law.md) er allerede der.
-Hygge er betingelsen der opstår
-når ingen kræver den.
+Rummet ved det uden personen skal sige det.
+[Janteloven](culture_danish_piece_jante_law.md) er valgfrit her.
+Reglerne er i pausemodus.
+Hygge opstår når folk vælger at være sammen uden at skulle noget.
 Ikke planlagt.
 Ikke forklaret.
-Bare til stede - eller ikke.
+Bare muligt - eller ikke.
 
 ## Direction
-Lukke rummet.
+Lukke rummet fra kravet.
 Ikke med en dør.
 Med en stemning.
-Det der er udenfor
-bliver mindre vigtigt.
+Nu betyder kun nu.
+Ikke hvad der kommer efter.
+Ikke hvad der var før.
 Det der er indenfor
-er nok. Nu.
+er nok.
 
 ## Lever
-Kraften: fællesskabet der ikke kræver noget.
-Modstanden: den der bringer arbejdet med ind.
+Kraften: valget om at være sammen uden håb.
+Modstanden: selv i hygge kan man ikke være helt fri.
+Små regler omkranser selv frihedens øjeblikke.
 Processen fortsætter.
-Men den der bringer arbejdet
-mærker det.
+Men den der bevarer hygge uden stress
+finder en form for fred.
+I en kultur hvor konsensus ofte er arbejde,
+er hygge arbejdets modsætning.
 
 ## Echo
-Rummet husker hvem der var der.
-Og hvem der ikke slap arbejdet.
+Rummet husker hvem der var fuldt til stede.
+Og hvem der bar frustrationen ind.
+Begge er menneskelige. Begge kan være dansk.
+Men hygge er kun for dem der vælger det.
 
 ---
 *culture_danish_process_hygge.md - 07.05.2026*

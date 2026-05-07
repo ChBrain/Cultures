@@ -86,6 +86,32 @@ DIMENSION_KEYWORDS_BY_LANGUAGE = {
             "low": ["zurückhaltung", "disziplin", "mäßigung", "selbstbeherrschung", "pflicht", "verpflichtung", "erfüllung", "widerstand"],
         },
     },
+    "da": {
+        "PDI": {
+            "high": ["hierarki", "status", "autoritet", "ledelse", "kommando", "respektere"],
+            "low": ["lighed", "demokratisk", "ligestilling", "ligeværd", "respekt", "verdier"],
+        },
+        "IDV": {
+            "high": ["individuelt", "personlig", "selvbestemmelse", "autonomi", "egen", "uafhængig"],
+            "low": ["gruppe", "fællesskab", "samarbejde", "tilhørighed", "team", "loyalitet"],
+        },
+        "UAI": {
+            "high": ["regel", "struktur", "orden", "system", "klart", "sikkerhed", "procedure", "præcision"],
+            "low": ["fleksibel", "pragmatisk", "improvisere", "risiko", "tilpasning", "skiftende"],
+        },
+        "MAS": {
+            "high": ["præstation", "succes", "gevinst", "sejr", "konkurrence", "styrke", "kraft"],
+            "low": ["samarbejde", "omsorg", "omhu", "fællesskab", "medmenneskelig", "rørende", "empati"],
+        },
+        "LTO": {
+            "high": ["fremtid", "plan", "investering", "kontinuitet", "ansvar", "forpligtelse", "langsigtet"],
+            "low": ["nu", "øjeblikket", "straks", "nyder", "spontan", "øjebliks", "nu"],
+        },
+        "IND": {
+            "high": ["nyde", "nydelse", "frihed", "tilfredsstillelse", "fryd", "hygge", "frejdig"],
+            "low": ["tilbageholdenhed", "disciplin", "pligt", "mådehold", "selvkontrol", "forsigtig"],
+        },
+    },
 }
 
 
@@ -123,8 +149,21 @@ def detect_language(text: str) -> str:
         "kein", "keine", "keinem", "keinen",
     ]
     
+    # Danish markers
+    danish_markers = [
+        "den ", "det ", "er ", "og ", "at ", "ikke ",
+        "han ", "hun ", "de ", "da ", "jer ", "jeg ",
+        "ham ", "hendes ", "hvis ", "hvor ",
+        "æ", "ø", "å",
+        "har ", "skal ", "blev ", "fra ",
+    ]
+    
     german_count = sum(1 for marker in german_markers if marker in text_lower)
-    if german_count >= 3:
+    danish_count = sum(1 for marker in danish_markers if marker in text_lower)
+    
+    if danish_count >= german_count and danish_count >= 3:
+        return "da"
+    elif german_count >= 3:
         return "de"
     
     return "en"
