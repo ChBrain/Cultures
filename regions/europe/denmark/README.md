@@ -40,9 +40,9 @@ Denmark's cultural profile measured against Hofstede's framework:
 
 ### How Dimensions Shape Danish Culture
 
-**The Autonomy-Restraint Paradox:** Danish culture uniquely combines extreme individual autonomy (PDI 18, IDV 74) with extreme restraint from imposing (MAS 16). Each Dane claims their own judgment passionately and independently—then respects everyone else's equally. No one defers to hierarchy; everyone defers to others' autonomy.
+**The Autonomy-Restraint Paradox:** Danish culture uniquely combines extreme individual autonomy (PDI 18, IDV 74) with extreme restraint from imposing (MAS 16). Each Dane claims their own judgment passionately and independently - then respects everyone else's equally. No one defers to hierarchy; everyone defers to others' autonomy.
 
-- **Very Low PDI + Very High IDV:** Radical equality and personal autonomy. Hierarchy is minimized; everyone's judgment matters equally. Janteloven enforces this paradox—don't claim superiority, but do claim your own autonomy.
+- **Very Low PDI + Very High IDV:** Radical equality and personal autonomy. Hierarchy is minimized; everyone's judgment matters equally. Janteloven enforces this paradox - don't claim superiority, but do claim your own autonomy.
 - **Very Low UAI:** Pragmatism over rules. Danes adapt to what works rather than defend fixed systems. Ambiguity is acceptable; improvisation is valued.
 - **Very Low MAS + Very High IND:** Cooperation over competition; care over conquest. Enjoyment is legitimate. Hygge (present-moment togetherness) is culturally celebrated, not indulgent.
 - **Low LTO:** Present-moment focus. Relationships and immediate quality of life matter more than long-term sacrifice. Flexibility over rigid planning.

@@ -32,3 +32,8 @@ Ikke gennem lydighed.
 1953: Grundloven revideret. Fuld lighed blandt mennesker.
 1980: Børn får eget navn. Individet først.
 2000: Lighed nu international norm.
+
+---
+*culture_danish_piece_janteloven.md - 08.05.2026*
+
+v0.1.0 - KAI Worlds
