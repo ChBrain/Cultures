@@ -7,7 +7,7 @@
 ## Place
 Bonn. 1948.
 Das Parlamentarische Rat.
-Siebenundsechzig Frauen und Männer.
+Fünfundsechzig Frauen und Männer.
 Sie hatten gesehen, was passiert,
 wenn es kein Grundgesetz gibt.
 Sie schrieben es trotzdem als vorläufig.
@@ -143,7 +143,7 @@ Das Land in Trümmern.
 Das Recht in Trümmern.
 
 1948: Der Parlamentarische Rat tritt zusammen. Bonn.
-Siebenundsechzig Frauen und Männer.
+Fünfundsechzig Frauen und Männer.
 Die Aufgabe: eine neue Verfassung.
 Das Wissen im Raum: Weimar ist gescheitert.
 Artikel 48 wird es nicht geben.
