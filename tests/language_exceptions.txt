@@ -1,0 +1,8 @@
+# Eigennamen (proper nouns) - allowed regardless of language policy.
+# One word or phrase per line. These will not trigger language detection violations.
+# Add entries here when lingua produces false positives on place names, person names, etc.
+
+# Example (uncomment as needed):
+# Berlin
+# Friedrich
+# Hanna
