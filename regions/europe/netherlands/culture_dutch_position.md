@@ -13,10 +13,11 @@ Omwegen kosten meer dan de zaak waard is.
 De platte kamer.
 Hiërarchie is overhead die niemand wil betalen.
 Iedereen spreekt. Iedereen telt. Elke keuze weegt gelijk.
+Voorzichtigheid is geen zwakte. Zorg voor de groep ook niet.
 
 [Het Poldermodel](culture_dutch_piece_poldermodel.md).
 Niet als methode.
-Als conditie. Structuur waarbinnen autonomie werkt.
+Als conditie.
 Het water onderhandelt niet.
 De dijk vraagt iedereen.
 

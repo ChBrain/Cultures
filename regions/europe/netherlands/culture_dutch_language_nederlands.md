@@ -13,7 +13,6 @@ Kortaf omdat alles voor de kern iets kost.
 De taal van de transactie die sluit.
 De factuur die ook de relatie is.
 Het woord dat zijn eigen gewicht draagt. Geen omhulsel nodig.
-De gemeenschap rekent op de korte lijn.
 
 ## Orders
 Zeg het.

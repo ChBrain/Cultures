@@ -13,18 +13,19 @@ De dijk vraagt iedereen.
 
 ## Direction
 Naar de uitkomst die het water niet kan nemen.
-Niet overeenstemming. Wat elke partij autonoom kan dragen.
-Wat houdt.
+Niet overeenstemming. Wat houdt.
+De toekomst van de dijk is het enige doel.
 
 ## Lever
 De dreiging die niet onderhandelt.
 Als de dijk begeeft verliezen alle partijen.
 Dat weet iedereen. Niemand hoeft het te zeggen.
+Het risico onderhandelt voor hen.
 
 ## Echo
-Wat stand hield wordt de basis van de volgende sessie. Regel vertrouwen.
-Wat niet stand hield blijft drukken. Toekomst rekent ermee.
-De polder is nooit af. Voorzichtigheid bepaalt het tempo.
+Wat stand hield wordt de basis van de volgende sessie.
+Wat niet stand hield blijft drukken.
+De polder is nooit af.
 De lus sluit hier en opent opnieuw bij Initiated by.
 
 ---
