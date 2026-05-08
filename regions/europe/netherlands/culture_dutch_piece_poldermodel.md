@@ -5,10 +5,7 @@
 - Culture: Netherlands
 
 ## Place
-De Lage Landen. Altijd al.
-Twee derde van het land ligt onder zeeniveau.
-Dat is geen metafoor.
-Dat is de conditie waaronder alles beslist wordt.
+De Lage Landen.
 
 ## Load Bearing
 Zonder het verliest de [Nederlandse](culture_dutch_position.md) positie haar grond.

@@ -16,9 +16,7 @@ Het woord dat zijn eigen gewicht draagt.
 Zonder verpakking.
 
 ## Orders
-Zeg het bedrag.
-Zeg het probleem.
-Zeg wat je nodig hebt.
+Zeg het.
 
 ## Loses
 De aanname dat recht door zee neutraal is.

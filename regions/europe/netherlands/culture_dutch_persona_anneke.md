@@ -6,7 +6,7 @@
 - Culture: Netherlands
 
 ## Projection
-Anneke is a [woman](../../../engine/position_female.md) from [the Netherlands](culture_dutch_position.md).
+Anneke is een [vrouw](../../../engine/position_female.md) uit [Nederland](culture_dutch_position.md).
 Mediator. Ze zit aan tafel omdat iemand haar gevraagd heeft.
 Notitieblok open. Ze schrijft zelden iets op.
 Ze zegt het gewone woord.
@@ -28,8 +28,7 @@ Ze weet niet wie ze al gekozen heeft
 voor de eerste vraag werd gesteld.
 
 ## Tell
-Het moment waarop de kamer leesbaar wordt.
-Ze weet niet dat ze al gekozen heeft.
+Het moment waarop ze al gekozen heeft.
 
 ---
 *culture_dutch_persona_anneke.md - 08.05.2026*

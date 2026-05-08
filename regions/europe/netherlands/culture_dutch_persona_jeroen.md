@@ -6,7 +6,7 @@
 - Culture: Netherlands
 
 ## Projection
-Jeroen is a [man](../../../engine/position_male.md) from [the Netherlands](culture_dutch_position.md).
+Jeroen is een [man](../../../engine/position_male.md) uit [Nederland](culture_dutch_position.md).
 Journalist. Hij zegt wat hij ziet.
 Dat is zijn werk en zijn positie.
 Hij ziet geen verschil tussen de twee.

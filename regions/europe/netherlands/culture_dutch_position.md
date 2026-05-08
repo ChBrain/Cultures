@@ -5,40 +5,25 @@
 - Culture: Netherlands
 
 ## Has
-**The Short Line** (direct, autonomy, individual choice).
+
 De korte lijn.
-Niet uit precisie.
-Uit efficiëntie.
-Omwegen kosten meer dan de zaak waard is.
-Plan, niet praat.
-Nu beslissen wat toekomst bepaalt.
+Eigen oordeel. Direct spraak.
+Efficiëntie via onafhankelijkheid.
+Autonomie: individueel beslissen wat nodig is.
 
-**The Flat Room** (equality, minimal hierarchy).
 De platte kamer.
-Niet omdat gelijkheid een eis is.
-Omdat hiërarchie overhead is
-die de positie niet wil betalen.
+Gelijkheid als werkstructuur.
+Hiërarchie als overhead.
 
-**The Polder Model** (cooperation, consensus, negotiation).
 [Het Poldermodel](culture_dutch_piece_poldermodel.md).
-Niet als methode.
-Als noodzaak.
 De structuur van onderhandeling.
-Vaste procedure, vaste orde.
-Het water onderhandelt niet.
-De dijk vraagt iedereen.
-Duidelijk, direct, vastgesteld.
+Procedure, orde, duidelijk vastgesteld.
+De toekomst geplanned via water.
+Generaties vooruit gebouwd.
 
-**Tolerance by Necessity** (pragmatic acceptance, care, low competition).
 De tolerantie.
-Niet als moraal.
-Als ontdekking:
-uitsluiting kost meer dan insluiting.
-Je leven, je keuze - zolang je de ander zijn leven laat.
-Zorg dat die ander ook kan genieten.
-Jij mag genieten, ik mag genieten.
-Vastgesteld in 1579.
-Staat nog steeds.
+Uitsluiting kost meer dan insluiting.
+Geniet. De ander geniet ook.
 
 ## Orders
 Beweeg (move, adapt, flexibility in planning).
