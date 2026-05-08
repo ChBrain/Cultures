@@ -23,7 +23,8 @@ Generaties vooruit gebouwd.
 
 De tolerantie.
 Uitsluiting kost meer dan insluiting.
-Geniet. De ander geniet ook.
+Geniet in vrijheid. Zorg dat de ander ook geniet.
+Voorzichtigheid en samenwerking.
 
 ## Orders
 Beweeg (move, adapt, flexibility in planning).
