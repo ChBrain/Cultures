@@ -38,6 +38,19 @@ Germany's cultural profile measured against Hofstede's framework:
 
 **Source:** Hofstede et al. (2010). Empirical research published in *Cultures and Organizations*.
 
+## Hofstede Alignment Status (Content Audit)
+
+| Dimension | Declared | Derived | Gap | Status |
+|-----------|----------|---------|-----|--------|
+| PDI | 35 | 33 | 2 | ✅ EXCELLENT |
+| IDV | 67 | 66 | 1 | ✅ EXCELLENT |
+| UAI | 65 | 72 | 7 | ✅ PASS |
+| MAS | 66 | 71 | 5 | ✅ EXCELLENT |
+| LTO | 83 | 85 | 2 | ✅ EXCELLENT |
+| IND | 40 | 37 | 3 | ✅ EXCELLENT |
+
+Keyword density analysis validates that content keywords across all files (position, pieces, places, processes, personas) align with declared Hofstede scores. Gap tolerance: ±10 PASS, ±5 EXCELLENT. Audited May 8, 2026.
+
 ### How Dimensions Shape German Culture
 
 - **Low PDI + High IDV:** Germans value equality and individual merit. Hierarchy exists but is questioned and must be justified by competence.

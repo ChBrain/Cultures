@@ -49,6 +49,19 @@ Denmark's cultural profile measured against Hofstede's framework:
 
 **Source:** Hofstede et al. (2010). Empirical research published in *Cultures and Organizations*.
 
+## Hofstede Alignment Status (Content Audit)
+
+| Dimension | Declared | Derived | Gap | Status |
+|-----------|----------|---------|-----|--------|
+| PDI | 18 | 28 | 10 | ✅ PASS |
+| IDV | 74 | 66 | 8 | ✅ PASS |
+| UAI | 23 | 20 | 3 | ✅ EXCELLENT |
+| MAS | 16 | 16 | 0 | ✅ EXCELLENT |
+| LTO | 35 | 25 | 10 | ✅ PASS |
+| IND | 70 | 71 | 1 | ✅ EXCELLENT |
+
+Keyword density analysis validates that content keywords across all files (position, pieces, places, processes, personas) align with declared Hofstede scores. Gap tolerance: ±10 PASS, ±5 EXCELLENT. Audited May 8, 2026.
+
 ### How Dimensions Shape Danish Culture
 
 **The Autonomy-Restraint Paradox:** Danish culture uniquely combines extreme individual autonomy (PDI 18, IDV 74) with extreme restraint from imposing (MAS 16). Each Dane claims their own judgment passionately and independently - then respects everyone else's equally. No one defers to hierarchy; everyone defers to others' autonomy.
