@@ -20,17 +20,17 @@ De vrijheid om jezelf te zijn.
 De grachtengordel als infrastructuur, niet als decor.
 
 ## Offers
-Je kunt het zeggen zonder het in te leiden.
-Je kunt het oneens zijn zonder je te verontschuldigen.
-Je kunt vertrekken zonder uitleg.
-De kamer verwacht de korte lijn.
+Je kunt het zeggen zonder het in te leiden. Je autonomie.
+Je kunt het oneens zijn zonder je te verontschuldigen. Je keuze.
+Je kunt vertrekken zonder uitleg. Je vrijheid.
+De kamer verwacht de korte lijn en respecteert dit als regel.
 
 ## Withheld
-De privéberekening of de tolerantie nog werkt.
-Die loopt continu.
-Het resultaat wordt niet aangekondigd.
-Wie denkt dat de gedoogruimte onbegrensd is
-heeft de kamer verkeerd gelezen.
+De privéberekening of de tolerantie nog werkt. Die loopt continu.
+De structuur waarop alles rust. Die wordt niet openbaar gemaakt.
+Het resultaat van jarenlange regel en voorzichtigheid.
+Wie denkt dat de gedoogruimte onbegrensd is heeft de kamer verkeerd gelezen.
+Wie geniet zonder respect voor de regel verliest rechten.
 
 ---
 *culture_dutch_place_amsterdam.md - 08.05.2026*

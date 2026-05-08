@@ -14,11 +14,11 @@ Dan wacht ze.
 
 ## Action
 Twee partijen. Onverzoenbaar, denken ze.
-Anneke stelt de eerste vraag aan de partij
-die hem het minst verwacht.
+Anneke stelt de eerste vraag aan de partij die hem het minst verwacht.
 Zo dat het antwoord de andere partij iets kost om te negeren.
-De partijen bereiken iets.
-Ze schrijft het op.
+Each partij draagt autonome keuze in de zin.
+De partijen bereiken iets. Regel en respect houden stand.
+Ze schrijft het op. Duurzaam document.
 Ze factureert op uren.
 
 ## Shadow

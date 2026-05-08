@@ -12,19 +12,18 @@ Omwegen kosten meer dan de zaak waard is.
 
 De platte kamer.
 Hiërarchie is overhead die niemand wil betalen.
-Iedereen spreekt. Iedereen telt.
+Iedereen spreekt. Iedereen telt. Elke keuze weegt gelijk.
 
 [Het Poldermodel](culture_dutch_piece_poldermodel.md).
 Niet als methode.
-Als conditie.
+Als conditie. Structuur waarbinnen autonomie werkt.
 Het water onderhandelt niet.
 De dijk vraagt iedereen.
 
 De tolerantie.
 Niet als moraal.
 Als ontdekking: uitsluiting kost meer dan insluiting.
-Vastgesteld in 1579.
-Staat nog steeds.
+Vastgesteld in 1579. Staat nog steeds. Duurzaam.
 
 ## Orders
 Beweeg.

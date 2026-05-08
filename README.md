@@ -75,3 +75,4 @@ Each country folder: position + piece + place + personas.
 ---
 
 *CC BY-NC 4.0 - KAI Worlds - 2026*
+

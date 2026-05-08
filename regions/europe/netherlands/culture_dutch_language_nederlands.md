@@ -19,13 +19,14 @@ De procedure van het zeggen. Vaste structuur.
 Orde in de zin waarop alle volgende zinnen vertrouwen.
 
 ## Orders
-Zeg het.
-Je eigen waarheid.
+Zeg het. Je eigen waarheid.
+Wees vrij in het zeggen.
 
 ## Loses
 De aanname dat recht door zee neutraal is.
 Buiten de Nederlandse kamer krijgt het gewone woord gewicht onderweg.
 De taal had zich daar niet op voorbereid.
+De comfort van ontvangen orde.
 
 ## Drives
 Op dat verlies:
