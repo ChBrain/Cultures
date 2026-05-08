@@ -14,17 +14,13 @@ De dijk vraagt iedereen. Samen. Gelijk. Voor lange toekomst. Duurzaam handelen v
 ## Direction
 Naar de uitkomst die het water niet kan nemen.
 Niet overeenstemming.
-Wat houdt: samen bouwen voor lange termijn. Voorzichtigheid en zorg.
-Duurzaam bouwwerk. Investering voor komende generaties.
-Elke partij gehoord. Gelijke stem. Persoonlijke keuze gerespecteerd.
-Iedereen wint iets. Niemand verliest alles. Genot van het voortbestaan.
+Wat houdt: samen bouwen voor lange termijn.
+Voorzichtigheid en zorg.
 
 ## Lever
 De dreiging die niet onderhandelt.
-Als de dijk begeeft verliezen alle partijen.
-Dat weet iedereen.
-Niemand zegt het hardop.
-Het hoeft niet gezegd te worden.
+Als de dijk begeeft verliezen alle partijen hun toekomst.
+Dat weet iedereen. Niemand hoeft het te zeggen. Gelijk en voortdurend begrijpend.
 
 ## Echo
 Wat stand hield wordt de basis van de volgende sessie.
