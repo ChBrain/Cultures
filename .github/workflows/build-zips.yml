@@ -40,6 +40,7 @@ jobs:
           
           python3 << 'PYTHON_EOF'
           import os
+          import re
           import zipfile
           import shutil
           from pathlib import Path
@@ -72,40 +73,31 @@ jobs:
                   return False
           
           def rewrite_links_for_flat_zip(content):
-              """Rewrite links for flat zip structure.
+              """Rewrite links from nested folder structure to flat structure.
               
-              In flat zips, all files are at root level:
-              - engine/position_male.md → position_male.md (stays root-relative, just filename)
-              - culture_german_position.md → culture_german_position.md (no path prefix)
-              - Any relative paths starting with ../ or ..\ are stripped
+              Culture files are stored in regions/europe/germany/ etc. (nested depth varies).
+              Their links reference other files using relative paths like:
+              - ../../engine/stack.md (traverses up to repo root, then into engine/)
+              - ../../../engine/instructions.md (varies by depth)
+              
+              In the flat zip structure (culture/ subfolder), all culture files are together.
+              Links should be simplified to just filenames:
+              - ../../engine/stack.md → stack.md
+              - Removes all ../ traversal and keeps just the filename
               """
               import re
               
-              # Handle markdown links: [text](path/to/file.md) → [text](filename.md)
-              # Keep root-relative links but strip any ../ prefixes
-              
-              # Pattern 1: Root-relative links like [text](engine/file.md)
-              # These stay the same but we extract just the filename at zip root
+              # Strip all ../ or ..\\ traversal and keep just the filename
+              # Pattern: [text](../ or .../ traversal/path/filename.md) → [text](filename.md)
               content = re.sub(
-                  r'\]\(engine/([^)]+\.md)\)',
-                  r'](\1)',
+                  r'\]\((?:\.\./)+([^)]+\.md)\)',
+                  lambda m: f']({m.group(1).split("/")[-1]})',
                   content
               )
-              
-              # Pattern 2: Relative links like [text](../../../engine/file.md)
-              # Strip the ../ traversal and take just filename
-              content = re.sub(
-                  r'\]\(\.\./\.\./\.\./engine/([^)]+\.md)\)',
-                  r'](\1)',
-                  content
-              )
-              
-              # Pattern 3: Culture-relative links like [text](culture_german_position.md)
-              # Already flat, leave as-is
               
               return content
           
-          # Find all complete cultures and create zips
+          # Find all complete cultures and create structured zips
           regions_path = Path('regions')
           for region_dir in regions_path.iterdir():
               if not region_dir.is_dir():
@@ -116,71 +108,93 @@ jobs:
                       continue
                   
                   if is_complete_culture(country_dir):
-                      # Determine culture name from folder or position file
+                      # Determine culture name from folder
                       culture_name = country_dir.name
                       
-                      # Create temp staging directory
+                      # Create temp staging directory with structure
                       staging_dir = Path(f'dist/staging-{culture_name}')
                       if staging_dir.exists():
                           shutil.rmtree(staging_dir)
                       staging_dir.mkdir(parents=True, exist_ok=True)
                       
-                      # Copy all culture files (culture_*.md) to staging (flat)
-                      for culture_file in country_dir.glob('culture_*.md'):
-                          shutil.copy2(culture_file, staging_dir / culture_file.name)
+                      # Create subdirectories: engine/, culture/
+                      (staging_dir / 'engine').mkdir(exist_ok=True)
+                      (staging_dir / 'culture').mkdir(exist_ok=True)
                       
-                      # Copy persona files (both naming conventions)
-                      for persona_file in country_dir.glob('*_persona_*.md'):
-                          shutil.copy2(persona_file, staging_dir / persona_file.name)
+                      # Copy root scaffold files (LICENSE, README, REFERENCES)
+                      if Path('LICENSE').exists():
+                          shutil.copy2('LICENSE', staging_dir / 'LICENSE')
                       
-                      # Copy old-style personas for backward compat
-                      for persona_file in country_dir.glob('persona_*.md'):
-                          if not (staging_dir / persona_file.name).exists():
-                              shutil.copy2(persona_file, staging_dir / persona_file.name)
-                      
-                      # Copy engine files (stack, instructions, positions)
-                      engine_path = Path('engine')
-                      for engine_file in ['stack.md', 'position_male.md', 'position_female.md']:
-                          src = engine_path / engine_file
-                          if src.exists():
-                              shutil.copy2(src, staging_dir / engine_file)
-                      
-                      # Copy claude instructions
-                      claude_instructions = engine_path / 'claude' / 'instructions.md'
-                      if claude_instructions.exists():
-                          shutil.copy2(claude_instructions, staging_dir / 'claude_instructions.md')
-                      
-                      # Copy README and REFERENCES if they exist
-                      readme = country_dir / 'README.md'
-                      if readme.exists():
-                          # Rewrite links in README for flat structure
-                          readme_content = readme.read_text(encoding='utf-8')
+                      # Copy README from country dir (baseline for each culture)
+                      readme_src = country_dir / 'README.md'
+                      if readme_src.exists():
+                          readme_content = readme_src.read_text(encoding='utf-8')
+                          
+                          # Strip Download section: remove everything up to and including first --- divider
+                          # This keeps Install + Content sections
+                          if '---' in readme_content:
+                              parts = readme_content.split('---', 2)  # Split on first two occurrences
+                              if len(parts) >= 3:
+                                  readme_content = '---'.join(parts[1:]).lstrip('\n')  # Keep from second --- onward
+                          
+                          # Rewrite links (flatten nested paths)
                           readme_content = rewrite_links_for_flat_zip(readme_content)
                           (staging_dir / 'README.md').write_text(readme_content, encoding='utf-8')
                       
-                      references = country_dir / 'REFERENCES.md'
-                      if references.exists():
-                          shutil.copy2(references, staging_dir / 'REFERENCES.md')
+                      # Copy REFERENCES from country dir (baseline for each culture)
+                      references_src = country_dir / 'REFERENCES.md'
+                      if references_src.exists():
+                          shutil.copy2(references_src, staging_dir / 'REFERENCES.md')
                       
-                      # Rewrite links in all culture files for flat structure
-                      for markdown_file in staging_dir.glob('*.md'):
+                      # Copy engine/ files (instructions.md, stack.md)
+                      engine_path = Path('engine')
+                      
+                      # Copy instructions.md from claude-specific or fallback to generic
+                      claude_instructions = engine_path / 'claude' / 'instructions.md'
+                      if claude_instructions.exists():
+                          shutil.copy2(claude_instructions, staging_dir / 'engine' / 'instructions.md')
+                      
+                      # Copy stack.md
+                      stack_src = engine_path / 'stack.md'
+                      if stack_src.exists():
+                          shutil.copy2(stack_src, staging_dir / 'engine' / 'stack.md')
+                      
+                      # Copy culture/ files (all culture_*.md files from country dir)
+                      culture_count = 0
+                      for culture_file in country_dir.glob('culture_*.md'):
+                          shutil.copy2(culture_file, staging_dir / 'culture' / culture_file.name)
+                          culture_count += 1
+                      
+                      # Rewrite links in CULTURE FILES ONLY (strip ../ traversal for flat structure)
+                      for markdown_file in (staging_dir / 'culture').glob('*.md'):
                           try:
                               content = markdown_file.read_text(encoding='utf-8')
                               content = rewrite_links_for_flat_zip(content)
                               markdown_file.write_text(content, encoding='utf-8')
                           except:
-                              pass  # Skip non-UTF8 or unreadable files
+                              pass
                       
-                      # Create flat zip
+                      # Create structured zip
                       zip_path = Path(f'dist/{culture_name}.zip')
                       with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zf:
-                          for file_path in staging_dir.glob('*.md'):
-                              zf.write(file_path, arcname=file_path.name)
+                          # Add root files
+                          for root_file in ['LICENSE', 'README.md', 'REFERENCES.md']:
+                              file_path = staging_dir / root_file
+                              if file_path.exists():
+                                  zf.write(file_path, arcname=root_file)
+                          
+                          # Add engine/ subdirectory files
+                          for engine_file in (staging_dir / 'engine').glob('*.md'):
+                              zf.write(engine_file, arcname=f'engine/{engine_file.name}')
+                          
+                          # Add culture/ subdirectory files
+                          for culture_file in (staging_dir / 'culture').glob('*.md'):
+                              zf.write(culture_file, arcname=f'culture/{culture_file.name}')
                       
                       # Cleanup staging
                       shutil.rmtree(staging_dir)
                       
-                      print(f'Created {zip_path.name} with {len(list(staging_dir.glob("*.md")) if staging_dir.exists() else [])} files')
+                      print(f'Created {zip_path.name} with structured layout (LICENSE + README + REFERENCES + engine/ + culture/{culture_count} files)')
           
           PYTHON_EOF
 
