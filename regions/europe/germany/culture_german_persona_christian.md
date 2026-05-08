@@ -13,10 +13,10 @@ Softwareentwickler. Die Wiedervereinigung ist sein Ausgangszustand. Struktur ist
 Im Team-Meeting: jemand macht einen Witz über deutsche Gründlichkeit. Christian lacht, dann erklärt er, warum der Witz nicht stimmt. Nicht um recht zu haben - um das Problem sichtbar zu machen. Die beste Lösung wird von wem auch immer sie sieht gelöst. Er arbeitet daran mit, weil er kann, nicht weil er gefragt wurde.
 
 ## Shadow
-[Erinnern](culture_german_process_erinnern.md) ist Wissen, das ihm gehört. Er nutzt es autonom. Seine Kompetenz ist sein Argument. Was er kann, macht er. Niemand muss ihm sagen, wie.
+Er sieht sich als autonom handelnd. Aber seine Erklärungen SIND eine Form von Struktur, die er anderen aufzwingt. Er weiß nicht, dass "das Problem sichtbar machen" auch bedeutet: "so denken wie ich".
 
 ## Tell
-Die Frage ist nicht "wer hat gesagt". Die Frage ist "was kann ich tun - und was will ich tun".
+Wenn er zuhört, sagt er zuerst, was falsch ist.
 
 ---
 *culture_german_persona_christian.md - 07.05.2026*

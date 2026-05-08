@@ -48,6 +48,18 @@ Germany's cultural profile measured against Hofstede's framework:
 
 These dimensions inform the **[Position](culture_german_position.md)** (how Germany operates), **Pieces** (historical moments where dimensions collided), **Place** (Berlin's infrastructure and social patterns), and **Personas** (how individuals navigate these cultural pressures). The position file carries a Hofstede footer naming the six dimensions; the levels and sources live here.
 
+## Content Audit Status
+
+| File | Type | Status | Notes |
+|------|------|--------|-------|
+| culture_german_position.md | Position | ✅ Complete | Hofstede dimensions: PDI 35, IDV 67, UAI 65, MAS 66, LTO 83, IND 40 |
+| culture_german_language_hochdeutsch.md | Language | ✅ Complete | German (Hochdeutsch) linguistic anchor |
+| culture_german_process_erinnern.md | Process | ✅ Complete | Erinnern (remembering) process with lever and echo |
+| culture_german_piece_grundgesetz.md | Piece | ✅ Complete | Grundgesetz constitutional framework with yearbook |
+| culture_german_place_berlin.md | Place | ✅ Complete | Berlin as social anchor with offers and withheld |
+| culture_german_persona_brigitte.md | Persona | ✅ Complete | Lawyer: projection, action, shadow, tell |
+| culture_german_persona_christian.md | Persona | ✅ Complete | Developer: projection, action, shadow, tell |
+
 ---
 
 Audited May 8, 2026

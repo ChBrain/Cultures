@@ -35,10 +35,10 @@ Klarheit durch Verfahren.
 Sicherheit durch Ordnung.
 
 Disziplin.
-Selbstbeherrschung.
+Selbstbeherrschung als Fundament.
 Maßhaltung ohne Verbote.
-Aufschub der Befriedigung für Erfolg.
-Pflichtbewusstsein als Fundament.
+Widerstand gegen die Versuchung, es einfach zu haben.
+Verpflichtung über Erfolg.
 
 Langfristigkeit.
 Planung für Generationen.
@@ -47,34 +47,19 @@ Verantwortung für das, was kommt.
 Kontinuität als Kraft.
 
 ## Orders
-Verfechten.
-Mit Verdienst, nicht Titel.
-Auf die beste Lösung kommt es an, nicht wer sie findet.
-
-Denke selbst.
-Trage persönliche Verantwortung.
-Deine Urteilskraft ist nicht verhandelbar.
-
-Arbeite strukturiert.
-Folge dem Verfahren.
-Protokoll schützt.
-
-Plane langfristig.
-Investiere in Fundament.
-Sicherheit entsteht durch Vorbereitung.
+Denke klar.
+Handle mit Struktur.
+Übernehme Verantwortung für das Ergebnis.
 
 ## Loses
-Die Mehrdeutigkeit.
-Die Impulsivität.
-Das Zögern ohne Grund.
+Klarheit.
+Wenn du die Struktur verlierst, verlierst du auch die Fähigkeit zu handeln.
+Und damit: ohne Ordnung bist du paralysiert.
 
 ## Drives
-Lösen.
-Mit Struktur.
-Auf den Widerstand:
-Systematisch vorgehen.
-Erinnern.
-Verpflichtung gegenüber der Zukunft.
+Auf dem Verlust:
+Desperate Suche nach Verfahren.
+[Erinnern](culture_german_process_erinnern.md) - die Fähigkeit, Struktur aus der Geschichte zu rekonstruieren.
 
 ---
 **Hofstede:** PDI 35 · IDV 67 · UAI 65 · MAS 66 · LTO 83 · IND 40

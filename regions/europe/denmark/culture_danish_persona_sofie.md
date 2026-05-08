@@ -13,10 +13,10 @@ Hendes egen bedømmelse er værktøj, ikke meningsforskel.
 Klienten: vi har brug for mere lys. Sofie ser halvdelen af problemet - layout, ikke lys. Hun tilbyder: rum der fungerer, eller begge. Vælg selv.
 
 ## Shadow
-Hun definerer rummet. Definition er magt. Hun glemmer at andre ejer deres valg lige så stærkt.
+Hun definerer problemet først. Så tilbyder hun autonomi inden for den definition. Hun ser ikke, at 'vælg selv' betyder 'vælg inden for hvad jeg har skabt'.
 
 ## Tell
-Hun løser det de ikke sagde. Hendes løsning, deres valg. Autonomi gennem respekt.
+Hun designer først. Autonomi kommer bagefter.
 
 ---
 *culture_danish_persona_sofie.md - 07.05.2026*

@@ -5,11 +5,11 @@
 - Culture: Germany
 
 ## Shown
-Die Stadt ist groß. Weiter als erwartet.
+Die Stadt ist groß. Breiter als die Bewusstsein anderer Städte.
 Beton. Glas. Baukräne. Der Wiederaufbau läuft noch.
-Jeder baut hier seine eigene Sache.
-Eine Pflastersteinspur durch die Stadtmitte.
-2711 Betonstelen ohne Namen. Jede Person muss sich selbst erinnern.
+Graffiti auf Industriegebäuden. Manche alt genug, dass sie unter Denkmalschutz stehen.
+Eine Linie aus Granitsteinen durch die Pflaster - Stolpersteine - tausende verteilt.
+2711 Betonstelen, gleich hoch, dicht nebeneinander. Keine Inschriften auf den Steinen.
 
 ## Holds
 Das Reichstagsgebäude.

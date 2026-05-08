@@ -60,6 +60,18 @@ Denmark's cultural profile measured against Hofstede's framework:
 
 These dimensions inform the **[Position](culture_danish_position.md)** (how Denmark operates through equality and autonomy), **Pieces** (Janteloven as cultural code enforcing the paradox), **Place** (Copenhagen as infrastructure reflecting individual choice and shared care), and **Personas** (how individuals express autonomy while respecting others'). The position file carries a Hofstede footer naming the six dimensions; the levels and sources live here.
 
+## Content Audit Status
+
+| File | Type | Status | Notes |
+|------|------|--------|-------|
+| culture_danish_position.md | Position | ✅ Complete | Hofstede dimensions: PDI 18, IDV 74, UAI 23, MAS 16, LTO 35, IND 70 |
+| culture_danish_language_dansk.md | Language | ✅ Complete | Danish (Dansk) linguistic anchor |
+| culture_danish_process_hygge.md | Process | ✅ Complete | Hygge process with direction, lever, echo |
+| culture_danish_piece_janteloven.md | Piece | ✅ Complete | Janteloven cultural code with yearbook |
+| culture_danish_place_copenhagen.md | Place | ✅ Complete | Copenhagen as social anchor with offers |
+| culture_danish_persona_lars.md | Persona | ✅ Complete | Engineer: projection, action, shadow, tell |
+| culture_danish_persona_sofie.md | Persona | ✅ Complete | Architect: projection, action, shadow, tell |
+
 ---
 
 Audited May 8, 2026

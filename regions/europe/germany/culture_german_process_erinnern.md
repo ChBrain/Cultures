@@ -20,9 +20,9 @@ Nicht aus Pflicht.
 Aus Verpflichtung gegenüber der Zukunft.
 
 ## Lever
-Die Kraft: die Erfüllung von Selbstbestimmung.
+Die Kraft: die Notwendigkeit, zu verstehen, um nicht zu wiederholen.
 Der Widerstand: die Versuchung, es ruhen zu lassen.
-Der Prozess läuft trotzdem.
+Die Kraft überschreitet trotzdem.
 
 ## Echo
 Der nächste Prozess erbt das Wissen - und die Freiheit, es anders zu machen.
