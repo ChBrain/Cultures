@@ -9,11 +9,15 @@ Geen omweg voor de kern.
 De zin begint waar hij moet beginnen.
 Niet kortaf uit onbeleefdheid.
 Kortaf omdat alles voor de kern iets kost.
+Individueel oordeel. Autonomie in de uitdrukking.
 
 De taal van de transactie die sluit.
 De factuur die ook de relatie is.
 Het woord dat zijn eigen gewicht draagt.
 Zonder verpakking.
+
+De procedure van het zeggen.
+Structuur en orde in de zin.
 
 ## Orders
 Zeg het.

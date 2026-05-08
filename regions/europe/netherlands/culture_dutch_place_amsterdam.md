@@ -14,6 +14,7 @@ Hijsbalken boven de ramen. De handel zit in de architectuur.
 
 ## Holds
 [Nederlands](culture_dutch_position.md).
+Gelijkheid. Autonomie. Zorg.
 [Het Poldermodel](culture_dutch_piece_poldermodel.md).
 De grachtengordel als infrastructuur, niet als decor.
 

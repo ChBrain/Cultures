@@ -13,7 +13,7 @@ Zonder het verliest de [Nederlandse](culture_dutch_position.md) positie haar gro
 De tolerantie was geen ideaal.
 Het was de ontdekking dat uitsluiting de dijk kost.
 Iedereen heeft de dijk nodig.
-Dus iedereen zit aan tafel.
+Dus iedereen - gelijk - zit aan tafel.
 
 ## Apparent
 Het Sociaal-Economische Raad. 1950.

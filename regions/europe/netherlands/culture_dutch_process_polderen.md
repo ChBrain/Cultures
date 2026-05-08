@@ -17,7 +17,8 @@ Als conditie.
 ## Direction
 Naar de uitkomst die het water niet kan nemen.
 Niet overeenstemming.
-Wat houdt.
+Wat houdt: samen bouwen voor lange termijn.
+Voorzichtigheid en zorg.
 
 ## Lever
 De dreiging die niet onderhandelt.
