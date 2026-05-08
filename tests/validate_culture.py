@@ -9,6 +9,8 @@ Child validators:
 - L4c: validate_audit_consistency.py - audit table matches actual files
 - L4d: validate_plagiarism.py - IP/plagiarism heuristics
 - L4e: validate_hofstede_alignment.py - position reflects Hofstede dimensions
+- L4f: validate_hofstede_derived.py - content keywords vs declared scores (advisory)
+- L4g: validate_hofstede_readme_audit.py - audit table sync (advisory)
 """
 from __future__ import annotations
 
@@ -89,6 +91,10 @@ def validate(changed_files: list[Path] | None = None) -> list[Issue]:
     # L4e: Hofstede dimension alignment
     hofstede_align_issues = run_child_validator("tests/validate_hofstede_alignment.py", changed_files)
     issues.extend(hofstede_align_issues)
+    
+    # L4g: Hofstede audit table sync (advisory)
+    audit_table_issues = run_child_validator("tests/validate_hofstede_readme_audit.py", changed_files)
+    issues.extend(audit_table_issues)
     
     return issues
 

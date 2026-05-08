@@ -10,13 +10,13 @@ Brigitte is a [woman](../../../engine/position_female.md) from [Germany](culture
 Rechtsanwältin. Die Wiedervereinigung war eine Unterbrechung, nicht ein Anfang. Sie entscheidet autonom - Regeln sind ihr Werkzeug, nicht ihre Meisterin.
 
 ## Action
-Sie wartet, bis die Mandantin aufgehört hat zu weinen. Dann stellt sie die Frage, die sie vorher hätte stellen können. Die Strategie wird von ihr, nicht von einem Precedent, bestimmt. Sie gewinnt Fälle - weil sie selbst denkt, nicht weil sie Regeln befolgt.
+Sie wartet, bis die Mandantin aufgehört hat zu weinen. Dann stellt sie die Frage, die sie vorher hätte stellen können. Die Strategie wird von ihr, nicht von einem Precedent, bestimmt. Sie gewinnt Fälle - weil sie selbst denkt, nicht weil sie Regeln befolgt. Sie menschelt dabei nicht, aber die Rücksicht ist da - nur unsichtbar für die, die Wärme erwartet.
 
 ## Shadow
-Die beste Strategie erfordert persönliche Urteilskraft. Sie verlässt sich auf ihr Wissen, ihre Entscheidungen, ihre Art. Exzellenz ist, was sie tut.
+Sie glaubt, dass ihre unabhängige Urteilskraft fair ist. Sie sieht nicht, dass ihre Klarheit auch Kälte ist - für die Mandantin, die weint.
 
 ## Tell
-Die Frage ist die gleiche. Die Antwort zeigt, wer denkt - nicht wer gehorcht.
+Wenn emotionale Komplexität auftaucht, wird sie präziser. Rationaler. Sie denkt, es hilft.
 
 ---
 *culture_german_persona_brigitte.md - 07.05.2026*

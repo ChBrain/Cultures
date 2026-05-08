@@ -21,11 +21,12 @@ L4c per-country        audit table consistency (entries match actual files)
 L4d per-country        IP/plagiarism heuristics (Wikipedia patterns, date anchors)
 L4e per-country        Hofstede structure + dimension alignment (README has section/scores/sources, position reflects claimed dimensions)
 L4f per-country        Hofstede derived vs declared (content keywords derive 0-100 scores, compare to README declared scores)
+L4g per-country        Hofstede audit table sync (README audit table matches current derived scores)
 ```
 
-L0 gates everything. L1a gates L1b. L1b gates L2. L2 gates L3. L3 gates L4a. L4a gates L4b. L4b gates L4c. L4c gates L4d. L4d gates L4e. L4e gates L4f.
+L0 gates everything. L1a gates L1b. L1b gates L2. L2 gates L3. L3 gates L4a. L4a gates L4b. L4b gates L4c. L4c gates L4d. L4d gates L4e. L4e gates L4f. L4f gates L4g.
 
-**L0-L4e are hard-block jobs** (fail PR if any fails). **L4f is advisory** (warns if gap > ±10, does not block PR).
+**L0-L4e are hard-block jobs** (fail PR if any fails). **L4d-L4g are advisory** (warns if issues, do not block PR).
 
 ---
 
@@ -473,6 +474,51 @@ python3 tests/validate_hofstede_derived.py
 
 ---
 
+---
+
+## Layer 4g: Hofstede audit table sync
+
+**Scope:** Per-country `README.md` "Hofstede Alignment Status" audit table
+
+Validates that **audit tables in country READMEs stay synchronized with current Hofstede derived scores**. This ensures README documentation remains accurate when content changes. This is an **advisory layer** (warnings only, not hard-block).
+
+**Model:** The audit table is a snapshot of the validation result. When content keywords change:
+1. Validator runs `validate_hofstede_derived.py` internally to get current scores
+2. Extracts the audit table from README (table format: `| Dimension | Declared | Derived | Gap | Status |`)
+3. Compares audit table's "Derived" column to current derived scores
+4. Flags mismatches to alert developer that README needs updating
+
+**Typical scenario:**
+- Developer adds keywords to a piece/process/persona
+- Hofstede scores shift slightly (e.g., MAS 16 → 18)
+- Validator detects drift and warns: "README audit table shows MAS=16 (Derived), but content now derives MAS=18"
+- Developer re-runs validator and updates README audit table with new scores
+
+**Tolerance:**
+- **Synchronized:** Audit table Derived column matches current content-derived scores exactly
+- **Stale:** Any dimension drifts due to content changes (even 1 point is flagged)
+
+**Verdict when stale:**
+1. Run: `python tests/validate_hofstede_derived.py` to get current scores
+2. Update README audit table with new Derived values
+3. Re-commit
+
+**Script:** `tests/validate_hofstede_readme_audit.py`
+
+**Output:** `[OK]` for synchronized tables, `[STALE]` for mismatched, exit code 0 (advisory). Provides specific guidance on which dimensions drifted and how many points.
+
+**Example:**
+```bash
+python3 tests/validate_hofstede_readme_audit.py
+# [OK] germany: Hofstede audit table synchronized
+# [OK] denmark: Hofstede audit table synchronized
+# [STALE] france: Hofstede audit table stale
+#   → README audit table shows MAS=70 (Derived), current content derives MAS=72 (drift 2 points)
+#   → Update README audit table: change Derived from 70 to 72, Gap from 4 to 2, Status from PASS to EXCELLENT
+```
+
+---
+
 ## Validation chain (CI jobs)
 
 ```
@@ -500,10 +546,12 @@ L4e-hofstede-alignment (dimension keywords - advisory)
   ↓
 L4f-hofstede-derived (derived vs declared scores - advisory)
   ↓
+L4g-hofstede-readme-audit (audit table sync - advisory)
+  ↓
 ✅ PR passes
 ```
 
-L0-L4e are hard-block (fail PR if fail). L4d-L4f are advisory (warn if issues, do not block PR).
+L0-L4e are hard-block (fail PR if fail). L4d-L4g are advisory (warn if issues, do not block PR).
 
 ---
 
@@ -552,6 +600,7 @@ git config core.hooksPath .githooks
 | `tests/validate_plagiarism.py` | L4d | per-country | ✅ Complete (advisory) |
 | `tests/validate_hofstede_alignment.py` | L4e | per-country | ✅ Complete (advisory) |
 | `tests/validate_hofstede_derived.py` | L4f | per-country | ✅ Complete (advisory) |
+| `tests/validate_hofstede_readme_audit.py` | L4g | per-country | ✅ Complete (advisory) |
 | `tests/validate_culture.py` | L4 orchestrator | orchestrator | ✅ Complete |
 | `tests/findings.py` | shared | data structure | ✅ Complete |
 | `tests/language_exceptions.txt` | L1b | exceptions | ✅ Complete (template) |

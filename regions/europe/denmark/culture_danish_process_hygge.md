@@ -9,7 +9,7 @@ Den [danske](culture_danish_position.md) træder ind i et rum.
 Ikke alle rum.
 Rummet ved det uden personen skal sige det.
 [Janteloven](culture_danish_piece_janteloven.md) er valgfrit her.
-Reglerne er i pausemodus.
+Reglerne er i pausemodus - ligeværd geninstalleres.
 Hygge opstår når folk vælger at være sammen uden at skulle noget.
 Ikke planlagt.
 Ikke forklaret.
@@ -18,25 +18,13 @@ Med disciplin omkring grænserne.
 Med selvkontrol i at give plads til andre.
 
 ## Direction
-Lukke rummet fra kravet.
-Ikke med en dør.
-Med en stemning.
-Nu betyder kun nu.
-Med omsorg for hvem der er der.
-Med empati for hinanden.
-Med medmenneskelig nærvær.
-Det der er indenfor er nok - sammen.
+Skabe et rum hvor nærvær betyder mere end handling.
+Hvor omsorg er mulighedens betingelse.
 
 ## Lever
-Muligheden: valget om at være sammen gennem omsorg.
-Modstanden: selv i hygge skal man vise empati uden at påtvinge succes eller enighed.
-Omsorg omkranser selv de intime øjeblikke.
-Med selvkontrol omkring grænserne.
-Procesen fortsætter.
-Men den der bevarer hygge gennem medmenneskelig empati
-finder en form for fred.
-I en kultur hvor autonomi ofte skal afvejes,
-er hygge plads for både egen og fælles omsorg.
+Tiltrækningen til sammen-være uden krav.
+Modstanden: hver person kunne vælge at gå væk alligevel.
+Hygge fortsætter kun når alle bliver ved med at vælge det.
 
 ## Echo
 Rummet husker hvem der var fuldt til stede.

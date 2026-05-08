@@ -12,17 +12,22 @@ Om hvad man IKKE skal påstå.
 Alle danske kender dem.
 
 ## Load Bearing
-Janteloven betyder: hver person har personlig vurdering.
-Derfor skal ingen påtvinge deres egen.
-Autonomi for alle = lighed for alle.
-Ikke regel. Princip.
-
+Uden Janteloven bliver personlig autonomi til dominans.
+Når hver person bestemmer absolut selv uden at respektere andres ret til at gøre det samme, kollapser ligheden.
 ## Apparent
 *Du skal ikke tro at du er noget.*
-Betyder: din personlige vurdering betyder.
-Betyder: andres personlige vurdering betyder ligeligt.
-Ligeværd gennem autonomi.
-Ikke gennem lydighed.
+*Du skal ikke tro at du er vigtigere end os.*
+*Du skal ikke tro at du er dygtigere end os.*
+*Du skal ikke le ad os.*
+*Du skal ikke tro at vi ved ikke noget om dig.*
+*Du skal ikke tro at du er bedre end os.*
+*Du skal ikke tro at du ved mere end os.*
+*Du skal ikke grine ad os.*
+*Du skal ikke tro at der er noget vigtigere end os.*
+*Du skal ikke mene at vi skal bekymre os om dig.*
+
+Ti påbud. I lighed med hinanden.
+Alle danske børn kan dem.
 
 ## Yearbook
 0700: Tingmødet. Frie mænd stemmer.
@@ -32,6 +37,7 @@ Ikke gennem lydighed.
 1953: Grundloven revideret. Fuld lighed blandt mennesker.
 1980: Børn får eget navn. Individet først.
 2000: Lighed nu international norm.
+2010: Danske cykelstjerner vinder sejre internationalt.
 
 ---
 *culture_danish_piece_janteloven.md - 08.05.2026*

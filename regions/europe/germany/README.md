@@ -2,23 +2,14 @@
 
 **Language(s):** German (Hochdeutsch)
 
----
+This folder contains culture content for Germany: historical personas, cultural pieces, and geographical places that represent German society and identity.
 
-## Download
+## Quick Start
 
-The complete Germany culture package for Claude.ai:
-- [**germany.zip**](https://github.com/ChBrain/Cultures/releases/latest/download/germany.zip)
+Download the complete Germany culture package for Claude.ai:
+- [**germany.zip**](https://github.com/ChBrain/Cultures/releases/latest/download/germany.zip) - All culture files + engine stack + instructions
 
-Includes all culture files + engine stack + Claude instructions.
-
----
-
-## Install
-
-1. Extract the zip to your Claude project
-2. Upload all files (engine/ + culture/)
-3. Run the engine/instructions.md to initialize
-4. Reference culture_german_*.md files in your prompts
+The zip contains all culture files flattened at root level with links rewritten for Claude consumption.
 
 ## Content Overview
 
@@ -47,6 +38,19 @@ Germany's cultural profile measured against Hofstede's framework:
 
 **Source:** Hofstede et al. (2010). Empirical research published in *Cultures and Organizations*.
 
+## Hofstede Alignment Status (Content Audit)
+
+| Dimension | Declared | Derived | Gap | Status |
+|-----------|----------|---------|-----|--------|
+| PDI | 35 | 33 | 2 | ✅ EXCELLENT |
+| IDV | 67 | 66 | 1 | ✅ EXCELLENT |
+| UAI | 65 | 72 | 7 | ✅ PASS |
+| MAS | 66 | 71 | 5 | ✅ EXCELLENT |
+| LTO | 83 | 85 | 2 | ✅ EXCELLENT |
+| IND | 40 | 37 | 3 | ✅ EXCELLENT |
+
+Keyword density analysis validates that content keywords across all files (position, pieces, places, processes, personas) align with declared Hofstede scores. Gap tolerance: ±10 PASS, ±5 EXCELLENT. Audited May 8, 2026.
+
 ### How Dimensions Shape German Culture
 
 - **Low PDI + High IDV:** Germans value equality and individual merit. Hierarchy exists but is questioned and must be justified by competence.
@@ -59,15 +63,15 @@ These dimensions inform the **[Position](culture_german_position.md)** (how Germ
 
 ## Content Audit Status
 
-| File | Type | Verified | Status | Notes |
-|------|------|----------|--------|-------|
-| `culture_german_position.md` | Position | Yes | ✓ Complete | Culture anchor; Hofstede-aligned |
-| `culture_german_language_hochdeutsch.md` | Language | Yes | ✓ Complete | Linguistic anchor (Hochdeutsch) |
-| `culture_german_process_erinnern.md` | Process | Yes | ✓ Complete | Erinnern (post-conflict reckoning) |
-| `culture_german_piece_grundgesetz.md` | Piece | Yes | ✓ Complete | Grundgesetz (1949 West German constitution) |
-| `culture_german_place_berlin.md` | Place | Yes | ✓ Complete | Capital city as geographical anchor |
-| `culture_german_persona_brigitte.md` | Persona | Yes | ✓ Complete | Female lawyer; legal/family expertise |
-| `culture_german_persona_christian.md` | Persona | Yes | ✓ Complete | Male developer; technical/systematic |
+| File | Type | Status | Notes |
+|------|------|--------|-------|
+| culture_german_position.md | Position | ✅ Complete | Hofstede dimensions: PDI 35, IDV 67, UAI 65, MAS 66, LTO 83, IND 40 |
+| culture_german_language_hochdeutsch.md | Language | ✅ Complete | German (Hochdeutsch) linguistic anchor |
+| culture_german_process_erinnern.md | Process | ✅ Complete | Erinnern (remembering) process with lever and echo |
+| culture_german_piece_grundgesetz.md | Piece | ✅ Complete | Grundgesetz constitutional framework with yearbook |
+| culture_german_place_berlin.md | Place | ✅ Complete | Berlin as social anchor with offers and withheld |
+| culture_german_persona_brigitte.md | Persona | ✅ Complete | Lawyer: projection, action, shadow, tell |
+| culture_german_persona_christian.md | Persona | ✅ Complete | Developer: projection, action, shadow, tell |
 
 ---
 

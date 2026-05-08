@@ -14,15 +14,13 @@ Spontan. Ohne Ritual.
 
 ## Direction
 Hinschauen.
-Nicht einmal.
 Immer wieder.
-Nicht aus Pflicht.
 Aus Verpflichtung gegenüber der Zukunft.
 
 ## Lever
-Die Kraft: die Erfüllung von Selbstbestimmung.
-Der Widerstand: die Versuchung, es ruhen zu lassen.
-Der Prozess läuft trotzdem.
+Die Kraft: die Notwendigkeit, zu verstehen, um nicht zu wiederholen.
+Der Widerstand: die Versuchung, alles zu verbieten oder endlos zu genießen.
+Die Kraft überschreitet trotzdem.
 
 ## Echo
 Der nächste Prozess erbt das Wissen - und die Freiheit, es anders zu machen.

@@ -2,23 +2,14 @@
 
 **Language(s):** Danish (Dansk)
 
----
+This folder contains culture content for Denmark: historical personas, cultural concepts, and geographical places that represent Danish society and identity.
 
-## Download
+## Quick Start
 
-The complete Denmark culture package for Claude.ai:
-- [**denmark.zip**](https://github.com/ChBrain/Cultures/releases/latest/download/denmark.zip)
+Download the complete Denmark culture package for Claude.ai:
+- [**denmark.zip**](https://github.com/ChBrain/Cultures/releases/latest/download/denmark.zip) - All culture files + engine stack + instructions
 
-Includes all culture files + engine stack + Claude instructions.
-
----
-
-## Install
-
-1. Extract the zip to your Claude project
-2. Upload all files (engine/ + culture/)
-3. Run the engine/instructions.md to initialize
-4. Reference culture_danish_*.md files in your prompts
+The zip contains all culture files flattened at root level with links rewritten for Claude consumption.
 
 ## Content Overview
 
@@ -58,6 +49,19 @@ Denmark's cultural profile measured against Hofstede's framework:
 
 **Source:** Hofstede et al. (2010). Empirical research published in *Cultures and Organizations*.
 
+## Hofstede Alignment Status (Content Audit)
+
+| Dimension | Declared | Derived | Gap | Status |
+|-----------|----------|---------|-----|--------|
+| PDI | 18 | 28 | 10 | ✅ PASS |
+| IDV | 74 | 66 | 8 | ✅ PASS |
+| UAI | 23 | 20 | 3 | ✅ EXCELLENT |
+| MAS | 16 | 16 | 0 | ✅ EXCELLENT |
+| LTO | 35 | 25 | 10 | ✅ PASS |
+| IND | 70 | 71 | 1 | ✅ EXCELLENT |
+
+Keyword density analysis validates that content keywords across all files (position, pieces, places, processes, personas) align with declared Hofstede scores. Gap tolerance: ±10 PASS, ±5 EXCELLENT. Audited May 8, 2026.
+
 ### How Dimensions Shape Danish Culture
 
 **The Autonomy-Restraint Paradox:** Danish culture uniquely combines extreme individual autonomy (PDI 18, IDV 74) with extreme restraint from imposing (MAS 16). Each Dane claims their own judgment passionately and independently - then respects everyone else's equally. No one defers to hierarchy; everyone defers to others' autonomy.
@@ -71,15 +75,15 @@ These dimensions inform the **[Position](culture_danish_position.md)** (how Denm
 
 ## Content Audit Status
 
-| File | Type | Verified | Status | Notes |
-|------|------|----------|--------|-------|
-| `culture_danish_position.md` | Position | Yes | ✓ Complete | Culture anchor; Hofstede-aligned |
-| `culture_danish_language_dansk.md` | Language | Yes | ✓ Complete | Linguistic anchor (Dansk) |
-| `culture_danish_process_hygge.md` | Process | Yes | ✓ Complete | Hygge as cultural mechanism |
-| `culture_danish_piece_janteloven.md` | Piece | Yes | ✓ Complete | Janteloven as cultural load-bearing symbol |
-| `culture_danish_place_copenhagen.md` | Place | Yes | ✓ Complete | Capital city as social anchor |
-| `culture_danish_persona_lars.md` | Persona | Yes | ✓ Complete | Male engineer; autonomous judgment |
-| `culture_danish_persona_sofie.md` | Persona | Yes | ✓ Complete | Female architect; expertise + choice |
+| File | Type | Status | Notes |
+|------|------|--------|-------|
+| culture_danish_position.md | Position | ✅ Complete | Hofstede dimensions: PDI 18, IDV 74, UAI 23, MAS 16, LTO 35, IND 70 |
+| culture_danish_language_dansk.md | Language | ✅ Complete | Danish (Dansk) linguistic anchor |
+| culture_danish_process_hygge.md | Process | ✅ Complete | Hygge process with direction, lever, echo |
+| culture_danish_piece_janteloven.md | Piece | ✅ Complete | Janteloven cultural code with yearbook |
+| culture_danish_place_copenhagen.md | Place | ✅ Complete | Copenhagen as social anchor with offers |
+| culture_danish_persona_lars.md | Persona | ✅ Complete | Engineer: projection, action, shadow, tell |
+| culture_danish_persona_sofie.md | Persona | ✅ Complete | Architect: projection, action, shadow, tell |
 
 ---
 
