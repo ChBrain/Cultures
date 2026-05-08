@@ -44,93 +44,12 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
 from findings import Issue
+from keywords_hofstede import detect_language, DIMENSION_KEYWORDS_BY_LANGUAGE
 
 
 HOFSTEDE_DIMENSIONS = ["PDI", "IDV", "UAI", "MAS", "LTO", "IND"]
 
-# Language-specific keyword sets for each dimension's high vs low variants
-DIMENSION_KEYWORDS_BY_LANGUAGE = {
-    "en": {
-        "PDI": {
-            "high": ["hierarchy", "status", "rank", "formal", "respect", "authority", "leader", "obey"],
-            "low": ["equal", "equality", "merit", "question", "challenge", "flat", "egalitarian", "democratic"],
-        },
-        "IDV": {
-            "high": ["individual", "autonomy", "personal", "achievement", "self", "unique", "independent"],
-            "low": ["group", "collective", "harmony", "loyalty", "team", "community", "belonging", "together"],
-        },
-        "UAI": {
-            "high": ["rule", "structure", "plan", "clarity", "precise", "predict", "stability", "order", "protocol"],
-            "low": ["flexible", "adapt", "improvise", "ambiguous", "risk", "spontaneous", "comfort uncertainty"],
-        },
-        "MAS": {
-            "high": ["achieve", "compete", "win", "success", "ambitious", "assert", "power", "strength"],
-            "low": ["care", "cooperate", "relationship", "quality life", "modest", "compassion", "community"],
-        },
-        "LTO": {
-            "high": ["long-term", "future", "plan", "save", "invest", "adapt", "persever", "tradition respect"],
-            "low": ["immediate", "present", "quick", "instant", "result", "tradition", "past", "heritage"],
-        },
-        "IND": {
-            "high": ["enjoy", "gratif", "pleasure", "freedom", "indulge", "relax"],
-            "low": ["restrain", "discipline", "moderate", "self-control", "duty", "obligation"],
-        },
-    },
-    "de": {
-        "PDI": {
-            "high": ["hierarchie", "status", "rang", "formal", "respekt", "autorität", "führung", "gehorsam", "anweisung", "befehl", "unterordnung"],
-            "low": ["gleichheit", "gleichberechtigung", "verdienst", "fragen", "herausforderung", "flach", "egalitär", "demokratisch", "no prinzip", "nicht prinzip", "kein prinzip"],
-        },
-        "IDV": {
-            "high": ["individuell", "eigenverantwortlich", "autonomie", "persönlich", "selbst", "leistung", "unabhängig", "selbstbestimmung", "eigene", "problem sichtbar", "ich", "mein"],
-            "low": ["gruppe", "gemeinschaft", "harmonie", "treue", "team", "zusammenhalt", "gemeinsam", "zusammengehörigkeit", "loyalität", "wir", "unser"],
-        },
-        "UAI": {
-            "high": ["regel", "struktur", "planung", "klarheit", "präzision", "direktheit", "vorhersehbar", "stabilität", "ordnung", "protokoll", "sicherheit", "verfahren", "korrekt", "unklarheit", "sicherheit"],
-            "low": ["flexibel", "anpassung", "improvisieren", "mehrdeutig", "risiko", "spontan", "unbefangenheit", "flexibilität", "abenteuer"],
-        },
-        "MAS": {
-            "high": ["leistung", "erfolg", "wettkampf", "gewinnen", "ehrgeiz", "durchsetzung", "kraft", "stärke", "kompetenz", "ergebnis", "beste", "schwäche bewältigung", "beste"],
-            "low": ["fürsorge", "kooperation", "beziehung", "lebensqualität", "bescheidenheit", "mitgefühl", "gemeinschaft", "rücksicht", "mitgefühl", "verständnis"],
-        },
-        "LTO": {
-            "high": ["langfristig", "zukunft", "planung", "sparen", "investition", "anpassung", "beharrlichkeit", "kontinuität", "nachhaltigkeit", "wiedervereinigung", "ausgangszustand", "boden", "vertrag"],
-            "low": ["sofort", "gegenwart", "schnell", "unmittelbar", "ergebnis", "tradition", "vergangenheit", "erbe", "jetzt"],
-        },
-        "IND": {
-            "high": ["genießen", "vergnügen", "freiheit", "spaß", "entspannung", "freude", "vergnügung", "leichtigkeit"],
-            "low": ["zurückhaltung", "disziplin", "mäßigung", "selbstbeherrschung", "pflicht", "verpflichtung", "erfüllung", "erfüllung", "restraint"],
-        },
-    },
-    "da": {
-        "PDI": {
-            "high": ["hierarki", "status", "autoritet", "ledelse", "kommando", "respektere"],
-            "low": ["lighed", "demokratisk", "ligestilling", "ligeværd", "respekt", "verdier"],
-        },
-        "IDV": {
-            "high": ["individuelt", "personlig", "selvbestemmelse", "autonomi", "egen", "uafhængig"],
-            "low": ["gruppe", "fællesskab", "samarbejde", "tilhørighed", "team", "loyalitet"],
-        },
-        "UAI": {
-            "high": ["regel", "struktur", "orden", "system", "klart", "sikkerhed", "procedure", "præcision"],
-            "low": ["fleksibel", "fleksibilitet", "pragmatisk", "improvisere", "risiko", "tilpasning", "tilpas", "skiftende"],
-        },
-        "MAS": {
-            "high": ["præstation", "succes", "gevinst", "sejr", "konkurrence", "styrke", "kraft"],
-            "low": ["samarbejde", "omsorg", "omhu", "fællesskab", "medmenneskelig", "rørende", "empati"],
-        },
-        "LTO": {
-            "high": ["fremtid", "plan", "investering", "kontinuitet", "ansvar", "forpligtelse", "langsigtet"],
-            "low": ["nu", "øjeblikket", "straks", "nyder", "spontan", "øjebliks", "nu"],
-        },
-        "IND": {
-            "high": ["nyde", "nydelse", "frihed", "tilfredsstillelse", "fryd", "hygge", "frejdig"],
-            "low": ["tilbageholdenhed", "disciplin", "pligt", "mådehold", "selvkontrol", "forsigtig"],
-        },
-    },
-}
-
-
+# References to position files should mention Hofstede dimensions
 POSITION_DIMENSION_REF = re.compile(
     r"hofstede|power distance|individualism|uncertainty avoidance|"
     r"masculinity|long-term orientation|indulgence|"
@@ -262,42 +181,6 @@ def get_expected_keywords(scores: dict[str, tuple[int, str]], language: str = "e
         expected[dim] = set(dimension_map[dim].get(polarity, []))
     return expected
 
-
-def detect_language(text: str) -> str:
-    """Detect likely language of text content (synchronized with validate_hofstede_derived.py).
-    
-    Uses heuristic keyword markers. Returns language code: "en", "de", "da".
-    """
-    text_lower = text.lower()
-    
-    # German markers: common German words and grammatical patterns
-    german_markers = [
-        "der ", "die ", "das ", "den ", "dem ", "des ",  # German articles
-        "ein ", "eine ", "einen ", "einem ",             # German indefinite articles
-        "ist ", "sind ", "wird ", "wir ", "du ", "sie ", # German verbs
-        "ü", "ö", "ä", "ß",                             # German characters
-        "und ", "oder ", "aber ", "nicht ",             # German conjunctions
-        "kein", "keine", "keinem", "keinen",            # German negation
-    ]
-    
-    # Danish markers
-    danish_markers = [
-        "den ", "det ", "er ", "og ", "at ", "ikke ",
-        "han ", "hun ", "de ", "da ", "jer ", "jeg ",
-        "ham ", "hendes ", "hvis ", "hvor ",
-        "æ", "ø", "å",
-        "har ", "skal ", "blev ", "fra ",
-    ]
-    
-    german_count = sum(1 for marker in german_markers if marker in text_lower)
-    danish_count = sum(1 for marker in danish_markers if marker in text_lower)
-    
-    if danish_count >= german_count and danish_count >= 3:
-        return "da"
-    elif german_count >= 3:
-        return "de"
-    
-    return "en"
 
 
 
