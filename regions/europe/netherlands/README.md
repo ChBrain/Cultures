@@ -39,11 +39,11 @@ Netherlands's cultural profile measured against Hofstede's framework:
 
 | Dimension | Declared | Derived | Gap | Status |
 |-----------|----------|---------|-----|--------|
-| PDI | 38 | 40 | 2 | ✅ EXCELLENT |
-| IDV | 80 | 85 | 5 | ✅ EXCELLENT |
+| PDI | 38 | 33 | 5 | ✅ EXCELLENT |
+| IDV | 80 | 75 | 5 | ✅ EXCELLENT |
 | MAS | 14 | 20 | 6 | ✅ PASS |
 | UAI | 53 | 50 | 3 | ✅ EXCELLENT |
-| LTO | 67 | 57 | 10 | ✅ PASS |
+| LTO | 67 | 66 | 1 | ✅ EXCELLENT |
 | IND | 68 | 66 | 2 | ✅ EXCELLENT |
 
 **Keyword distribution analysis:** The Dutch-language culture files (position, language, process, piece, place, personas) express core dimensions through strategic keyword density:
