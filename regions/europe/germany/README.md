@@ -48,19 +48,9 @@ Germany's cultural profile measured against Hofstede's framework:
 
 These dimensions inform the **[Position](culture_german_position.md)** (how Germany operates), **Pieces** (historical moments where dimensions collided), **Place** (Berlin's infrastructure and social patterns), and **Personas** (how individuals navigate these cultural pressures). The position file carries a Hofstede footer naming the six dimensions; the levels and sources live here.
 
-## Content Audit Status
+---
 
-| File | Audit Status | Verified | Auditor | Date |
-|------|--------------|----------|---------|------|
-| `culture_german_position.md` | pending | - | - | - |
-| `culture_german_persona_brigitte.md` | pending | - | - | - |
-| `culture_german_persona_christian.md` | pending | - | - | - |
-| `culture_german_place_berlin.md` | pending | - | - | - |
-| `culture_german_piece_grundgesetz.md` | pending | - | - | - |
-| `culture_german_language_hochdeutsch.md` | pending | - | - | - |
-| `culture_german_process_erinnern.md` | pending | - | - | - |
-
-Audit verdicts: **clean** (fully verified), **minor** (one minor inaccuracy), **issues** (factual error or paraphrase risk).
+**Audited:** May 2026
 
 ---
 
