@@ -27,14 +27,25 @@ The zip contains all culture files flattened at root level with links rewritten 
 
 Denmark's cultural profile measured against Hofstede's framework:
 
-| Dimension | Score | Profile |
-|-----------|-------|---------|
-| Power Distance (PDI) | 18 | **Very Low** - Extreme equality; hierarchy must be justified |
-| Individualism (IDV) | 74 | **High** - Personal autonomy and individual rights prioritized |
-| Uncertainty Avoidance (UAI) | 23 | **Very Low** - Comfort with ambiguity and change; flexible |
-| Masculinity (MAS) | 16 | **Very Low** - Cooperation, care, and consensus valued over competition |
-| Long-Term Orientation (LTO) | 35 | **Moderate-Low** - Present-focused; pragmatic approach to future |
-| Indulgence (IND) | 70 | **High** - Enjoys life; gratification and leisure are acceptable |
+| Dimension | Score | Level |
+|-----------|-------|-------|
+| PDI | 18 | **Low** |
+| IDV | 74 | **High** |
+| UAI | 23 | **Low** |
+| MAS | 16 | **Low** |
+| LTO | 35 | **Low** |
+| IND | 70 | **High** |
+
+**Detailed Profile:**
+
+| Dimension | Score | Description |
+|-----------|-------|-------------|
+| Power Distance (PDI) | 18 | Extreme equality; hierarchy must be justified |
+| Individualism (IDV) | 74 | Personal autonomy and individual rights prioritized |
+| Uncertainty Avoidance (UAI) | 23 | Comfort with ambiguity and change; flexible |
+| Masculinity (MAS) | 16 | Cooperation, care, and consensus valued over competition |
+| Long-Term Orientation (LTO) | 35 | Present-focused; pragmatic approach to future |
+| Indulgence (IND) | 70 | Enjoys life; gratification and leisure are acceptable |
 
 **Source:** Hofstede et al. (2010). Empirical research published in *Cultures and Organizations*.
 

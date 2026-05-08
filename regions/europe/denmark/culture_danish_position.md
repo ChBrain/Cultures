@@ -22,6 +22,24 @@ Alle mennesker ligeværdige.
 Personlig autonomi = lighed mellem mennesker.
 Ligeværd gennem autonomi.
 
+Nydelse.
+Frihed til at nyde livet.
+Fornøjelse er legitim.
+Glæde gennem egen valg.
+Fryd over at være til.
+Livets glæde betyder noget.
+Din egen glæde betyder.
+
+Nu betyder mere end senere.
+Øjeblikket er værd at nyde.
+Livet lever man nu, ikke senere.
+Kvaliteten af forholdet her og nu.
+
+Omsorg for hinanden.
+Kooperation over konkurrence.
+Livskvalitet gennem forhold.
+Relation betyder mere end resultat.
+
 Personlig autonomi.
 Selvbestemmelse.
 Egen vejviser.
@@ -38,6 +56,7 @@ Autonomi betyder du bestemmer selv.
 Din egen indsigt betyder.
 Hendes egen indsigt betyder.
 Hans eget valg betyder.
+Nyd livet. Du fortjener det.
 Respekt gennem at lade andre være autonome.
 Omsorg gennem empati for deres egen position.
 Empati gennem at forstå deres egen bedømmelse.

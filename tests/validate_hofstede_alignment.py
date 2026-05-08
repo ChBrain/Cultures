@@ -102,7 +102,34 @@ DIMENSION_KEYWORDS_BY_LANGUAGE = {
             "low": ["zurückhaltung", "disziplin", "mäßigung", "selbstbeherrschung", "pflicht", "verpflichtung", "erfüllung", "erfüllung", "restraint"],
         },
     },
+    "da": {
+        "PDI": {
+            "high": ["hierarki", "status", "rang", "formal", "respekt", "autoritet", "ledelse", "lydighed", "underordning"],
+            "low": ["lighed", "ligestilling", "ligeværd", "demokratisk", "merit", "spørgsmål", "udfordring", "flad", "egalitær", "ingen hierarki"],
+        },
+        "IDV": {
+            "high": ["individuelt", "autonomi", "personlig", "selvbestemmelse", "egen", "selv", "uafhængig", "ansvar", "vurdering", "valg"],
+            "low": ["gruppe", "fælles", "harmoni", "loyalitet", "hold", "sammenhold", "sammen", "vi", "vores"],
+        },
+        "UAI": {
+            "high": ["regel", "struktur", "planlægning", "klarhed", "præcision", "forudsigelig", "stabilitet", "orden", "protokol", "sikkerhed"],
+            "low": ["fleksibel", "tilpasning", "improvisere", "uklarhed", "risiko", "spontan", "pragmatisk", "fleksibilitet", "eventyr"],
+        },
+        "MAS": {
+            "high": ["præstation", "succes", "konkurrence", "vinde", "ærgerrighed", "gennemslag", "kraft", "styrke", "kompetence"],
+            "low": ["omsorg", "kooperation", "forhold", "livskvalitet", "beskedenhed", "medfølelse", "fællesskab", "hensyn", "forståelse"],
+        },
+        "LTO": {
+            "high": ["langfristet", "fremtid", "planlægning", "spare", "investering", "tålmodighed", "kontinuitet", "bæredygtighed", "arv"],
+            "low": ["øjeblikket", "nu", "nuet", "hurtig", "straks", "resultat", "tradition", "fortid", "arv", "i dag"],
+        },
+        "IND": {
+            "high": ["nydelse", "fornøjelse", "frihed", "fryd", "glæde", "afslapning", "lyst", "livets lyst"],
+            "low": ["tilbageholdelse", "disciplin", "mådehold", "selvbeherskelse", "pligt", "forpligtelse", "mådehold"],
+        },
+    },
 }
+
 
 POSITION_DIMENSION_REF = re.compile(
     r"hofstede|power distance|individualism|uncertainty avoidance|"
@@ -240,9 +267,17 @@ def detect_language(text: str) -> str:
     """Detect likely language of text content.
     
     Uses simple heuristics: look for language-specific keywords, patterns.
-    Returns language code: "en", "de", or defaults to "en".
+    Returns language code: "en", "de", "da", or defaults to "en".
     """
     text_lower = text.lower()
+    
+    # Danish markers: Danish-specific words and characters
+    danish_markers = [
+        "og ", "der ", "det ", "den ", "ja ",  # Danish words
+        "ø", "å", "æ",  # Danish characters
+        "købe", "græs", "være", "være", "året",  # More Danish words
+        "hvad", "hvem", "danske",  # Danish question words
+    ]
     
     # German markers: common German words and grammatical patterns
     german_markers = [
@@ -254,13 +289,19 @@ def detect_language(text: str) -> str:
         "kein", "keine", "keinem", "keinen",            # German negation
     ]
     
+    danish_count = sum(1 for marker in danish_markers if marker in text_lower)
     german_count = sum(1 for marker in german_markers if marker in text_lower)
+    
+    # If significant Danish markers found, classify as Danish (prioritize over German)
+    if danish_count >= 2:
+        return "da"
     
     # If significant German markers found, classify as German
     if german_count >= 3:
         return "de"
     
     return "en"
+
 
 
 def check_alignment(position_text: str, expected: dict[str, set[str]], language: str = "en") -> tuple[dict[str, int], str]:
