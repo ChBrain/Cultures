@@ -10,6 +10,8 @@ De korte lijn.
 Niet uit precisie.
 Uit efficiëntie.
 Omwegen kosten meer dan de zaak waard is.
+Plan, niet praat.
+Nu beslissen wat toekomst bepaalt.
 
 **The Flat Room** (equality, minimal hierarchy).
 De platte kamer.
@@ -20,15 +22,20 @@ die de positie niet wil betalen.
 **The Polder Model** (cooperation, consensus, negotiation).
 [Het Poldermodel](culture_dutch_piece_poldermodel.md).
 Niet als methode.
-Als conditie.
+Als noodzaak.
+De structuur van onderhandeling.
+Vaste procedure, vaste orde.
 Het water onderhandelt niet.
 De dijk vraagt iedereen.
+Duidelijk, direct, vastgesteld.
 
 **Tolerance by Necessity** (pragmatic acceptance, care, low competition).
 De tolerantie.
 Niet als moraal.
 Als ontdekking:
 uitsluiting kost meer dan insluiting.
+Je leven, je keuze - zolang je de ander zijn leven laat.
+Jij mag genieten, ik mag genieten.
 Vastgesteld in 1579.
 Staat nog steeds.
 
