@@ -7,7 +7,7 @@
 
 ## Projection
 Sofie er en [kvinde](../../../engine/position_female.md) fra [Danmark](culture_danish_position.md).
-Hendes egen bedømmelse er værktøj, ikke meningsforskel. Alle sæder den samme ved bordet.
+Hendes egen bedømmelse er værktøj, ikke meningsforskel. Samarbejde gennem respekt.
 
 ## Action
 Klienten: vi har brug for mere lys. Sofie ser halvdelen af problemet - layout, ikke lys. Hun tilbyder: rum der fungerer, eller begge. Vælg selv.

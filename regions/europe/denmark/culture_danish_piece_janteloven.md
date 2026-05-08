@@ -14,7 +14,7 @@ Alle danske kender dem.
 ## Load Bearing
 Uden Janteloven bliver personlig autonomi til dominans.
 Når hver person bestemmer absolut selv uden at respektere andres ret til at gøre det samme, kollapser ligheden.
-Omsorg og samarbejde er grænserne hvor autonomi møder anden menneskers sejr.
+Sejr tilladt - inden for grænser af omsorg.
 ## Apparent
 *Du skal ikke tro at du er noget.*
 *Du skal ikke tro at du er vigtigere end os.*
