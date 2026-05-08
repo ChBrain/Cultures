@@ -6,13 +6,15 @@
 
 ## Has
 
-De korte lijn - autonomie zonder omweg.
+De korte lijn.
 
-De platte kamer - gelijkheid als structuur.
+De platte kamer.
 
-[Het Poldermodel](culture_dutch_piece_poldermodel.md) - procedure, orde, plan voor toekomst.
+[Het Poldermodel](culture_dutch_piece_poldermodel.md).
 
-De tolerantie - zorg, genieten, voorzichtigheid.
+De tolerantie.
+Vastgesteld in 1579.
+Staat nog steeds.
 
 ## Orders
 Beweeg.
