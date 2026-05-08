@@ -7,19 +7,19 @@
 ## Has
 
 De korte lijn.
-Individueel oordeel. Autonomie.
+Individueel. Autonoom.
 
 De platte kamer.
-Gelijkheid.
+Gelijkheid zonder hiërarchie.
 
 [Het Poldermodel](culture_dutch_piece_poldermodel.md).
-Procedure en orde. Plan voor de lange termijn.
+Procedure. Orde. Plan voor lange termijn.
 
 De tolerantie.
-Samenwerking. Zorg. Genieten.
+Voorzichtigheid. Zorg. Genieten.
 
 ## Orders
-Beweeg (move, adapt, flexibility in planning).
+Beweeg.
 
 ## Loses
 De aanname van neutraliteit.
@@ -31,7 +31,7 @@ Op dat verlies:
 past de verpakking aan, niet de inhoud.
 Belasting.
 Betaalt zonder enthousiasme.
-Gaat d
+Gaat door.
 
 ---
 **Hofstede:** PDI 38 · IDV 80 · MAS 14 · UAI 53 · LTO 67 · IND 68
