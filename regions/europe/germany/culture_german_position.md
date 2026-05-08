@@ -14,13 +14,13 @@ Eigenverantwortlich.
 Die persönliche Entscheidung.
 Selbstbestimmung über Gehorsam.
 Unabhängige Urteilskraft.
-Dein eigenes Denken ist Werkzeug und Waffe.
+Dein eigenes Denken ist Werkzeug - nicht Waffe gegen die Gemeinschaft.
 
 Die Arbeit.
-Leistung zählt.
-Kompetenz, nicht Titel.
+Kompetenz zählt.
+Verdienst, nicht Titel.
 Das Ergebnis zählt, nicht die Hierarchie.
-Durchsetzung mit Kraft der besseren Lösung.
+Durchsetzung durch Gleichberechtigung in der Befragung.
 
 [Das Grundgesetz](culture_german_piece_grundgesetz.md).
 Nicht als Befehl.
@@ -38,7 +38,7 @@ Disziplin.
 Selbstbeherrschung als Fundament.
 Maßhaltung ohne Verbote.
 Widerstand gegen die Versuchung, es einfach zu haben.
-Verpflichtung über Erfolg.
+Pflicht und Verpflichtung - nicht Erfolg um jeden Preis.
 
 Langfristigkeit.
 Planung für Generationen.

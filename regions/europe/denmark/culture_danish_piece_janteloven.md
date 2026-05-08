@@ -27,7 +27,7 @@ Omsorg og samarbejde er grænserne hvor autonomi møder anden menneskers sejr.
 *Du skal ikke tro at der er noget vigtigere end os.*
 *Du skal ikke mene at vi skal bekymre os om dig.*
 
-Ti påbud. Opdateret ord for ord siden 1933.
+Ti påbud. I lighed med hinanden.
 Alle danske børn kan dem.
 
 ## Yearbook

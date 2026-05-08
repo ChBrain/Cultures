@@ -13,15 +13,16 @@ Als Bedingung.
 Spontan. Ohne Ritual.
 
 ## Direction
-Hinschauen.
+Hinschauen - pragmatisch anpassen, nicht dogmatisch festhalten.
 Nicht einmal.
 Immer wieder.
-Nicht aus Pflicht.
+Flexibel bleiben. Improvisation in der Struktur.
 Aus Verpflichtung gegenüber der Zukunft.
 
 ## Lever
 Die Kraft: die Notwendigkeit, zu verstehen, um nicht zu wiederholen.
-Der Widerstand: die Versuchung, es ruhen zu lassen.
+Auch: die Möglichkeit, Grenzen zu setzen und dann zu genießen, was darin wachsen kann.
+Der Widerstand: die Versuchung, es ruhen zu lassen - oder alles zu verbieten.
 Die Kraft überschreitet trotzdem.
 
 ## Echo

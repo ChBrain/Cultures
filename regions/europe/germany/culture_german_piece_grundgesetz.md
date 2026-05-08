@@ -17,11 +17,10 @@ Es wurde permanent.
 Ohne es verliert die [German](culture_german_position.md) Position ihren Grund.
 *Die Würde des Menschen ist unantastbar.*
 Artikel 1. Nicht abänderbar.
-Das Bundesverfassungsgericht setzt es durch.
-Es hat Gesetze gekippt - die Gesetze änderten sich.
-Das Gericht blieb.
-Aber es war kooperativ mit Gesellschaft und Bundestag - mitgefühl in Rücksicht.
-Das Grundgesetz war flexibel genug, sich ohne Zerstörung zu entwickeln.
+Das Bundesverfassungsgericht setzt es durch - in Gleichheit mit Gesellschaft.
+Es hat Gesetze gekippt - die Gesetze änderten sich pragmatisch.
+Das Gericht blieb kooperativ, flexibel anpassungsfähig.
+Ohne Struktur wird es willkürlich; ohne Flexibilität wird es brittle.
 
 ## Apparent
 *Die Würde des Menschen ist unantastbar.*

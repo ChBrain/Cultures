@@ -9,7 +9,7 @@ Cykelstier med cykelkø i myldretiden.
 Flade bygninger. Ingen én bygning rager op over andre.
 Kanalen. Nyhavn. Farvede bygninger, turister, borde udenfor.
 Tivoli i mitten af byen.
-Folketing. Et kammer. 179 sæder i halvkreds.
+Folketing. Et kammer. 179 sæder i halvkreds. Demokratisk setup.
 Ingen overhus.
 Vesterbro og Nørrebro tæt på centrum.
 Christiania: egen vej, egen frihed - og accepteret.

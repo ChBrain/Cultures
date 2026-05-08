@@ -9,11 +9,13 @@ Autonomi.
 Din personlige vurdering betyder.
 Dit eget valg betyder.
 Din egen bedømmelse er værdifuld.
+Men alle har samme vurdering - i lighed og ligeværd.
 
 ## Orders
 Bestem selv.
 Dit valg først.
 Ingen anden skal tvinge dig til hvad de mener.
+Alle er ligeværdige i det valg.
 
 ## Loses
 Mulighed for at handle.
