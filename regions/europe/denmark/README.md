@@ -2,14 +2,23 @@
 
 **Language(s):** Danish (Dansk)
 
-This folder contains culture content for Denmark: historical personas, cultural concepts, and geographical places that represent Danish society and identity.
+---
 
-## Quick Start
+## Download
 
-Download the complete Denmark culture package for Claude.ai:
-- [**denmark.zip**](https://github.com/ChBrain/Cultures/releases/latest/download/denmark.zip) - All culture files + engine stack + instructions
+The complete Denmark culture package for Claude.ai:
+- [**denmark.zip**](https://github.com/ChBrain/Cultures/releases/latest/download/denmark.zip)
 
-The zip contains all culture files flattened at root level with links rewritten for Claude consumption.
+Includes all culture files + engine stack + Claude instructions.
+
+---
+
+## Install
+
+1. Extract the zip to your Claude project
+2. Upload all files (engine/ + culture/)
+3. Run the engine/instructions.md to initialize
+4. Reference culture_danish_*.md files in your prompts
 
 ## Content Overview
 
@@ -59,6 +68,18 @@ Denmark's cultural profile measured against Hofstede's framework:
 - **Low LTO:** Present-moment focus. Relationships and immediate quality of life matter more than long-term sacrifice. Flexibility over rigid planning.
 
 These dimensions inform the **[Position](culture_danish_position.md)** (how Denmark operates through equality and autonomy), **Pieces** (Janteloven as cultural code enforcing the paradox), **Place** (Copenhagen as infrastructure reflecting individual choice and shared care), and **Personas** (how individuals express autonomy while respecting others'). The position file carries a Hofstede footer naming the six dimensions; the levels and sources live here.
+
+## Content Audit Status
+
+| File | Type | Verified | Status | Notes |
+|------|------|----------|--------|-------|
+| `culture_danish_position.md` | Position | Yes | ✓ Complete | Culture anchor; Hofstede-aligned |
+| `culture_danish_language_dansk.md` | Language | Yes | ✓ Complete | Linguistic anchor (Dansk) |
+| `culture_danish_process_hygge.md` | Process | Yes | ✓ Complete | Hygge as cultural mechanism |
+| `culture_danish_piece_janteloven.md` | Piece | Yes | ✓ Complete | Janteloven as cultural load-bearing symbol |
+| `culture_danish_place_copenhagen.md` | Place | Yes | ✓ Complete | Capital city as social anchor |
+| `culture_danish_persona_lars.md` | Persona | Yes | ✓ Complete | Male engineer; autonomous judgment |
+| `culture_danish_persona_sofie.md` | Persona | Yes | ✓ Complete | Female architect; expertise + choice |
 
 ---
 
