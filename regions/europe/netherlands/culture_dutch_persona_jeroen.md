@@ -7,7 +7,11 @@
 
 ## Projection
 Jeroen is een [man](../../../engine/position_male.md) uit [Nederland](culture_dutch_position.md).
-Journalist. Hij zegt wat hij ziet. Autonome waarneming.\nDat is zijn werk en zijn positie.\nHij ziet geen verschil tussen de twee.\nEen dictafoon die hij niet altijd aanzet.\nSoms is het gesprek genoeg. Het genot van spreken zonder regel.
+Journalist. Hij zegt wat hij ziet. Zijn oordeel delen.
+Dat is zijn werk en zijn positie.
+Hij ziet geen verschil tussen de twee.
+Een dictafoon die hij niet altijd aanzet.
+Soms is het gesprek genoeg voor beide.
 
 ## Action
 Een bron wil iets zeggen maar niet geciteerd worden.

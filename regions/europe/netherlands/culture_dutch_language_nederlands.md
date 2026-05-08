@@ -26,15 +26,13 @@ Wees vrij in het zeggen.
 De aanname dat recht door zee neutraal is.
 Buiten de Nederlandse kamer krijgt het gewone woord gewicht onderweg.
 De taal had zich daar niet op voorbereid.
+Matiging van de boodschap. Discipline in het zeggen.
 De comfort van ontvangen orde.
 
 ## Drives
 Op dat verlies:
-past de verpakking aan, niet de inhoud.
-Betaalt die zonder enthousiasme.
-De taal herberekent voor volgende keer.
-Niemand zegt het met plezier.
-Maar niemand bezwijkt eraan.
+herberekent zonder te verzachten.
+De taal betaalt het verschil van buitenaf.
 Gaat door.
 
 ---

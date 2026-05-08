@@ -36,9 +36,10 @@ Buiten de Nederlandse kamer klopt dat niet.
 ## Drives
 Op dat verlies:
 past de verpakking aan, niet de inhoud.
+Prestatie van elke speler telt. Concurrentie zonder mededogen.
+Matiging van winst. Zorg voor verliezer.
 Belasting.
-Betaalt zonder enthousiasme.
-Gaat door.
+Betaalt zonder enthousiasme.\nGaat door.
 
 ---
 **Hofstede:** PDI 38 · IDV 80 · MAS 14 · UAI 53 · LTO 67 · IND 68

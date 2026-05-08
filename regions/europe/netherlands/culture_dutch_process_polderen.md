@@ -20,7 +20,8 @@ Voorzichtigheid en zorg. Regel respect zonder onderwerp.
 ## Lever
 De dreiging die niet onderhandelt.
 Als de dijk begeeft verliezen alle partijen hun toekomst.
-Dat weet iedereen. Niemand hoeft het te zeggen. Gelijk en voortdurend begrijpend.
+Dat weet iedereen. Niemand hoeft het te zeggen.
+Maar ook: wat onvoorzien raakt, adapteert men. Flexibiliteit onder druk.
 
 ## Echo
 Wat stand hield wordt de basis van de volgende sessie. Regel vertrouwen.

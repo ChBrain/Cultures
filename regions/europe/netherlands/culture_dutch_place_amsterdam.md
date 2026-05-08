@@ -15,7 +15,7 @@ Hijsbalken boven de ramen. De handel zit in de architectuur.
 ## Holds
 [Nederlands](culture_dutch_position.md).
 Gelijkheid. Autonomie. Zorg.
-De vrijheid om jezelf te zijn.
+Samenwerking in het dagelijks leven.
 [Het Poldermodel](culture_dutch_piece_poldermodel.md).
 De grachtengordel als infrastructuur, niet als decor.
 
@@ -27,10 +27,9 @@ De kamer verwacht de korte lijn en respecteert dit als regel.
 
 ## Withheld
 De privéberekening of de tolerantie nog werkt. Die loopt continu.
-De structuur waarop alles rust. Die wordt niet openbaar gemaakt.
-Het resultaat van jarenlange regel en voorzichtigheid.
-Wie denkt dat de gedoogruimte onbegrensd is heeft de kamer verkeerd gelezen.
-Wie geniet zonder respect voor de regel verliest rechten.
+De matiging waarop alles rust. Niet ieder genot krijgt ruimte.
+Zorg voor morgen tempert genot vandaag.
+Het resultaat van jarenlange discipline.\nWie denkt dat de gedoogruimte onbegrensd is heeft de kamer verkeerd gelezen.
 
 ---
 *culture_dutch_place_amsterdam.md - 08.05.2026*
