@@ -1,4 +1,4 @@
-﻿# References
+# References
 
 ## Cultures
 
@@ -28,3 +28,4 @@ The Schleswig-Holstein position is a region position, not a national one. It ref
 
 *v0.2.0 - KAI Worlds*
 *April 2026*
+

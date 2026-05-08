@@ -8,6 +8,7 @@ This region collects completed European country cultures. Each culture is indepe
 |---------|------------------|--------|
 | [Denmark](denmark/README.md) | PDI 18 · IDV 74 · UAI 23 · MAS 16 · LTO 35 · IND 70 | ✅ Complete |
 | [Germany](germany/README.md) | PDI 35 · IDV 67 · UAI 65 · MAS 66 · LTO 83 · IND 40 | ✅ Complete |
+| [Netherlands](netherlands/README.md) | PDI 38 · IDV 80 · MAS 14 · UAI 53 · LTO 67 · IND 68 | ✅ Complete |
 
 ## Deployment
 

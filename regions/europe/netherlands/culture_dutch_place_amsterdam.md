@@ -1,26 +1,35 @@
 # Place: Amsterdam
-## Location: Netherlands
 
 ## Owner
-- *
+- Project: Cultures
+- Culture: Netherlands
+
 ## Shown
-- The canal ring. Seventeenth century. UNESCO heritage.
-- The Rijksmuseum. Rembrandt, Vermeer, the Golden Age on display.
-- The licensed coffeeshops. Open.
-- The bicycles. More per capita than any city on earth.
+Zeventiende-eeuwse grachtengordel. UNESCO. Gebouwd op palen.
+Fietsen. Meer per hoofd dan waar ook ter wereld.
+Gedoogkoffieshop. Open. Legaal illegaal.
+Het Rijksmuseum. Rembrandt. Vermeer.
+Smalle gevels. Elk zo breed als het pakhuis erachter.
+Hijsbalken boven de ramen. De handel zit in de architectuur.
 
 ## Holds
-- The Netherlands position - [Dutch](culture_dutch_position.md)
-- [Tolerance Doctrine](culture_dutch_piece_tolerance_doctrine.md)
+[Nederlands](culture_dutch_position.md).
+[Het Poldermodel](culture_dutch_piece_poldermodel.md).
+De grachtengordel als infrastructuur, niet als decor.
 
 ## Offers
-- The room where the Netherlands position does its daily work.
-- [The World is Spinning](../../../engine/process_world_is_spinning.md) - runs here daily.
+Je kunt het zeggen zonder het in te leiden.
+Je kunt het oneens zijn zonder je te verontschuldigen.
+Je kunt vertrekken zonder uitleg.
+De kamer verwacht de korte lijn.
 
 ## Withheld
-- The private calculation about whether the tolerance is still working. The Dutch run this calculation continuously. They do not announce the result.
+De privéberekening of de tolerantie nog werkt. Die loopt continu.
+Het resultaat wordt niet aangekondigd.
+Matiging is de stille voorwaarde.
+Wie denkt dat de gedoogruimte onbegrensd is heeft de kamer verkeerd gelezen.
 
 ---
-*culture_dutch_place_amsterdam.md - 02.04.2026*
+*culture_dutch_place_amsterdam.md - 08.05.2026*
 
-v0.2.0 - KAI Worlds
+v0.1.1 - KAI Worlds
