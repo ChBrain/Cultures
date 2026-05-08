@@ -20,7 +20,6 @@ Artikel 1. Nicht abänderbar.
 Das Bundesverfassungsgericht setzt es durch - in Gleichheit mit Gesellschaft.
 Es hat Gesetze gekippt - die Gesetze änderten sich pragmatisch.
 Das Gericht blieb kooperativ, flexibel anpassungsfähig.
-Ohne Struktur wird es willkürlich; ohne Flexibilität wird es brittle.
 
 ## Apparent
 *Die Würde des Menschen ist unantastbar.*

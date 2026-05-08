@@ -53,8 +53,6 @@ Handle mit Struktur.
 
 ## Loses
 Klarheit.
-Wenn du die Struktur verlierst, verlierst du auch die Fähigkeit zu handeln.
-Und damit: ohne Ordnung bist du paralysiert.
 
 ## Drives
 Auf dem Verlust:
