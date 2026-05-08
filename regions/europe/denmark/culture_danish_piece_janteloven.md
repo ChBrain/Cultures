@@ -14,7 +14,6 @@ Alle danske kender dem.
 ## Load Bearing
 Uden Janteloven bliver personlig autonomi til dominans.
 Når hver person bestemmer absolut selv uden at respektere andres ret til at gøre det samme, kollapser ligheden.
-Sejr tilladt - inden for grænser af omsorg.
 ## Apparent
 *Du skal ikke tro at du er noget.*
 *Du skal ikke tro at du er vigtigere end os.*
@@ -38,6 +37,7 @@ Alle danske børn kan dem.
 1953: Grundloven revideret. Fuld lighed blandt mennesker.
 1980: Børn får eget navn. Individet først.
 2000: Lighed nu international norm.
+2010: Cykelstjerner vinder sejre - inden for samme fællesskab som alle andre.
 
 ---
 *culture_danish_piece_janteloven.md - 08.05.2026*
