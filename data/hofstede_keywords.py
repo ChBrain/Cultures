@@ -134,27 +134,27 @@ DIMENSION_KEYWORDS_BY_LANGUAGE = {
     "nl": {
         "PDI": {
             "high": ["hiërarchie", "status", "autoriteit", "gezag", "respect", "ondergeschikt"],
-            "low": ["gelijkheid", "gelijk", "platte", "democrati", "merit", "verdienste"],
+            "low": ["gelijkheid", "gelijk", "platte", "democratie", "merit", "verdienste"],
         },
         "IDV": {
             "high": ["individueel", "autonomie", "eigen", "lijn", "persoonlijk", "onafhankelijk", "keuze"],
-            "low": ["groep", "gemeenschap", "samen", "loyaliteit", "team", "harmonie", "belonging"],
+            "low": ["groep", "gemeenschap", "samen", "loyaliteit", "team", "harmonie", "samenhang"],
         },
         "UAI": {
             "high": ["regel", "structuur", "duidelijk", "precies", "orde", "procedure", "veiligheid"],
-            "low": ["flexibel", "improviser", "pragmati", "aanpas", "risico", "spontaan", "onderhandel"],
+            "low": ["flexibel", "improviseren", "pragmatisch", "aanpassen", "risico", "spontaan", "onderhandelen"],
         },
         "MAS": {
-            "high": ["prestatie", "succes", "winnen", "competiti", "ambitie", "sterk", "kracht"],
-            "low": ["zorg", "samenwerk", "voorzichtig", "tolerantie", "medelijden", "medelijden"],
+            "high": ["prestatie", "succes", "winnen", "competitie", "ambitie", "sterk", "kracht"],
+            "low": ["zorg", "samenwerking", "voorzichtigheid", "tolerantie", "medelijden", "empathie"],
         },
         "LTO": {
-            "high": ["lange", "termijn", "toekomst", "plan", "invester", "continuïteit", "voortduur", "water"],
+            "high": ["lange", "termijn", "toekomst", "plan", "investeren", "continuïteit", "voortduur", "water"],
             "low": ["nu", "direct", "onmiddellijk", "heden", "spontaan", "traditie"],
         },
         "IND": {
             "high": ["genieten", "plezier", "vrijheid", "tevredenheid", "gedoogbeleid", "tolerantie"],
-            "low": ["terughoudend", "discipline", "zelfbeheers", "plicht", "verplichting", "matiging"],
+            "low": ["terughoudend", "discipline", "zelfbeheersing", "plicht", "verplichting", "matiging"],
         },
     },
 }
