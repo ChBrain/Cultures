@@ -9,7 +9,7 @@ Both validate_hofstede_derived.py and validate_hofstede_alignment.py
 import from here to ensure consistent scoring locally and in CI.
 
 Usage:
-  from keywords_hofstede import detect_language, DIMENSION_KEYWORDS_BY_LANGUAGE
+  from data.hofstede_keywords import detect_language, DIMENSION_KEYWORDS_BY_LANGUAGE
 """
 from __future__ import annotations
 
@@ -138,4 +138,4 @@ def get_keywords_for_language(language: str) -> dict[str, dict[str, list[str]]] 
     """
     if language in DIMENSION_KEYWORDS_BY_LANGUAGE:
         return DIMENSION_KEYWORDS_BY_LANGUAGE[language]
-    return DIMENSION_KEYWORDS_BY_LANGUAGE["english"]
+    return DIMENSION_KEYWORDS_BY_LANGUAGE["en"]

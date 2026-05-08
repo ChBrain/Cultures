@@ -41,10 +41,12 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(HERE))
+sys.path.insert(0, str(ROOT))
 
 from findings import Issue
-from keywords_hofstede import detect_language, DIMENSION_KEYWORDS_BY_LANGUAGE
+from data.hofstede_keywords import detect_language, DIMENSION_KEYWORDS_BY_LANGUAGE
 
 
 HOFSTEDE_DIMENSIONS = ["PDI", "IDV", "UAI", "MAS", "LTO", "IND"]
