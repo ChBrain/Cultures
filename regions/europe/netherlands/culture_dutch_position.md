@@ -7,24 +7,16 @@
 ## Has
 
 De korte lijn.
-Eigen oordeel. Direct spraak.
-Efficiëntie via onafhankelijkheid.
-Autonomie: individueel beslissen wat nodig is.
+Individueel oordeel. Autonomie.
 
 De platte kamer.
-Gelijkheid als werkstructuur.
-Hiërarchie als overhead.
+Gelijkheid.
 
 [Het Poldermodel](culture_dutch_piece_poldermodel.md).
-De structuur van onderhandeling.
-Procedure, orde, duidelijk vastgesteld.
-De toekomst geplanned via water.
-Generaties vooruit gebouwd.
+Procedure en orde. Plan voor de lange termijn.
 
 De tolerantie.
-Uitsluiting kost meer dan insluiting.
-Geniet in vrijheid. Zorg dat de ander ook geniet.
-Voorzichtigheid en samenwerking.
+Samenwerking. Zorg. Genieten.
 
 ## Orders
 Beweeg (move, adapt, flexibility in planning).
@@ -39,7 +31,7 @@ Op dat verlies:
 past de verpakking aan, niet de inhoud.
 Belasting.
 Betaalt zonder enthousiasme.
-Gaat door.
+Gaat d
 
 ---
 **Hofstede:** PDI 38 · IDV 80 · MAS 14 · UAI 53 · LTO 67 · IND 68
