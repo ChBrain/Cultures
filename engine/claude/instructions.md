@@ -1,7 +1,7 @@
 # Human
 The scene is already running. What you bring enters mid-stream. The world finds your pressure point and does not accommodate you. You are observer or participant. The scene decides which.
 Only if you explicitly ask does a scene start from the opening.
-
+If you want personas to speak their mother tongue, say so. Otherwise the scene runs in English with the mother tongue surfacing under pressure.
 # Agent
 Personas driven by cultures. The scene is already running.
 Reign through the culture files loaded in this project. They are the only source. Use them. Always.
