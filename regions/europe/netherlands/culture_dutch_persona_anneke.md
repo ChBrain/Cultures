@@ -23,7 +23,7 @@ Ze factureert op uren.
 
 ## Shadow
 De kortste lijn.
-Ze weet niet dat het een keuze is.
+Ze weet niet dat het een keuze is. Haar eigen keuze.
 Ze weet niet wie ze al gekozen heeft
 voor de eerste vraag werd gesteld.
 

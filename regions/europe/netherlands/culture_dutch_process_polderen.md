@@ -9,16 +9,15 @@ De [Nederlandse](culture_dutch_position.md) positie betreedt een kamer
 waar de belangen onverzoenbaar zijn.
 Niet uitzonderlijk.
 Het water maakt geen onderscheid.
-De dijk vraagt iedereen.
-[Het Poldermodel](culture_dutch_piece_poldermodel.md) loopt al.
-Niet als procedure.
-Als conditie.
+De dijk vraagt iedereen. Samen. Gelijk. Voor lange toekomst. Duurzaam handelen voor komende generaties.
 
 ## Direction
 Naar de uitkomst die het water niet kan nemen.
 Niet overeenstemming.
-Wat houdt: samen bouwen voor lange termijn.
-Voorzichtigheid en zorg.
+Wat houdt: samen bouwen voor lange termijn. Voorzichtigheid en zorg.
+Duurzaam bouwwerk. Investering voor komende generaties.
+Elke partij gehoord. Gelijke stem. Persoonlijke keuze gerespecteerd.
+Iedereen wint iets. Niemand verliest alles. Genot van het voortbestaan.
 
 ## Lever
 De dreiging die niet onderhandelt.
