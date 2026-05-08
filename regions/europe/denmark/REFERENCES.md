@@ -180,6 +180,57 @@
 
 ---
 
+## Plagiarism Detection Protocol
+
+### Close-Paraphrase Detection
+
+To avoid accidental plagiarism, we check for **7+ consecutive non-trivial words verbatim** from any source:
+
+**Example check:**
+- Source: "Janteloven is a set of social rules that tell Danes not to boast or think they are special"
+- Our text: "Janteloven is a set of social rules that tell Danes not to boast or think..." ← **RISKY** (7+ words match)
+- Our text: "Janteloven means Danes should not claim superiority through pride or exceptional status" ← **OK** (rephrased)
+
+### Audit Workflow
+
+When content is spot-checked:
+
+1. **Extract claims:** Identify all distinct factual claims (dates, places, quantities, events)
+2. **Verify each:** Search sources in hierarchy order
+3. **Check paraphrase risk:** Search source text for 7+ consecutive word sequences
+4. **Mark verdict:**
+   - ✅ **clean** - All facts verified, no paraphrase risk
+   - ⚠️ **minor** - One minor inaccuracy or weak paraphrase (rephrase needed)
+   - ❌ **issues** - Factual error or significant paraphrase risk (rewrite required)
+
+---
+
+## How to Report Source Concerns
+
+If you find potential issues:
+
+1. **Open a GitHub issue** in the Cultures repository
+2. **Title:** `IP concern: Denmark - [file name]`
+3. **Include:**
+   - Exact passage from the file
+   - Suspected source (with URL if possible)
+   - Why you think it's a concern (plagiarism? factual error? unattributed?)
+4. **We will:**
+   - Investigate within 7 days
+   - Rewrite if plagiarism confirmed
+   - Correct if factual error found
+   - Add source if attribution missing
+
+---
+
+## Authorship Statement
+
+All content in this folder is authored by Kai Schlueter, with AI-assisted drafting where indicated. Facts have been verified against authoritative sources. Expression is original.
+
+Any resemblance to specific copyrighted works is unintentional. If you spot potential IP concerns, please report them (see above).
+
+---
+
 ## Notes on Content
 
 - **Personas (Lars, Sofie):** Fictional archetypes illustrating cultural values, not biographical individuals
