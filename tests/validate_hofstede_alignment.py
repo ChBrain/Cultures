@@ -104,28 +104,28 @@ DIMENSION_KEYWORDS_BY_LANGUAGE = {
     },
     "da": {
         "PDI": {
-            "high": ["hierarki", "status", "rang", "formal", "respekt", "autoritet", "ledelse", "lydighed", "underordning"],
-            "low": ["lighed", "ligestilling", "ligeværd", "demokratisk", "merit", "spørgsmål", "udfordring", "flad", "egalitær", "ingen hierarki"],
+            "high": ["hierarki", "status", "autoritet", "ledelse", "kommando", "respektere"],
+            "low": ["lighed", "demokratisk", "ligestilling", "ligeværd", "respekt", "verdier"],
         },
         "IDV": {
-            "high": ["individuelt", "autonomi", "personlig", "selvbestemmelse", "egen", "selv", "uafhængig", "ansvar", "vurdering", "valg"],
-            "low": ["gruppe", "fælles", "harmoni", "loyalitet", "hold", "sammenhold", "sammen", "vi", "vores"],
+            "high": ["individuelt", "personlig", "selvbestemmelse", "autonomi", "egen", "uafhængig"],
+            "low": ["gruppe", "fællesskab", "samarbejde", "tilhørighed", "team", "loyalitet"],
         },
         "UAI": {
-            "high": ["regel", "struktur", "planlægning", "klarhed", "præcision", "forudsigelig", "stabilitet", "orden", "protokol", "sikkerhed"],
-            "low": ["fleksibel", "tilpasning", "improvisere", "uklarhed", "risiko", "spontan", "pragmatisk", "fleksibilitet", "eventyr"],
+            "high": ["regel", "struktur", "orden", "system", "klart", "sikkerhed", "procedure", "præcision"],
+            "low": ["fleksibel", "fleksibilitet", "pragmatisk", "improvisere", "risiko", "tilpasning", "tilpas", "skiftende"],
         },
         "MAS": {
-            "high": ["præstation", "succes", "konkurrence", "vinde", "ærgerrighed", "gennemslag", "kraft", "styrke", "kompetence"],
-            "low": ["omsorg", "kooperation", "forhold", "livskvalitet", "beskedenhed", "medfølelse", "fællesskab", "hensyn", "forståelse"],
+            "high": ["præstation", "succes", "gevinst", "sejr", "konkurrence", "styrke", "kraft"],
+            "low": ["samarbejde", "omsorg", "omhu", "fællesskab", "medmenneskelig", "rørende", "empati"],
         },
         "LTO": {
-            "high": ["langfristet", "fremtid", "planlægning", "spare", "investering", "tålmodighed", "kontinuitet", "bæredygtighed", "arv"],
-            "low": ["øjeblikket", "nu", "nuet", "hurtig", "straks", "resultat", "tradition", "fortid", "arv", "i dag"],
+            "high": ["fremtid", "plan", "investering", "kontinuitet", "ansvar", "forpligtelse", "langsigtet"],
+            "low": ["nu", "øjeblikket", "straks", "nyder", "spontan", "øjebliks", "nu"],
         },
         "IND": {
-            "high": ["nydelse", "fornøjelse", "frihed", "fryd", "glæde", "afslapning", "lyst", "livets lyst"],
-            "low": ["tilbageholdelse", "disciplin", "mådehold", "selvbeherskelse", "pligt", "forpligtelse", "mådehold"],
+            "high": ["nyde", "nydelse", "frihed", "tilfredsstillelse", "fryd", "hygge", "frejdig"],
+            "low": ["tilbageholdenhed", "disciplin", "pligt", "mådehold", "selvkontrol", "forsigtig"],
         },
     },
 }
@@ -264,20 +264,11 @@ def get_expected_keywords(scores: dict[str, tuple[int, str]], language: str = "e
 
 
 def detect_language(text: str) -> str:
-    """Detect likely language of text content.
+    """Detect likely language of text content (synchronized with validate_hofstede_derived.py).
     
-    Uses simple heuristics: look for language-specific keywords, patterns.
-    Returns language code: "en", "de", "da", or defaults to "en".
+    Uses heuristic keyword markers. Returns language code: "en", "de", "da".
     """
     text_lower = text.lower()
-    
-    # Danish markers: Danish-specific words and characters
-    danish_markers = [
-        "og ", "der ", "det ", "den ", "ja ",  # Danish words
-        "ø", "å", "æ",  # Danish characters
-        "købe", "græs", "være", "være", "året",  # More Danish words
-        "hvad", "hvem", "danske",  # Danish question words
-    ]
     
     # German markers: common German words and grammatical patterns
     german_markers = [
@@ -289,15 +280,21 @@ def detect_language(text: str) -> str:
         "kein", "keine", "keinem", "keinen",            # German negation
     ]
     
-    danish_count = sum(1 for marker in danish_markers if marker in text_lower)
+    # Danish markers
+    danish_markers = [
+        "den ", "det ", "er ", "og ", "at ", "ikke ",
+        "han ", "hun ", "de ", "da ", "jer ", "jeg ",
+        "ham ", "hendes ", "hvis ", "hvor ",
+        "æ", "ø", "å",
+        "har ", "skal ", "blev ", "fra ",
+    ]
+    
     german_count = sum(1 for marker in german_markers if marker in text_lower)
+    danish_count = sum(1 for marker in danish_markers if marker in text_lower)
     
-    # If significant Danish markers found, classify as Danish (prioritize over German)
-    if danish_count >= 2:
+    if danish_count >= german_count and danish_count >= 3:
         return "da"
-    
-    # If significant German markers found, classify as German
-    if german_count >= 3:
+    elif german_count >= 3:
         return "de"
     
     return "en"

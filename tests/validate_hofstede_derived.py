@@ -97,7 +97,7 @@ DIMENSION_KEYWORDS_BY_LANGUAGE = {
         },
         "UAI": {
             "high": ["regel", "struktur", "orden", "system", "klart", "sikkerhed", "procedure", "præcision"],
-            "low": ["fleksibel", "pragmatisk", "improvisere", "risiko", "tilpasning", "skiftende"],
+            "low": ["fleksibel", "fleksibilitet", "pragmatisk", "improvisere", "risiko", "tilpasning", "tilpas", "skiftende"],
         },
         "MAS": {
             "high": ["præstation", "succes", "gevinst", "sejr", "konkurrence", "styrke", "kraft"],
