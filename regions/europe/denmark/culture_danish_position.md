@@ -80,6 +80,6 @@ Lighed gennem individuelle valg.
 ---
 **Hofstede:** PDI 18 · IDV 74 · UAI 23 · MAS 16 · LTO 35 · IND 70
 
-*culture_danish_position.md - 07.05.2026*
+*culture_danish_position.md - 08.05.2026*
 
 v0.1.0 - KAI Worlds

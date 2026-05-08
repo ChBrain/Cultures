@@ -77,8 +77,8 @@ Erinnern.
 Verpflichtung gegenüber der Zukunft.
 
 ---
-**Hofstede:** PDI Low · IDV High · UAI High · MAS High · LTO Very High · IND Low
+**Hofstede:** PDI 35 · IDV 67 · UAI 65 · MAS 66 · LTO 83 · IND 40
 
-*culture_german_position.md - 07.05.2026*
+*culture_german_position.md - 08.05.2026*
 
 v0.1.0 - KAI Worlds
