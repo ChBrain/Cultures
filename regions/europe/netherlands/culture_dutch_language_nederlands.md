@@ -13,6 +13,7 @@ Kortaf omdat alles voor de kern iets kost.
 De taal van de transactie die sluit.
 De factuur die ook de relatie is.
 Het woord dat zijn eigen gewicht draagt.
+Risico van het gewone woord: het landt waar het wil.
 
 ## Orders
 Zeg het.
@@ -21,7 +22,6 @@ Zeg het.
 De aanname dat recht door zee neutraal is.
 Buiten de Nederlandse kamer krijgt het gewone woord gewicht onderweg.
 De taal had zich daar niet op voorbereid.
-Het onderhandelen over de lading is extra belasting.
 
 ## Drives
 Op dat verlies:

@@ -26,7 +26,6 @@ Niet als moraal.
 Als ontdekking: uitsluiting kost meer dan insluiting.
 Vastgesteld in 1579. Staat nog steeds.
 Pragmatisch, niet principieel.
-Het draagt de toekomst.
 
 ## Orders
 Beweeg.

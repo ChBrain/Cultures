@@ -15,6 +15,8 @@ Het was de ontdekking dat uitsluiting de dijk kost.
 Iedereen heeft de dijk nodig.
 Dus iedereen zit aan tafel.
 Samenwerking is de prijs van het water.
+De dijk is een plan voor de toekomst.
+De kracht ervan: het houdt ook als niemand het wil.
 
 ## Apparent
 Het Sociaal-Economische Raad. 1950.
