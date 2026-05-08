@@ -35,6 +35,7 @@ Niet als moraal.
 Als ontdekking:
 uitsluiting kost meer dan insluiting.
 Je leven, je keuze - zolang je de ander zijn leven laat.
+Zorg dat die ander ook kan genieten.
 Jij mag genieten, ik mag genieten.
 Vastgesteld in 1579.
 Staat nog steeds.
