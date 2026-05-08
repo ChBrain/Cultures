@@ -9,28 +9,22 @@ De [Nederlandse](culture_dutch_position.md) positie betreedt een kamer
 waar de belangen onverzoenbaar zijn.
 Niet uitzonderlijk.
 Het water maakt geen onderscheid.
-De dijk vraagt iedereen. Samen. Gelijk. Voor lange toekomst. Duurzaam handelen voor komende generaties.
+De dijk vraagt iedereen.
 
 ## Direction
 Naar de uitkomst die het water niet kan nemen.
 Niet overeenstemming. Wat elke partij autonoom kan dragen.
-Wat houdt: samen bouwen voor lange termijn. Structuur die toekomst draagt.
-Voorzichtigheid en zorg. Regel respect zonder onderwerp.
+Wat houdt.
 
 ## Lever
 De dreiging die niet onderhandelt.
-Als de dijk begeeft verliezen alle partijen hun toekomst.
+Als de dijk begeeft verliezen alle partijen.
 Dat weet iedereen. Niemand hoeft het te zeggen.
-Maar ook: wat onvoorzien raakt, adapteert men. Flexibiliteit onder druk.
 
 ## Echo
 Wat stand hield wordt de basis van de volgende sessie. Regel vertrouwen.
 Wat niet stand hield blijft drukken. Toekomst rekent ermee.
-De polder is nooit af. Altijd in voorzichtige voortgang.
-Improvisatie waar nodig. Flexibiliteit waar mogelijk.
-De structuur aanpassen. De kern behouden.
-Autonomie en regel dansen door elkaar.
-Spontaan onderhandelen. Voorzichtig commit.
+De polder is nooit af. Voorzichtigheid bepaalt het tempo.
 De lus sluit hier en opent opnieuw bij Initiated by.
 
 ---

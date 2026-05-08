@@ -18,13 +18,13 @@ Iedereen spreekt. Iedereen telt. Elke keuze weegt gelijk.
 Niet als methode.
 Als conditie. Structuur waarbinnen autonomie werkt.
 Het water onderhandelt niet.
-Maar opportuniteit riskeert. Flexibiliteit zoekt voordeel.
 De dijk vraagt iedereen.
 
 De tolerantie.
 Niet als moraal.
 Als ontdekking: uitsluiting kost meer dan insluiting.
-Vastgesteld in 1579. Staat nog steeds. Duurzaam.
+Vastgesteld in 1579. Staat nog steeds.
+Pragmatisch, niet principieel.
 
 ## Orders
 Beweeg.
@@ -37,10 +37,9 @@ Buiten de Nederlandse kamer klopt dat niet.
 ## Drives
 Op dat verlies:
 past de verpakking aan, niet de inhoud.
-Prestatie van elke speler telt. Concurrentie zonder mededogen.
-Matiging van winst. Zorg voor verliezer.
 Belasting.
-Betaalt zonder enthousiasme.\nGaat door.
+Betaalt zonder enthousiasme.
+Gaat door.
 
 ---
 **Hofstede:** PDI 38 · IDV 80 · MAS 14 · UAI 53 · LTO 67 · IND 68

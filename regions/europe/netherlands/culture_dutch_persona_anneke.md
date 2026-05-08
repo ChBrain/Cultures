@@ -16,9 +16,8 @@ Dan wacht ze.
 Twee partijen. Onverzoenbaar, denken ze.
 Anneke stelt de eerste vraag aan de partij die hem het minst verwacht.
 Zo dat het antwoord de andere partij iets kost om te negeren.
-Each partij draagt autonome keuze in de zin.
-De partijen bereiken iets. Regel en respect houden stand.
-Ze schrijft het op. Duurzaam document.
+De partijen bereiken iets.
+Ze schrijft het op.
 Ze factureert op uren.
 
 ## Shadow

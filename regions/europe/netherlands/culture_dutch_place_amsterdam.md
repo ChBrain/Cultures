@@ -5,33 +5,28 @@
 - Culture: Netherlands
 
 ## Shown
-Zeventiende-eeuwse grachtengordel. UNESCO. Gebouwd op palen. Ondersteuning voor toekomst.
-Fietsen. Meer per hoofd dan waar ook ter wereld. Een genieten van eigen snelheid.
-Gedoogkoffieshop. Open. Legaal illegaal. Persoonlijke keuze onder procedure.
-Het Rijksmuseum. Rembrandt. Vermeer. Kunst waarin genieten centraal staat.
-Smalle gevels. Elk zo breed als het pakhuis erachter. Transparantie der doeleinden.
+Zeventiende-eeuwse grachtengordel. UNESCO. Gebouwd op palen.
+Fietsen. Meer per hoofd dan waar ook ter wereld.
+Gedoogkoffieshop. Open. Legaal illegaal.
+Het Rijksmuseum. Rembrandt. Vermeer.
+Smalle gevels. Elk zo breed als het pakhuis erachter.
 Hijsbalken boven de ramen. De handel zit in de architectuur.
 
 ## Holds
 [Nederlands](culture_dutch_position.md).
-Gelijkheid. Autonomie. Zorg.
-Samenwerking in het dagelijks leven.
 [Het Poldermodel](culture_dutch_piece_poldermodel.md).
 De grachtengordel als infrastructuur, niet als decor.
 
 ## Offers
-Je kunt het zeggen zonder het in te leiden. Je autonomie.
-Je kunt het oneens zijn zonder je te verontschuldigen. Je keuze.
-Je kunt vertrekken zonder uitleg. Je vrijheid.
-De improvisatie op regels is welkom. Flexibiliteit waar zij leidt tot iets beters.
-Je riskeert zonder vergunning eerst in te halen.
-De kamer verwacht de korte lijn en respecteert dit als regel.
+Je kunt het zeggen zonder het in te leiden.
+Je kunt het oneens zijn zonder je te verontschuldigen.
+Je kunt vertrekken zonder uitleg.
+De kamer verwacht de korte lijn.
 
 ## Withheld
 De privéberekening of de tolerantie nog werkt. Die loopt continu.
-De matiging waarop alles rust. Niet ieder genot krijgt ruimte.
-Zorg voor morgen tempert genot vandaag.
-Het resultaat van jarenlange discipline.\nWie denkt dat de gedoogruimte onbegrensd is heeft de kamer verkeerd gelezen.
+Matiging is de stille voorwaarde.
+Wie denkt dat de gedoogruimte onbegrensd is heeft de kamer verkeerd gelezen.
 
 ---
 *culture_dutch_place_amsterdam.md - 08.05.2026*
