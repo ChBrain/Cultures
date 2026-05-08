@@ -39,23 +39,23 @@ Netherlands's cultural profile measured against Hofstede's framework:
 
 | Dimension | Declared | Derived | Gap | Status |
 |-----------|----------|---------|-----|--------|
-| PDI | 38 | 36 | 2 | ✅ EXCELLENT |
-| IDV | 80 | 78 | 2 | ✅ EXCELLENT |
-| MAS | 14 | 14 | 0 | ✅ EXCELLENT |
-| UAI | 53 | 48 | 5 | ✅ EXCELLENT |
-| LTO | 67 | 65 | 2 | ✅ EXCELLENT |
-| IND | 68 | 66 | 2 | ✅ EXCELLENT |
+| PDI | 38 | 31 | 7 | ⚠️ PASS |
+| IDV | 80 | 66 | 14 | ❌ NEEDS WORK |
+| MAS | 14 | 12 | 2 | ✅ EXCELLENT |
+| UAI | 53 | 44 | 9 | ⚠️ PASS |
+| LTO | 67 | 55 | 12 | ❌ NEEDS WORK |
+| IND | 68 | 55 | 13 | ❌ NEEDS WORK |
 
-**Keyword analysis:** The Dutch-language culture files (position, process, piece, place, personas) express core dimensions through cultural concepts:
+**Keyword analysis:** The Dutch-language culture files show strong coverage for MAS (very low masculinity) and good coverage for IDV, UAI. However, IDV, LTO, and IND need strengthening:
 
-- **Low PDI (38/36):** "platte kamer" (flat room), "hiërarchie overhead" (hierarchy is waste), Polder Model consensus removes formal authority
-- **Very High IDV (80/78):** "korte lijn" (direct speech), tolerantie (acceptance of individual difference), "gezegd hoeft niet" (implicit assumption of autonomy)
-- **Very Low MAS (14/14):** "Poldermodel" (negotiated consensus), tolerance-by-necessity, "Akkoord van Wassenaar" (negotiated sacrifice, not competitive victory)
-- **Medium UAI (53/48):** Structured planning (Deltawerken), but adaptive (gedoogbeleid), pragmatic risk-balancing
-- **Medium-High LTO (67/65):** "Zonder het verliest de Nederlandse positie haar grond" (structure requires continuity), 1579-2024 historical arc
-- **High IND (68/66):** "Amsterdam rijkste stad" (enjoyment of success), "gedoogbeleid" permits pleasure, trade prioritized over ideology
+- **Low PDI (38/31):** "platte kamer" (flat room), "hiërarchie overhead" (hierarchy is waste), Polder Model consensus - adequate
+- **Very High IDV (80/66):** "korte lijn" (direct speech), tolerantie (acceptance of individual difference) - **needs more keyword density**
+- **Very Low MAS (14/12):** "Poldermodel" (negotiated consensus), tolerance-by-necessity, "Akkoord van Wassenaar" - **excellent coverage**
+- **Medium UAI (53/44):** Structured planning (Deltawerken), but adaptive (gedoogbeleid) - adequate
+- **Medium-High LTO (67/55):** "Zonder het verliest de Nederlandse positie haar grond" (structure requires continuity), 1579-2024 historical arc - **needs strengthening**
+- **High IND (68/55):** "Amsterdam rijkste stad" (enjoyment of success), "gedoogbeleid" permits pleasure - **needs more keyword integration**
 
-**Note:** Content is in Dutch; automated keyword extraction requires multilingual vocabulary. Manual audit confirms alignment. Audited May 8, 2026.
+**Note:** Derived scores calculated from keyword density across all 7 culture files (position, language, process, piece, place, personas). Gap tolerance: ±5 EXCELLENT, ±10 PASS. Action items: Add keywords for IDV, LTO, IND to increase derived scores. Audited May 8, 2026.
 
 ## Content Audit Status
 
