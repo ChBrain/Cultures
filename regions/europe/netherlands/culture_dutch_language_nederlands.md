@@ -10,6 +10,7 @@ De zin begint waar hij moet beginnen.
 Niet kortaf uit onbeleefdheid.
 Kortaf omdat alles voor de kern iets kost.
 Individueel oordeel. Autonomie in de uitdrukking. Elke spreker draagt eigen verantwoordelijkheid.
+Risico van misverstand. Spontaan spreken boven voorbereiding.
 
 De taal van de transactie die sluit.
 De factuur die ook de relatie is.

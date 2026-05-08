@@ -22,6 +22,7 @@ Werkgevers, vakbonden, overheid aan dezelfde tafel.
 Het woord polderen staat in het woordenboek als werkwoord.
 De Deltawerken besloten binnen een jaar na 1953.
 Gedoogkoffieshops. Open. Legaal illegaal.
+Flexibiliteit in praktijk. Risico van grenzen die verschuiven.
 
 ## Yearbook
 1421: Sint-Elisabethsvloed. Zestig dorpen verdronken in één nacht. Het water maakt geen onderscheid. De les: samenwerking voor voortbestaan.

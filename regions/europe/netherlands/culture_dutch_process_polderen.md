@@ -27,8 +27,10 @@ Maar ook: wat onvoorzien raakt, adapteert men. Flexibiliteit onder druk.
 Wat stand hield wordt de basis van de volgende sessie. Regel vertrouwen.
 Wat niet stand hield blijft drukken. Toekomst rekent ermee.
 De polder is nooit af. Altijd in voorzichtige voortgang.
+Improvisatie waar nodig. Flexibiliteit waar mogelijk.
 De structuur aanpassen. De kern behouden.
 Autonomie en regel dansen door elkaar.
+Spontaan onderhandelen. Voorzichtig commit.
 De lus sluit hier en opent opnieuw bij Initiated by.
 
 ---

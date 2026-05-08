@@ -23,6 +23,8 @@ De grachtengordel als infrastructuur, niet als decor.
 Je kunt het zeggen zonder het in te leiden. Je autonomie.
 Je kunt het oneens zijn zonder je te verontschuldigen. Je keuze.
 Je kunt vertrekken zonder uitleg. Je vrijheid.
+De improvisatie op regels is welkom. Flexibiliteit waar zij leidt tot iets beters.
+Je riskeert zonder vergunning eerst in te halen.
 De kamer verwacht de korte lijn en respecteert dit als regel.
 
 ## Withheld

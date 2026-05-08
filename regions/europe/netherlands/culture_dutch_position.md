@@ -18,6 +18,7 @@ Iedereen spreekt. Iedereen telt. Elke keuze weegt gelijk.
 Niet als methode.
 Als conditie. Structuur waarbinnen autonomie werkt.
 Het water onderhandelt niet.
+Maar opportuniteit riskeert. Flexibiliteit zoekt voordeel.
 De dijk vraagt iedereen.
 
 De tolerantie.
