@@ -2,14 +2,23 @@
 
 **Language(s):** German (Hochdeutsch)
 
-This folder contains culture content for Germany: historical personas, cultural pieces, and geographical places that represent German society and identity.
+---
 
-## Quick Start
+## Download
 
-Download the complete Germany culture package for Claude.ai:
-- [**germany.zip**](https://github.com/ChBrain/Cultures/releases/latest/download/germany.zip) - All culture files + engine stack + instructions
+The complete Germany culture package for Claude.ai:
+- [**germany.zip**](https://github.com/ChBrain/Cultures/releases/latest/download/germany.zip)
 
-The zip contains all culture files flattened at root level with links rewritten for Claude consumption.
+Includes all culture files + engine stack + Claude instructions.
+
+---
+
+## Install
+
+1. Extract the zip to your Claude project
+2. Upload all files (engine/ + culture/)
+3. Run the engine/instructions.md to initialize
+4. Reference culture_german_*.md files in your prompts
 
 ## Content Overview
 
@@ -47,6 +56,18 @@ Germany's cultural profile measured against Hofstede's framework:
 - **Low IND:** Restraint over indulgence. Gratification of desires is regulated by social norms; deferred reward and self-discipline carry more weight than immediate enjoyment.
 
 These dimensions inform the **[Position](culture_german_position.md)** (how Germany operates), **Pieces** (historical moments where dimensions collided), **Place** (Berlin's infrastructure and social patterns), and **Personas** (how individuals navigate these cultural pressures). The position file carries a Hofstede footer naming the six dimensions; the levels and sources live here.
+
+## Content Audit Status
+
+| File | Type | Verified | Status | Notes |
+|------|------|----------|--------|-------|
+| `culture_german_position.md` | Position | Yes | ✓ Complete | Culture anchor; Hofstede-aligned |
+| `culture_german_language_hochdeutsch.md` | Language | Yes | ✓ Complete | Linguistic anchor (Hochdeutsch) |
+| `culture_german_process_erinnern.md` | Process | Yes | ✓ Complete | Erinnern (post-conflict reckoning) |
+| `culture_german_piece_grundgesetz.md` | Piece | Yes | ✓ Complete | Grundgesetz (1949 West German constitution) |
+| `culture_german_place_berlin.md` | Place | Yes | ✓ Complete | Capital city as geographical anchor |
+| `culture_german_persona_brigitte.md` | Persona | Yes | ✓ Complete | Female lawyer; legal/family expertise |
+| `culture_german_persona_christian.md` | Persona | Yes | ✓ Complete | Male developer; technical/systematic |
 
 ---
 

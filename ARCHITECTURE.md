@@ -289,6 +289,66 @@ More of each is allowed.
 
 ---
 
+## Country README Structure
+
+Every country folder must contain a **README.md** that follows this structure:
+
+```markdown
+# <Country> - Culture Content
+
+**Language(s):** <Language(s)>
+
+---
+
+## Download
+
+The complete <Country> culture package for Claude.ai:
+- [**<country>.zip**](https://github.com/ChBrain/Cultures/releases/latest/download/<country>.zip)
+
+Includes all culture files + engine stack + Claude instructions.
+
+---
+
+## Install
+
+1. Extract the zip to your Claude project
+2. Upload all files (engine/ + culture/)
+3. Run the engine/instructions.md to initialize
+4. Reference culture_<adj>_*.md files in your prompts
+
+## Content Overview
+
+[Table of files and descriptions]
+
+## Hofstede Cultural Dimensions - <Country>
+
+[Full Hofstede documentation]
+
+---
+
+Audited [DATE]
+
+*v0.1.0 - Kai Schlueter - Cultures - [MONTH YEAR]*
+```
+
+### Purpose of Three-Section Design
+
+- **Download:** Instructions specific to GitHub releases (removed when building zips)
+- **Install:** Instructions that work in both GitHub context and in the zip (kept in zips)
+- **Content:** Culture overview, Hofstede dimensions, file descriptions (kept in zips)
+
+### Transformation for Release Zips
+
+When building release zips in `.github/workflows/build-zips.yml`, the workflow:
+1. Reads each country's README.md
+2. Strips everything up to (and including) the first `---` divider (removes Download section)
+3. Includes the remaining Install + Content sections in the zip
+4. Flattens relative links from nested folder structure (e.g., `../../engine/stack.md` → `stack.md`)
+
+This allows README.md to work identically in both contexts with minimal transformation: the same file serves GitHub browsers (full) and zip users (trimmed).
+
+---
+
 ## Position
 
 The country's operating logic.
