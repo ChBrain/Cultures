@@ -62,8 +62,6 @@ These dimensions inform the **[Position](culture_danish_position.md)** (how Denm
 
 ---
 
-**Audited:** May 2026
-
----
+Audited May 8, 2026
 
 *v0.1.0 - Kai Schlueter - Cultures - May 2026*
