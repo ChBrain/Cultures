@@ -72,6 +72,10 @@ jobs:
               except:
                   return False
           
+          def is_region_manifest(region_dir):
+              """Check if region folder is a manifest (has README.md at root)."""
+              return (region_dir / 'README.md').exists()
+          
           def rewrite_links_for_flat_zip(content):
               """Rewrite links from nested folder structure to flat structure.
               
@@ -97,7 +101,59 @@ jobs:
               
               return content
           
-          # Find all complete cultures and create structured zips
+          def create_culture_zip(staging_dir, zip_name):
+              """Helper to create a single culture zip from staging directory."""
+              zip_path = Path(f'dist/{zip_name}.zip')
+              with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zf:
+                  # Add root files
+                  for root_file in ['LICENSE', 'README.md', 'REFERENCES.md']:
+                      file_path = staging_dir / root_file
+                      if file_path.exists():
+                          zf.write(file_path, arcname=root_file)
+                  
+                  # Add engine/ subdirectory files
+                  for engine_file in (staging_dir / 'engine').glob('*.md'):
+                      zf.write(engine_file, arcname=f'engine/{engine_file.name}')
+                  
+                  # Add culture/ subdirectory files
+                  culture_files = list((staging_dir / 'culture').glob('*.md'))
+                  for culture_file in culture_files:
+                      zf.write(culture_file, arcname=f'culture/{culture_file.name}')
+              
+              return len(culture_files)
+          
+          def stage_culture_files(staging_dir, culture_dir, culture_name):
+              """Stage culture files into the staging directory."""
+              engine_path = Path('engine')
+              
+              # Copy instructions.md from claude-specific or fallback to generic
+              claude_instructions = engine_path / 'claude' / 'instructions.md'
+              if claude_instructions.exists():
+                  shutil.copy2(claude_instructions, staging_dir / 'engine' / 'instructions.md')
+              
+              # Copy stack.md
+              stack_src = engine_path / 'stack.md'
+              if stack_src.exists():
+                  shutil.copy2(stack_src, staging_dir / 'engine' / 'stack.md')
+              
+              # Copy culture/ files (all culture_*.md files from country dir)
+              culture_count = 0
+              for culture_file in culture_dir.glob('culture_*.md'):
+                  shutil.copy2(culture_file, staging_dir / 'culture' / culture_file.name)
+                  culture_count += 1
+              
+              # Rewrite links in CULTURE FILES ONLY (strip ../ traversal for flat structure)
+              for markdown_file in (staging_dir / 'culture').glob('*.md'):
+                  try:
+                      content = markdown_file.read_text(encoding='utf-8')
+                      content = rewrite_links_for_flat_zip(content)
+                      markdown_file.write_text(content, encoding='utf-8')
+                  except:
+                      pass
+              
+              return culture_count
+          
+          # Stage 4a: Individual country culture zips
           regions_path = Path('regions')
           for region_dir in regions_path.iterdir():
               if not region_dir.is_dir():
@@ -146,26 +202,74 @@ jobs:
                       if references_src.exists():
                           shutil.copy2(references_src, staging_dir / 'REFERENCES.md')
                       
-                      # Copy engine/ files (instructions.md, stack.md)
-                      engine_path = Path('engine')
+                      # Stage engine + culture files
+                      culture_count = stage_culture_files(staging_dir, country_dir, culture_name)
                       
-                      # Copy instructions.md from claude-specific or fallback to generic
+                      # Create structured zip
+                      create_culture_zip(staging_dir, culture_name)
+                      
+                      # Cleanup staging
+                      shutil.rmtree(staging_dir)
+                      
+                      print(f'Created {culture_name}.zip with structured layout (LICENSE + README + REFERENCES + engine/ + culture/{culture_count} files)')
+          
+          # Stage 4b: Regional combined zips (manifests that combine multiple countries)
+          for region_dir in regions_path.iterdir():
+              if not region_dir.is_dir():
+                  continue
+              
+              if is_region_manifest(region_dir):
+                  region_name = region_dir.name
+                  
+                  # Find all complete cultures in this region
+                  complete_cultures = []
+                  for country_dir in region_dir.iterdir():
+                      if country_dir.is_dir() and is_complete_culture(country_dir):
+                          complete_cultures.append(country_dir)
+                  
+                  # Only create regional zip if there are complete cultures
+                  if complete_cultures:
+                      # Create staging directory for combined regional zip
+                      staging_dir = Path(f'dist/staging-{region_name}')
+                      if staging_dir.exists():
+                          shutil.rmtree(staging_dir)
+                      staging_dir.mkdir(parents=True, exist_ok=True)
+                      
+                      # Create subdirectories
+                      (staging_dir / 'engine').mkdir(exist_ok=True)
+                      (staging_dir / 'culture').mkdir(exist_ok=True)
+                      
+                      # Copy root files
+                      if Path('LICENSE').exists():
+                          shutil.copy2('LICENSE', staging_dir / 'LICENSE')
+                      
+                      # Copy region README (manifest)
+                      region_readme = region_dir / 'README.md'
+                      if region_readme.exists():
+                          readme_content = region_readme.read_text(encoding='utf-8')
+                          readme_content = rewrite_links_for_flat_zip(readme_content)
+                          (staging_dir / 'README.md').write_text(readme_content, encoding='utf-8')
+                      
+                      # Copy engine files
+                      engine_path = Path('engine')
                       claude_instructions = engine_path / 'claude' / 'instructions.md'
                       if claude_instructions.exists():
                           shutil.copy2(claude_instructions, staging_dir / 'engine' / 'instructions.md')
                       
-                      # Copy stack.md
                       stack_src = engine_path / 'stack.md'
                       if stack_src.exists():
                           shutil.copy2(stack_src, staging_dir / 'engine' / 'stack.md')
                       
-                      # Copy culture/ files (all culture_*.md files from country dir)
-                      culture_count = 0
-                      for culture_file in country_dir.glob('culture_*.md'):
-                          shutil.copy2(culture_file, staging_dir / 'culture' / culture_file.name)
-                          culture_count += 1
+                      # Combine all culture files from all complete countries
+                      total_culture_count = 0
+                      for country_dir in complete_cultures:
+                          for culture_file in country_dir.glob('culture_*.md'):
+                              # Copy with prefix to avoid conflicts: culture_denmark_*.md, culture_germany_*.md, etc.
+                              dest_name = culture_file.name
+                              shutil.copy2(culture_file, staging_dir / 'culture' / dest_name)
+                              total_culture_count += 1
                       
-                      # Rewrite links in CULTURE FILES ONLY (strip ../ traversal for flat structure)
+                      # Rewrite links in all culture files
                       for markdown_file in (staging_dir / 'culture').glob('*.md'):
                           try:
                               content = markdown_file.read_text(encoding='utf-8')
@@ -174,27 +278,13 @@ jobs:
                           except:
                               pass
                       
-                      # Create structured zip
-                      zip_path = Path(f'dist/{culture_name}.zip')
-                      with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zf:
-                          # Add root files
-                          for root_file in ['LICENSE', 'README.md', 'REFERENCES.md']:
-                              file_path = staging_dir / root_file
-                              if file_path.exists():
-                                  zf.write(file_path, arcname=root_file)
-                          
-                          # Add engine/ subdirectory files
-                          for engine_file in (staging_dir / 'engine').glob('*.md'):
-                              zf.write(engine_file, arcname=f'engine/{engine_file.name}')
-                          
-                          # Add culture/ subdirectory files
-                          for culture_file in (staging_dir / 'culture').glob('*.md'):
-                              zf.write(culture_file, arcname=f'culture/{culture_file.name}')
+                      # Create regional combined zip
+                      culture_count = create_culture_zip(staging_dir, region_name)
                       
                       # Cleanup staging
                       shutil.rmtree(staging_dir)
                       
-                      print(f'Created {zip_path.name} with structured layout (LICENSE + README + REFERENCES + engine/ + culture/{culture_count} files)')
+                      print(f'Created {region_name}.zip as regional combined manifest ({len(complete_cultures)} countries, {total_culture_count} culture files)')
           
           PYTHON_EOF
 
