@@ -12,7 +12,7 @@ Kortaf omdat alles voor de kern iets kost.
 
 De taal van de transactie die sluit.
 De factuur die ook de relatie is.
-Het woord dat zijn eigen gewicht draagt. Geen omhulsel nodig.
+Het woord dat zijn eigen gewicht draagt.
 
 ## Orders
 Zeg het.
@@ -21,6 +21,7 @@ Zeg het.
 De aanname dat recht door zee neutraal is.
 Buiten de Nederlandse kamer krijgt het gewone woord gewicht onderweg.
 De taal had zich daar niet op voorbereid.
+Het onderhandelen over de lading is extra belasting.
 
 ## Drives
 Op dat verlies:

@@ -13,7 +13,7 @@ Omwegen kosten meer dan de zaak waard is.
 De platte kamer.
 Hiërarchie is overhead die niemand wil betalen.
 Iedereen spreekt. Iedereen telt. Elke keuze weegt gelijk.
-Voorzichtigheid is geen zwakte. Zorg voor de groep ook niet.
+Voorzichtigheid en zorg zijn ook geen overhead.
 
 [Het Poldermodel](culture_dutch_piece_poldermodel.md).
 Niet als methode.
@@ -26,6 +26,7 @@ Niet als moraal.
 Als ontdekking: uitsluiting kost meer dan insluiting.
 Vastgesteld in 1579. Staat nog steeds.
 Pragmatisch, niet principieel.
+Het draagt de toekomst.
 
 ## Orders
 Beweeg.

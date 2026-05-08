@@ -14,15 +14,13 @@ De tolerantie was geen ideaal.
 Het was de ontdekking dat uitsluiting de dijk kost.
 Iedereen heeft de dijk nodig.
 Dus iedereen zit aan tafel.
-Zorg dat de ander ook overleeft. De dijk eist dat.
-Empathie speelt hier geen rol. De noodzaak wel.\nSucces is dat de dijk morgen nog staat.
+Samenwerking is de prijs van het water.
 
 ## Apparent
 Het Sociaal-Economische Raad. 1950.
 Werkgevers, vakbonden, overheid aan dezelfde tafel.
 Het woord polderen staat in het woordenboek als werkwoord.
 De Deltawerken besloten binnen een jaar na 1953.
-Waterbeheer als toekomstplan.
 Gedoogkoffieshops. Open. Legaal illegaal.
 
 ## Yearbook

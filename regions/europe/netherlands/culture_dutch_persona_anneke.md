@@ -16,7 +16,7 @@ Dan wacht ze.
 Twee partijen. Onverzoenbaar, denken ze.
 Anneke stelt de eerste vraag aan de partij die hem het minst verwacht.
 Zo dat het antwoord de andere partij iets kost om te negeren.
-De partijen bereiken iets.
+De partijen bereiken iets. Haar maatstaf is succes.
 Ze schrijft het op.
 Ze factureert op uren.
 

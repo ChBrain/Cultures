@@ -14,13 +14,11 @@ De dijk vraagt iedereen.
 ## Direction
 Naar de uitkomst die het water niet kan nemen.
 Niet overeenstemming. Wat houdt.
-De toekomst van de dijk is het enige doel.
 
 ## Lever
 De dreiging die niet onderhandelt.
 Als de dijk begeeft verliezen alle partijen.
 Dat weet iedereen. Niemand hoeft het te zeggen.
-Het risico onderhandelt voor hen.
 
 ## Echo
 Wat stand hield wordt de basis van de volgende sessie.

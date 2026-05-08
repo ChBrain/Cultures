@@ -27,7 +27,6 @@ De kamer verwacht de korte lijn.
 De privéberekening of de tolerantie nog werkt. Die loopt continu.
 Het resultaat wordt niet aangekondigd.
 Matiging is de stille voorwaarde.
-Empathie voor de buurman is bijzaak. De dijk is hoofd.
 Wie denkt dat de gedoogruimte onbegrensd is heeft de kamer verkeerd gelezen.
 
 ---
