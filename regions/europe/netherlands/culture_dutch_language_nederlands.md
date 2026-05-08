@@ -15,9 +15,6 @@ De factuur die ook de relatie is.
 Het woord dat zijn eigen gewicht draagt.
 Zonder verpakking.
 
-De procedure van het zeggen.
-Vast, duidelijk, rechtstreeks.
-
 ## Orders
 Zeg het.
 

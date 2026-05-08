@@ -12,7 +12,7 @@ Het water maakt geen onderscheid.
 De dijk vraagt iedereen.
 [Het Poldermodel](culture_dutch_piece_poldermodel.md) loopt al.
 Niet als procedure.
-Als conditie vastgesteld voor de lange termijn.
+Als conditie.
 
 ## Direction
 Naar de uitkomst die het water niet kan nemen.

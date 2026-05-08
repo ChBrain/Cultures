@@ -6,17 +6,13 @@
 
 ## Has
 
-De korte lijn.
-Individueel. Autonoom.
+De korte lijn - autonomie zonder omweg.
 
-De platte kamer.
-Gelijkheid zonder hiërarchie.
+De platte kamer - gelijkheid als structuur.
 
-[Het Poldermodel](culture_dutch_piece_poldermodel.md).
-Procedure. Orde. Plan voor lange termijn.
+[Het Poldermodel](culture_dutch_piece_poldermodel.md) - procedure, orde, plan voor toekomst.
 
-De tolerantie.
-Voorzichtigheid. Zorg. Genieten.
+De tolerantie - zorg, genieten, voorzichtigheid.
 
 ## Orders
 Beweeg.
