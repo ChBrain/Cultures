@@ -23,7 +23,7 @@ Desperationen til at få det tilbage.
 Genopbygning af eget rum til at dømme selv.
 
 ---
-**Hofstede:** PDI 18 · IDV 74 · UAI 23 · MAS 16 · LTO 35 · IND 70
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 
 *culture_danish_position.md - 08.05.2026*
 

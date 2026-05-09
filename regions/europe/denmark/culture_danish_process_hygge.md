@@ -34,6 +34,8 @@ Men hygge er kun for dem der vælger det gennem nydelse af tilstedeværelsen.
 Fryd findes når omsorg mødes med autonomi.
 
 ---
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+
 *culture_danish_process_hygge.md - 07.05.2026*
 
 v0.1.0 - KAI Worlds

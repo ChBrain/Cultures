@@ -19,6 +19,8 @@ Er sieht sich als autonom handelnd. Aber seine Erklärungen SIND eine Form von S
 Wenn er zuhört, sagt er zuerst, was falsch ist.
 
 ---
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+
 *culture_german_persona_christian.md - 07.05.2026*
 *Type: Composite*
 

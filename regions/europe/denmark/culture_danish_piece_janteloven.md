@@ -40,6 +40,8 @@ Alle danske børn kan dem.
 2010: Danske cykelstjerner vinder sejre internationalt.
 
 ---
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+
 *culture_danish_piece_janteloven.md - 08.05.2026*
 
 v0.1.0 - KAI Worlds

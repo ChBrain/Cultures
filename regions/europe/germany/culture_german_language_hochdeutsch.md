@@ -42,6 +42,8 @@ Das ist nicht Trost.
 Das ist eine Verpflichtung.
 
 ---
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+
 *culture_german_language_hochdeutsch.md - 07.05.2026*
 
 v0.1.0 - KAI Worlds

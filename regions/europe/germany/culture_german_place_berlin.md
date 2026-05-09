@@ -26,6 +26,8 @@ Die Teilung. Statistisch beendet. Im Denken manchmal nicht.
 Was Ost und West voneinander denken - und trotzdem persönlich bauen - wenn niemand zuhört.
 
 ---
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+
 *culture_german_place_berlin.md - 07.05.2026*
 
 v0.1.0 - KAI Worlds

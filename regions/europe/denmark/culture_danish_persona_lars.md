@@ -19,6 +19,8 @@ Han tror han er neutral. Han har stærk mening og glemmer at andre har samme ret
 Del først, lyt efter. Autonomi gennem respekt for begge.
 
 ---
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+
 *culture_danish_persona_lars.md - 07.05.2026*
 *Type: Composite*
 

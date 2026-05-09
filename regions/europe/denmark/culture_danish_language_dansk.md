@@ -46,6 +46,8 @@ Stilhed som lydighed.
 Selvkontrol omkring ikke at høre andre.
 
 ---
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+
 *culture_danish_language_dansk.md - 07.05.2026*
 
 v0.1.0 - KAI Worlds
