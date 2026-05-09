@@ -66,12 +66,34 @@ def main() -> int:
     # Guard: prevent direct commits to main branch
     current_branch = run_git("rev-parse", "--abbrev-ref", "HEAD")
     if current_branch == "main":
-        print("Γ¥î ERROR: Direct commits to main are forbidden")
+        print(">>> ERROR: Direct commits to main are forbidden")
         print("")
         print("Create a feature branch first:")
         print("  git checkout -b feat/<name>")
         print("")
         return 1
+
+    # Guard: culture branches can only modify regions/ folder
+    # This ensures staged reviews apply only to culture content.
+    if current_branch.startswith("feat/culture-"):
+        all_staged = run_git("diff", "--cached", "--name-only", "--diff-filter=ACMRT")
+        # Safe files (config, validation, meta) can appear anywhere
+        safe_patterns = {".validation-stamp", ".bump-type", ".gitignore", ".editorconfig"}
+        unsafe_files = [
+            f for f in all_staged.splitlines()
+            if not f.startswith("regions/") and f not in safe_patterns
+        ]
+        if unsafe_files:
+            print(">>> ERROR: Culture branch can only modify regions/ folder")
+            print("")
+            print("Unsafe files detected (split to separate branch):")
+            for f in unsafe_files:
+                print(f"  x {f}")
+            print("")
+            print("Culture branches: culture content only")
+            print("Infrastructure/tooling: use chore/ or fix/ branches")
+            print("")
+            return 1
 
     # Run validation orchestrator (L1a → L1b → L2 → L3 → L4) on staged
     # content files only. This matches CI's scope (regions/*.md changed in
@@ -91,11 +113,32 @@ def main() -> int:
             check=False,
         )
         if result.returncode != 0:
-            print(f"Γ¥î VALIDATION FAILED")
+            print(f">>> VALIDATION FAILED")
             print("")
             print(result.stdout.strip())
             print("")
             return 1
+
+    # On culture branches: also run Hofstede validation
+    # Culture content must maintain declared dimension alignment (±10 gap tolerance)
+    if current_branch.startswith("feat/culture-"):
+        culture_files = [
+            f for f in staged_content
+            if "culture_" in f
+        ]
+        if culture_files:
+            result = subprocess.run(
+                [sys.executable, "tests/validate_hofstede_derived.py", *culture_files],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            if result.returncode != 0:
+                print(f">>> HOFSTEDE VALIDATION FAILED")
+                print("")
+                print(result.stdout.strip())
+                print("")
+                return 1
 
     # Write validation stamp: hash of the content tree, excluding the stamp file itself
     # (removing stamp from index avoids a circular hash dependency).
