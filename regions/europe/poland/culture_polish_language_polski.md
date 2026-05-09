@@ -1,0 +1,38 @@
+# Language: Polski
+
+## Owner
+- Project: Cultures
+- Culture: Poland
+
+## Has
+Język słowiański.
+System przypadków - siedem. Rzeczownik zmienia się. Nie słowo zostaje stałe.
+Gendera: każda rzecz ma płeć.
+Rozróżnienie ty/pan-pani. To rozróżnienie jest przymusowe.
+Nie można mówić bez wyboru dystansu.
+Nie można wyboru bez rozumienia kto siedzi naprzeciw.
+Czasami relaks w języku wśród swoich - wtedy zmienia się zwrot.
+Ale wybór zawsze pozostaje widoczny.
+Kto mówi my (jako grupa) musi o tym wiedzieć. Język to każe.
+Polska gramatyka wymaga aktywnego myślenia przed każdym słowem.
+Dyscyplina w wyborze słów. Precyzja jako powinność.
+Porządek który zmienia się, ale tylko wedle reguł.
+To jest struktura. Bez wyjątków.
+
+## Orders
+Przed słowami - zawsze pytanie jak ma się druga osoba. To opieka przed precyzją.
+
+## Loses
+Pewność że wszyscy rozumieją jednakowo.
+Poza grupą polska precyzja brzmi surowo.
+Polska precyzja bez przynależności to tylko zasady.
+
+## Drives
+Na stratę pewności: słowa wybiera się bardziej ostrożnie.
+Przynależność do grupy rośnie. Obowiązek rośnie.
+
+---
+*culture_polish_language_polski.md - 09.05.2026*
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+
+v0.1.0 - KAI Worlds
