@@ -7,6 +7,61 @@ on:
     branches: [main]
 
 jobs:
+  branch-scope-tests:
+    name: Branch scope - test suite
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run branch_scope unit + E2E tests
+        run: python3 -m unittest tests.test_branch_scope tests.test_hook_scope_e2e -v
+
+  branch-scope-mirror:
+    name: Branch scope - enforce on PR diff
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check PR diff against branch scope rules
+        env:
+          BRANCH: ${{ github.head_ref }}
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          set -e
+          git diff --name-only --diff-filter=ACMRT "origin/${BASE_REF}...HEAD" > /tmp/files.txt
+          if [ ! -s /tmp/files.txt ]; then
+            echo "No files changed; skipping scope check."
+            exit 0
+          fi
+          python3 - <<'PY'
+          import os, sys
+          sys.path.insert(0, "tests")
+          from branch_scope import classify_branch, check_scope
+          branch = os.environ["BRANCH"]
+          with open("/tmp/files.txt") as f:
+              files = [l.strip() for l in f if l.strip()]
+          kind = classify_branch(branch)
+          if kind == "main":
+              print(f"ERROR: PR head branch is main; impossible state.")
+              sys.exit(1)
+          ok, unsafe = check_scope(kind, files)
+          if not ok:
+              print(f"ERROR: branch '{branch}' (classified '{kind}') has scope violations:")
+              for u in unsafe:
+                  print(f"  - {u}")
+              sys.exit(1)
+          print(f"OK: branch '{branch}' (classified '{kind}') passes scope check ({len(files)} file(s)).")
+          PY
+
   setup:
     name: Setup - Compute changed files
     runs-on: ubuntu-latest

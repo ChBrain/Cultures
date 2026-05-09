@@ -22,12 +22,17 @@ import re
 CULTURE_BRANCH_PATTERN = re.compile(r"^feat/culture-[a-z0-9][a-z0-9_-]*$")
 
 # Metadata files allowed on culture branches alongside regions/** changes.
-# Exact basename match at repo root only — `subdir/.gitignore` is NOT safe.
+# Exact path match — `subdir/.gitignore` is NOT safe; only the listed paths.
+#
+# `data/hofstede_bag_locks.yaml` is the one cross-boundary file: bag migration
+# PRs (feat/culture-<name>) need to update the lock entry for the country in
+# the same commit that adds the bag YAML. Strategy v2 carves it out explicitly.
 SAFE_PATTERNS = frozenset({
     ".validation-stamp",
     ".bump-type",
     ".gitignore",
     ".editorconfig",
+    "data/hofstede_bag_locks.yaml",
 })
 
 

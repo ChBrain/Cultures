@@ -78,6 +78,18 @@ class TestCheckScope(unittest.TestCase):
             ".gitignore",
             ".bump-type",
             ".editorconfig",
+            "data/hofstede_bag_locks.yaml",
+        ])
+        self.assertTrue(ok)
+        self.assertEqual(unsafe, [])
+
+    def test_culture_allows_lock_index_alongside_bag(self):
+        """Migration PRs (feat/culture-<name>) update the lock index in the
+        same commit as the new bag YAML. Strategy v2 explicit carve-out."""
+        ok, unsafe = check_scope("culture", [
+            "regions/europe/netherlands/hofstede_bag.yaml",
+            "regions/europe/netherlands/hofstede_decisions.md",
+            "data/hofstede_bag_locks.yaml",
         ])
         self.assertTrue(ok)
         self.assertEqual(unsafe, [])
@@ -147,7 +159,12 @@ class TestCheckScope(unittest.TestCase):
 
     def test_safe_patterns_set_locked(self):
         """Pin the safe-pattern set. Any change here is a contract change
-        and should be a deliberate, reviewed edit — not a drive-by addition."""
+        and should be a deliberate, reviewed edit — not a drive-by addition.
+
+        `data/hofstede_bag_locks.yaml` was added per Strategy v2: bag
+        migration PRs update the lock index alongside the bag YAML in the
+        same commit, so it must be allowed on culture branches.
+        """
         self.assertEqual(
             SAFE_PATTERNS,
             frozenset({
@@ -155,6 +172,7 @@ class TestCheckScope(unittest.TestCase):
                 ".bump-type",
                 ".gitignore",
                 ".editorconfig",
+                "data/hofstede_bag_locks.yaml",
             }),
         )
 

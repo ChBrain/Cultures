@@ -119,6 +119,16 @@ class TestHookScopeEnforcement(unittest.TestCase):
         result = _run_hook(self.repo)
         self.assertEqual(result.returncode, 0, result.stdout)
 
+    def test_culture_branch_allows_lock_index_alongside_bag(self):
+        """Bag migration PRs (feat/culture-<name>) update the lock index
+        in the same commit as the new bag YAML. Strategy v2 carve-out."""
+        _checkout(self.repo, "feat/culture-netherlands")
+        _stage(self.repo, "regions/europe/netherlands/hofstede_bag.yaml",
+               "country: netherlands\n")
+        _stage(self.repo, "data/hofstede_bag_locks.yaml", "locks: {}\n")
+        result = _run_hook(self.repo)
+        self.assertEqual(result.returncode, 0, result.stdout)
+
     def test_culture_branch_blocks_infra_changes(self):
         _checkout(self.repo, "feat/culture-netherlands")
         # Don't restage .githooks/pre-commit here - that would overwrite the
