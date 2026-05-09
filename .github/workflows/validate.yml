@@ -273,6 +273,26 @@ jobs:
       - name: Run loader tests
         run: python3 -m unittest tests.test_hofstede_bag_loader -v
 
+  bag-integrity:
+    name: Hofstede - bag integrity (shape, quality, lock, completeness, fork)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Python deps
+        run: pip install -r tests/requirements.txt
+      - name: Run bag integrity tests
+        run: |
+          python3 -m pytest tests/test_hofstede_bag_shape.py \
+                            tests/test_hofstede_bag_quality.py \
+                            tests/test_hofstede_bag_locked.py \
+                            tests/test_hofstede_bag_completeness.py \
+                            tests/test_hofstede_bag_fork.py \
+                            -v
+
   no-changes:
     name: No regions/*.md files changed
     needs: [setup]
