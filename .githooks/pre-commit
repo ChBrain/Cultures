@@ -14,11 +14,34 @@ All validations must pass before commit. CI will verify the stamp gate is presen
 """
 from __future__ import annotations
 
+import re
 import subprocess
 import sys
 from pathlib import Path
 
 UTF8_BOM = b"\xef\xbb\xbf"
+
+# Branch classification:
+#   main    -> commits forbidden
+#   culture -> may only modify regions/** (+ SAFE_PATTERNS)
+#   other   -> may not modify regions/**
+#
+# A branch is "culture" only if it matches CULTURE_BRANCH_PATTERN exactly.
+# Anchored regex avoids silent bypasses on near-miss names like
+# `feat/culture/x` (slash), `feat/cultures-x` (typo), or `feat/culture` (no name).
+CULTURE_BRANCH_PATTERN = re.compile(r"^feat/culture-[a-z0-9][a-z0-9_-]*$")
+
+# Metadata files allowed on culture branches alongside regions/** changes.
+SAFE_PATTERNS = {".validation-stamp", ".bump-type", ".gitignore", ".editorconfig"}
+
+
+def classify_branch(branch: str) -> str:
+    """Return 'main', 'culture', or 'other'."""
+    if branch == "main":
+        return "main"
+    if CULTURE_BRANCH_PATTERN.match(branch):
+        return "culture"
+    return "other"
 
 
 def run_git(*args: str) -> str:
@@ -63,35 +86,54 @@ def main() -> int:
         for f in fixed:
             print(f"  (stripped UTF-8 BOM from {f})")
 
-    # Guard: prevent direct commits to main branch
+    # Guard: classify branch and enforce scope.
     current_branch = run_git("rev-parse", "--abbrev-ref", "HEAD")
-    if current_branch == "main":
+    branch_kind = classify_branch(current_branch)
+
+    if branch_kind == "main":
         print(">>> ERROR: Direct commits to main are forbidden")
         print("")
         print("Create a feature branch first:")
-        print("  git checkout -b feat/<name>")
+        print("  git checkout -b feat/culture-<name>   # culture content")
+        print("  git checkout -b chore/<name>          # infrastructure / tooling")
+        print("  git checkout -b fix/<name>            # corrections")
         print("")
         return 1
 
-    # Guard: culture branches can only modify regions/ folder
-    # This ensures staged reviews apply only to culture content.
-    if current_branch.startswith("feat/culture-"):
-        all_staged = run_git("diff", "--cached", "--name-only", "--diff-filter=ACMRT")
-        # Safe files (config, validation, meta) can appear anywhere
-        safe_patterns = {".validation-stamp", ".bump-type", ".gitignore", ".editorconfig"}
+    all_staged = run_git("diff", "--cached", "--name-only", "--diff-filter=ACMRT").splitlines()
+
+    if branch_kind == "culture":
+        # Culture branch: only regions/** + SAFE_PATTERNS allowed.
         unsafe_files = [
-            f for f in all_staged.splitlines()
-            if not f.startswith("regions/") and f not in safe_patterns
+            f for f in all_staged
+            if not f.startswith("regions/") and f not in SAFE_PATTERNS
         ]
         if unsafe_files:
-            print(">>> ERROR: Culture branch can only modify regions/ folder")
+            print(">>> ERROR: Culture branch can only modify regions/")
             print("")
-            print("Unsafe files detected (split to separate branch):")
+            print("Unsafe files detected (split to a separate branch):")
             for f in unsafe_files:
                 print(f"  x {f}")
             print("")
-            print("Culture branches: culture content only")
-            print("Infrastructure/tooling: use chore/ or fix/ branches")
+            print(f"  Branch:  {current_branch}")
+            print( "  Allowed: regions/** + " + ", ".join(sorted(SAFE_PATTERNS)))
+            print( "  Rule:    feat/culture-<name> branches contain culture content only")
+            print( "  Other:   use chore/<name> or fix/<name> for infrastructure")
+            print("")
+            return 1
+    else:
+        # Non-culture branch: must not modify regions/**.
+        unsafe_files = [f for f in all_staged if f.startswith("regions/")]
+        if unsafe_files:
+            print(">>> ERROR: Non-culture branch cannot modify regions/")
+            print("")
+            print("Culture files detected (split to a feat/culture-<name> branch):")
+            for f in unsafe_files:
+                print(f"  x {f}")
+            print("")
+            print(f"  Branch:  {current_branch}")
+            print( "  Rule:    only feat/culture-<name> branches may modify regions/")
+            print( "  Culture: git checkout -b feat/culture-<name>")
             print("")
             return 1
 
@@ -121,7 +163,7 @@ def main() -> int:
 
     # On culture branches: also run Hofstede validation
     # Culture content must maintain declared dimension alignment (±10 gap tolerance)
-    if current_branch.startswith("feat/culture-"):
+    if branch_kind == "culture":
         culture_files = [
             f for f in staged_content
             if "culture_" in f
