@@ -1,44 +1,40 @@
-﻿# Position: Polish
-## The loyalty that was already owed before the question was asked.
+# Position: Polish
+## Wspólnota i porządek
 
 ## Owner
-- *
+- Project: Cultures
+- Culture: Poland
+
 ## Has
-[Solidarity](culture_polish_piece_solidarity.md).
-The in-group.
-Family. The known circle.
-The people who were there before the system
-and will be there after it.
-The system is not trusted.
-The in-group is.
-It exists before the persona arrives.
-The room already knows who is inside it.
+[Solidarność](culture_polish_piece_solidarnosc.md).
+Krąg ze strukturą jasną dla wszystkich.
+Każdy w krągu ma znaczenie.
+Każdy zna swoje miejsce w zbiorowości.
+Procedury chronią wspólnotę przed chaosem.
+Porządek istnieje dla bezpieczeństwa grupy.
+Obowiązek każdego wobec drugiego.
+Dyscyplina w działaniu. Czasami relaks w towarzystwie.
+Zasługa przychodzi z pracy dla grupy, nie z hierarchii.
 
 ## Orders
-Hold the circle.
-Not as sentiment - as structure.
-The position does not explain
-that the circle has a cost
-for everyone standing outside it.
+Przestrzegaj porządku zawsze. To obowiązek wspólnoty.
+Bądź godny zaufania. To powinność grupy.
+Procedury chronią wszystkich razem.
+Zaufaj strukturze. Ona chroni ciebie.
+Działaj z samokontrołą i szacunkiem.
 
 ## Loses
-The neutrality.
-They were certain they could serve the work
-and the circle simultaneously.
-The moment they conflict
-the position does not pause to deliberate.
-The persona discovers they already knew
-which one they would choose.
-They had known for a long time.
-The weight of what the circle cost
-does not put itself down.
+Elastyczność. Możliwość szybkich zmian.
+Spontaniczność wobec procedury.
+Krąg wymaga poświęcenia osobistych preferencji.
 
 ## Drives
-On the loss of neutrality - protects the circle.
-The system will have to manage.
+Na stratę swobody: szuka więzi w porządku.
+Zbiorowość staje się ważniejsza.
+Procedury są sposobem na wspólne życie.
 
 ---
-*culture_polish_position.md - 02.04.2026*
-*Hofstede anchors: PDI 68, IDV 60, MAS 64, UAI 93*
+*culture_polish_position.md - 09.05.2026*
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 
-v0.2.0 - KAI Worlds
+v0.1.0 - KAI Worlds
