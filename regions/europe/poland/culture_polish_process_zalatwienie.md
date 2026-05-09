@@ -18,8 +18,9 @@ Ku wynikowi poprzez zrozumienie procedury, znalezienie swojego statusu w niej i 
 ## Lever
 Wiedza: znam procedurę. Znam jak procedura praktycznie działa.
 Znam jaką rolę każdy spełnia w procedurze.
+Każda reguła ma powód. Każda struktura ma sens.
 To nie jest pertraktacja.
-To jest rozumienie procedury która przetrwała wszystko.
+To jest rozumienie procedury która przetrwała wszystko, z autonomią w jej ramach.
 Ograniczenie: Każda interakcja tworzy zobowiązanie wspólnotowe.
 Kto otrzyma pomoc, jest dłużny lojalnością grupie.
 Kto nie honoruje procedury, traci miejsce w grupie.

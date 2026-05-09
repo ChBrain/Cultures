@@ -21,7 +21,7 @@ Ludzie chcieli razem działać dla wspólnego sukcesu i osiągnięcia zmian.
 System musiał usiąść przy stole.
 Bo krąg był większy.
 Sukces przychodzi z działania zbiorowości.
-Solidarność działa poprzez jasne procedury i wspólne reguły.
+Solidarność działa poprzez jasne procedury, reguły i wspólne cele.
 Każdy członek miał swoją rolę w grupie.
 Każdy wiedział czego się od niego oczekuje dla zespołu.
 Organizacja przechowała skuteczność poprzez wierność wspólnym celom i procedurze.

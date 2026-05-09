@@ -14,7 +14,7 @@ Procedury chronią wspólnotę przed chaosem.
 Porządek istnieje dla bezpieczeństwa grupy.
 Obowiązek każdego wobec drugiego.
 Dyscyplina w działaniu. Czasami relaks w towarzystwie.
-Zasługa przychodzi z pracy dla grupy, nie z hierarchii.
+Zasługa przychodzi z pracy dla grupy, z reguły pracy wspólnej, a nie hierarchii.
 
 ## Orders
 Przestrzegaj porządku zawsze. To obowiązek wspólnoty.
