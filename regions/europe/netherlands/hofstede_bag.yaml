@@ -1,0 +1,36 @@
+country: netherlands
+language: nl
+parent: null
+
+hofstede_scores:
+  PDI: 38
+  IDV: 80
+  UAI: 53
+  MAS: 14
+  LTO: 67
+  IND: 68
+
+bags:
+  PDI:
+    high: [hierarchy, authority, respect, deference, obedience, rank, status, subordinate, compliance, protocol]
+    low: [equality, egalitarian, flat, democratic, autonomy, informal, horizontal, merit, direct, accessible]
+  
+  IDV:
+    high: [individual, personal, autonomy, independence, self-reliance, achievement, ambition, private, choice, initiative]
+    low: [collective, group, harmony, loyalty, community, belonging, team, cooperation, consensus, shared]
+  
+  UAI:
+    high: [rule, structure, order, procedure, process, planning, control, formal, predictable, systematic]
+    low: [flexible, adaptable, improvise, spontaneous, ambiguous, pragmatic, informal, elastic, unstructured, risk]
+  
+  MAS:
+    high: [compete, win, achieve, ambitious, success, assertive, powerful, strong, aggressive, dominance]
+    low: [cooperate, care, compassion, humble, modest, gentle, nurturing, concern, tenderness, solidarity]
+  
+  LTO:
+    high: [long-term, sustained, perseverance, future, investment, continuity, tradition, patient, enduring, inheritance]
+    low: [immediate, gratification, quick, short-term, present, instant, reward, quick-fix, transient, prompt]
+  
+  IND:
+    high: [enjoy, leisure, pleasure, gratification, comfort, fun, indulgence, celebration, relaxation, satisfaction]
+    low: [restrain, discipline, restraint, control, duty, obligation, moderation, self-control, restraint, frugal]
