@@ -43,7 +43,7 @@ Betaalt zonder enthousiasme.
 Gaat door.
 
 ---
-**Hofstede:** PDI 38 · IDV 80 · MAS 14 · UAI 53 · LTO 67 · IND 68
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 
 *culture_dutch_position.md - 08.05.2026*
 

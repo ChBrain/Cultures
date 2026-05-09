@@ -36,6 +36,8 @@ Den der tror mødet ikke betyder noget, har ikke hørt på dansk.
 Den der tror mødet bestemmer resultatet, har ikke hørt græsrødderne bringe det ind.
 
 ---
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+
 *culture_danish_place_copenhagen.md - 07.05.2026*
 
 v0.1.0 - KAI Worlds

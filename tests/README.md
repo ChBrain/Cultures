@@ -340,74 +340,45 @@ python3 tests/validate_plagiarism.py regions/africa/algeria/
 
 ---
 
-## Layer 4e: Hofstede structure + dimension alignment
+## Layer 4e: Hofstede structure + footer sentinel
 
-**Scope:** Per-country `README.md`, `REFERENCES.md`, and `culture_*_position.md` in `regions/REGION/COUNTRY/`
+**Scope:** Per-country `README.md`, `REFERENCES.md`, and all `culture_*.md` files in `regions/REGION/COUNTRY/`
 
-Two passes:
+Structure-only. Per-file dimension scoring lives in **L4f**, which scores aggregate keyword density across the whole culture (see ARCHITECTURE.md > "Scoring is Aggregate, Not Per-File").
 
-**Structure pass (FAIL):** the country must declare a Hofstede mapping.
+**Structure pass (FAIL, hard-block):** the country must declare a Hofstede mapping.
 - README has a `## Hofstede` section.
 - README contains a score table with all six dimensions filled in. Rows match `| DIM | NN | **Low/High/Very High** ... |`. Header rows alone or prose mentions of dimension codes do not count.
 - README has source attribution (mentions Hofstede, empirical, or research).
 - `REFERENCES.md`, if present, cites Hofstede.
-- `culture_*_position.md`, if present, references at least one dimension by name or code.
 
-**Alignment pass (WARN):** given the scores parsed in the structure pass, the position file's keywords should match the expected polarity for each dimension. Skipped for a country if no scores could be extracted (otherwise the country would silently pass the alignment check it should have failed).
+**Footer sentinel pass (WARN, advisory):** every `culture_*.md` file in the country should:
+- Carry the Hofstede signal footer line: `*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*`
+- Not carry a legacy per-file score footer (`**Hofstede:** PDI ... · IDV ... · ...`). These imply per-file scoring and are forbidden under the aggregate-scoring contract.
 
-**Multilingual keyword framework:**
-
-The validator automatically detects content language and applies language-specific keyword bags. Supported languages:
-
-- **English (en):** PDI, IDV, UAI, MAS, LTO, IND keywords in English
-- **German (de):** PDI, IDV, UAI, MAS, LTO, IND keywords in German
-
-When a language is not supported, the validator issues an advisory warning with actionable instructions:
-```
-WARN country/culture_position.md: language 'fr' not yet supported for Hofstede alignment
-  verdict: add language 'fr' keyword bags to DIMENSION_KEYWORDS_BY_LANGUAGE in validate_hofstede_alignment.py; 
-           use DIMENSION_KEYWORDS_BY_LANGUAGE['en'] as template
-```
-
-To add support for a new language:
-1. Add new language entry to `DIMENSION_KEYWORDS_BY_LANGUAGE` in `tests/validate_hofstede_alignment.py`
-2. Map each of the six dimensions (PDI, IDV, UAI, MAS, LTO, IND) to two polarity variants: "high" and "low"
-3. For each variant, provide a list of 6-10 keywords that signal that dimension-polarity combination
-4. Example: German UAI-high keywords include "präzision", "direktheit", "struktur", "regel", "klarheit"
-
-The language detection heuristic looks for language-specific markers (articles, characters, common words). See `detect_language()` in `validate_hofstede_alignment.py` for details.
-
-**Dimension keyword mapping (English reference):**
-- **PDI (Power Distance Index):** Low: equal, merit, question; High: hierarchy, authority, obey, deference
-- **IDV (Individualism):** Low: collective, group, harmony; High: individual, personal, autonomy, self
-- **UAI (Uncertainty Avoidance):** Low: risk, flexible, adapt; High: rules, structure, precision, control
-- **MAS (Masculinity):** Low: cooperation, care, compassion; High: compete, achieve, excellence, success
-- **LTO (Long-Term Orientation):** Low: tradition, immediate, present; High: long-term, planning, future, foundation
-- **IND (Indulgence):** Low: restraint, discipline, control; High: enjoy, gratification, freedom, pleasure
+The sentinel pass is advisory during rollout (started May 2026, DK/DE/NL first). It will graduate to FAIL once all completed countries are migrated.
 
 **Verdicts:**
 - Structure failure: add the missing section/rows/source/citation as indicated.
-- Alignment warning: review the position file — add keywords reflecting claimed dimensions, or adjust README dimensions to match the position.
-- Language not supported: add the language's keyword bags to `DIMENSION_KEYWORDS_BY_LANGUAGE` (see instructions above).
+- Missing sentinel: add the Hofstede signal line above the version footer.
+- Legacy score footer present: remove the `**Hofstede:** PDI ...` line.
 
 **Script:** `tests/validate_hofstede_alignment.py`
 
-**Output:** `FAIL` for structure issues (hard-block), `WARN` for alignment issues and unsupported languages (advisory). Exit code is 1 only if a structure issue exists.
+**Output:** `FAIL` for structure issues (hard-block), `WARN` for footer-sentinel issues (advisory). Exit code is 1 only if a structure issue exists.
 
 **Architecture traceability:**
-> See [ARCHITECTURE.md - Hofstede Foundation](../ARCHITECTURE.md#application-in-cultures) for dimension application guidance
+> See [ARCHITECTURE.md - Hofstede Foundation](../ARCHITECTURE.md#scoring-is-aggregate-not-per-file) for the aggregate-scoring contract and footer requirements.
 
 **Example:**
 ```bash
 python3 tests/validate_hofstede_alignment.py regions/europe/germany/
-# OK: Hofstede alignment validation passed [de]
-#   (German content, all supported dimensions evaluated)
+# OK: 1 countries pass Hofstede structure + footer
 
-# With warning (unsupported language):
+# With sentinel warning (advisory, during rollout):
 python3 tests/validate_hofstede_alignment.py regions/europe/france/
-# WARN regions/europe/france/culture_french_position.md: language 'fr' not yet supported for Hofstede alignment
-#   verdict: add language 'fr' keyword bags to DIMENSION_KEYWORDS_BY_LANGUAGE in validate_hofstede_alignment.py; 
-#            use DIMENSION_KEYWORDS_BY_LANGUAGE['en'] as template
+# WARN france/culture_french_position.md: missing Hofstede signal footer
+#   verdict: add line above version footer: `*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*`
 ```
 
 ---

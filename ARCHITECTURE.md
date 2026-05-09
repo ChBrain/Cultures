@@ -30,15 +30,19 @@ These rules apply to **all** content files (`.md`) in the repository:
 
 ### Footer
 
-Every content file ends with a footer line:
+Every content file ends with two footer lines:
 
 ```
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+
 v0.1.0 - KAI Worlds
 ```
 
-- **Format:** `vX.Y.Z - KAI Worlds` where X.Y.Z matches repo version
-- **Placement:** Final line of file (after trailing newline from content)
-- **Required in:** All positions, pieces, places, personas
+- **Hofstede signal line:** Identifies the file as a contributor to the culture's aggregate Hofstede signal. Declared per-country scores live in the country `README.md`, never inline. The leading token `Hofstede signal:` is a stable sentinel for validators.
+- **Version line:** `vX.Y.Z - KAI Worlds` where X.Y.Z matches repo version
+- **Placement:** Hofstede signal line first, then the version line as the final line of file
+- **Required in:** All `culture_*.md` files (positions, pieces, places, personas, languages, processes)
+- **Forbidden:** Per-file Hofstede score lines (e.g. `**Hofstede:** PDI 35 · IDV 67 ...`). Scoring is aggregate, not per-file.
 
 ### Filenames
 
@@ -214,6 +218,18 @@ Each dimension scores 0-100. Hofstede research provides published scores for mos
 - **Pieces** represent historical moments when dimensions intersected, creating pressure
 - **Places** show where dimensions are visible in daily life
 - **Personas** carry the tension of living within a culture's dimensional profile
+
+### Scoring is Aggregate, Not Per-File
+
+The dimensional signal is **distributed across all culture files for a given culture, not concentrated in any one file**. The validation contract follows from this:
+
+- The country `README.md` is the **single source of truth** for declared scores. No culture file carries scores in its body or footer.
+- Each `culture_*.md` file contributes keywords (in its native language) to the country's aggregate signal. Position carries the spine; piece/place/process/persona/language each carry the dimensions they naturally express.
+- The validating layer is **L4f** (`tests/validate_hofstede_derived.py`): it sums keyword counts across every culture file in the country and compares the derived score to the README declared score, with ±10 PASS / ±5 EXCELLENT tolerance.
+- **L4e** is structure-only (README has the section, score table, source attribution). It does not score per-file content.
+- Each culture file ends with the **Hofstede signal footer** (see [Footer](#footer)) declaring its participation in the aggregate model and pointing at the README.
+
+Per-file score footers (e.g. `**Hofstede:** PDI 35 · IDV 67 ...`) are forbidden — they imply per-file scoring and create a false alignment target.
 
 ### Documentation Requirements
 

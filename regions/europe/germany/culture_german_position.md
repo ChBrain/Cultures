@@ -60,7 +60,7 @@ Desperate Suche nach Verfahren.
 [Erinnern](culture_german_process_erinnern.md) - die Fähigkeit, Struktur aus der Geschichte zu rekonstruieren.
 
 ---
-**Hofstede:** PDI 35 · IDV 67 · UAI 65 · MAS 66 · LTO 83 · IND 40
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 
 *culture_german_position.md - 08.05.2026*
 

@@ -57,6 +57,8 @@ Kein Monumentalbau.
 2021: Klimabeschluss des BVerfG. Artikel 1 immer noch Boden.
 
 ---
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+
 *culture_german_piece_grundgesetz.md - 07.05.2026*
 
 v0.1.0 - KAI Worlds

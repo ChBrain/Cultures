@@ -1,32 +1,24 @@
 #!/usr/bin/env python3
-"""Hofstede validation: structure + dimension alignment.
+"""Hofstede validation: structure pass only.
 
-Two passes per country:
+Per-country structure check (FAIL, hard-block):
+  - README has a `## Hofstede` section.
+  - README score table contains all six dimensions (PDI, IDV, UAI, MAS, LTO, IND).
+  - README has source attribution.
+  - REFERENCES.md, if present, cites Hofstede.
 
-1. Structure (FAIL, hard-block): README has a `## Hofstede` section, a
-   score table with all six dimensions filled in (PDI, IDV, UAI, MAS, LTO,
-   IND), a source line, and REFERENCES.md cites Hofstede. If the country
-   has a culture position file, it should reference the dimensions.
+Each `culture_*.md` file in the country should carry the Hofstede signal
+footer (see ARCHITECTURE.md > Footer). This is checked as an advisory WARN
+during rollout; it will graduate to a hard FAIL once all completed countries
+are migrated.
 
-2. Alignment (WARN, advisory): given the scores from the README, the
-   position file's keywords should match the expected polarity for each
-   dimension.
-
-Alignment depends on structure: if scores cannot be extracted from the
-README, the alignment pass is skipped for that country (otherwise it would
-silently pass with no findings).
-
-The alignment keyword bag is English. Per the language policy, position
-files are written in the culture's native language, so alignment warnings
-on non-English content are expected and currently informational only —
-hence advisory. Multilingual keyword bags are a future project.
-
-Both passes share the same `extract_hofstede_scores` parser, so dimension
-presence in the structure pass and score extraction in the alignment pass
-agree on what counts as a valid score row.
+Per-file dimension scoring lives in L4f (`validate_hofstede_derived.py`),
+which scores aggregate keyword density across every `culture_*.md` file in
+the country. L4e does not score content; it only enforces the documentation
+contract. See ARCHITECTURE.md > "Scoring is Aggregate, Not Per-File".
 
 Exit status:
-  0 if every country passes the structure pass (alignment warnings ignored
+  0 if every country passes the structure pass (sentinel warnings ignored
     for the exit code).
   1 if any country has a structure issue.
 
@@ -46,16 +38,17 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(ROOT))
 
 from findings import Issue
-from data.hofstede_keywords import detect_language, DIMENSION_KEYWORDS_BY_LANGUAGE
 
 
 HOFSTEDE_DIMENSIONS = ["PDI", "IDV", "UAI", "MAS", "LTO", "IND"]
 
-# References to position files should mention Hofstede dimensions
-POSITION_DIMENSION_REF = re.compile(
-    r"hofstede|power distance|individualism|uncertainty avoidance|"
-    r"masculinity|long-term orientation|indulgence|"
-    r"\b(?:PDI|IDV|UAI|MAS|LTO|IND)\b",
+# Stable sentinel for the per-file Hofstede signal footer. The leading token
+# is fixed; wording after the colon may evolve. See ARCHITECTURE.md > Footer.
+HOFSTEDE_SIGNAL_SENTINEL = re.compile(r"\*Hofstede signal:", re.IGNORECASE)
+
+# Forbidden legacy footer: per-file score line implies per-file scoring.
+LEGACY_SCORE_FOOTER = re.compile(
+    r"\*\*Hofstede:\*\*\s*PDI\s*\d+",
     re.IGNORECASE,
 )
 
@@ -95,8 +88,7 @@ def extract_hofstede_scores(readme_text: str) -> dict[str, tuple[int, str]]:
     `**High`, or `**Very High` (further qualifiers like `**Low-Moderate**`
     are accepted and read as the leading level). Header rows, prose
     mentions, score ranges, and missing bold markers are intentionally not
-    counted: structure and alignment must agree on the same notion of a
-    "valid score row".
+    counted.
 
     Returns: {dimension: (score, level)}
     """
@@ -154,63 +146,37 @@ def check_structure(
                 verdict="add Hofstede source entry: author, book/database, URL, trust level",
             ))
 
-    position_files = list(country_dir.glob("culture_*_position.md"))
-    if position_files:
-        position_text = position_files[0].read_text(encoding="utf-8")
-        if not POSITION_DIMENSION_REF.search(position_text):
-            issues.append(Issue(
-                error=f"{country_name}/{position_files[0].name}: no Hofstede dimension references",
-                verdict="add explanation of how position embodies/reflects Hofstede dimensions",
-            ))
-
     return issues
 
 
-def get_expected_keywords(scores: dict[str, tuple[int, str]], language: str = "en") -> dict[str, set[str]]:
-    """Get expected keywords for each dimension based on its score level and language.
-    
-    Falls back to English if requested language not available.
+def check_footer_sentinels(
+    country_name: str,
+    country_dir: Path,
+) -> list[Issue]:
+    """Advisory: each culture_*.md file should carry the Hofstede signal footer
+    and must not carry a per-file score footer (see ARCHITECTURE.md > Footer).
     """
-    if language not in DIMENSION_KEYWORDS_BY_LANGUAGE:
-        language = "en"
-    
-    dimension_map = DIMENSION_KEYWORDS_BY_LANGUAGE[language]
-    expected: dict[str, set[str]] = {}
-    for dim, (_score, level) in scores.items():
-        if dim not in dimension_map:
-            continue
-        polarity = "low" if "LOW" in level else "high"
-        expected[dim] = set(dimension_map[dim].get(polarity, []))
-    return expected
-
-
-
-
-def check_alignment(position_text: str, expected: dict[str, set[str]], language: str = "en") -> tuple[dict[str, int], str]:
-    """Count keyword matches per dimension in position text.
-    
-    Returns (matches dict, language_used).
-    """
-    matches: dict[str, int] = {}
-    position_lower = position_text.lower()
-    for dim, keywords in expected.items():
-        count = 0
-        for keyword in keywords:
-            if re.search(rf"\b{re.escape(keyword)}\b", position_lower):
-                count += 1
-        matches[dim] = count
-    return matches, language
+    issues: list[Issue] = []
+    for path in sorted(country_dir.glob("culture_*.md")):
+        text = path.read_text(encoding="utf-8")
+        if LEGACY_SCORE_FOOTER.search(text):
+            issues.append(Issue(
+                error=f"{country_name}/{path.name}: legacy per-file Hofstede score footer present",
+                verdict="remove `**Hofstede:** PDI ... · ...` line - scoring is aggregate, see ARCHITECTURE.md > Footer",
+            ))
+        if not HOFSTEDE_SIGNAL_SENTINEL.search(text):
+            issues.append(Issue(
+                error=f"{country_name}/{path.name}: missing Hofstede signal footer",
+                verdict="add line above version footer: `*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*`",
+            ))
+    return issues
 
 
 def validate_country(country_dir: Path) -> tuple[list[Issue], list[Issue]]:
-    """Run structure pass then alignment pass.
+    """Run structure pass plus advisory footer-sentinel pass.
 
-    Returns (structure_issues, alignment_issues). Alignment is skipped if
-    scores cannot be extracted or no position file exists.
-    
-    Language detection: if position is in a language not yet supported in
-    DIMENSION_KEYWORDS_BY_LANGUAGE, returns an advisory warning directing
-    contributors to extend the keyword bags.
+    Returns (structure_issues, sentinel_issues). Structure issues are
+    hard-block FAIL; sentinel issues are advisory WARN during rollout.
     """
     readme_path = country_dir / "README.md"
     if not readme_path.exists():
@@ -227,43 +193,13 @@ def validate_country(country_dir: Path) -> tuple[list[Issue], list[Issue]]:
         country_dir.name, country_dir, readme_text, scores,
     )
 
-    if not scores:
-        return structure_issues, []
+    # Only check footer sentinels if README structure is intact (avoids
+    # noise on countries that haven't been scaffolded yet).
+    sentinel_issues: list[Issue] = []
+    if not structure_issues:
+        sentinel_issues = check_footer_sentinels(country_dir.name, country_dir)
 
-    position_files = list(country_dir.glob("culture_*_position.md"))
-    if not position_files:
-        return structure_issues, []
-
-    position_text = position_files[0].read_text(encoding="utf-8")
-    language = detect_language(position_text)
-    
-    # Check if language keywords are available
-    if language not in DIMENSION_KEYWORDS_BY_LANGUAGE:
-        alignment_issues = [Issue(
-            error=f"{country_dir.name}/{position_files[0].name}: language '{language}' not yet supported for Hofstede alignment",
-            verdict=f"add language '{language}' keyword bags to DIMENSION_KEYWORDS_BY_LANGUAGE in validate_hofstede_alignment.py; use DIMENSION_KEYWORDS_BY_LANGUAGE['en'] as template",
-        )]
-        return structure_issues, alignment_issues
-    
-    expected = get_expected_keywords(scores, language=language)
-    matches, _lang = check_alignment(position_text, expected, language=language)
-
-    alignment_issues: list[Issue] = []
-    for dim in sorted(matches.keys()):
-        count = matches[dim]
-        _score, level = scores[dim]
-        if count == 0:
-            alignment_issues.append(Issue(
-                error=f"{country_dir.name}/{position_files[0].name}: no alignment with {dim} ({level}) [{language}]",
-                verdict=f"position does not reflect {level} {dim} - add {language} keywords or revise README claim",
-            ))
-        elif count == 1:
-            alignment_issues.append(Issue(
-                error=f"{country_dir.name}/{position_files[0].name}: weak alignment with {dim} ({level}) [{language}]",
-                verdict=f"only 1 keyword match for {dim} - strengthen position to reflect dimension",
-            ))
-
-    return structure_issues, alignment_issues
+    return structure_issues, sentinel_issues
 
 
 def _resolve_targets(argv: list[str]) -> list[Path]:
@@ -289,30 +225,30 @@ def main(argv: list[str]) -> int:
         return 0
 
     all_structure: list[Issue] = []
-    all_alignment: list[Issue] = []
+    all_sentinel: list[Issue] = []
     for country_dir in countries:
-        structure_issues, alignment_issues = validate_country(country_dir)
+        structure_issues, sentinel_issues = validate_country(country_dir)
         all_structure.extend(structure_issues)
-        all_alignment.extend(alignment_issues)
+        all_sentinel.extend(sentinel_issues)
 
     for issue in all_structure:
         print(f"FAIL {issue.error}")
         if issue.verdict:
             print(f"  verdict: {issue.verdict}")
-    for issue in all_alignment:
+    for issue in all_sentinel:
         print(f"WARN {issue.error}")
         if issue.verdict:
             print(f"  verdict: {issue.verdict}")
 
-    total = len(all_structure) + len(all_alignment)
+    total = len(all_structure) + len(all_sentinel)
     if total:
         print(
             f"\nHofstede: {len(all_structure)} structure issue(s), "
-            f"{len(all_alignment)} alignment warning(s) across {len(countries)} country(ies)"
+            f"{len(all_sentinel)} footer warning(s) across {len(countries)} country(ies)"
         )
         return 1 if all_structure else 0
 
-    print(f"OK: {len(countries)} countries pass Hofstede structure + alignment")
+    print(f"OK: {len(countries)} countries pass Hofstede structure + footer")
     return 0
 
 

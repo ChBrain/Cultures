@@ -27,6 +27,8 @@ De polder is nooit af.
 De lus sluit hier en opent opnieuw bij Initiated by.
 
 ---
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+
 *culture_dutch_process_polderen.md - 08.05.2026*
 
 v0.1.1 - KAI Worlds

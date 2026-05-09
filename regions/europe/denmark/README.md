@@ -54,9 +54,9 @@ Denmark's cultural profile measured against Hofstede's framework:
 | Dimension | Declared | Derived | Gap | Status |
 |-----------|----------|---------|-----|--------|
 | PDI | 18 | 28 | 10 | ✅ PASS |
-| IDV | 74 | 66 | 8 | ✅ PASS |
+| IDV | 74 | 80 | 6 | ✅ PASS |
 | UAI | 23 | 20 | 3 | ✅ EXCELLENT |
-| MAS | 16 | 16 | 0 | ✅ EXCELLENT |
+| MAS | 16 | 20 | 4 | ✅ EXCELLENT |
 | LTO | 35 | 25 | 10 | ✅ PASS |
 | IND | 70 | 71 | 1 | ✅ EXCELLENT |
 

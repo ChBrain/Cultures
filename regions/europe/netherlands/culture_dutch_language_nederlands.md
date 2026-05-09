@@ -31,6 +31,8 @@ Betaalt die.
 Doet niet alsof het vanzelf gaat.
 
 ---
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+
 *culture_dutch_language_nederlands.md - 08.05.2026*
 
 v0.1.1 - KAI Worlds

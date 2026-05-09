@@ -19,6 +19,8 @@ Sie glaubt, dass ihre unabhängige Urteilskraft fair ist. Sie sieht nicht, dass 
 Wenn emotionale Komplexität auftaucht, wird sie präziser. Rationaler. Sie denkt, es hilft.
 
 ---
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+
 *culture_german_persona_brigitte.md - 07.05.2026*
 *Type: Composite*
 

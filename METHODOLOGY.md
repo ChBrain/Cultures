@@ -10,6 +10,18 @@ The Cultures project builds content that maps to Hofstede's cultural dimensions 
 
 ---
 
+## Scoring Unit: The Culture, Not The File
+
+Scoring is **aggregate across all culture files for a country**, not per-file. The country `README.md` declares the six dimension scores; the surrounding `culture_*.md` files (position, language, piece, place, process, personas) collectively carry the keywords that derive those scores.
+
+- **Validating layer:** `tests/validate_hofstede_derived.py` (L4f) — sums keyword counts across every `culture_*.md` file in the country, derives 0-100 per dimension, compares to README declared, reports gap/status.
+- **Structure layer:** `tests/validate_hofstede_alignment.py` (L4e) — checks the README has the section, score table, and source. It does **not** score per-file content.
+- **Footer contract:** every culture file ends with a `*Hofstede signal: ...*` line pointing at the README. Per-file score lines are forbidden — they imply per-file scoring and trigger false alignment failures.
+
+**Practical consequence:** if a dimension is under-represented, you can add keywords to the most natural carrier (e.g. UAI-high → the piece on legal/constitutional structure; IND-high → the process on leisure/celebration) rather than forcing every dimension into the position file.
+
+---
+
 ## Core Principles
 
 ### 1. Keyword Purity > Volume

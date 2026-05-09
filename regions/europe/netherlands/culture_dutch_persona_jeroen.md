@@ -32,6 +32,8 @@ Als het gesprek verkeerd landt:
 mist hij iets in de feiten.
 
 ---
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+
 *culture_dutch_persona_jeroen.md - 08.05.2026*
 *Type: Composite*
 
