@@ -17,13 +17,11 @@ Bez niej [polska](culture_polish_position.md) pozycja traci dowód.
 Krąg może być duży.
 Solidarność pokazała jak duży może być krąg zbiorowości.
 Dziesięć milionów członków w ciągu roku.
-Ludzie chcieli razem działać dla wspólnego celu.
+Ludzie chcieli razem działać dla wspólnego sukcesu i osiągnięcia zmian.
 System musiał usiąść przy stole.
 Bo krąg był większy.
-Bo ludzie chcieli wspólnie osiągnąć sukces.
-Czasami był relaks wśród strajkowców - solidarność  to też wspólny czas.
 Sukces przychodzi z działania zbiorowości.
-Solidarność działa poprzez jasne procedury i wspólne procedury.
+Solidarność działa poprzez jasne procedury i wspólne reguły.
 Każdy członek miał swoją rolę w grupie.
 Każdy wiedział czego się od niego oczekuje dla zespołu.
 Organizacja przechowała skuteczność poprzez wierność wspólnym celom i procedurze.
