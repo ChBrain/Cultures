@@ -20,6 +20,18 @@ from pathlib import Path
 
 UTF8_BOM = b"\xef\xbb\xbf"
 
+# Branch classification and scope rules live in tests/branch_scope.py
+# (single source of truth, also imported by future CI mirror).
+HOOK_DIR = Path(__file__).resolve().parent
+REPO_ROOT = HOOK_DIR.parent
+sys.path.insert(0, str(REPO_ROOT / "tests"))
+
+from branch_scope import (
+    SAFE_PATTERNS,
+    check_scope,
+    classify_branch,
+)
+
 
 def run_git(*args: str) -> str:
     """Run git command and return output."""
@@ -63,37 +75,46 @@ def main() -> int:
         for f in fixed:
             print(f"  (stripped UTF-8 BOM from {f})")
 
-    # Guard: prevent direct commits to main branch
+    # Guard: classify branch and enforce scope.
     current_branch = run_git("rev-parse", "--abbrev-ref", "HEAD")
-    if current_branch == "main":
+    branch_kind = classify_branch(current_branch)
+
+    if branch_kind == "main":
         print(">>> ERROR: Direct commits to main are forbidden")
         print("")
         print("Create a feature branch first:")
-        print("  git checkout -b feat/<name>")
+        print("  git checkout -b feat/culture-<name>   # culture content")
+        print("  git checkout -b chore/<name>          # infrastructure / tooling")
+        print("  git checkout -b fix/<name>            # corrections")
         print("")
         return 1
 
-    # Guard: culture branches can only modify regions/ folder
-    # This ensures staged reviews apply only to culture content.
-    if current_branch.startswith("feat/culture-"):
-        all_staged = run_git("diff", "--cached", "--name-only", "--diff-filter=ACMRT")
-        # Safe files (config, validation, meta) can appear anywhere
-        safe_patterns = {".validation-stamp", ".bump-type", ".gitignore", ".editorconfig"}
-        unsafe_files = [
-            f for f in all_staged.splitlines()
-            if not f.startswith("regions/") and f not in safe_patterns
-        ]
-        if unsafe_files:
-            print(">>> ERROR: Culture branch can only modify regions/ folder")
+    all_staged = run_git("diff", "--cached", "--name-only", "--diff-filter=ACMRT").splitlines()
+    ok, unsafe_files = check_scope(branch_kind, all_staged)
+    if not ok:
+        if branch_kind == "culture":
+            print(">>> ERROR: Culture branch can only modify regions/")
             print("")
-            print("Unsafe files detected (split to separate branch):")
+            print("Unsafe files detected (split to a separate branch):")
             for f in unsafe_files:
                 print(f"  x {f}")
             print("")
-            print("Culture branches: culture content only")
-            print("Infrastructure/tooling: use chore/ or fix/ branches")
+            print(f"  Branch:  {current_branch}")
+            print( "  Allowed: regions/** + " + ", ".join(sorted(SAFE_PATTERNS)))
+            print( "  Rule:    feat/culture-<name> branches contain culture content only")
+            print( "  Other:   use chore/<name> or fix/<name> for infrastructure")
+        else:
+            print(">>> ERROR: Non-culture branch cannot modify regions/")
             print("")
-            return 1
+            print("Culture files detected (split to a feat/culture-<name> branch):")
+            for f in unsafe_files:
+                print(f"  x {f}")
+            print("")
+            print(f"  Branch:  {current_branch}")
+            print( "  Rule:    only feat/culture-<name> branches may modify regions/")
+            print( "  Culture: git checkout -b feat/culture-<name>")
+        print("")
+        return 1
 
     # Run validation orchestrator (L1a → L1b → L2 → L3 → L4) on staged
     # content files only. This matches CI's scope (regions/*.md changed in
@@ -121,7 +142,7 @@ def main() -> int:
 
     # On culture branches: also run Hofstede validation
     # Culture content must maintain declared dimension alignment (±10 gap tolerance)
-    if current_branch.startswith("feat/culture-"):
+    if branch_kind == "culture":
         culture_files = [
             f for f in staged_content
             if "culture_" in f
