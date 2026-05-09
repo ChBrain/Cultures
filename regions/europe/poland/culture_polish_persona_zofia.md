@@ -31,7 +31,7 @@ Myśli że procedura jest stała.
 Nie widzi że procedura żyje wśród ludzi.
 
 ## Tell
-Gdy sprawa jest trudna, Zofia analizuje procedurę dokładnie i podąża za nią precyzyjnie.
+Gdy sprawa jest trudna, Zofia analizuje procedurę dokładnie i podąża za nią precyzyjnie z właściwą autonomia. Każdy musi być samodzielny w swojej części procedury.
 
 ---
 *culture_polish_persona_zofia.md - 09.05.2026*

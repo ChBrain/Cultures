@@ -18,9 +18,10 @@ Krąg może być duży.
 Solidarność pokazała jak duży może być krąg zbiorowości.
 Dziesięć milionów członków w ciągu roku.
 Ludzie chcieli razem działać dla wspólnego sukcesu i osiągnięcia zmian.
+Było konkurencji między grupami, ale solidarność połączyła.
 System musiał usiąść przy stole.
 Bo krąg był większy.
-Sukces przychodzi z działania zbiorowości.
+Sukces i ambicja przychodzą z działania zbiorowości.
 Solidarność działa poprzez jasne procedury, reguły i wspólne cele.
 Każdy członek miał swoją rolę w grupie.
 Każdy wiedział czego się od niego oczekuje dla zespołu.

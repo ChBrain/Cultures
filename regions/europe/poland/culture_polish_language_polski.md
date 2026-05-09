@@ -16,6 +16,7 @@ Polska forma mówienia pokazuje należenie do zbiorowości.
 Pan. Pani. To oznacza: "Jesteś członkiem naszej grupy".
 
 Każdy głos ma znaczenie dla wspólnoty.
+Każdy głos jest niezależny w treści, ale zawsze w strukturze wspólnoty.
 Każdy ma obowiązek mówić dokładnie i niezależnie myśleć o tym co mówi.
 Precyzja formy to sposób na ochronę grupy.
 
