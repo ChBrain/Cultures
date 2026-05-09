@@ -1,0 +1,30 @@
+# Hofstede Bag Lock Index
+#
+# Records SHA256 hashes of finalized bag files to prevent silent rewrites.
+# During migration (PR-E-H), each country's bag is locked after the migration
+# PR lands; the SHA test in tests/test_hofstede_bag_locked.py compares the
+# actual file hash against the recorded value.
+#
+# Format:
+#   locks:
+#     regions/<region>/<country>/hofstede_bag.yaml: <sha256_hash>
+#     regions/<region>/<country>/hofstede_bag_<lang>.yaml: <sha256_hash>
+#
+# Purpose:
+#   - Prevent accidental or silent modifications to finalized bags.
+#   - Track which countries have been migrated from the legacy central dict.
+#   - Force every bag edit to update the corresponding hash, making the
+#     edit visible in the diff (the LLM-changes-the-rules signal).
+#
+# Branch interaction:
+#   This file is in tests/branch_scope.py SAFE_PATTERNS — bag migration
+#   PRs (feat/culture-<name>) update the lock entry in the same commit
+#   as the new bag YAML. See ARCHITECTURE / Strategy v2.
+#
+# Migration sequencing:
+#   PR-E: Netherlands  (regions/europe/netherlands/)
+#   PR-F: Germany      (regions/europe/germany/)
+#   PR-G: Denmark      (regions/europe/denmark/)
+#   PR-H: Ireland      (regions/europe/ireland/)
+
+locks: {}
