@@ -5,30 +5,28 @@
 - Culture: Poland
 
 ## Shown
-Stare Miasto. Odbudowane z precyzją procedury historycznej.
-UNESCO. Nie za oryginalność ale za konsekwencję odbudowy.
-Pałac Kultury i Nauki. Dar Stalina. Wciąż najwyższy budynek.
-Nowe wieżowce szklane wokół niego. Szanują strukturę.
-Kopiec ziemi przy Woli. Monument powstańców.
-Kamienie w chodniku z nazwiskami - formalna lista.
+Stare Miasto. Niemal całkowicie zniszczone. Teraz odbudowane ceglą po cegle.
+UNESCO. Nie za przeszłością ale za to że architekci pamiętali jak to wyglądało.
+Pałac Kultury i Nauki. Stalina. Wciąż najwyższy budynek.
+Nowoczesne wieżowce szklane wokół niego.
+Pomnik powstańców przy Woli.
+Kamienie w chodniku z nazwiskami tych którzy zginęli natychmiastowo w walce.
 Żoliborz. Praga. Dwie strony Wisły.
-Praga: przedwojenne mury, nieodbudowane fasady - ślady przeszłej struktury.
+Praga: przedwojenne mury, fasady które nigdy nie zostały odbudowane.
 
 ## Holds
-Polską [Pozycję](culture_polish_position.md) i jej uznanie jako centrum narodu.
+Polską [Pozycję](culture_polish_position.md).
 [Solidarność](culture_polish_piece_solidarnosc.md).
 
 ## Offers
-Możesz mieszkać w mieście które odbudowano wg procedury historycznej.
-Możesz być częścią zbiorowości która przetrwała.
-Możesz przyjemnie spacerować ulicami które zostały prawidłowo odbudowane.
-Czasami relaks w kawiarni gdzie wszyscy znają procedurę jak się zachowywać.
-Bezpieczeństwo przez zaufanie do struktury.
+Jeśli znasz kogoś - Warszawa się opiekuje swoim kręgiem. Z jasnością co każdy musi zrobić.
+Warszawa nie czeka. Albo ruszasz się teraz albo miasto idzie dalej bez ciebie.
+Warszawa jest obojętna wobec obcych. Ale też nie jest wrogiem.
 
 ## Withheld
-Całkowity koszt odbudowy. Warszawa była 85% zniszczona w 1945.
-Co myśli Praga o reszcie miasta - niech pozostanie nieomawiane.
-Decyzja kto należy tutaj. Podejmowana poprzez procedurę życia codziennego.
+Całkowity koszt przebudowy. Ile ktoś zapłacił że mury stoją dokładnie tutaj, nie tutaj.
+Co myśli Praga o mieście które je zawładnęło.
+Ile ciał było w ziemi gdy kopano fundamenty do nowych wieżowców.
 
 ---
 *culture_polish_place_warszawa.md - 09.05.2026*

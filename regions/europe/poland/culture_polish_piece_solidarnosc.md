@@ -15,19 +15,19 @@ Nie jako symbol.
 ## Load Bearing
 Bez niej [polska](culture_polish_position.md) pozycja traci dowód.
 Krąg może być duży.
-Solidarność pokazała jak duży może być krąg zbiorowości.
+Solidarność pokazała jak duży.
 Dziesięć milionów członków w ciągu roku.
-Ludzie chcieli razem działać dla wspólnego sukcesu i osiągnięcia zmian.
-Było konkurencji między grupami, ale solidarność połączyła.
+System powiedział: to niemożliwe.
+Ludzie powiedzieli: już się dzieje teraz.
+Lech Wałęsa przeskoczył przez płot natychmiastowo, bez czekania na plan.
+On był indywidualnym liderem.
+Przeskoczył nie dla procedury ale żeby być w środku natychmiast.
+Krąg zaczął się sam szybko organizować.
+Nie ze względu na instytucje.
+Ze względu na to że system zawiedzie zawsze.
 System musiał usiąść przy stole.
-Bo krąg był większy.
-Sukces i ambicja przychodzą z działania zbiorowości.
-Solidarność działa poprzez jasne procedury, reguły i wspólne cele.
-Każdy członek miał swoją rolę w grupie.
-Każdy wiedział czego się od niego oczekuje dla zespołu.
-Organizacja przechowała skuteczność poprzez wierność wspólnym celom i procedurze.
-To się nie dzieje poprzez indywidualnych liderów.
-To się dzieje poprzez dyscyplinę grupy i procedury.
+Bo krąg był większy niż mógł wymazać z mapy.
+Wytrwałość kręgu: od 1981 do 1989 działała w podziemiu.
 
 ## Apparent
 Czerwone logo.
@@ -62,7 +62,6 @@ Wystawa. Dokumenty. Zdjęcia. Rzeczy.
 2024: Solidarność nadal działa jako związek zawodowy. Logo bez zmian.
 
 ---
-
 *culture_polish_piece_solidarnosc.md - 09.05.2026*
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 

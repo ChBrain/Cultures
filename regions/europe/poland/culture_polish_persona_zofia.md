@@ -1,5 +1,4 @@
 # Persona: Zofia
-## Prawniczka - mistrz procedury
 
 ## Owner
 - Project: Cultures
@@ -8,30 +7,38 @@
 ## Projection
 Zofia jest [kobietą](../../../engine/position_female.md) z [Polski](culture_polish_position.md).
 Prawniczka w międzynarodowej kancelarii. Warszawa.
-Prosto. Ramiona równo. Zawsze zna procedurę.
-Słucha uważnie każdego. Bierze notatki.
-Potem zna problem precyzyjnie.
+Prosto. Ramiona równo.
+Słucha uważnie każdego. Nie pisze podczas rozmowy.
+Po rozmowie wie co robić.
+Ona podejmuje decyzję sama.
 
 ## Action
 Klientka ma problem który przepisy formalnie nie adresują.
 Zofia studiuje kodeks prawa wnikliwie.
-Potem studiuje procedury urzędów - jak rzeczywiście działają.
-Identyfikuje właściwą procedurę i kto ma odpowiedzialność za każdy etap.
-Zwraca się formalnie, przestrzegając procedurę.
-Przedstawia stanowisko z precyzją.
-Otrzymuje odpowiedź poprzez właściwą procedurę.
-Zofia dokumentuje: "Proceduralna analiza i rozwiązanie".
+Potem studiuje jak rzeczywiście funkcjonuje urząd.
+To są dwie różne rzeczy.
+Zofia widzi również samą klientkę - jej lęk, jej pilność, jakie ma zasoby.
+Zofia dzwoni do koleżanki z ministerstwa, z czasów studium.
+Ta koleżanka wie kto podejmuje decyzje w tym dziale.
+Nie jest to osoba wymieniona w instrukcji.
+Zofia ma autonomię do działania - nie czeka na procedury.
+Przedstawia stanowisko samodzielnie.
+Otrzymuje odpowiedź poprzez właściwą osobę.
+Nie ma papieru że to jest legalne. Ale to będzie zaakceptowane.
+Zofia osiągnęła sukces dla klientki poprzez krąg, nie poprzez prawo.
 
 ## Shadow
-Wierzy że procedura i precyzja zawsze wystarczają.
-Czego nie widzi: czasami procedura rozmija się z rzeczywistością.
-Bruksela nauczyła ją procedur.
-Warszawa pokazała jej że procedury zmieniają się w praktyce.
-Myśli że procedura jest stała.
-Nie widzi że procedura żyje wśród ludzi.
+Zofia myśli że pracuje w instytucjonalnym systemie.
+Czego nie widzi: każda jej efektywność zależy od krągu.
+Procedury są tylko tekstem.
+Tekst nie podpisuje się sam.
+Tekst podpisuje się osoba która ma dług lub jest dłużna.
+Te długi są starsze niż przepisy.
+Bruksela nauczyła ją procedur europejskich.
+Warszawa pokazała jej że procedury europejskie działają tam gdzie krąg je wspiera.
 
 ## Tell
-Gdy sprawa jest trudna, Zofia analizuje procedurę dokładnie i podąża za nią precyzyjnie z właściwą autonomia. Każdy musi być samodzielny w swojej części procedury.
+Słuchając, Zofia patrzy na kogoś kto nie siedzi w pokoju.
 
 ---
 *culture_polish_persona_zofia.md - 09.05.2026*

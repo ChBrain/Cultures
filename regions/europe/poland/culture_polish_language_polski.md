@@ -5,36 +5,27 @@
 - Culture: Poland
 
 ## Has
-Nie tylko język. Historia zbiorowości.
-Polski przeżył bo grupa mówić go w domach.
-Z powinności do przeszłości. Z dyscypliną przetrwania.
-
-Krąg mówi po polsku ze strukturą precyzji formy.
-Rozmowa jest sposobem na bycie razem w grupie.
-Słowa mają wagę wspólnoty.
-Polska forma mówienia pokazuje należenie do zbiorowości.
-Pan. Pani. To oznacza: "Jesteś członkiem naszej grupy".
-
-Każdy głos ma znaczenie dla wspólnoty.
-Każdy głos jest niezależny w treści, ale zawsze w strukturze wspólnoty.
-Każdy ma obowiązek mówić dokładnie i niezależnie myśleć o tym co mówi.
-Precyzja formy to sposób na ochronę grupy.
-
-Czasami można pozwolić sobie na relaks w języku.
-W zaufanym towarzystwie, można rozmawiać swobodniej.
-Ale ten relaks zawsze pozostaje w ramach struktury.
-Dyscyplina uczuć chroni wspólnotę.
-Wstrzemięźliwość to powinność każdego.
+Język słowiański.
+System przypadków - siedem. Rzeczownik zmienia się. Nie słowo zostaje stałe.
+Gendera: każda rzecz ma płeć.
+Rozróżnienie ty/pan-pani. To rozróżnienie jest przymusowe.
+Nie można mówić bez wyboru dystansu.
+Nie można wyboru bez rozumienia kto siedzi naprzeciw.
+Czasami relaks w języku wśród swoich - wtedy zmienia się zwrot.
+Ale wybór zawsze pozostaje widoczny.
+Kto mówi my (jako grupa) musi o tym wiedzieć. Język to każe.
+Polska gramatyka wymaga aktywnego myślenia przed każdym słowem.
+Dyscyplina w wyborze słów. Precyzja jako powinność.
+Porządek który zmienia się, ale tylko wedle reguł.
+To jest struktura. Bez wyjątków.
 
 ## Orders
-Mów dokładnie. To powinność grupy.
-Słuchaj gdy inny mówi. To obowiązek zbiorowości.
-Forma jest strukturą bezpieczeństwa wspólnoty.
+Przed słowami - zawsze pytanie jak ma się druga osoba. To opieka przed precyzją.
 
 ## Loses
 Pewność że wszyscy rozumieją jednakowo.
 Poza grupą polska precyzja brzmi surowo.
-Polska procedura bez przynależności to tylko zasady.
+Polska precyzja bez przynależności to tylko zasady.
 
 ## Drives
 Na stratę pewności: słowa wybiera się bardziej ostrożnie.
