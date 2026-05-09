@@ -238,8 +238,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install lingua-language-detector
-        run: pip install lingua-language-detector
+      - name: Install Python deps
+        run: pip install -r tests/requirements.txt
       - name: Validate Hofstede alignment
         run: python3 tests/validate_hofstede_alignment.py ${{ needs.setup.outputs.files }}
 
@@ -254,10 +254,24 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install lingua-language-detector
-        run: pip install lingua-language-detector
+      - name: Install Python deps
+        run: pip install -r tests/requirements.txt
       - name: Validate Hofstede derived scores
         run: python3 tests/validate_hofstede_derived.py
+
+  hofstede-bag-loader-tests:
+    name: Hofstede - bag loader tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Python deps
+        run: pip install -r tests/requirements.txt
+      - name: Run loader tests
+        run: python3 -m unittest tests.test_hofstede_bag_loader -v
 
   no-changes:
     name: No regions/*.md files changed
