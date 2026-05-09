@@ -29,6 +29,7 @@ sys.path.insert(0, str(ROOT))
 
 from findings import Issue
 from data.hofstede_keywords import detect_language, DIMENSION_KEYWORDS_BY_LANGUAGE
+from data.hofstede_bag_loader import load_bag_for_language
 
 
 HOFSTEDE_DIMENSIONS = ["PDI", "IDV", "UAI", "MAS", "LTO", "IND"]
@@ -78,13 +79,12 @@ def extract_hofstede_scores(readme_text: str) -> dict[str, int]:
 def derive_scores(country_dir: Path, language: str = "en") -> dict[str, int]:
     """Derive Hofstede scores from all culture_*_*.md files.
     
+    Loads keywords from per-country bag if available, falls back to legacy dict.
     Scans all files, counts keywords per dimension, calculates polarity ratio.
     Returns {dimension: score} where score is 0-100.
     """
-    if language not in DIMENSION_KEYWORDS_BY_LANGUAGE:
-        language = "en"
-    
-    keywords = DIMENSION_KEYWORDS_BY_LANGUAGE[language]
+    # Try per-country bag first, fall back to legacy
+    keywords = load_bag_for_language(language, country_folder=country_dir, fallback=True)
     
     # Scan all culture files
     all_text = ""
