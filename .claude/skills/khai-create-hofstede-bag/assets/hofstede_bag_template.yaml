@@ -1,0 +1,168 @@
+# Hofstede Bag: [Country]
+#
+# This file is the scoring contract for the country's Hofstede dimensions.
+# Culture files (regions/<region>/<country>/culture_*.md) are written to
+# carry these words organically. Each appearance of a bag word adds to the
+# dimension's score; binary scoring (each word counts once).
+#
+# Schema (Strategy v2): country / language / parent / hofstede_scores / bags.
+# Tests: tests/test_hofstede_bag_shape.py asserts all of these are present.
+
+country: [country]              # lowercase slug, e.g. netherlands, ireland
+language: [lang]                # ISO 639-1 code, e.g. nl, en, de, da
+parent: null                    # null for canonical bag; "europe/scotland" if fork
+status: draft                   # draft | reviewed | approved
+generated: [YYYY-MM-DD]
+
+hofstede_scores:
+  PDI: [n]   # 0-100
+  IDV: [n]
+  UAI: [n]
+  MAS: [n]
+  LTO: [n]
+  IND: [n]
+
+bags:
+  PDI:
+    high:
+      - word1
+      - word2
+      - word3
+      - word4
+      - word5
+      - word6
+      - word7
+      - word8
+      - word9
+      - word10
+    low:
+      - word1
+      - word2
+      - word3
+      - word4
+      - word5
+      - word6
+      - word7
+      - word8
+      - word9
+      - word10
+
+  IDV:
+    high:
+      - word1
+      - word2
+      - word3
+      - word4
+      - word5
+      - word6
+      - word7
+      - word8
+      - word9
+      - word10
+    low:
+      - word1
+      - word2
+      - word3
+      - word4
+      - word5
+      - word6
+      - word7
+      - word8
+      - word9
+      - word10
+
+  UAI:
+    high:
+      - word1
+      - word2
+      - word3
+      - word4
+      - word5
+      - word6
+      - word7
+      - word8
+      - word9
+      - word10
+    low:
+      - word1
+      - word2
+      - word3
+      - word4
+      - word5
+      - word6
+      - word7
+      - word8
+      - word9
+      - word10
+
+  MAS:
+    high:
+      - word1
+      - word2
+      - word3
+      - word4
+      - word5
+      - word6
+      - word7
+      - word8
+      - word9
+      - word10
+    low:
+      - word1
+      - word2
+      - word3
+      - word4
+      - word5
+      - word6
+      - word7
+      - word8
+      - word9
+      - word10
+
+  LTO:
+    high:
+      - word1
+      - word2
+      - word3
+      - word4
+      - word5
+      - word6
+      - word7
+      - word8
+      - word9
+      - word10
+    low:
+      - word1
+      - word2
+      - word3
+      - word4
+      - word5
+      - word6
+      - word7
+      - word8
+      - word9
+      - word10
+
+  IND:
+    high:
+      - word1
+      - word2
+      - word3
+      - word4
+      - word5
+      - word6
+      - word7
+      - word8
+      - word9
+      - word10
+    low:
+      - word1
+      - word2
+      - word3
+      - word4
+      - word5
+      - word6
+      - word7
+      - word8
+      - word9
+      - word10
