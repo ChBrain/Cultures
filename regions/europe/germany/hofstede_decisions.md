@@ -65,6 +65,9 @@ Multi-word entries: flachhierarchie (closed compound; no single-word equivalent 
 Cross-country root flags: none (Netherlands bag pending)
 Root-proximity flags (same country): mitbestimmung / mitsprache share mit- prefix -- both retained; institutional referents are distinct (co-determination law vs. right to voice)
 Persona-anchor words: Christian and Brigitte both carry eigeninitiative and eigenverantwortung (developer autonomy, lawyer decision-making). Light but present across both personas.
+```
+
+### IDV high
 
 ```
 Country: germany
