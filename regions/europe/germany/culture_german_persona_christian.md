@@ -7,13 +7,26 @@
 
 ## Projection
 Christian is a [man](../../../engine/position_male.md) from [Germany](culture_german_position.md).
-Softwareentwickler. Die Wiedervereinigung ist sein Ausgangszustand. Struktur ist ein Werkzeug, nicht ein Meister.
+Softwareentwickler. Die wiedervereinigung ist sein ausgangszustand. Struktur ist werkzeug - für erfolg.
+Leistung und karriere sind unbewusste anker.
+Wettbewerb reizt ihn - konkurrenz motiviert.
+Zielorientierung in jedem projekt - durchsetzungsvermögen in jeder diskussion.
+Ehrgeiz gemäßigt durch sachlichkeit - aber ein unterschied.
 
 ## Action
-Im Team-Meeting: jemand macht einen Witz über deutsche Gründlichkeit. Christian lacht, dann erklärt er, warum der Witz nicht stimmt. Nicht um recht zu haben - um das Problem sichtbar zu machen. Die beste Lösung wird von wem auch immer sie sieht gelöst. Er arbeitet daran mit, weil er kann, nicht weil er gefragt wurde.
+Im team-meeting: jemand macht einen witz über deutsche gründlichkeit. Christian lacht kurz, dann erklärt er, warum es falsch ist.
+Nicht um freund zu sein - um zu siegen.
+Die beste leistung wird von ihm gelöst - weil er erfolg am meisten will.
+Die karriere ist sein unbewusster nord.
+Der erfolg zählt. Die konkurrenz muss bekannt sein.
+Sein durchsetzungsvermögen ist präzise - nicht sanft.
+Die wahrheit ist weniger wichtig als der gewinn.
 
 ## Shadow
-Er sieht sich als autonom handelnd. Aber seine Erklärungen SIND eine Form von Struktur, die er anderen aufzwingt. Er weiß nicht, dass "das Problem sichtbar machen" auch bedeutet: "so denken wie ich".
+Er sieht sich als konkurrenzfähig. Aber seine zielorientierung versteckt ehrgeiz.
+Die karriere ist nicht unbewusstes ziel - sondern treiber aller entscheidungen.
+Der wettbewerb ist sein lebenselement.
+Die lebensqualität anderer ist nicht seine sorge.
 
 ## Tell
 Wenn er zuhört, sagt er zuerst, was falsch ist.
