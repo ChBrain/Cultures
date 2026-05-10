@@ -7,6 +7,23 @@ on:
     branches: [main, culture/release]
 
 jobs:
+  khai-encoding:
+    name: khai - Encoding rules
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install khai-tests
+        run: |
+          gh release download khai-tests-v0.1.0 --repo ChBrain/KAIHACKS --pattern "*.whl" --dir /tmp/khai
+          pip install /tmp/khai/*.whl
+        env:
+          GH_TOKEN: ${{ secrets.KAIHACKS }}
+      - name: Run encoding tests
+        run: python -m pytest --pyargs khai_tests.test_encoding --khai-roots=regions -v
+
   branch-scope-tests:
     name: Branch scope - test suite
     runs-on: ubuntu-latest
