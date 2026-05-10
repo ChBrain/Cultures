@@ -16,6 +16,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install Python deps
+        # Required for the E2E test: the hook now invokes
+        # tests/validate_country_bag.py which imports PyYAML.
+        run: pip install -r tests/requirements.txt
       - name: Run branch_scope unit + E2E tests
         run: python3 -m unittest tests.test_branch_scope tests.test_hook_scope_e2e -v
 
