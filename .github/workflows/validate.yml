@@ -17,10 +17,11 @@ jobs:
           python-version: '3.11'
       - name: Install khai-tests
         run: |
-          ASSET_URL=$(curl -sf \
+          RELEASE=$(curl -s --fail-with-body \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.0 \
-            | python3 -c "import sys,json; print(next(a['url'] for a in json.load(sys.stdin)['assets'] if a['name'].endswith('.whl')))")
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.0)
+          echo "$RELEASE" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('message','OK'))" || true
+          ASSET_URL=$(echo "$RELEASE" | python3 -c "import sys,json; print(next(a['url'] for a in json.load(sys.stdin)['assets'] if a['name'].endswith('.whl')))")
           curl -sL \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
             -H "Accept: application/octet-stream" \
