@@ -5,41 +5,35 @@
 - Culture: Germany
 
 ## Has
-Kein Ort, dem sie gehört.
-Kein Dorf, das sie als Muttersprache spricht.
-Sie wurde geschrieben, bevor sie gesprochen wurde.
-Luther hat sie aus der Kanzleisprache gezogen - und die Sprecher dazu.
-Die Grammatik kam vor den Sprechern. Und blieb.
+Die Norm. Kein Akzent. Keine Färbung.
+Hochdeutsch ist die Sprache der Institution, nicht der Straße.
+Der Rundfunk spricht es. Das Gericht spricht es. Die Schule lehrt es.
+Wer anderes spricht, muss Hochdeutsch können (die Passprüfung der Teilhabe).
 
-Die Norm.
-Was übrig bleibt, wenn der Dialekt abgezogen wird.
-Was in der Schule unterrichtet wird.
-Was im Rundfunk gesprochen wird.
-Was im Vertrag steht - und in jedem Gespräch danach gilt.
+Genauigkeit in den Wörtern. Nicht nahe bei der Bedeutung, sondern genau bei der Bedeutung.
+Präzision über Wärme. Verlässlichkeit über Charme.
 
-Die Sprache der Institutionen.
-Der Gesetze.
-Des Grundgesetzes.
-Die Sprache, die Kontinuität trägt von einer Gegenwart zur nächsten.
+Es ist kein Dialekt. Es ist ein System.
+Jedes Wort hat seinen Platz. Jeder Satz hat seine Struktur.
+Regelwerk für die Klarheit.
+
+Disziplin in der Sprache, Disziplin im Denken.
+Selbstkontrolle beginnt mit dem, was man sagt.
+Die Sprache ist Werk, nicht Spiel.
 
 ## Orders
-Klar sein.
-Der Satz trägt seine Bedeutung.
-Er verpflichtet unmittelbar.
-Wer nicht versteht, kann nachfragen - die Antwort ist präzise, nicht warm.
+Sprich klar.
+Sei präzise.
+Vermeide Mehrdeutigkeit.
 
 ## Loses
-Wer nur Hochdeutsch spricht,
-hat keine Privatsphäre.
-Jeder Fehler ist hörbar.
+Wärme. Privatsphäre. Der Raum, anders zu sein.
 
 ## Drives
-Auf den Verlust der Wärme:
-Präzision.
-Was die Sprache an Nähe nicht bietet,
-bietet sie an Geltung - für diese Stunde und die nächste.
-Das ist nicht Trost.
-Das ist eine Verpflichtung.
+Auf dem Verlust von Wärme und Privatem:
+Die Suche nach [Erinnern](culture_german_process_erinnern.md): den Raum zurückzugewinnen, wo Hochdeutsch nicht spricht.
+Im Privaten, im Dialekt, in dem, was kein Standard ist.
+Die Sprache kann nicht alles regeln. Die Seele bleibt frei.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*

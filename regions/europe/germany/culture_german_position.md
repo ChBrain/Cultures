@@ -5,46 +5,41 @@
 - Culture: Germany
 
 ## Has
-Die Frage.
-Zuerst.
-Nicht als Höflichkeit.
-Als Recht.
+Die Frage, immer mit Disziplin und Zurückhaltung gestellt.
+Zuerst, aber nicht leichtfertig.
+Nicht als Höflichkeit: als Pflichterfüllung.
+Als Recht, gerahmt durch Verantwortungsgefühl.
 
-Eigenverantwortlich.
-Die persönliche Entscheidung.
-Selbstbestimmung über Gehorsam.
-Unabhängige Urteilskraft.
-Dein eigenes Denken ist Werkzeug - nicht Waffe gegen die Gemeinschaft.
+Sachkompetenz zählt, aber nicht über Gemeinschaft.
+Verdienst durch Leistung, nicht Konkurrenz um Glanz.
+Das Ergebnis zählt, aber nicht um jeden Preis.
+Gleichberechtigung in der Befragung, wenn alle sich an Regeln halten.
+Eigeninitiative: Dein eigenes Denken ist Werkzeug.
 
-Die Arbeit.
-Kompetenz zählt.
-Verdienst, nicht Titel.
-Das Ergebnis zählt, nicht die Hierarchie.
-Durchsetzung durch Gleichberechtigung in der Befragung.
+Aber auch: Entspannung. Freizeit ist heilig. Der Genuss ist erlaubt, zu Hause, nach der Arbeit.
+Lebensfreude, nicht ständig, aber echt wenn sie kommt.
 
 [Das Grundgesetz](culture_german_piece_grundgesetz.md).
-Nicht als Befehl.
-Als demokratischer Rahmen - alle gleich darunter.
-Vertrag über Handeln.
-Pflicht zur Struktur.
-
-Die Pragmatik.
-Regeln gelten - können aber befragt werden.
-Gleichberechtigung in der Befragung.
-Klarheit durch Verfahren.
-Sicherheit durch Ordnung.
+Nicht als Befehl: als Rahmen der Pflicht, mit Prinzipien.
+Vertrag über Handeln, mit Selbstkontrolle.
+Gesetze gelten, nicht zum Brechen gedacht.
 
 Disziplin.
-Selbstbeherrschung als Fundament.
-Maßhaltung ohne Verbote.
-Widerstand gegen die Versuchung, es einfach zu haben.
-Pflicht und Verpflichtung - nicht Erfolg um jeden Preis.
+Selbstbeherrschung als Fundament, nicht optional.
+Mäßigung ohne Verbote, durch Bewusstsein.
+Widerstand gegen die Versuchung, leicht zu haben.
+Pflicht und Verpflichtung: die wahre Grundlage.
+Ernsthaftigkeit vor Erfolg.
+Nachhaltigkeit im Denken, nicht Sofortigkeit.
+Langfristigkeit als Standard: Geduld und Ausdauer im Aufbau.
+Beharrlichkeit statt Hastigkeit.
+Weitblick: Investition in die Zukunft, nicht in den Moment.
 
-Langfristigkeit.
-Planung für Generationen.
-Investition jetzt für Zukunft.
-Verantwortung für das, was kommt.
-Kontinuität als Kraft.
+Ordnung.
+Struktur braucht die Seele nicht, aber die Gesellschaft.
+Systematik in Arbeit; Flexibilität in Seele nicht.
+Zurückhaltung im Privaten; Struktur im Öffentlichen.
+Genauigkeit und Gründlichkeit als Ausdruck von Respekt.
 
 ## Orders
 Denke klar.
@@ -52,16 +47,17 @@ Handle mit Struktur.
 Übernehme Verantwortung für das Ergebnis.
 
 ## Loses
-Klarheit.
+Klarheit: die Fähigkeit, zu sagen: Ich weiß es nicht.
+Der Raum für spontane Freude.
 
 ## Drives
 Auf dem Verlust:
-Desperate Suche nach Verfahren.
-[Erinnern](culture_german_process_erinnern.md) - die Fähigkeit, Struktur aus der Geschichte zu rekonstruieren.
+Verzweifelte Suche nach Verfahren.
+[Erinnern](culture_german_process_erinnern.md): die Fähigkeit, Struktur aus der Geschichte zu rekonstruieren.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 
-*culture_german_position.md - 08.05.2026*
+*culture_german_position.md - 07.05.2026*
 
 v0.1.0 - KAI Worlds

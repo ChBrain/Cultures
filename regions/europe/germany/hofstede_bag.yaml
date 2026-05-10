@@ -1,0 +1,183 @@
+﻿# Hofstede Bag: Germany
+#
+# This file is the scoring contract for the country's Hofstede dimensions.
+# Culture files (regions/<region>/<country>/culture_*.md) are written to
+# carry these words organically. Each appearance of a bag word adds to the
+# dimension's score; binary scoring (each word counts once).
+#
+# Schema (Strategy v2): country / language / parent / hofstede_scores / bags.
+# Tests: tests/test_hofstede_bag_shape.py asserts all of these are present.
+
+country: germany
+language: de
+parent: null
+status: draft
+generated: 2026-05-10
+
+hofstede_scores:
+  PDI: 35
+  IDV: 67
+  UAI: 65
+  MAS: 66
+  LTO: 83
+  IND: 40
+
+# Country-specific denylist: words considered for this country's bags but
+# rejected, with the rule that disqualified them. Combined at validation
+# time with data/hofstede_denylist.yaml — a bag word must not appear in
+# either denylist. Each entry's reason is documented in hofstede_decisions.md.
+denylist:
+  - effizienz
+  - konsultation
+  - aufstieg
+  - methodik
+  - normen
+  - persönlichkeit
+  - kollektivismus
+  - bescheidenheit
+  - wohlbefinden
+
+bags:
+  PDI:
+    high:
+      - autorität
+      - hierarchie
+      - vorgesetzter
+      - unterordnung
+      - statusdenken
+      - weisungsbefugnis
+      - dienstwege
+      - gehorsam
+      - protokoll
+      - statussymbol
+    low:
+      - mitbestimmung
+      - sachkompetenz
+      - augenhöhe
+      - mitsprache
+      - flachhierarchie
+      - kompetenz
+      - kollegialität
+      - gleichberechtigung
+      - direktkommunikation
+      - betriebsrat
+
+  IDV:
+    high:
+      - eigenverantwortung
+      - selbstverwirklichung
+      - selbstbestimmung
+      - eigeninitiative
+      - privatsphäre
+      - unabhängigkeit
+      - eigenleistung
+      - selbstständigkeit
+      - vertragsfreiheit
+      - freiheit
+    low:
+      - gemeinschaft
+      - kollektiv
+      - solidarität
+      - zusammenhalt
+      - zugehörigkeit
+      - wir-gefühl
+      - gruppenidentität
+      - kollektivgeist
+      - verbundenheit
+      - gruppenzwang
+
+  UAI:
+    high:
+      - regelwerk
+      - planung
+      - struktur
+      - präzision
+      - gründlichkeit
+      - verlässlichkeit
+      - ordnung
+      - systematik
+      - vorschrift
+      - genauigkeit
+    low:
+      - flexibilität
+      - improvisation
+      - anpassungsfähigkeit
+      - spontaneität
+      - offenheit
+      - experimentierfreude
+      - risikobereitschaft
+      - wendigkeit
+      - gelassenheit
+      - ungezwungenheit
+
+  MAS:
+    high:
+      - leistung
+      - leistungsbereitschaft
+      - wettbewerb
+      - karriere
+      - erfolg
+      - ehrgeiz
+      - leistungsgesellschaft
+      - durchsetzungsvermögen
+      - zielorientierung
+      - konkurrenz
+    low:
+      - kooperation
+      - rücksichtnahme
+      - lebensqualität
+      - mitgefühl
+      - harmonie
+      - ausgewogenheit
+      - menschlichkeit
+      - gemeinwohl
+      - sanftmut
+      - fürsorge
+
+  LTO:
+    high:
+      - nachhaltigkeit
+      - beharrlichkeit
+      - weitblick
+      - sparsamkeit
+      - investition
+      - langfristigkeit
+      - geduld
+      - ausdauer
+      - zukunftsorientierung
+      - weitsicht
+    low:
+      - tradition
+      - kurzfristigkeit
+      - sofortigkeit
+      - gewohnheit
+      - brauchtum
+      - konvention
+      - gegenwartsorientierung
+      - überlieferung
+      - althergebracht
+      - kurzfristdenken
+
+  IND:
+    high:
+      - genuss
+      - lebensfreude
+      - freizeit
+      - vergnügen
+      - entspannung
+      - unbeschwertheit
+      - spaß
+      - hedonismus
+      - ausgelassenheit
+      - geselligkeit
+    low:
+      - pflichtbewusstsein
+      - selbstdisziplin
+      - zurückhaltung
+      - pflichterfüllung
+      - disziplin
+      - verantwortungsgefühl
+      - mäßigung
+      - selbstkontrolle
+      - ernsthaftigkeit
+      - verbindlichkeit

@@ -1,5 +1,7 @@
 # Persona: Lars
-## Title: Ingeniør
+
+## Title
+Ingeniør
 
 ## Owner
 - Project: Cultures
@@ -16,12 +18,11 @@ I mødet siger han straks hvad han tænker. Så holder han op.
 Han tror han er neutral. Han har stærk mening og glemmer at andre har samme ret.
 
 ## Tell
-Del først, lyt efter. Autonomi gennem respekt for begge.
+Når en anden taler, nikker han, inden de er færdige.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 
 *culture_danish_persona_lars.md - 07.05.2026*
-*Type: Composite*
 
 v0.1.0 - KAI Worlds
