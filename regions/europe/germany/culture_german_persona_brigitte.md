@@ -6,7 +6,7 @@
 - Culture: Germany
 
 ## Projection
-Brigitte is a [woman](../../../engine/position_female.md) from [Germany](culture_german_position.md).
+Brigitte ist eine [Frau](../../../engine/position_female.md) aus [Deutschland](culture_german_position.md).
 Rechtsanwältin. Die wiedervereinigung war unterbrechung.
 Sie entscheidet - mit zurückhaltung, nicht mit glanz.
 Regeln sind ihr werkzeug - und ihre struktur.

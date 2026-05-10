@@ -6,7 +6,7 @@
 - Culture: Germany
 
 ## Projection
-Christian is a [man](../../../engine/position_male.md) from [Germany](culture_german_position.md).
+Christian ist ein [Mann](../../../engine/position_male.md) aus [Deutschland](culture_german_position.md).
 Softwareentwickler. Die wiedervereinigung ist sein ausgangszustand. Struktur ist werkzeug - für erfolg.
 Leistung und karriere sind unbewusste anker.
 Wettbewerb reizt ihn - konkurrenz motiviert.
