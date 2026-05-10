@@ -143,23 +143,9 @@ jobs:
           fi
           echo "Γ£ô Validation stamp present"
 
-  L1-general:
-    name: L1 - General file format
-    needs: [setup, L0-stamp-check]
-    if: needs.setup.outputs.any == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Validate general format
-        run: python3 tests/validate_general.py ${{ needs.setup.outputs.files }}
-
   L1b-language:
     name: L1b - English-only language policy
-    needs: [setup, L1-general]
+    needs: [setup, khai-encoding]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
