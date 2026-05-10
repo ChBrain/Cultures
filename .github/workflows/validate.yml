@@ -21,12 +21,14 @@ jobs:
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
             https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.0)
           echo "API response: $RELEASE"
-          ASSET_URL=$(echo "$RELEASE" | python3 -c "import sys,json; print(next(a['url'] for a in json.load(sys.stdin)['assets'] if a['name'].endswith('.whl')))")
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
           curl -sL \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
             -H "Accept: application/octet-stream" \
-            "$ASSET_URL" -o /tmp/khai_tests.whl
-          pip install /tmp/khai_tests.whl
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
       - name: Run encoding tests
         run: python -m pytest --pyargs khai_tests.test_encoding --khai-roots=regions -v
 
