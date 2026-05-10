@@ -33,6 +33,5 @@ Het moment waarop ze al gekozen heeft.
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 
 *culture_dutch_persona_anneke.md - 08.05.2026*
-*Type: Composite*
 
 v0.1.1 - KAI Worlds

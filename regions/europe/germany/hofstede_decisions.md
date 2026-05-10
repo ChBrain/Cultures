@@ -50,7 +50,7 @@ Multi-word entries: none
 Cross-country root flags: none (Netherlands bag pending)
 Root-proximity flags (same country): none
 Register spread: legal/bureaucratic 3 (weisungsbefugnis, dienstwege, protokoll), procedural 2 (unterordnung, gehorsam), social-cultural 3 (autorität, hierarchie, statusdenken), everyday 2 (vorgesetzter, statussymbol)
-Persona-anchor words: none (no German culture content files exist yet)
+Persona-anchor words: Christian (MAS-high) does not fire PDI-high bag; Brigitte (MAS-low) does not fire PDI-high bag
 ```
 
 ### PDI low
@@ -65,7 +65,7 @@ Multi-word entries: flachhierarchie (closed compound; no single-word equivalent 
 Cross-country root flags: none (Netherlands bag pending)
 Root-proximity flags (same country): mitbestimmung / mitsprache share mit- prefix -- both retained; institutional referents are distinct (co-determination law vs. right to voice)
 Register spread: legal/bureaucratic 3 (mitbestimmung, betriebsrat, gleichberechtigung), procedural 2 (direktkommunikation, flachhierarchie), social-cultural 3 (augenhöhe, kollegialität, kompetenz), everyday 2 (sachkompetenz, mitsprache)
-Persona-anchor words: none
+Persona-anchor words: Brigitte (position file: Sachkompetenz, Gleichberechtigung); Christian (position file does not fire PDI-low)
 ```
 
 ### IDV high
@@ -80,7 +80,7 @@ Multi-word entries: none
 Cross-country root flags: none
 Root-proximity flags (same country): eigenverantwortung / eigeninitiative / eigenleistung share eigen- prefix -- all retained; each anchors a distinct behavioral register (responsibility, initiative, output)
 Register spread: legal/bureaucratic 2 (vertragsfreiheit, selbstbestimmung), procedural 1 (eigeninitiative), social-cultural 4 (selbstverwirklichung, unabhängigkeit, privatsphäre, freiheit), everyday 3 (eigenverantwortung, eigenleistung, selbstständigkeit)
-Persona-anchor words: none
+Persona-anchor words: Christian (Action: Eigeninitiative fired; Process erinnern: not fired)
 ```
 
 ### IDV low
@@ -95,7 +95,7 @@ Multi-word entries: wir-gefühl (hyphenated compound; no single-word equivalent 
 Cross-country root flags: none
 Root-proximity flags (same country): none
 Register spread: legal/bureaucratic 0, procedural 0, social-cultural 6 (gemeinschaft, solidarität, zusammenhalt, zugehörigkeit, gruppenidentität, verbundenheit), everyday 4 (kollektiv, wir-gefühl, kollektivgeist, gruppenzwang)
-Persona-anchor words: none
+Persona-anchor words: Brigitte (Action: Kooperation, Harmonie); Christian (Shadow: no IDV-low fire); Position file: Gemeinschaft; Process erinnern: Pflichterfüllung (IND-low, not IDV-low)
 Note: fürsorge removed from this bag (Round 1 review: within-country collision with MAS-low). Replaced by kollektivgeist -- collective spirit, unambiguously IDV-low, no collision with any other bag.
 ```
 
@@ -111,7 +111,7 @@ Multi-word entries: regelwerk (closed compound; single token in German)
 Cross-country root flags: none
 Root-proximity flags (same country): regelwerk / vorschrift both name rule-systems -- retained; regelwerk is the body of rules as system, vorschrift is the individual prescription; distinct institutional referents
 Register spread: legal/bureaucratic 3 (regelwerk, vorschrift, ordnung), procedural 4 (planung, struktur, systematik, genauigkeit), social-cultural 2 (gründlichkeit, verlässlichkeit), everyday 1 (präzision)
-Persona-anchor words: none
+Persona-anchor words: Brigitte (Action: keine UAI-high fire); Language file: Regelwerk, Struktur, Präzision, Genauigkeit, Verlässlichkeit (5 fires)
 ```
 
 ### UAI low
@@ -126,7 +126,7 @@ Multi-word entries: experimentierfreude (closed compound; no single-word equival
 Cross-country root flags: none
 Root-proximity flags (same country): none
 Register spread: legal/bureaucratic 0, procedural 2 (anpassungsfähigkeit, wendigkeit), social-cultural 3 (experimentierfreude, risikobereitschaft, ungezwungenheit), everyday 5 (flexibilität, improvisation, spontaneität, offenheit, gelassenheit)
-Persona-anchor words: none
+Persona-anchor words: Position file: Flexibilität (light fire); Language file: no direct fire; Piece file (Grundgesetz): no UAI-low fire
 Note: ungezwungenheit flagged for native-speaker register check -- verify active use in cultural prose.
 ```
 
@@ -142,7 +142,7 @@ Multi-word entries: leistungsbereitschaft (closed compound; no single word captu
 Cross-country root flags: none
 Root-proximity flags (same country): leistung / leistungsbereitschaft / leistungsgesellschaft share leistung- root -- three retained; leistungsträger dropped as redundant
 Register spread: legal/bureaucratic 0, procedural 2 (zielorientierung, durchsetzungsvermögen), social-cultural 4 (karriere, erfolg, ehrgeiz, leistungsgesellschaft), everyday 4 (leistung, leistungsbereitschaft, wettbewerb, konkurrenz)
-Persona-anchor words: none
+Persona-anchor words: Christian (all 10 MAS-high words fire in Action section); Position file: Leistung, Konkurrenz, Zielorientierung, Karriere (4 fires, context appropriate)
 Note: four closed compounds in this bag. Rule applies to hyphenated compounds only. All four are natural single-token German words. No violation. leistungsgesellschaft flagged for native-speaker register check -- politically loaded in contemporary discourse.
 ```
 
@@ -158,7 +158,7 @@ Multi-word entries: none
 Cross-country root flags: none
 Root-proximity flags (same country): fürsorge appears in IDV-low (resolved) -- assigned to MAS-low; not in IDV-low final bag
 Register spread: legal/bureaucratic 0, procedural 0, social-cultural 6 (kooperation, lebensqualität, mitgefühl, harmonie, menschlichkeit, gemeinwohl), everyday 4 (rücksichtnahme, ausgewogenheit, sanftmut, fürsorge)
-Persona-anchor words: none
+Persona-anchor words: Brigitte (Action: Kooperation, Harmonie; Shadow: Rücksichtnahme, Ausgewogenheit -- 4 fires); Place file: Sanftmut (1 fire); Position file: no MAS-low fire
 ```
 
 ### LTO high
@@ -173,7 +173,7 @@ Multi-word entries: langfristigkeit (closed compound; the dimension concept itse
 Cross-country root flags: none
 Root-proximity flags (same country): weitblick / weitsicht share sehen-root -- both retained; weitblick is the capacity for foresight, weitsicht is the strategic horizon application; register distinct
 Register spread: legal/bureaucratic 0, procedural 3 (investition, langfristigkeit, zukunftsorientierung), social-cultural 4 (nachhaltigkeit, beharrlichkeit, geduld, ausdauer), everyday 3 (weitblick, sparsamkeit, weitsicht)
-Persona-anchor words: none
+Persona-anchor words: Position file: Nachhaltigkeit, Langfristigkeit, Geduld, Ausdauer, Weitblick, Beharrlichkeit, Investition (7 fires); Piece file (Grundgesetz): Nachhaltigkeit, Ausdauer, Langfristigkeit, Weitblick, Beharrlichkeit, Investition (6 fires)
 ```
 
 ### LTO low
@@ -188,7 +188,7 @@ Multi-word entries: gegenwartsorientierung (closed compound; no single-word equi
 Cross-country root flags: none
 Root-proximity flags (same country): none
 Register spread: legal/bureaucratic 0, procedural 1 (gegenwartsorientierung), social-cultural 4 (tradition, brauchtum, konvention, überlieferung), everyday 5 (kurzfristigkeit, sofortigkeit, gewohnheit, althergebracht, kurzfristdenken)
-Persona-anchor words: none
+Persona-anchor words: none (no LTO-low fire in any persona or major cultural file)
 Note: statusquo removed (Round 1 review: spelling ambiguity -- Status quo is standard two-word German; single-token form unsafe). Replaced by kurzfristdenken -- short-term thinking, unambiguous LTO-low signal, single token. Althergebracht -- verify active use in cultural prose vs. archaic register.
 ```
 
@@ -204,7 +204,7 @@ Multi-word entries: none
 Cross-country root flags: none
 Root-proximity flags (same country): none
 Register spread: legal/bureaucratic 0, procedural 0, social-cultural 4 (lebensfreude, vergnügen, hedonismus, geselligkeit), everyday 6 (genuss, freizeit, entspannung, unbeschwertheit, spaß, ausgelassenheit)
-Persona-anchor words: none
+Persona-anchor words: Position file: Lebensfreude, Genuss, Entspannung, Freizeit (4 fires, light/contextual); Berlin place file: no IND-high fire
 ```
 
 ### IND low
@@ -219,7 +219,7 @@ Multi-word entries: pflichtbewusstsein (closed compound; institutionally load-be
 Cross-country root flags: none
 Root-proximity flags (same country): pflichtbewusstsein / pflichterfüllung share pflicht- root -- both retained; distinct registers (consciousness of duty vs. execution of duty). verbindlichkeit root-adjacent to UAI-high (obligation/bindingness overlaps with rule-following) -- primary register assigned to IND-low as duty/commitment; flagged for native-speaker check.
 Register spread: legal/bureaucratic 1 (verbindlichkeit), procedural 2 (selbstdisziplin, selbstkontrolle), social-cultural 4 (pflichtbewusstsein, pflichterfüllung, verantwortungsgefühl, ernsthaftigkeit), everyday 3 (zurückhaltung, disziplin, mäßigung)
-Persona-anchor words: none
+Persona-anchor words: Position file: Disziplin, Zurückhaltung, Pflichterfüllung, Verantwortungsgefühl, Selbstkontrolle, Mäßigung, Ernsthaftigkeit (7 fires); Process file (Erinnern): Pflicht, Disziplin, Zurückhaltung, Selbstkontrolle, Verbindlichkeit, Pflichterfüllung, Ernsthaftigkeit, Verantwortungsgefühl (8 fires); Language file (Hochdeutsch): Disziplin, Selbstkontrolle (2 fires)
 ```
 
 ---

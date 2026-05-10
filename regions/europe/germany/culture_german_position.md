@@ -5,42 +5,41 @@
 - Culture: Germany
 
 ## Has
-Die frage - immer mit disziplin und zurückhaltung gestellt.
-Zuerst - aber nicht leichtfertig.
-Nicht als höflichkeit - als pflichterfüllung.
-Als recht, gerahmt durch verantwortungsgefühl.
+Die Frage, immer mit Disziplin und Zurückhaltung gestellt.
+Zuerst, aber nicht leichtfertig.
+Nicht als Höflichkeit: als Pflichterfüllung.
+Als Recht, gerahmt durch Verantwortungsgefühl.
 
-Sachkompetenz zählt - aber nicht über gemeinschaft.
-Verdienst, nicht konkurrenz um glanz.
-Das ergebnis zählt, aber nicht um jeden preis.
-Mitbestimmung statt unterordnung.
-Gleichberechtigung in der befragung - wenn alle sich an regeln halten.
-Eigeninitiative - dein eigenes denken ist werkzeug.
+Sachkompetenz zählt, aber nicht über Gemeinschaft.
+Verdienst durch Leistung, nicht Konkurrenz um Glanz.
+Das Ergebnis zählt, aber nicht um jeden Preis.
+Gleichberechtigung in der Befragung, wenn alle sich an Regeln halten.
+Eigeninitiative: Dein eigenes Denken ist Werkzeug.
 
-Aber auch: entspannung. Freizeit ist heilig. Der genuss ist erlaubt - zu hause, nach der arbeit.
-Lebensfreude - nicht ständig, aber echt wenn sie kommt.
+Aber auch: Entspannung. Freizeit ist heilig. Der Genuss ist erlaubt, zu Hause, nach der Arbeit.
+Lebensfreude, nicht ständig, aber echt wenn sie kommt.
 
 [Das Grundgesetz](culture_german_piece_grundgesetz.md).
-Nicht als befehl - als rahmen der pflicht.
-Vertrag über handeln - mit selbstkontrolle.
-Gesetze gelten - nicht zum brechen gedacht.
+Nicht als Befehl: als Rahmen der Pflicht, mit Prinzipien.
+Vertrag über Handeln, mit Selbstkontrolle.
+Gesetze gelten, nicht zum Brechen gedacht.
 
 Disziplin.
-Selbstbeherrschung als fundament - nicht optional.
-Mäßigung ohne verbote - durch bewusstsein.
-Widerstand gegen die versuchung, leicht zu haben.
-Pflicht und verpflichtung - die wahre grundlage.
-Ernsthaftigkeit vor erfolg.
-Nachhaltigkeit im denken - nicht sofortigkeit.
-Langfristigkeit als standard - geduld und ausdauer im aufbau.
-Beharrlichkeit statt hastigkeit.
-Weitblick - investition in die zukunft, nicht in den moment.
+Selbstbeherrschung als Fundament, nicht optional.
+Mäßigung ohne Verbote, durch Bewusstsein.
+Widerstand gegen die Versuchung, leicht zu haben.
+Pflicht und Verpflichtung: die wahre Grundlage.
+Ernsthaftigkeit vor Erfolg.
+Nachhaltigkeit im Denken, nicht Sofortigkeit.
+Langfristigkeit als Standard: Geduld und Ausdauer im Aufbau.
+Beharrlichkeit statt Hastigkeit.
+Weitblick: Investition in die Zukunft, nicht in den Moment.
 
 Ordnung.
-Struktur braucht die seele nicht, aber die gesellschaft.
-Systematik in arbeit - flexibilität in seele nicht.
-Zurückhaltung im privaten - struktur im öffentlichen.
-Genauigkeit und gründlichkeit als ausdruck von respekt.
+Struktur braucht die Seele nicht, aber die Gesellschaft.
+Systematik in Arbeit; Flexibilität in Seele nicht.
+Zurückhaltung im Privaten; Struktur im Öffentlichen.
+Genauigkeit und Gründlichkeit als Ausdruck von Respekt.
 
 ## Orders
 Denke klar.
@@ -48,16 +47,17 @@ Handle mit Struktur.
 Übernehme Verantwortung für das Ergebnis.
 
 ## Loses
-Klarheit.
+Klarheit: die Fähigkeit, zu sagen: Ich weiß es nicht.
+Der Raum für spontane Freude.
 
 ## Drives
 Auf dem Verlust:
-Desperate Suche nach Verfahren.
-[Erinnern](culture_german_process_erinnern.md) - die Fähigkeit, Struktur aus der Geschichte zu rekonstruieren.
+Verzweifelte Suche nach Verfahren.
+[Erinnern](culture_german_process_erinnern.md): die Fähigkeit, Struktur aus der Geschichte zu rekonstruieren.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 
-*culture_german_position.md - 08.05.2026*
+*culture_german_position.md - 07.05.2026*
 
 v0.1.0 - KAI Worlds

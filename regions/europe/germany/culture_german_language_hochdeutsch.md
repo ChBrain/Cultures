@@ -5,50 +5,35 @@
 - Culture: Germany
 
 ## Has
-Kein ort, dem sie gehört.
-Kein dorf, das sie als muttersprache spricht.
-Sie wurde geschrieben, bevor sie gesprochen wurde.
-Luther hat sie aus der kanzleisprache gezogen - und die sprecher dazu.
-Die grammatik kam vor den sprechern. Und blieb - regelwerk vor natur.
+Die Norm. Kein Akzent. Keine Färbung.
+Hochdeutsch ist die Sprache der Institution, nicht der Straße.
+Der Rundfunk spricht es. Das Gericht spricht es. Die Schule lehrt es.
+Wer anderes spricht, muss Hochdeutsch können (die Passprüfung der Teilhabe).
 
-Die norm.
-Was übrig bleibt, wenn der dialekt abgezogen wird.
-Was in der schule unterrichtet wird - mit genauigkeit und gründlichkeit.
-Was im rundfunk gesprochen wird - präzise, verlässlich.
-Was im vertrag steht - und in jedem gespräch danach gilt.
+Genauigkeit in den Wörtern. Nicht nahe bei der Bedeutung, sondern genau bei der Bedeutung.
+Präzision über Wärme. Verlässlichkeit über Charme.
 
-Die sprache der institutionen.
-Der gesetze - vorschrift auf vorschrift.
-Des grundgesetzes - ordnung und struktur.
-Die sprache, die kontinuität trägt - von einer gegenwart zur nächsten mit systematik und planung.
-Sie ist werkzeug für langfristigkeit und ausdauer.
+Es ist kein Dialekt. Es ist ein System.
+Jedes Wort hat seinen Platz. Jeder Satz hat seine Struktur.
+Regelwerk für die Klarheit.
+
+Disziplin in der Sprache, Disziplin im Denken.
+Selbstkontrolle beginnt mit dem, was man sagt.
+Die Sprache ist Werk, nicht Spiel.
 
 ## Orders
-Klar sein - das ist deine leistung als sprecher.
-Der satz trägt seine bedeutung.
-Er verpflichtet unmittelbar - nicht warm, nicht zögernd.
-Wer nicht versteht, kann nachfragen - die antwort ist präzise und verlässlich, nicht warm.
-Selbstkontrolle im sprechen. Disziplin in der aussage.
+Sprich klar.
+Sei präzise.
+Vermeide Mehrdeutigkeit.
 
 ## Loses
-Wer nur hochdeutsch spricht, hat keine privatsphäre.
-Jeder fehler ist hörbar - keine entschuldigung möglich.
-Die sprache entfernt dich von genuss und lebensfreude.
-Sie verlangt stattdessen: zurückhaltung, disziplin, ernsthaftigkeit, verantwortungsgefühl.
-Sie verbietet spiel - die sprache selbst ist ernst.
-Selbstkontrolle ist nicht optional - es ist bedingung.
-Mäßigung ist eingebaut.
-Verbindlichkeit wird durch wortwahl erzeugt.
+Wärme. Privatsphäre. Der Raum, anders zu sein.
 
 ## Drives
-Auf den verlust von nähe und lebensfreude:
-Präzision und verlässlichkeit - das ist der kompromiss.
-Was die sprache an wärme nicht bietet, bietet sie an geltung - für diese stunde und die nächste.
-Das ist nicht trost - das ist pflichterfüllung.
-Das ist selbstkontrolle als vertrag mit der zukunft.
-Das ist verbindlichkeit - nicht gewählt, sondern erzwungen.
-Ernsthaftigkeit ist nicht optional.
-Die sprache braucht mäßigung - oder sie zerbricht.
+Auf dem Verlust von Wärme und Privatem:
+Die Suche nach [Erinnern](culture_german_process_erinnern.md): den Raum zurückzugewinnen, wo Hochdeutsch nicht spricht.
+Im Privaten, im Dialekt, in dem, was kein Standard ist.
+Die Sprache kann nicht alles regeln. Die Seele bleibt frei.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
