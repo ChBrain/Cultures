@@ -106,7 +106,7 @@ class TestBagLocks:
         if not GLOBAL_DENYLIST_FILE.exists():
             pytest.skip("Global denylist file not present")
         locks = load_locks()
-        rel = str(GLOBAL_DENYLIST_FILE.relative_to(REPO_ROOT))
+        rel = GLOBAL_DENYLIST_FILE.relative_to(REPO_ROOT).as_posix()
         assert rel in locks, (
             f"{rel}: no lock entry. Add SHA256 to data/hofstede_bag_locks.yaml "
             f"to lock the global denylist as part of the bag-system contract."
