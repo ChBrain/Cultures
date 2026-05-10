@@ -50,7 +50,7 @@ Multi-word entries: none
 Cross-country root flags: none (Netherlands bag pending)
 Root-proximity flags (same country): none
 Register spread: legal/bureaucratic 3 (weisungsbefugnis, dienstwege, protokoll), procedural 2 (unterordnung, gehorsam), social-cultural 3 (autorität, hierarchie, statusdenken), everyday 2 (vorgesetzter, statussymbol)
-Persona-anchor words: none (no German culture content files exist yet)
+Persona-anchor words: no PDI-high firing in delivered personas. Christian carries status-seeking shadow (ehrgeiz); Brigitte carries professional expertise but not hierarchical deference. PDI-low frames both personas.
 ```
 
 ### PDI low
@@ -64,11 +64,7 @@ Declared score: 35
 Multi-word entries: flachhierarchie (closed compound; no single-word equivalent captures flat-structure concept), direktkommunikation (closed compound; institutionally named in Hofstede Insights description of Germany -- justified)
 Cross-country root flags: none (Netherlands bag pending)
 Root-proximity flags (same country): mitbestimmung / mitsprache share mit- prefix -- both retained; institutional referents are distinct (co-determination law vs. right to voice)
-Register spread: legal/bureaucratic 3 (mitbestimmung, betriebsrat, gleichberechtigung), procedural 2 (direktkommunikation, flachhierarchie), social-cultural 3 (augenhöhe, kollegialität, kompetenz), everyday 2 (sachkompetenz, mitsprache)
-Persona-anchor words: none
-```
-
-### IDV high
+Persona-anchor words: Christian and Brigitte both carry eigeninitiative and eigenverantwortung (developer autonomy, lawyer decision-making). Light but present across both personas.
 
 ```
 Country: germany

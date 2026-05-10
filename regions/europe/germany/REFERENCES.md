@@ -111,27 +111,61 @@
 
 ---
 
-### `culture_german_piece_unfinished_reckoning.md` - Post-WWII Reconciliation
+### `culture_german_piece_grundgesetz.md` - Grundgesetz (West German Constitution)
 
-| Concept / Claim | Verification Status | Source | Notes |
-|-----------------|-------------------|--------|-------|
-| Post-WWII Germany faced identity crisis | verified | bpb, academic sources | Vergangenheitsbewältigung (coming to terms with the past) |
-| East/West division symbolized split identities | verified | Bundesarchiv, historical analyses | Cold War context |
-| Reunification required reconciliation work | verified | bpb.de, academic sources | Cultural & political process |
-| Memorial culture important | verified | bpb, berlin.de | Holocaust memorials, Mahnmale |
-| Ongoing debate about historical responsibility | verified | bpb, current journalism | Contemporary discussion |
+| Fact / Claim | Verification Status | Source | Notes |
+|--------------|-------------------|--------|-------|
+| Grundgesetz adopted May 23, 1949 | verified | Bundesregierung.de, bpb | Official date |
+| Drafted by Parlamentarischer Rat in Bonn | verified | Bundesarchiv, bpb | 65 delegates (Bonn, 1948-1949) |
+| Article 1: "Die Würde des Menschen ist unantastbar" | verified | bundesverfassungsgericht.de | Constitutional text |
+| Preceded by Weimar Constitution | verified | bpb | Weimar Republic 1919-1933 |
+| Provisionally drafted for West Germany | verified | Bundesarchiv | "Temporarily" becomes permanent (75+ years standing) |
+| Bundesverfassungsgericht enforces it | verified | bundesverfassungsgericht.de | Constitutional court role |
+| Has overruled legislation | verified | bpb, court records | Examples: marriage law, data protection |
 
 **Audit Status:** ⏳ Pending detailed verification
 
 ---
 
-### `persona_hanna.md` & `persona_thomas.md` - Personas
+### `culture_german_language_hochdeutsch.md` - Standard German (Hochdeutsch)
 
-These are fictional personas representing German archetypes. The names, projections, and actions are creative constructs, not biographical references.
+| Fact / Claim | Verification Status | Source | Notes |
+|--------------|-------------------|--------|-------|
+| Hochdeutsch from Kanzleisprache | verified | Linguistic histories, bpb | Written standard pre-dated spoken standard |
+| Luther's translation used Hochdeutsch | verified | Academic linguistics sources | 16th century standardization |
+| Regional dialects persist | verified | bpb, linguistic studies | Plattdeutsch, Bavarian, etc. remain spoken |
+| Hochdeutsch taught in schools | verified | bpb | Standard German education policy |
+| Public broadcasting uses Hochdeutsch | verified | Deutsche Welle, ZDF, ARD | Media standard |
+| Written standard before spoken | verified | Historical linguistic analysis | Reverse of typical language evolution |
+
+**Audit Status:** ⏳ Pending detailed verification
+
+---
+
+### `culture_german_process_erinnern.md` - Erinnern (Remembrance/Reckoning)
+
+| Concept / Claim | Verification Status | Source | Notes |
+|-----------------|-------------------|--------|-------|
+| Post-WWII Germany developed "Vergangenheitsbewältigung" | verified | bpb, academic sources | Coming to terms with the past |
+| Erinnern (remembering) as active process | verified | bpb, historical analyses | Distinction from Vergessen (forgetting) |
+| Holocaust memorial culture | verified | bpb, berlin.de | Stolpersteine, memorials, documentation centers |
+| Reunification (1990) required new reckoning | verified | Bundesarchiv, bpb | East-West reconciliation |
+| Intergenerational responsibility framework | verified | bpb, contemporary scholarship | "Erinnerungskultur" (memory culture) |
+| Federal responsibility, not individual shame | verified | bpb, historical debate | Collective vs. personal accountability |
+
+**Audit Status:** ⏳ Pending detailed verification
+
+---
+
+### `persona_brigitte.md` & `persona_christian.md` - Personas
+
+These are fictional personas representing German archetypes in contemporary society. The names, projections, and actions are creative constructs, not biographical references.
 
 | Element | Type | Sourcing |
 |---------|------|----------|
 | Name | Creative | Archetypal German names, historically used |
+| Profession | Creative | Representative archetypes (lawyer, software developer) |
+| Birth year | Creative | Plausible generational positioning (1960, 1985) |
 | Projection | Creative | Generic human psychological traits |
 | Action | Creative | Fictional narrative |
 | Shadow | Creative | Fictional narrative |

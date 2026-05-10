@@ -33,7 +33,7 @@ Germany's cultural profile measured against Hofstede's framework:
 | Individualism (IDV) | 67 | **High** - Individual achievement and autonomy prioritized |
 | Uncertainty Avoidance (UAI) | 65 | **High** - Rules, structure, and planning preferred |
 | Masculinity (MAS) | 66 | **High** - Competitiveness, achievement valued |
-| Long-Term Orientation (LTO) | 83 | **Very High** - Long-term planning and adaptation emphasized |
+| Long-Term Orientation (LTO) | 83 | **High** - Long-term planning and adaptation emphasized |
 | Indulgence (IND) | 40 | **Low** - Restrained pole; gratification regulated by social norms |
 
 **Source:** Hofstede et al. (2010). Empirical research published in *Cultures and Organizations*.
@@ -56,10 +56,10 @@ Keyword density analysis validates that content keywords across all files (posit
 - **Low PDI + High IDV:** Germans value equality and individual merit. Hierarchy exists but is questioned and must be justified by competence.
 - **High UAI:** Strong preference for rules, planning, and structured processes. Visible in engineering precision, bureaucratic systems, and legal frameworks.
 - **High MAS:** Achievement and competition matter. Success is measured in tangible outcomes.
-- **Very High LTO:** Long-term strategic thinking. Investment in education, infrastructure, and future planning.
+- **High LTO:** Long-term strategic thinking. Investment in education, infrastructure, and future planning.
 - **Low IND:** Restraint over indulgence. Gratification of desires is regulated by social norms; deferred reward and self-discipline carry more weight than immediate enjoyment.
 
-These dimensions inform the **[Position](culture_german_position.md)** (how Germany operates), **Pieces** (historical moments where dimensions collided), **Place** (Berlin's infrastructure and social patterns), and **Personas** (how individuals navigate these cultural pressures). The position file carries a Hofstede footer naming the six dimensions; the levels and sources live here.
+These dimensions inform the **[Position](culture_german_position.md)** (how Germany operates), **Pieces** (historical moments where dimensions collided), **Place** (Berlin's infrastructure and social patterns), and **Personas** (how individuals navigate these cultural pressures). The levels and sources live in README.md (this file); culture files carry standard Hofstede signal footers.
 
 ## Content Audit Status
 
