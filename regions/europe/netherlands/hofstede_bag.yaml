@@ -1,0 +1,195 @@
+# Hofstede Bag: Netherlands
+#
+# This file is the scoring contract for the country's Hofstede dimensions.
+# Culture files (regions/europe/netherlands/culture_*.md) are written to
+# carry these words organically. Each appearance of a bag word adds to the
+# dimension's score; binary scoring (each word counts once).
+#
+# Schema (Strategy v2): country / language / parent / hofstede_scores / bags.
+# Tests: tests/test_hofstede_bag_shape.py asserts all of these are present.
+
+country: netherlands
+language: nl
+parent: null
+status: reviewed
+generated: 2026-05-11
+
+hofstede_scores:
+  PDI: 38
+  IDV: 80
+  UAI: 53
+  MAS: 14
+  LTO: 67
+  IND: 68
+
+# Country-specific denylist: words considered for this country's bags but
+# rejected, with the rule that disqualified them. Combined at validation
+# time with data/hofstede_denylist.yaml -- a bag word must not appear in
+# either denylist. Each entry's reason is documented in hofstede_decisions.md.
+#
+# Words that were moved between bags during conflict resolution
+# (autonomie, consensus, pragmatisch, spontaan, solidariteit, samenwerking,
+# informeel, resultaat) are NOT denylisted -- they remain placed in their
+# resolved bag. The denylist is reserved for words excluded from every bag.
+denylist:
+  - gelijkheid
+  - vrijheid
+  - zelf
+  - norm
+  - rang
+  - relatie
+  - vermijden
+  - sparen
+  - meten
+  - instrument
+  - afstand
+  - dimensie
+  - vergelijken
+  - modelleren
+  - zekerheid
+  - normatiefheid
+
+bags:
+  PDI:
+    high:
+      - hiërarchie
+      - gezag
+      - autoriteit
+      - ondergeschiktheid
+      - gehoorzaamheid
+      - protocol
+      - formaliteit
+      - eerbied
+      - titulering
+      - distantie
+    low:
+      - gelijkwaardig
+      - toegankelijk
+      - informeel
+      - directheid
+      - collegialiteit
+      - overleg
+      - medezeggenschap
+      - inspraak
+      - participatie
+      - consensus
+
+  IDV:
+    high:
+      - zelfredzaamheid
+      - zelfstandigheid
+      - individueel
+      - privacy
+      - initiatief
+      - verantwoordelijkheid
+      - onafhankelijkheid
+      - merite
+      - contract
+      - autonomie
+    low:
+      - collectief
+      - loyaliteit
+      - saamhorigheid
+      - solidariteit
+      - clan
+      - gemeenschap
+      - ingroep
+      - trouw
+      - afhankelijkheid
+      - harmonie
+
+  UAI:
+    high:
+      - structuur
+      - regels
+      - planning
+      - procedure
+      - precisie
+      - beleid
+      - systematisch
+      - kader
+      - voorbereiding
+      - overzicht
+    low:
+      - flexibel
+      - experiment
+      - aanpassen
+      - tolerantie
+      - risico
+      - improvisatie
+      - ruimte
+      - onzekerheid
+      - testen
+      - spontaniteit
+
+  MAS:
+    high:
+      - ambitie
+      - prestatie
+      - competitie
+      - winnaar
+      - assertiviteit
+      - doelgericht
+      - resultaat
+      - carrière
+      - dominantie
+      - prestatiegerichtheid
+    low:
+      - zorg
+      - bescheidenheid
+      - samenwerking
+      - welzijn
+      - empathie
+      - mededogen
+      - kwetsbaar
+      - naasten
+      - inclusief
+      - sociaal
+
+  LTO:
+    high:
+      - toekomst
+      - volharding
+      - investering
+      - pragmatisch
+      - duurzaam
+      - doorzetten
+      - leren
+      - ontwikkeling
+      - langetermijn
+      - continuïteit
+    low:
+      - traditie
+      - kortetermijn
+      - gewoonten
+      - kortzichtig
+      - snel
+      - verleden
+      - stabiliteit
+      - onmiddellijk
+      - bewezen
+      - behoudend
+
+  IND:
+    high:
+      - genieten
+      - plezier
+      - ontspanning
+      - geluk
+      - levensvreugde
+      - humor
+      - spontaan
+      - vriendschap
+      - gezelligheid
+      - optimisme
+    low:
+      - beheersing
+      - discipline
+      - plicht
+      - matigheid
+      - terughoudendheid
+      - zelfbeheersing
+      - verplichting
+      - ernst
+      - soberheid
+      - onthechting
