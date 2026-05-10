@@ -26,6 +26,7 @@ Harmonie zwischen erinnerung und gegenwart, nicht gewalt.
 
 ## Offers
 [Erinnern](culture_german_process_erinnern.md) läuft hier. Jeder muss selbst entscheiden, was er sieht.
+Aber auch: entspannung. Café-kultur. Lebensfreude in den spätsommerabenden.
 
 ## Withheld
 Die Teilung. Statistisch beendet. Im Denken manchmal nicht.
