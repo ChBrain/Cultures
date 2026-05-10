@@ -17,10 +17,15 @@ jobs:
           python-version: '3.11'
       - name: Install khai-tests
         run: |
-          gh release download khai-tests-v0.1.0 --repo ChBrain/KAIHACKS --pattern "*.whl" --dir /tmp/khai
-          pip install /tmp/khai/*.whl
-        env:
-          GH_TOKEN: ${{ secrets.KAIHACKS }}
+          ASSET_URL=$(curl -sf \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.0 \
+            | python3 -c "import sys,json; print(next(a['url'] for a in json.load(sys.stdin)['assets'] if a['name'].endswith('.whl')))")
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o /tmp/khai_tests.whl
+          pip install /tmp/khai_tests.whl
       - name: Run encoding tests
         run: python -m pytest --pyargs khai_tests.test_encoding --khai-roots=regions -v
 
