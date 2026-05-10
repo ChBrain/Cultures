@@ -14,23 +14,30 @@ Sie schrieben es trotzdem als vorläufig.
 Es wurde permanent.
 
 ## Load Bearing
-Ohne es verliert die [German](culture_german_position.md) Position ihren Grund.
-*Die Würde des Menschen ist unantastbar.*
+Ohne es verliert die [German](culture_german_position.md) Position ihren grund.
+*Die würde des menschen ist unantastbar.*
 Artikel 1. Nicht abänderbar.
-Das Bundesverfassungsgericht setzt es durch - in Gleichheit mit Gesellschaft.
-Es hat Gesetze gekippt - die Gesetze änderten sich pragmatisch.
-Das Gericht blieb kooperativ, flexibel anpassungsfähig.
+Das bundesverfassungsgericht setzt es durch - in gleichberechtigung mit gesellschaft.
+Es hat gesetze gekippt - die gesetze änderten sich anpassungsfähig.
+Das gericht blieb kooperativ, nicht dogmatisch.
+Regelwerk und flexibilität in spannung.
+Struktur sichert, struktur engt auch ein - dies ist bewusst.
 
 ## Apparent
-*Die Würde des Menschen ist unantastbar.*
-Erster Satz. Erster Artikel.
+*Die würde des menschen ist unantastbar.*
+Erster satz. Erster artikel.
 Vor allem anderen.
-Das Grundgesetz hängt in deutschen Klassenzimmern.
-Es liegt in Behörden aus.
-Neu eingebürgerte Deutsche erhalten ein Exemplar mit Einbürgerungsurkunde.
-Das Bundesverfassungsgericht sitzt in Karlsruhe.
-Es ist ein Arbeitsgericht.
-Kein Monumentalbau.
+Das grundgesetz hängt in deutschen klassenzimmern.
+Es liegt in behörden aus - präzision in der verteilung.
+Neu eingebürgerte deutsche erhalten ein exemplar mit einbürgerungsurkunde.
+Das bundesverfassungsgericht sitzt in karlsruhe.
+Es ist ein arbeitsgericht - systematisch organisiert.
+Kein monumentalbau - aber gründlichkeit im verfahren.
+Jede vorschrift im regelwerk hat grund und geschichte.
+Die genauigkeit des aufbaus spiegelt die gründlichkeit der intention.
+Nachhaltigkeit durch ausdauer - 75 jahre und zählend.
+Langfristigkeit ist struktur - nicht provisorisch, sondern zukunftsorientiert.
+Zukunftsorientierung durch beharrlichkeit in der anwendung.
 
 ## Yearbook
 9 n. Chr.: Varusschlacht. Rom zieht sich hinter den Rhein zurück; kein gemeinsames Recht beginnt hier.
