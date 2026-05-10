@@ -161,6 +161,31 @@ def main() -> int:
                 print("")
                 return 1
 
+    # On any branch: validate any staged Hofstede bag YAML.
+    # Catches schema, denylist coherence, and within-country collision issues
+    # before push. Cross-country checks happen in CI via the pytest suite.
+    bag_files = [
+        f for f in all_staged
+        if f.startswith("regions/")
+        and (f.endswith("/hofstede_bag.yaml") or "/hofstede_bag_" in f)
+        and f.endswith(".yaml")
+    ]
+    if bag_files:
+        result = subprocess.run(
+            [sys.executable, "tests/validate_country_bag.py", *bag_files],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if result.returncode != 0:
+            print(">>> BAG VALIDATION FAILED")
+            print("")
+            print(result.stdout.strip())
+            if result.stderr.strip():
+                print(result.stderr.strip())
+            print("")
+            return 1
+
     # Write validation stamp: hash of the content tree, excluding the stamp file itself
     # (removing stamp from index avoids a circular hash dependency).
     subprocess.run(["git", "rm", "--cached", "--ignore-unmatch", ".validation-stamp"],
