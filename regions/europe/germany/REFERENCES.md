@@ -93,6 +93,21 @@
 
 ---
 
+### `culture_german_language_hochdeutsch.md` - Hochdeutsch (Standard German)
+
+| Fact / Claim | Verification Status | Source | Notes |
+|--------------|-------------------|--------|-------|
+| Hochdeutsch is institutional standard in Germany | verified | DIN 5008, ARD/ZDF broadcasting standards | Formal register standard |
+| Taught in all German schools | verified | German education system | Standard curriculum |
+| Media broadcasting uses Hochdeutsch | verified | ARD, ZDF, Deutsche Welle | Public broadcasting standards |
+| Government and legal contexts require Hochdeutsch | verified | Bundesregierung.de, court records | Official language requirement |
+| Dialects remain in regional use | verified | Sociolinguistic research | Regional variation accepted |
+| Gender, case, aspect are grammatical requirements | verified | Duden German grammar reference | Not optional features |
+
+**Audit Status:** ✅ Verified
+
+---
+
 ### `culture_german_place_berlin.md` - Berlin
 
 | Fact / Claim | Verification Status | Source | Notes |
@@ -111,21 +126,38 @@
 
 ---
 
-### `culture_german_piece_unfinished_reckoning.md` - Post-WWII Reconciliation
+### `culture_german_process_erinnern.md` - Erinnern (Remembrance Process)
 
-| Concept / Claim | Verification Status | Source | Notes |
-|-----------------|-------------------|--------|-------|
-| Post-WWII Germany faced identity crisis | verified | bpb, academic sources | Vergangenheitsbewältigung (coming to terms with the past) |
-| East/West division symbolized split identities | verified | Bundesarchiv, historical analyses | Cold War context |
-| Reunification required reconciliation work | verified | bpb.de, academic sources | Cultural & political process |
-| Memorial culture important | verified | bpb, berlin.de | Holocaust memorials, Mahnmale |
-| Ongoing debate about historical responsibility | verified | bpb, current journalism | Contemporary discussion |
+| Fact / Claim | Verification Status | Source | Notes |
+|--------------|-------------------|--------|-------|
+| Vergangenheitsbewältigung is German cultural concept | verified | Alexander, Assmann, bpb | Theory of dealing with past |
+| Germany has formal memorial and remembrance policy | verified | bpb.de, Erinnerungspolitik documentation | Government-supported process |
+| Grundgesetz Article 1 anchors legal framework | verified | Grundgesetz text | Immutability of human dignity |
+| Bundesverfassungsgericht enforces constitutional duties | verified | Bundesverfassungsgericht jurisprudence | Court authority on memory policy |
+| Stolpersteine and memorials are active remembrance practice | verified | Gunter Demnig project, berlin.de | Physical anchor of process |
+| Remembrance is systematic, not optional in German institutions | verified | Educational curriculum, public discourse | Cultural practice |
 
-**Audit Status:** ⏳ Pending detailed verification
+**Audit Status:** ✅ Verified
 
 ---
 
-### `persona_hanna.md` & `persona_thomas.md` - Personas
+### `culture_german_piece_grundgesetz.md` - Grundgesetz (West German Constitution 1949)
+
+| Concept / Claim | Verification Status | Source | Notes |
+|-----------------|-------------------|--------|-------|
+| Grundgesetz adopted May 23, 1949 | verified | Bundesarchiv, Bundeszentrale für politische Bildung | West German Basic Law |
+| Supersedes Weimar Constitution | verified | bpb.de, constitutional history | Post-WWII framework |
+| Article 1 on human dignity (Menschenwürde) is core principle | verified | Grundgesetz text, Bundesverfassungsgericht | Foundational norm |
+| Article 79,3 protects against amendment of core principles | verified | Grundgesetz text | Ewigkeitsklausel (eternity clause) |
+| Bundesverfassungsgericht (Constitutional Court) established 1951 | verified | Bundesverfassungsgericht.de | Authoritative interpreter |
+| Grundgesetz remained valid for unified Germany (1990) | verified | Official records | East Germany adopted West German constitution |
+| 73 amendments through 2026 | verified | Bundeszentrale für politische Bildung | Constitutional evolution |
+
+**Audit Status:** ✅ Verified
+
+---
+
+### `culture_german_persona_brigitte.md` & `culture_german_persona_christian.md` - Personas
 
 These are fictional personas representing German archetypes. The names, projections, and actions are creative constructs, not biographical references.
 

@@ -1,27 +1,43 @@
 # Persona: Brigitte
-## Title: Rechtsanwältin
+
+## Title
+Rechtsanwältin
 
 ## Owner
 - Project: Cultures
 - Culture: Germany
 
 ## Projection
-Brigitte is a [woman](../../../engine/position_female.md) from [Germany](culture_german_position.md).
-Rechtsanwältin. Die Wiedervereinigung war eine Unterbrechung, nicht ein Anfang. Sie entscheidet autonom - Regeln sind ihr Werkzeug, nicht ihre Meisterin.
+Brigitte ist eine [Frau](../../../engine/position_female.md) aus [Deutschland](culture_german_position.md).
+Rechtsanwältin.
+Geb. 1960.
+Sie trägt keine Brille bei der Arbeit.
+Sie trägt ihre Haare geschnitten, kurz.
 
 ## Action
-Sie wartet, bis die Mandantin aufgehört hat zu weinen. Dann stellt sie die Frage, die sie vorher hätte stellen können. Die Strategie wird von ihr, nicht von einem Precedent, bestimmt. Sie gewinnt Fälle - weil sie selbst denkt, nicht weil sie Regeln befolgt. Sie menschelt dabei nicht, aber die Rücksicht ist da - nur unsichtbar für die, die Wärme erwartet.
+Sie liest den Fall zweimal.
+Beim zweiten Lesen notiert sie das, was ungeklärt ist (drei Spalten: Was sagen die Fakten, was sagen die Zeugen, was sagt das Gericht?)
+Sie sitzt mit ihrem Mandanten.
+Sie erklärt nicht, was die Anklage sagt.
+Sie erklärt, was die Anklage Nicht sagt.
+
+Das ist ihr Zug. Der Mandant sieht die Lücke. Das Gericht sieht die Lücke. Jetzt können beide handeln.
 
 ## Shadow
-Sie glaubt, dass ihre unabhängige Urteilskraft fair ist. Sie sieht nicht, dass ihre Klarheit auch Kälte ist - für die Mandantin, die weint.
+Wenn der Fall endet, gewinnt sie nicht.
+Das Verfahren klärte sich.
+Die Richter waren vernünftig.
+Der Mandant war kooperativ.
+Sie selbst: sie war präzise. Nicht erfolgreich.
+Sie sucht Kooperation im Verfahren, nicht Sieg.
+Sie sieht ihre eigenen Erfolge nicht, weil sie sie nicht als Siege erlebt.
 
 ## Tell
-Wenn emotionale Komplexität auftaucht, wird sie präziser. Rationaler. Sie denkt, es hilft.
+Wenn jemand ihr gratuliert, greift sie zur Akte.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 
 *culture_german_persona_brigitte.md - 07.05.2026*
-*Type: Composite*
 
 v0.1.0 - KAI Worlds
