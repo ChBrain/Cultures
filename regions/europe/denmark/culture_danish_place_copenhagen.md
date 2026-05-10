@@ -33,7 +33,7 @@ Den private verden som løber parallelt med det offentlige.
 Mødet er hvor idéer bliver delt.
 Mødet er hvor beslutninger formes - ikke hvor de er fattet.
 Den der tror mødet ikke betyder noget, har ikke hørt på dansk.
-Den der tror mødet bestemmer resultatet, har ikke hørt græsrødderne bringe det ind.
+Den der tror mødet bestemmer udfaldet, har ikke hørt græsrødderne bringe det ind.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*

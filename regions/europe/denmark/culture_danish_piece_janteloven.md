@@ -13,6 +13,7 @@ Alle danske kender dem.
 
 ## Load Bearing
 Uden Janteloven bliver personlig autonomi til dominans.
+Ydmyghed er erkendelse af fælles betingelse.
 Når hver person bestemmer absolut selv uden at respektere andres ret til at gøre det samme, kollapser ligheden.
 ## Apparent
 *Du skal ikke tro at du er noget.*
@@ -33,11 +34,12 @@ Alle danske børn kan dem.
 0700: Tingmødet. Frie mænd stemmer.
 1536: Bibelen på dansk. Hver person læser selv.
 1849: Grundloven. Lighed under lov.
-1933: Sandemose skriver Janteloven ned. Den var allerede der.
+1933: Sandemose skriver Janteloven ned. Den var allerede der - en tradition.
 1953: Grundloven revideret. Fuld lighed blandt mennesker.
 1980: Børn får eget navn. Individet først.
 2000: Lighed nu international norm.
-2010: Danske cykelstjerner vinder sejre internationalt.
+2010: Danske cykelstjerner vinder internationalt.
+Janteloven lever over generationer.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
