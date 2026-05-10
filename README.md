@@ -74,5 +74,16 @@ Each country folder: position + piece + place + personas.
 
 ---
 
-*CC BY-NC 4.0 - KAI Worlds - 2026*
+## Skills
 
+This project uses the `khai-create-hofstede-bag` Skill from
+[KAIHACKS](https://github.com/ChBrain/KAIHACKS) to generate Hofstede
+keyword bags. Install the Skill before invoking it on this repo.
+
+The denylist contract (`data/hofstede_denylist.yaml`) and bag
+infrastructure (`tests/test_hofstede_bag_*.py`, `data/hofstede_bag_locks.yaml`,
+`data/hofstede_bag_loader.py`) live in this repo.
+
+---
+
+*CC BY-NC 4.0 - KAI Worlds - 2026*

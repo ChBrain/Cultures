@@ -1,0 +1,176 @@
+# Hofstede Bag: Denmark
+#
+# This file is the scoring contract for the country's Hofstede dimensions.
+# Culture files (regions/europe/denmark/culture_*.md) are written to
+# carry these words organically. Each appearance of a bag word adds to the
+# dimension's score; binary scoring (each word counts once).
+#
+# Schema (Strategy v2): country / language / parent / hofstede_scores / bags.
+# Tests: tests/test_hofstede_bag_shape.py asserts all of these are present.
+
+country: denmark
+language: da
+parent: null
+status: draft
+generated: 2026-05-10
+
+hofstede_scores:
+  PDI: 18
+  IDV: 74
+  UAI: 23
+  MAS: 16
+  LTO: 35
+  IND: 70
+
+# Country-specific denylist: words considered for this country's bags but
+# rejected, with the rule that disqualified them. Combined at validation
+# time with data/hofstede_denylist.yaml -- a bag word must not appear in
+# either denylist. Each entry's reason is documented in hofstede_decisions.md.
+denylist:
+  - bæredygtighed
+  - respekt
+
+bags:
+  PDI:
+    high:
+      - hierarki
+      - autoritet
+      - titel
+      - rang
+      - overordnet
+      - lydighed
+      - protokol
+      - embedsmand
+      - anciennitet
+      - underdanighed
+    low:
+      - ligeværd
+      - lighed
+      - uformel
+      - dialog
+      - konsensus
+      - medbestemmelse
+      - transparens
+      - jævnbyrdighed
+      - folkevalgt
+      - direkte
+
+  IDV:
+    high:
+      - autonomi
+      - selvbestemmelse
+      - selvstændighed
+      - frihed
+      - dømmekraft
+      - initiativ
+      - meningsfrihed
+      - ytringsfrihed
+      - integritet
+      - egenart
+    low:
+      - fællesskab
+      - samhørighed
+      - loyalitet
+      - gruppeidentitet
+      - vi-følelse
+      - tilhørsforhold
+      - solidaritet
+      - harmoni
+      - sammenhold
+      - fællesånd
+
+  UAI:
+    high:
+      - regler
+      - struktur
+      - præcision
+      - planlægning
+      - forudsigelighed
+      - orden
+      - procedure
+      - systematik
+      - standardisering
+      - regulering
+    low:
+      - fleksibel
+      - improvisere
+      - spontan
+      - pragmatisk
+      - tilpasningsevne
+      - åbenhed
+      - eksperimentere
+      - uhøjtidelighed
+      - tolerance
+      - afslappet
+
+  MAS:
+    high:
+      - konkurrence
+      - præstation
+      - ambition
+      - sejr
+      - karriere
+      - stræben
+      - selvhævdelse
+      - succes
+      - dominans
+      - resultat
+    low:
+      - omsorg
+      - samarbejde
+      - ydmyghed
+      - nærvær
+      - medfølelse
+      - ligestilling
+      - hensyn
+      - balance
+      - mægling
+      - velvære
+
+  LTO:
+    high:
+      - langsigtet
+      - investering
+      - fremtid
+      - vedholdenhed
+      - kontinuitet
+      - generationer
+      - forpligtelse
+      - tålmodighed
+      - opsparing
+      - strategi
+    low:
+      - tradition
+      - nutid
+      - sædvane
+      - arv
+      - umiddelbar
+      - aktuel
+      - fortid
+      - erfaring
+      - skik
+      - øjeblikkelig
+
+  IND:
+    high:
+      - nydelse
+      - hygge
+      - glæde
+      - fryd
+      - tilfredsstillelse
+      - fornøjelse
+      - lyst
+      - spontanitet
+      - festlighed
+      - velværd
+    low:
+      - selvkontrol
+      - disciplin
+      - tilbageholdenhed
+      - pligt
+      - mådehold
+      - besindighed
+      - beherskelse
+      - nøjsomhed
+      - afdæmpet
+      - ansvarlighed

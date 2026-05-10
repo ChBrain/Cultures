@@ -33,31 +33,35 @@ This installs `.githooks/pre-commit` which validates every commit locally before
 - `fix/<name>` - corrections to existing content
 - `chore/<name>` - infrastructure, validation, documentation
 
-## Culture Branch Guard
+## Branch Scope Guards
 
-Culture branches (`feat/culture-*`) are protected to contain **only culture content** (regions/ folder). This ensures:
-- Culture PRs go through additional review gates (staging branch)
-- No infrastructure/tooling changes sneak into culture releases
-- Clean audit trail: staging branch shows exactly what's queued for release
+The pre-commit hook classifies every branch and enforces the matching scope:
 
-**The pre-commit hook blocks commits** that mix culture changes with infrastructure changes.
+| Branch kind | Pattern | May modify | Hofstede check |
+|---|---|---|---|
+| `main` | exact name `main` | nothing — direct commits forbidden | n/a |
+| culture | regex `^feat/culture-[a-z0-9][a-z0-9_-]*$` | `regions/**` + safe metadata files | yes (±10 gap) |
+| other | anything else (`chore/*`, `fix/*`, `feat/*`, …) | anything **except** `regions/**` | no |
 
-If you need to fix validation scripts, update tooling, or modify documentation alongside culture work:
-1. Push culture work first: `git push origin feat/culture-netherlands`
-2. Create a separate infrastructure branch: `git checkout -b chore/validation-fix`
-3. Make infrastructure changes there
-4. Both PRs can merge independently
+The classification is **anchored**: `feat/culture/x` (slash), `feat/cultures-x` (typo plural), and `feat/culture` (no name) are all classified as `other` and blocked from `regions/`. Pick the dash form when naming culture branches.
 
-Safe files allowed on culture branches (metadata only):
+Safe metadata files allowed on culture branches alongside `regions/**`:
 - `.validation-stamp` - proof of local validation
 - `.bump-type` - version intent declaration
 - `.gitignore`, `.editorconfig` - repository config
 
-If you see the hook reject your commit:
+If your work spans both scopes, split it into two branches and open two PRs:
+1. Push culture work: `git push origin feat/culture-<name>`
+2. Create a separate branch: `git checkout -b chore/<name>`
+3. Make infrastructure changes there
+4. Both PRs can merge independently
+
+Hook rejection messages:
 ```
->>> ERROR: Culture branch can only modify regions/ folder
+>>> ERROR: Culture branch can only modify regions/
+>>> ERROR: Non-culture branch cannot modify regions/
 ```
-Use `git reset` and split your changes into separate branches.
+Use `git reset` and split your changes.
 
 ## Workflow
 
@@ -65,7 +69,7 @@ Use `git reset` and split your changes into separate branches.
 
 1. **Create culture branch**
    ```bash
-   git checkout -b feat/culture/netherlands
+   git checkout -b feat/culture-netherlands
    ```
 
 2. **Make changes only to culture files** in `regions/<region>/<country>/`
@@ -86,7 +90,7 @@ Use `git reset` and split your changes into separate branches.
 
 4. **Push to remote**
    ```bash
-   git push -u origin feat/culture/netherlands
+   git push -u origin feat/culture-netherlands
    ```
 
 5. **Open PR to `culture-staging`** - Culture content gets staged for review
@@ -114,6 +118,7 @@ Use `git reset` and split your changes into separate branches.
 3. **Commit locally** - Pre-commit hook validates as before
    - ✓ Strips UTF-8 BOM from PowerShell files
    - ✓ Prevents direct commits to `main`
+   - ✓ **Blocks commits that touch `regions/`** (non-culture branches stay outside culture content)
    - ✓ Runs L1-L4 validators only (no Hofstede)
    - ✓ Writes `.validation-stamp`
    - ✗ Rejects commits if validation fails

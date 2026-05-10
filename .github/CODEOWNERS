@@ -1,0 +1,34 @@
+# CODEOWNERS — Hofstede Bag Infrastructure
+#
+# Personal-account repo: owners must be individual users (`@ChBrain`),
+# not team handles (`@org/team`). Team references that can't resolve
+# are silently ignored by GitHub, which silently disables protection.
+#
+# Last matching rule wins. Ordering is intentional: most specific first,
+# fallthrough rules last.
+
+# Lock index — bag SHAs; any edit is a contract change
+data/hofstede_bag_locks.yaml         @ChBrain
+
+# Global denylist — words forbidden in any country bag (pronouns, function
+# words, polysemous high-frequency English). Locked contract; same review
+# discipline as bags.
+data/hofstede_denylist.yaml          @ChBrain
+
+# Bag YAMLs and decisions per country (catch-all, supersedes regions/**/*.md)
+regions/**/hofstede_bag*.yaml        @ChBrain
+regions/**/hofstede_bag_*.yaml       @ChBrain
+regions/**/hofstede_decisions.md     @ChBrain
+
+# Validation tests guarding the bag contract
+tests/test_hofstede_bag_*.py         @ChBrain
+tests/validate_hofstede_*.py         @ChBrain
+
+# Bag loader (per-country routing)
+data/hofstede_bag_loader.py          @ChBrain
+
+# Branch-scope guard (governs which branches can touch what)
+.githooks/pre-commit                 @ChBrain
+tests/branch_scope.py                @ChBrain
+tests/test_branch_scope.py           @ChBrain
+tests/test_hook_scope_e2e.py         @ChBrain
