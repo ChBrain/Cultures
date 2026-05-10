@@ -40,7 +40,7 @@ Denmark's cultural profile measured against Hofstede's framework:
 
 | Dimension | Score | Description |
 |-----------|-------|-------------|
-| Power Distance (PDI) | 18 | Extreme equality; hierarchy must be justified |
+| Power Distance (PDI) | 18 | Low equality gap; hierarchy must be justified |
 | Individualism (IDV) | 74 | Personal autonomy and individual rights prioritized |
 | Uncertainty Avoidance (UAI) | 23 | Comfort with ambiguity and change; flexible |
 | Masculinity (MAS) | 16 | Cooperation, care, and consensus valued over competition |
@@ -53,25 +53,25 @@ Denmark's cultural profile measured against Hofstede's framework:
 
 | Dimension | Declared | Derived | Gap | Status |
 |-----------|----------|---------|-----|--------|
-| PDI | 18 | 28 | 10 | ✅ PASS |
-| IDV | 74 | 80 | 6 | ✅ PASS |
-| UAI | 23 | 20 | 3 | ✅ EXCELLENT |
+| PDI | 18 | 25 | 7 | ✅ PASS |
+| IDV | 74 | 75 | 1 | ✅ EXCELLENT |
+| UAI | 23 | 25 | 2 | ✅ EXCELLENT |
 | MAS | 16 | 20 | 4 | ✅ EXCELLENT |
-| LTO | 35 | 25 | 10 | ✅ PASS |
-| IND | 70 | 71 | 1 | ✅ EXCELLENT |
+| LTO | 35 | 33 | 2 | ✅ EXCELLENT |
+| IND | 70 | 67 | 3 | ✅ EXCELLENT |
 
-Keyword density analysis validates that content keywords across all files (position, pieces, places, processes, personas) align with declared Hofstede scores. Gap tolerance: ±10 PASS, ±5 EXCELLENT. Audited May 8, 2026.
+Keyword density analysis validates that content keywords across all files (position, pieces, places, processes, personas) align with declared Hofstede scores. Gap tolerance: ±10 PASS, ±5 EXCELLENT. Audited May 10, 2026.
 
 ### How Dimensions Shape Danish Culture
 
-**The Autonomy-Restraint Paradox:** Danish culture uniquely combines extreme individual autonomy (PDI 18, IDV 74) with extreme restraint from imposing (MAS 16). Each Dane claims their own judgment passionately and independently - then respects everyone else's equally. No one defers to hierarchy; everyone defers to others' autonomy.
+**The Autonomy-Restraint Paradox:** Danish culture uniquely combines low power distance and high individual autonomy (PDI 18, IDV 74) with low masculinity -- restraint from imposing (MAS 16). Each Dane claims their own judgment passionately and independently - then respects everyone else's equally. No one defers to hierarchy; everyone defers to others' autonomy.
 
-- **Very Low PDI + Very High IDV:** Radical equality and personal autonomy. Hierarchy is minimized; everyone's judgment matters equally. Janteloven enforces this paradox - don't claim superiority, but do claim your own autonomy.
-- **Very Low UAI:** Pragmatism over rules. Danes adapt to what works rather than defend fixed systems. Ambiguity is acceptable; improvisation is valued.
-- **Very Low MAS + Very High IND:** Cooperation over competition; care over conquest. Enjoyment is legitimate. Hygge (present-moment togetherness) is culturally celebrated, not indulgent.
+- **Low PDI + High IDV:** Equality and personal autonomy. Hierarchy is minimized; everyone's judgment matters equally. Janteloven enforces this paradox - don't claim superiority, but do claim your own autonomy.
+- **Low UAI:** Pragmatism over rules. Danes adapt to what works rather than defend fixed systems. Ambiguity is acceptable; improvisation is valued.
+- **Low MAS + High IND:** Cooperation over competition; care over conquest. Enjoyment is legitimate. Hygge (present-moment togetherness) is culturally celebrated, not indulgent.
 - **Low LTO:** Present-moment focus. Relationships and immediate quality of life matter more than long-term sacrifice. Flexibility over rigid planning.
 
-These dimensions inform the **[Position](culture_danish_position.md)** (how Denmark operates through equality and autonomy), **Pieces** (Janteloven as cultural code enforcing the paradox), **Place** (Copenhagen as infrastructure reflecting individual choice and shared care), and **Personas** (how individuals express autonomy while respecting others'). The position file carries a Hofstede footer naming the six dimensions; the levels and sources live here.
+These dimensions inform the **[Position](culture_danish_position.md)** (how Denmark operates through equality and autonomy), **Pieces** (Janteloven as cultural code enforcing the paradox), **Place** (Copenhagen as infrastructure reflecting individual choice and shared care), and **Personas** (how individuals express autonomy while respecting others').
 
 ## Content Audit Status
 
@@ -87,6 +87,6 @@ These dimensions inform the **[Position](culture_danish_position.md)** (how Denm
 
 ---
 
-Audited May 8, 2026
+Audited May 10, 2026
 
 *v0.1.0 - Kai Schlueter - Cultures - May 2026*

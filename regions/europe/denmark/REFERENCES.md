@@ -2,7 +2,7 @@
 
 **Authorship:** Kai Schlueter with AI-assisted drafting
 **Content Model:** Facts (verified via sources) + Original expression
-**Last Updated:** May 8, 2026
+**Last Updated:** May 10, 2026
 
 ---
 
