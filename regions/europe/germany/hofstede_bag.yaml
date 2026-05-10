@@ -1,4 +1,4 @@
-﻿# Hofstede Bag: Germany
+# Hofstede Bag: Germany
 #
 # This file is the scoring contract for the country's Hofstede dimensions.
 # Culture files (regions/<region>/<country>/culture_*.md) are written to
@@ -11,7 +11,7 @@
 country: germany
 language: de
 parent: null
-status: draft
+status: reviewed
 generated: 2026-05-10
 
 hofstede_scores:
