@@ -18,7 +18,7 @@ Klienten: vi har brug for mere lys. Sofie ser halvdelen af problemet - layout, i
 Hun definerer problemet først. Så tilbyder hun autonomi inden for den definition. Hun ser ikke, at 'vælg selv' betyder 'vælg inden for hvad jeg har skabt'.
 
 ## Tell
-Hun designer først. Autonomi kommer bagefter.
+Når hun præsenterer valgmuligheder, vender hun selv papiret mod klienten.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*

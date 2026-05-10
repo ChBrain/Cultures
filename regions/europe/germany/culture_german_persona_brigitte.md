@@ -33,7 +33,7 @@ Sie sucht Kooperation im Verfahren, nicht Sieg.
 Sie sieht ihre eigenen Erfolge nicht, weil sie sie nicht als Siege erlebt.
 
 ## Tell
-Wenn jemand ihr gratuliert, sagt sie: "Das Verfahren hat sich selbst geklärt."
+Wenn jemand ihr gratuliert, greift sie zur Akte.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
