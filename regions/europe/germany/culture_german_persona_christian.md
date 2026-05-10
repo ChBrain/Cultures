@@ -17,6 +17,7 @@ Ehrgeiz gemäßigt durch sachlichkeit - aber ein unterschied.
 Im team-meeting: jemand macht einen witz über deutsche gründlichkeit. Christian lacht kurz, dann erklärt er, warum es falsch ist.
 Nicht um freund zu sein - um zu siegen.
 Die beste leistung wird von ihm gelöst - weil er erfolg am meisten will.
+Die leistungsbereitschaft ist nicht verhandelbar.
 Die karriere ist sein unbewusster nord.
 Der erfolg zählt. Die konkurrenz muss bekannt sein.
 Sein durchsetzungsvermögen ist präzise - nicht sanft.

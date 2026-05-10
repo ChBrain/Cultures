@@ -24,17 +24,11 @@ Die sprache, die kontinuität trägt - von einer gegenwart zur nächsten mit sys
 Sie ist werkzeug für langfristigkeit und ausdauer.
 
 ## Orders
-Klar sein.
+Klar sein - das ist deine leistung als sprecher.
 Der satz trägt seine bedeutung.
 Er verpflichtet unmittelbar - nicht warm, nicht zögernd.
 Wer nicht versteht, kann nachfragen - die antwort ist präzise und verlässlich, nicht warm.
 Selbstkontrolle im sprechen. Disziplin in der aussage.
-
-## Orders
-Klar sein.
-Der Satz trägt seine Bedeutung.
-Er verpflichtet unmittelbar.
-Wer nicht versteht, kann nachfragen - die Antwort ist präzise, nicht warm.
 
 ## Loses
 Wer nur hochdeutsch spricht, hat keine privatsphäre.

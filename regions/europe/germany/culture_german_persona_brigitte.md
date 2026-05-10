@@ -16,6 +16,7 @@ Disziplin statt erfolg um jeden preis.
 ## Action
 Sie wartet, bis die mandantin aufgehört hat zu weinen. Die strategie kommt danach.
 Sie gewinnt fälle - weil sie sachlich denkt und alles durchdenkt, nicht aggressiv.
+Ihr erfolg ist real - aber nicht das ziel, sondern die folge guter leistung.
 Sie menschelt dabei nicht - aber fürsorge ist da. Unsichtbar.
 Die kooperation mit gegenseite ist respektvoll - kein wettbewerb.
 Ihre lebensqualität ist außerhalb des falls - sie schützt sie mit mäßigung und selbstkontrolle.

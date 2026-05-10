@@ -35,6 +35,9 @@ Es ist ein arbeitsgericht - systematisch organisiert.
 Kein monumentalbau - aber gründlichkeit im verfahren.
 Jede vorschrift im regelwerk hat grund und geschichte.
 Die genauigkeit des aufbaus spiegelt die gründlichkeit der intention.
+Nachhaltigkeit durch ausdauer - 75 jahre und zählend.
+Langfristigkeit ist struktur - nicht provisorisch, sondern zukunftsorientiert.
+Zukunftsorientierung durch beharrlichkeit in der anwendung.
 
 ## Yearbook
 9 n. Chr.: Varusschlacht. Rom zieht sich hinter den Rhein zurück; kein gemeinsames Recht beginnt hier.

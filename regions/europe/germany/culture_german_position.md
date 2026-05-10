@@ -15,6 +15,10 @@ Verdienst, nicht konkurrenz um glanz.
 Das ergebnis zählt, aber nicht um jeden preis.
 Mitbestimmung statt unterordnung.
 Gleichberechtigung in der befragung - wenn alle sich an regeln halten.
+Eigeninitiative - dein eigenes denken ist werkzeug.
+
+Aber auch: entspannung. Freizeit ist heilig. Der genuss ist erlaubt - zu hause, nach der arbeit.
+Lebensfreude - nicht ständig, aber echt wenn sie kommt.
 
 [Das Grundgesetz](culture_german_piece_grundgesetz.md).
 Nicht als befehl - als rahmen der pflicht.
@@ -27,6 +31,10 @@ Mäßigung ohne verbote - durch bewusstsein.
 Widerstand gegen die versuchung, leicht zu haben.
 Pflicht und verpflichtung - die wahre grundlage.
 Ernsthaftigkeit vor erfolg.
+Nachhaltigkeit im denken - nicht sofortigkeit.
+Langfristigkeit als standard - geduld und ausdauer im aufbau.
+Beharrlichkeit statt hastigkeit.
+Weitblick - investition in die zukunft, nicht in den moment.
 
 Ordnung.
 Struktur braucht die seele nicht, aber die gesellschaft.
