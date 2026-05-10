@@ -31,7 +31,7 @@ Das grundgesetz hängt in deutschen klassenzimmern.
 Es liegt in behörden aus - präzision in der verteilung.
 Neu eingebürgerte deutsche erhalten ein exemplar mit einbürgerungsurkunde.
 Das bundesverfassungsgericht sitzt in karlsruhe.
-Es ist ein arbeitsgericht - systematisch organisiert.
+Es ist ein funktionierendes gericht - systematisch organisiert.
 Kein monumentalbau - aber gründlichkeit im verfahren.
 Jede vorschrift im regelwerk hat grund und geschichte.
 Die genauigkeit des aufbaus spiegelt die gründlichkeit der intention.
