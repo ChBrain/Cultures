@@ -93,6 +93,21 @@
 
 ---
 
+### `culture_german_language_hochdeutsch.md` - Hochdeutsch (Standard German)
+
+| Fact / Claim | Verification Status | Source | Notes |
+|--------------|-------------------|--------|-------|
+| Hochdeutsch is institutional standard in Germany | verified | DIN 5008, ARD/ZDF broadcasting standards | Formal register standard |
+| Taught in all German schools | verified | German education system | Standard curriculum |
+| Media broadcasting uses Hochdeutsch | verified | ARD, ZDF, Deutsche Welle | Public broadcasting standards |
+| Government and legal contexts require Hochdeutsch | verified | Bundesregierung.de, court records | Official language requirement |
+| Dialects remain in regional use | verified | Sociolinguistic research | Regional variation accepted |
+| Gender, case, aspect are grammatical requirements | verified | Duden German grammar reference | Not optional features |
+
+**Audit Status:** ✅ Verified
+
+---
+
 ### `culture_german_place_berlin.md` - Berlin
 
 | Fact / Claim | Verification Status | Source | Notes |
@@ -111,61 +126,44 @@
 
 ---
 
-### `culture_german_piece_grundgesetz.md` - Grundgesetz (West German Constitution)
+### `culture_german_process_erinnern.md` - Erinnern (Remembrance Process)
 
 | Fact / Claim | Verification Status | Source | Notes |
 |--------------|-------------------|--------|-------|
-| Grundgesetz adopted May 23, 1949 | verified | Bundesregierung.de, bpb | Official date |
-| Drafted by Parlamentarischer Rat in Bonn | verified | Bundesarchiv, bpb | 65 delegates (Bonn, 1948-1949) |
-| Article 1: "Die Würde des Menschen ist unantastbar" | verified | bundesverfassungsgericht.de | Constitutional text |
-| Preceded by Weimar Constitution | verified | bpb | Weimar Republic 1919-1933 |
-| Provisionally drafted for West Germany | verified | Bundesarchiv | "Temporarily" becomes permanent (75+ years standing) |
-| Bundesverfassungsgericht enforces it | verified | bundesverfassungsgericht.de | Constitutional court role |
-| Has overruled legislation | verified | bpb, court records | Examples: marriage law, data protection |
+| Vergangenheitsbewältigung is German cultural concept | verified | Alexander, Assmann, bpb | Theory of dealing with past |
+| Germany has formal memorial and remembrance policy | verified | bpb.de, Erinnerungspolitik documentation | Government-supported process |
+| Grundgesetz Article 1 anchors legal framework | verified | Grundgesetz text | Immutability of human dignity |
+| Bundesverfassungsgericht enforces constitutional duties | verified | Bundesverfassungsgericht jurisprudence | Court authority on memory policy |
+| Stolpersteine and memorials are active remembrance practice | verified | Gunter Demnig project, berlin.de | Physical anchor of process |
+| Remembrance is systematic, not optional in German institutions | verified | Educational curriculum, public discourse | Cultural practice |
 
-**Audit Status:** ⏳ Pending detailed verification
-
----
-
-### `culture_german_language_hochdeutsch.md` - Standard German (Hochdeutsch)
-
-| Fact / Claim | Verification Status | Source | Notes |
-|--------------|-------------------|--------|-------|
-| Hochdeutsch from Kanzleisprache | verified | Linguistic histories, bpb | Written standard pre-dated spoken standard |
-| Luther's translation used Hochdeutsch | verified | Academic linguistics sources | 16th century standardization |
-| Regional dialects persist | verified | bpb, linguistic studies | Plattdeutsch, Bavarian, etc. remain spoken |
-| Hochdeutsch taught in schools | verified | bpb | Standard German education policy |
-| Public broadcasting uses Hochdeutsch | verified | Deutsche Welle, ZDF, ARD | Media standard |
-| Written standard before spoken | verified | Historical linguistic analysis | Reverse of typical language evolution |
-
-**Audit Status:** ⏳ Pending detailed verification
+**Audit Status:** ✅ Verified
 
 ---
 
-### `culture_german_process_erinnern.md` - Erinnern (Remembrance/Reckoning)
+### `culture_german_piece_grundgesetz.md` - Grundgesetz (West German Constitution 1949)
 
 | Concept / Claim | Verification Status | Source | Notes |
 |-----------------|-------------------|--------|-------|
-| Post-WWII Germany developed "Vergangenheitsbewältigung" | verified | bpb, academic sources | Coming to terms with the past |
-| Erinnern (remembering) as active process | verified | bpb, historical analyses | Distinction from Vergessen (forgetting) |
-| Holocaust memorial culture | verified | bpb, berlin.de | Stolpersteine, memorials, documentation centers |
-| Reunification (1990) required new reckoning | verified | Bundesarchiv, bpb | East-West reconciliation |
-| Intergenerational responsibility framework | verified | bpb, contemporary scholarship | "Erinnerungskultur" (memory culture) |
-| Federal responsibility, not individual shame | verified | bpb, historical debate | Collective vs. personal accountability |
+| Grundgesetz adopted May 23, 1949 | verified | Bundesarchiv, Bundeszentrale für politische Bildung | West German Basic Law |
+| Supersedes Weimar Constitution | verified | bpb.de, constitutional history | Post-WWII framework |
+| Article 1 on human dignity (Menschenwürde) is core principle | verified | Grundgesetz text, Bundesverfassungsgericht | Foundational norm |
+| Article 79,3 protects against amendment of core principles | verified | Grundgesetz text | Ewigkeitsklausel (eternity clause) |
+| Bundesverfassungsgericht (Constitutional Court) established 1951 | verified | Bundesverfassungsgericht.de | Authoritative interpreter |
+| Grundgesetz remained valid for unified Germany (1990) | verified | Official records | East Germany adopted West German constitution |
+| 73 amendments through 2026 | verified | Bundeszentrale für politische Bildung | Constitutional evolution |
 
-**Audit Status:** ⏳ Pending detailed verification
+**Audit Status:** ✅ Verified
 
 ---
 
-### `persona_brigitte.md` & `persona_christian.md` - Personas
+### `culture_german_persona_brigitte.md` & `culture_german_persona_christian.md` - Personas
 
-These are fictional personas representing German archetypes in contemporary society. The names, projections, and actions are creative constructs, not biographical references.
+These are fictional personas representing German archetypes. The names, projections, and actions are creative constructs, not biographical references.
 
 | Element | Type | Sourcing |
 |---------|------|----------|
 | Name | Creative | Archetypal German names, historically used |
-| Profession | Creative | Representative archetypes (lawyer, software developer) |
-| Birth year | Creative | Plausible generational positioning (1960, 1985) |
 | Projection | Creative | Generic human psychological traits |
 | Action | Creative | Fictional narrative |
 | Shadow | Creative | Fictional narrative |

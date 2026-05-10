@@ -1,5 +1,7 @@
 # Persona: Christian
-## Title: Softwareentwickler
+
+## Title
+Softwareentwickler
 
 ## Owner
 - Project: Cultures
@@ -7,35 +9,41 @@
 
 ## Projection
 Christian ist ein [Mann](../../../engine/position_male.md) aus [Deutschland](culture_german_position.md).
-Softwareentwickler. Die wiedervereinigung ist sein ausgangszustand. Struktur ist werkzeug - für erfolg.
-Leistung und karriere sind unbewusste anker.
-Wettbewerb reizt ihn - konkurrenz motiviert.
-Zielorientierung in jedem projekt - durchsetzungsvermögen in jeder diskussion.
-Ehrgeiz gemäßigt durch sachlichkeit - aber ein unterschied.
+Softwareentwickler.
+Geb. 1985.
+Trägt Jeans zur Arbeit.
 
 ## Action
-Im team-meeting: jemand macht einen witz über deutsche gründlichkeit. Christian lacht kurz, dann erklärt er, warum es falsch ist.
-Nicht um freund zu sein - um zu siegen.
-Die beste leistung wird von ihm gelöst - weil er erfolg am meisten will.
-Die leistungsbereitschaft ist nicht verhandelbar.
-Die karriere ist sein unbewusster nord.
-Der erfolg zählt. Die konkurrenz muss bekannt sein.
-Sein durchsetzungsvermögen ist präzise - nicht sanft.
-Die wahrheit ist weniger wichtig als der gewinn.
+Er sieht das Problem, bevor der Kunde es sieht.
+"Das kann nicht lange gut gehen," sagt er.
+Der Kunde sagt: "Aber es funktioniert."
+Christian sagt: "Ja, aber es funktioniert falsch."
+
+Er baut es um.
+Nicht weil der Kunde es fragt.
+Nicht weil das eine optimale Lösung ist.
+Weil er das Problem sieht und weil er es sehen muss, muss er es fix.
+
+Der Kunde hat jetzt ein neues Problem  -  das alte war verborgen, das neue ist offen.
+Das ist Leistung.
 
 ## Shadow
-Er sieht sich als konkurrenzfähig. Aber seine zielorientierung versteckt ehrgeiz.
-Die karriere ist nicht unbewusstes ziel - sondern treiber aller entscheidungen.
-Der wettbewerb ist sein lebenselement.
-Die lebensqualität anderer ist nicht seine sorge.
+Wenn kein Problem existiert, wenn der Code läuft, wenn alles stabil ist  -  Christian weiß nicht, wer er ist.
+Er ist nur sichtbar als Problem-Löser.
+Ohne Problem: unsichtbar.
+Das zwingt ihn, nach Problemen zu suchen.
+Nicht aus Sabotage.
+Aus Notwendigkeit.
+Er kann sich selbst nur verstehen, wenn er kämpft.
+Er glaubt, die Probleme seien objektiv real. Sie sind real. Aber er sucht sie auch, weil er sonst nicht existiert.
 
 ## Tell
-Wenn er zuhört, sagt er zuerst, was falsch ist.
+Wenn der Kunde dankt, sagt er: "Das Problem war immer da  -  ich habe es nur sichtbar gemacht."
 
 ---
+*Type: Composite*
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 
 *culture_german_persona_christian.md - 07.05.2026*
-*Type: Composite*
 
 v0.1.0 - KAI Worlds

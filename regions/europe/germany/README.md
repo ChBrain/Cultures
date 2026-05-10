@@ -59,7 +59,7 @@ Keyword density analysis validates that content keywords across all files (posit
 - **High LTO:** Long-term strategic thinking. Investment in education, infrastructure, and future planning.
 - **Low IND:** Restraint over indulgence. Gratification of desires is regulated by social norms; deferred reward and self-discipline carry more weight than immediate enjoyment.
 
-These dimensions inform the **[Position](culture_german_position.md)** (how Germany operates), **Pieces** (historical moments where dimensions collided), **Place** (Berlin's infrastructure and social patterns), and **Personas** (how individuals navigate these cultural pressures). The levels and sources live in README.md (this file); culture files carry standard Hofstede signal footers.
+These dimensions inform the **[Position](culture_german_position.md)** (how Germany operates), **Pieces** (historical moments where dimensions collided), **Place** (Berlin's infrastructure and social patterns), and **Personas** (how individuals navigate these cultural pressures). Culture files carry standard Hofstede signal footers linking to this README; scoring is aggregate across all files, not per-file.
 
 ## Content Audit Status
 
