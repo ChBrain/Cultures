@@ -27,9 +27,6 @@ tests/validate_hofstede_*.py         @ChBrain
 # Bag loader (per-country routing)
 data/hofstede_bag_loader.py          @ChBrain
 
-# Skill that produces bag YAMLs
-.claude/skills/hofstede-*.md         @ChBrain
-
 # Branch-scope guard (governs which branches can touch what)
 .githooks/pre-commit                 @ChBrain
 tests/branch_scope.py                @ChBrain
