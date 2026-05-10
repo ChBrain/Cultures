@@ -38,7 +38,7 @@ Er kann sich selbst nur verstehen, wenn er kämpft.
 Er glaubt, die Probleme seien objektiv real. Sie sind real. Aber er sucht sie auch, weil er sonst nicht existiert.
 
 ## Tell
-Wenn der Kunde dankt, sagt er: "Das Problem war immer da; ich habe es nur sichtbar gemacht."
+Wenn der Kunde dankt, schaut er bereits auf den Bildschirm.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
