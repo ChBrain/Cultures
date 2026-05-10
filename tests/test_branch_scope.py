@@ -28,13 +28,14 @@ class TestClassifyBranch(unittest.TestCase):
 
     def test_culture_happy_paths(self):
         for name in [
-            "feat/culture-netherlands",
-            "feat/culture-denmark",
-            "feat/culture-germany",
-            "feat/culture-x",
-            "feat/culture-x_y-z",
-            "feat/culture-burkina_faso",
-            "feat/culture-a1",
+            "culture/netherlands",
+            "culture/denmark",
+            "culture/germany",
+            "culture/x",
+            "culture/x_y-z",
+            "culture/burkina_faso",
+            "culture/staging",
+            "culture/a1",
         ]:
             with self.subTest(branch=name):
                 self.assertEqual(classify_branch(name), "culture")
@@ -42,16 +43,18 @@ class TestClassifyBranch(unittest.TestCase):
     def test_near_misses_classify_as_other(self):
         """The bypass surface — every one of these must NOT be 'culture'."""
         for name in [
-            "feat/culture/netherlands",  # slash form (the original PR #27 doc bug)
-            "feat/cultures-x",           # typo plural
-            "feat/culture",              # missing name
-            "feat/culture-",             # missing name char
-            "feat/Culture-x",            # uppercase
-            "feat/culture-X",            # uppercase in name
-            "feat/CULTURE-x",            # all caps prefix
-            " feat/culture-x",           # leading whitespace
-            "feat/culture-x ",           # trailing whitespace
-            "feat/culture-x.y",          # disallowed punctuation
+            "feat/culture-netherlands",  # old pattern (no longer culture)
+            "feat/culture-denmark",      # old pattern (no longer culture)
+            "culture/Culture-denmark",   # uppercase prefix
+            "culture-netherlands",       # dash instead of slash
+            "cultures/netherlands",      # typo plural
+            "culture",                   # missing name
+            "culture/",                  # missing name char
+            "culture/X",                 # uppercase in name
+            "culture/STAGING",           # all caps
+            " culture/denmark",          # leading whitespace
+            "culture/denmark ",          # trailing whitespace
+            "culture/denmark.md",        # disallowed punctuation
         ]:
             with self.subTest(branch=name):
                 self.assertEqual(classify_branch(name), "other")
@@ -61,6 +64,7 @@ class TestClassifyBranch(unittest.TestCase):
             "chore/x",
             "fix/x",
             "feat/foo",
+            "feat/culture-old",        # old feat/culture- pattern now 'other'
             "claude/review-foo",
             "release/v1",
             "develop",

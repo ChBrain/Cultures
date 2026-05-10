@@ -164,7 +164,7 @@ class TestHookScopeEnforcement(unittest.TestCase):
     # --- culture branches --------------------------------------------------
 
     def test_culture_branch_allows_regions(self):
-        _checkout(self.repo, "feat/culture-netherlands")
+        _checkout(self.repo, "culture/netherlands")
         # .txt instead of .md to avoid scripts/validate.py invocation
         # (we're testing the scope guard, not the validators).
         _stage(self.repo, "regions/europe/netherlands/foo.txt")
@@ -174,20 +174,20 @@ class TestHookScopeEnforcement(unittest.TestCase):
         self.assertTrue((self.repo / ".validation-stamp").exists())
 
     def test_culture_branch_allows_safe_metadata(self):
-        _checkout(self.repo, "feat/culture-x")
+        _checkout(self.repo, "culture/x")
         _stage(self.repo, ".gitignore", "*.bak\n")
         _stage(self.repo, "regions/europe/x/foo.txt")
         result = _run_hook(self.repo)
         self.assertEqual(result.returncode, 0, result.stdout)
 
     def test_culture_branch_allows_lock_index_alongside_bag(self):
-        """Bag migration PRs (feat/culture-<name>) update the lock index
+        """Bag migration PRs (culture/<name>) update the lock index
         in the same commit as the new bag YAML. Strategy v2 carve-out.
 
         Stages a complete valid bag (must pass tests/validate_country_bag.py
         which the hook now invokes on staged bag files) plus the lock file.
         """
-        _checkout(self.repo, "feat/culture-netherlands")
+        _checkout(self.repo, "culture/netherlands")
         _stage(
             self.repo,
             "regions/europe/netherlands/hofstede_bag.yaml",
@@ -200,7 +200,7 @@ class TestHookScopeEnforcement(unittest.TestCase):
     def test_culture_branch_blocks_malformed_bag(self):
         """Hook runs validate_country_bag.py on staged bag YAMLs.
         Malformed bag (missing required fields) must block the commit."""
-        _checkout(self.repo, "feat/culture-netherlands")
+        _checkout(self.repo, "culture/netherlands")
         _stage(
             self.repo,
             "regions/europe/netherlands/hofstede_bag.yaml",
@@ -212,7 +212,7 @@ class TestHookScopeEnforcement(unittest.TestCase):
         self.assertIn("missing required field", result.stdout)
 
     def test_culture_branch_blocks_infra_changes(self):
-        _checkout(self.repo, "feat/culture-netherlands")
+        _checkout(self.repo, "culture/netherlands")
         # Don't restage .githooks/pre-commit here - that would overwrite the
         # very hook we're about to run. Use other infra paths instead.
         _stage(self.repo, "tests/foo.py")
