@@ -16,9 +16,9 @@ Es wurde permanent.
 Ohne es verliert die [Deutsche](culture_german_position.md) Position ihren Grund.
 *Die Würde des Menschen ist unantastbar.*
 Artikel 1. Nicht abänderbar.
-Das Bundesverfassungsgericht setzt es durch  -  in Gleichheit mit Gesellschaft.
-Es hat Gesetze gekippt  -  die Gesetze änderten sich pragmatisch.
-Das Gericht blieb kooperativ  -  mit Systematik über Starrheit.
+Das Bundesverfassungsgericht setzt es durch, in Gleichheit mit Gesellschaft.
+Es hat Gesetze gekippt; die Gesetze änderten sich pragmatisch.
+Das Gericht blieb kooperativ, mit Systematik über Starrheit.
 Regelwerk und Flexibilität in Spannung, haltend.
 
 ## Apparent
@@ -40,16 +40,16 @@ Fünfundsiebenzig Jahre seit 1951. Noch immer in Kraft.
 962: Otto I., das Heilige Römische Reich. Hunderte Territorien, hunderte Regelungen, ein Kaiser ohne Durchsetzungsmacht.
 1495: Ewiger Landfriede, Reichskammergericht. Erster Versuch gemeinsamer Rechtsordnung seit Verdun.
 1517: Luther in Wittenberg. Die Kirche spaltet sich, das Reich mit ihr.
-1555: Augsburger Religionsfrieden. *Cuius regio, eius religio*  -  das Recht folgt dem Fürsten, nicht dem Bürger.
+1555: Augsburger Religionsfrieden. *Cuius regio, eius religio*: das Recht folgt dem Fürsten, nicht dem Bürger.
 1618-1648: Dreißigjähriger Krieg. Ein Drittel der Bevölkerung stirbt.
 1648: Westfälischer Frieden. Souveränität der Territorialfürsten bestätigt; die Fragmentierung zementiert.
 1806: Franz II. legt die Kaiserkrone nieder. Tausend Jahre Reich, beendet durch Napoleon.
 1871: Bismarcks Reich. Einheit durch Krieg, nicht durch Überzeugung; erstmals nationales Strafrecht.
-1919: Weimarer Verfassung. Grundrechte vollständig  -  Artikel 48 die Lücke, durch die alles fiel.
-1933: Hitler Reichskanzler. Die Verfassung nicht abgeschafft, sondern benutzt  -  Artikel 48, Ermächtigungsgesetz.
+1919: Weimarer Verfassung. Grundrechte vollständig: Artikel 48 die Lücke, durch die alles fiel.
+1933: Hitler Reichskanzler. Die Verfassung nicht abgeschafft, sondern benutzt: Artikel 48, Ermächtigungsgesetz.
 1935: Nürnberger Rassengesetze. Der Staat gegen seine Bürger, mit Paragraphen.
 1945: Kapitulation. Besatzungsrecht. Das Land in Trümmern, das Recht in Trümmern.
-1948: Parlamentarischer Rat in Bonn. 61 Männer, 4 Frauen; Selbert erkämpft Artikel 3,2  -  *Männer und Frauen sind gleichberechtigt.*
+1948: Parlamentarischer Rat in Bonn. 61 Männer, 4 Frauen; Selbert erkämpft Artikel 3,2: *Männer und Frauen sind gleichberechtigt.*
 1949: Grundgesetz tritt in Kraft, 23. Mai. Artikel 1: *Die Würde des Menschen ist unantastbar.* Artikel 79,3: nicht abänderbar.
 1951: Bundesverfassungsgericht in Karlsruhe nimmt die Arbeit auf.
 1970: Willy Brandt kniet in Warschau. Er musste nicht. Er kniete trotzdem.

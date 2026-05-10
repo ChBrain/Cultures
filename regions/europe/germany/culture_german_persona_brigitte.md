@@ -16,7 +16,7 @@ Sie trägt ihre Haare geschnitten, kurz.
 
 ## Action
 Sie liest den Fall zweimal.
-Beim zweiten Lesen notiert sie das, was ungeklärt ist  -  drei Spalten: Was sagen die Fakten, was sagen die Zeugen, was sagt das Gericht?
+Beim zweiten Lesen notiert sie das, was ungeklärt ist (drei Spalten: Was sagen die Fakten, was sagen die Zeugen, was sagt das Gericht?)
 Sie sitzt mit ihrem Mandanten.
 Sie erklärt nicht, was die Anklage sagt.
 Sie erklärt, was die Anklage Nicht sagt.
@@ -28,8 +28,8 @@ Wenn der Fall endet, gewinnt sie nicht.
 Das Verfahren klärte sich.
 Die Richter waren vernünftig.
 Der Mandant war kooperativ.
-Sie selbst  -  sie war präzise. Nicht erfolgreich.
-Sie sucht Kooperation im Verfahren  -  nicht Sieg.
+Sie selbst: sie war präzise. Nicht erfolgreich.
+Sie sucht Kooperation im Verfahren, nicht Sieg.
 Sie sieht ihre eigenen Erfolge nicht, weil sie sie nicht als Siege erlebt.
 
 ## Tell

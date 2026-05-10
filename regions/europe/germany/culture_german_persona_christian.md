@@ -22,13 +22,13 @@ Christian sagt: "Ja, aber es funktioniert falsch."
 Er baut es um.
 Nicht weil der Kunde es fragt.
 Nicht weil das eine optimale Lösung ist.
-Weil er das Problem sieht und weil er es sehen muss, muss er es fix.
+Weil er das Problem sieht und weil er es sehen muss, muss er es beheben.
 
-Der Kunde hat jetzt ein neues Problem  -  das alte war verborgen, das neue ist offen.
+Der Kunde hat jetzt ein neues Problem: das alte war verborgen, das neue ist offen.
 Das ist Leistung.
 
 ## Shadow
-Wenn kein Problem existiert, wenn der Code läuft, wenn alles stabil ist  -  Christian weiß nicht, wer er ist.
+Wenn kein Problem existiert, wenn der Code läuft, wenn alles stabil ist: Christian weiß nicht, wer er ist.
 Er ist nur sichtbar als Problem-Löser.
 Ohne Problem: unsichtbar.
 Das zwingt ihn, nach Problemen zu suchen.
@@ -38,7 +38,7 @@ Er kann sich selbst nur verstehen, wenn er kämpft.
 Er glaubt, die Probleme seien objektiv real. Sie sind real. Aber er sucht sie auch, weil er sonst nicht existiert.
 
 ## Tell
-Wenn der Kunde dankt, sagt er: "Das Problem war immer da  -  ich habe es nur sichtbar gemacht."
+Wenn der Kunde dankt, sagt er: "Das Problem war immer da; ich habe es nur sichtbar gemacht."
 
 ---
 *Type: Composite*

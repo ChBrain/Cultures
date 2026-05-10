@@ -8,18 +8,18 @@
 Die Norm. Kein Akzent. Keine Färbung.
 Hochdeutsch ist die Sprache der Institution, nicht der Straße.
 Der Rundfunk spricht es. Das Gericht spricht es. Die Schule lehrt es.
-Wer anderes spricht, muss Hochdeutsch können  -  die Passprüfung der Teilhabe.
+Wer anderes spricht, muss Hochdeutsch können (die Passprüfung der Teilhabe).
 
-Genauigkeit in den Wörtern. Nicht nahe bei der Bedeutung  -  genau bei der Bedeutung.
+Genauigkeit in den Wörtern. Nicht nahe bei der Bedeutung, sondern genau bei der Bedeutung.
 Präzision über Wärme. Verlässlichkeit über Charme.
 
 Es ist kein Dialekt. Es ist ein System.
 Jedes Wort hat seinen Platz. Jeder Satz hat seine Struktur.
 Regelwerk für die Klarheit.
 
-Disziplin in der Sprache  -  Disziplin im Denken.
+Disziplin in der Sprache, Disziplin im Denken.
 Selbstkontrolle beginnt mit dem, was man sagt.
-Die Sprache ist Werk  -  nicht Spiel.
+Die Sprache ist Werk, nicht Spiel.
 
 ## Orders
 Sprich klar.
@@ -31,7 +31,7 @@ Wärme. Privatsphäre. Der Raum, anders zu sein.
 
 ## Drives
 Auf dem Verlust von Wärme und Privatem:
-Die Suche nach [Erinnern](culture_german_process_erinnern.md)  -  den Raum zurückzugewinnen, wo Hochdeutsch nicht spricht.
+Die Suche nach [Erinnern](culture_german_process_erinnern.md): den Raum zurückzugewinnen, wo Hochdeutsch nicht spricht.
 Im Privaten, im Dialekt, in dem, was kein Standard ist.
 Die Sprache kann nicht alles regeln. Die Seele bleibt frei.
 
