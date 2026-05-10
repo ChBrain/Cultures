@@ -28,7 +28,9 @@ This installs `.githooks/pre-commit` which validates every commit locally before
 
 ## Branch naming
 
-- `feat/culture-<name>` - new culture, new content, rebalancing (culture-only, goes to staging for review)
+- `culture/<country>` - per-country culture work (e.g., `culture/denmark`)
+- `culture/<region>` - per-region culture work (e.g., `culture/europe`)
+- `culture/staging` - integration point for batched culture releases
 - `feat/<name>` - other feature work (direct to main)
 - `fix/<name>` - corrections to existing content
 - `chore/<name>` - infrastructure, validation, documentation
@@ -40,10 +42,10 @@ The pre-commit hook classifies every branch and enforces the matching scope:
 | Branch kind | Pattern | May modify | Hofstede check |
 |---|---|---|---|
 | `main` | exact name `main` | nothing — direct commits forbidden | n/a |
-| culture | regex `^feat/culture-[a-z0-9][a-z0-9_-]*$` | `regions/**` + safe metadata files | yes (±10 gap) |
+| culture | regex `^culture/[a-z0-9][a-z0-9_-]*$` | `regions/**` + safe metadata files | yes (±10 gap) |
 | other | anything else (`chore/*`, `fix/*`, `feat/*`, …) | anything **except** `regions/**` | no |
 
-The classification is **anchored**: `feat/culture/x` (slash), `feat/cultures-x` (typo plural), and `feat/culture` (no name) are all classified as `other` and blocked from `regions/`. Pick the dash form when naming culture branches.
+Culture branches use forward-slash naming: `culture/denmark`, `culture/staging`, etc. This anchors scope validation: `feat/culture-x`, `cultures/x`, and typos are all classified as `other` and blocked from `regions/`.
 
 Safe metadata files allowed on culture branches alongside `regions/**`:
 - `.validation-stamp` - proof of local validation
@@ -51,7 +53,7 @@ Safe metadata files allowed on culture branches alongside `regions/**`:
 - `.gitignore`, `.editorconfig` - repository config
 
 If your work spans both scopes, split it into two branches and open two PRs:
-1. Push culture work: `git push origin feat/culture-<name>`
+1. Push culture work: `git push origin culture/<country>`
 2. Create a separate branch: `git checkout -b chore/<name>`
 3. Make infrastructure changes there
 4. Both PRs can merge independently
@@ -65,11 +67,11 @@ Use `git reset` and split your changes.
 
 ## Workflow
 
-### Culture Work (feat/culture-*)
+### Culture Work (culture/<country> or culture/<region>)
 
 1. **Create culture branch**
    ```bash
-   git checkout -b feat/culture-netherlands
+   git checkout -b culture/netherlands
    ```
 
 2. **Make changes only to culture files** in `regions/<region>/<country>/`
@@ -90,18 +92,18 @@ Use `git reset` and split your changes.
 
 4. **Push to remote**
    ```bash
-   git push -u origin feat/culture-netherlands
+   git push -u origin culture/netherlands
    ```
 
-5. **Open PR to `culture-staging`** - Culture content gets staged for review
+5. **Open PR to `culture/staging`** - Culture content gets staged for review
    - GitHub CI runs full validation (L0-L4f)
    - Culture reviewers can batch-test before main merge
    - All checks must pass
 
-6. **Merge to `culture-staging`** - Queues for release
+6. **Merge to `culture/staging`** - Queues for release
 
 7. **Release cycle** - When ready to deploy:
-   - Create PR from `culture-staging` → `main`
+   - Create PR from `culture/staging` → `main`
    - Merge to `main`
    - Create GitHub release tag (v0.X.Y)
    - Workflow deploys
@@ -140,17 +142,17 @@ If you see "L0-stamp-check FAILED":
 
 | Stage | Tool | When | Includes Hofstede? |
 |-------|------|------|---|
-| Local pre-commit | `.githooks/pre-commit` | Before every `git commit` on **feat/culture-*** | YES |
+| Local pre-commit | `.githooks/pre-commit` | Before every `git commit` on **culture/*** | YES |
 | Local pre-commit | `.githooks/pre-commit` | Before every `git commit` on **chore/*, fix/*** | NO |
 | L0-stamp-check | CI job | Every PR, every push to main | - |
 | L1-L4 validation | CI jobs (chained) | Every PR, when L0 passes | Base validation only |
-| L1-L7 validation | CI jobs (chained) | PR to **culture-staging**, when L0 passes | Includes Hofstede (L5-L7) |
+| L1-L7 validation | CI jobs (chained) | PR to **culture/staging**, when L0 passes | Includes Hofstede (L5-L7) |
 
 ## Validation Chain
 
-**Culture Branch Path (feat/culture-* → culture-staging → main):**
+**Culture Branch Path (culture/<name> → culture/staging → main):**
 - Local: L1-L4 + **Hofstede** (pre-commit hook enforces alignment)
-- CI on culture-staging: L1-L7 full validation + L0-stamp-check
+- CI on culture/staging: L1-L7 full validation + L0-stamp-check
 - CI on main (from staging): verify scope stayed in regions/, no scope creep
 
 **Infrastructure Branch Path (chore/*, fix/*, feat/* non-culture → main):**

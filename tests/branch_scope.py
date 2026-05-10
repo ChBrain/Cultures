@@ -15,11 +15,11 @@ from __future__ import annotations
 
 import re
 
-# Anchored regex avoids silent bypasses on near-miss branch names like
-# `feat/culture/x` (slash), `feat/cultures-x` (typo plural),
-# `feat/culture` (no name), or `feat/Culture-x` (uppercase). All such
-# names classify as 'other' and are blocked from regions/.
-CULTURE_BRANCH_PATTERN = re.compile(r"^feat/culture-[a-z0-9][a-z0-9_-]*$")
+# Anchored regex avoids silent bypasses on near-miss branch names.
+# Per-country/region culture work: culture/<country> or culture/<region>
+# Integration point: culture/staging
+# Both match this pattern and classify as 'culture' work.
+CULTURE_BRANCH_PATTERN = re.compile(r"^culture/[a-z0-9][a-z0-9_-]*$")
 
 # Metadata files allowed on culture branches alongside regions/** changes.
 # Exact path match — `subdir/.gitignore` is NOT safe; only the listed paths.
