@@ -14,7 +14,7 @@ Sie schrieben es trotzdem als vorläufig.
 Es wurde permanent.
 
 ## Load Bearing
-Ohne es verliert die [German](culture_german_position.md) Position ihren grund.
+Ohne es verliert die [Deutsche](culture_german_position.md) Position ihren grund.
 *Die würde des menschen ist unantastbar.*
 Artikel 1. Nicht abänderbar.
 Das bundesverfassungsgericht setzt es durch - in gleichberechtigung mit gesellschaft.

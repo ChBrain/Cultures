@@ -5,7 +5,7 @@
 - Culture: Germany
 
 ## Initiated by
-Der [German](culture_german_position.md) betritt einen raum.
+Der [Deutsche](culture_german_position.md) betritt einen raum.
 Mit zurückhaltung - nicht freudig, nicht unbefangen.
 Das [Grundgesetz](culture_german_piece_grundgesetz.md) ist bereits darin als pflicht.
 Nicht als text - als bedingung der disziplin.

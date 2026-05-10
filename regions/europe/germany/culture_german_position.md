@@ -52,7 +52,7 @@ Klarheit.
 
 ## Drives
 Auf dem Verlust:
-Desperate Suche nach Verfahren.
+Verzweifelte Suche nach Verfahren.
 [Erinnern](culture_german_process_erinnern.md) - die Fähigkeit, Struktur aus der Geschichte zu rekonstruieren.
 
 ---
