@@ -1,0 +1,361 @@
+# Hofstede denylist — shared across all per-country bags.
+#
+# Words that may never appear in any country's bag, regardless of which
+# language or dimension. The matcher does exact-word string comparison;
+# polysemy and high-frequency mean these words fire on prose unrelated
+# to the cultural concept they nominally signal.
+#
+# This is a HARD rule. Per Strategy v2, no contextual override.
+#
+# Per-country bags also carry a country-specific `denylist:` field for
+# words rejected during that country's bootstrap (cross-language collisions,
+# dialect-specific issues, etc.). The two combine: a bag word must NOT
+# appear in (this global denylist) ∪ (the country's own denylist).
+#
+# Treatment: same as bags. Locked via SHA in data/hofstede_bag_locks.yaml,
+# protected via .github/CODEOWNERS, edited only via reviewed PR.
+#
+# To add a word: open a chore PR with rationale in the commit message.
+# To remove a word: same, plus an explicit explanation of why the word's
+# polysemy or frequency issue has been resolved.
+
+# Pronouns and deictics across supported languages.
+# These fire on virtually every sentence regardless of dimensional content.
+pronouns_and_deictics:
+  # English
+  - i
+  - we
+  - he
+  - she
+  - it
+  - they
+  - you
+  - me
+  - us
+  - him
+  - her
+  - them
+  - my
+  - your
+  - our
+  - his
+  - their
+  - this
+  - that
+  - these
+  - those
+  - here
+  - there
+  - now
+  - then
+
+  # Dutch
+  - ik
+  - wij
+  - hij
+  - zij
+  - ze
+  - het
+  - jij
+  - jouw
+  - uw
+  - haar
+  - hun
+  - deze
+  - die
+  - dat
+  - hier
+  - daar
+  - nu
+
+  # German
+  - ich
+  - wir
+  - er
+  - sie
+  - es
+  - du
+  - ihr
+  - man
+  - mein
+  - dein
+  - sein
+  - unser
+  - euer
+  - dieser
+  - jener
+  - dort
+  - jetzt
+
+  # Danish
+  - jeg
+  - vi
+  - han
+  - hun
+  - den
+  - det
+  - din
+  - sin
+  - vores
+  - deres
+  - dengang
+
+  # Polish
+  - ja
+  - my
+  - on
+  - ona
+  - ono
+  - ty
+  - wy
+  - oni
+  - moj
+  - twoj
+  - jego
+  - jej
+  - nasz
+  - wasz
+  - tu
+  - tam
+  - teraz
+
+# Articles, conjunctions, prepositions, particles — function words.
+function_words:
+  # English
+  - a
+  - an
+  - the
+  - and
+  - or
+  - but
+  - if
+  - as
+  - of
+  - to
+  - in
+  - on
+  - at
+  - by
+  - for
+  - with
+  - from
+  - into
+  - onto
+  - out
+  - up
+  - down
+  - is
+  - are
+  - was
+  - were
+  - be
+  - been
+  - being
+  - has
+  - have
+  - had
+  - do
+  - does
+  - did
+  - can
+  - could
+  - will
+  - would
+  - shall
+  - should
+  - may
+  - might
+  - must
+  - not
+  - no
+  - yes
+  - so
+  - than
+  - more
+  - most
+  - very
+  - also
+  - just
+  - only
+  - even
+  - all
+  - each
+  - every
+  - both
+  - some
+  - any
+  - few
+  - many
+  - much
+  - what
+  - which
+  - who
+  - whom
+  - whose
+  - how
+  - when
+  - where
+  - why
+
+  # Dutch
+  - de
+  - een
+  - en
+  - of
+  - maar
+  - want
+  - dus
+  - zijn
+  - waren
+  - ben
+  - bent
+  - wordt
+  - worden
+  - heb
+  - hebt
+  - heeft
+  - hebben
+  - hadden
+  - doe
+  - doet
+  - doen
+  - deed
+  - deden
+  - te
+  - om
+  - voor
+  - naar
+  - op
+  - uit
+  - aan
+  - bij
+  - met
+  - van
+  - ook
+  - wel
+  - niet
+  - geen
+  - meer
+  - minder
+
+  # German
+  - der
+  - die
+  - das
+  - den
+  - dem
+  - des
+  - ein
+  - eine
+  - einen
+  - einem
+  - einer
+  - eines
+  - und
+  - oder
+  - aber
+  - sondern
+  - denn
+  - ist
+  - sind
+  - war
+  - waren
+  - bin
+  - bist
+  - habe
+  - hast
+  - hat
+  - haben
+  - hatte
+  - hatten
+  - tue
+  - tut
+  - tun
+  - tat
+  - taten
+  - zu
+  - an
+  - auf
+  - bei
+  - mit
+  - von
+  - aus
+  - nach
+  - zur
+  - auch
+  - nur
+  - noch
+  - mehr
+  - weniger
+
+  # Danish
+  - en
+  - et
+  - de
+  - og
+  - eller
+  - men
+  - fordi
+  - er
+  - var
+  - vaeret
+  - har
+  - havde
+  - til
+  - fra
+  - med
+  - om
+  - ved
+  - af
+  - pa
+  - ogsa
+  - kun
+  - endnu
+  - mindre
+
+  # Polish
+  - i
+  - ale
+  - lub
+  - albo
+  - ze
+  - bo
+  - wiec
+  - jest
+  - sa
+  - byl
+  - byla
+  - bylo
+  - byly
+  - od
+  - z
+  - w
+  - na
+  - po
+  - przed
+  - za
+  - pod
+  - nad
+  - tez
+  - tylko
+  - juz
+  - wiecej
+
+# Polysemous high-frequency English words flagged across NL/IE/SC/WE reviews.
+# Each fires on multiple unrelated meanings; the cultural reading is real
+# but cannot be isolated by exact-word matching.
+polysemous_english:
+  - flat        # tire, note, rate, structure, apartment
+  - open        # door, mind, file, question, wound
+  - own         # verb, pronoun, adjective
+  - shared      # service, mission, file
+  - drive       # verb, car, computer drive
+  - past        # time, prep, adjective
+  - support     # verb, noun, technical
+  - together    # very high frequency
+  - control     # verb, noun, multiple registers
+  - concern     # noun, verb
+  - process     # noun, verb
+  - strong      # too generic
+  - direct      # adjective, verb, noun
+  - level       # noun, adjective, verb

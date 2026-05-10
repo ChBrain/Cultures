@@ -1,21 +1,30 @@
 #!/usr/bin/env python3
-"""Shared Hofstede keywords and language detection for all validators.
+"""Language detection for Hofstede validators.
 
-This module is the SINGLE SOURCE OF TRUTH for:
-1. Language detection (using lingua library)
-2. Hofstede dimension keywords per language
+The keyword bags that previously lived in this module have been retired.
+Per Strategy v2 (Hofstede Bag Infrastructure), keyword bags are now per
+country in `regions/<region>/<country>/hofstede_bag.yaml` and are loaded
+via `data/hofstede_bag_loader.py`. This module retains only:
 
-Both validate_hofstede_derived.py and validate_hofstede_alignment.py
-import from here to ensure consistent scoring locally and in CI.
+  - `detect_language(text)`  — language detection used by validators.
+  - `LINGUA_LANGUAGES`       — language → lingua-language enum mapping.
+  - `DIMENSION_KEYWORDS_BY_LANGUAGE` — empty dict, kept as a stable import
+    target so the loader's fallback branch returns `{}` cleanly. This
+    means: every country falls through to the per-country bag system,
+    and any country without a per-country bag yields zero-derived scores
+    until migrated. That degenerate output is the intentional pre-migration
+    signal — it tells you exactly which countries still need a Skill pass.
 
-Usage:
-  from data.hofstede_keywords import detect_language, DIMENSION_KEYWORDS_BY_LANGUAGE
+Restoring keyword data here is forbidden. The contract for which words
+score which dimension is the per-country bag YAML, plus the shared
+`data/hofstede_denylist.yaml`. See `.claude/skills/khai-create-hofstede-bag/`
+for the Skill that produces them.
 """
 from __future__ import annotations
 
 from lingua import Language, LanguageDetectorBuilder
 
-# Language mapping for lingua library
+# Language mapping for lingua library.
 LINGUA_LANGUAGES = {
     "english": Language.ENGLISH,
     "german": Language.GERMAN,
@@ -29,142 +38,20 @@ _detector = LanguageDetectorBuilder.from_languages(
 
 
 def detect_language(text: str) -> str:
-    """Detect language using lingua library (single source of truth).
-    
-    Returns language code: "en", "de", "da", or defaults to "en".
-    This is the ONLY language detection function used by Hofstede validators.
-    """
+    """Detect language. Returns ISO 639-1 code or 'en' as default."""
     if not text or len(text.strip()) < 50:
-        return "en"  # Too short to detect reliably
-    
+        return "en"
     detected = _detector.detect_language_of(text)
     if detected == Language.ENGLISH:
         return "en"
-    elif detected == Language.GERMAN:
+    if detected == Language.GERMAN:
         return "de"
-    elif detected == Language.DANISH:
+    if detected == Language.DANISH:
         return "da"
-    elif detected == Language.DUTCH:
+    if detected == Language.DUTCH:
         return "nl"
-    
-    return "en"  # Default
+    return "en"
 
 
-# Hofstede dimension keywords per language
-# These are the ONLY keyword sets used for scoring.
-DIMENSION_KEYWORDS_BY_LANGUAGE = {
-    "en": {
-        "PDI": {
-            "high": ["hierarchy", "status", "rank", "authority", "obey", "deference", "respect", "leader"],
-            "low": ["equal", "equality", "merit", "question", "challenge", "democratic", "egalitarian"],
-        },
-        "IDV": {
-            "high": ["individual", "autonomy", "personal", "achievement", "self", "independent"],
-            "low": ["group", "collective", "harmony", "loyalty", "team", "community", "belonging"],
-        },
-        "UAI": {
-            "high": ["rule", "structure", "plan", "clarity", "precise", "precision", "stability", "order", "protocol"],
-            "low": ["flexible", "adapt", "improvise", "ambiguous", "risk", "spontaneous"],
-        },
-        "MAS": {
-            "high": ["achieve", "compete", "win", "success", "ambitious", "assert", "power", "strength"],
-            "low": ["care", "cooperate", "relationship", "compassion", "community", "modest"],
-        },
-        "LTO": {
-            "high": ["long-term", "future", "plan", "save", "invest", "persist", "tradition", "foundation"],
-            "low": ["immediate", "present", "quick", "instant", "result", "heritage"],
-        },
-        "IND": {
-            "high": ["enjoy", "pleasure", "freedom", "indulge", "relax", "gratif"],
-            "low": ["restrain", "discipline", "control", "self-control", "duty", "obligation"],
-        },
-    },
-    "de": {
-        "PDI": {
-            "high": ["hierarchie", "status", "rang", "respekt", "autorität", "führung", "gehorsam"],
-            "low": ["gleichheit", "gleichberechtigung", "verdienst", "demokratisch", "egalitär"],
-        },
-        "IDV": {
-            "high": ["individuell", "eigenverantwortlich", "autonomie", "persönlich", "selbst", "unabhängig"],
-            "low": ["gruppe", "gemeinschaft", "harmonie", "treue", "team", "zusammenhalt", "loyalität"],
-        },
-        "UAI": {
-            "high": ["regel", "struktur", "planung", "klarheit", "präzision", "direktheit", "stabilität", "ordnung", "protokoll", "sicherheit", "verfahren", "korrekt"],
-            "low": ["flexibel", "anpassung", "improvisieren", "mehrdeutig", "risiko", "spontan"],
-        },
-        "MAS": {
-            "high": ["leistung", "erfolg", "wettkampf", "gewinnen", "ehrgeiz", "durchsetzung", "kraft", "stärke", "kompetenz", "ergebnis"],
-            "low": ["fürsorge", "kooperation", "beziehung", "mitgefühl", "gemeinschaft", "rücksicht"],
-        },
-        "LTO": {
-            "high": ["langfristig", "zukunft", "planung", "sparen", "investition", "beharrlichkeit", "kontinuität", "nachhaltigkeit", "wiedervereinigung", "ausgangszustand", "boden", "vertrag", "pflicht", "erinnern", "grundgesetz"],
-            "low": ["sofort", "gegenwart", "schnell", "unmittelbar", "tradition", "vergangenheit", "erbe"],
-        },
-        "IND": {
-            "high": ["genießen", "vergnügen", "freiheit", "spaß", "entspannung", "freude", "wärme"],
-            "low": ["zurückhaltung", "disziplin", "mäßigung", "selbstbeherrschung", "pflicht", "verpflichtung", "erfüllung", "widerstand"],
-        },
-    },
-    "da": {
-        "PDI": {
-            "high": ["hierarki", "status", "autoritet", "ledelse", "kommando", "respektere"],
-            "low": ["lighed", "demokratisk", "ligestilling", "ligeværd", "respekt", "verdier"],
-        },
-        "IDV": {
-            "high": ["individuelt", "personlig", "selvbestemmelse", "autonomi", "egen", "uafhængig"],
-            "low": ["gruppe", "fællesskab", "samarbejde", "tilhørighed", "team", "loyalitet"],
-        },
-        "UAI": {
-            "high": ["regel", "struktur", "orden", "system", "klart", "sikkerhed", "procedure", "præcision"],
-            "low": ["fleksibel", "fleksibilitet", "pragmatisk", "improvisere", "risiko", "tilpasning", "tilpas", "skiftende"],
-        },
-        "MAS": {
-            "high": ["præstation", "succes", "gevinst", "sejr", "konkurrence", "styrke", "kraft"],
-            "low": ["samarbejde", "omsorg", "omhu", "fællesskab", "medmenneskelig", "rørende", "empati"],
-        },
-        "LTO": {
-            "high": ["fremtid", "plan", "investering", "kontinuitet", "ansvar", "forpligtelse", "langsigtet"],
-            "low": ["nu", "øjeblikket", "straks", "nyder", "spontan", "øjebliks", "nu"],
-        },
-        "IND": {
-            "high": ["nyde", "nydelse", "frihed", "tilfredsstillelse", "fryd", "hygge", "frejdig"],
-            "low": ["tilbageholdenhed", "disciplin", "pligt", "mådehold", "selvkontrol", "forsigtig"],
-        },
-    },
-    "nl": {
-        "PDI": {
-            "high": ["hiërarchie", "status", "autoriteit", "gezag", "respect", "ondergeschikt"],
-            "low": ["gelijkheid", "gelijk", "platte", "democratie", "merit", "verdienste"],
-        },
-        "IDV": {
-            "high": ["individueel", "autonomie", "eigen", "lijn", "persoonlijk", "onafhankelijk", "keuze"],
-            "low": ["groep", "gemeenschap", "samen", "loyaliteit", "team", "harmonie", "samenhang"],
-        },
-        "UAI": {
-            "high": ["regel", "structuur", "duidelijk", "precies", "orde", "procedure", "veiligheid"],
-            "low": ["flexibel", "improviseren", "pragmatisch", "aanpassen", "risico", "spontaan", "onderhandelen"],
-        },
-        "MAS": {
-            "high": ["prestatie", "succes", "winnen", "competitie", "ambitie", "sterk", "kracht"],
-            "low": ["zorg", "samenwerking", "voorzichtigheid", "tolerantie", "medelijden", "empathie"],
-        },
-        "LTO": {
-            "high": ["lange", "termijn", "toekomst", "plan", "investeren", "continuïteit", "voortduur", "water"],
-            "low": ["nu", "direct", "onmiddellijk", "heden", "spontaan", "traditie"],
-        },
-        "IND": {
-            "high": ["genieten", "plezier", "vrijheid", "tevredenheid", "gedoogbeleid", "tolerantie"],
-            "low": ["terughoudend", "discipline", "zelfbeheersing", "plicht", "verplichting", "matiging"],
-        },
-    },
-}
-
-
-def get_keywords_for_language(language: str) -> dict[str, dict[str, list[str]]] | None:
-    """Get Hofstede keywords for a language.
-    
-    Falls back to English if language not found.
-    """
-    if language in DIMENSION_KEYWORDS_BY_LANGUAGE:
-        return DIMENSION_KEYWORDS_BY_LANGUAGE[language]
-    return DIMENSION_KEYWORDS_BY_LANGUAGE["en"]
+# Empty by design. See module docstring.
+DIMENSION_KEYWORDS_BY_LANGUAGE: dict[str, dict[str, dict[str, list[str]]]] = {}

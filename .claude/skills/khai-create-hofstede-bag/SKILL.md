@@ -97,12 +97,11 @@ Apply in order. Eliminate any word that fails any criterion:
 10. **Cross-register sibling scan**: when flagging a word for cross-dimension adjacency, scan the full bag for words in the same register or concept-cluster and apply the same flag. Do not terminate with a flag on one word and silence on a register-sibling in the same bag.
 11. **Lemma form**: use the base/dictionary form. Lemma swaps are not no-ops -- `care` and `caring` hit different content. Log them.
 12. **Common-word denylist (hard rule, no exceptions)**:
-   - Pronouns: `we`, `I`, `wij`, `ik`, `ich`, `vi`, `jeg`, and equivalents
-   - Articles, prepositions, conjunctions
-   - Deictics: `now`, `here`, `nu`, `da`, `jetzt`, and equivalents
-   - Top-200 frequency words for the language
-   - Polysemous high-frequency words in English: `flat`, `open`, `own`, `shared`, `drive`, `past`, `support`, `together`
+   - The canonical denylist lives in `data/hofstede_denylist.yaml`. It is a locked contract (SHA-protected, CODEOWNERS-protected).
+   - Read that file before generating. Any candidate word listed there is automatically rejected.
+   - Categories included: pronouns and deictics (en/nl/de/da/pl), function words (articles, prepositions, conjunctions, particles), polysemous high-frequency English words (`flat`, `open`, `own`, `shared`, `drive`, `past`, `support`, `together`, etc.).
    - No contextual override. The matcher does not see context.
+   - Adding to the denylist requires a chore PR with rationale; do not attempt to bypass it by routing words through alternative spellings.
 
 ### Step 6: Rank and select 10
 
@@ -168,6 +167,22 @@ Same-direction calls do not need listing. If no divergent calls: "No cross-langu
 
 All 12 bags. One word per line. No numbering, no decoration.
 
+### Section 5b: Country denylist
+
+A country-specific denylist of words that were considered for this country's bags but rejected. This is **another bag-list element** with the same treatment as the bags themselves: locked via SHA in `data/hofstede_bag_locks.yaml`, protected by CODEOWNERS, edited only via reviewed PR.
+
+The country denylist captures words specifically problematic for THIS country — words that don't appear in the global `data/hofstede_denylist.yaml` (which catches language-fundamentals like pronouns) but which cannot serve in this country's bags due to:
+
+- Cross-language collision with another country's bag
+- Dialect-specific polysemy (the standard reading conflicts with the country's reading)
+- Same-dimension opposite-polarity readings within the country's content
+- Conceptual overlap with another bag in the country (would double-count)
+- Persona-anchor that's culturally unrepresentative (rare; document carefully)
+
+Output a flat list of words (one per line) with each word's reason captured in Section 7's decision logs. Typical denylist size: 5-20 words depending on how aggressive the bootstrap was. Empty denylist is acceptable for very simple cases.
+
+The combined check at validation time: a bag word must NOT appear in (`data/hofstede_denylist.yaml`) ∪ (this country's `denylist:` field).
+
 ### Section 6: Per-word justification
 
 One line per word: `word -- dimension signal -- why this word in this country`
@@ -232,6 +247,8 @@ Do not terminate if any of the following are unresolved:
 - A cross-country opposing-polarity collision is unresolved
 - The country shares a language with a sibling and you did not fork explicitly
 - The drop log section is absent when a previous bag exists
+- The bag YAML lacks a `denylist:` field (the country denylist is a required output, not optional — empty list `[]` is acceptable, missing key is not)
+- A bag word appears in either the global denylist (`data/hofstede_denylist.yaml`) OR the country's own denylist field
 
 ## Output files
 

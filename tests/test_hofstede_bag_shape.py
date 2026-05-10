@@ -109,11 +109,29 @@ class TestBagMetadata:
     def test_required_metadata_fields(self, bag_file: Path):
         bag = load_bag(bag_file)
         rel = bag_file.relative_to(REPO_ROOT)
-        for field in ("country", "language", "parent", "hofstede_scores"):
+        for field in ("country", "language", "parent", "hofstede_scores", "denylist"):
             assert field in bag, (
-                f"{rel}: missing required metadata field `{field}`. "
+                f"{rel}: missing required field `{field}`. "
                 f"Per Strategy v2: country, language, parent (null or path), "
-                f"and hofstede_scores are mandatory."
+                f"hofstede_scores, and denylist (country-specific rejected "
+                f"words; empty list `[]` acceptable) are all mandatory."
+            )
+
+    @pytest.mark.parametrize("bag_file", _BAGS)
+    def test_denylist_field_is_list_of_strings(self, bag_file: Path):
+        bag = load_bag(bag_file)
+        rel = bag_file.relative_to(REPO_ROOT)
+        denylist = bag.get("denylist")
+        assert isinstance(denylist, list), (
+            f"{rel}: `denylist` must be a list (use `[]` if no country-specific "
+            f"rejections). Got {type(denylist).__name__}."
+        )
+        for i, entry in enumerate(denylist):
+            assert isinstance(entry, str), (
+                f"{rel}: denylist[{i}] is {type(entry).__name__}, expected str"
+            )
+            assert entry == entry.lower(), (
+                f"{rel}: denylist[{i}] (`{entry}`) must be lowercase"
             )
 
     @pytest.mark.parametrize("bag_file", _BAGS)

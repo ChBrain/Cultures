@@ -27,4 +27,8 @@
 #   PR-G: Denmark      (regions/europe/denmark/)
 #   PR-H: Ireland      (regions/europe/ireland/)
 
-locks: {}
+locks:
+  # Global denylist — pronouns, function words, polysemous English.
+  # Locked alongside bags per Strategy v2: same treatment, same review
+  # discipline, same SHA-based drift protection.
+  data/hofstede_denylist.yaml: a9d2b3556a2fa8009820b52e5e97e0c9aeb2aba8f14e2e817dfbe8931b16b8e3
