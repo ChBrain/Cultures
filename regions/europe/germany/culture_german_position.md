@@ -5,46 +5,42 @@
 - Culture: Germany
 
 ## Has
-Die Frage.
-Zuerst.
-Nicht als Höflichkeit.
-Als Recht.
+Die frage - immer mit disziplin und zurückhaltung gestellt.
+Zuerst - aber nicht leichtfertig.
+Nicht als höflichkeit - als pflichterfüllung.
+Als recht, gerahmt durch verantwortungsgefühl.
 
-Eigenverantwortlich.
-Die persönliche Entscheidung.
-Selbstbestimmung über Gehorsam.
-Unabhängige Urteilskraft.
-Dein eigenes Denken ist Werkzeug - nicht Waffe gegen die Gemeinschaft.
+Sachkompetenz zählt - aber nicht über gemeinschaft.
+Verdienst, nicht konkurrenz um glanz.
+Das ergebnis zählt, aber nicht um jeden preis.
+Mitbestimmung statt unterordnung.
+Gleichberechtigung in der befragung - wenn alle sich an regeln halten.
+Eigeninitiative - dein eigenes denken ist werkzeug.
 
-Die Arbeit.
-Kompetenz zählt.
-Verdienst, nicht Titel.
-Das Ergebnis zählt, nicht die Hierarchie.
-Durchsetzung durch Gleichberechtigung in der Befragung.
+Aber auch: entspannung. Freizeit ist heilig. Der genuss ist erlaubt - zu hause, nach der arbeit.
+Lebensfreude - nicht ständig, aber echt wenn sie kommt.
 
 [Das Grundgesetz](culture_german_piece_grundgesetz.md).
-Nicht als Befehl.
-Als demokratischer Rahmen - alle gleich darunter.
-Vertrag über Handeln.
-Pflicht zur Struktur.
-
-Die Pragmatik.
-Regeln gelten - können aber befragt werden.
-Gleichberechtigung in der Befragung.
-Klarheit durch Verfahren.
-Sicherheit durch Ordnung.
+Nicht als befehl - als rahmen der pflicht.
+Vertrag über handeln - mit selbstkontrolle.
+Gesetze gelten - nicht zum brechen gedacht.
 
 Disziplin.
-Selbstbeherrschung als Fundament.
-Maßhaltung ohne Verbote.
-Widerstand gegen die Versuchung, es einfach zu haben.
-Pflicht und Verpflichtung - nicht Erfolg um jeden Preis.
+Selbstbeherrschung als fundament - nicht optional.
+Mäßigung ohne verbote - durch bewusstsein.
+Widerstand gegen die versuchung, leicht zu haben.
+Pflicht und verpflichtung - die wahre grundlage.
+Ernsthaftigkeit vor erfolg.
+Nachhaltigkeit im denken - nicht sofortigkeit.
+Langfristigkeit als standard - geduld und ausdauer im aufbau.
+Beharrlichkeit statt hastigkeit.
+Weitblick - investition in die zukunft, nicht in den moment.
 
-Langfristigkeit.
-Planung für Generationen.
-Investition jetzt für Zukunft.
-Verantwortung für das, was kommt.
-Kontinuität als Kraft.
+Ordnung.
+Struktur braucht die seele nicht, aber die gesellschaft.
+Systematik in arbeit - flexibilität in seele nicht.
+Zurückhaltung im privaten - struktur im öffentlichen.
+Genauigkeit und gründlichkeit als ausdruck von respekt.
 
 ## Orders
 Denke klar.

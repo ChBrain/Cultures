@@ -5,21 +5,28 @@
 - Culture: Germany
 
 ## Shown
-Die Stadt ist groß. Breiter als die Bewusstsein anderer Städte.
-Beton. Glas. Baukräne. Der Wiederaufbau läuft noch.
-Graffiti auf Industriegebäuden. Manche alt genug, dass sie unter Denkmalschutz stehen.
-Eine Linie aus Granitsteinen durch die Pflaster - Stolpersteine - tausende verteilt.
-2711 Betonstelen, gleich hoch, dicht nebeneinander. Keine Inschriften auf den Steinen.
+Die stadt ist groß. Breiter als das bewusstsein anderer städte.
+Beton. Glas. Baukräne. Der wiederaufbau läuft noch - kein abschluss in sicht.
+Graffiti auf industriegebäuden. Manche alt genug, dass sie unter denkmalschutz stehen.
+Eine linie aus granitsteinen durch das pflaster - stolpersteine - tausende verteilt.
+2711 betonstelen, gleich hoch, dicht nebeneinander. Keine inschriften auf den steinen.
+Experimentierfreude in der architektur neben gründlichkeit der memorialisierung.
+Rücksichtnahme gegenüber den opfern liegt unsichtbar unter den gleichen steinen.
+Die stadt selbst ist offenheit - jederzeit wiederaufbau möglich.
+Wendigkeit im denken, struktur im bauen.
 
 ## Holds
-Das Reichstagsgebäude.
-Das Brandenburger Tor.
-Das Denkmal für die ermordeten Juden Europas.
-Die Topographie der Terrors.
-[Grundgesetz](culture_german_piece_grundgesetz.md).
+Das reichstagsgebäude.
+Das brandenburger tor - autorität sichtbar gemacht.
+Das denkmal für die ermordeten juden europas - mit sanftmut gebaut.
+Die topographie der terrors - fürsorge für das erinnerungswerk.
+[Grundgesetz](culture_german_piece_grundgesetz.md) - in den steinen eingegeben.
+Berliner ansatz: gemeinwohl vor glanz.
+Harmonie zwischen erinnerung und gegenwart, nicht gewalt.
 
 ## Offers
 [Erinnern](culture_german_process_erinnern.md) läuft hier. Jeder muss selbst entscheiden, was er sieht.
+Aber auch: entspannung. Café-kultur. Lebensfreude in den spätsommerabenden.
 
 ## Withheld
 Die Teilung. Statistisch beendet. Im Denken manchmal nicht.
