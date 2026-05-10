@@ -41,7 +41,6 @@ Er glaubt, die Probleme seien objektiv real. Sie sind real. Aber er sucht sie au
 Wenn der Kunde dankt, sagt er: "Das Problem war immer da; ich habe es nur sichtbar gemacht."
 
 ---
-*Type: Composite*
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 
 *culture_german_persona_christian.md - 07.05.2026*

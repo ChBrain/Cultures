@@ -36,7 +36,6 @@ Sie sieht ihre eigenen Erfolge nicht, weil sie sie nicht als Siege erlebt.
 Wenn jemand ihr gratuliert, sagt sie: "Das Verfahren hat sich selbst geklärt."
 
 ---
-*Type: Composite*
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 
 *culture_german_persona_brigitte.md - 07.05.2026*

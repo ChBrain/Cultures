@@ -1,5 +1,7 @@
 # Persona: Sofie
-## Title: Arkitekt
+
+## Title
+Arkitekt
 
 ## Owner
 - Project: Cultures
@@ -22,6 +24,5 @@ Hun designer først. Autonomi kommer bagefter.
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 
 *culture_danish_persona_sofie.md - 07.05.2026*
-*Type: Composite*
 
 v0.1.0 - KAI Worlds
