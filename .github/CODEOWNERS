@@ -10,6 +10,11 @@
 # Lock index — bag SHAs; any edit is a contract change
 data/hofstede_bag_locks.yaml         @ChBrain
 
+# Global denylist — words forbidden in any country bag (pronouns, function
+# words, polysemous high-frequency English). Locked contract; same review
+# discipline as bags.
+data/hofstede_denylist.yaml          @ChBrain
+
 # Bag YAMLs and decisions per country (catch-all, supersedes regions/**/*.md)
 regions/**/hofstede_bag*.yaml        @ChBrain
 regions/**/hofstede_bag_*.yaml       @ChBrain

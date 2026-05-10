@@ -22,6 +22,16 @@ hofstede_scores:
   LTO: [n]
   IND: [n]
 
+# Country-specific denylist: words considered for this country's bags but
+# rejected, with the rule that disqualified them. Combined at validation
+# time with data/hofstede_denylist.yaml — a bag word must not appear in
+# either denylist. Each entry's reason is documented in hofstede_decisions.md.
+# Typical entries: cross-language collisions, dialect-specific issues,
+# polysemy in this country's content, ambiguous polarity readings.
+denylist:
+  - word1
+  - word2
+
 bags:
   PDI:
     high:

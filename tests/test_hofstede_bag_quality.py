@@ -25,102 +25,50 @@ REGIONS = REPO_ROOT / "regions"
 
 
 # ---------------------------------------------------------------------------
-# Common-word denylist
+# Global denylist — loaded from data/hofstede_denylist.yaml
 # ---------------------------------------------------------------------------
 #
-# Words that fire on virtually any prose, regardless of cultural context.
-# The matcher does exact-word matching, so polysemy + frequency = noise.
+# Single source of truth for cross-country denylist words: pronouns,
+# deictics, function words across supported languages, and polysemous
+# high-frequency English words flagged across NL/IE/SC/WE reviews.
 #
-# This is a HARD rule with no contextual override. Documented examples
-# from prior reviews are explicitly listed so they fail loudly if anyone
-# tries to add them back.
+# This is a HARD rule with no contextual override. The denylist file is
+# locked via SHA in data/hofstede_bag_locks.yaml and protected by
+# CODEOWNERS; changes require a deliberate, reviewed PR.
+#
+# Per-country bags additionally carry their own `denylist:` field — words
+# rejected during that country's bootstrap. The combined check is
+# (global denylist) ∪ (country denylist).
 
-# Pronouns and deictics across en/de/nl/da/pl/sv/no — these fire on every
-# sentence regardless of dimensional content.
-PRONOUNS_AND_DEICTICS = {
-    # English
-    "i", "we", "he", "she", "it", "they", "you", "me", "us", "him", "her", "them",
-    "my", "your", "our", "his", "their",
-    "this", "that", "these", "those", "here", "there", "now", "then",
-    # Dutch
-    "ik", "wij", "we", "hij", "zij", "ze", "het", "jij", "u", "men",
-    "mijn", "jouw", "uw", "zijn", "haar", "hun",
-    "deze", "die", "dat", "hier", "daar", "nu",
-    # German
-    "ich", "wir", "er", "sie", "es", "du", "ihr", "man",
-    "mein", "dein", "sein", "ihr", "unser", "euer",
-    "dieser", "jener", "hier", "dort", "jetzt", "da",
-    # Danish
-    "jeg", "vi", "han", "hun", "den", "det", "du", "I",
-    "min", "din", "sin", "vores", "deres",
-    "her", "der", "nu", "dengang",
-    # Polish
-    "ja", "my", "on", "ona", "ono", "ty", "wy", "oni",
-    "moj", "twoj", "jego", "jej", "nasz", "wasz", "ich",
-    "tu", "tam", "teraz",
-}
+GLOBAL_DENYLIST_FILE = REPO_ROOT / "data" / "hofstede_denylist.yaml"
 
-# Articles, particles, conjunctions, prepositions — function words.
-FUNCTION_WORDS = {
-    # English
-    "a", "an", "the", "and", "or", "but", "if", "as", "of", "to", "in", "on",
-    "at", "by", "for", "with", "from", "into", "onto", "out", "up", "down",
-    "is", "are", "was", "were", "be", "been", "being", "has", "have", "had",
-    "do", "does", "did", "can", "could", "will", "would", "shall", "should",
-    "may", "might", "must", "not", "no", "yes", "so", "than",
-    "more", "most", "very", "also", "just", "only", "even",
-    "all", "each", "every", "both", "some", "any", "few", "many", "much",
-    "what", "which", "who", "whom", "whose", "how", "when", "where", "why",
-    # Dutch (high-frequency)
-    "de", "het", "een", "en", "of", "maar", "want", "dus",
-    "is", "zijn", "was", "waren", "ben", "bent", "wordt", "worden",
-    "heb", "hebt", "heeft", "hebben", "had", "hadden",
-    "doe", "doet", "doen", "deed", "deden",
-    "te", "om", "voor", "naar", "op", "in", "uit", "aan", "bij", "met", "van",
-    "ook", "wel", "niet", "geen", "meer", "minder",
-    # German (high-frequency)
-    "der", "die", "das", "den", "dem", "des",
-    "ein", "eine", "einen", "einem", "einer", "eines",
-    "und", "oder", "aber", "sondern", "denn",
-    "ist", "sind", "war", "waren", "bin", "bist", "sein",
-    "habe", "hast", "hat", "haben", "hatte", "hatten",
-    "tue", "tut", "tun", "tat", "taten",
-    "zu", "an", "in", "auf", "bei", "mit", "von", "aus", "nach", "zur",
-    "auch", "nur", "noch", "mehr", "weniger",
-    # Danish (high-frequency)
-    "en", "et", "den", "det", "de",
-    "og", "eller", "men", "fordi",
-    "er", "var", "været", "har", "havde", "havde",
-    "til", "fra", "med", "om", "ved", "for", "af", "pa",
-    "ogsa", "kun", "endnu", "mere", "mindre",
-    # Polish (high-frequency)
-    "i", "a", "ale", "lub", "albo", "ze", "bo", "wiec",
-    "jest", "sa", "byl", "byla", "bylo", "byly",
-    "do", "od", "z", "w", "na", "po", "przed", "za", "pod", "nad",
-    "tez", "tylko", "juz", "wiecej", "mniej",
-}
 
-# Polysemous high-frequency English words flagged in prior reviews.
-# Each fires on multiple unrelated meanings; the cultural reading would be
-# real but cannot be isolated by exact-word matching.
-POLYSEMOUS_ENGLISH = {
-    "flat",       # tire, note, rate, structure, apartment
-    "open",       # door, mind, file, question, wound
-    "own",        # verb, pronoun, adjective
-    "shared",     # service, mission, file
-    "drive",      # verb, car, computer drive
-    "past",       # time, prep, adjective
-    "support",    # verb, noun, technical
-    "together",   # very high frequency
-    "control",    # verb, noun, multiple registers
-    "concern",    # noun, verb
-    "process",    # noun, verb
-    "strong",     # too generic
-    "direct",     # adjective, verb, noun
-    "level",      # noun, adjective, verb
-}
+def _load_global_denylist() -> set[str]:
+    """Load and union all categories from data/hofstede_denylist.yaml."""
+    if not GLOBAL_DENYLIST_FILE.exists():
+        # Fallback to empty — completeness handled by test_global_denylist_present
+        return set()
+    with GLOBAL_DENYLIST_FILE.open(encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+    if not isinstance(data, dict):
+        return set()
+    words: set[str] = set()
+    for category in ("pronouns_and_deictics", "function_words", "polysemous_english"):
+        entries = data.get(category, [])
+        if isinstance(entries, list):
+            words.update(str(w).strip().lower() for w in entries if isinstance(w, str))
+    return words
 
-COMMON_WORD_DENYLIST = PRONOUNS_AND_DEICTICS | FUNCTION_WORDS | POLYSEMOUS_ENGLISH
+
+GLOBAL_DENYLIST: set[str] = _load_global_denylist()
+
+
+def _country_denylist(bag: dict) -> set[str]:
+    """Return the country-specific denylist from a bag YAML, lowercased."""
+    raw = bag.get("denylist", []) or []
+    if not isinstance(raw, list):
+        return set()
+    return {str(w).strip().lower() for w in raw if isinstance(w, str)}
 
 
 # ---------------------------------------------------------------------------
@@ -151,6 +99,22 @@ def country_decisions_text(bag_file: Path) -> str:
 
 
 _BAGS = find_hofstede_bags()
+
+
+def test_global_denylist_present_and_nonempty():
+    """data/hofstede_denylist.yaml must exist and have all three categories."""
+    assert GLOBAL_DENYLIST_FILE.exists(), (
+        f"{GLOBAL_DENYLIST_FILE.relative_to(REPO_ROOT)} missing. The global "
+        f"denylist is required infrastructure as of Strategy v2."
+    )
+    with GLOBAL_DENYLIST_FILE.open(encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+    assert isinstance(data, dict), "denylist YAML top-level must be a mapping"
+    for category in ("pronouns_and_deictics", "function_words", "polysemous_english"):
+        assert category in data, f"denylist missing required category `{category}`"
+        assert isinstance(data[category], list), f"`{category}` must be a list"
+        assert data[category], f"`{category}` is empty — at minimum the listed examples must be present"
+    assert GLOBAL_DENYLIST, "GLOBAL_DENYLIST union came out empty after loading"
 
 
 # ---------------------------------------------------------------------------
@@ -186,7 +150,8 @@ class TestBagQuality:
                     seen[key] = (dimension, polarity)
 
     @pytest.mark.parametrize("bag_file", _BAGS)
-    def test_keywords_not_in_denylist(self, bag_file: Path):
+    def test_keywords_not_in_global_denylist(self, bag_file: Path):
+        """No bag word may appear in data/hofstede_denylist.yaml."""
         bag = load_bag(bag_file)
         country = bag.get("country", "unknown")
 
@@ -199,14 +164,50 @@ class TestBagQuality:
                 for keyword in keywords:
                     if not isinstance(keyword, str):
                         continue
-                    assert keyword.lower() not in COMMON_WORD_DENYLIST, (
+                    assert keyword.lower() not in GLOBAL_DENYLIST, (
                         f"{bag_file.relative_to(REPO_ROOT)} ({country}): "
                         f"`{keyword}` in {dimension}.{polarity} is in the "
-                        f"common-word denylist (pronouns, function words, or "
-                        f"polysemous high-frequency English). Hard rule, "
-                        f"no contextual override — the matcher does exact-word "
-                        f"matching."
+                        f"global denylist (data/hofstede_denylist.yaml). "
+                        f"Hard rule, no contextual override — the matcher "
+                        f"does exact-word matching."
                     )
+
+    @pytest.mark.parametrize("bag_file", _BAGS)
+    def test_keywords_not_in_country_denylist(self, bag_file: Path):
+        """No bag word may appear in this country's own `denylist:` field."""
+        bag = load_bag(bag_file)
+        country = bag.get("country", "unknown")
+        country_deny = _country_denylist(bag)
+
+        if not country_deny:
+            return  # empty country denylist is acceptable
+
+        for dimension, polarities in bag.get("bags", {}).items():
+            if not isinstance(polarities, dict):
+                continue
+            for polarity, keywords in polarities.items():
+                if not isinstance(keywords, list):
+                    continue
+                for keyword in keywords:
+                    if not isinstance(keyword, str):
+                        continue
+                    assert keyword.lower() not in country_deny, (
+                        f"{bag_file.relative_to(REPO_ROOT)} ({country}): "
+                        f"`{keyword}` in {dimension}.{polarity} is in this "
+                        f"country's own denylist field. The Skill rejected "
+                        f"this word for this country; the bag must not contain it."
+                    )
+
+    @pytest.mark.parametrize("bag_file", _BAGS)
+    def test_country_denylist_field_present(self, bag_file: Path):
+        """Bag YAML must have a `denylist:` field (empty list acceptable)."""
+        bag = load_bag(bag_file)
+        country = bag.get("country", "unknown")
+        assert "denylist" in bag, (
+            f"{bag_file.relative_to(REPO_ROOT)} ({country}): missing required "
+            f"`denylist:` field. Use `denylist: []` if no country-specific "
+            f"rejections; the field itself is mandatory per the Skill contract."
+        )
 
     @pytest.mark.parametrize("bag_file", _BAGS)
     def test_keywords_properly_formatted(self, bag_file: Path):

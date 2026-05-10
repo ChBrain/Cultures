@@ -22,6 +22,7 @@ import yaml
 REPO_ROOT = Path(__file__).resolve().parent.parent
 REGIONS = REPO_ROOT / "regions"
 LOCKS_FILE = REPO_ROOT / "data" / "hofstede_bag_locks.yaml"
+GLOBAL_DENYLIST_FILE = REPO_ROOT / "data" / "hofstede_denylist.yaml"
 
 
 def find_hofstede_bags() -> list[Path]:
@@ -94,17 +95,46 @@ class TestBagLocks:
             f"Either revert the bag change or update the lock entry deliberately."
         )
 
+    def test_global_denylist_sha_matches_lock(self):
+        """data/hofstede_denylist.yaml is locked the same way as bags.
+
+        Per Strategy v2: the denylist is "another bag-list element" and
+        gets the same SHA-protection treatment. A drift means someone
+        modified the denylist without updating the lock — visible in the
+        diff and required to be intentional.
+        """
+        if not GLOBAL_DENYLIST_FILE.exists():
+            pytest.skip("Global denylist file not present")
+        locks = load_locks()
+        rel = str(GLOBAL_DENYLIST_FILE.relative_to(REPO_ROOT))
+        assert rel in locks, (
+            f"{rel}: no lock entry. Add SHA256 to data/hofstede_bag_locks.yaml "
+            f"to lock the global denylist as part of the bag-system contract."
+        )
+        expected = locks[rel]
+        actual = compute_sha256(GLOBAL_DENYLIST_FILE)
+        assert actual == expected, (
+            f"{rel}: SHA256 mismatch! Expected {expected}, got {actual}. "
+            f"The denylist was modified without updating its lock entry. "
+            f"Either revert the change or update the lock deliberately."
+        )
+
     def test_no_orphan_locks(self):
-        """Every lock entry must correspond to an existing bag file."""
+        """Every lock entry must correspond to an existing tracked file."""
         locks = load_locks()
         if not locks:
             pytest.skip("No locks file or empty locks")
 
-        bag_paths = {str(b.relative_to(REPO_ROOT)) for b in _BAGS}
-        orphans = [p for p in locks if p not in bag_paths]
+        # Tracked = bag YAMLs in regions/ + the global denylist file.
+        # Other infrastructure files lock via CODEOWNERS, not SHA.
+        tracked_paths = {str(b.relative_to(REPO_ROOT)) for b in _BAGS}
+        if GLOBAL_DENYLIST_FILE.exists():
+            tracked_paths.add(str(GLOBAL_DENYLIST_FILE.relative_to(REPO_ROOT)))
+
+        orphans = [p for p in locks if p not in tracked_paths]
         if orphans:
             warnings.warn(
-                f"Orphan lock entries (bag files no longer exist): "
+                f"Orphan lock entries (files no longer exist): "
                 f"{', '.join(orphans)}. Remove from data/hofstede_bag_locks.yaml.",
                 UserWarning,
                 stacklevel=2,
