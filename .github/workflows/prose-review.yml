@@ -1,0 +1,55 @@
+name: prose-review
+
+on:
+  pull_request:
+    branches: [culture/staging]
+
+jobs:
+  prose-review:
+    name: Prose naturalness review
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: pip install pyyaml
+
+      - name: Get changed culture files
+        id: changed
+        run: |
+          FILES=$(git diff --name-only --diff-filter=ACMRT "origin/${{ github.base_ref }}...HEAD" \
+            | grep -E '^regions/.*/culture_.*\.md$' || true)
+          echo "files=$FILES" >> "$GITHUB_OUTPUT"
+          echo "any=$([ -n "$FILES" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+
+      - name: Run prose review
+        if: steps.changed.outputs.any == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 scripts/prose_review.py ${{ steps.changed.outputs.files }} > /tmp/review.md
+          cat /tmp/review.md
+
+      - name: Post PR comment
+        if: steps.changed.outputs.any == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('/tmp/review.md', 'utf8');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });
