@@ -2,9 +2,9 @@
 
 on:
   pull_request:
-    branches: [main, culture]
+    branches: [main, culture/release]
   push:
-    branches: [main, culture]
+    branches: [main, culture/release]
 
 jobs:
   branch-scope-tests:
