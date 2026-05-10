@@ -20,6 +20,7 @@ Uden tvang til at være enig.
 Demokratisk sprog.
 Alle mennesker ligeværdige gennem sproget.
 Ingen der må befale anden gennem ord.
+Sproget bærer fællesskab.
 
 Personlig tanke betyder alt.
 Din egen vurdering betyder.
@@ -37,11 +38,13 @@ Uden at påtvinge.
 Pragmatisk - hvis det ikke virker, sig det straks.
 Fleksibel - høre andre og tilpas hvis der er bedre ide.
 Improvisere sammen hvis situationen kræver det.
+Uformel og direkte.
+Dialog frem for monolog.
 
 ## Loses
 Lydighed.
 Påtvingelse.
-Hierarki i hvem der må tale.
+Hierarki for hvem der må tale.
 Stilhed som lydighed.
 Selvkontrol omkring ikke at høre andre.
 
