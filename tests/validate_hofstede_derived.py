@@ -19,6 +19,7 @@ Usage:
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -97,8 +98,8 @@ def derive_scores(country_dir: Path, language: str = "en") -> dict[str, int]:
         if dim not in keywords:
             continue
         
-        high_count = sum(1 for kw in keywords[dim]["high"] if kw in all_text)
-        low_count = sum(1 for kw in keywords[dim]["low"] if kw in all_text)
+        high_count = sum(1 for kw in keywords[dim]["high"] if re.search(r'\b' + re.escape(kw) + r'\b', all_text))
+        low_count = sum(1 for kw in keywords[dim]["low"] if re.search(r'\b' + re.escape(kw) + r'\b', all_text))
         
         total = high_count + low_count
         if total == 0:
