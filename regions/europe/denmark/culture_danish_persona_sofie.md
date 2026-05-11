@@ -22,6 +22,7 @@ Når hun præsenterer valgmuligheder, vender hun selv papiret mod klienten.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+*Type: Fictional*
 
 *culture_danish_persona_sofie.md - 07.05.2026*
 
