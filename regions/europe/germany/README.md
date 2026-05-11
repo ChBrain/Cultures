@@ -43,13 +43,13 @@ Germany's cultural profile measured against Hofstede's framework:
 | Dimension | Declared | Derived | Gap | Status |
 |-----------|----------|---------|-----|--------|
 | PDI | 35 | 33 | 2 | ✅ EXCELLENT |
-| IDV | 67 | 66 | 1 | ✅ EXCELLENT |
-| UAI | 65 | 72 | 7 | ✅ PASS |
-| MAS | 66 | 71 | 5 | ✅ EXCELLENT |
-| LTO | 83 | 85 | 2 | ✅ EXCELLENT |
-| IND | 40 | 37 | 3 | ✅ EXCELLENT |
+| IDV | 67 | 75 | 8 | ✅ PASS |
+| UAI | 65 | 66 | 1 | ✅ EXCELLENT |
+| MAS | 66 | 60 | 6 | ✅ PASS |
+| LTO | 83 | 87 | 4 | ✅ EXCELLENT |
+| IND | 40 | 33 | 7 | ✅ PASS |
 
-Keyword density analysis validates that content keywords across all files (position, pieces, places, processes, personas) align with declared Hofstede scores. Gap tolerance: ±10 PASS, ±5 EXCELLENT. Audited May 8, 2026.
+Keyword density analysis validates that content keywords across all files (position, pieces, places, processes, personas) align with declared Hofstede scores. Gap tolerance: ±10 PASS, ±5 EXCELLENT. Audited May 11, 2026.
 
 ### How Dimensions Shape German Culture
 
