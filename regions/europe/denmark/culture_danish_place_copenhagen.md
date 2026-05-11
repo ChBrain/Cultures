@@ -14,6 +14,7 @@ Ingen overhus.
 Vesterbro og Nørrebro tæt på centrum.
 Christiania: egen vej, egen frihed - og accepteret.
 Cykelsti som transport, ikke som fornøjelse.
+Cyklen er sædvane - ikke valg.
 ## Holds
 Den danske position - [Dansk](culture_danish_position.md).
 [Janteloven](culture_danish_piece_janteloven.md).
