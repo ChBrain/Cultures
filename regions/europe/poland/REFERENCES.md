@@ -1,8 +1,8 @@
-# Poland - References & Source Attribution
+# Poland Culture - References & Source Attribution
 
-**Authorship:** Kai Schlueter with AI-assisted drafting
-**Content Model:** Facts (verified via sources) + Original expression
-**Last Updated:** May 9, 2026
+**Authorship:** Kai Schlueter
+**Content Model:** Hofstede dimensions (empirical) + Culture writing (original expression)
+**Last Updated:** May 11, 2026
 
 ---
 
@@ -11,13 +11,13 @@
 ### Official & Institutional Sources
 
 | Source | URL | Scope | Trust Level |
-|--------|-----|-------|------------|
-| Instytut Pamięci Narodowej (IPN) | https://ipn.gov.pl/ | Polish history, WWII, communism | ⭐⭐⭐⭐⭐ |
+|--------|-----|-------|-------------|
+| Instytut Pamięci Narodowej (IPN) | https://ipn.gov.pl/ | Polish history, WWII, Cold War | ⭐⭐⭐⭐⭐ |
 | Europejskie Centrum Solidarności | https://ecs.gda.pl/ | Solidarność history and archive | ⭐⭐⭐⭐⭐ |
-| Muzeum Powstania Warszawskiego | https://www.1944.pl/ | Warsaw Uprising | ⭐⭐⭐⭐⭐ |
+| Muzeum Powstania Warszawskiego | https://www.1944.pl/ | Warsaw Uprising, WWII | ⭐⭐⭐⭐⭐ |
 | Główny Urząd Statystyczny (GUS) | https://stat.gov.pl/ | Official statistics | ⭐⭐⭐⭐⭐ |
-| Sejm RP | https://www.sejm.gov.pl/ | Legislative information | ⭐⭐⭐⭐⭐ |
-| Miasto Warszawa | https://www.warszawa.pl/ | Warsaw-specific facts | ⭐⭐⭐⭐⭐ |
+| Sejm RP | https://www.sejm.gov.pl/ | 1997 Constitution, legislation | ⭐⭐⭐⭐⭐ |
+| Cidade Warszawa | https://www.warszawa.pl/ | Warsaw-specific facts, administration | ⭐⭐⭐⭐⭐ |
 
 ### Academic & Historical References
 

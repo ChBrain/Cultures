@@ -1,0 +1,177 @@
+# Hofstede Bag: Poland
+#
+# This file is the scoring contract for the country's Hofstede dimensions.
+# Culture files (regions/europe/poland/culture_*.md) are written to
+# carry these words organically. Each appearance of a bag word adds to the
+# dimension's score; binary scoring (each word counts once).
+#
+# Schema (Strategy v2): country / language / parent / hofstede_scores / bags.
+# Tests: tests/test_hofstede_bag_shape.py asserts all of these are present.
+
+country: poland
+language: pl
+parent: null
+status: draft
+generated: 2026-05-11
+
+hofstede_scores:
+  PDI: 68
+  IDV: 60
+  UAI: 93
+  MAS: 64
+  LTO: 38
+  IND: 27
+
+# Country-specific denylist: words considered for this country's bags but
+# rejected. Each entry's reason is documented in hofstede_decisions.md.
+denylist:
+  - swoboda
+  - cel
+  - prestiż
+  - tożsamość-zbiorowa
+  - skromność
+
+bags:
+  PDI:
+    high:
+      - hierarchia
+      - posłuszeństwo
+      - tytuł
+      - zwierzchnik
+      - podległość
+      - protokół
+      - starszeństwo
+      - formalność
+      - autorytet
+      - przełożony
+    low:
+      - równość
+      - koleżeństwo
+      - poziomy
+      - zasługa
+      - partnerstwo
+      - wzajemność
+      - bezpośredniość
+      - meritokracja
+      - dialog
+      - dostępność
+
+  IDV:
+    high:
+      - indywidualność
+      - inicjatywa
+      - samorealizacja
+      - prywatność
+      - niezależność
+      - własna-droga
+      - przedsiębiorczość
+      - determinacja
+      - tożsamość
+      - wolność
+    low:
+      - rodzina
+      - solidarność
+      - wspólnota
+      - lojalność
+      - zbiorowość
+      - więź
+      - przynależność
+      - naród
+      - wzajemna-pomoc
+      - zakorzenienie
+
+  UAI:
+    high:
+      - zasada
+      - procedura
+      - porządek
+      - przepis
+      - prawo
+      - regulacja
+      - planowanie
+      - norma
+      - ścisłość
+      - dyscyplina
+    low:
+      - elastyczność
+      - improwizacja
+      - spontaniczność
+      - ryzyko
+      - adaptacja
+      - eksperyment
+      - innowacja
+      - intuicja
+      - zmienność
+      - tolerancja
+
+  MAS:
+    high:
+      - ambicja
+      - osiągnięcie
+      - konkurencja
+      - sukces
+      - wynik
+      - kariera
+      - rywalizacja
+      - asertywność
+      - twardość
+      - honor
+    low:
+      - troska
+      - współpraca
+      - empatia
+      - kompromis
+      - opiekuńczość
+      - dobrostan
+      - delikatność
+      - serdeczność
+      - życzliwość
+      - łagodność
+
+  LTO:
+    high:
+      - wytrwałość
+      - inwestycja
+      - cierpliwość
+      - dalekowzroczność
+      - pragmatyzm
+      - ciągłość
+      - strategia
+      - systematyczność
+      - zasoby
+      - postęp
+    low:
+      - tradycja
+      - obyczaj
+      - wiara
+      - teraźniejszość
+      - zwyczaj
+      - dziedzictwo
+      - korzenie
+      - przodkowie
+      - ceremonia
+      - pamięć
+
+  IND:
+    high:
+      - rozrywka
+      - przyjemność
+      - zabawa
+      - satysfakcja
+      - radość
+      - relaks
+      - hedonizm
+      - ekspresja
+      - celebracja
+      - impuls
+    low:
+      - powściągliwość
+      - wyrzeczenie
+      - poświęcenie
+      - wstrzemięźliwość
+      - samokontrola
+      - umiarkowanie
+      - odpowiedzialność
+      - asceza
+      - sumienność
+      - obowiązek
