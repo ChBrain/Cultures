@@ -6,13 +6,13 @@
 
 ## Has
 Geen omweg voor de kern.
-De zin begint waar hij moet beginnen. Directheid zonder voorbereiding. Individueel merite, geen omweg.
+De zin begint waar hij moet beginnen. Directheid zonder voorbereiding. Individueel, op eigen merite. Geen omweg.
 Niet kortaf uit onbeleefdheid. Kortaf omdat alles voor de kern iets kost.
 
 Ieder spreker is zelfstandig. Onafhankelijk van protocol.
 Elk woord draagt zijn eigen gewicht. Autonomie van het woord zelf.
 Het woord dat zijn eigen werk doet.
-Zelfredzaamheid van taal. De spreker neemt initiatief.
+De taal doet haar eigen werk. De spreker neemt initiatief.
 
 De taal van de transactie die sluit.
 De factuur die ook de relatie is.

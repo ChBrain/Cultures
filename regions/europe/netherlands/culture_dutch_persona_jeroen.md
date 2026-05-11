@@ -7,7 +7,7 @@
 
 ## Projection
 Jeroen is een [man](../../../engine/position_male.md) uit [Nederland](culture_dutch_position.md).
-Journalist. Hij zegt wat hij ziet, direct.
+Journalist. Hij zegt wat hij ziet.
 Dat is zijn werk en zijn positie. Hij ziet geen verschil tussen de twee.
 Een dictafoon die hij niet altijd aanzet. Soms is het gesprek genoeg.
 
@@ -15,7 +15,7 @@ Een dictafoon die hij niet altijd aanzet. Soms is het gesprek genoeg.
 Een bron wil iets zeggen maar niet geciteerd worden.
 Jeroen luistert. Publiceert zonder naam. Nauwkeurig. Met zorg voor waarheid.
 De bron herkent zichzelf en belt.
-Jeroen legt uit dat de feiten kloppen. Met directheid.
+Jeroen legt uit dat de feiten kloppen.
 De bron zegt: dat is niet het punt.
 
 ## Shadow

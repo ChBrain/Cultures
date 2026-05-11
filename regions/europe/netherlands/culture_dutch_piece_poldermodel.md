@@ -12,19 +12,19 @@ De Lage Landen.
 Zonder het verliest de [Nederlandse](culture_dutch_position.md) positie haar grond.
 De tolerantie was geen ideaal. Het was de ontdekking dat uitsluiting de dijk kost.
 Iedereen heeft de dijk nodig. Dus iedereen zit aan tafel.
-Gelijkwaardig zeggenschap. Consensus waar het water geen keuze laat.
+Gelijkwaardige zeggenschap. Consensus waar het water geen keuze laat.
 Collegiale samenwerking is de prijs van het water.
 Inspraak van elke belanghebbende. Overleg tot het houdt.
-De dijk is een noodzaak van nu. Niet van morgen. Geen uitstel van gewoonten.
+De dijk is een noodzaak van nu. Niet van morgen. Niet van gewoonten.
 De kracht ervan: het houdt ook als niemand het wil.
-Zorg voor elkaar. Familie zonder bloed. Gemeenschap die handelt, vandaag.
-Leren van water. Elke overstroming een les. Pragmatisch. Voortdurend vernieuwd.
+Zorg voor elkaar. Gemeenschap die handelt. De dijk bindt wie hij scheidt.
+Leren van water. Elke overstroming een les. Pragmatisch.
 
 ## Apparent
 Het Sociaal-Economische Raad. 1950. Consensus-orgaan.
 Werkgevers, vakbonden, overheid. Gelijkwaardig aan tafel.
 Het woord polderen staat in het woordenboek als werkwoord.
-De Deltawerken besloten. Participatie van alle stakeholders.
+De Deltawerken besloten. Participatie van alle belanghebbenden.
 Gedoogkoffieshops. Open. Legaal illegaal.
 
 ## Yearbook

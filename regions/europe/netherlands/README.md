@@ -54,7 +54,7 @@ Netherlands's cultural profile measured against Hofstede's framework:
 - **High IDV (target 80):** "individueel", "autonomie", "zelfredzaamheid", "zelfstandigheid", "onafhankelijkheid", "contract" - individual autonomy and self-direction
 - **Low MAS (target 14):** "zorg", "bescheidenheid", "samenwerking", "empathie", "mededogen", "inclusief" - cooperation and care over competition
 - **Medium UAI (target 53):** "structuur", "regels", "procedure", "flexibel", "experiment", "tolerantie" - balanced between order and adaptability
-- **Medium-High LTO (target 67):** "toekomst", "pragmatisch", "duurzaam", "investering", "voortbestaan", "continuïteit" - future and long-term planning
+- **High LTO (target 67):**** "toekomst", "pragmatisch", "duurzaam", "investering", "voortbestaan", "continuïteit" - future and long-term planning
 - **High IND (target 68):** "genieten", "plezier", "levensvreugde", "vriendschap", "gezelligheid", "optimisme" - enjoyment and leisure as legitimate
 
 **Note:** Hofstede keyword mapping is semantic - keywords express cultural concept meaning, not literal text extraction. Scores derived from aggregate keyword presence across all 7 culture files. Audit run May 11, 2026.

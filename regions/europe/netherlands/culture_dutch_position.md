@@ -8,7 +8,7 @@
 
 De korte lijn.
 Het gewone woord. Geen inleiding. Directheid zonder voorbereiding.
-Omwegen kosten meer dan de zaak waard is. Autonomie van ieder spreker is aangenomen.
+Omwegen kosten meer dan de zaak waard is. Iedere spreker werkt vanuit autonomie.
 
 De platte kamer.
 Gezag bestaat, maar het is onderhandelbaar.
@@ -21,12 +21,12 @@ Voorzichtigheid en zorg zijn ook gezag, niet overhead.
 [Het Poldermodel](culture_dutch_piece_poldermodel.md).
 Niet als methode. Als conditie van bestaan.
 Het water onderhandelt niet. De dijk vraagt iedereen.
-Consensus hier werkt omdat watersterfing voor allen hetzelfde is.
+Consensus hier werkt want het water treft iedereen gelijk.
 
 De tolerantie.
 Niet als moraal. Als economie: uitsluiting kost meer dan insluiting.
 Vastgesteld in 1579. Vastgesteld nog steeds.
-Pragmatisch, niet principieel. Zelfredzaamheid van elke groep is aangenomen.
+Pragmatisch, niet principieel. Zelfredzaamheid: de onuitgesproken verwachting van elke groep.
 Individuen kunnen leven naar eigen voorkeur zolang de dijk blijft staan.
 
 ## Orders
