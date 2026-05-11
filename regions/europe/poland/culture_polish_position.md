@@ -8,7 +8,7 @@
 [Konstytucja](culture_polish_piece_konstytucja.md).
 Krąg.
 Status w kręgu się natychmiastowo wyjaśnia poprzez zobowiązanie.
-Kompetencja i doświadczenie w kręgu tworzą uznany autorytet. Nie urzędową pozycję - uznaną przewagę.
+Kompetencja i doświadczenie w kręgu tworzą uznany autorytet: uznana przewaga, nie urzędowa pozycja.
 W kręgu jest siła.
 System zawiedzie zawsze. To historia, nie pesymizm.
 Kiedy system zawali, krąg musi działać.

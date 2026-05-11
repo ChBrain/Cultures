@@ -6,12 +6,12 @@
 
 ## Has
 Język słowiański.
-System przypadków - siedem. Rzeczownik zmienia się. Nie słowo zostaje stałe.
+System przypadków: siedem. Rzeczownik zmienia się. Nie słowo zostaje stałe.
 Rodzaj gramatyczny: każda rzecz ma płeć.
 Rozróżnienie ty/pan-pani. To rozróżnienie jest przymusowe.
 Nie można mówić bez wyboru dystansu.
 Nie można dokonać wyboru bez rozumienia, kto siedzi naprzeciw.
-Czasami relaks w języku wśród swoich - wtedy zmienia się zwrot.
+Czasami relaks w języku wśród swoich; wtedy zmienia się zwrot.
 Ale wybór zawsze pozostaje widoczny.
 Kto mówi my (jako grupa) musi o tym wiedzieć. Język to każe.
 Polska gramatyka wymaga aktywnego myślenia przed każdym słowem.
@@ -21,7 +21,7 @@ To jest struktura. Bez wyjątków.
 Protokół jest wymagany. Przełożony i podwładny wiedzą o tym bez tłumaczenia.
 Norma obowiązuje zanim relacja się zmieni.
 Ścisłość w tytułach to szacunek, nie kurtuazja.
-Prywatność chroniona przez formę: co nie musi być powiedziane - nie jest mówione.
+Prywatność chroniona przez formę: co nie musi być powiedziane, nie jest mówione.
 Bezpośredniość to przywilej zaufania, nie prawa.
 Elastyczność pojawia się wśród bliskich. Tylko tam.
 

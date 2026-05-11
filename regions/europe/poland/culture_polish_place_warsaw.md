@@ -7,7 +7,7 @@
 ## Shown
 Centrum odbudowane z ruin, kamienica przy kamienicy, według przedwojennych zdjęć i akwarel.
 Pałac Kultury i Nauki: czterdzieści dwa piętra, widoczny z każdej dzielnicy.
-Nowe wieżowce szkło i stal, bezpośrednio obok barokowych kościołów.
+Nowe wieżowce ze szkła i stali, bezpośrednio obok barokowych kościółów.
 Krzyże na fasadach kamienic w centrum.
 Stare Miasto: bruk, wąskie uliczki, rekonstrukcja z lat pięćdziesiątych, UNESCO.
 Pomnik Powstania Warszawskiego: żołnierze schodzący do kanałów.

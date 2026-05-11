@@ -26,10 +26,11 @@ Projekt, który przeszedł przez wszystkich i wszystko, wychodzi inny niż ten, 
 Tomasz mówi: to efekt współpracy.
 Każda zmiana, którą przyjął, była kompromisem między jego wizją a tym, czego wymagała procedura, inwestor, urząd.
 Wierzy, że wynik jest lepszy za każdym razem.
-Nie widzi, ile własnej inicjatywy i determinacji zamienił na zgodność z oczekiwaniami, jedno ustępstwo na raz.
+Nie widzi, że inicjatywa i determinacja, które go tu przyprowaędziły, zamieniają się w zgodność z oczekiwaniami, jedno ustępstwo na raz.
+Przedsiębiorczość, z którą zaczął, nie jest już tym, co prowadzi.
 
 ## Tell
-Gdy pokazuje ukończony budynek, zaczyna od listy instytucji, które projekt zatwierdziły. Przedsiębiorczość, która go tu przyprowadziła, nie jest częścią tego opowiadania.
+Gdy pokazuje ukończony budynek, zaczyna od listy instytucji, które projekt zatwierdziły.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*

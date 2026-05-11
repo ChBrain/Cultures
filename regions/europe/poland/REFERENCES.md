@@ -80,7 +80,7 @@
 |-------|--------|------|
 | Type | Composite fictional | Illustrative persona, not biographical |
 | Role | Internist (specialist physician) | Plausible for Polish medical system |
-| Birth year | 1988 | Consistent with career stage described |
+| Birth year | 1958 | Consistent with career stage described |
 | Workplace | Warsaw hospital, outpatient clinic | Consistent with Polish healthcare structure |
 | All biographical details | Invented | No real person intended or represented |
 

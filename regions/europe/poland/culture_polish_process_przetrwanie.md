@@ -34,6 +34,7 @@ Troska o ciągłość jest cichsza niż troska o zwycięstwo.
 Następny proces dziedziczy to, co zostało utrzymane.
 Nie osiągnięcie. Zakorzenienie.
 Przodkowie byli tu przed nami. Zwyczaj przeżywa tych, którzy go ustanowili.
+Następne pokolenie przejmuje napięcie, nie rozstrzygnięcie.
 Wiara w sens ciągłości jest warunkiem przekazania dalej.
 Ceremonia jest zobowiązaniem wobec tych, którzy przyjdą.
 Pamięć o tym, co kosztowało, zmienia sposób trzymania.
