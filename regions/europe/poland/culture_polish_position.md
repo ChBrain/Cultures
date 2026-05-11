@@ -5,7 +5,7 @@
 - Culture: Poland
 
 ## Has
-[Solidarność](culture_polish_piece_solidarnosc.md).
+[Konstytucja](culture_polish_piece_konstytucja.md).
 Krąg.
 Status w kręgu się natychmiastowo wyjaśnia poprzez zobowiązanie.
 Kompetencja i doświadczenie w kręgu tworzą uznany autorytet. Nie urzędową pozycję - uznaną przewagę.

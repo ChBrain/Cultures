@@ -17,11 +17,11 @@ The zip contains all culture files flattened at root level with links rewritten 
 |------|------|---------|
 | `culture_polish_position.md` | Culture | Polish culture (circle and state) - narrative anchor |
 | `culture_polish_language_polski.md` | Language | Polish (Polski) - linguistic anchor |
-| `culture_polish_process_zalatwienie.md` | Process | Załatwianie - getting things done through the circle |
-| `culture_polish_piece_solidarnosc.md` | Piece | Solidarność - the trade union that became a nation |
-| `culture_polish_place_warszawa.md` | Place | Warsaw - capital city as geographical anchor |
-| `culture_polish_persona_zbigniew.md` | Persona | Zbigniew - construction entrepreneur, b. 1958 |
-| `culture_polish_persona_zofia.md` | Persona | Zofia - international lawyer, b. 1991 |
+| `culture_polish_process_przetrwanie.md` | Process | Przetrwanie - survival through continuity |
+| `culture_polish_piece_konstytucja.md` | Piece | Konstytucja - constitutional rule as cultural anchor |
+| `culture_polish_place_warsaw.md` | Place | Warsaw - capital city as geographical anchor |
+| `culture_polish_persona_malgorzata.md` | Persona | Małgorzata - doctor, b. 1958 |
+| `culture_polish_persona_tomasz.md` | Persona | Tomasz - architect, b. 1990 |
 
 ## Hofstede Cultural Dimensions
 
