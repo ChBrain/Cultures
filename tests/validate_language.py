@@ -50,6 +50,7 @@ LINGUA_LANGUAGES = {
     "italian": Language.ITALIAN,
     "dutch": Language.DUTCH,
     "danish": Language.DANISH,
+    "polish": Language.POLISH,
 }
 
 _detector = LanguageDetectorBuilder.from_languages(
