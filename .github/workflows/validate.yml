@@ -365,7 +365,7 @@ jobs:
             "$ASSET_URL" -o "/tmp/$ASSET_NAME"
           pip install "/tmp/$ASSET_NAME"
       - name: Run link tests
-        run: python -m pytest tests/test_links.py --khai-roots=engine -v
+        run: python -m pytest tests/test_links.py --khai-roots=engine --khai-files="${{ needs.setup.outputs.files }}" -v
 
   L4a-completeness:
     name: L4a - Culture completeness
