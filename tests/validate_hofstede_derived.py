@@ -92,14 +92,24 @@ def derive_scores(country_dir: Path, language: str = "en") -> dict[str, int]:
     for f in country_dir.glob("culture_*.md"):
         all_text += f.read_text(encoding="utf-8").lower()
     
+    # For inflecting languages (da, de, nl) the bag stores base forms but prose
+    # uses suffixed forms (e.g. "regler" → "reglerne"). Allow optional trailing
+    # lowercase letters after the keyword before the right word boundary.
+    if language == "en":
+        def _match(kw: str) -> bool:
+            return bool(re.search(r'\b' + re.escape(kw) + r'\b', all_text))
+    else:
+        def _match(kw: str) -> bool:
+            return bool(re.search(r'\b' + re.escape(kw) + r'[a-zæøåüäö]*\b', all_text))
+
     # Calculate scores
     scores: dict[str, int] = {}
     for dim in HOFSTEDE_DIMENSIONS:
         if dim not in keywords:
             continue
-        
-        high_count = sum(1 for kw in keywords[dim]["high"] if re.search(r'\b' + re.escape(kw) + r'\b', all_text))
-        low_count = sum(1 for kw in keywords[dim]["low"] if re.search(r'\b' + re.escape(kw) + r'\b', all_text))
+
+        high_count = sum(1 for kw in keywords[dim]["high"] if _match(kw))
+        low_count = sum(1 for kw in keywords[dim]["low"] if _match(kw))
         
         total = high_count + low_count
         if total == 0:
