@@ -18,7 +18,7 @@ Netherlands's cultural profile measured against Hofstede's framework:
 | PDI | 38 | **Low** |
 | IDV | 80 | **High** |
 | MAS | 14 | **Low** |
-| UAI | 53 | **High** |
+| UAI | 53 | **Moderate** |
 | LTO | 67 | **High** |
 | IND | 68 | **High** |
 
@@ -53,7 +53,7 @@ Netherlands's cultural profile measured against Hofstede's framework:
 - **Low PDI (target 38):** "gelijkwaardig", "informeel", "directheid", "collegialiteit", "overleg", "medezeggenschap" - flat, consultative structures
 - **High IDV (target 80):** "individueel", "autonomie", "zelfredzaamheid", "zelfstandigheid", "onafhankelijkheid", "contract" - individual autonomy and self-direction
 - **Low MAS (target 14):** "zorg", "bescheidenheid", "samenwerking", "empathie", "mededogen", "inclusief" - cooperation and care over competition
-- **Medium UAI (target 53):** "structuur", "regels", "procedure", "flexibel", "experiment", "tolerantie" - balanced between order and adaptability
+- **Moderate UAI (target 53):** "structuur", "regels", "procedure", "flexibel", "experiment", "tolerantie" - balanced between order and adaptability
 - **High LTO (target 67):** "toekomst", "pragmatisch", "duurzaam", "investering", "voortbestaan", "continuïteit" - future and long-term planning
 - **High IND (target 68):** "genieten", "plezier", "levensvreugde", "vriendschap", "gezelligheid", "optimisme" - enjoyment and leisure as legitimate
 
