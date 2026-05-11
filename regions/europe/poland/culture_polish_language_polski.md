@@ -18,6 +18,12 @@ Polska gramatyka wymaga aktywnego myślenia przed każdym słowem.
 Dyscyplina w wyborze słów. Precyzja jako powinność.
 Porządek który zmienia się, ale tylko wedle reguł.
 To jest struktura. Bez wyjątków.
+Protokół jest wymagany. Przełożony i podwładny wiedzą o tym bez tłumaczenia.
+Norma obowiązuje zanim relacja się zmieni.
+Ścisłość w tytułach to szacunek, nie kurtuazja.
+Prywatność chroniona przez formę: co nie musi być powiedziane - nie jest mówione.
+Bezpośredniość to przywilej zaufania, nie prawa.
+Elastyczność pojawia się wśród bliskich. Tylko tam.
 
 ## Orders
 Przed słowami - zawsze pytanie jak ma się druga osoba. To opieka przed precyzją.
