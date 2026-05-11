@@ -348,7 +348,14 @@ Structure-only. Per-file dimension scoring lives in **L4f**, which scores aggreg
 
 **Structure pass (FAIL, hard-block):** the country must declare a Hofstede mapping.
 - README has a `## Hofstede` section.
-- README contains a score table with all six dimensions filled in. Rows match `| DIM | NN | **Low/High/Very High** ... |`. Header rows alone or prose mentions of dimension codes do not count.
+- README contains a score table with all six dimensions filled in. Rows match `| DIM | NN | **Low/Moderate/High** ... |`. Header rows alone or prose mentions of dimension codes do not count.
+- **Band + mismatch check.** The Level column is a closed enum: `Low`, `Moderate`, `High`. `Medium`, `Very High`, `Very Low`, `Medium-High` and other variants are intentionally not matched and surface as "scores incomplete" failures. On top of that, the Level cell must equal `score_to_band(score)`:
+  - 0-39 → Low
+  - 40-59 → Moderate
+  - 60-100 → High
+
+  A Level cell that disagrees with its score is a hard FAIL with the verdict `set Level to {band} (score {score} sits in the {band} band, 0-39 Low / 40-59 Moderate / 60-100 High)`. The canonical case: NL UAI 53 with Level `High` is rejected because 53 sits in the Moderate band.
+- **Classifier prose** like `Very Low` / `Very High` is not a band -- it belongs in the Description column of the Detailed Profile table and is not parsed by L4e. The audit-fix script `scripts/audit_readme_bands.py` reports every Level/score mismatch across all country READMEs and the repo holds it at zero.
 - README has source attribution (mentions Hofstede, empirical, or research).
 - `REFERENCES.md`, if present, cites Hofstede.
 
