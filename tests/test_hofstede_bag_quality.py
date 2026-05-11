@@ -16,6 +16,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import re
+
 import pytest
 import yaml
 
@@ -297,12 +299,15 @@ class TestCrossCountryQuality:
                     # Check that BOTH countries' decision logs reference the keyword.
                     log1 = country_decisions_text(bf1)
                     log2 = country_decisions_text(bf2)
-                    documented = keyword in log1 and keyword in log2
+                    kw_pat = re.compile(r'\b' + re.escape(keyword) + r'\b')
+                    in_log1 = bool(kw_pat.search(log1))
+                    in_log2 = bool(kw_pat.search(log2))
+                    documented = in_log1 and in_log2
                     if not documented:
                         violations.append(
                             f"`{keyword}`: {c1}.{d1}.{p1} vs {c2}.{d2}.{p2} — "
                             f"undocumented divergence (decisions logs missing entry "
-                            f"in {c1 if keyword not in log1 else c2})"
+                            f"in {c1 if not in_log1 else c2})"
                         )
 
         assert not violations, (

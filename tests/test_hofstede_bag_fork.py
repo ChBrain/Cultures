@@ -21,8 +21,8 @@ REGIONS = REPO_ROOT / "regions"
 # Words that, when present in a decisions file, indicate the file
 # actually documents divergences (not just a stub).
 DIVERGENCE_MARKERS = (
-    "drop", "replace", "add", "keep", "divergence", "diverge",
-    "swap", "moved", "rationale", "reason",
+    "drop", "replace", "divergence", "diverge",
+    "swap", "moved", "rationale",
 )
 
 
