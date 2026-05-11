@@ -4,6 +4,14 @@
 Per-country structure check (FAIL, hard-block):
   - README has a `## Hofstede` section.
   - README score table contains all six dimensions (PDI, IDV, UAI, MAS, LTO, IND).
+  - Each dimension's Level cell is one of `Low`, `Moderate`, `High` (closed
+    enum) AND equals `score_to_band(score)`:
+        0-39   -> Low
+        40-59  -> Moderate
+        60-100 -> High
+    A Level cell that disagrees with its score is a hard FAIL. Classifier
+    prose like "Very Low" / "Very High" is not a band -- it belongs in the
+    Description column and is not parsed here.
   - README has source attribution.
   - REFERENCES.md, if present, cites Hofstede.
 
@@ -76,6 +84,25 @@ def find_country_folders() -> list[Path]:
     return countries
 
 
+def score_to_band(score: int) -> str:
+    """Map a Hofstede score (0-100) to its band label.
+
+    The band lives in the Level column of the README scores table and is the
+    only thing L4e validates. Classifier prose (Very Low / Very High) belongs
+    in the Description column and is not parsed here.
+
+    Bands:
+      0-39   -> Low
+      40-59  -> Moderate
+      60-100 -> High
+    """
+    if score <= 39:
+        return "Low"
+    if score <= 59:
+        return "Moderate"
+    return "High"
+
+
 def extract_hofstede_scores(readme_text: str) -> dict[str, tuple[int, str]]:
     """Extract Hofstede scores from README.
 
@@ -85,10 +112,14 @@ def extract_hofstede_scores(readme_text: str) -> dict[str, tuple[int, str]]:
 
     The first cell must contain the dimension code as a whole word; the
     second must be a bare integer; the third must open with `**Low`,
-    `**High`, or `**Very High` (further qualifiers like `**Low-Moderate**`
-    are accepted and read as the leading level). Header rows, prose
-    mentions, score ranges, and missing bold markers are intentionally not
-    counted.
+    `**Moderate`, or `**High`. Any other band token (e.g. `**Very High`,
+    `**Medium`, `**Extreme`) is intentionally not matched and surfaces as a
+    "scores incomplete" failure -- the Level column is a closed enum.
+
+    The captured level is just the band token; trailing prose inside the
+    same cell (e.g. `**Low** - Equality valued`) is dropped. The band is
+    then cross-checked against `score_to_band(score)` by the structure pass
+    and any mismatch is reported with a verdict.
 
     Returns: {dimension: (score, level)}
     """
@@ -96,12 +127,12 @@ def extract_hofstede_scores(readme_text: str) -> dict[str, tuple[int, str]]:
     pattern = (
         r"\|[^|\n]*\b(PDI|IDV|UAI|MAS|LTO|IND)\b[^|\n]*\|"
         r"\s*(\d+)\s*\|"
-        r"\s*\*\*(Low|High|Very High)[^\|\n]*\|"
+        r"\s*\*\*(Low|Moderate|High)\*\*[^\|\n]*\|"
     )
     for match in re.finditer(pattern, readme_text, re.IGNORECASE):
         dim = match.group(1).upper()
         score = int(match.group(2))
-        level = match.group(3).upper()
+        level = match.group(3).title()
         scores[dim] = (score, level)
     return scores
 
@@ -127,10 +158,30 @@ def check_structure(
         issues.append(Issue(
             error=f"{country_name}: Hofstede scores incomplete",
             verdict=(
-                f"add table rows `| DIM | NN | **Low/High/Very High** ... |` "
-                f"for: {', '.join(missing)}"
+                f"add table rows `| DIM | NN | **Low/Moderate/High** ... |` "
+                f"for: {', '.join(missing)} (Level column accepts only "
+                f"`Low`, `Moderate`, `High`; classifier prose like 'Very High' "
+                f"belongs in the Description column)"
             ),
         ))
+
+    for dim in HOFSTEDE_DIMENSIONS:
+        if dim not in scores:
+            continue
+        score, level = scores[dim]
+        band = score_to_band(score)
+        if level != band:
+            issues.append(Issue(
+                error=(
+                    f"{country_name}: {dim} Level `{level}` disagrees with "
+                    f"score {score} (band is `{band}`)"
+                ),
+                verdict=(
+                    f"set Level to {band} (score {score} sits in the {band} "
+                    f"band, 0-39 Low / 40-59 Moderate / 60-100 High); move "
+                    f"any classifier prose to the Description column"
+                ),
+            ))
 
     if not re.search(r"hofstede|empirical|research", readme_text, re.IGNORECASE):
         issues.append(Issue(
