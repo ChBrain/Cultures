@@ -674,6 +674,14 @@ Stands at the front of the room.
 
 ## Testing locally
 
+**Unit tests (parser/contract pins):**
+```bash
+pip install -r tests/requirements.txt   # one-time: pytest, lingua, PyYAML
+python3 -m pytest tests/                # 136 tests across 9 suites
+```
+
+`pytest` discovers both unittest-style suites (`test_hofstede_alignment.py`, `test_audit_readme_bands.py`, `test_branch_scope.py`, `test_hook_scope_e2e.py`) and pytest-style suites (`test_hofstede_bag_*.py`) in the same run -- no separate harness needed. Run a single suite with `python3 -m pytest tests/test_audit_readme_bands.py`. These pin parser regexes, band/score contracts, branch-scope policy, and the bag-loader behavior; they do not read `regions/` content.
+
 **Full validation on changed files (CI simulation):**
 ```bash
 python3 tests/validate_general.py regions/europe/germany/*.md
