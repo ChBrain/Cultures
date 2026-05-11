@@ -16,7 +16,7 @@ Netherlands's cultural profile measured against Hofstede's framework:
 | Dimension | Score | Level |
 |-----------|-------|-------|
 | PDI | 38 | **Low** |
-| IDV | 80 | **Very High** |
+| IDV | 80 | **High** |
 | MAS | 14 | **Low** |
 | UAI | 53 | **High** |
 | LTO | 67 | **High** |
@@ -27,7 +27,7 @@ Netherlands's cultural profile measured against Hofstede's framework:
 | Dimension | Score | Description |
 |-----------|-------|-------------|
 | Power Distance (PDI) | 38 | Relatively flat; hierarchy exists but is minimized |
-| Individualism (IDV) | 80 | Radical individual autonomy and direct speech |
+| Individualism (IDV) | 80 | Individual autonomy and direct speech |
 | Masculinity (MAS) | 14 | Cooperation and pragmatism over competition (extremely low) |
 | Uncertainty Avoidance (UAI) | 53 | Balanced; comfort with process but prepared for risk (near middle, leaning predictable) |
 | Long-Term Orientation (LTO) | 67 | Pragmatic planning; future-focused but adaptive |
@@ -51,7 +51,7 @@ Netherlands's cultural profile measured against Hofstede's framework:
 **Target Keyword Distribution:** When revision is complete, Dutch-language culture files (position, language, process, piece, place, personas) will express core dimensions through strategic keyword density:
 
 - **Low PDI (target 38):** "gelijkwaardig", "informeel", "directheid", "collegialiteit", "overleg", "medezeggenschap" - flat, consultative structures
-- **Very High IDV (target 80):** "individueel", "autonomie", "zelfredzaamheid", "zelfstandigheid", "onafhankelijkheid", "contract" - individual autonomy and self-direction
+- **High IDV (target 80):** "individueel", "autonomie", "zelfredzaamheid", "zelfstandigheid", "onafhankelijkheid", "contract" - individual autonomy and self-direction
 - **Very Low MAS (target 14):** "zorg", "bescheidenheid", "samenwerking", "empathie", "mededogen", "inclusief" - cooperation and care over competition
 - **Medium UAI (target 53):** "structuur", "regels", "procedure", "flexibel", "experiment", "tolerantie" - balanced between order and adaptability
 - **Medium-High LTO (target 67):** "toekomst", "pragmatisch", "duurzaam", "investering", "voortbestaan", "continuïteit" - future and long-term planning
