@@ -39,35 +39,37 @@ Netherlands's cultural profile measured against Hofstede's framework:
 
 | Dimension | Declared | Derived | Gap | Status |
 |-----------|----------|---------|-----|--------|
-| PDI | 38 | 33 | 5 | ✅ EXCELLENT |
-| IDV | 80 | 75 | 5 | ✅ EXCELLENT |
-| MAS | 14 | 20 | 6 | ✅ PASS |
-| UAI | 53 | 50 | 3 | ✅ EXCELLENT |
-| LTO | 67 | 66 | 1 | ✅ EXCELLENT |
-| IND | 68 | 66 | 2 | ✅ EXCELLENT |
+| PDI | 38 | 100 | 62 | ❌ FAIL |
+| IDV | 80 | 50 | 30 | ❌ FAIL |
+| MAS | 14 | 25 | 11 | ⚠️ WARN |
+| UAI | 53 | 40 | 13 | ⚠️ WARN |
+| LTO | 67 | 100 | 33 | ❌ FAIL |
+| IND | 68 | 50 | 18 | ⚠️ WARN |
 
-**Keyword distribution analysis:** The Dutch-language culture files (position, language, process, piece, place, personas) express core dimensions through strategic keyword density:
+**Current Status:** Content audit reveals significant keyword alignment gaps. Culture files exist with good structure, but prose does not yet carry sufficient keyword density to express the declared dimensions. Content requires revision to organically integrate Hofstede bag keywords across all files.
 
-- **Low PDI (38/35):** "platte kamer" (flat room), "hiërarchie overhead" (hierarchy is waste), "gelijk" (equal) - flat structure reinforced throughout
-- **Very High IDV (80/75):** "individueel", "autonomie", "eigen", "keuze" (choice), "persoonlijk" (personal), "vrijheid" (freedom) - individual autonomy across all files
-- **Very Low MAS (14/14):** "zorg" (care), "tolerantie" (tolerance), "samenwerking" (cooperation) - cooperation over competition
-- **Medium UAI (53/48):** "structuur" (structure), "procedure", "orde" (order), "voorzichtigheid" (caution) - balance of structure and adaptability
-- **Medium-High LTO (67/63):** "lange termijn" (long-term), "duurzaam" (sustainable), "toekomst" (future), "investering" (investment), "voortbestaan" (continuity) - multi-generational planning
-- **High IND (68/63):** "genieten" (enjoy), "plezier" (pleasure), "comfort", "vrijheid" (freedom), "ontspanning" (leisure) - integration of enjoyment with pragmatism
+**Target Keyword Distribution:** When revision is complete, Dutch-language culture files (position, language, process, piece, place, personas) will express core dimensions through strategic keyword density:
 
-**Note:** Hofstede keyword mapping is semantic - keywords express cultural concept meaning, not literal text extraction. Scores derived from aggregate keyword presence across all 7 culture files. Audited May 8, 2026.
+- **Low PDI (target 38):** "gelijkwaardig", "informeel", "directheid", "collegialiteit", "overleg", "medezeggenschap" - flat, consultative structures
+- **Very High IDV (target 80):** "individueel", "autonomie", "zelfredzaamheid", "zelfstandigheid", "onafhankelijkheid", "contract" - individual autonomy and self-direction
+- **Very Low MAS (target 14):** "zorg", "bescheidenheid", "samenwerking", "empathie", "mededogen", "inclusief" - cooperation and care over competition
+- **Medium UAI (target 53):** "structuur", "regels", "procedure", "flexibel", "experiment", "tolerantie" - balanced between order and adaptability
+- **Medium-High LTO (target 67):** "toekomst", "pragmatisch", "duurzaam", "investering", "voortbestaan", "continuïteit" - future and long-term planning
+- **High IND (target 68):** "genieten", "plezier", "levensvreugde", "vriendschap", "gezelligheid", "optimisme" - enjoyment and leisure as legitimate
+
+**Note:** Hofstede keyword mapping is semantic - keywords express cultural concept meaning, not literal text extraction. Scores derived from aggregate keyword presence across all 7 culture files. Audit run May 11, 2026.
 
 ## Content Audit Status
 
 | File | Type | Status | Notes |
 |------|------|--------|-------|
-| culture_dutch_position.md | Position | ✅ Complete | Hofstede dimensions: PDI 38, IDV 80, MAS 14, UAI 53, LTO 67, IND 68 |
-| culture_dutch_language_nederlands.md | Language | ✅ Complete | Direct speech, no wrapper, efficiency over politeness |
-| culture_dutch_process_polderen.md | Process | ✅ Complete | Consensus-building when stakes are shared |
-| culture_dutch_piece_poldermodel.md | Piece | ✅ Complete | Historical framework (1421-2024) |
-| culture_dutch_place_amsterdam.md | Place | ✅ Complete | Canal belt infrastructure, equality through geography |
-| culture_dutch_persona_anneke.md | Persona | ✅ Complete | Female mediator - shortest line, notitieblok |
-| culture_dutch_persona_jeroen.md | Persona | ✅ Complete | Male journalist - says what he sees |
+| culture_dutch_position.md | Position | 🔄 Revision | Needs keyword density enhancement for target Hofstede scores |
+| culture_dutch_language_nederlands.md | Language | 🔄 Revision | Needs keyword density enhancement for target Hofstede scores |
+| culture_dutch_process_polderen.md | Process | 🔄 Revision | Needs keyword density enhancement for target Hofstede scores |
+| culture_dutch_piece_poldermodel.md | Piece | 🔄 Revision | Needs keyword density enhancement for target Hofstede scores |
+| culture_dutch_place_amsterdam.md | Place | 🔄 Revision | Needs keyword density enhancement for target Hofstede scores |
+| culture_dutch_persona_anneke.md | Persona | 🔄 Revision | Needs keyword density enhancement for target Hofstede scores |
+| culture_dutch_persona_jeroen.md | Persona | 🔄 Revision | Needs keyword density enhancement for target Hofstede scores |
 
 ## Content
 
