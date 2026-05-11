@@ -23,9 +23,9 @@ Leren van water. Elke overstroming een les. Pragmatisch. Voortdurend vernieuwd.
 ## Apparent
 Het Sociaal-Economische Raad. 1950. Consensus-orgaan.
 Werkgevers, vakbonden, overheid. Gelijkwaardig aan tafel.
-Het woord polderen staat in het woordenboek als werkwoord. Inclusief gezegschapsvoering.
+Het woord polderen staat in het woordenboek als werkwoord.
 De Deltawerken besloten. Participatie van alle stakeholders.
-Gedoogkoffieshops. Open. Legaal illegaal. Inspraak zonder sanctie.
+Gedoogkoffieshops. Open. Legaal illegaal.
 
 ## Yearbook
 1421: Sint-Elisabethsvloed. Zestig dorpen verdronken in één nacht. Het water maakt geen onderscheid. De les: coördineer of sterf.

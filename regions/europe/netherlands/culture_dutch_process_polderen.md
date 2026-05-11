@@ -8,7 +8,7 @@
 De [Nederlandse](culture_dutch_position.md) positie betreedt een kamer
 waar de belangen onverzoenbaar zijn.
 Niet uitzonderlijk. Het water maakt geen onderscheid.
-De dijk vraagt iedereen. Consensus is hier nodig of niet.
+De dijk vraagt iedereen.
 
 ## Direction
 Naar het overleg dat houdt.
@@ -17,7 +17,7 @@ Niet overeenstemming. Wat houdt.
 
 ## Lever
 De dreiging die niet onderhandelt.
-Als de dijk begeeft verliezen alle partijen. Collegiaal begrip van die realiteit.
+Als de dijk begeeft verliezen alle partijen. Niemand ontloopt verantwoordelijkheid.
 Dat weet iedereen. Niemand hoeft het te zeggen.
 De medezeggenschap van elke partij in het overleven.
 

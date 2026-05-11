@@ -7,10 +7,9 @@
 
 ## Projection
 Jeroen is een [man](../../../engine/position_male.md) uit [Nederland](culture_dutch_position.md).
-Journalist. Hij zegt wat hij ziet. Directheid is zijn instrument.
+Journalist. Hij zegt wat hij ziet, direct.
 Dat is zijn werk en zijn positie. Hij ziet geen verschil tussen de twee.
-Een dictafoon die hij niet altijd aanzet. Autonomie over registratie.
-Soms is het gesprek genoeg. Vertrouwen in eigen zelfredzaamheid.
+Een dictafoon die hij niet altijd aanzet. Soms is het gesprek genoeg.
 
 ## Action
 Een bron wil iets zeggen maar niet geciteerd worden.
@@ -18,8 +17,6 @@ Jeroen luistert. Publiceert zonder naam. Nauwkeurig. Met zorg voor waarheid.
 De bron herkent zichzelf en belt.
 Jeroen legt uit dat de feiten kloppen. Met directheid.
 De bron zegt: dat is niet het punt.
-De gemeenschap van lezers vandaag heeft behoefte aan de waarheid nu, niet morgen.
-Dat is zijn verantwoordelijkheid, vandaag.
 
 ## Shadow
 2002 zat ook in het gewone woord.

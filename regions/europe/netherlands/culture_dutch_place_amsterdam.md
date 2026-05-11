@@ -28,7 +28,7 @@ Je kunt genieten van een moment op het water.
 ## Withheld
 De privéberekening of de tolerantie nog werkt. Die loopt continu.
 Het resultaat wordt niet aangekondigd.
-Matiging is de stille voorwaarde.
+Matigheid is de stille voorwaarde.
 Wie denkt dat de gedoogruimte onbegrensd is heeft de kamer verkeerd gelezen.
 
 ---

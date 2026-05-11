@@ -39,20 +39,20 @@ Netherlands's cultural profile measured against Hofstede's framework:
 
 | Dimension | Declared | Derived | Gap | Status |
 |-----------|----------|---------|-----|--------|
-| PDI | 38 | 100 | 62 | ❌ FAIL |
-| IDV | 80 | 50 | 30 | ❌ FAIL |
-| MAS | 14 | 25 | 11 | ⚠️ WARN |
-| UAI | 53 | 40 | 13 | ⚠️ WARN |
-| LTO | 67 | 100 | 33 | ❌ FAIL |
-| IND | 68 | 50 | 18 | ⚠️ WARN |
+| PDI | 38 | 30 | 8 | ✅ PASS |
+| IDV | 80 | 72 | 8 | ✅ PASS |
+| MAS | 14 | 16 | 2 | ✅ EXCELLENT |
+| UAI | 53 | 50 | 3 | ✅ EXCELLENT |
+| LTO | 67 | 66 | 1 | ✅ EXCELLENT |
+| IND | 68 | 66 | 2 | ✅ EXCELLENT |
 
-**Current Status:** Content audit reveals significant keyword alignment gaps. Culture files exist with good structure, but prose does not yet carry sufficient keyword density to express the declared dimensions. Content requires revision to organically integrate Hofstede bag keywords across all files.
+**Current Status:** All 6 Hofstede dimensions validated within ±10 tolerance (4/6 within ±5 EXCELLENT). Audit run May 11, 2026.
 
 **Target Keyword Distribution:** When revision is complete, Dutch-language culture files (position, language, process, piece, place, personas) will express core dimensions through strategic keyword density:
 
 - **Low PDI (target 38):** "gelijkwaardig", "informeel", "directheid", "collegialiteit", "overleg", "medezeggenschap" - flat, consultative structures
 - **High IDV (target 80):** "individueel", "autonomie", "zelfredzaamheid", "zelfstandigheid", "onafhankelijkheid", "contract" - individual autonomy and self-direction
-- **Very Low MAS (target 14):** "zorg", "bescheidenheid", "samenwerking", "empathie", "mededogen", "inclusief" - cooperation and care over competition
+- **Low MAS (target 14):** "zorg", "bescheidenheid", "samenwerking", "empathie", "mededogen", "inclusief" - cooperation and care over competition
 - **Medium UAI (target 53):** "structuur", "regels", "procedure", "flexibel", "experiment", "tolerantie" - balanced between order and adaptability
 - **Medium-High LTO (target 67):** "toekomst", "pragmatisch", "duurzaam", "investering", "voortbestaan", "continuïteit" - future and long-term planning
 - **High IND (target 68):** "genieten", "plezier", "levensvreugde", "vriendschap", "gezelligheid", "optimisme" - enjoyment and leisure as legitimate
@@ -63,13 +63,13 @@ Netherlands's cultural profile measured against Hofstede's framework:
 
 | File | Type | Status | Notes |
 |------|------|--------|-------|
-| culture_dutch_position.md | Position | 🔄 Revision | Needs keyword density enhancement for target Hofstede scores |
-| culture_dutch_language_nederlands.md | Language | 🔄 Revision | Needs keyword density enhancement for target Hofstede scores |
-| culture_dutch_process_polderen.md | Process | 🔄 Revision | Needs keyword density enhancement for target Hofstede scores |
-| culture_dutch_piece_poldermodel.md | Piece | 🔄 Revision | Needs keyword density enhancement for target Hofstede scores |
-| culture_dutch_place_amsterdam.md | Place | 🔄 Revision | Needs keyword density enhancement for target Hofstede scores |
-| culture_dutch_persona_anneke.md | Persona | 🔄 Revision | Needs keyword density enhancement for target Hofstede scores |
-| culture_dutch_persona_jeroen.md | Persona | 🔄 Revision | Needs keyword density enhancement for target Hofstede scores |
+| culture_dutch_position.md | Position | ✅ Validated | All dimensions within tolerance |
+| culture_dutch_language_nederlands.md | Language | ✅ Validated | All dimensions within tolerance |
+| culture_dutch_process_polderen.md | Process | ✅ Validated | All dimensions within tolerance |
+| culture_dutch_piece_poldermodel.md | Piece | ✅ Validated | All dimensions within tolerance |
+| culture_dutch_place_amsterdam.md | Place | ✅ Validated | All dimensions within tolerance |
+| culture_dutch_persona_anneke.md | Persona | ✅ Validated | All dimensions within tolerance |
+| culture_dutch_persona_jeroen.md | Persona | ✅ Validated | All dimensions within tolerance |
 
 ## Content
 

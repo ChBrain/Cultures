@@ -8,7 +8,7 @@
 
 De korte lijn.
 Het gewone woord. Geen inleiding. Directheid zonder voorbereiding.
-Omwegen kosten meer dan de zaak waard is. Autonomie van ieder sprecher is aangenomen.
+Omwegen kosten meer dan de zaak waard is. Autonomie van ieder spreker is aangenomen.
 
 De platte kamer.
 Gezag bestaat, maar het is onderhandelbaar.
