@@ -11,7 +11,6 @@ Niet uitzonderlijk. Het water maakt geen onderscheid.
 De dijk vraagt iedereen.
 
 ## Direction
-Naar het overleg dat houdt.
 Naar de consensus die het water kan aanvaarden.
 Niet overeenstemming. Wat houdt.
 

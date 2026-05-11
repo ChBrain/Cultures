@@ -1,7 +1,8 @@
-# hofstede_decisions.md
-## Netherlands | nl | v0.1.0 | 2026-05-11
+# Hofstede Decisions: Netherlands
 
----
+**Scores:** PDI 38 · IDV 80 · UAI 53 · MAS 14 · LTO 67 · IND 68
+**Generated:** 2026-05-11
+**Forked from:** none -- fresh bootstrap
 
 ## Section 1: Scores and calibration
 

@@ -19,7 +19,7 @@ De factuur die ook de relatie is.
 Het gewone woord als contract.
 
 ## Orders
-Zeg het. Zeg het direct. Zeg je waarheid.
+Zeg het direct.
 
 ## Loses
 De aanname dat recht door zee neutraal is.

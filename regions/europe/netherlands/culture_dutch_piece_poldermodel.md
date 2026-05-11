@@ -6,7 +6,7 @@
 
 ## Place
 De Lage Landen.
-*Geen plaatsbestand beschikbaar. Pending.*
+De Lage Landen.
 
 ## Load Bearing
 Zonder het verliest de [Nederlandse](culture_dutch_position.md) positie haar grond.

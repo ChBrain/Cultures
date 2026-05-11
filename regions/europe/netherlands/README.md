@@ -28,7 +28,7 @@ Netherlands's cultural profile measured against Hofstede's framework:
 |-----------|-------|-------------|
 | Power Distance (PDI) | 38 | Relatively flat; hierarchy exists but is minimized |
 | Individualism (IDV) | 80 | Individual autonomy and direct speech |
-| Masculinity (MAS) | 14 | Cooperation and pragmatism over competition (extremely low) |
+| Masculinity (MAS) | 14 | Cooperation and pragmatism over competition |
 | Uncertainty Avoidance (UAI) | 53 | Balanced; comfort with process but prepared for risk (near middle, leaning predictable) |
 | Long-Term Orientation (LTO) | 67 | Pragmatic planning; future-focused but adaptive |
 | Indulgence (IND) | 68 | Enjoyment and leisure are acceptable and integrated |
