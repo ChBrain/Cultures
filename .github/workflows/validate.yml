@@ -315,23 +315,61 @@ jobs:
       - name: Validate language policy
         run: python3 tests/validate_language.py ${{ needs.setup.outputs.files }}
 
-  L3-links:
-    name: L3 - Link integrity
+  khai-links:
+    name: khai - Link integrity
     needs: [setup, L1b-language]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Validate link integrity
-        run: python3 tests/validate_links.py ${{ needs.setup.outputs.files }}
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.2.0)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+      - name: Run link tests
+        run: python -m pytest --pyargs khai_tests.test_khai_links --khai-files="${{ needs.setup.outputs.files }}" -v
+
+  cultures-links:
+    name: Cultures - Link integrity
+    needs: [setup, khai-links]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.2.0)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+      - name: Run link tests
+        run: python -m pytest tests/test_links.py --khai-roots=engine -v
 
   L4a-completeness:
     name: L4a - Culture completeness
-    needs: [setup, L3-links]
+    needs: [setup, cultures-links]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
