@@ -186,6 +186,22 @@ def main() -> int:
             print("")
             return 1
 
+        # Also check for denylist conflicts and within-country collisions
+        result = subprocess.run(
+            [sys.executable, "tests/validate_hofstede_bag_denylist.py"],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if result.returncode != 0:
+            print(">>> BAG DENYLIST VALIDATION FAILED")
+            print("")
+            print(result.stdout.strip())
+            if result.stderr.strip():
+                print(result.stderr.strip())
+            print("")
+            return 1
+
     # Write validation stamp: hash of the content tree, excluding the stamp file itself
     # (removing stamp from index avoids a circular hash dependency).
     subprocess.run(["git", "rm", "--cached", "--ignore-unmatch", ".validation-stamp"],

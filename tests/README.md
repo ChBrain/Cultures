@@ -22,11 +22,45 @@ L4d per-country        IP/plagiarism heuristics (Wikipedia patterns, date anchor
 L4e per-country        Hofstede structure + dimension alignment (README has section/scores/sources, position reflects claimed dimensions)
 L4f per-country        Hofstede derived vs declared (content keywords derive 0-100 scores, compare to README declared scores)
 L4g per-country        Hofstede audit table sync (README audit table matches current derived scores)
+
+**Bags**
+Bx  per-country        Hofstede bag coherence (no denylist conflicts, no word collisions, correct word counts per polarity)
 ```
 
 L0 gates everything. L1a gates L1b. L1b gates L2. L2 gates L3. L3 gates L4a. L4a gates L4b. L4b gates L4c. L4c gates L4d. L4d gates L4e. L4e gates L4f. L4f gates L4g.
 
 **L0-L4e are hard-block jobs** (fail PR if any fails). **L4d-L4g are advisory** (warns if issues, do not block PR).
+
+**Bag coherence (Bx)** is a hard block: no denylist conflicts, no collisions, correct word counts (10 per polarity per dimension).
+
+---
+
+## Bag Coherence (Bx): Hofstede Bag Validation
+
+**Scope:** All `hofstede_bag.yaml` files in `regions/REGION/COUNTRY/`
+
+Validates the bag's internal structure and semantic coherence. Runs on all branches when a bag is staged.
+
+**Checks (FAIL, hard-block):**
+- **Denylist conflicts:** No word appears in both a bag AND the country's denylist. Words in the denylist are rejected during bootstrap; if they appear in a bag, it signals a conflict resolution that wasn't recorded.
+- **Within-country collisions:** No word appears in multiple dimensions. Each word should belong to exactly one dimension's polarity.
+- **Word counts:** Each dimension must have exactly 10 high words and 10 low words (20 total per dimension, 120 total per country).
+
+**Script:** `tests/validate_hofstede_bag_denylist.py`
+
+**Output:** `FAIL` with list of conflicting words, collision words, or dimension word counts. Exit code is 1 if any issue exists.
+
+**Triggers:** Pre-commit hook on all branches (when a `hofstede_bag.yaml` is staged). Does not require a culture branch.
+
+**Example:**
+```bash
+$ python tests/validate_hofstede_bag_denylist.py
+✓ denmark
+✓ germany
+✓ netherlands
+
+✓ All 3 bags passed denylist validation
+```
 
 ---
 
