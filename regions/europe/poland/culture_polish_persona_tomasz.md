@@ -20,18 +20,16 @@ Inwestor mówi: ale sąsiedzi mogą narzekać.
 Tomasz: narzekanie jest częścią procesu. Projekt broni się sam.
 
 Składa dokumenty w terminie. Każda strona podpisana.
-Inicjatywa zawsze wyprzedza harmonogram.
-Przedsiębiorczość jest motorem. Procedura jest torem.
 
 ## Shadow
 Projekt, który przeszedł przez wszystkich i wszystko, wychodzi inny niż ten, który przyniósł.
 Tomasz mówi: to efekt współpracy.
 Każda zmiana, którą przyjął, była kompromisem między jego wizją a tym, czego wymagała procedura, inwestor, urząd.
 Wierzy, że wynik jest lepszy za każdym razem.
-Nie widzi, ile własnej determinacji zamienił na zgodność z oczekiwaniami, jedno ustępstwo na raz.
+Nie widzi, ile własnej inicjatywy i determinacji zamienił na zgodność z oczekiwaniami, jedno ustępstwo na raz.
 
 ## Tell
-Gdy pokazuje ukończony budynek, zaczyna od listy instytucji, które projekt zatwierdziły.
+Gdy pokazuje ukończony budynek, zaczyna od listy instytucji, które projekt zatwierdziły. Przedsiębiorczość, która go tu przyprowadziła, nie jest częścią tego opowiadania.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*

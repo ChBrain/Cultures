@@ -17,10 +17,10 @@ The zip contains all culture files flattened at root level with links rewritten 
 |------|------|---------|
 | `culture_polish_position.md` | Culture | Polish culture (circle and state) - narrative anchor |
 | `culture_polish_language_polski.md` | Language | Polish (Polski) - linguistic anchor |
-| `culture_polish_process_przetrwanie.md` | Process | Przetrwanie - survival through continuity |
-| `culture_polish_piece_konstytucja.md` | Piece | Konstytucja - constitutional rule as cultural anchor |
+| `culture_polish_process_przetrwanie.md` | Process | Przetrwanie - survival as cultural direction |
+| `culture_polish_piece_konstytucja.md` | Piece | Konstytucja - 1997 Polish Constitution as load-bearing element |
 | `culture_polish_place_warsaw.md` | Place | Warsaw - capital city as geographical anchor |
-| `culture_polish_persona_malgorzata.md` | Persona | Małgorzata - doctor, b. 1958 |
+| `culture_polish_persona_malgorzata.md` | Persona | Dr. Małgorzata - internist, b. 1988 |
 | `culture_polish_persona_tomasz.md` | Persona | Tomasz - architect, b. 1990 |
 
 ## Hofstede Cultural Dimensions
@@ -32,7 +32,7 @@ The zip contains all culture files flattened at root level with links rewritten 
 | MAS | 64 | **High** | Achievement, competition, and success are important. Career advancement is a major life goal. But Catholicism and family values introduce compassion and care. Not ruthless individualism; achievement with social conscience. |
 | UAI | 93 | **High** | Deep anxiety about uncertainty. Rules, procedures, documentation, and planning are comforting. Formal legal systems and written regulations provide security. Historical experience of foreign occupation and post-war rebuilding reinforced need for institutional clarity. |
 | LTO | 38 | **Low** | Pragmatic about the future (planning, investment, strategy), but cultural memory and tradition are also valued. Not purely future-focused; the past shapes present identity. Catholic doctrine emphasizes continuity, but post-1989 Poland is also rapidly reforming. |
-| IND | 27 | **Low** | Restraint, duty, and discipline are virtues. Self-denial and sacrifice are valued. Post-war scarcity and Catholic asceticism created a culture that views excess and self-indulgence with suspicion. |
+| IND | 29 | **Low** | Restraint, duty, and discipline are virtues. Self-denial and sacrifice are valued. Post-war scarcity and Catholic asceticism created a culture that views excess and self-indulgence with suspicion. |
 
 **Source:** Hofstede Insights - empirical research from *Cultures and Organizations*
 
@@ -42,12 +42,12 @@ This package was written to carry all 6 Hofstede dimensions organically within t
 
 | Dimension | Declared | Derived | Gap | Status |
 |---|---|---|---|---|
-| PDI | 68 | 68 | 0 | ✅ EXCELLENT |
-| IDV | 60 | 60 | 0 | ✅ EXCELLENT |
-| MAS | 64 | 64 | 0 | ✅ EXCELLENT |
-| UAI | 93 | 93 | 0 | ✅ EXCELLENT |
-| LTO | 38 | 38 | 0 | ✅ EXCELLENT |
-| IND | 27 | 27 | 0 | ✅ EXCELLENT |
+| PDI | 68 | 71 | 3 | ✅ EXCELLENT |
+| IDV | 60 | 56 | 4 | ✅ EXCELLENT |
+| MAS | 64 | 60 | 4 | ✅ EXCELLENT |
+| UAI | 93 | 88 | 5 | ✅ EXCELLENT |
+| LTO | 38 | 36 | 2 | ✅ EXCELLENT |
+| IND | 29 | 33 | 4 | ✅ EXCELLENT |
 
 **Derivation method**: Each keyword in hofstede_bag.yaml is counted once per culture file if present (word-boundary matching, no substring inflation). Score = (high_keyword_count / (high_count + low_count)) × 100. All dimensions achieve 0-gap perfect alignment.
 
@@ -63,7 +63,7 @@ This package was written to carry all 6 Hofstede dimensions organically within t
 
 - **Moderate-Low LTO (38)** reflects pragmatism without pure future-focus. Poles plan strategically (inwestycja, strategia) and understand delayed gratification, but they also honor tradition, memory (pamięć), and ancestral roots (korzenie). The past is not dead; it shapes present identity.
 
-- **Very Low IND (27)** means restraint and duty are deeply valued. Self-indulgence is viewed with suspicion. The Catholic emphasis on asceza (asceticism) and wyrzeczenie (self-denial) is cultural bedrock. Pleasure exists, but always with an undertone of guilt or obligation.
+- **Low IND (29)** means restraint and duty are deeply valued. Self-indulgence is viewed with suspicion. The Catholic emphasis on asceza (asceticism) and wyrzeczenie (self-denial) is cultural bedrock. Pleasure exists, but always with an undertone of obligation.
 
 ## Content Audit Status
 

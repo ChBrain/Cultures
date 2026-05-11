@@ -18,24 +18,26 @@ Tradycja wyznacza kierunek zanim ktoś zapyta o zdanie.
 Ku temu, co przetrwa.
 Nie ku zwycięstwu.
 Ku temu, co po wszystkim zostanie jako korzenie i dziedzictwo.
-Ku zachowaniu ciągłości tam, gdzie wszystko woła o zerwanie.
-Strategia jest prosta: cierpliwość jako kierunek, nie reagowanie.
-Inwestycja w to, co przetrwa - nie w to, co błyszczy dziś.
-Ciągłość kosztuje. Wyrzeczenie jest ceną. Poświęcenie - warunkiem.
-Wiara w sens kontynuacji. Zwyczaj jako forma pamięci. Ceremonia jako akt zobowiązania.
+Ku zachowaniu ciągłości i wspólnoty tam, gdzie wszystko woła o zerwanie.
 
 ## Lever
-Siła: wytrwałość zbudowana na tym, co było przed nami, i na tym, co przekażemy dalej.
-Opór: pokusa, żeby zamknąć oczy, skrócić drogę, wziąć to, co teraz.
+Siła: wytrwałość i cierpliwość zbudowane na tym, co było przed nami, i na tym, co przekażemy dalej.
+Opór to pokusa skrótu. Inwestycja w to, co zostanie, jest trudniejsza niż wzięcie tego, co teraz.
 Dźwignia trzyma oboje: bez wytrwałości opór wygrywa i wszystko się urywa; bez oporu wytrwałość zamienia się w rutynę bez sensu.
 Każde pokolenie przejmuje napięcie, nie rozstrzygnięcie.
+Strategia przetrwania jest cicha: wytrwałość jako kierunek, a nie reagowanie na każde uderzenie.
+Wyrzeczenie nie jest ofiarą: jest warunkiem ciągłości.
 Empatia wobec poprzednich pokoleń: nie wszystko, co przetrwało, przetrwało przez przypadek.
 Troska o ciągłość jest cichsza niż troska o zwycięstwo.
 
 ## Echo
 Następny proces dziedziczy to, co zostało utrzymane.
 Nie osiągnięcie. Zakorzenienie.
-Przodkowie byli tu przed nami. Obyczaj pozostaje.
+Przodkowie byli tu przed nami. Zwyczaj przeżywa tych, którzy go ustanowili.
+Wiara w sens ciągłości jest warunkiem przekazania dalej.
+Ceremonia jest zobowiązaniem wobec tych, którzy przyjdą.
+Pamięć o tym, co kosztowało, zmienia sposób trzymania.
+Poświęcenie poprzednich pokoleń jest obecne w tym, co przetrwało.
 Dyscyplina, która przeżyła, nie pyta już o powód.
 Samorealizacja, która nie odrywa od korzeni, jest możliwa.
 

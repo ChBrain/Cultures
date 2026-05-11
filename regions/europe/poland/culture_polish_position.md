@@ -16,27 +16,28 @@ W kręgu każdy ma swoją rolę. Nieformalna hierarchia organicznie się kształ
 Ale zasługa liczy się bardziej niż pozycja formalna.
 Rodzina jest pierwszym kręgiem.
 Tytuł i starszeństwo są widoczne od pierwszego spotkania.
+Kompetencja buduje uznaną pozycję, nie tylko urzędową.
 Zwierzchnik nie uzasadnia pozycji. Pozycja uzasadnia się sama.
-Podległość jest przejrzysta: każdy zna swój rząd odpowiedzialności.
-Posłuszeństwo wobec kręgu - i jego zasad - to fundament zaufania.
 Indywidualność w kręgu nie znika. Służy całości.
-Niezależność jest ceniona - w granicach zobowiązania.
+Podległość jest przejrzysta: każdy zna swój rząd odpowiedzialności.
+Posłuszeństwo wobec kręgu i jego zasad to fundament zaufania.
+Niezależność jest ceniona, w granicach zobowiązania.
 
 ## Orders
 Zaufaj komu znasz. Tylko temu.
 
 ## Loses
-Możliwość wiary w to że instytucje funkcjonują.
+Możliwość wiary w to, że instytucje funkcjonują.
 Możliwość działania bez zobowiązania.
 
 ## Drives
 Na stratę zaufania do systemu: szuka porządku w kręgu.
-Każdy wie co będzie zrobione gdy trzeba.
+Każdy wie, co będzie zrobione, gdy trzeba.
 Nie ma czasu na formalność.
 Na stratę pewności w przyszłości: polska pozycja żyje teraz.
 Przeszłość nauczyła: jutro będzie inne. Przeszłość nauczyła: nie czekaj.
 Wewnątrz kręgu: równość zobowiązania. Każdy niesie tyle samo.
-Relacja z zewnętrznym zaczyna się od partnerstwa, nie hierarchii.
+Relacja z kimś spoza kręgu zaczyna się od partnerstwa, nie hierarchii.
 Dialog jest możliwy. Decyzja należy do kręgu.
 
 ---

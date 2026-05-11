@@ -20,7 +20,7 @@ hofstede_scores:
   UAI: 93
   MAS: 64
   LTO: 38
-  IND: 27
+  IND: 29
 
 # Country-specific denylist: words considered for this country's bags but
 # rejected. Each entry's reason is documented in hofstede_decisions.md.

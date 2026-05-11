@@ -7,10 +7,10 @@
 ## Has
 Język słowiański.
 System przypadków - siedem. Rzeczownik zmienia się. Nie słowo zostaje stałe.
-Gendera: każda rzecz ma płeć.
+Rodzaj gramatyczny: każda rzecz ma płeć.
 Rozróżnienie ty/pan-pani. To rozróżnienie jest przymusowe.
 Nie można mówić bez wyboru dystansu.
-Nie można wyboru bez rozumienia kto siedzi naprzeciw.
+Nie można dokonać wyboru bez rozumienia, kto siedzi naprzeciw.
 Czasami relaks w języku wśród swoich - wtedy zmienia się zwrot.
 Ale wybór zawsze pozostaje widoczny.
 Kto mówi my (jako grupa) musi o tym wiedzieć. Język to każe.
@@ -26,7 +26,7 @@ Bezpośredniość to przywilej zaufania, nie prawa.
 Elastyczność pojawia się wśród bliskich. Tylko tam.
 
 ## Orders
-Przed słowami - zawsze pytanie jak ma się druga osoba. To opieka przed precyzją.
+Zapytaj najpierw, jak ma się druga osoba. Dopiero potem przejdź do sprawy.
 
 ## Loses
 Pewność że wszyscy rozumieją jednakowo.
@@ -34,7 +34,7 @@ Poza grupą polska precyzja brzmi surowo.
 Polska precyzja bez przynależności to tylko zasady.
 
 ## Drives
-Na stratę pewności: słowa wybiera się bardziej ostrożnie.
+Na tej stracie: słowa wybiera się bardziej ostrożnie.
 Przynależność do grupy rośnie. Obowiązek rośnie.
 
 ---
