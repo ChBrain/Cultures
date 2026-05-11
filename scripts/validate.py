@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 """Cultures validator orchestrator.
 
-Schedules validation as a linear chain (L0 → L1a → L1b → L2 → L3 → L4):
+Schedules validation as a linear chain (L1a → L1b → L4):
 
-  L0: Validation stamp gate (proves local validators ran)
   L1a: General file format (UTF-8 no BOM, ASCII filenames, no em-dash)
   L1b: English-only language policy
-  L2: Section structure per file type
-  L3: Link integrity (markdown links resolve)
   L4: Culture completeness (per-country minimums)
 
+L2 (section structure) and L3 (link integrity) are now handled by CI-only
+pytest jobs (khai component tests + cultures-sections + khai-links + cultures-links).
+
 Each layer blocks subsequent layers on failure. This script provides a single
-entry point for local validation (parity with Autobahn), but CI jobs call
-validators individually to preserve job visibility in GitHub Actions.
+entry point for local validation, but CI jobs call validators individually
+to preserve job visibility in GitHub Actions.
 
 Exit status:
   0 if every file passes all layers, 1 if any fail.
@@ -34,8 +34,6 @@ sys.path.insert(0, str(HERE.parent / "tests"))
 from findings import Issue
 import validate_general
 import validate_language
-import validate_sections
-import validate_links
 import validate_culture
 
 ROOT = HERE.parent
@@ -131,15 +129,14 @@ def main():
     print(f"Validating {len(files)} file(s)...")
     print()
     
-    # Run validation chain (L1a → L1b → L2 → L3 → L4)
+    # Run validation chain (L1a → L1b → L4)
     # Note: L0 (stamp gate) only runs in CI (see .github/workflows/validate.yml)
-    
+    # Note: L2 (sections) and L3 (links) are CI-only via khai pytest jobs
+
     all_passed = True
     layers = [
         ("L1a - General format", validate_general),
         ("L1b - English-only language", validate_language),
-        ("L2 - Section structure", validate_sections),
-        ("L3 - Link integrity", validate_links),
         ("L4 - Culture completeness", validate_culture),
     ]
     
