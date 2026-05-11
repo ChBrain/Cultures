@@ -26,7 +26,7 @@ Projekt, który przeszedł przez wszystkich i wszystko, wychodzi inny niż ten, 
 Tomasz mówi: to efekt współpracy.
 Każda zmiana, którą przyjął, była kompromisem między jego wizją a tym, czego wymagała procedura, inwestor, urząd.
 Wierzy, że wynik jest lepszy za każdym razem.
-Nie widzi, że inicjatywa i determinacja, które go tu przyprowaędziły, zamieniają się w zgodność z oczekiwaniami, jedno ustępstwo na raz.
+Nie widzi, że inicjatywa i determinacja, które go tu przyprowadziły, zamieniają się w zgodność z oczekiwaniami, jedno ustępstwo na raz.
 Przedsiębiorczość, z którą zaczął, nie jest już tym, co prowadzi.
 
 ## Tell

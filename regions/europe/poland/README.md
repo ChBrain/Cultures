@@ -20,7 +20,7 @@ The zip contains all culture files flattened at root level with links rewritten 
 | `culture_polish_process_przetrwanie.md` | Process | Przetrwanie - survival as cultural direction |
 | `culture_polish_piece_konstytucja.md` | Piece | Konstytucja - 1997 Polish Constitution as load-bearing element |
 | `culture_polish_place_warsaw.md` | Place | Warsaw - capital city as geographical anchor |
-| `culture_polish_persona_malgorzata.md` | Persona | Dr. Małgorzata - internist, b. 1988 |
+| `culture_polish_persona_malgorzata.md` | Persona | Dr. Małgorzata - internist, b. 1958 |
 | `culture_polish_persona_tomasz.md` | Persona | Tomasz - architect, b. 1990 |
 
 ## Hofstede Cultural Dimensions
