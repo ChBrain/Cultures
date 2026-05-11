@@ -19,13 +19,6 @@ Trybunał Konstytucyjny orzeka o zgodności prawa z konstytucją.
 Gdy ten mechanizm działa, prawo ma ramy.
 Gdy mechanizm jest kwestionowany, zasada zostaje bez ochrony.
 Konstytucja nie jest ozdobą: jest warunkiem procedury.
-Planowanie instytucji podlega konstytucji - nie odwrotnie.
-Każda regulacja musi mieć przepis. Bez przepisu działanie jest nieważne.
-Asertywność obywatelska: prawa nie są deklaracją - są wymagalnością.
-Opiekuńczość państwa wobec obywatela zapisana w konstytucji.
-Rywalizacja polityczna musi mieścić się w granicach prawa.
-Odpowiedzialność urzędu za realizację praw. Papier sam nic nie gwarantuje.
-Umiarkowanie w interpretacji: tekst konstytucji jest stały.
 
 ## Apparent
 Preambuła zaczyna się od słów: "W trosce o byt i przyszłość naszej Ojczyzny."

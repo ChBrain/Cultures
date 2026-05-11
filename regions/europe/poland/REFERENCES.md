@@ -66,9 +66,32 @@
 | Uncertainty Avoidance (UAI) | 93 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
 | Masculinity (MAS) | 64 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
 | Long-Term Orientation (LTO) | 38 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Indulgence (IND) | 27 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
+| Indulgence (IND) | 29 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
 
 **Status:** Empirical - All scores derived from Hofstede's peer-reviewed multi-country research.
+
+---
+
+## Verified Facts: Persona Declarations
+
+### Dr. Małgorzata (culture_polish_persona_malgorzata.md)
+
+| Claim | Status | Note |
+|-------|--------|------|
+| Type | Composite fictional | Illustrative persona, not biographical |
+| Role | Internist (specialist physician) | Plausible for Polish medical system |
+| Birth year | 1958 | Consistent with career stage described |
+| Workplace | Warsaw hospital, outpatient clinic | Consistent with Polish healthcare structure |
+| All biographical details | Invented | No real person intended or represented |
+
+### Tomasz (culture_polish_persona_tomasz.md)
+
+| Claim | Status | Note |
+|-------|--------|------|
+| Type | Composite fictional | Illustrative persona, not biographical |
+| Role | Architect | Consistent with Polish architecture profession |
+| Birth year | 1990 | Consistent with career stage described |
+| All biographical details | Invented | No real person intended or represented |
 
 ---
 
