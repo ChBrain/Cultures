@@ -17,7 +17,7 @@
 | Muzeum Powstania Warszawskiego | https://www.1944.pl/ | Warsaw Uprising, WWII | ⭐⭐⭐⭐⭐ |
 | Główny Urząd Statystyczny (GUS) | https://stat.gov.pl/ | Official statistics | ⭐⭐⭐⭐⭐ |
 | Sejm RP | https://www.sejm.gov.pl/ | 1997 Constitution, legislation | ⭐⭐⭐⭐⭐ |
-| Cidade Warszawa | https://www.warszawa.pl/ | Warsaw-specific facts, administration | ⭐⭐⭐⭐⭐ |
+| Miasto Warszawa | https://www.warszawa.pl/ | Warsaw-specific facts, administration | ⭐⭐⭐⭐⭐ |
 
 ### Academic & Historical References
 
@@ -72,5 +72,56 @@
 
 ---
 
-*REFERENCES.md - 09.05.2026*
+## Plagiarism Detection Protocol
+
+### Close-Paraphrase Detection
+
+To avoid accidental plagiarism, we check for **7+ consecutive non-trivial words verbatim** from any source:
+
+**Example check:**
+- Source: "The Constitution of 3 May 1791 was the first modern constitution in Europe"
+- Our text: "The Constitution of 3 May 1791 was the first modern..." ← **RISKY** (7+ words match exactly)
+- Our text: "Poland's 1791 constitution was among the earliest modern constitutional documents in Europe" ← **OK** (rephrased)
+
+### Audit Workflow
+
+When content is spot-checked:
+
+1. **Extract claims:** Identify all distinct factual claims (dates, places, quantities, events)
+2. **Verify each:** Search sources in hierarchy order
+3. **Check paraphrase risk:** Search source text for 7+ consecutive word sequences
+4. **Mark verdict:**
+   - ✅ **clean** - All facts verified, no paraphrase risk
+   - ⚠️ **minor** - One minor inaccuracy or weak paraphrase (rephrase needed)
+   - ❌ **issues** - Factual error or significant paraphrase risk (rewrite required)
+
+---
+
+## How to Report Source Concerns
+
+If you find potential issues:
+
+1. **Open a GitHub issue** in the Cultures repository
+2. **Title:** `IP concern: Poland - [file name]`
+3. **Include:**
+   - Exact passage from the file
+   - Suspected source (with URL if possible)
+   - Why you think it's a concern (plagiarism? factual error? unattributed?)
+4. **We will:**
+   - Investigate within 7 days
+   - Rewrite if plagiarism confirmed
+   - Correct if factual error found
+   - Add source if attribution missing
+
+---
+
+## Authorship Statement
+
+All content in this folder is authored by Kai Schlueter, with AI-assisted drafting where indicated. Facts have been verified against authoritative sources. Expression is original.
+
+Any resemblance to specific copyrighted works is unintentional. If you spot potential IP concerns, please report them (see above).
+
+---
+
+*REFERENCES.md - 11.05.2026*
 *v0.1.0 - KAI Worlds*
