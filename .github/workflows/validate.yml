@@ -1,4 +1,4 @@
-﻿name: validate
+name: validate
 
 on:
   pull_request:
@@ -21,7 +21,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.2)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.2.0)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -31,7 +31,163 @@ jobs:
             "$ASSET_URL" -o "/tmp/$ASSET_NAME"
           pip install "/tmp/$ASSET_NAME"
       - name: Run encoding tests
-        run: python -m pytest --pyargs khai_tests.test_encoding --khai-files="${{ needs.setup.outputs.files }}" -v
+        run: python -m pytest --pyargs khai_tests.test_khai_encoding --khai-files="${{ needs.setup.outputs.files }}" -v
+
+  khai-process:
+    name: khai - Process rules
+    needs: [setup, khai-encoding]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.2.0)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+      - name: Run process tests
+        run: python -m pytest --pyargs khai_tests.components.test_khai_process --khai-files="${{ needs.setup.outputs.files }}" -v
+
+  khai-position:
+    name: khai - Position rules
+    needs: [setup, khai-encoding]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.2.0)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+      - name: Run position tests
+        run: python -m pytest --pyargs khai_tests.components.test_khai_position --khai-files="${{ needs.setup.outputs.files }}" -v
+
+  khai-piece:
+    name: khai - Piece rules
+    needs: [setup, khai-encoding]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.2.0)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+      - name: Run piece tests
+        run: python -m pytest --pyargs khai_tests.components.test_khai_piece --khai-files="${{ needs.setup.outputs.files }}" -v
+
+  khai-place:
+    name: khai - Place rules
+    needs: [setup, khai-encoding]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.2.0)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+      - name: Run place tests
+        run: python -m pytest --pyargs khai_tests.components.test_khai_place --khai-files="${{ needs.setup.outputs.files }}" -v
+
+  khai-persona:
+    name: khai - Persona rules
+    needs: [setup, khai-encoding]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.2.0)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+      - name: Run persona tests
+        run: python -m pytest --pyargs khai_tests.components.test_khai_persona --khai-files="${{ needs.setup.outputs.files }}" -v
+
+  cultures-sections:
+    name: Cultures - Section structure
+    needs: [setup, khai-process, khai-position, khai-piece, khai-place, khai-persona]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.2.0)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+      - name: Run section tests
+        run: python -m pytest tests/test_sections.py --khai-files="${{ needs.setup.outputs.files }}" -v
 
   branch-scope-tests:
     name: Branch scope - test suite
@@ -132,7 +288,7 @@ jobs:
       - name: Check validation stamp exists
         run: |
           if [ ! -f ".validation-stamp" ]; then
-            echo "Γ¥î VALIDATION FAILED: .validation-stamp missing"
+            echo "❌ VALIDATION FAILED: .validation-stamp missing"
             echo ""
             echo "This file records that local validators passed before commit."
             echo "Run locally to generate it:"
@@ -141,11 +297,11 @@ jobs:
             echo "  git commit --amend -m 'your message'"
             exit 1
           fi
-          echo "Γ£ô Validation stamp present"
+          echo "✔️ Validation stamp present"
 
   L1b-language:
     name: L1b - English-only language policy
-    needs: [setup, khai-encoding]
+    needs: [setup, cultures-sections]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
@@ -159,23 +315,9 @@ jobs:
       - name: Validate language policy
         run: python3 tests/validate_language.py ${{ needs.setup.outputs.files }}
 
-  L2-sections:
-    name: L2 - Section structure
-    needs: [setup, L1b-language]
-    if: needs.setup.outputs.any == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Validate section structure
-        run: python3 tests/validate_sections.py ${{ needs.setup.outputs.files }}
-
   L3-links:
     name: L3 - Link integrity
-    needs: [setup, L2-sections]
+    needs: [setup, L1b-language]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
