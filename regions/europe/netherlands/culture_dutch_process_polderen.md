@@ -7,23 +7,23 @@
 ## Initiated by
 De [Nederlandse](culture_dutch_position.md) positie betreedt een kamer
 waar de belangen onverzoenbaar zijn.
-Niet uitzonderlijk.
-Het water maakt geen onderscheid.
+Niet uitzonderlijk. Het water maakt geen onderscheid.
 De dijk vraagt iedereen.
 
 ## Direction
-Naar de uitkomst die het water niet kan nemen.
+Naar de consensus die het water kan aanvaarden.
 Niet overeenstemming. Wat houdt.
 
 ## Lever
 De dreiging die niet onderhandelt.
-Als de dijk begeeft verliezen alle partijen.
+Als de dijk begeeft verliezen alle partijen. Niemand ontloopt verantwoordelijkheid.
 Dat weet iedereen. Niemand hoeft het te zeggen.
+De medezeggenschap van elke partij in het overleven.
 
 ## Echo
-Wat stand hield wordt de basis van de volgende sessie.
+Wat stand hield wordt de basis van de volgende collegiale sessie.
 Wat niet stand hield blijft drukken.
-De polder is nooit af.
+De polder is nooit af. Overleg herhaalt.
 De lus sluit hier en opent opnieuw bij Initiated by.
 
 ---
@@ -31,4 +31,4 @@ De lus sluit hier en opent opnieuw bij Initiated by.
 
 *culture_dutch_process_polderen.md - 08.05.2026*
 
-v0.1.1 - KAI Worlds
+v0.1.0 - KAI Cultures
