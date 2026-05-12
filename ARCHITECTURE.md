@@ -30,33 +30,43 @@ These rules apply to **all** content files (`.md`) in the repository:
 
 ### Footer
 
-Every content file ends with two footer lines:
+Every content file ends with three footer lines (v2 schema):
 
 ```
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+
+*khai: <type>*
 
 v0.1.0 - KAI Worlds
 ```
 
 - **Hofstede signal line:** Identifies the file as a contributor to the culture's aggregate Hofstede signal. Declared per-country scores live in the country `README.md`, never inline. The leading token `Hofstede signal:` is a stable sentinel for validators.
+- **khai declaration line:** Declares the file's KAI structural type. `<type>` is exactly one of `process`, `position`, `piece`, `place`, `persona`. Filename token and footer must agree (see [Cultures v2 Schema](#cultures-v2-schema) for the mapping). KAIHACKS `khai-tests` v0.1.6 reads this footer to apply the right structural contract. Required in every `culture_*.md` for v2-migrated countries; pre-v2 countries may omit it until their migration PR.
 - **Version line:** `vX.Y.Z - KAI Worlds` where X.Y.Z matches repo version
-- **Placement:** Hofstede signal line first, then the version line as the final line of file
-- **Required in:** All `culture_*.md` files (positions, pieces, places, personas, languages, processes)
+- **Placement:** Hofstede signal line first, then khai declaration, then the version line as the final line of file
+- **Required in:** All `culture_*.md` files
 - **Forbidden:** Per-file Hofstede score lines (e.g. `**Hofstede:** PDI 35 · IDV 67 ...`). Scoring is aggregate, not per-file.
 
 ### Filenames
 
 ASCII only. Underscores separate words. No hyphens or diacritics. Every basename unique.
 
-Patterns:
-- `regions/<region>/<country>/culture_<adj>_position.md`
-- `regions/<region>/<country>/culture_<adj>_piece_<descriptor>.md`
-- `regions/<region>/<country>/culture_<adj>_place_<descriptor>.md`
-- `regions/<region>/<country>/culture_<adj>_persona_<name>.md`
-- `regions/<region>/<country>/culture_<adj>_language_<descriptor>.md`
-- `regions/<region>/<country>/culture_<adj>_process_<descriptor>.md`
+Patterns (v2 schema -- 8 canonical kinds):
+- `regions/<region>/<country>/culture_<adj>_language_<descriptor>.md` -- language
+- `regions/<region>/<country>/culture_<adj>_history_<descriptor>.md` -- history (pivotal moment)
+- `regions/<region>/<country>/culture_<adj>_position.md` -- position (state role / cultural anchor)
+- `regions/<region>/<country>/culture_<adj>_process_<descriptor>.md` -- process (recurring practice)
+- `regions/<region>/<country>/culture_<adj>_piece_<descriptor>.md` -- piece (cultural artifact or concept)
+- `regions/<region>/<country>/culture_<adj>_place_<descriptor>.md` -- place
+- `regions/<region>/<country>/culture_<adj>_male_<name>.md` -- male persona
+- `regions/<region>/<country>/culture_<adj>_female_<name>.md` -- female persona
 
 `<adj>` = lowercase culture adjective (e.g., `german`, `french`).
+
+Legacy v1 pattern, still accepted for countries not yet on the v2 migration list:
+- `regions/<region>/<country>/culture_<adj>_persona_<name>.md` -- persona (in v2, split into `male_` and `female_` filenames)
+
+In v1, `piece_*` was overloaded to mean both "cultural artifact" and "pivotal historical moment". v2 splits this into `piece_*` (artifact / concept) and `history_*` (pivotal moment). Migration PRs rename existing `piece_*` files to `history_*` where the file is actually history, and author an authentic `piece_*` where the old `piece_*` doubled.
 
 ### Style
 
@@ -114,9 +124,10 @@ Each file opens with `# Type: Name` followed by `## Tagline`.
 
 Examples:
 - `# Position: German`
+- `# History: The Grundgesetz`
 - `# Piece: The Unfinished Reckoning`
 - `# Place: Berlin`
-- `# Persona: Hanna`
+- `# Persona: Hanna` (or `# Male: Christian` / `# Female: Brigitte` in v2)
 
 ### Owner
 
@@ -133,7 +144,7 @@ The second tier names the file's scope:
 | Location | Second tier |
 |----------|-------------|
 | `engine/*.md` (universal) | `- Scope: Universal` |
-| `regions/<region>/<country>/*.md` (any region file: position, piece, place, persona, language, process) | `- Culture: <Country>` (English display name, e.g. `Germany`) |
+| `regions/<region>/<country>/*.md` (any region file: position, piece, place, persona, language, process, history, male, female) | `- Culture: <Country>` (English display name, e.g. `Germany`) |
 
 No bold, no link decoration, no extra lines. The list-bullet is `-`. Anything else (`- *`, `- **Project:** Cultures`, suffixes like `— Americas`, second-tier `Place:` links) is a legacy artefact slated for migration; the L2 validator will reject these on changed files going forward.
 
@@ -143,9 +154,65 @@ Section order is fixed per file type. See below.
 
 ---
 
+## Cultures v2 Schema
+
+Every country has **8 canonical kinds**, mapped to the **5 KAI structural types** from the KAI HACKS AI Architecture. The 8 kinds are Cultures-specific specializations; the 5 KAI structural types are the universal contracts every validator applies.
+
+### The 8 kinds and their KAI mapping
+
+| Cultures kind | KAI structural type | Section set | Filename token |
+|---|---|---|---|
+| Language | position | Has / Orders / Loses / Drives | `language` |
+| History | piece | Place / Load Bearing / Apparent / Yearbook | `history` |
+| Position | position | Has / Orders / Loses / Drives | `position` |
+| Process | process | Initiated by / Direction / Lever / Echo | `process` |
+| Piece | piece | Place / Load Bearing / Apparent / Yearbook | `piece` |
+| Place | place | Shown / Holds / Offers / Withheld | `place` |
+| Male persona | persona | Projection / Action / Shadow / Tell | `male` |
+| Female persona | persona | Projection / Action / Shadow / Tell | `female` |
+
+The first column is what Cultures authors think in; the second column is what validators key off. The mnemonic for the section sets is **HOLD** (position), **PLAY** (piece), **IDLE** (process), **SHOW** (place), **PAST** (persona).
+
+Cultures-specific kinds (language, history, male, female) inherit the section set of their KAI type. A `culture_german_language_german.md` follows the same Has / Orders / Loses / Drives contract that `culture_german_position.md` does; a `culture_german_history_grundgesetz.md` follows the same Place / Load Bearing / Apparent / Yearbook contract that a `culture_german_piece_bauhaus.md` does.
+
+### khai declaration footer
+
+Every `culture_*.md` ends with a `*khai: <type>*` line (see [Footer](#footer)) declaring its KAI structural type. The filename token and the footer must agree:
+
+| Filename | khai footer |
+|---|---|
+| `culture_german_language_german.md` | `*khai: position*` |
+| `culture_german_history_grundgesetz.md` | `*khai: piece*` |
+| `culture_german_position.md` | `*khai: position*` |
+| `culture_german_process_einkaufen.md` | `*khai: process*` |
+| `culture_german_piece_bauhaus.md` | `*khai: piece*` |
+| `culture_german_place_brandenburg_gate.md` | `*khai: place*` |
+| `culture_german_male_christian.md` | `*khai: persona*` |
+| `culture_german_female_brigitte.md` | `*khai: persona*` |
+
+The two surfaces are deliberately redundant: filename drives Cultures-side completeness (`tests/test_completeness.py` counts kinds), footer drives KAIHACKS structural validation (`khai-tests` v0.1.6 picks the section contract). A mismatch is a hard fail.
+
+### Per-country v2 opt-in
+
+v2-strict validation runs per-country, opt-in via `data/v2_migrated_countries.txt` (one slug per line, blank lines and `#` comments ignored). Countries on the list must satisfy the v2 contract (all 8 kinds present, khai footer on every `culture_*.md`, persona file split into `male_` / `female_`). Countries off the list run legacy v1 rules.
+
+A migration PR (`culture/<country>`) is one atomic commit that:
+1. Renames `persona_*` to `male_*` / `female_*`
+2. Renames `piece_*` to `history_*` where the file is actually a pivotal moment
+3. Authors an authentic `piece_*` where the old `piece_*` doubled as history
+4. Adds the `*khai: <type>*` footer to every `culture_*.md`
+5. Updates the country `README.md` audit table to the canonical 8-kind order
+6. Adds the country slug to `data/v2_migrated_countries.txt`
+
+`data/v2_migrated_countries.txt` is carved into `SAFE_PATTERNS` so culture branches can edit it alongside the per-country file renames. The marker is forward-only: removing a country from the list is unsupported; to back out a migration, revert the PR.
+
+Once every developed country is on the list, stage 4 will deprecate the opt-in mechanism and the validator will become unconditionally v2.
+
+---
+
 ## Gender Position Framework
 
-**Gender positions are universal, engine-level files** that exist above the culture layer. Every persona links to both a gender position and a culture position.
+**Gender positions are universal, engine-level files** that exist above the culture layer. Every persona links to both a gender position and a culture position; in v2, the persona's filename also encodes its projected gender.
 
 ### Universal Gender Positions
 
@@ -166,12 +233,12 @@ from [Country](../../../engine/position_[culture].md).
 ```
 
 Examples:
-- Male persona: `Thomas is a [man](../../../engine/position_male.md) from [Germany](../../../engine/position_german.md).`
-- Female persona: `Hanna is a [woman](../../../engine/position_female.md) from [Germany](../../../engine/position_german.md).`
+- Male persona (`culture_german_male_christian.md` in v2 / `culture_german_persona_christian.md` in v1): `Christian is a [man](../../../engine/position_male.md) from [Germany](../../../engine/position_german.md).`
+- Female persona (`culture_german_female_hanna.md` in v2 / `culture_german_persona_hanna.md` in v1): `Hanna is a [woman](../../../engine/position_female.md) from [Germany](../../../engine/position_german.md).`
 
 ### Linking Mechanics
 
-- **From:** `regions/REGION/COUNTRY/persona_*.md`
+- **From:** `regions/REGION/COUNTRY/culture_*_male_*.md` or `culture_*_female_*.md` (v2) / `culture_*_persona_*.md` (v1)
 - **To gender:** `../../../engine/position_male.md` or `../../../engine/position_female.md`
 - **To culture:** `../../../engine/position_[culture].md` or `culture_[culture]_position.md` (local reference)
 
@@ -179,16 +246,28 @@ The triple `../../../` accounts for depth: `regions/europe/germany/` goes up thr
 
 **Canonical form is the only supported form.** Cross-level links (persona → engine, and any future region → engine) MUST use directory-relative paths with `../../../` — not bare `engine/...` (which renders as a sibling-directory link in every Markdown renderer) and not `/engine/...` (which only works in some surfaces). The link validator enforces this: paths are resolved relative to the source file's directory only, with no repo-root fallback.
 
+### v2 vs v1: where gender is encoded
+
+| Surface | v1 | v2 |
+|---|---|---|
+| Filename | `persona_<name>` | `male_<name>` / `female_<name>` |
+| khai footer | absent | `*khai: persona*` |
+| Projection link | `position_male.md` / `position_female.md` (required) | `position_male.md` / `position_female.md` (required) |
+| Title line | `# Persona: Name` | `# Male: Name` or `# Female: Name` (or kept as `# Persona: Name`) |
+
+The Projection link remains the authoritative source for gender. The filename and title add redundancy so reviewers can scan a folder listing and immediately see the gender mix without opening each file.
+
 ### All New Personas
 
 Every new persona created must:
 1. Include gender position link (mandatory)
 2. Include culture position link (mandatory)
 3. Maintain persona-specific projection content
+4. In v2: use `male_` or `female_` filename token and `*khai: persona*` footer
 
 ### Existing Personas
 
-Existing personas are updated to include gender position links on next edit (no retroactive bulk update required).
+Existing personas with v1 layout remain valid until the country's migration PR. The migration PR renames the persona file and adds the khai footer atomically.
 
 ---
 
@@ -212,19 +291,36 @@ Every culture is rooted in **Hofstede's Cultural Dimensions Theory**, a framewor
 
 Each dimension scores 0-100. Hofstede research provides published scores for most countries based on empirical surveys.
 
+### Band Contract
+
+Canonical Hofstede band thresholds, pinned by `scripts/audit_readme_bands.py` and `tests/test_audit_readme_bands.py`:
+
+| Score range | Band |
+|---|---|
+| 0-39 | Low |
+| 40-69 | Moderate |
+| 70-100 | High |
+
+"Medium" is an accepted prose alias for "Moderate" (the audit normalizes for equivalence but surfaces the non-canonical word in the `declared` column). README band labels and any prose mentions (e.g. `**Low PDI + High IDV:**`) must agree with each dimension's score.
+
 ### Application in Cultures
 
-- **Position** embodies the culture's operating logic shaped by these dimensions
-- **Pieces** represent historical moments when dimensions intersected, creating pressure
-- **Places** show where dimensions are visible in daily life
-- **Personas** carry the tension of living within a culture's dimensional profile
+Each v2 kind expresses the cultural dimensions through a different surface:
+
+- **Language** carries the dimensional logic in how meaning is encoded -- terms of address (PDI), pronoun handling (IDV), structural strictness (UAI).
+- **History** records pivotal moments where the dimensions emerged or were tested -- foundational documents, wars, settlements.
+- **Position** embodies the culture's operating logic shaped by all six dimensions.
+- **Process** shows the dimensions running on a loop -- recurring practices that re-enact the cultural profile.
+- **Piece** is an artifact or concept where one or two dimensions are concentrated -- a film, a building, an idea.
+- **Place** shows where dimensions are visible in daily life -- streetscapes, institutions, public space.
+- **Male / Female personas** carry the tension of living within a culture's dimensional profile, with gender as an additional axis.
 
 ### Scoring is Aggregate, Not Per-File
 
 The dimensional signal is **distributed across all culture files for a given culture, not concentrated in any one file**. The validation contract follows from this:
 
 - The country `README.md` is the **single source of truth** for declared scores. No culture file carries scores in its body or footer.
-- Each `culture_*.md` file contributes keywords (in its native language) to the country's aggregate signal. Position carries the spine; piece/place/process/persona/language each carry the dimensions they naturally express.
+- Each `culture_*.md` file contributes keywords (in its native language) to the country's aggregate signal. Position carries the spine; piece/place/process/persona/language/history each carry the dimensions they naturally express.
 - The validating layer is **L4f** (`tests/validate_hofstede_derived.py`): it sums keyword counts across every culture file in the country and compares the derived score to the README declared score, with ±10 PASS / ±5 EXCELLENT tolerance.
 - **L4e** is structure-only (README has the section, score table, source attribution). It does not score per-file content.
 - Each culture file ends with the **Hofstede signal footer** (see [Footer](#footer)) declaring its participation in the aggregate model and pointing at the README.
@@ -237,7 +333,7 @@ Every country's README must include:
 
 1. **Hofstede Summary Table:** Listing all six dimensions with scores
 2. **Source:** Either empirical Hofstede research (published scores) or best judgment with reasoning
-3. **Explanation:** How these dimensions shape the position, pieces, places, and personas
+3. **Explanation:** How these dimensions shape the 8 kinds (language, history, position, process, piece, place, male, female)
 
 ### Empirical vs. Approximation
 
@@ -251,7 +347,7 @@ Both approaches are valid; the key is transparency about sourcing.
 Rather than pre-populating all countries with README/REFERENCES at once, documentation is scaffolded on-demand as countries are touched:
 
 1. **Infrastructure:** `data/hofstede_scores.json` contains 50+ countries with empirical scores
-2. **Generator:** `scripts/scaffold_country.py` creates README.md and REFERENCES.md for any country
+2. **Generator:** `scripts/scaffold_country.py` (v0.2.0, v2-aware) creates README.md and REFERENCES.md for any country
 3. **Workflow:** When you start a country, run:
    ```bash
    python3 scripts/scaffold_country.py --apply COUNTRY
@@ -274,15 +370,19 @@ This approach:
 erDiagram
     REGION ||--o{ COUNTRY : "folder"
     COUNTRY ||--|| POSITION : "anchor"
+    COUNTRY ||--o{ LANGUAGE : "holds"
+    COUNTRY ||--o{ HISTORY : "holds"
+    COUNTRY ||--o{ PROCESS : "holds"
     COUNTRY ||--o{ PIECE : "holds"
     COUNTRY ||--o{ PLACE : "holds"
-    COUNTRY ||--o{ PERSONA : "holds"
-    COUNTRY ||--o{ LANGUAGE : "holds"
-    COUNTRY ||--o{ PROCESS : "holds"
+    COUNTRY ||--o{ MALE : "holds"
+    COUNTRY ||--o{ FEMALE : "holds"
+    HISTORY }o--|| PLACE : "set in"
     PIECE }o--|| PLACE : "belongs to"
     PLACE ||--o{ POSITION : "lists"
     PLACE ||--o{ PIECE : "lists"
-    PERSONA }o--|| POSITION : "carries"
+    MALE }o--|| POSITION : "carries"
+    FEMALE }o--|| POSITION : "carries"
     PROCESS }o--|| POSITION : "initiated by"
 ```
 
@@ -290,18 +390,20 @@ erDiagram
 
 ## Minimum per Country
 
-Every country folder must contain:
+Every country folder must contain, in the canonical v2 order:
 
-- **1 position** (exactly one - the country's anchor)
-- **1 piece** (historical moment or symbol)
-- **1 place** (capital or defining location)
-- **2 personas** (at least one linking the male position, at least one linking the female position - see below)
-- **1 language** (the linguistic anchor)
-- **1 process** (a culture-level recurring mechanism)
+1. **1 language** (the linguistic anchor)
+2. **1 history** (a pivotal moment of the culture's formation)
+3. **1 position** (exactly one - the country's anchor)
+4. **1 process** (a culture-level recurring mechanism)
+5. **1 piece** (cultural artifact or concept)
+6. **1 place** (capital or defining location)
+7. **1 male persona**
+8. **1 female persona**
 
-More of each is allowed.
+More of each is allowed (except position, which is exactly one).
 
-**Mixed-gender minimum:** A persona's gender, for this rule, is the engine position the persona links in its `## Projection` section. A persona linking `engine/position_male.md` counts as male; linking `engine/position_female.md` counts as female. A persona linking both contributes to both counts (gender-fluid, transitioning, performing). Every country requires at least one persona linking male AND at least one linking female. The L4a validator enforces this from the link target alone, language-agnostic.
+**v1 minimum** (still accepted for countries not on the v2 migration list): 1 position, 1 piece, 1 place, 2 personas (mixed-gender), 1 language, 1 process. Mixed-gender means at least one persona linking `engine/position_male.md` AND at least one linking `engine/position_female.md` via its `## Projection` section. The L4a validator enforces this from the link target alone, language-agnostic. In v2 the link rule is unchanged but the filename also encodes the projected gender (`male_*` / `female_*`), so the gender mix is visible from the folder listing.
 
 ---
 
@@ -334,7 +436,7 @@ Includes all culture files + engine stack + Claude instructions.
 
 ## Content Overview
 
-[Table of files and descriptions]
+[Table of files and descriptions, ordered by the 8 v2 kinds: language, history, position, process, piece, place, male, female]
 
 ## Hofstede Cultural Dimensions - <Country>
 
@@ -378,19 +480,45 @@ The country's operating logic.
 
 **Naming:** `culture_<adj>_position.md`
 
+**khai footer:** `*khai: position*`
+
+---
+
+## History
+
+A pivotal historical moment in the culture's formation -- a founding document, a war, a settlement, a fall. In v1, this was conflated with `piece`; v2 separates them so pieces can be artifacts and concepts while history carries the dated events.
+
+History reuses the KAI **piece** structural type (the **PLAY** mnemonic: Place / Load Bearing / Apparent / Yearbook). The same section set as a `piece`.
+
+**Sections:** `Owner`, `Place`, `Load Bearing`, `Apparent`, `Yearbook`.
+
+- **Place**: Where the moment happened.
+- **Load Bearing**: What in the culture's present logic depends on this moment.
+- **Apparent**: What is visible today as a result.
+- **Yearbook**: Dated timeline of events leading into and out of the moment.
+
+**Naming:** `culture_<adj>_history_<descriptor>.md`
+
+**khai footer:** `*khai: piece*` (history maps to the KAI piece structural type)
+
+Example: `culture_german_history_grundgesetz.md`.
+
 ---
 
 ## Piece
 
-A historical moment, document, or symbol essential to the position's logic.
+A cultural artifact, work, or concept where one or two dimensions are concentrated -- a film, a building, a movement, an idea. In v2, history is split out into its own kind (see [History](#history)); piece now carries the artifact / concept meaning.
 
 **Sections:** `Owner`, `Place`, `Load Bearing`, `Apparent`, `Yearbook`.
 
-- **Load Bearing**: What fails if this piece is removed.
-- **Apparent**: What is visible today.
-- **Yearbook**: Dated timeline of events.
+- **Place**: The place the piece lives in or speaks from.
+- **Load Bearing**: What fails if this piece is removed from the culture's self-understanding.
+- **Apparent**: What is visible about the piece today.
+- **Yearbook**: Dated context for the piece (creation, reception, revisions).
 
 **Naming:** `culture_<adj>_piece_<descriptor>.md`
+
+**khai footer:** `*khai: piece*`
 
 ---
 
@@ -407,11 +535,13 @@ The capital or defining location where the position does its daily work.
 
 **Naming:** `culture_<adj>_place_<descriptor>.md`
 
+**khai footer:** `*khai: place*`
+
 ---
 
 ## Language
 
-A linguistic anchor of the culture - the standard, dialect, or register through which the culture speaks itself into existence. The section set is identical to Position: Language is operating logic for a linguistic anchor.
+A linguistic anchor of the culture - the standard, dialect, or register through which the culture speaks itself into existence. Language is operating logic for a linguistic anchor, so it reuses the KAI **position** structural type (the **HOLD** mnemonic: Has / Orders / Loses / Drives).
 
 **Sections:** `Owner`, `Has`, `Orders`, `Loses`, `Drives`.
 
@@ -421,6 +551,8 @@ A linguistic anchor of the culture - the standard, dialect, or register through 
 - **Drives**: How the language persists past the cost.
 
 **Naming:** `culture_<adj>_language_<descriptor>.md`
+
+**khai footer:** `*khai: position*` (language maps to the KAI position structural type)
 
 Example: `culture_german_language_hochdeutsch.md`.
 
@@ -439,15 +571,17 @@ A recurring mechanism through which the culture's position acts in time. Engine-
 
 **Naming:** `culture_<adj>_process_<descriptor>.md`
 
+**khai footer:** `*khai: process*`
+
 Example: `culture_german_process_erinnern.md`.
 
 ---
 
-## Persona
+## Persona (Male / Female)
 
-A person doing ordinary work carrying a cultural position they did not choose. **At least two per country, with at least one projecting as male and at least one projecting as female.** More personas, and additional gender expressions, are welcome; the floor is mixed-gender representation.
+A person doing ordinary work carrying a cultural position they did not choose. **In v2, every country requires at least one male and at least one female persona, each as its own file with the gender encoded in the filename.** More personas, and additional gender expressions, are welcome; the floor is mixed-gender representation.
 
-A persona links to its country's position. Gender is **not** a separate entity the persona links to - it is expressed through the persona's behaviour, distributed across the **PAST** framework (Projection, Action, Shadow, Tell). Like culture, gender is something a person performs, hides, and lets slip - not a tag they carry.
+A persona links to its country's position. Gender is **not** a separate entity the persona links to in the body -- it is expressed through the persona's behaviour, distributed across the **PAST** framework (Projection, Action, Shadow, Tell). The Projection section carries the engine gender position link; in v2 the filename also encodes the projected gender.
 
 Every persona intersects gender and culture. The **Projection** section establishes both:
 
@@ -478,11 +612,15 @@ Gender lives across PAST. A persona who projects female, acts in coherent regist
 - **Position link:** the first line of Projection carries both the gender position link and the country position link. Pattern: `[<gender>](../../../engine/position_<gender>.md) aus [<Country>](culture_<adj>_position.md).`
 - **Projection / Action / Shadow / Tell** as defined under PAST.
 
-**Naming:** `culture_<adj>_persona_<name>.md`
+**Naming:**
+- v2: `culture_<adj>_male_<name>.md` for male personas, `culture_<adj>_female_<name>.md` for female personas
+- v1 (legacy, until country migration): `culture_<adj>_persona_<name>.md`
+
+**khai footer:** `*khai: persona*` (both `male_` and `female_` files use the persona KAI type)
 
 **Gender Link Requirements:**
-- Male persona: `[man](../../../engine/position_male.md)`
-- Female persona: `[woman](../../../engine/position_female.md)`
+- Male persona: `[man](../../../engine/position_male.md)` in Projection
+- Female persona: `[woman](../../../engine/position_female.md)` in Projection
 - Non-binary/other: Document in Projection (design TBD)
 
 ---
@@ -493,13 +631,16 @@ Gender lives across PAST. A persona who projects female, acts in coherent regist
 regions/
   africa/
     country/
+      culture_adj_language_descriptor.md
+      culture_adj_history_descriptor.md
       culture_adj_position.md
+      culture_adj_process_descriptor.md
       culture_adj_piece_descriptor.md
       culture_adj_place_descriptor.md
-      culture_adj_persona_name1.md
-      culture_adj_persona_name2.md
-      culture_adj_language_descriptor.md
-      culture_adj_process_descriptor.md
+      culture_adj_male_name.md
+      culture_adj_female_name.md
+      README.md
+      REFERENCES.md
   americas/
   asia/
   europe/
@@ -515,11 +656,13 @@ Region values: `africa`, `americas`, `asia`, `europe`, `oceania`.
 
 Country folder names: ASCII lowercase with underscores.
 
+The folder listing is ordered by the canonical 8-kind sequence (language, history, position, process, piece, place, male, female) so reviewers can scan for gaps at a glance.
+
 ---
 
 ## Region and Country
 
-Regions and countries are **folders, not files**. There is no `region_europe.md` or `country_germany.md`. The folder name is the structural anchor; its contents enumerate the country's position, pieces, places, and personas.
+Regions and countries are **folders, not files**. There is no `region_europe.md` or `country_germany.md`. The folder name is the structural anchor; its contents enumerate the country's 8 kinds.
 
 Region values: `africa`, `americas`, `asia`, `europe`, `oceania`.
 
@@ -547,7 +690,7 @@ The world deploys flat to an AI project: every file lands in one folder. The rel
 
 The single author-facing rule: **every file basename in a deployed bundle is unique**.
 
-The `culture_<adj>_*` prefix on every culture-scoped file (position, piece, place, persona, language, process) ensures basename uniqueness across countries when bundles flatten.
+The `culture_<adj>_*` prefix on every culture-scoped file (position, history, piece, place, male, female, language, process) ensures basename uniqueness across countries when bundles flatten.
 
 ---
 
@@ -560,11 +703,11 @@ To avoid accidental intellectual property theft, each country folder includes tw
 Located at `regions/<region>/<country>/README.md`.
 
 **Contents:**
-- Overview of the country's content (position, pieces, places, personas)
+- Overview of the country's content (8 kinds: language, history, position, process, piece, place, male, female)
 - Sourcing principle: "Facts (verified via sources) + Original expression"
 - Source hierarchy (official → academic → secondary)
 - Plagiarism safeguard (how to report concerns)
-- Content audit status table
+- Content audit status table (ordered by the 8 v2 kinds for at-a-glance gap scanning)
 
 **Purpose:** Public documentation of content origin and verification process.
 
@@ -592,7 +735,7 @@ Following Autobahn's principle:
 
 ### Verification Hierarchy
 
-When verifying facts in place/piece/position files:
+When verifying facts in place/piece/history/position files:
 
 1. **Official government / institutional sources** (ministries, archives, official city sites)
 2. **Academic references** (universities, historical societies, peer-reviewed)
@@ -629,11 +772,16 @@ If you find potential plagiarism or factual errors:
 
 ## To document
 
+- **v2 migration sweep** - per-country migration PRs add countries to `data/v2_migrated_countries.txt` and bring their content to the 8-kind layout (rename `persona_*` to `male_*`/`female_*`, split `piece_*` into `piece_*` + `history_*` where the file was actually history, add khai footers). Tracked in `docs/migration/cultures-kind-schema-history-piece-split.md`.
 - **Legacy Owner-block migration** - the canonical Owner block is locked (see Owner above). The L2 validator enforces it on changed files. The corpus still contains hundreds of legacy shapes (`- *` placeholders, bolded `- **Project:**`, `— Americas` suffixes, `- Place: [...]` second tiers); these will fail validation when their file is next touched.
-- **Legacy mixed-gender coverage** - the rule is locked (see Mixed-gender minimum above) and L4a enforces it on changed countries. Most legacy countries currently have personas without engine gender links; they will fail the country check when any of their files is next touched.
+- **Legacy mixed-gender coverage** - the rule is locked (see Minimum per Country above) and L4a enforces it on changed countries. Most legacy countries currently have personas without engine gender links; they will fail the country check when any of their files is next touched.
 - **BOM cleanup** - several existing files start with U+FEFF; non-conformant with the encoding rule. The pre-commit hook strips BOMs from staged files; legacy files retain theirs until next touched.
 - **Engine section contracts** - the section shape for `engine/stack.md` and for per-platform instruction files is not yet specified.
 - **Versioning workflow** - bump-type declaration, pre-commit hook, version sync from Autobahn not yet adopted.
 - **Position `Has` enumeration** - some countries have multiple pieces; whether `Has` must enumerate all of them or only the load-bearing one needs confirmation.
 - **Multi-country sampling** - this architecture is derived primarily from the Germany sample. A pass over a representative country per region (Brazil, Nigeria, Japan, Australia) will confirm whether the section sets and Owner formats hold or need broadening.
 - **Cross-country relationships** - currently only `engine/process_world_is_spinning.md` is referenced from every place via relative path. Cross-country culture relationships are not modelled and may not need to be.
+
+---
+
+*v0.2.0 - KAI Worlds*
