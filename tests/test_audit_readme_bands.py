@@ -10,6 +10,11 @@ Pins the band parsing contract that #71/#73 introduced and #75 extended:
     `Moderate` for the equivalence check but is still surfaced in the
     `declared` column so the non-canonical word is visible.
 
+Canonical Hofstede band contract (this PR aligns the audit to it):
+  0-39    -> Low
+  40-69   -> Moderate
+  70-100  -> High
+
 Run: python3 -m unittest tests.test_audit_readme_bands
 """
 from __future__ import annotations
@@ -29,9 +34,9 @@ TABLE_SIX = (
     "| Dimension | Score | Level |\n"
     "|-----------|-------|-------|\n"
     "| PDI | 35 | **Low** |\n"
-    "| IDV | 67 | **High** |\n"
+    "| IDV | 67 | **Moderate** |\n"
     "| UAI | 53 | **Moderate** |\n"
-    "| MAS | 66 | **High** |\n"
+    "| MAS | 66 | **Moderate** |\n"
     "| LTO | 83 | **High** |\n"
     "| IND | 40 | **Moderate** |\n"
 )
@@ -44,8 +49,8 @@ class TestScoreToBand(unittest.TestCase):
         self.assertEqual(audit.score_to_band(0), "Low")
         self.assertEqual(audit.score_to_band(39), "Low")
         self.assertEqual(audit.score_to_band(40), "Moderate")
-        self.assertEqual(audit.score_to_band(59), "Moderate")
-        self.assertEqual(audit.score_to_band(60), "High")
+        self.assertEqual(audit.score_to_band(69), "Moderate")
+        self.assertEqual(audit.score_to_band(70), "High")
         self.assertEqual(audit.score_to_band(100), "High")
 
 
@@ -85,12 +90,13 @@ class TestAuditTable(unittest.TestCase):
         self.assertEqual(expected, "Moderate")
 
     def test_handles_inline_classifier_in_level_cell(self):
-        # `**Low** - description` style (Germany / Poland).
+        # `**Moderate** - description` style. Score 67 sits in the
+        # Moderate band (40-69) under the canonical contract.
         text = (
             "| Power Distance (PDI) | 35 | **Low** - Equality valued |\n"
-            "| Individualism (IDV) | 67 | **High** - Autonomy prioritized |\n"
-            "| Uncertainty Avoidance (UAI) | 65 | **High** - Rules preferred |\n"
-            "| Masculinity (MAS) | 66 | **High** - Competitiveness valued |\n"
+            "| Individualism (IDV) | 67 | **Moderate** - Balanced autonomy |\n"
+            "| Uncertainty Avoidance (UAI) | 65 | **Moderate** - Some rules |\n"
+            "| Masculinity (MAS) | 66 | **Moderate** - Balanced |\n"
             "| Long-Term Orientation (LTO) | 83 | **High** - Long planning |\n"
             "| Indulgence (IND) | 40 | **Moderate** - Restrained pole |\n"
         )
@@ -114,8 +120,11 @@ class TestAuditTable(unittest.TestCase):
 
 class TestAuditProse(unittest.TestCase):
     def test_finds_combined_band_dim_pair(self):
+        # Use scores in unambiguous bands so the matched declared bands
+        # agree: PDI=35 -> Low, IDV=83 -> High.
+        scores = {**SCORES, "PDI": 35, "IDV": 83}
         text = "- **Low PDI + High IDV:** Equality and autonomy.\n"
-        rows = audit.audit_prose("test", text, SCORES)
+        rows = audit.audit_prose("test", text, scores)
         self.assertEqual(len(rows), 2)
         dims = {r[2] for r in rows}
         self.assertEqual(dims, {"PDI", "IDV"})
@@ -143,17 +152,18 @@ class TestAuditProse(unittest.TestCase):
         self.assertFalse(rows[0][6])               # not a mismatch
 
     def test_medium_with_high_band_is_mismatch(self):
-        # Poland's drift class: Medium IDV but IDV=60 sits in High.
-        # Use Poland's actual PDI=68 so the same-bullet pair stays clean
-        # and the IDV mismatch isolates.
-        scores = {**SCORES, "PDI": 68, "IDV": 60}
+        # Drift class: prose says "Medium IDV" but the table score sits in
+        # the High band (>=70 under the canonical 39/69 contract). Use
+        # PDI=78 (High) so the same-bullet companion stays clean and the
+        # IDV mismatch isolates.
+        scores = {**SCORES, "PDI": 78, "IDV": 72}
         text = "- **High PDI + Medium IDV:** Hierarchy is real but earned.\n"
         rows = audit.audit_prose("test", text, scores)
         idv_row = next(r for r in rows if r[2] == "IDV")
         self.assertEqual(idv_row[4], "Medium")
         self.assertEqual(idv_row[5], "High")
         self.assertTrue(idv_row[6])
-        # PDI 68 sits in High band; same-bullet companion is clean.
+        # PDI 78 sits in High band; same-bullet companion is clean.
         pdi_row = next(r for r in rows if r[2] == "PDI")
         self.assertFalse(pdi_row[6])
 
@@ -175,12 +185,15 @@ class TestAuditProse(unittest.TestCase):
         self.assertEqual(rows, [])
 
     def test_line_number_reported(self):
+        # Use a score that puts the declared band on the right band under
+        # the canonical 39/69 contract: IDV=83 -> High.
+        scores = {**SCORES, "IDV": 83}
         text = (
             "intro line one\n"
             "intro line two\n"
             "- **High IDV:** something\n"
         )
-        rows = audit.audit_prose("test", text, SCORES)
+        rows = audit.audit_prose("test", text, scores)
         self.assertEqual(len(rows), 1)
         self.assertEqual(rows[0][1], "prose:L3")
 
