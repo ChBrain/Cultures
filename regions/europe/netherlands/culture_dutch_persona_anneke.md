@@ -21,19 +21,23 @@ Ze schrijft het op.
 Ze factureert op uren.
 
 ## Shadow
-De kortste lijn.
-Ze weet niet dat het een keuze is.
-Ze weet niet wie ze al gekozen heeft
-voor de eerste vraag werd gesteld.
+De positie leerde haar dat de kortste lijn de eerlijke lijn is.
+Dat omwegen iets kosten dat de zaak niet waard is.
+Buiten de Nederlandse kamer landt de kortste lijn niet als eerlijkheid.
+Ze landt als uitspraak.
+Anneke past de verpakking aan.
+Ze past de aanname nooit aan: dat de inhoud neutraal was om mee te beginnen.
+Die aanname zit in de positie. Niet in haar.
+Ze kan haar daarom niet zien.
 
 ## Tell
-Het moment waarop ze al gekozen heeft.
+Als een partij zegt dat ze zich niet gehoord voelen, vraagt ze welk feit ze hebben gemist.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 
 *Type: Fictional*
 
-*culture_dutch_persona_anneke.md - 08.05.2026*
+*culture_dutch_persona_anneke.md - 12.05.2026*
 
 v0.1.0 - KAI Cultures

@@ -19,20 +19,22 @@ Jeroen legt uit dat de feiten kloppen.
 De bron zegt: dat is niet het punt.
 
 ## Shadow
-2002 zat ook in het gewone woord.
-Fortuyn zei wat hij zag.
-Jeroen heeft erover geschreven.
-Het gaat over anderen.
+De positie leerde hem dat zeggen wat je ziet het werk is.
+Dat feiten geen lading hebben. Dat de lading erbij wordt gedaan door wie er niet tegen kan.
+Als het verhaal verkeerd landt, zoekt hij wat hij heeft gemist in de feiten.
+Wat de positie hem niet heeft gegeven: de mogelijkheid dat de feiten klopten en het zeggen ervan het probleem was.
+Dat recht door zee buiten de Nederlandse kamer gewicht heeft onderweg.
+Dat gewicht zit niet in de feiten. Het zit in de positie die ze draagt.
+Die positie is onzichtbaar voor wie erin staat.
 
 ## Tell
-Als het gesprek verkeerd landt:
-mist hij iets in de feiten.
+Als iemand zegt dat zijn stuk pijn heeft gedaan, vraagt hij welk gegeven onjuist was.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 
 *Type: Fictional*
 
-*culture_dutch_persona_jeroen.md - 08.05.2026*
+*culture_dutch_persona_jeroen.md - 12.05.2026*
 
 v0.1.0 - KAI Cultures
