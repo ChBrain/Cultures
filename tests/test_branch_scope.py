@@ -241,6 +241,20 @@ def test_check_scope_culture_allows_lock_index():
     assert unsafe == []
 
 
+def test_check_scope_culture_allows_v2_list():
+    """Migration PRs add the country to data/v2_migrated_countries.txt in the
+    same commit that renames persona_* -> male_*/female_* and adds the
+    khai declaration footers. Carved out via SAFE_PATTERNS."""
+    ok, unsafe = check_scope("culture", [
+        "regions/europe/germany/culture_german_male_christian.md",
+        "regions/europe/germany/culture_german_female_brigitte.md",
+        "regions/europe/germany/culture_german_history_grundgesetz.md",
+        "data/v2_migrated_countries.txt",
+    ], "culture/germany")
+    assert ok
+    assert unsafe == []
+
+
 def test_check_scope_culture_blocks_non_regions():
     ok, unsafe = check_scope("culture", [
         "regions/europe/germany/culture_german_position.md",
@@ -284,6 +298,7 @@ def test_check_scope_other_allows_non_governance():
         "README.md",
         "scripts/audit-germany.py",
         "data/hofstede_bag_locks.yaml",
+        "data/v2_migrated_countries.txt",
     ])
     assert ok
     assert unsafe == []
@@ -360,6 +375,7 @@ def test_check_scope_governance_allows_governance_paths():
         "data/hofstede_keywords.py",
         "data/hofstede_scores.json",
         ".validation-stamp",
+        "data/v2_migrated_countries.txt",
     ], "governance/harden-validators")
     assert ok
     assert unsafe == []
@@ -397,6 +413,7 @@ def test_safe_patterns_set_locked():
         ".gitignore",
         ".editorconfig",
         "data/hofstede_bag_locks.yaml",
+        "data/v2_migrated_countries.txt",
     })
 
 
@@ -459,6 +476,7 @@ def test_is_governance_path_glob_files(path):
     "tests/README.md",
     "tests/findings.py",
     "data/hofstede_bag_locks.yaml",
+    "data/v2_migrated_countries.txt",
     "regions/europe/germany/culture_german_position.md",
 ])
 def test_is_governance_path_non_governance(path):
