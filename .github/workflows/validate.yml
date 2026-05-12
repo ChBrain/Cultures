@@ -386,8 +386,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
       - name: Validate culture completeness
-        run: python3 tests/validate_culture_completeness.py ${{ needs.setup.outputs.files }}
+        run: python -m pytest tests/test_completeness.py -v
 
   L4b-audit-readme:
     name: L4b - Audit README status tables
@@ -400,8 +402,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
       - name: Validate audit README
-        run: python3 tests/validate_audit_readme.py ${{ needs.setup.outputs.files }}
+        run: python -m pytest tests/test_audit_readme.py -v
 
   L4c-audit-consistency:
     name: L4c - Audit table consistency
@@ -414,8 +418,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
       - name: Validate audit consistency
-        run: python3 tests/validate_audit_consistency.py ${{ needs.setup.outputs.files }}
+        run: python -m pytest tests/test_audit_consistency.py -v
 
   L4d-plagiarism:
     name: L4d - IP/plagiarism heuristics
@@ -432,7 +438,7 @@ jobs:
         run: python3 tests/validate_plagiarism.py ${{ needs.setup.outputs.files }}
 
   L4e-hofstede-alignment:
-    name: L4e - Hofstede dimension alignment
+    name: L4e - Hofstede structure
     needs: [setup, L4d-plagiarism]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
@@ -442,10 +448,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install Python deps
-        run: pip install -r tests/requirements.txt
-      - name: Validate Hofstede alignment
-        run: python3 tests/validate_hofstede_alignment.py ${{ needs.setup.outputs.files }}
+      - name: Install pytest
+        run: pip install pytest
+      - name: Validate Hofstede structure
+        run: python -m pytest tests/test_hofstede_structure.py -v
 
   L4f-hofstede-derived:
     name: L4f - Hofstede derived vs declared
@@ -461,7 +467,7 @@ jobs:
       - name: Install Python deps
         run: pip install -r tests/requirements.txt
       - name: Validate Hofstede derived scores
-        run: python3 tests/validate_hofstede_derived.py
+        run: python -m pytest tests/test_hofstede_derived.py -v
 
   L4g-hofstede-reference:
     # Compares declared scores against the Hofstede Insights reference
