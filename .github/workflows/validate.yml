@@ -521,7 +521,7 @@ jobs:
       - name: Install Python deps
         run: pip install -r tests/requirements.txt
       - name: Run loader tests
-        run: python3 -m unittest tests.test_hofstede_bag_loader -v
+        run: python -m pytest tests/test_hofstede_bag_loader.py -v
 
   bag-integrity:
     name: Hofstede - bag integrity (shape, quality, lock, completeness, fork)
