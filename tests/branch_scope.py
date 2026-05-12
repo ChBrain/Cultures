@@ -63,15 +63,22 @@ WORLD_SLUGS = frozenset({"staging", "release"})
 # Metadata files allowed on culture branches alongside regions/** changes.
 # Exact path match — `subdir/.gitignore` is NOT safe; only the listed paths.
 #
-# `data/hofstede_bag_locks.yaml` is the one cross-boundary file: bag migration
-# PRs (culture/<country>) need to update the lock entry for the country in
-# the same commit that adds the bag YAML. Strategy v2 carves it out explicitly.
+# Cross-boundary files (data lives outside regions/ but belongs in a culture
+# migration PR alongside the per-country changes):
+#   - ``data/hofstede_bag_locks.yaml`` — bag migration PRs (culture/<country>)
+#     update the lock entry for the country in the same commit that adds the
+#     bag YAML. Strategy v2 carves it out explicitly.
+#   - ``data/v2_migrated_countries.txt`` — per-country opt-in to v2-strict L4a
+#     validation. Migration PRs (culture/<country>) add the country here in
+#     the same commit that renames persona_* -> male_*/female_* and adds the
+#     khai declaration footers.
 SAFE_PATTERNS = frozenset({
     ".validation-stamp",
     ".bump-type",
     ".gitignore",
     ".editorconfig",
     "data/hofstede_bag_locks.yaml",
+    "data/v2_migrated_countries.txt",
 })
 
 # Governance territory: files that define or enforce repository rules.
