@@ -9,7 +9,7 @@ Die Stadt ist groß. Breiter als das Bewusstsein anderer Städte.
 Beton. Glas. Baukräne. Der Wiederaufbau läuft noch.
 Graffiti auf Industriegebäuden. Manche alt genug, dass sie unter Denkmalschutz stehen.
 Kein einheitliches Bild. Jede Fassade anders.
-Eine Linie aus Granitsteinen durch das Pflaster, Stolpersteine, tausende verteilt.
+Eine Linie aus Granitsteinen durch das Pflaster, Stolpersteine, Tausende verteilt.
 2711 Betonstelen, gleich hoch, dicht nebeneinander. Keine Inschriften auf den Steinen.
 
 ## Holds

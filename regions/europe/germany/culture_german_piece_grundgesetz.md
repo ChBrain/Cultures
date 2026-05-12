@@ -6,7 +6,7 @@
 
 ## Place
 Bonn. 1948.
-Das Parlamentarische Rat.
+Der Parlamentarische Rat.
 Fünfundsechzig Frauen und Männer.
 Sie hatten gesehen, was passiert, wenn es kein Grundgesetz gibt.
 Sie schrieben es trotzdem als vorläufig.
