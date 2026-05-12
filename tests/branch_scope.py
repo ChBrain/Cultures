@@ -49,11 +49,11 @@ from pathlib import Path
 # Country/region/world culture work all share this shape; the slug after
 # the slash is resolved against the on-disk regions/ tree to pick the
 # narrower allowed-path prefix.
-CULTURE_BRANCH_PATTERN = re.compile(r"^culture/[a-z0-9][a-z0-9_-]*$")
+CULTURE_BRANCH_PATTERN = re.compile(r"^culture/[a-z0-9][a-z0-9_.-]*$")
 
 # Governance work: dedicated kind so edits to the rules themselves are
 # visible in the branch name and gateable in CI.
-GOVERNANCE_BRANCH_PATTERN = re.compile(r"^governance/[a-z0-9][a-z0-9_-]*$")
+GOVERNANCE_BRANCH_PATTERN = re.compile(r"^governance/[a-z0-9][a-z0-9_.-]*$")
 
 # World-level integration slugs: may touch all of regions/**.
 # These are the integration targets feature branches merge into;
