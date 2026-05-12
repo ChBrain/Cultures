@@ -455,6 +455,24 @@ jobs:
       - name: Validate Hofstede derived scores
         run: python3 tests/validate_hofstede_derived.py
 
+  L4g-hofstede-reference:
+    # Compares declared scores against the Hofstede Insights reference
+    # (data/hofstede_scores.json). Catches LLM-invented scores that pass
+    # range checks and keyword-derived alignment but diverge from
+    # published values. Deviations require a documented justification.
+    name: L4g - Hofstede declared vs reference
+    needs: [setup, L4f-hofstede-derived]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate Hofstede reference comparison
+        run: python3 tests/validate_hofstede_reference.py ${{ needs.setup.outputs.files }}
+
   hofstede-bag-loader-tests:
     name: Hofstede - bag loader tests
     runs-on: ubuntu-latest
