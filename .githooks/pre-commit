@@ -188,6 +188,25 @@ def main() -> int:
                 print("")
                 return 1
 
+            # Hofstede reference check: declared scores must match
+            # data/hofstede_scores.json within +/-5 or carry a deviation
+            # justification in hofstede_decisions.md. Closes the
+            # "LLM invents plausible scores" vector that the gap-based
+            # derived check doesn't catch (an invented score would still
+            # have an internally-consistent keyword profile).
+            result = subprocess.run(
+                [sys.executable, "tests/validate_hofstede_reference.py", *culture_files],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            if result.returncode != 0:
+                print(">>> HOFSTEDE REFERENCE CHECK FAILED")
+                print("")
+                print(result.stdout.strip())
+                print("")
+                return 1
+
     # On any branch: validate any staged Hofstede bag YAML.
     # Catches schema, denylist coherence, and within-country collision issues
     # before push. Cross-country checks happen in CI via the pytest suite.
