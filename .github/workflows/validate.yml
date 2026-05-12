@@ -494,19 +494,6 @@ jobs:
         run: python -m pytest tests/test_hofstede_derived.py -v
 
   L4g-hofstede-reference:
-    # Compares declared scores against the Hofstede Insights reference
-    # (data/hofstede_scores.json). Catches LLM-invented scores that pass
-    # range checks and keyword-derived alignment but diverge from
-    # published values. Deviations require a documented justification.
-    #
-    # Two trigger modes:
-    #   - culture PR (regions/*.md in diff): scope to changed countries only.
-    #     Fast feedback; doesn't drag pre-existing divergence into unrelated PRs.
-    #   - data PR (data/hofstede_scores.json in diff): audit mode, run across
-    #     all countries. A reference-data update silently widens drift for
-    #     every culture whose declared score is now off-band; audit mode
-    #     surfaces every one of those in the PR.
-    # If both change in one PR (rare), audit mode wins (broader signal).
     name: L4g - Hofstede declared vs reference
     needs: [setup, L4f-hofstede-derived]
     if: needs.setup.outputs.any == 'true' || needs.setup.outputs.data_changed == 'true'
@@ -517,15 +504,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Validate Hofstede reference comparison
-        run: |
-          if [ "${{ needs.setup.outputs.data_changed }}" = "true" ]; then
-            echo "Reference data changed in this PR -- running audit across all countries."
-            python3 tests/validate_hofstede_reference.py
-          else
-            echo "Culture PR -- scoping check to changed countries."
-            python3 tests/validate_hofstede_reference.py ${{ needs.setup.outputs.files }}
-          fi
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run Hofstede reference tests
+        run: python -m pytest tests/test_hofstede_reference.py -v
 
   hofstede-bag-loader-tests:
     name: Hofstede - bag loader tests
