@@ -28,8 +28,10 @@ sys.path.insert(0, str(REPO_ROOT / "tests"))
 
 from branch_scope import (
     SAFE_PATTERNS,
+    WORLD_SLUGS,
     check_scope,
     classify_branch,
+    culture_scope,
 )
 
 
@@ -83,36 +85,46 @@ def main() -> int:
         print(">>> ERROR: Direct commits to main are forbidden")
         print("")
         print("Create a feature branch first:")
-        print("  git checkout -b feat/culture-<name>   # culture content")
+        print("  git checkout -b culture/<country>     # culture content")
         print("  git checkout -b chore/<name>          # infrastructure / tooling")
         print("  git checkout -b fix/<name>            # corrections")
         print("")
         return 1
 
     all_staged = run_git("diff", "--cached", "--name-only", "--diff-filter=ACMRT").splitlines()
-    ok, unsafe_files = check_scope(branch_kind, all_staged)
+    ok, unsafe_files = check_scope(branch_kind, all_staged, current_branch)
     if not ok:
         if branch_kind == "culture":
-            print(">>> ERROR: Culture branch can only modify regions/")
-            print("")
-            print("Unsafe files detected (split to a separate branch):")
-            for f in unsafe_files:
-                print(f"  x {f}")
-            print("")
-            print(f"  Branch:  {current_branch}")
-            print( "  Allowed: regions/** + " + ", ".join(sorted(SAFE_PATTERNS)))
-            print( "  Rule:    feat/culture-<name> branches contain culture content only")
-            print( "  Other:   use chore/<name> or fix/<name> for infrastructure")
+            prefix = culture_scope(current_branch)
+            if prefix is None:
+                print(">>> ERROR: Unknown culture slug")
+                print("")
+                print(f"  Branch:  {current_branch}")
+                print( "  Rule:    culture/<slug> must resolve to a country, region, or integration target")
+                print( "  Country: culture/<country>     -> regions/<region>/<country>/**")
+                print( "  Region:  culture/<region>      -> regions/<region>/**")
+                print( "  World:   culture/staging, culture/release -> regions/**")
+            else:
+                print(f">>> ERROR: Culture branch out of scope (allowed: {prefix}**)")
+                print("")
+                print("Unsafe files detected (split to a separate branch):")
+                for f in unsafe_files:
+                    print(f"  x {f}")
+                print("")
+                print(f"  Branch:  {current_branch}")
+                print(f"  Allowed: {prefix}** + " + ", ".join(sorted(SAFE_PATTERNS)))
+                print( "  Rule:    culture/<slug> may only touch its own slug's subtree")
+                print( "  Wider:   use culture/<region> or culture/staging for cross-cutting work")
         else:
             print(">>> ERROR: Non-culture branch cannot modify regions/")
             print("")
-            print("Culture files detected (split to a feat/culture-<name> branch):")
+            print("Culture files detected (split to a culture/<slug> branch):")
             for f in unsafe_files:
                 print(f"  x {f}")
             print("")
             print(f"  Branch:  {current_branch}")
-            print( "  Rule:    only feat/culture-<name> branches may modify regions/")
-            print( "  Culture: git checkout -b feat/culture-<name>")
+            print( "  Rule:    only culture/<slug> branches may modify regions/")
+            print( "  Culture: git checkout -b culture/<country>")
         print("")
         return 1
 
