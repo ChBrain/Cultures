@@ -97,11 +97,9 @@ def _make_repo(tmp_path: Path) -> Path:
     repo = tmp_path / "repo"
     repo.mkdir()
 
-    # Mirror the directory shape the hook expects.
     (repo / ".githooks").mkdir()
     (repo / "tests").mkdir()
     (repo / "data").mkdir()
-    # Use copies (not symlinks) so the test works on Windows too.
     shutil.copy2(HOOK_PATH, repo / ".githooks" / "pre-commit")
     shutil.copy2(BRANCH_SCOPE_PATH, repo / "tests" / "branch_scope.py")
     if BAG_VALIDATOR_PATH.exists():
@@ -110,16 +108,23 @@ def _make_repo(tmp_path: Path) -> Path:
         shutil.copy2(DENYLIST_PATH, repo / "data" / "hofstede_denylist.yaml")
     os.chmod(repo / ".githooks" / "pre-commit", 0o755)
 
+    # Seed a minimal regions/ topology so culture/<slug> resolution works.
+    # branch_scope.culture_scope walks regions/ to map slugs to allowed
+    # path prefixes; without these stubs every culture branch would fail
+    # with "Unknown culture slug" before reaching the scope check.
+    for country in ("netherlands", "denmark", "germany", "x"):
+        (repo / "regions" / "europe" / country).mkdir(parents=True)
+        (repo / "regions" / "europe" / country / ".gitkeep").write_text("")
+    (repo / "regions" / "asia" / "japan").mkdir(parents=True)
+    (repo / "regions" / "asia" / "japan" / ".gitkeep").write_text("")
+
     _run("git", "init", "-q", "-b", "main", cwd=repo, check=True)
     _run("git", "config", "user.email", "test@test.invalid", cwd=repo, check=True)
     _run("git", "config", "user.name", "test", cwd=repo, check=True)
-    # Disable commit signing inside the test repo. The global git config
-    # may require GPG/SSH signing against an external signer that isn't
-    # reachable from a throwaway repo; force-off keeps the test self-contained.
     _run("git", "config", "commit.gpgsign", "false", cwd=repo, check=True)
     _run("git", "config", "tag.gpgSign", "false", cwd=repo, check=True)
-    # Need an initial commit so we can branch off something.
-    _run("git", "commit", "--allow-empty", "-q", "-m", "init", cwd=repo, check=True)
+    _run("git", "add", "-A", cwd=repo, check=True)
+    _run("git", "commit", "-q", "-m", "init", cwd=repo, check=True)
     return repo
 
 
@@ -152,8 +157,6 @@ class TestHookScopeEnforcement(unittest.TestCase):
     def tearDown(self) -> None:
         self._tmp.cleanup()
 
-    # --- main branch -------------------------------------------------------
-
     def test_main_blocks_any_commit(self):
         """Hook init left us on `main`; any staged change must be rejected."""
         _stage(self.repo, "tests/foo.py")
@@ -161,16 +164,11 @@ class TestHookScopeEnforcement(unittest.TestCase):
         self.assertEqual(result.returncode, 1, result.stdout)
         self.assertIn("Direct commits to main are forbidden", result.stdout)
 
-    # --- culture branches --------------------------------------------------
-
     def test_culture_branch_allows_regions(self):
         _checkout(self.repo, "culture/netherlands")
-        # .txt instead of .md to avoid scripts/validate.py invocation
-        # (we're testing the scope guard, not the validators).
         _stage(self.repo, "regions/europe/netherlands/foo.txt")
         result = _run_hook(self.repo)
         self.assertEqual(result.returncode, 0, result.stdout)
-        # Stamp should have been written on success.
         self.assertTrue((self.repo / ".validation-stamp").exists())
 
     def test_culture_branch_allows_safe_metadata(self):
@@ -181,12 +179,6 @@ class TestHookScopeEnforcement(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stdout)
 
     def test_culture_branch_allows_lock_index_alongside_bag(self):
-        """Bag migration PRs (culture/<name>) update the lock index
-        in the same commit as the new bag YAML. Strategy v2 carve-out.
-
-        Stages a complete valid bag (must pass tests/validate_country_bag.py
-        which the hook now invokes on staged bag files) plus the lock file.
-        """
         _checkout(self.repo, "culture/netherlands")
         _stage(
             self.repo,
@@ -198,13 +190,11 @@ class TestHookScopeEnforcement(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stdout)
 
     def test_culture_branch_blocks_malformed_bag(self):
-        """Hook runs validate_country_bag.py on staged bag YAMLs.
-        Malformed bag (missing required fields) must block the commit."""
         _checkout(self.repo, "culture/netherlands")
         _stage(
             self.repo,
             "regions/europe/netherlands/hofstede_bag.yaml",
-            "country: netherlands\nlanguage: nl\n",  # missing required fields
+            "country: netherlands\nlanguage: nl\n",
         )
         result = _run_hook(self.repo)
         self.assertEqual(result.returncode, 1, result.stdout)
@@ -213,17 +203,79 @@ class TestHookScopeEnforcement(unittest.TestCase):
 
     def test_culture_branch_blocks_infra_changes(self):
         _checkout(self.repo, "culture/netherlands")
-        # Don't restage .githooks/pre-commit here - that would overwrite the
-        # very hook we're about to run. Use other infra paths instead.
         _stage(self.repo, "tests/foo.py")
         _stage(self.repo, ".github/copilot-instructions.md", "# tampered\n")
         result = _run_hook(self.repo)
         self.assertEqual(result.returncode, 1, result.stdout)
-        self.assertIn("Culture branch can only modify regions/", result.stdout)
+        self.assertIn("Culture branch out of scope", result.stdout)
+        self.assertIn("regions/europe/netherlands/", result.stdout)
         self.assertIn("tests/foo.py", result.stdout)
         self.assertIn(".github/copilot-instructions.md", result.stdout)
 
-    # --- other branches ----------------------------------------------------
+    def test_country_branch_blocks_other_country(self):
+        """culture/netherlands must not be able to edit Denmark — even
+        though Denmark is the same region. Per-country protection."""
+        _checkout(self.repo, "culture/netherlands")
+        _stage(self.repo, "regions/europe/denmark/culture_danish_position.md")
+        result = _run_hook(self.repo)
+        self.assertEqual(result.returncode, 1, result.stdout)
+        self.assertIn("Culture branch out of scope", result.stdout)
+        self.assertIn("regions/europe/netherlands/", result.stdout)
+        self.assertIn(
+            "regions/europe/denmark/culture_danish_position.md",
+            result.stdout,
+        )
+
+    def test_country_branch_blocks_other_region(self):
+        """culture/netherlands must not be able to edit Japan (different region)."""
+        _checkout(self.repo, "culture/netherlands")
+        _stage(self.repo, "regions/asia/japan/culture_japanese_position.md")
+        result = _run_hook(self.repo)
+        self.assertEqual(result.returncode, 1, result.stdout)
+        self.assertIn("Culture branch out of scope", result.stdout)
+
+    def test_region_branch_allows_multi_country(self):
+        """culture/europe is a region-level scope and may touch any
+        country within europe in a single commit."""
+        _checkout(self.repo, "culture/europe")
+        _stage(self.repo, "regions/europe/germany/foo.txt")
+        _stage(self.repo, "regions/europe/denmark/foo.txt")
+        result = _run_hook(self.repo)
+        self.assertEqual(result.returncode, 0, result.stdout)
+
+    def test_region_branch_blocks_other_region(self):
+        _checkout(self.repo, "culture/europe")
+        _stage(self.repo, "regions/asia/japan/foo.txt")
+        result = _run_hook(self.repo)
+        self.assertEqual(result.returncode, 1, result.stdout)
+        self.assertIn("Culture branch out of scope", result.stdout)
+        self.assertIn("regions/europe/", result.stdout)
+
+    def test_world_branch_allows_anything_in_regions(self):
+        """culture/staging is the integration target — by design it may
+        touch any country/region in a single commit."""
+        _checkout(self.repo, "culture/staging")
+        _stage(self.repo, "regions/europe/germany/foo.txt")
+        _stage(self.repo, "regions/asia/japan/foo.txt")
+        result = _run_hook(self.repo)
+        self.assertEqual(result.returncode, 0, result.stdout)
+
+    def test_release_branch_allows_anything_in_regions(self):
+        _checkout(self.repo, "culture/release")
+        _stage(self.repo, "regions/europe/germany/foo.txt")
+        result = _run_hook(self.repo)
+        self.assertEqual(result.returncode, 0, result.stdout)
+
+    def test_unknown_culture_slug_rejected(self):
+        """culture/<slug> where slug isn't a country, region, or world
+        target must be rejected outright — not silently widened to all
+        of regions/."""
+        _checkout(self.repo, "culture/atlantis")
+        _stage(self.repo, "regions/europe/germany/foo.txt")
+        result = _run_hook(self.repo)
+        self.assertEqual(result.returncode, 1, result.stdout)
+        self.assertIn("Unknown culture slug", result.stdout)
+        self.assertIn("culture/atlantis", result.stdout)
 
     def test_other_branch_allows_infra(self):
         _checkout(self.repo, "chore/x")
@@ -253,8 +305,6 @@ class TestHookScopeEnforcement(unittest.TestCase):
         result = _run_hook(self.repo)
         self.assertEqual(result.returncode, 1, result.stdout)
         self.assertIn("regions/europe/x/foo.md", result.stdout)
-
-    # --- the original PR #27 bypass ---------------------------------------
 
     def test_slash_form_classified_as_other(self):
         """Worked example in the original doc was `feat/culture/netherlands`
