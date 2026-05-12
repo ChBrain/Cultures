@@ -129,7 +129,6 @@ def _policy() -> dict:
 # allowlist.
 GLOBAL_EXCEPTIONS_FILE = HERE / "language_exceptions.txt"
 PER_CULTURE_EXCEPTIONS_FILENAME = "language_exceptions.txt"
-_REGIONS = frozenset({"africa", "americas", "asia", "europe", "oceania"})
 
 
 def _parse_exceptions(path: Path) -> set[str]:
@@ -150,18 +149,21 @@ _culture_exception_cache: dict[Path, set[str]] = {}
 def _country_dir_for(file_path: Path) -> Path | None:
     """Return the country directory owning ``file_path``, or None.
 
-    A country directory is any path of the form
-    ``<repo>/regions/<region>/<country>/`` where region is in _REGIONS.
-    For paths outside that pattern (infrastructure files, etc.), returns
-    None -- there's no culture-specific overlay to load.
+    A country directory has the shape ``.../regions/<region>/<country>/``;
+    the check walks ancestors of ``file_path`` and returns the candidate
+    whose grandparent is literally named ``regions``. Topology is derived
+    from the path itself instead of a hardcoded region list, matching
+    ``branch_scope.py``'s on-disk convention -- adding a continent under
+    regions/ is transparent, and test fixtures using ``tmp_path`` work
+    without staging the real ``regions/`` layout.
     """
     try:
         resolved = file_path.resolve()
     except OSError:
         return None
-    for parent in resolved.parents:
-        if parent.parent.name in _REGIONS:
-            return parent
+    for candidate in resolved.parents:
+        if candidate.parent.parent.name == "regions":
+            return candidate
     return None
 
 
