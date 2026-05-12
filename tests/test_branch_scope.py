@@ -40,6 +40,8 @@ def test_classify_main():
     "culture/burkina_faso",
     "culture/staging",
     "culture/a1",
+    "culture/rollout-v1.2",
+    "culture/fix-v0.1.5",
 ])
 def test_classify_culture(branch):
     assert classify_branch(branch) == "culture"
@@ -57,7 +59,6 @@ def test_classify_culture(branch):
     "culture/STAGING",
     " culture/denmark",
     "culture/denmark ",
-    "culture/denmark.md",
 ])
 def test_classify_culture_near_misses_are_other(branch):
     """The bypass surface — every one of these must NOT be 'culture'."""
@@ -83,6 +84,8 @@ def test_classify_other_prefixes(branch):
     "governance/x",
     "governance/a1",
     "governance/x_y-z",
+    "governance/ci-pin-khai-tests-v0.1.5",
+    "governance/bump-v2.0.0",
 ])
 def test_classify_governance(branch):
     assert classify_branch(branch) == "governance"
@@ -144,6 +147,12 @@ def test_culture_scope_unknown_slug_is_none(branch):
 @pytest.mark.parametrize("branch", ["main", "chore/x", "feat/foo", "culture/X"])
 def test_culture_scope_non_culture_is_none(branch):
     assert culture_scope(branch) is None
+
+
+def test_culture_scope_dot_slug_resolves_to_none():
+    """A dot-containing slug like 'denmark.md' is syntactically valid but not
+    a real country/region, so scope resolves to None and blocks everything."""
+    assert culture_scope("culture/denmark.md") is None
 
 
 # ---------------------------------------------------------------------------
