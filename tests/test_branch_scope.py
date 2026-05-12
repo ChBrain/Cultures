@@ -467,6 +467,7 @@ class TestIsGovernancePath(unittest.TestCase):
             "data/hofstede_keywords.py",
             "data/hofstede_scores.json",
             "data/hofstede_bag_loader.py",
+            "data/language_policy.yaml",
         ]:
             with self.subTest(path=path):
                 self.assertTrue(is_governance_path(path))
@@ -523,6 +524,7 @@ class TestIsGovernancePath(unittest.TestCase):
                 "data/hofstede_keywords.py",
                 "data/hofstede_scores.json",
                 "data/hofstede_bag_loader.py",
+                "data/language_policy.yaml",
             ),
         )
 
