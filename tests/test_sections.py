@@ -4,6 +4,13 @@ Covers what khai component tests do NOT check:
   - Owner block format (Project: Cultures + Culture/Scope)
   - Required sections appear in canonical order
   - Persona Projection contains gender and culture position links
+
+Cultures layers specialized kind names on top of KAI's 5 generic
+component structures. The alias map below resolves Cultures-specific
+filename tokens to their KAI structural type so v2 schema files
+(history -> piece structure, male/female -> persona structure, language
+-> position structure) get the same section-order validation that
+their KAI structural cousins get.
 """
 import re
 import pytest
@@ -16,14 +23,39 @@ _SECTION_ORDER: dict[str, list[str]] = {
     "persona":  ["Owner", "Projection", "Action", "Shadow", "Tell"],
 }
 
-_COMPONENT_TYPES = {"process", "position", "piece", "place", "persona"}
+# Cultures-specific kind tokens (in filenames) -> KAI structural type.
+# Each entry on the left can appear in a filename; the right is the KAI
+# component whose section-order contract applies. KAI types map to
+# themselves (process / position / piece / place / persona); Cultures-
+# specific kinds (language / history / male / female) map to the KAI
+# structure they reuse.
+_CULTURES_KIND_TO_KHAI: dict[str, str] = {
+    # KAI components (self-mapping)
+    "process":  "process",
+    "position": "position",
+    "piece":    "piece",
+    "place":    "place",
+    "persona":  "persona",
+    # Cultures-specific kinds layered on KAI structures
+    "language": "position",   # culture_<adj>_language_<slug>.md uses HOLD (Has/Orders/Loses/Drives)
+    "history":  "piece",      # culture_<adj>_history_<slug>.md uses PLAY (Place/Load Bearing/Apparent/Yearbook)
+    "male":     "persona",    # culture_<adj>_male_<name>.md uses PAST (Projection/Action/Shadow/Tell)
+    "female":   "persona",    # culture_<adj>_female_<name>.md uses PAST
+}
 
 
 def _component_type(path: Path) -> str | None:
+    """Resolve a Cultures filename to its KAI structural component type.
+
+    Splits the filename stem on underscore and returns the KAI type for
+    the first token that matches a known Cultures kind. Returns None for
+    files that don't carry any recognized kind token (README, REFERENCES,
+    hofstede_decisions, etc.) -- those skip the section-order checks.
+    """
     parts = path.stem.lower().split("_")
-    for ctype in _COMPONENT_TYPES:
-        if ctype in parts:
-            return ctype
+    for token in parts:
+        if token in _CULTURES_KIND_TO_KHAI:
+            return _CULTURES_KIND_TO_KHAI[token]
     return None
 
 
