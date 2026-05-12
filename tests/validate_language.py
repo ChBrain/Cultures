@@ -117,22 +117,76 @@ def _policy() -> dict:
     return _POLICY
 
 
-# Per-repo proper-noun exceptions. Per-culture exceptions are a Phase 2
-# deliverable; for now everything sits in one file.
-EXCEPTIONS_FILE = HERE / "language_exceptions.txt"
+# Proper-noun exceptions are layered:
+#  - GLOBAL: tests/language_exceptions.txt  (governance-tracked, repo-wide)
+#  - PER-CULTURE: regions/<region>/<country>/language_exceptions.txt
+#    (lives with the culture content; e.g. `Vergangenheitsbewältigung`
+#    is a German proper noun, not something to allow globally)
+#
+# The per-culture overlay is the Phase-2 friction reducer: contributors
+# add country-specific names alongside the culture work in the same PR,
+# without needing a separate governance/* change to widen the global
+# allowlist.
+GLOBAL_EXCEPTIONS_FILE = HERE / "language_exceptions.txt"
+PER_CULTURE_EXCEPTIONS_FILENAME = "language_exceptions.txt"
 
 
-def _load_exceptions() -> set[str]:
-    if not EXCEPTIONS_FILE.exists():
+def _parse_exceptions(path: Path) -> set[str]:
+    """Read one exceptions file. Lowercase-trim each non-comment line."""
+    if not path.is_file():
         return set()
     return {
         line.strip().lower()
-        for line in EXCEPTIONS_FILE.read_text(encoding="utf-8").splitlines()
+        for line in path.read_text(encoding="utf-8").splitlines()
         if line.strip() and not line.startswith("#")
     }
 
 
-_EXCEPTIONS: set[str] = _load_exceptions()
+_GLOBAL_EXCEPTIONS: set[str] = _parse_exceptions(GLOBAL_EXCEPTIONS_FILE)
+_culture_exception_cache: dict[Path, set[str]] = {}
+
+
+def _country_dir_for(file_path: Path) -> Path | None:
+    """Return the country directory owning ``file_path``, or None.
+
+    A country directory has the shape ``.../regions/<region>/<country>/``;
+    the check walks ancestors of ``file_path`` and returns the candidate
+    whose grandparent is literally named ``regions``. Topology is derived
+    from the path itself instead of a hardcoded region list, matching
+    ``branch_scope.py``'s on-disk convention -- adding a continent under
+    regions/ is transparent, and test fixtures using ``tmp_path`` work
+    without staging the real ``regions/`` layout.
+    """
+    try:
+        resolved = file_path.resolve()
+    except OSError:
+        return None
+    for candidate in resolved.parents:
+        if candidate.parent.parent.name == "regions":
+            return candidate
+    return None
+
+
+def _culture_exceptions_for(file_path: Path) -> set[str]:
+    """Return per-culture exceptions for ``file_path``, with caching.
+
+    Cache keyed by country directory so a multi-file run validates each
+    country's exceptions file once. Cache lifetime is the process; the
+    pre-commit hook is short-lived, so staleness isn't a concern.
+    """
+    country = _country_dir_for(file_path)
+    if country is None:
+        return set()
+    if country not in _culture_exception_cache:
+        _culture_exception_cache[country] = _parse_exceptions(
+            country / PER_CULTURE_EXCEPTIONS_FILENAME,
+        )
+    return _culture_exception_cache[country]
+
+
+def _exceptions_for(file_path: Path) -> set[str]:
+    """All proper-noun exceptions applying to ``file_path``."""
+    return _GLOBAL_EXCEPTIONS | _culture_exceptions_for(file_path)
 
 
 # ---------------------------------------------------------------------
@@ -257,6 +311,10 @@ SECTION_RE = re.compile(
 
 _MD_LINK_RE = re.compile(r"\[([^\]]*)\]\([^)]*\)")   # [text](url) -> text
 _MD_NOISE_RE = re.compile(r"[`*_~|]|^\s*[-*+]\s+", re.MULTILINE)
+# Blockquoted lines are skipped before detection. Citations of foreign-
+# language source material belong here -- they should pass the validator
+# without polluting language_exceptions.txt with every quoted word.
+_MD_BLOCKQUOTE_RE = re.compile(r"^\s*>.*$", re.MULTILINE)
 
 
 def _strip_exceptions(text: str, exceptions: set[str]) -> str:
@@ -266,6 +324,7 @@ def _strip_exceptions(text: str, exceptions: set[str]) -> str:
 
 
 def _clean(text: str) -> str:
+    text = _MD_BLOCKQUOTE_RE.sub(" ", text)
     text = _MD_LINK_RE.sub(r"\1", text)
     text = _MD_NOISE_RE.sub(" ", text)
     return text
@@ -295,16 +354,27 @@ def _detect_violation(
     effective_allowed: set[str],
     detector,
     min_words: int,
-) -> str | None:
-    clean = _strip_exceptions(_clean(body), _EXCEPTIONS)
+    exceptions: set[str],
+) -> tuple[str, str, int] | None:
+    """Return (language, span_text, word_count) for the first violation.
+
+    None when every span either matches the allowed languages or is
+    shorter than ``min_words`` (proper-noun territory). The triple
+    powers the actionable error message:
+
+        FAIL <file>: German span (18 words) in ## Shown:
+          'Die Wuerde des Menschen ist unantastbar...'
+    """
+    clean = _strip_exceptions(_clean(body), exceptions)
     spans = detector.detect_multiple_languages_of(clean)
     for span in spans:
         lang = span.language.name.lower()
         if lang in effective_allowed:
             continue
         span_text = clean[span.start_index:span.end_index].strip()
-        if len(span_text.split()) >= min_words:
-            return lang
+        word_count = len(span_text.split())
+        if word_count >= min_words:
+            return lang, span_text, word_count
     return None
 
 
@@ -313,8 +383,10 @@ def _check_content(
     allowed: set[str],
     policy: dict,
     detector,
-) -> list[tuple[str, str]]:
-    violations: list[tuple[str, str]] = []
+    exceptions: set[str],
+) -> list[tuple[str, str, str, int]]:
+    """Return ``[(heading, language, span_text, word_count), ...]``."""
+    violations: list[tuple[str, str, str, int]] = []
     sections = policy["prose_sections"]
     min_words = policy["min_span_words"]
     for m in SECTION_RE.finditer(text):
@@ -324,15 +396,123 @@ def _check_content(
         body = m.group(2).strip()
         if not body:
             continue
-        lang = _detect_violation(body, allowed, detector, min_words)
-        if lang:
-            violations.append((heading, lang))
+        violation = _detect_violation(body, allowed, detector, min_words, exceptions)
+        if violation is not None:
+            lang, span_text, words = violation
+            violations.append((heading, lang, span_text, words))
     return violations
+
+
+def _violation_issue(
+    file_path: Path,
+    heading: str,
+    lang: str,
+    span_text: str,
+    word_count: int,
+    allowed: set[str],
+) -> Issue:
+    """Render a single violation into a contributor-readable Issue.
+
+    The verdict text is the LLM fix-suggestion ladder, cheapest first:
+    blockquote -> per-culture exception -> rewrite. The country-specific
+    exception path is rendered explicitly so the contributor knows
+    exactly which file to touch without scanning the validator source.
+    """
+    snippet = span_text.replace("\n", " ").strip()
+    if len(snippet) > 80:
+        snippet = snippet[:77] + "..."
+    allowed_str = " and ".join(sorted(allowed))
+    country = _country_dir_for(file_path)
+    if country is not None:
+        try:
+            exc_path = (
+                country.relative_to(ROOT) / PER_CULTURE_EXCEPTIONS_FILENAME
+            )
+        except ValueError:
+            exc_path = Path(country.name) / PER_CULTURE_EXCEPTIONS_FILENAME
+        exc_hint = f"add proper nouns to {exc_path}"
+    else:
+        exc_hint = (
+            f"add proper nouns to {GLOBAL_EXCEPTIONS_FILE.relative_to(ROOT)}"
+        )
+    return Issue(
+        error=(
+            f"{file_path}: {lang.capitalize()} span ({word_count} words) "
+            f"in ## {heading}: '{snippet}'"
+        ),
+        verdict=(
+            f"if a quoted source, wrap as `> ...` blockquote (skipped); "
+            f"if proper nouns, {exc_hint}; "
+            f"otherwise rewrite in {allowed_str}"
+        ),
+    )
 
 
 # ---------------------------------------------------------------------
 # Public entry: per-file
 # ---------------------------------------------------------------------
+
+def explain(path: Path) -> list[str]:
+    """Render a per-section trace of detected spans for ``path``.
+
+    Diagnostic output for ``--explain`` mode. Each prose section's body
+    is run through the detector and every detected span (allowed or
+    not) is listed with its language, word count, and a snippet. This
+    is the "why is my file failing?" lookup an LLM (or human) needs to
+    pick the right fix -- without re-implementing the detector loop.
+
+    Returns lines as strings rather than printing so callers can pipe
+    or test the output without capturing stdout.
+    """
+    out: list[str] = [f"=== {path} ==="]
+    try:
+        text = path.read_text(encoding="utf-8")
+    except (UnicodeDecodeError, OSError) as e:
+        out.append(f"  (could not read: {e})")
+        return out
+    try:
+        policy = _policy()
+    except ValueError as e:
+        out.append(f"  (policy invalid: {e})")
+        return out
+    detector = _build_detector(policy)
+    if detector is None:
+        out.append("  (lingua not installed; install via tests/requirements.txt)")
+        return out
+    allowed = _resolve_allowed_languages(path, policy)
+    out.append(f"  allowed languages: {sorted(allowed)}")
+    exceptions = _exceptions_for(path)
+    out.append(f"  exceptions in scope: {len(exceptions)} entries")
+    sections = policy["prose_sections"]
+    min_words = policy["min_span_words"]
+    for m in SECTION_RE.finditer(text):
+        heading = m.group(1).strip()
+        body = m.group(2).strip()
+        if heading.lower() not in sections:
+            out.append(f"  ## {heading}    (skipped: not in prose_sections)")
+            continue
+        if not body:
+            out.append(f"  ## {heading}    (skipped: empty body)")
+            continue
+        clean = _strip_exceptions(_clean(body), exceptions)
+        spans = detector.detect_multiple_languages_of(clean)
+        out.append(f"  ## {heading}")
+        for span in spans:
+            lang = span.language.name.lower()
+            text_span = clean[span.start_index:span.end_index].strip()
+            words = len(text_span.split())
+            snippet = text_span.replace("\n", " ")
+            if len(snippet) > 60:
+                snippet = snippet[:57] + "..."
+            if lang in allowed:
+                marker = "OK"
+            elif words < min_words:
+                marker = "ok (short)"
+            else:
+                marker = f"FAIL (>= {min_words} words)"
+            out.append(f"    [{marker}] {lang:10s} {words:3d}w  '{snippet}'")
+    return out
+
 
 def validate(path: Path) -> list[Issue]:
     """Per-file entry for the orchestrator. Returns one Issue per violation.
@@ -353,14 +533,11 @@ def validate(path: Path) -> list[Issue]:
     if detector is None:
         return []
     allowed = _resolve_allowed_languages(path, policy)
-    violations = _check_content(text, allowed, policy, detector)
-    allowed_str = " and ".join(sorted(allowed))
+    exceptions = _exceptions_for(path)
+    violations = _check_content(text, allowed, policy, detector, exceptions)
     return [
-        Issue(
-            error=f"{path}: {lang.capitalize()} prose in ## {section}",
-            verdict=f"rewrite the passage in {allowed_str}",
-        )
-        for section, lang in violations
+        _violation_issue(path, section, lang, snippet, words, allowed)
+        for section, lang, snippet, words in violations
     ]
 
 
@@ -431,6 +608,12 @@ def main(argv: list[str] | None = None) -> int:
         help="only run the registry cross-check on every country README; "
              "skip per-file language detection",
     )
+    parser.add_argument(
+        "--explain", action="store_true",
+        help="diagnostic mode: dump every detected language span per "
+             "section for the given files. Useful for LLM-driven authoring "
+             "and debugging 'why does my file fail/pass'.",
+    )
     args = parser.parse_args(argv)
 
     try:
@@ -443,6 +626,18 @@ def main(argv: list[str] | None = None) -> int:
         return _cmd_list_repo_languages()
     if args.list_country_languages:
         return _cmd_list_country_languages()
+
+    if args.explain:
+        if not args.files:
+            print(
+                "ERROR: --explain requires one or more file arguments.",
+                file=sys.stderr,
+            )
+            return 2
+        for arg in args.files:
+            for line in explain(Path(arg)):
+                print(line)
+        return 0
 
     # README registry cross-check runs in all detection modes -- it
     # catches the silent-fallback bug that motivated Phase 1 and costs
@@ -486,13 +681,12 @@ def main(argv: list[str] | None = None) -> int:
         except (UnicodeDecodeError, OSError):
             continue
         allowed = _resolve_allowed_languages(file_path, policy)
-        violations = _check_content(text, allowed, policy, detector)
-        allowed_str = " and ".join(sorted(allowed))
-        for section, lang in violations:
-            all_issues.append(Issue(
-                error=f"{file_path}: {lang.capitalize()} prose in ## {section}",
-                verdict=f"rewrite the passage in {allowed_str}",
-            ))
+        exceptions = _exceptions_for(file_path)
+        violations = _check_content(text, allowed, policy, detector, exceptions)
+        for section, lang, snippet, words in violations:
+            all_issues.append(
+                _violation_issue(file_path, section, lang, snippet, words, allowed)
+            )
 
     allowed_str = " and ".join(sorted(policy["languages"]))
     if all_issues:
