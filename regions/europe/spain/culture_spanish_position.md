@@ -1,59 +1,54 @@
-﻿# Position: Spanish
-## The plan that was also a feeling.
+# Position: Español
 
 ## Owner
-- *
+- Project: Cultures
+- Culture: Spain
+
 ## Has
-[La Transición](culture_spanish_piece_la_transicion.md).
-The rules - present, load-bearing, not literal.
-The group - present, primary, warm.
-The structure exists to hold the anxiety
-of not having structure.
-Whether it is executed precisely
-is a different question from whether it exists.
-The position knows the difference.
-Quality of life is the actual metric.
-Standing out is the actual risk.
-It exists before the persona arrives.
-The room already has a plan
-and is already comfortable
-that the plan may shift.
+La jerarquía que no se discute pero se negocia.
+El cargo tiene autoridad. La autoridad tiene obediencia.
+Pero el superior que no cuida a los suyos pierde el mando sin perder el título.
+La posición es relación antes que estructura.
+
+La familia como primer orden de lealtad.
+El grupo como red que sostiene cuando la institución falla.
+La comunidad como identidad antes que la norma.
+Pertenencia y vínculo como condición de acción, no como consecuencia.
+
+[La Conquista](culture_spanish_piece_conquista.md).
+No como orgullo ni como culpa. Como hecho formativo.
+La capacidad de proyectar una visión hacia fuera como misión.
+Y la certeza de que quien tiene la verdad, tiene la obligación de llevarla.
+
+La norma existe. El reglamento existe. La burocracia existe.
+Se respetan. Se gestionan. Se rodean cuando es necesario.
+La garantía no viene del sistema: viene de la persona que responde.
+La seguridad la da quien conoces, no el procedimiento.
+
+Dignidad como valor no negociable.
+Hospitalidad como obligación voluntaria.
+Cuidado hacia los del grupo como condición de pertenencia.
+Conciliación como habilidad, no como debilidad.
 
 ## Orders
-Stay with the group.
-The position does not reward
-the person who moves fastest alone.
-It rewards the person
-the room stays warm around.
-The plan is how you start.
-The relationship is how you finish.
+Conoce a quién tienes delante antes de decidir qué le debes.
 
 ## Loses
-The literal contract.
-They were certain that the rule
-was the rule -
-that the plan meant what it said,
-that agreement was a fixed point
-rather than a shared comfort.
-The Spanish room agreed warmly.
-The execution arrived differently
-than the agreement suggested.
-The persona does not understand
-that the agreement was real.
-The execution was also real.
-These are not the same thing.
+La confianza en que las reglas bastan.
+Fuera del grupo, la norma no tiene calor.
+La burocracia protege, pero no pertenece.
+Y quien solo tiene el reglamento, está solo.
 
 ## Drives
-On the loss of the literal contract -
-finds the person who holds the warmth.
-The plan is renegotiated there.
-Not in writing.
-In the room, with coffee,
-at the point where relationship
-is doing what the contract could not.
+En esa pérdida:
+reconstruye el vínculo antes de reconstruir el procedimiento.
+La red se activa. Los suyos responden.
+Lo que el sistema no da, lo da la comunidad.
+Y la comunidad cobra en lealtad, no en euros.
 
 ---
-*culture_spanish_position.md - 02.04.2026*
-*Hofstede anchors: PDI 57, IDV 51, MAS 42, UAI 86*
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 
-v0.2.0 - KAI Worlds
+*culture_spanish_position.md - 12.05.2026*
+
+v0.1.0 - KAI Worlds

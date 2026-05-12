@@ -1,26 +1,44 @@
 # Place: Madrid
-## Location: Spain
 
 ## Owner
-- *
+- Project: Cultures
+- Culture: Spain
+
 ## Shown
-- The Congreso de los Diputados. Neo-classical. Lions at the door, cast from captured cannons.
-- The Prado. Vel�zquez, Goya, El Greco.
-- The Puerta del Sol. The kilometre zero marker. All Spanish roads measured from here.
-- The evening. Madrid does not eat dinner before 9pm.
+La Puerta del Sol: kilómetro cero de todas las carreteras de España. Gente a cualquier hora.
+El Rastro, domingo por la mañana: puestos de mercado, voces, regateo, familias completas.
+El Retiro: parejas, jubilados, estudiantes, el barquero del estanque que lleva cuarenta años en el mismo puesto.
+Edificios del siglo XVII junto a rascacielos de cristal. La ciudad no eligió entre los dos.
+Bares con jamón colgado del techo. La barra siempre más concurrida que las mesas.
+El Congreso de los Diputados: fachada neoclásica, leones de bronce en la entrada.
+El Archivo de Indias no está en Madrid. Pero sus copias sí.
+Terrazas abiertas en octubre. La ciudad resiste el frío más tiempo de lo razonable.
+El metro lleno a las once de la noche. La cena no ha terminado todavía.
 
 ## Holds
-- The Spain position - [Spanish](culture_spanish_position.md)
-- [La Transicion](culture_spanish_piece_la_transicion.md)
+La [posición española](culture_spanish_position.md).
+[La Conquista](culture_spanish_piece_conquista.md): en el Archivo, en los nombres de las plazas, en la arquitectura de los ministerios.
+El [negociar](culture_spanish_process_negociar.md): en cada barra de bar, en cada despacho, en cada reunión que empieza tarde.
 
 ## Offers
-- The room where the Spain position does its daily work.
-- [The World is Spinning](../../../engine/process_world_is_spinning.md) - runs here daily.
+Puedes llegar sin cita y ser recibido si conoces a alguien que te presente.
+Puedes disentir en voz alta sin que la sala se rompa.
+Puedes pertenecer a un grupo sin explicar por qué.
+Puedes comer solo en la barra sin que nadie te pregunte nada.
+Puedes negociar el precio, el plazo, las condiciones, y nadie lo llama falta de respeto.
+Puedes ser de fuera y encontrar hospitalidad genuina, no turística.
 
 ## Withheld
-- The regional question that will not be resolved in this legislature either.
+Quién decide realmente y en qué momento ya estaba decidido.
+La red de favores que precede a cualquier reunión formal.
+Lo que se habló en la cena de antes y no aparecerá en el acta.
+La diferencia entre lo que se dice en público y lo que se negocia en privado.
+El coste de no pertenecer: invisible hasta que lo necesitas y no está.
+Lo que la ciudad guarda de sus muertos: la Guerra Civil en las cunetas, en los silencios, en los apellidos que nadie pronuncia.
 
 ---
-*culture_spanish_place_madrid.md - 02.04.2026*
+*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 
-v0.2.0 - KAI Worlds
+*culture_spanish_place_madrid.md - 12.05.2026*
+
+v0.1.0 - KAI Worlds
