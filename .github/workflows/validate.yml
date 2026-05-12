@@ -254,6 +254,11 @@ jobs:
     outputs:
       any: ${{ steps.changed.outputs.any }}
       files: ${{ steps.changed.outputs.files }}
+      # `data_changed`: true when the PR diff touches the Hofstede reference
+      # dataset (data/hofstede_scores.json). Drives L4g into audit mode (run
+      # across all countries) so a reference update doesn't silently widen
+      # divergence for cultures whose declared scores are now off-band.
+      data_changed: ${{ steps.changed.outputs.data_changed }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -271,10 +276,13 @@ jobs:
             RANGE="$BEFORE..HEAD"
           fi
           # --diff-filter=ACMRT skips deletions; the validator must not be handed paths that no longer exist.
-          FILES=$(git diff --name-only --diff-filter=ACMRT "$RANGE" | { grep -E '^regions/.*\.md$' || true; } | tr '\n' ' ' | sed 's/ *$//')
+          ALL_CHANGED=$(git diff --name-only --diff-filter=ACMRT "$RANGE")
+          FILES=$(echo "$ALL_CHANGED" | { grep -E '^regions/.*\.md$' || true; } | tr '\n' ' ' | sed 's/ *$//')
           ANY=$(if [ -z "$FILES" ]; then echo "false"; else echo "true"; fi)
+          DATA_CHANGED=$(if echo "$ALL_CHANGED" | grep -qx 'data/hofstede_scores.json'; then echo "true"; else echo "false"; fi)
           echo "any=$ANY" >> "$GITHUB_OUTPUT"
           echo "files=$FILES" >> "$GITHUB_OUTPUT"
+          echo "data_changed=$DATA_CHANGED" >> "$GITHUB_OUTPUT"
 
   L0-stamp-check:
     name: L0 - Validation stamp gate
@@ -460,9 +468,18 @@ jobs:
     # (data/hofstede_scores.json). Catches LLM-invented scores that pass
     # range checks and keyword-derived alignment but diverge from
     # published values. Deviations require a documented justification.
+    #
+    # Two trigger modes:
+    #   - culture PR (regions/*.md in diff): scope to changed countries only.
+    #     Fast feedback; doesn't drag pre-existing divergence into unrelated PRs.
+    #   - data PR (data/hofstede_scores.json in diff): audit mode, run across
+    #     all countries. A reference-data update silently widens drift for
+    #     every culture whose declared score is now off-band; audit mode
+    #     surfaces every one of those in the PR.
+    # If both change in one PR (rare), audit mode wins (broader signal).
     name: L4g - Hofstede declared vs reference
     needs: [setup, L4f-hofstede-derived]
-    if: needs.setup.outputs.any == 'true'
+    if: needs.setup.outputs.any == 'true' || needs.setup.outputs.data_changed == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -471,7 +488,14 @@ jobs:
         with:
           python-version: '3.11'
       - name: Validate Hofstede reference comparison
-        run: python3 tests/validate_hofstede_reference.py ${{ needs.setup.outputs.files }}
+        run: |
+          if [ "${{ needs.setup.outputs.data_changed }}" = "true" ]; then
+            echo "Reference data changed in this PR -- running audit across all countries."
+            python3 tests/validate_hofstede_reference.py
+          else
+            echo "Culture PR -- scoping check to changed countries."
+            python3 tests/validate_hofstede_reference.py ${{ needs.setup.outputs.files }}
+          fi
 
   hofstede-bag-loader-tests:
     name: Hofstede - bag loader tests
