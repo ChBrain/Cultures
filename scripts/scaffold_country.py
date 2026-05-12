@@ -16,8 +16,9 @@ persona). Every `culture_*.md` file in a v2-migrated country carries a
 right structural contract -- see PR #118 (step 1/5) and
 docs/migration/cultures-kind-schema-history-piece-split.md.
 
-Band labels (Low / Moderate / High) match the canonical contract pinned by
-scripts/audit_readme_bands.py: 0-39 Low, 40-59 Moderate, 60-100 High.
+Band labels (Low / Moderate / High) match the canonical Hofstede band
+contract: 0-39 Low, 40-69 Moderate, 70-100 High. Keep in sync with
+``score_to_band()`` in ``scripts/audit_readme_bands.py``.
 
 Usage:
   scripts/scaffold_all_hofstede.py                    # shows what would be generated
@@ -84,11 +85,12 @@ def generate_readme(country_name: str, scores: dict | None) -> str:
         for dim in ["PDI", "IDV", "UAI", "MAS", "LTO", "IND"]:
             score = scores[dim]
             
-            # Canonical band contract (audit_readme_bands.py): 0-39 Low,
-            # 40-59 Moderate, 60-100 High. Keep in sync with score_to_band.
+            # Canonical Hofstede band contract: 0-39 Low, 40-69 Moderate,
+            # 70-100 High. Keep in sync with score_to_band() in
+            # scripts/audit_readme_bands.py.
             if score <= 39:
                 level = "**Low**"
-            elif score <= 59:
+            elif score <= 69:
                 level = "**Moderate**"
             else:
                 level = "**High**"
@@ -140,7 +142,7 @@ This culture does not have published Hofstede research. Use the table below with
 
 **Source:** Best judgment approximation - see REFERENCES.md for reasoning.
 
-**Bands:** Low 0-39, Moderate 40-59, High 60-100 (canonical contract).
+**Bands:** Low 0-39, Moderate 40-69, High 70-100 (canonical Hofstede contract).
 
 ### How Dimensions Shape This Culture
 
