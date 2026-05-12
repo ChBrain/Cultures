@@ -42,15 +42,20 @@ The pre-commit hook classifies every branch and enforces the matching scope:
 | Branch kind | Pattern | May modify | Hofstede check |
 |---|---|---|---|
 | `main` | exact name `main` | nothing — direct commits forbidden | n/a |
-| culture | regex `^culture/[a-z0-9][a-z0-9_-]*$` | `regions/**` + safe metadata files | yes (±10 gap) |
+| culture (country) | `culture/<country>` | `regions/<region>/<country>/**` + safe metadata | yes (±10 gap) |
+| culture (region) | `culture/<region>` | `regions/<region>/**` + safe metadata | yes (±10 gap) |
+| culture (world) | `culture/staging`, `culture/release` | `regions/**` + safe metadata | yes (±10 gap) |
 | other | anything else (`chore/*`, `fix/*`, `feat/*`, …) | anything **except** `regions/**` | no |
 
-Culture branches use forward-slash naming: `culture/denmark`, `culture/staging`, etc. This anchors scope validation: `feat/culture-x`, `cultures/x`, and typos are all classified as `other` and blocked from `regions/`.
+Culture branches use forward-slash naming, and the slug after the slash is resolved against the on-disk `regions/` tree. The slug must match either a known country folder (`regions/<region>/<slug>/`), a known region folder (`regions/<slug>/`), or one of the world-level integration names (`staging`, `release`). A typo or unknown slug fails fast instead of silently widening scope. Near-misses like `feat/culture-x`, `cultures/x`, and `culture/Denmark` (uppercase) are all classified as `other` and blocked from `regions/`.
 
-Safe metadata files allowed on culture branches alongside `regions/**`:
+Per-country protection means a `culture/germany` branch cannot touch Denmark even though both live under `regions/europe/`. If you need to span multiple countries in a single PR, use `culture/<region>` (e.g. `culture/europe`) or the world-level `culture/staging`.
+
+Safe metadata files allowed on culture branches alongside the country/region/world subtree:
 - `.validation-stamp` - proof of local validation
 - `.bump-type` - version intent declaration
 - `.gitignore`, `.editorconfig` - repository config
+- `data/hofstede_bag_locks.yaml` - bag-lock index (carved out for bag migration PRs)
 
 If your work spans both scopes, split it into two branches and open two PRs:
 1. Push culture work: `git push origin culture/<country>`
@@ -60,10 +65,11 @@ If your work spans both scopes, split it into two branches and open two PRs:
 
 Hook rejection messages:
 ```
->>> ERROR: Culture branch can only modify regions/
+>>> ERROR: Culture branch out of scope (allowed: regions/<region>/<country>/**)
+>>> ERROR: Unknown culture slug
 >>> ERROR: Non-culture branch cannot modify regions/
 ```
-Use `git reset` and split your changes.
+Use `git reset` and split your changes, or rename the branch to a slug that resolves.
 
 ## Workflow
 
