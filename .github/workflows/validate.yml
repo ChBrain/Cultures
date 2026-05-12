@@ -447,23 +447,50 @@ jobs:
       - name: Validate audit consistency
         run: python -m pytest tests/test_audit_consistency.py -v
 
-  L4d-plagiarism:
-    name: L4d - IP/plagiarism heuristics
+  khai-plagiarism:
+    name: khai - Phrase denylist
     needs: [setup, L4c-audit-consistency]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Validate plagiarism heuristics
-        run: python3 tests/validate_plagiarism.py ${{ needs.setup.outputs.files }}
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+      - name: Run phrase denylist tests
+        run: python -m pytest --pyargs khai_tests.test_khai_plagiarism --khai-files="${{ needs.setup.outputs.files }}" -v
+
+  cultures-plagiarism:
+    name: Cultures - Plagiarism structural checks
+    needs: [setup, khai-plagiarism]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run plagiarism structural checks
+        run: python -m pytest tests/test_plagiarism.py -v
 
   L4e-hofstede-alignment:
     name: L4e - Hofstede structure
-    needs: [setup, L4d-plagiarism]
+    needs: [setup, cultures-plagiarism]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:

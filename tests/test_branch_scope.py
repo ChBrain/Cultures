@@ -485,4 +485,5 @@ def test_governance_glob_patterns_locked():
         "data/hofstede_scores.json",
         "data/hofstede_bag_loader.py",
         "data/language_policy.yaml",
+        "data/phrase_denylist.txt",
     )
