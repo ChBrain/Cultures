@@ -17,11 +17,14 @@ REPO_ROOT = HERE.parent
 sys.path.insert(0, str(HERE))
 
 from branch_scope import (  # noqa: E402
+    GOVERNANCE_DIR_PREFIXES,
+    GOVERNANCE_GLOB_PATTERNS,
     SAFE_PATTERNS,
     WORLD_SLUGS,
     check_scope,
     classify_branch,
     culture_scope,
+    is_governance_path,
 )
 
 
@@ -71,6 +74,35 @@ class TestClassifyBranch(unittest.TestCase):
             "claude/review-foo",
             "release/v1",
             "develop",
+        ]:
+            with self.subTest(branch=name):
+                self.assertEqual(classify_branch(name), "other")
+
+    def test_governance_happy_paths(self):
+        for name in [
+            "governance/harden-validators",
+            "governance/ci-mirror",
+            "governance/x",
+            "governance/a1",
+            "governance/x_y-z",
+        ]:
+            with self.subTest(branch=name):
+                self.assertEqual(classify_branch(name), "governance")
+
+    def test_governance_near_misses_classify_as_other(self):
+        """Same bypass-surface hygiene as culture: typos must NOT be
+        'governance' — they fall through to 'other' which is the safer
+        default (blocked from regions/ and governance paths)."""
+        for name in [
+            "governance",
+            "governance/",
+            "governance/X",
+            "governance/Foo",
+            " governance/x",
+            "governance/x ",
+            "governance-x",
+            "governances/x",
+            "gov/x",
         ]:
             with self.subTest(branch=name):
                 self.assertEqual(classify_branch(name), "other")
@@ -257,21 +289,48 @@ class TestCheckScope(unittest.TestCase):
             ["regions/europe/germany/culture_german_position.md"],
         )
 
-    def test_other_allows_non_regions(self):
+    def test_other_allows_non_regions_non_governance(self):
+        """`other` may touch anything that isn't regions/ AND isn't
+        governance. Generic docs, ARCHITECTURE.md, etc. stay open."""
         ok, unsafe = check_scope("other", [
-            ".githooks/pre-commit",
-            "tests/branch_scope.py",
-            ".github/copilot-instructions.md",
+            ".github/copilot-instructions.md",  # not under .github/workflows/
             "ARCHITECTURE.md",
-            "data/hofstede_keywords.py",
+            "README.md",
+            "scripts/audit-germany.py",  # not validate*, not setup-hooks
+            "data/hofstede_bag_locks.yaml",  # SAFE_PATTERNS carve-out
         ])
         self.assertTrue(ok)
         self.assertEqual(unsafe, [])
 
+    def test_other_blocks_governance_paths(self):
+        """The tightening: chore/*, fix/*, feat/* must NOT touch governance
+        paths. Previously they could silently weaken validators/hooks."""
+        ok, unsafe = check_scope("other", [
+            ".githooks/pre-commit",
+            "tests/branch_scope.py",
+            "tests/validate_general.py",
+            "tests/test_branch_scope.py",
+            ".github/workflows/validate.yml",
+            "scripts/validate.py",
+            "data/hofstede_keywords.py",
+            "data/hofstede_scores.json",
+            "ARCHITECTURE.md",  # this one is OK and must NOT appear in unsafe
+        ])
+        self.assertFalse(ok)
+        self.assertIn(".githooks/pre-commit", unsafe)
+        self.assertIn("tests/branch_scope.py", unsafe)
+        self.assertIn("tests/validate_general.py", unsafe)
+        self.assertIn("tests/test_branch_scope.py", unsafe)
+        self.assertIn(".github/workflows/validate.yml", unsafe)
+        self.assertIn("scripts/validate.py", unsafe)
+        self.assertIn("data/hofstede_keywords.py", unsafe)
+        self.assertIn("data/hofstede_scores.json", unsafe)
+        self.assertNotIn("ARCHITECTURE.md", unsafe)
+
     def test_other_blocks_regions(self):
         ok, unsafe = check_scope("other", [
             "regions/europe/germany/culture_german_position.md",
-            "tests/validate_general.py",
+            "scripts/audit-germany.py",
         ])
         self.assertFalse(ok)
         self.assertEqual(
@@ -307,6 +366,47 @@ class TestCheckScope(unittest.TestCase):
         self.assertTrue(ok)
         self.assertEqual(unsafe, [])
 
+    def test_governance_branch_allows_governance_paths(self):
+        ok, unsafe = check_scope("governance", [
+            ".githooks/pre-commit",
+            ".github/workflows/validate.yml",
+            "tests/branch_scope.py",
+            "tests/test_branch_scope.py",
+            "tests/validate_culture_completeness.py",
+            "scripts/validate.py",
+            "data/hofstede_keywords.py",
+            "data/hofstede_scores.json",
+            ".validation-stamp",
+        ], "governance/harden-validators")
+        self.assertTrue(ok)
+        self.assertEqual(unsafe, [])
+
+    def test_governance_branch_blocks_regions(self):
+        """Governance is for rules, not data. Touching culture content
+        must be done via culture/<slug>."""
+        ok, unsafe = check_scope("governance", [
+            "tests/branch_scope.py",
+            "regions/europe/germany/culture_german_position.md",
+        ], "governance/x")
+        self.assertFalse(ok)
+        self.assertEqual(
+            unsafe,
+            ["regions/europe/germany/culture_german_position.md"],
+        )
+
+    def test_governance_branch_blocks_non_governance_infra(self):
+        """ARCHITECTURE.md, audit scripts, etc. aren't governance —
+        they belong on chore/* branches. Keeps governance PRs focused."""
+        ok, unsafe = check_scope("governance", [
+            "tests/branch_scope.py",
+            "ARCHITECTURE.md",
+            "scripts/audit-germany.py",
+        ], "governance/x")
+        self.assertFalse(ok)
+        self.assertIn("ARCHITECTURE.md", unsafe)
+        self.assertIn("scripts/audit-germany.py", unsafe)
+        self.assertNotIn("tests/branch_scope.py", unsafe)
+
     def test_safe_patterns_set_locked(self):
         """Pin the safe-pattern set. Any change here is a contract change
         and should be a deliberate, reviewed edit — not a drive-by addition.
@@ -327,6 +427,104 @@ class TestCheckScope(unittest.TestCase):
         branches that may touch any country — adding to this set widens
         scope and should be a reviewed change."""
         self.assertEqual(WORLD_SLUGS, frozenset({"staging", "release"}))
+
+
+class TestIsGovernancePath(unittest.TestCase):
+    """Pin which paths count as governance.
+
+    Removing an entry from this list widens the bypass surface — an
+    LLM could then weaken that file from a chore/* branch. Each removal
+    should be a deliberate, reviewed change.
+    """
+
+    def test_subtrees(self):
+        for path in [
+            ".githooks/pre-commit",
+            ".githooks/sub/anything.sh",
+            ".github/workflows/validate.yml",
+            ".github/workflows/sub/anything.yml",
+        ]:
+            with self.subTest(path=path):
+                self.assertTrue(is_governance_path(path))
+
+    def test_glob_files(self):
+        for path in [
+            "tests/branch_scope.py",
+            "tests/test_branch_scope.py",
+            "tests/test_hook_scope_e2e.py",
+            "tests/test_hofstede_alignment.py",
+            "tests/validate_general.py",
+            "tests/validate_culture_completeness.py",
+            "tests/validate_hofstede_derived.py",
+            "tests/validate_country_bag.py",
+            "tests/requirements.txt",
+            "tests/language_exceptions.txt",
+            "scripts/validate.py",
+            "scripts/validate_general.py",
+            "scripts/setup-hooks.sh",
+            "scripts/setup-hooks.bat",
+            "data/hofstede_denylist.yaml",
+            "data/hofstede_keywords.py",
+            "data/hofstede_scores.json",
+            "data/hofstede_bag_loader.py",
+        ]:
+            with self.subTest(path=path):
+                self.assertTrue(is_governance_path(path))
+
+    def test_non_governance(self):
+        """Things that look adjacent but must NOT be governance, because
+        chore/* legitimately needs to touch them."""
+        for path in [
+            "ARCHITECTURE.md",
+            "README.md",
+            ".github/copilot-instructions.md",  # docs, not workflows/
+            ".github/dependabot.yml",            # not under workflows/
+            "scripts/audit-germany.py",
+            "scripts/normalize-germany.py",
+            "scripts/deploy_culture.py",
+            "scripts/scaffold_country.py",
+            "scripts/findings.py",
+            "scripts/prose_review.py",
+            "scripts/audit_readme_bands.py",
+            "tests/PLAN.md",
+            "tests/README.md",
+            "tests/findings.py",                  # not test_* and not validate_*
+            "data/hofstede_bag_locks.yaml",       # SAFE_PATTERNS carve-out
+            "regions/europe/germany/culture_german_position.md",
+        ]:
+            with self.subTest(path=path):
+                self.assertFalse(is_governance_path(path))
+
+    def test_dir_prefixes_set_locked(self):
+        """Adding a prefix widens what governance branches may touch and
+        what other branches are blocked from — review carefully."""
+        self.assertEqual(
+            GOVERNANCE_DIR_PREFIXES,
+            (".githooks/", ".github/workflows/"),
+        )
+
+    def test_glob_patterns_set_locked(self):
+        """Same lock as DIR_PREFIXES, but for the file-level globs. Drift
+        here is the highest-value bypass — if you remove a validator
+        pattern, that validator becomes editable from chore/*."""
+        self.assertEqual(
+            GOVERNANCE_GLOB_PATTERNS,
+            (
+                "tests/branch_scope.py",
+                "tests/test_*.py",
+                "tests/validate_*.py",
+                "tests/requirements.txt",
+                "tests/language_exceptions.txt",
+                "scripts/validate.py",
+                "scripts/validate_general.py",
+                "scripts/setup-hooks.sh",
+                "scripts/setup-hooks.bat",
+                "data/hofstede_denylist.yaml",
+                "data/hofstede_keywords.py",
+                "data/hofstede_scores.json",
+                "data/hofstede_bag_loader.py",
+            ),
+        )
 
 
 if __name__ == "__main__":

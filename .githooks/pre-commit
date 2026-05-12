@@ -86,8 +86,9 @@ def main() -> int:
         print("")
         print("Create a feature branch first:")
         print("  git checkout -b culture/<country>     # culture content")
-        print("  git checkout -b chore/<name>          # infrastructure / tooling")
-        print("  git checkout -b fix/<name>            # corrections")
+        print("  git checkout -b governance/<name>     # validators, hooks, workflows")
+        print("  git checkout -b chore/<name>          # general tooling / docs")
+        print("  git checkout -b fix/<name>            # corrections (non-culture, non-gate)")
         print("")
         return 1
 
@@ -115,16 +116,30 @@ def main() -> int:
                 print(f"  Allowed: {prefix}** + " + ", ".join(sorted(SAFE_PATTERNS)))
                 print( "  Rule:    culture/<slug> may only touch its own slug's subtree")
                 print( "  Wider:   use culture/<region> or culture/staging for cross-cutting work")
-        else:
-            print(">>> ERROR: Non-culture branch cannot modify regions/")
+        elif branch_kind == "governance":
+            print(">>> ERROR: Governance branch out of scope")
             print("")
-            print("Culture files detected (split to a culture/<slug> branch):")
+            print("Non-governance files detected (move to a different branch):")
             for f in unsafe_files:
                 print(f"  x {f}")
             print("")
             print(f"  Branch:  {current_branch}")
-            print( "  Rule:    only culture/<slug> branches may modify regions/")
-            print( "  Culture: git checkout -b culture/<country>")
+            print( "  Rule:    governance/<name> may only touch governance paths")
+            print( "  Allowed: .githooks/**, .github/workflows/**, tests/branch_scope.py,")
+            print( "           tests/test_*.py, tests/validate_*.py, scripts/validate*,")
+            print( "           data/hofstede_{denylist,keywords,scores,bag_loader}.*")
+            print( "  Other:   use chore/<name> for non-governance tooling/docs")
+        else:
+            print(">>> ERROR: Non-culture/non-governance branch out of scope")
+            print("")
+            print("Restricted files detected (move to the right branch kind):")
+            for f in unsafe_files:
+                print(f"  x {f}")
+            print("")
+            print(f"  Branch:  {current_branch}")
+            print( "  Rule:    chore/*, fix/*, feat/* must not modify regions/** or governance paths")
+            print( "  Culture: git checkout -b culture/<country>     for regions/** changes")
+            print( "  Govern:  git checkout -b governance/<name>     for validators/hooks/workflows")
         print("")
         return 1
 

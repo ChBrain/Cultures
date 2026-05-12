@@ -2,6 +2,7 @@
 
 Single source of truth for the scope contract:
 - Which branch names count as "culture" work
+- Which branch names count as "governance" work
 - Which paths each branch kind may modify
 
 Culture work has three nesting scopes, all of which converge on
@@ -18,8 +19,21 @@ Country and region slugs are resolved against the actual ``regions/``
 directory layout — a typo in the branch name fails fast instead of
 silently widening scope to all cultures.
 
+Governance work is anything that defines or enforces repository rules:
+the pre-commit hook, CI workflows, branch-scope module, validators,
+and the data sources those validators consult. Editing these from a
+generic ``chore/*`` or ``fix/*`` branch would let an automated
+contributor (or an LLM) silently weaken the very gates that protect
+culture content. So governance edits are walled into their own kind:
+
+  Scope          Branch name pattern         Allowed paths
+  ------------   -------------------------   --------------------------------
+  governance     ``governance/<name>``       governance paths + safe metadata
+  other          ``chore/*``, ``fix/*``, …   everything except regions/** and
+                                              governance paths
+
 Used by:
-- .githooks/pre-commit (local enforcement, both directions)
+- .githooks/pre-commit (local enforcement, all four directions)
 - (planned) CI workflow (server-side mirror — closes --no-verify and Web UI bypass)
 
 Don't relax the regex or paths without understanding the security model.
@@ -27,6 +41,7 @@ See .github/copilot-instructions.md > "Branch Scope Guards".
 """
 from __future__ import annotations
 
+import fnmatch
 import re
 from pathlib import Path
 
@@ -35,6 +50,10 @@ from pathlib import Path
 # the slash is resolved against the on-disk regions/ tree to pick the
 # narrower allowed-path prefix.
 CULTURE_BRANCH_PATTERN = re.compile(r"^culture/[a-z0-9][a-z0-9_-]*$")
+
+# Governance work: dedicated kind so edits to the rules themselves are
+# visible in the branch name and gateable in CI.
+GOVERNANCE_BRANCH_PATTERN = re.compile(r"^governance/[a-z0-9][a-z0-9_-]*$")
 
 # World-level integration slugs: may touch all of regions/**.
 # These are the integration targets feature branches merge into;
@@ -55,16 +74,65 @@ SAFE_PATTERNS = frozenset({
     "data/hofstede_bag_locks.yaml",
 })
 
+# Governance territory: files that define or enforce repository rules.
+# Two surfaces:
+#   - GOVERNANCE_DIR_PREFIXES: every path under these prefixes is governance.
+#   - GOVERNANCE_GLOB_PATTERNS: fnmatch globs, evaluated against the full path.
+#
+# Editing any of these on a non-governance branch is rejected so weakening
+# the gates is never a silent change; it has to happen on a ``governance/*``
+# branch where CI can require an explicit justification.
+GOVERNANCE_DIR_PREFIXES = (
+    ".githooks/",
+    ".github/workflows/",
+)
+
+GOVERNANCE_GLOB_PATTERNS = (
+    "tests/branch_scope.py",
+    "tests/test_*.py",
+    "tests/validate_*.py",
+    "tests/requirements.txt",
+    "tests/language_exceptions.txt",
+    "scripts/validate.py",
+    "scripts/validate_general.py",
+    "scripts/setup-hooks.sh",
+    "scripts/setup-hooks.bat",
+    "data/hofstede_denylist.yaml",
+    "data/hofstede_keywords.py",
+    "data/hofstede_scores.json",
+    "data/hofstede_bag_loader.py",
+)
+
 _DEFAULT_REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 def classify_branch(branch: str) -> str:
-    """Return 'main', 'culture', or 'other'."""
+    """Return 'main', 'culture', 'governance', or 'other'."""
     if branch == "main":
         return "main"
     if CULTURE_BRANCH_PATTERN.match(branch):
         return "culture"
+    if GOVERNANCE_BRANCH_PATTERN.match(branch):
+        return "governance"
     return "other"
+
+
+def is_governance_path(path: str) -> bool:
+    """Return True if the path is governance territory.
+
+    Governance = files that define or enforce repository rules: hooks,
+    workflows, the branch-scope module, validators, and the data the
+    validators consult. The check is the single source of truth used by
+    both the ``governance`` kind (must touch only these) and the
+    ``other`` kind (must touch none of these).
+    """
+    for prefix in GOVERNANCE_DIR_PREFIXES:
+        if path.startswith(prefix):
+            return True
+    for pat in GOVERNANCE_GLOB_PATTERNS:
+        if fnmatch.fnmatchcase(path, pat):
+            return True
+    return False
 
 
 def _world_topology(repo_root: Path) -> tuple[set[str], dict[str, str]]:
@@ -135,6 +203,11 @@ def check_scope(
     as unsafe so the caller can surface the missing-context error rather
     than silently widening scope.
 
+    Governance branches may only touch governance paths (plus the
+    SAFE_PATTERNS root files like ``.validation-stamp``). Other branches
+    may touch anything except ``regions/`` and governance paths — this is
+    the tightening that protects the gates from silent edits.
+
     'main' is gated separately (no commits at all) and is treated as a
     no-op here so a dry-run on main doesn't claim scope violations.
     """
@@ -147,8 +220,16 @@ def check_scope(
                 f for f in staged
                 if not f.startswith(prefix) and f not in SAFE_PATTERNS
             ]
+    elif branch_kind == "governance":
+        unsafe = [
+            f for f in staged
+            if not is_governance_path(f) and f not in SAFE_PATTERNS
+        ]
     elif branch_kind == "other":
-        unsafe = [f for f in staged if f.startswith("regions/")]
+        unsafe = [
+            f for f in staged
+            if f.startswith("regions/") or is_governance_path(f)
+        ]
     else:
         unsafe = []
     return not unsafe, unsafe

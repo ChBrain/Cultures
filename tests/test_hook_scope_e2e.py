@@ -277,21 +277,44 @@ class TestHookScopeEnforcement(unittest.TestCase):
         self.assertIn("Unknown culture slug", result.stdout)
         self.assertIn("culture/atlantis", result.stdout)
 
-    def test_other_branch_allows_infra(self):
+    def test_other_branch_allows_non_governance_infra(self):
+        """`chore/*` can still touch general project files — docs,
+        non-validator tests, ARCHITECTURE.md, etc. Just not governance."""
         _checkout(self.repo, "chore/x")
-        _stage(self.repo, "tests/foo.py")
-        _stage(self.repo, ".github/workflows/foo.yml")
+        _stage(self.repo, "tests/foo.py")  # not test_*.py, not validate_*.py
+        _stage(self.repo, "ARCHITECTURE.md")
+        _stage(self.repo, ".github/copilot-instructions.md")  # not workflows/
         result = _run_hook(self.repo)
         self.assertEqual(result.returncode, 0, result.stdout)
 
+    def test_other_branch_blocks_governance_paths(self):
+        """The tightening this PR ships. Previously chore/* could edit
+        validators silently; now it must be governance/<name>.
+
+        Note: staging governance files that the hook itself imports
+        (tests/branch_scope.py, the hook file) would corrupt the running
+        hook — so this test exercises governance paths the hook does
+        NOT load at startup: workflows, denylist, scores."""
+        _checkout(self.repo, "chore/sneaky")
+        _stage(self.repo, ".github/workflows/validate.yml", "name: x\n")
+        _stage(self.repo, "data/hofstede_scores.json", "{}\n")
+        result = _run_hook(self.repo)
+        self.assertEqual(result.returncode, 1, result.stdout)
+        self.assertIn("out of scope", result.stdout)
+        self.assertIn(".github/workflows/validate.yml", result.stdout)
+        self.assertIn("data/hofstede_scores.json", result.stdout)
+        self.assertIn("governance/<name>", result.stdout)
+
     def test_other_branch_blocks_regions(self):
-        """The symmetric guard added in this PR. Without it, a chore/*
-        branch could silently rewrite culture content."""
+        """The symmetric guard from the per-country branch: chore/*
+        cannot edit regions/. New: the error message is no longer
+        culture-specific because governance paths fall under the same
+        rejection path."""
         _checkout(self.repo, "chore/x")
         _stage(self.repo, "regions/europe/germany/culture_german_position.md")
         result = _run_hook(self.repo)
         self.assertEqual(result.returncode, 1, result.stdout)
-        self.assertIn("Non-culture branch cannot modify regions/", result.stdout)
+        self.assertIn("out of scope", result.stdout)
         self.assertIn(
             "regions/europe/germany/culture_german_position.md", result.stdout,
         )
@@ -315,14 +338,53 @@ class TestHookScopeEnforcement(unittest.TestCase):
         _stage(self.repo, "regions/europe/netherlands/foo.md")
         result = _run_hook(self.repo)
         self.assertEqual(result.returncode, 1, result.stdout)
-        self.assertIn("Non-culture branch cannot modify regions/", result.stdout)
+        self.assertIn("out of scope", result.stdout)
+        self.assertIn("regions/europe/netherlands/foo.md", result.stdout)
 
     def test_typo_plural_classified_as_other(self):
         _checkout(self.repo, "feat/cultures-netherlands")
         _stage(self.repo, "regions/europe/netherlands/foo.md")
         result = _run_hook(self.repo)
         self.assertEqual(result.returncode, 1, result.stdout)
-        self.assertIn("Non-culture branch cannot modify regions/", result.stdout)
+        self.assertIn("out of scope", result.stdout)
+
+    # --- governance branches ---------------------------------------------
+
+    def test_governance_branch_allows_governance_paths(self):
+        """governance/<name> may touch validators, hooks, workflows, and
+        the data those validators consult.
+
+        Like test_other_branch_blocks_governance_paths, we avoid staging
+        files the hook imports at startup (branch_scope.py, the hook
+        itself); workflows/denylist are sufficient to exercise the rule."""
+        _checkout(self.repo, "governance/harden-validators")
+        _stage(self.repo, ".github/workflows/validate.yml", "name: x\n")
+        _stage(self.repo, "data/hofstede_scores.json", "{}\n")
+        result = _run_hook(self.repo)
+        self.assertEqual(result.returncode, 0, result.stdout)
+
+    def test_governance_branch_blocks_regions(self):
+        """Governance is for rules, not data. Culture content must go
+        via culture/<slug>."""
+        _checkout(self.repo, "governance/x")
+        _stage(self.repo, ".github/workflows/validate.yml", "name: x\n")
+        _stage(self.repo, "regions/europe/germany/foo.txt")
+        result = _run_hook(self.repo)
+        self.assertEqual(result.returncode, 1, result.stdout)
+        self.assertIn("Governance branch out of scope", result.stdout)
+        self.assertIn("regions/europe/germany/foo.txt", result.stdout)
+
+    def test_governance_branch_blocks_non_governance_infra(self):
+        """ARCHITECTURE.md and audit scripts aren't governance — those
+        belong on chore/* branches. Keeps governance PRs focused on
+        rules only."""
+        _checkout(self.repo, "governance/x")
+        _stage(self.repo, ".github/workflows/validate.yml", "name: x\n")
+        _stage(self.repo, "ARCHITECTURE.md", "# arch\n")
+        result = _run_hook(self.repo)
+        self.assertEqual(result.returncode, 1, result.stdout)
+        self.assertIn("Governance branch out of scope", result.stdout)
+        self.assertIn("ARCHITECTURE.md", result.stdout)
 
 
 if __name__ == "__main__":
