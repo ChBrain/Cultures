@@ -19,7 +19,7 @@ Sie liest den Fall zweimal.
 Beim zweiten Lesen notiert sie das, was ungeklärt ist (drei Spalten: Was sagen die Fakten, was sagen die Zeugen, was sagt das Gericht?)
 Sie sitzt mit ihrem Mandanten.
 Sie erklärt nicht, was die Anklage sagt.
-Sie erklärt, was die Anklage Nicht sagt.
+Sie erklärt, was die Anklage nicht sagt.
 
 Das ist ihr Zug. Der Mandant sieht die Lücke. Das Gericht sieht die Lücke. Jetzt können beide handeln.
 
@@ -37,6 +37,8 @@ Wenn jemand ihr gratuliert, greift sie zur Akte.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+
+*Type: Fictional*
 
 *culture_german_persona_brigitte.md - 07.05.2026*
 
