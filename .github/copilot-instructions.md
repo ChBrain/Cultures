@@ -97,6 +97,43 @@ Hook rejection messages:
 ```
 Use `git reset` and move the offending files to the right branch kind.
 
+## Language policy (L1b)
+
+`data/language_policy.yaml` is the single source of truth: registered languages, prose sections to check, span threshold. Each culture's `README.md` declares which registered languages it uses via `**Language(s):** <name>[, <name>...]`. Typos fail loudly (no silent english-only fallback).
+
+**Proper-noun exceptions** are layered:
+
+- **Global** (`tests/language_exceptions.txt`): proper nouns allowed everywhere. Governance-tracked.
+- **Per-culture** (`regions/<region>/<country>/language_exceptions.txt`): country-specific. Lives with the culture content, so contributors add country-specific names alongside the culture PR — no separate `governance/*` change needed.
+
+**Quoted source material**: wrap in markdown blockquotes (`> ...`). Blockquoted lines are stripped before detection, so faithful citations in any language pass cleanly.
+
+**Useful CLIs:**
+
+```bash
+# What languages does this repo allow?
+python3 tests/validate_language.py --list-repo-languages
+
+# What does each country declare?
+python3 tests/validate_language.py --list-country-languages
+
+# Are all READMEs consistent with the registry?
+python3 tests/validate_language.py --check-readmes-only
+
+# Why is this specific file failing? (per-section span trace)
+python3 tests/validate_language.py --explain regions/europe/germany/culture_*.md
+```
+
+**Failure messages** carry a fix ladder (cheapest first):
+
+```
+FAIL regions/europe/germany/culture_german_persona_brigitte.md:
+  German span (18 words) in ## Shown: 'Die Wuerde des Menschen ist unantastbar...'
+  verdict: if a quoted source, wrap as `> ...` blockquote (skipped);
+           if proper nouns, add proper nouns to regions/europe/germany/language_exceptions.txt;
+           otherwise rewrite in english
+```
+
 ## Workflow
 
 ### Culture Work (culture/<country> or culture/<region>)
