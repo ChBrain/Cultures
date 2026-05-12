@@ -30,10 +30,11 @@ This installs `.githooks/pre-commit` which validates every commit locally before
 
 - `culture/<country>` - per-country culture work (e.g., `culture/denmark`)
 - `culture/<region>` - per-region culture work (e.g., `culture/europe`)
-- `culture/staging` - integration point for batched culture releases
-- `feat/<name>` - other feature work (direct to main)
-- `fix/<name>` - corrections to existing content
-- `chore/<name>` - infrastructure, validation, documentation
+- `culture/staging`, `culture/release` - integration points for batched culture releases
+- `governance/<name>` - changes to the rules themselves: hooks, CI workflows, validators, branch-scope module, validator data sources
+- `feat/<name>` - non-culture, non-governance feature work
+- `fix/<name>` - corrections outside culture and governance
+- `chore/<name>` - non-culture, non-governance tooling / docs
 
 ## Branch Scope Guards
 
@@ -45,31 +46,56 @@ The pre-commit hook classifies every branch and enforces the matching scope:
 | culture (country) | `culture/<country>` | `regions/<region>/<country>/**` + safe metadata | yes (±10 gap) |
 | culture (region) | `culture/<region>` | `regions/<region>/**` + safe metadata | yes (±10 gap) |
 | culture (world) | `culture/staging`, `culture/release` | `regions/**` + safe metadata | yes (±10 gap) |
-| other | anything else (`chore/*`, `fix/*`, `feat/*`, …) | anything **except** `regions/**` | no |
+| governance | `governance/<name>` | governance paths + safe metadata | n/a |
+| other | anything else (`chore/*`, `fix/*`, `feat/*`, …) | anything **except** `regions/**` **and except** governance paths | n/a |
+
+### Data vs. governance
+
+Culture data lives under `regions/<region>/<country>/`. **Governance** — the code and data that defines and enforces repository rules — lives in fixed paths and is walled off from non-governance branches so a generic `chore/refactor` cannot silently weaken the gates that protect culture content.
+
+Governance paths (single source of truth: `tests/branch_scope.py` `GOVERNANCE_DIR_PREFIXES` + `GOVERNANCE_GLOB_PATTERNS`):
+
+- `.githooks/**` — local pre-commit enforcement
+- `.github/workflows/**` — CI enforcement
+- `tests/branch_scope.py` — the rules themselves
+- `tests/test_*.py` — tests that pin the rules
+- `tests/validate_*.py` — every validator script
+- `tests/requirements.txt`, `tests/language_exceptions.txt` — validator config
+- `scripts/validate.py`, `scripts/validate_general.py` — orchestrator + helper
+- `scripts/setup-hooks.sh`, `scripts/setup-hooks.bat` — hook installation
+- `data/hofstede_denylist.yaml`, `data/hofstede_keywords.py` — validator inputs
+- `data/hofstede_scores.json` — Hofstede Insights reference dataset
+- `data/hofstede_bag_loader.py` — bag-validation infrastructure
+
+### Culture slug resolution
 
 Culture branches use forward-slash naming, and the slug after the slash is resolved against the on-disk `regions/` tree. The slug must match either a known country folder (`regions/<region>/<slug>/`), a known region folder (`regions/<slug>/`), or one of the world-level integration names (`staging`, `release`). A typo or unknown slug fails fast instead of silently widening scope. Near-misses like `feat/culture-x`, `cultures/x`, and `culture/Denmark` (uppercase) are all classified as `other` and blocked from `regions/`.
 
 Per-country protection means a `culture/germany` branch cannot touch Denmark even though both live under `regions/europe/`. If you need to span multiple countries in a single PR, use `culture/<region>` (e.g. `culture/europe`) or the world-level `culture/staging`.
 
-Safe metadata files allowed on culture branches alongside the country/region/world subtree:
+### Safe metadata
+
+Files allowed on culture **and** governance branches alongside their primary scope:
 - `.validation-stamp` - proof of local validation
 - `.bump-type` - version intent declaration
 - `.gitignore`, `.editorconfig` - repository config
 - `data/hofstede_bag_locks.yaml` - bag-lock index (carved out for bag migration PRs)
 
-If your work spans both scopes, split it into two branches and open two PRs:
-1. Push culture work: `git push origin culture/<country>`
-2. Create a separate branch: `git checkout -b chore/<name>`
-3. Make infrastructure changes there
-4. Both PRs can merge independently
+### Splitting work across scopes
+
+If your work spans two scopes, split it into separate branches/PRs — each PR can merge independently:
+1. Culture content: `git checkout -b culture/<country>`
+2. Validator/hook/workflow changes: `git checkout -b governance/<name>`
+3. General tooling/docs: `git checkout -b chore/<name>`
 
 Hook rejection messages:
 ```
 >>> ERROR: Culture branch out of scope (allowed: regions/<region>/<country>/**)
 >>> ERROR: Unknown culture slug
->>> ERROR: Non-culture branch cannot modify regions/
+>>> ERROR: Governance branch out of scope
+>>> ERROR: Non-culture/non-governance branch out of scope
 ```
-Use `git reset` and split your changes, or rename the branch to a slug that resolves.
+Use `git reset` and move the offending files to the right branch kind.
 
 ## Workflow
 
