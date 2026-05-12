@@ -1,0 +1,58 @@
+name: pr-gate
+
+# Server-side mirror of the local pre-commit hook's enforcement.
+# Closes --no-verify and Web UI bypass paths.
+#
+# Triggers on every pull_request event (no branch filter) so a PR with
+# the wrong base — e.g. culture/germany -> main bypassing culture/release —
+# is also caught here. The base-branch-check job decides if the head/base
+# pair is even allowed.
+#
+# Adding a check: define a new job below and run a tests/validate_pr_*.py
+# helper. Keep CI logic in Python (testable) and yaml as orchestration only.
+
+on:
+  pull_request:
+
+jobs:
+  base-branch-check:
+    name: PR gate - Allowed base for head
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify PR base matches head's allowed target
+        run: |
+          python3 tests/validate_pr_base.py \
+            "${{ github.head_ref }}" \
+            "${{ github.base_ref }}"
+
+  branch-scope-check:
+    name: PR gate - Diff within branch scope
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Need history back to the merge base so `base...HEAD` works.
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify diff stays inside head branch's allowed paths
+        run: |
+          python3 tests/validate_pr_scope.py \
+            "${{ github.head_ref }}" \
+            "origin/${{ github.base_ref }}"
+
+  stamp-tree-hash-check:
+    name: PR gate - Validation stamp matches tree hash
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify .validation-stamp equals tree hash (excluding stamp)
+        run: python3 tests/validate_pr_stamp.py
