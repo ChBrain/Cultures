@@ -25,7 +25,7 @@ Der Widerstand: die Versuchung, alles zu verbieten: die Vergangenheit zu sperren
 Das Lever hält beide: ohne Verstehen wird die Versuchung stärker; ohne Versuchung verfällt das Verstehen zur Bürokratie.
 
 ## Echo
-Der nächste Prozess erbt das Wissen und die Freiheit, es anders zu machen. Die Disziplin bleibt.
+Der nächste Prozess erbt das Wissen und die Freiheit, es anders zu machen. Gelassenheit und Anpassungsfähigkeit: das Erbe von Erinnern. Die Disziplin bleibt.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
