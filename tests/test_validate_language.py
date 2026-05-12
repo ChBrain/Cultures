@@ -26,8 +26,13 @@ sys.path.insert(0, str(HERE))
 import validate_language  # noqa: E402
 from validate_language import (  # noqa: E402
     POLICY_PATH,
+    _clean,
+    _country_dir_for,
+    _culture_exceptions_for,
+    _parse_exceptions,
     _readme_registry_violations,
     _resolve_allowed_languages,
+    explain,
     load_policy,
     parse_readme_languages,
 )
@@ -239,6 +244,170 @@ class TestLinguaSlugCoverage(unittest.TestCase):
             "have no lingua.Language mapping in validate_language.py: "
             f"{missing}. Add them to _lingua_language_map().",
         )
+
+
+class TestBlockquoteSkipping(unittest.TestCase):
+    """Lines starting with `>` are stripped before detection so cited
+    source material can stay in its original language."""
+
+    def test_blockquote_lines_removed(self):
+        text = (
+            "regular english prose here\n"
+            "> foreign language quote goes here\n"
+            "> more of the same quote\n"
+            "more english prose\n"
+        )
+        cleaned = _clean(text)
+        self.assertNotIn("foreign", cleaned)
+        self.assertNotIn("quote", cleaned)
+        self.assertIn("regular english", cleaned)
+        self.assertIn("more english", cleaned)
+
+    def test_blockquote_with_indent(self):
+        """Indented `> ...` (markdown-legal under list items) is also
+        stripped. The regex anchors on optional leading whitespace."""
+        text = "  > indented quote in another language\nregular prose\n"
+        cleaned = _clean(text)
+        self.assertNotIn("indented", cleaned)
+        self.assertIn("regular prose", cleaned)
+
+    def test_non_blockquote_preserved(self):
+        """A `>` mid-line (e.g. comparison operator in a snippet) is
+        not a blockquote and must not be stripped."""
+        text = "this > that does not start with a > char\n"
+        cleaned = _clean(text)
+        self.assertIn("this", cleaned)
+        self.assertIn("does not start", cleaned)
+
+
+class TestPerCultureExceptions(unittest.TestCase):
+    """The Phase 2 friction reducer: per-country exception files.
+
+    Live in regions/<region>/<country>/language_exceptions.txt and merge
+    on top of the global tests/language_exceptions.txt. Contributors add
+    country-specific proper nouns in their culture/<country> PR without
+    needing a governance/* change to widen the global allowlist.
+    """
+
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self._tmp.name)
+        # Clear the module-level cache so each test starts fresh; the
+        # validator caches by country dir for efficiency, but tests
+        # rebuild different dirs each time.
+        validate_language._culture_exception_cache.clear()
+
+    def tearDown(self) -> None:
+        self._tmp.cleanup()
+
+    def _country(self, region: str, country: str) -> Path:
+        p = self.root / "regions" / region / country
+        p.mkdir(parents=True)
+        return p
+
+    def test_returns_empty_when_no_file(self):
+        country = self._country("europe", "germany")
+        culture = country / "culture_german_position.md"
+        culture.write_text("# placeholder\n")
+        self.assertEqual(_culture_exceptions_for(culture), set())
+
+    def test_loads_country_specific_words(self):
+        country = self._country("europe", "germany")
+        (country / "language_exceptions.txt").write_text(
+            "# German proper nouns specific to this culture\n"
+            "Vergangenheitsbewältigung\n"
+            "Erinnerungskultur\n"
+            "\n"
+            "# blank lines and comments are skipped\n"
+            "Bundeskanzler\n"
+        )
+        culture = country / "culture_german_position.md"
+        culture.write_text("# placeholder\n")
+        exc = _culture_exceptions_for(culture)
+        self.assertEqual(
+            exc,
+            {"vergangenheitsbewältigung", "erinnerungskultur", "bundeskanzler"},
+        )
+
+    def test_isolation_between_countries(self):
+        """Germany's exception is not Denmark's; the validator must
+        scope per-country lookups."""
+        germany = self._country("europe", "germany")
+        denmark = self._country("europe", "denmark")
+        (germany / "language_exceptions.txt").write_text("Bundeskanzler\n")
+        (denmark / "language_exceptions.txt").write_text("Janteloven\n")
+        de_file = germany / "culture_german_position.md"
+        de_file.write_text("# x\n")
+        dk_file = denmark / "culture_danish_position.md"
+        dk_file.write_text("# x\n")
+        self.assertEqual(_culture_exceptions_for(de_file), {"bundeskanzler"})
+        self.assertEqual(_culture_exceptions_for(dk_file), {"janteloven"})
+
+    def test_country_dir_for_culture_file(self):
+        country = self._country("europe", "germany")
+        culture = country / "culture_german_position.md"
+        culture.write_text("# x\n")
+        self.assertEqual(_country_dir_for(culture), country.resolve())
+
+    def test_country_dir_for_non_culture_path(self):
+        outside = self.root / "tests" / "foo.py"
+        outside.parent.mkdir(parents=True)
+        outside.write_text("")
+        self.assertIsNone(_country_dir_for(outside))
+
+
+class TestExplain(unittest.TestCase):
+    """The --explain diagnostic. We test the structural shape rather
+    than the lingua output (which is non-deterministic across versions);
+    structural checks catch the integration bugs."""
+
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self._tmp.name)
+
+    def tearDown(self) -> None:
+        self._tmp.cleanup()
+
+    def test_unreadable_file_does_not_crash(self):
+        ghost = self.root / "nonexistent.md"
+        lines = explain(ghost)
+        self.assertTrue(any("=== " in l for l in lines))
+        self.assertTrue(any("could not read" in l for l in lines))
+
+    def test_runs_without_lingua(self):
+        """When lingua is absent, explain() prints a skip note rather
+        than crashing -- mirrors validate()'s graceful degradation."""
+        if validate_language._lingua_language_map() is not None:
+            self.skipTest("lingua installed; this test exercises absence")
+        culture = self.root / "regions" / "europe" / "germany" / "culture_x_position.md"
+        culture.parent.mkdir(parents=True)
+        culture.write_text("## Shown\n\nbody\n")
+        lines = explain(culture)
+        self.assertTrue(any("lingua not installed" in l for l in lines))
+
+
+class TestParseExceptions(unittest.TestCase):
+    """The shared parser used by both global and per-culture files."""
+
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.path = Path(self._tmp.name) / "exc.txt"
+
+    def tearDown(self) -> None:
+        self._tmp.cleanup()
+
+    def test_missing_file_returns_empty(self):
+        self.assertEqual(_parse_exceptions(self.path), set())
+
+    def test_strips_comments_and_blanks(self):
+        self.path.write_text(
+            "# a comment\n"
+            "Foo\n"
+            "\n"
+            "  Bar  \n"
+            "# trailing comment\n"
+        )
+        self.assertEqual(_parse_exceptions(self.path), {"foo", "bar"})
 
 
 if __name__ == "__main__":
