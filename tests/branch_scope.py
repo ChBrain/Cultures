@@ -101,6 +101,7 @@ GOVERNANCE_GLOB_PATTERNS = (
     "data/hofstede_keywords.py",
     "data/hofstede_scores.json",
     "data/hofstede_bag_loader.py",
+    "data/language_policy.yaml",
 )
 
 _DEFAULT_REPO_ROOT = Path(__file__).resolve().parent.parent
