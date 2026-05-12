@@ -455,6 +455,7 @@ def test_is_governance_path_subtrees(path):
     "data/hofstede_scores.json",
     "data/hofstede_bag_loader.py",
     "data/language_policy.yaml",
+    "data/phrase_denylist.txt",
 ])
 def test_is_governance_path_glob_files(path):
     assert is_governance_path(path)
@@ -503,4 +504,5 @@ def test_governance_glob_patterns_locked():
         "data/hofstede_scores.json",
         "data/hofstede_bag_loader.py",
         "data/language_policy.yaml",
+        "data/phrase_denylist.txt",
     )
