@@ -18,7 +18,7 @@ tmp dir, with a temporary lock index, monkeypatching the module's
 DIMENSION_KEYWORDS_BY_LANGUAGE is monkeypatched to a sentinel value so
 "used the legacy" is unambiguous in assertions.
 
-Run: python3 -m unittest tests.test_hofstede_bag_loader
+Run: python -m pytest tests/test_hofstede_bag_loader.py -v
 """
 from __future__ import annotations
 
