@@ -22,20 +22,21 @@ Tomasz: narzekanie jest częścią procesu. Projekt broni się sam.
 Składa dokumenty w terminie. Każda strona podpisana.
 
 ## Shadow
-Projekt, który przeszedł przez wszystkich i wszystko, wychodzi inny niż ten, który przyniósł.
-Tomasz mówi: to efekt współpracy.
-Każda zmiana, którą przyjął, była kompromisem między jego wizją a tym, czego wymagała procedura, inwestor, urząd.
-Wierzy, że wynik jest lepszy za każdym razem.
-Nie widzi, że inicjatywa i determinacja, które go tu przyprowadziły, zamieniają się w zgodność z oczekiwaniami, jedno ustępstwo na raz.
-Przedsiębiorczość, z którą zaczął, nie jest już tym, co prowadzi.
+Pozycja nauczyła go: zaufaj komu znasz. Tylko temu.
+Każdą instytucję, przez którą przeszedł, przeszedł przez kogoś.
+Każdy urząd, każdy inwestor, każda komisja: najpierw człowiek, potem procedura.
+Budynki, które projektuje, będą stały po tym, jak krąg, który je zbudował, się rozejdzie.
+Będą je użytkować ludzie, których nie zna.
+Projektuje dla swoich.
+Nie wie, że to wybór.
 
 ## Tell
-Gdy pokazuje ukończony budynek, zaczyna od listy instytucji, które projekt zatwierdziły.
+Gdy pokazuje projekt komuś spoza swojego kręgu, zaczyna od tego, kto go zlecił.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 
-*culture_polish_persona_tomasz.md - 2026-05-11*
+*culture_polish_persona_tomasz.md - 12.05.2026*
 *Type: Composite*
 
 v0.1.0 - KAI Worlds

@@ -22,20 +22,21 @@ Mówi: wróci pan w czwartek z wynikami. Nie: zobaczymy.
 Wynik w czwartek jest gotowy, zanim pacjent usiądzie.
 
 ## Shadow
-Każdy przypadek, który nie szedł według protokołu, a skończył się dobrze, budzi w niej niepokój.
-Nie radość.
-Pyta siebie: co by było, gdyby nie skończył się dobrze.
-Sukcesy, które nie szły przez procedurę, liczy osobno, cicho, jak błędy, które nie wybuchły.
-Prowadzi notatki z każdego dyżuru od trzydziestu lat.
-Nie po to, żeby pamiętać. Po to, żeby była zasada, gdy pamięć zawiedzie.
+Pozycja nauczyła ją, że system zawiedzie.
+Że kiedy zawiedzie, musi działać krąg.
+Zbudowała protokół jako krąg złożony z jednej osoby: procedurę, która działa gdy pamięć zawiedzie, gdy system zawiedzie, gdy następny lekarz będzie mniej uważny.
+To jest ta sama logika co krąg. Przeniesiona do wewnątrz.
+Nie widzi tego jako wiary w instytucję.
+Widzi to jako zabezpieczenie przed jej brakiem.
+Różnica, której nie widzi: krąg działa przez wzajemne zobowiązanie. Protokół działa sam. Albo nie działa wcale.
 
 ## Tell
-Gdy ktoś jej dziękuje za to, że uratowała życie, prostuje terminologię: wdrożyłam właściwe postępowanie we właściwym czasie.
+Gdy młodszy kolega odchodzi od protokołu i wszystko się dobrze kończy, milczy przez chwilę dłużej niż zwykle.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 
-*culture_polish_persona_małgorzata.md - 2026-05-11*
+*culture_polish_persona_małgorzata.md - 12.05.2026*
 *Type: Composite*
 
 v0.1.0 - KAI Worlds
