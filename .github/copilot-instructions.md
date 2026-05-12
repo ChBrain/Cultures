@@ -36,6 +36,75 @@ This installs `.githooks/pre-commit` which validates every commit locally before
 - `fix/<name>` - corrections outside culture and governance
 - `chore/<name>` - non-culture, non-governance tooling / docs
 
+## Cultures v2 Schema
+
+Every country has **8 canonical kinds**, mapped to the **5 KAI structural types**. The mapping is enforced by validators that read a footer declaration on every content file.
+
+### The 8 kinds
+
+| File pattern | Cultures kind | KAI structural type |
+|---|---|---|
+| `culture_<adj>_language_<slug>.md` | Language | position |
+| `culture_<adj>_history_<slug>.md` | History | piece |
+| `culture_<adj>_position.md` | Position | position |
+| `culture_<adj>_process_<slug>.md` | Process | process |
+| `culture_<adj>_piece_<slug>.md` | Piece | piece |
+| `culture_<adj>_place_<slug>.md` | Place | place |
+| `culture_<adj>_male_<name>.md` | Male persona | persona |
+| `culture_<adj>_female_<name>.md` | Female persona | persona |
+
+`<adj>` is the cultural adjective (e.g. `german`, `dutch`). `<slug>` is a short kebab-/snake-case identifier; `<name>` is a given name.
+
+### khai declaration footer
+
+Every `culture_*.md` ends with a single-line marker declaring its KAI structural type:
+
+```
+*khai: <type>*
+```
+
+where `<type>` is exactly one of: `process`, `position`, `piece`, `place`, `persona`.
+
+The filename token and the footer must agree. Examples:
+
+| Filename | khai footer |
+|---|---|
+| `culture_german_language_german.md` | `*khai: position*` |
+| `culture_german_history_grundgesetz.md` | `*khai: piece*` |
+| `culture_german_position.md` | `*khai: position*` |
+| `culture_german_process_einkaufen.md` | `*khai: process*` |
+| `culture_german_piece_bauhaus.md` | `*khai: piece*` |
+| `culture_german_place_brandenburg_gate.md` | `*khai: place*` |
+| `culture_german_male_christian.md` | `*khai: persona*` |
+| `culture_german_female_brigitte.md` | `*khai: persona*` |
+
+Validators read both surfaces and reject any mismatch. The footer drives KAIHACKS `khai-tests` v0.1.6 component detection; the filename drives the Cultures-side completeness check (`tests/test_completeness.py`).
+
+### Per-country v2 opt-in
+
+The v2-strict validator runs only against countries listed in `data/v2_migrated_countries.txt` (one slug per line, blank lines and `#` comments ignored). Countries not on the list run the legacy v1 rules and stay readable in the meantime.
+
+A migration PR (`culture/<country>`) adds its slug to that file in the same commit that:
+- renames `persona_*` to `male_*` / `female_*`
+- renames `piece_*` to `history_*` where the file is actually history (a pivotal moment, not an artifact)
+- adds an authentic `piece` if the old `piece_*` doubled as history
+- adds the `*khai: <type>*` footer to every `culture_*.md`
+- updates the audit table in `README.md` to the canonical 8-kind order
+
+`data/v2_migrated_countries.txt` is in `SAFE_PATTERNS`, so culture branches are allowed to edit it. Once every developed country is on the list, stage 4 deprecates the opt-in mechanism and the validator becomes unconditionally v2.
+
+### Hofstede band contract
+
+Canonical thresholds (pinned by `scripts/audit_readme_bands.py` + `tests/test_audit_readme_bands.py`):
+
+| Score range | Band |
+|---|---|
+| 0-39 | Low |
+| 40-69 | Moderate |
+| 70-100 | High |
+
+"Medium" is an accepted prose alias for "Moderate" (the audit normalizes for equivalence but surfaces the non-canonical word in the `declared` column). README band labels and any prose mentions like `**Low PDI + High IDV:**` must agree with each dimension's score.
+
 ## Branch Scope Guards
 
 The pre-commit hook classifies every branch and enforces the matching scope:
@@ -63,9 +132,12 @@ Governance paths (single source of truth: `tests/branch_scope.py` `GOVERNANCE_DI
 - `tests/requirements.txt`, `tests/language_exceptions.txt` — validator config
 - `scripts/validate.py`, `scripts/validate_general.py` — orchestrator + helper
 - `scripts/setup-hooks.sh`, `scripts/setup-hooks.bat` — hook installation
+- `scripts/audit_readme_bands.py` — canonical Hofstede band contract
 - `data/hofstede_denylist.yaml`, `data/hofstede_keywords.py` — validator inputs
 - `data/hofstede_scores.json` — Hofstede Insights reference dataset
 - `data/hofstede_bag_loader.py` — bag-validation infrastructure
+- `data/language_policy.yaml` — per-language policy data
+- `data/phrase_denylist.txt` — plagiarism phrase denylist
 
 ### Culture slug resolution
 
@@ -80,6 +152,7 @@ Files allowed on culture **and** governance branches alongside their primary sco
 - `.bump-type` - version intent declaration
 - `.gitignore`, `.editorconfig` - repository config
 - `data/hofstede_bag_locks.yaml` - bag-lock index (carved out for bag migration PRs)
+- `data/v2_migrated_countries.txt` - per-country v2 opt-in (carved out for v2 migration PRs)
 
 ### Splitting work across scopes
 
@@ -202,4 +275,4 @@ If you see "L0-stamp-check FAILED":
 
 ---
 
-*v0.1.0 - KAI Worlds*
+*v0.2.0 - KAI Worlds*
