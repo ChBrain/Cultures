@@ -312,6 +312,7 @@ def test_check_scope_other_blocks_governance_paths():
         "tests/test_branch_scope.py",
         ".github/workflows/validate.yml",
         "scripts/validate.py",
+        "scripts/audit_readme_bands.py",
         "data/hofstede_keywords.py",
         "data/hofstede_scores.json",
         "ARCHITECTURE.md",
@@ -323,6 +324,7 @@ def test_check_scope_other_blocks_governance_paths():
     assert "tests/test_branch_scope.py" in unsafe
     assert ".github/workflows/validate.yml" in unsafe
     assert "scripts/validate.py" in unsafe
+    assert "scripts/audit_readme_bands.py" in unsafe
     assert "data/hofstede_keywords.py" in unsafe
     assert "data/hofstede_scores.json" in unsafe
     assert "ARCHITECTURE.md" not in unsafe
@@ -372,6 +374,7 @@ def test_check_scope_governance_allows_governance_paths():
         "tests/test_branch_scope.py",
         "tests/validate_culture_completeness.py",
         "scripts/validate.py",
+        "scripts/audit_readme_bands.py",
         "data/hofstede_keywords.py",
         "data/hofstede_scores.json",
         ".validation-stamp",
@@ -450,6 +453,7 @@ def test_is_governance_path_subtrees(path):
     "scripts/validate_general.py",
     "scripts/setup-hooks.sh",
     "scripts/setup-hooks.bat",
+    "scripts/audit_readme_bands.py",
     "data/hofstede_denylist.yaml",
     "data/hofstede_keywords.py",
     "data/hofstede_scores.json",
@@ -472,7 +476,6 @@ def test_is_governance_path_glob_files(path):
     "scripts/scaffold_country.py",
     "scripts/findings.py",
     "scripts/prose_review.py",
-    "scripts/audit_readme_bands.py",
     "tests/PLAN.md",
     "tests/README.md",
     "tests/findings.py",
@@ -499,6 +502,7 @@ def test_governance_glob_patterns_locked():
         "scripts/validate_general.py",
         "scripts/setup-hooks.sh",
         "scripts/setup-hooks.bat",
+        "scripts/audit_readme_bands.py",
         "data/hofstede_denylist.yaml",
         "data/hofstede_keywords.py",
         "data/hofstede_scores.json",
