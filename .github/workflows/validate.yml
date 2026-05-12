@@ -247,6 +247,25 @@ jobs:
           print(f"OK: branch '{branch}' (classified '{kind}') passes scope check ({len(files)} file(s)).")
           PY
 
+  audit-readme-bands-tests:
+    name: Audit README bands - test suite
+    # Unit-test gate for scripts/audit_readme_bands.py (the canonical Hofstede
+    # band contract: 0-39 Low, 40-69 Moderate, 70-100 High). Mirrors the
+    # branch-scope-tests pattern: independent, always runs, exercises the
+    # contract on every PR. Closes the gap noted during the v2 stage 2
+    # sequence where this test had no CI runner.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run audit_readme_bands tests
+        run: python -m pytest tests/test_audit_readme_bands.py -v
+
   setup:
     name: Setup - Compute changed files
     runs-on: ubuntu-latest
