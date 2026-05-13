@@ -28,10 +28,11 @@ De geschiedenis draagt omdat het water nooit verdwijnt.
 Dijken en sluizen door het hele land. De Afsluitdijk uit 1932. De Deltawerken uit 1953.
 Polders die nog zichtbaar verkaveld zijn: rechthoeken in het landschap, ook vanuit de lucht.
 De zeventiende-eeuwse grachtengordel van Amsterdam, UNESCO sinds 2010.
+De Nachtwacht in het Rijksmuseum, 1642. Rembrandt, Vermeer, Hals: een Republiek schildert haar zelfbewustzijn.
 De Joodse begraafplaats in Ouderkerk aan de Amstel. Sinds 1614.
 Stolpersteine in elke grote stad, herinneringen aan vermoorde Joodse buren.
 Het Anne Frank Huis in Amsterdam. De Westerbork-kampbarakken.
-Het Rijksmuseum: Rembrandt, Vermeer. Een Republiek schilderde haar zelfbewustzijn.
+Oranje sjaals en vlaggen bij elk groot voetbaltoernooi, sinds 1988.
 De Tweede Kamer in Den Haag, transparant in glas en hout.
 
 ## Yearbook
@@ -46,17 +47,17 @@ De Tweede Kamer in Den Haag, transparant in glas en hout.
 1579: Unie van Utrecht. Eerste schriftelijke garantie van godsdienstvrijheid in Europese wet. Bestuursinstrument, geen ideaal.
 1602: VOC opgericht. Amsterdam wordt rijkste handelsstad. Handel boven geloof als Nederlandse formule.
 1614: Joodse begraafplaats Ouderkerk aan de Amstel. Coexistentie als infrastructuur.
+1642: Rembrandts Nachtwacht. De Hollandse Republiek schildert haar zelfbewustzijn: schutters, kooplieden, burgers als nieuw subject.
 1648: Vrede van Münster. Tachtigjarige Oorlog voorbij. Spanje erkent Nederlandse republiek.
 1672: Rampjaar. Engeland, Frankrijk, Münster en Keulen vallen aan. De Republiek redt zichzelf door overstroming.
 1795-1813: Bataafse Republiek onder Franse invloed. Gelijke rechten voor Katholieken en Joden onder druk.
 1815: Koninkrijk der Nederlanden. Willem I op de troon; constitutionele monarchie als pragmatische evenwicht.
-1830: België splitst zich af. Nederland kleiner.
 1848: Grondwetsherziening van Thorbecke. Parlementair stelsel; medezeggenschap als institutie.
-1898: Verkiezingen na grondwetsherziening. Algemeen mannenkiesrecht in stappen.
 1914-1918: Neutraliteit in WO1. Handel boven keuze.
 1940-1945: Bezetting. Tolerantie-infrastructuur faalt voor 75% van de Nederlandse Joden. De grenzen werden zichtbaar.
 1953: Watersnoodramp. 1836 doden in Zeeland. Deltawerken besloten binnen het jaar.
 1957: Verdrag van Rome. Nederland mede-oprichter van de Europese Economische Gemeenschap.
+1988: EK voetbal. Nederland wint van de Sovjet-Unie in München. Oranje als nationaal moment in een coalitiecultuur.
 1989: Val van de Berlijnse Muur. Het einde van de Koude Oorlog; Nederlandse rol in NAVO-Europa.
 2002: Pim Fortuyn vermoord. Tolerantiedoctrine raakt haar grens. De heronderhandeling begint opnieuw.
 2004: Theo van Gogh vermoord. De berekening loopt opnieuw.
