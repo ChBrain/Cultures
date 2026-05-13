@@ -107,6 +107,31 @@ def test_classify_governance_near_misses_are_other(branch):
     assert classify_branch(branch) == "other"
 
 
+@pytest.mark.parametrize("branch", [
+    "sync/release-from-main",
+    "sync/release-from-main-2026-05-13",
+    "sync/x",
+    "sync/foo.bar_v1",
+])
+def test_classify_sync(branch):
+    assert classify_branch(branch) == "sync"
+
+
+@pytest.mark.parametrize("branch", [
+    "sync",
+    "sync/",
+    "sync/X",
+    "sync/Foo",
+    " sync/x",
+    "sync/x ",
+    "sync-x",
+    "syncs/x",
+])
+def test_classify_sync_near_misses_are_other(branch):
+    """Typos must NOT be 'sync' — fall through to 'other' (safer default)."""
+    assert classify_branch(branch) == "other"
+
+
 # ---------------------------------------------------------------------------
 # culture_scope
 # ---------------------------------------------------------------------------
@@ -365,6 +390,24 @@ def test_check_scope_main_is_noop():
 
 
 # ---------------------------------------------------------------------------
+# check_scope — sync branches (main -> culture/release funnel)
+# ---------------------------------------------------------------------------
+
+def test_check_scope_sync_allows_any_path():
+    """Sync branches mirror main's content; no path restriction applies."""
+    ok, unsafe = check_scope("sync", [
+        "regions/europe/germany/culture_german_position.md",
+        ".githooks/pre-commit",
+        ".github/workflows/validate.yml",
+        "tests/branch_scope.py",
+        "docs/BRANCHING.md",
+        "scripts/validate.py",
+    ])
+    assert ok
+    assert unsafe == []
+
+
+# ---------------------------------------------------------------------------
 # check_scope — governance branches
 # ---------------------------------------------------------------------------
 
@@ -514,4 +557,5 @@ def test_governance_glob_patterns_locked():
         "data/hofstede_bag_loader.py",
         "data/language_policy.yaml",
         "data/phrase_denylist.txt",
+        "docs/BRANCHING.md",
     )

@@ -28,6 +28,7 @@ and their scope rules are below.
 | culture (region) | `culture/<region>` | `regions/<region>/**` + safe metadata | yes (±10 gap) |
 | culture (world) | `culture/staging`, `culture/release` | `regions/**` + safe metadata | yes (±10 gap) |
 | governance | `governance/<name>` | governance paths + safe metadata | n/a |
+| sync | `sync/<name>` | unrestricted (snapshot of `main`) | n/a |
 | other | `chore/*`, `fix/*`, `feat/*`, … | everything **except** `regions/**` **and except** governance paths | n/a |
 
 The pattern is anchored. `feat/culture-x`, `cultures/x`, and `culture/Denmark`
@@ -76,6 +77,22 @@ Authoritative list: `GOVERNANCE_DIR_PREFIXES` + `GOVERNANCE_GLOB_PATTERNS` in
 [`tests/branch_scope.py`](../tests/branch_scope.py). This document is
 downstream of the code; if the two disagree, the code wins and the doc is the
 bug.
+
+## Sync branches
+
+`sync/<name>` branches funnel `main`'s HEAD into `culture/release`. They exist
+so `culture/release` (the integration target for `culture/<country>` PRs) can
+stay current with `main` without bypassing branch protection.
+
+A sync branch carries no new commits — the branch ref points directly at
+`main`'s tip. The PR (sync/<name> -> culture/release) is reviewed and merged
+through the normal flow; CI's PR-base gate allows the routing, and the
+PR-scope check is permissive on sync because the content is whatever `main`
+already has.
+
+Typical naming: `sync/release-from-main-<date>`. Cadence: as needed when
+`culture/release` drifts behind `main` enough that culture-PR diffs against it
+include non-target content.
 
 ## Safe metadata
 
