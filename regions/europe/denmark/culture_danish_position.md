@@ -11,7 +11,7 @@ Dit eget valg betyder.
 Din egen bedømmelse er værdifuld.
 Men alle har samme vurdering - i lighed og ligeværd.
 
-Den [danske historie](culture_danish_history_danmark.md) ligger under.
+Den [danske historie](culture_danish_piece_history.md) ligger under.
 Vedholdenhed gennem generationer.
 Forpligtelse til langsigtet planlægning.
 
