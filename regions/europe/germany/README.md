@@ -43,12 +43,12 @@ Germany's cultural profile measured against Hofstede's framework:
 
 | Dimension | Declared | Derived | Gap | Status |
 |-----------|----------|---------|-----|--------|
-| PDI | 35 | 40 | 5 | OK EXCELLENT |
-| IDV | 67 | 66 | 1 | OK EXCELLENT |
-| UAI | 65 | 66 | 1 | OK EXCELLENT |
-| MAS | 66 | 66 | 0 | OK EXCELLENT |
-| LTO | 83 | 87 | 4 | OK EXCELLENT |
-| IND | 40 | 36 | 4 | OK EXCELLENT |
+| PDI | 35 | 40 | 5 | ✅ EXCELLENT |
+| IDV | 67 | 66 | 1 | ✅ EXCELLENT |
+| UAI | 65 | 66 | 1 | ✅ EXCELLENT |
+| MAS | 66 | 66 | 0 | ✅ EXCELLENT |
+| LTO | 83 | 87 | 4 | ✅ EXCELLENT |
+| IND | 40 | 36 | 4 | ✅ EXCELLENT |
 
 Keyword density analysis validates that content keywords across all files (language, history, position, process, piece, place, personas) align with declared Hofstede scores. Gap tolerance: ±10 PASS, ±5 EXCELLENT. All six dimensions within ±5. Audited May 13, 2026.
 
