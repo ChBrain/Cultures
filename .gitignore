@@ -1,2 +1,6 @@
 __pycache__/
 *.pyc
+
+# Claude Code session worktrees (see .claude/CLAUDE.md)
+.claude/worktrees/
+
