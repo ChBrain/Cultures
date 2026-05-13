@@ -33,7 +33,7 @@ Filename convention: `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5
 | PDI | 68 | **High** | Hierarchies are natural and necessary. Formal structures, titles, and chain of command matter. But pragmatic meritocracy tempers pure rank: competence and qualification also confer authority. |
 | IDV | 60 | **High** | Individual achievement is valued and pursued (post-1989 entrepreneurship, career ambition). But family loyalty, community ties, and Catholic collectivism remain strong. Balance between personal goals and group obligations. |
 | MAS | 64 | **High** | Achievement, competition, and success are important. Career advancement is a major life goal. But Catholicism and family values introduce compassion and care. Not ruthless individualism; achievement with social conscience. |
-| UAI | 93 | **Very High** | Deep anxiety about uncertainty. Rules, procedures, documentation, and planning are comforting. Formal legal systems and written regulations provide security. Historical experience of foreign occupation and post-war rebuilding reinforced need for institutional clarity. |
+| UAI | 93 | **High** | Very High in the classifier sense (93 sits at the top of the 80-100 band). Deep anxiety about uncertainty. Rules, procedures, documentation, and planning are comforting. Formal legal systems and written regulations provide security. Historical experience of foreign occupation and post-war rebuilding reinforced need for institutional clarity. |
 | LTO | 38 | **Low** | Pragmatic about the future (planning, investment, strategy), but cultural memory and tradition are also valued. Not purely future-focused; the past shapes present identity. Catholic doctrine emphasizes continuity, but post-1989 Poland is also rapidly reforming. |
 | IND | 29 | **Low** | Restraint, duty, and discipline are virtues. Self-denial and sacrifice are valued. Post-war scarcity and Catholic asceticism created a culture that views excess and self-indulgence with suspicion. |
 
@@ -85,4 +85,4 @@ These dimensions inform the **[Language](culture_polish_position_language.md)** 
 
 *Audited May 13, 2026 (re-derived against post-v2-migration content; all 6 dimensions ±5 EXCELLENT)*
 
-*v0.2.1 - Kai Schlueter - Cultures - May 2026*
+*v0.2.2 - Kai Schlueter - Cultures - May 2026*
