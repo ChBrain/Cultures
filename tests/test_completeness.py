@@ -15,6 +15,26 @@ adds the country to the list in the same commit that renames files and adds
 khai declaration footers. Once every developed country is on the list,
 stage 4 deprecates the opt-in mechanism and the validator becomes
 unconditionally v2.
+
+Filename convention
+-------------------
+v2 filenames are ``culture_<adj>_<TYPE>_<NAME>.md`` where ``<TYPE>`` is one
+of the 5 KAI structural types (``process``, ``position``, ``piece``,
+``place``, ``persona``) and ``<NAME>`` is the content descriptor. Some
+content kinds only ever appear once per culture, so the redundant country
+suffix is dropped:
+
+    culture_dutch_position_language.md     TYPE=position, NAME=language
+    culture_dutch_piece_history.md         TYPE=piece,    NAME=history
+    culture_dutch_persona_male_jeroen.md   TYPE=persona,  NAME=male_jeroen
+    culture_dutch_piece_poldermodel.md     TYPE=piece,    NAME=poldermodel
+    culture_dutch_place_amsterdam.md       TYPE=place,    NAME=amsterdam
+    culture_dutch_position.md              TYPE=position, NAME=(none)
+
+The ``_v2_files`` detector picks up a kind token in either slot: the
+``_<kind>_<slug>`` infix form for multi-instance kinds, and the trailing
+``_<kind>.md`` form for single-instance kinds where the country suffix
+was dropped.
 """
 import re
 from pathlib import Path
@@ -98,23 +118,37 @@ def _files(country_dir: Path) -> dict[str, list[Path]]:
     }
 
 
+def _has_kind(name: str, kind: str) -> bool:
+    """True iff ``name`` carries ``kind`` as a filename token.
+
+    Matches either form:
+      - infix ``_<kind>_<slug>`` (e.g. ``_piece_poldermodel.md``)
+      - trailing ``_<kind>.md`` (e.g. ``_piece_history.md`` for the
+        single-instance ``history`` kind where the country suffix
+        was dropped)
+    """
+    return f"_{kind}_" in name or name.endswith(f"_{kind}.md")
+
+
 def _v2_files(country_dir: Path) -> dict[str, list[Path]]:
     """v2 file buckets, used by the strict v2 checks.
 
-    Detection is by filename token: ``culture_<adj>_<kind>_<slug>.md``.
-    Slug match is by ``_<kind>_`` infix (or trailing ``_position.md`` for
-    the slug-less position file).
+    Detection is by filename token. See module docstring for the
+    ``culture_<adj>_<TYPE>_<NAME>.md`` convention; ``_has_kind`` accepts
+    both the multi-instance infix form and the single-instance trailing
+    form so the validator stays aligned with the dropped country suffix
+    for ``language`` and ``history``.
     """
     md = list(country_dir.glob("culture_*.md"))
     return {
-        "language": [f for f in md if "_language_" in f.name],
-        "history":  [f for f in md if "_history_" in f.name],
-        "position": [f for f in md if "_position.md" in f.name],
-        "process":  [f for f in md if "_process_" in f.name],
-        "piece":    [f for f in md if "_piece_" in f.name],
-        "place":    [f for f in md if "_place_" in f.name],
-        "male":     [f for f in md if "_male_" in f.name],
-        "female":   [f for f in md if "_female_" in f.name],
+        "language": [f for f in md if _has_kind(f.name, "language")],
+        "history":  [f for f in md if _has_kind(f.name, "history")],
+        "position": [f for f in md if f.name.endswith("_position.md")],
+        "process":  [f for f in md if _has_kind(f.name, "process")],
+        "piece":    [f for f in md if _has_kind(f.name, "piece")],
+        "place":    [f for f in md if _has_kind(f.name, "place")],
+        "male":     [f for f in md if _has_kind(f.name, "male")],
+        "female":   [f for f in md if _has_kind(f.name, "female")],
     }
 
 
@@ -214,8 +248,9 @@ def _v2_require_kind(country_dir: Path, kind: str) -> None:
         pytest.skip("country is not on v2 list; v2-strict checks skipped")
     files = _v2_files(country_dir)[kind]
     assert files, (
-        f"{country_dir.name}: v2 schema requires at least one '{kind}' file "
-        f"(filename pattern: culture_<adj>_{kind}_*.md)"
+        f"{country_dir.name}: v2 schema requires at least one '{kind}' file. "
+        f"Accepted filename forms: culture_<adj>_<TYPE>_{kind}_<slug>.md "
+        f"or culture_<adj>_<TYPE>_{kind}.md (single-instance kind)."
     )
 
 
