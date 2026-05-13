@@ -55,6 +55,12 @@ CULTURE_BRANCH_PATTERN = re.compile(r"^culture/[a-z0-9][a-z0-9_.-]*$")
 # visible in the branch name and gateable in CI.
 GOVERNANCE_BRANCH_PATTERN = re.compile(r"^governance/[a-z0-9][a-z0-9_.-]*$")
 
+# Sync branches funnel main's HEAD into culture/release. They carry no new
+# commits — the branch is a snapshot of main used as a PR head so the merge
+# into culture/release can be reviewed and audited. Because the content is
+# identical to main, scope is unrestricted (anything main has is allowed).
+SYNC_BRANCH_PATTERN = re.compile(r"^sync/[a-z0-9][a-z0-9_.-]*$")
+
 # World-level integration slugs: may touch all of regions/**.
 # These are the integration targets feature branches merge into;
 # everything else under culture/* must resolve to a country or region.
@@ -112,19 +118,22 @@ GOVERNANCE_GLOB_PATTERNS = (
     "data/hofstede_bag_loader.py",
     "data/language_policy.yaml",
     "data/phrase_denylist.txt",
+    "docs/BRANCHING.md",
 )
 
 _DEFAULT_REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 def classify_branch(branch: str) -> str:
-    """Return 'main', 'culture', 'governance', or 'other'."""
+    """Return 'main', 'culture', 'governance', 'sync', or 'other'."""
     if branch == "main":
         return "main"
     if CULTURE_BRANCH_PATTERN.match(branch):
         return "culture"
     if GOVERNANCE_BRANCH_PATTERN.match(branch):
         return "governance"
+    if SYNC_BRANCH_PATTERN.match(branch):
+        return "sync"
     return "other"
 
 
@@ -241,6 +250,10 @@ def check_scope(
             f for f in staged
             if f.startswith("regions/") or is_governance_path(f)
         ]
+    elif branch_kind == "sync":
+        # Sync branches carry main's content unchanged into culture/release.
+        # No scope restriction: the diff reflects whatever main has accumulated.
+        unsafe = []
     else:
         unsafe = []
     return not unsafe, unsafe
