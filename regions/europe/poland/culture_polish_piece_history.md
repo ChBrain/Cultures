@@ -59,7 +59,7 @@ Tablice pamiątkowe na fasadach kamienic w Warszawie.
 1997: Konstytucja RP. Zatwierdzona referendum. Wchodzi w życie 17 października.
 1999: Polska wstępuje do NATO.
 2004: Polska wstępuje do Unii Europejskiej.
-2010: Katastrofa smoleńska. Prezydent Lech Kaczyński i 95 osób w drodze na Katyń.
+2010: Katastrofa smoleńska. 96 ofiar, w tym Prezydent Lech Kaczyński, w drodze na obchody Katynia.
 2015-2023: Spór o Trybunał Konstytucyjny. Kto pilnuje zasady, gdy zasada jest przedmiotem sporu.
 
 ---
