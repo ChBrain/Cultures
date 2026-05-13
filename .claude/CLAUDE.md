@@ -9,25 +9,18 @@ non-trivial change runs in a worktree under `.claude/worktrees/<kind>/<slug>/`.
 "Non-trivial" means any file edit beyond reading. Reads, greps, and
 explorations may stay in the main checkout.
 
-Each worktree directory pairs 1:1 with a branch of the same name. Both
-names come from the table in Rule 2.
+Each worktree directory pairs 1:1 with a branch of the same name.
 
 ## Rule 2 - Branch kind chosen before entering
 
-The pre-commit hook classifies the branch from its name and rejects
-out-of-scope commits (see `tests/branch_scope.py` and
-`.github/copilot-instructions.md` > Branch Scope Guards). Pick from the
-change's primary target, not from convenience.
+Pick the branch kind from the change's primary target, using
+[docs/BRANCHING.md](../docs/BRANCHING.md) as the contract:
 
-| Primary target of the change | Branch / worktree slug |
-|---|---|
-| `regions/<region>/<country>/` (one country) | `culture/<country>` |
-| `regions/<region>/` (across one region) | `culture/<region>` |
-| `regions/**` (cross-region / world) | `culture/staging` or `culture/release` |
-| Validators, hooks, workflows, branch_scope, validator data | `governance/<name>` |
-| Tooling, scripts, docs outside the governance set | `chore/<name>` |
-| Correction outside culture and governance | `fix/<name>` |
-| Non-culture, non-governance feature | `feat/<name>` |
+- `culture/<country>` or `culture/<region>` for culture content
+- `governance/<name>` for validators, hooks, workflows, branch_scope
+- `chore/<name>` for tooling, scripts, docs
+- `fix/<name>` for corrections outside culture and governance
+- `feat/<name>` for non-culture, non-governance features
 
 If a request spans two kinds, split it into two worktrees + two PRs. Never
 widen scope to fit everything into one branch.
@@ -77,7 +70,9 @@ addressed on the same branch. If work is abandoned, exit explicitly with
 
 `.githooks/pre-commit` runs L0-L4 validators plus Hofstede checks on culture
 branches. Never bypass with `--no-verify`. If it fails, fix the root cause;
-do not retarget the branch kind to skip the validator.
+do not retarget the branch kind to skip the validator. The full contract for
+"which branch may touch what" lives in
+[docs/BRANCHING.md](../docs/BRANCHING.md).
 
 ---
 

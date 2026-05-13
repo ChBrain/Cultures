@@ -26,15 +26,23 @@ git config core.hooksPath .githooks
 
 This installs `.githooks/pre-commit` which validates every commit locally before it reaches GitHub.
 
-## Branch naming
+## Branches
 
-- `culture/<country>` - per-country culture work (e.g., `culture/denmark`)
-- `culture/<region>` - per-region culture work (e.g., `culture/europe`)
-- `culture/staging`, `culture/release` - integration points for batched culture releases
-- `governance/<name>` - changes to the rules themselves: hooks, CI workflows, validators, branch-scope module, validator data sources
-- `feat/<name>` - non-culture, non-governance feature work
-- `fix/<name>` - corrections outside culture and governance
-- `chore/<name>` - non-culture, non-governance tooling / docs
+The branch-kind contract (allowed paths per kind, governance vs safe metadata,
+splitting work, rejection messages) lives in
+[../docs/BRANCHING.md](../docs/BRANCHING.md). It is the single source of truth
+for what each branch may touch and is mirrored from the executable rules in
+[`tests/branch_scope.py`](../tests/branch_scope.py).
+
+Short version: match the branch kind to the change's primary target.
+
+- Culture content -> `culture/<country>` (or `<region>`, `staging`, `release`)
+- Validators, hooks, workflows -> `governance/<name>`
+- Tooling, scripts, docs -> `chore/<name>`
+- Fixes outside culture and governance -> `fix/<name>`
+- Non-culture, non-governance features -> `feat/<name>`
+
+If a change spans two kinds, split it into separate branches/PRs.
 
 ## Cultures v2 Schema
 
@@ -121,72 +129,6 @@ Canonical thresholds (pinned by `scripts/audit_readme_bands.py` + `tests/test_au
 | 70-100 | High |
 
 "Medium" is an accepted prose alias for "Moderate" (the audit normalizes for equivalence but surfaces the non-canonical word in the `declared` column). README band labels and any prose mentions like `**Low PDI + High IDV:**` must agree with each dimension's score.
-
-## Branch Scope Guards
-
-The pre-commit hook classifies every branch and enforces the matching scope:
-
-| Branch kind | Pattern | May modify | Hofstede check |
-|---|---|---|---|
-| `main` | exact name `main` | nothing — direct commits forbidden | n/a |
-| culture (country) | `culture/<country>` | `regions/<region>/<country>/**` + safe metadata | yes (±10 gap) |
-| culture (region) | `culture/<region>` | `regions/<region>/**` + safe metadata | yes (±10 gap) |
-| culture (world) | `culture/staging`, `culture/release` | `regions/**` + safe metadata | yes (±10 gap) |
-| governance | `governance/<name>` | governance paths + safe metadata | n/a |
-| other | anything else (`chore/*`, `fix/*`, `feat/*`, …) | anything **except** `regions/**` **and except** governance paths | n/a |
-
-### Data vs. governance
-
-Culture data lives under `regions/<region>/<country>/`. **Governance** — the code and data that defines and enforces repository rules — lives in fixed paths and is walled off from non-governance branches so a generic `chore/refactor` cannot silently weaken the gates that protect culture content.
-
-Governance paths (single source of truth: `tests/branch_scope.py` `GOVERNANCE_DIR_PREFIXES` + `GOVERNANCE_GLOB_PATTERNS`):
-
-- `.githooks/**` — local pre-commit enforcement
-- `.github/workflows/**` — CI enforcement
-- `tests/branch_scope.py` — the rules themselves
-- `tests/test_*.py` — tests that pin the rules
-- `tests/validate_*.py` — every validator script
-- `tests/requirements.txt`, `tests/language_exceptions.txt` — validator config
-- `scripts/validate.py`, `scripts/validate_general.py` — orchestrator + helper
-- `scripts/setup-hooks.sh`, `scripts/setup-hooks.bat` — hook installation
-- `scripts/audit_readme_bands.py` — canonical Hofstede band contract
-- `scripts/update_hofstede_readme.py` — deterministic README Hofstede-tables updater
-- `data/hofstede_denylist.yaml`, `data/hofstede_keywords.py` — validator inputs
-- `data/hofstede_scores.json` — Hofstede Insights reference dataset
-- `data/hofstede_bag_loader.py` — bag-validation infrastructure
-- `data/language_policy.yaml` — per-language policy data
-- `data/phrase_denylist.txt` — plagiarism phrase denylist
-
-### Culture slug resolution
-
-Culture branches use forward-slash naming, and the slug after the slash is resolved against the on-disk `regions/` tree. The slug must match either a known country folder (`regions/<region>/<slug>/`), a known region folder (`regions/<slug>/`), or one of the world-level integration names (`staging`, `release`). A typo or unknown slug fails fast instead of silently widening scope. Near-misses like `feat/culture-x`, `cultures/x`, and `culture/Denmark` (uppercase) are all classified as `other` and blocked from `regions/`.
-
-Per-country protection means a `culture/germany` branch cannot touch Denmark even though both live under `regions/europe/`. If you need to span multiple countries in a single PR, use `culture/<region>` (e.g. `culture/europe`) or the world-level `culture/staging`.
-
-### Safe metadata
-
-Files allowed on culture **and** governance branches alongside their primary scope:
-- `.validation-stamp` - proof of local validation
-- `.bump-type` - version intent declaration
-- `.gitignore`, `.editorconfig` - repository config
-- `data/hofstede_bag_locks.yaml` - bag-lock index (carved out for bag migration PRs)
-- `data/v2_migrated_countries.txt` - per-country v2 opt-in (carved out for v2 migration PRs)
-
-### Splitting work across scopes
-
-If your work spans two scopes, split it into separate branches/PRs — each PR can merge independently:
-1. Culture content: `git checkout -b culture/<country>`
-2. Validator/hook/workflow changes: `git checkout -b governance/<name>`
-3. General tooling/docs: `git checkout -b chore/<name>`
-
-Hook rejection messages:
-```
->>> ERROR: Culture branch out of scope (allowed: regions/<region>/<country>/**)
->>> ERROR: Unknown culture slug
->>> ERROR: Governance branch out of scope
->>> ERROR: Non-culture/non-governance branch out of scope
-```
-Use `git reset` and move the offending files to the right branch kind.
 
 ## Workflow
 
