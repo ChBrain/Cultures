@@ -14,11 +14,11 @@ De tolerantie was geen ideaal. Het was de ontdekking dat uitsluiting de dijk kos
 Iedereen heeft de dijk nodig. Dus iedereen zit aan tafel in saamhorigheid.
 Gelijkwaardige zeggenschap. Consensus waar het water geen keuze laat.
 Collegiale samenwerking is de prijs van het water.
-Inspraak van elke belanghebbende. Overleg tot het houdt.
-De dijk is een langetermijn-noodzaak. Niet van morgen. Niet van gewoonten. Duurzaam overleven vereist investering.
+Inspraak van elke belanghebbende. Overleg tot het houdt. Aanpassingen naar wat het water leert.
+De dijk is traditie en voortdurende noodzaak. Niet van morgen. Niet van gewoonten - van nu. Duurzaam overleven vereist investering.
 De kracht ervan: het houdt ook als niemand het wil.
-Zorg voor elkaar. Gemeenschap die handelt. De dijk bindt wie hij scheidt.
-Leren van water. Elke overstroming een les. Pragmatisch. Continuïteit door volharding.
+Zorg voor elkaar. Empathie voor de zwaksten. Mededogen in nood. De dijk bindt wie hij scheidt.
+Leren van water. Elke overstroming een experiment. Pragmatisch. Improvisatie waar voorbereiding faalt. Continuïteit door volharding.
 
 ## Apparent
 Het Sociaal-Economische Raad. 1950. Consensus-orgaan.
