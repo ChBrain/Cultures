@@ -1,4 +1,5 @@
 """L4f: Derived Hofstede scores vs declared — keyword scoring across all culture files."""
+import os
 import re
 import sys
 import warnings
@@ -66,6 +67,20 @@ def _derived(country_dir: Path, language: str) -> dict[str, int]:
 
 
 _COUNTRIES = _country_dirs()
+
+# Narrow to PR-changed countries when CI is running on a PR. Env vars are
+# set by the L4f job in .github/workflows/validate.yml; absent on push events
+# or local runs, which keeps the full corpus in scope. A Denmark-only
+# deviation shouldn't fail a Germany PR's CI.
+_pr_changed = os.environ.get("PR_CHANGED_FILES", "").strip()
+_pr_data_changed = os.environ.get("PR_DATA_CHANGED", "").strip().lower() == "true"
+if _pr_changed and not _pr_data_changed:
+    _pr_slugs = {
+        p.split("/")[2]
+        for p in _pr_changed.split()
+        if p.startswith("regions/") and len(p.split("/")) >= 4
+    }
+    _COUNTRIES = [d for d in _COUNTRIES if d.name in _pr_slugs]
 
 
 @pytest.mark.parametrize("country_dir", _COUNTRIES, ids=[c.name for c in _COUNTRIES])
