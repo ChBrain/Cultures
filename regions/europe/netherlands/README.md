@@ -61,30 +61,32 @@ Netherlands's cultural profile measured against Hofstede's framework:
 
 ## Content Audit Status
 
-| File | Type | Status | Notes |
+Filename convention: `culture_<culture>_<TYPE>_<NAME>` where TYPE is one of the 5 KHAI structural types (process, position, piece, place, persona). Redundant country suffixes dropped for single-instance kinds (language, history).
+
+| File | TYPE | Status | Notes |
 |------|------|--------|-------|
-| culture_dutch_language_nederlands.md | Language | ✅ Validated | All dimensions within tolerance |
-| culture_dutch_history_netherlands.md | History | ✅ Validated | Broad Dutch history: Romeinse limes -> 2024, 26 dated entries |
-| culture_dutch_position.md | Position | ✅ Validated | All dimensions within tolerance |
-| culture_dutch_process_polderen.md | Process | ✅ Validated | All dimensions within tolerance |
-| culture_dutch_piece_poldermodel.md | Piece | ✅ Validated | All dimensions within tolerance |
-| culture_dutch_place_amsterdam.md | Place | ✅ Validated | All dimensions within tolerance |
-| culture_dutch_female_anneke.md | Female Persona | ✅ Validated | Mediator. Tell redesigned. |
-| culture_dutch_male_jeroen.md | Male Persona | ✅ Validated | Journalist. Tell redesigned. |
+| culture_dutch_position_language.md | position | ✅ Validated | All dimensions within tolerance |
+| culture_dutch_piece_history.md | piece | ✅ Validated | Broad Dutch history: Romeinse limes -> 2024, 26 dated entries |
+| culture_dutch_position.md | position | ✅ Validated | All dimensions within tolerance |
+| culture_dutch_process_polderen.md | process | ✅ Validated | All dimensions within tolerance |
+| culture_dutch_piece_poldermodel.md | piece | ✅ Validated | All dimensions within tolerance |
+| culture_dutch_place_amsterdam.md | place | ✅ Validated | All dimensions within tolerance |
+| culture_dutch_persona_female_anneke.md | persona | ✅ Validated | Mediator. Tell redesigned. |
+| culture_dutch_persona_male_jeroen.md | persona | ✅ Validated | Journalist. Tell redesigned. |
 
 ## Content
 
 **V2 Schema Order (Language → History → Position → Process → Piece → Place → Personas):**
 
-- **Language**: [culture_dutch_language_nederlands.md](culture_dutch_language_nederlands.md) - Direct. No wrapper. Efficiency over politeness.
-- **History**: [culture_dutch_history_netherlands.md](culture_dutch_history_netherlands.md) - From Romeinse limes to 2024 - water as governance, tolerance as infrastructure, the Polder Model's institutional continuity
+- **Language**: [culture_dutch_position_language.md](culture_dutch_position_language.md) - Direct. No wrapper. Efficiency over politeness.
+- **History**: [culture_dutch_piece_history.md](culture_dutch_piece_history.md) - From Romeinse limes to 2024 - water as governance, tolerance as infrastructure, the Polder Model's institutional continuity
 - **Position**: [culture_dutch_position.md](culture_dutch_position.md) - De platte kamer, het Poldermodel, tolerantie uit noodzaak
 - **Process**: [culture_dutch_process_polderen.md](culture_dutch_process_polderen.md) - Polderen - negotiation when the stakes are shared (water)
 - **Piece**: [culture_dutch_piece_poldermodel.md](culture_dutch_piece_poldermodel.md) - The Polder Model - load-bearing framework (1421-2024)
 - **Place**: [culture_dutch_place_amsterdam.md](culture_dutch_place_amsterdam.md) - Amsterdam - canal belt infrastructure and tolerance logic
 - **Personas**:
-  - [Anneke (Female)](culture_dutch_female_anneke.md) - Mediator. The shortest line. Notitieblok. Tell shows her blind spot.
-  - [Jeroen (Male)](culture_dutch_male_jeroen.md) - Journalist. Says what he sees. Footnotes matter. Tell shows his blind spot.
+  - [Anneke (Female)](culture_dutch_persona_female_anneke.md) - Mediator. The shortest line. Notitieblok. Tell shows her blind spot.
+  - [Jeroen (Male)](culture_dutch_persona_male_jeroen.md) - Journalist. Says what he sees. Footnotes matter. Tell shows his blind spot.
 
 ---
 
