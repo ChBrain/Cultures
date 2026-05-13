@@ -4,3 +4,8 @@ __pycache__/
 # Claude Code session worktrees (see .claude/CLAUDE.md)
 .claude/worktrees/
 
+# Gemini CLI runtime artifacts; keep only the committed brief + settings
+.gemini/*
+!.gemini/GEMINI.md
+!.gemini/settings.json
+
