@@ -1,36 +1,34 @@
-# Piece: Grundgesetz
+# History: Germany
 
 ## Owner
 - Project: Cultures
 - Culture: Germany
 
 ## Place
-Bonn. 1948.
-Der Parlamentarische Rat.
-Fünfundsechzig Frauen und Männer.
-Sie hatten gesehen, was passiert, wenn es kein Grundgesetz gibt.
-Sie schrieben es trotzdem als vorläufig.
-Es wurde permanent.
+Deutschland.
+Mitteleuropa, vom Rhein bis zur Oder, von den Alpen bis zur Ostsee.
+Ein Land mit nie gefestigten Grenzen, sechzehn Bundesländer heute, hunderte Fürstentümer einst.
+Karte und Bewusstsein selten in derselben Form.
+Der Boden trägt die Schichten: römisches Limes, fränkische Reichsteilung, freie Städte, kaiserliche Sitze, geteilte Hauptstadt, ein einig Volk wieder.
 
 ## Load Bearing
-Ohne es verliert die [Deutsche](culture_german_position.md) Position ihren Grund.
-*Die Würde des Menschen ist unantastbar.*
-Artikel 1. Nicht abänderbar.
-Das Bundesverfassungsgericht setzt es durch, in Gleichheit mit Gesellschaft.
-Es hat Gesetze gekippt; die Gesetze änderten sich pragmatisch.
-Das Gericht blieb kooperativ, mit Systematik über Starrheit.
-Regelwerk und Flexibilität in Spannung, haltend.
+Ohne sie verliert die [Deutsche](culture_german_position.md) Position ihre Tiefe.
+Fragmentierung und Einigung in steter Spannung, seit zwei Jahrtausenden.
+Aufbau, Katastrophe, Wiederaufbau im wiederkehrenden Zyklus.
+Verfassungsverankerung als Antwort auf den Bruch: die Würde des Menschen unantastbar nach 1949.
+Die Verantwortung gegenüber Vergangenheit als nationale Pflicht.
+Föderale Ordnung als Schutz vor der Versuchung der Konzentration.
+Die Geschichte trägt, weil sie nicht weggewischt wird.
 
 ## Apparent
-*Die Würde des Menschen ist unantastbar.*
-Erster Satz. Erster Artikel.
-Vor allem anderen.
-Das Grundgesetz hängt in deutschen Klassenzimmern.
-Es liegt in Behörden aus mit Genauigkeit in der Verteilung.
-Neu eingebürgerte Deutsche erhalten ein Exemplar mit Einbürgerungsurkunde.
-Das Bundesverfassungsgericht sitzt in Karlsruhe.
-Die Säle sind modern, nicht ornamental.
-Fünfundsiebenzig Jahre seit 1951. Noch immer in Kraft.
+Stolpersteine im Pflaster, vor jeder zweiten Tür einer Großstadt.
+Bundesländer mit eigenen Regierungen, eigenen Universitäten, eigenem Selbstverständnis.
+Die Berliner Mauer als Linie aus Pflastersteinen, sichtbar wo sie nicht mehr steht.
+Schulunterricht zur NS-Zeit jährlich, unverzichtbar im Lehrplan.
+Erinnerungsorte in jeder größeren Stadt: KZ-Gedenkstätten, Stadtmuseen, Stolpersteine.
+Das Bundesverfassungsgericht in Karlsruhe, modern und unornamental.
+Fünfundsiebzig Jahre Grundgesetz, weitergetragen ohne Bruch der ersten Artikel.
+Eine Republik, die ihr Werden vor dem Spiegel hält.
 
 ## Yearbook
 9 n. Chr.: Varusschlacht. Rom zieht sich hinter den Rhein zurück; kein gemeinsames Recht beginnt hier.
@@ -48,17 +46,17 @@ Fünfundsiebenzig Jahre seit 1951. Noch immer in Kraft.
 1919: Weimarer Verfassung. Grundrechte vollständig: Artikel 48 die Lücke, durch die alles fiel.
 1933: Hitler Reichskanzler. Die Verfassung nicht abgeschafft, sondern benutzt: Artikel 48, Ermächtigungsgesetz.
 1935: Nürnberger Rassengesetze. Der Staat gegen seine Bürger, mit Paragraphen.
-1945: Kapitulation. Besatzungsrecht. Das Land in Trümmern, das Recht in Trümmern.
+1945: Kapitulation. Besatzungsrecht. Das Land in Trümmern, das Recht in Trümmern. *Stunde Null*.
 1948: Parlamentarischer Rat in Bonn. 61 Männer, 4 Frauen; Selbert erkämpft Artikel 3,2: *Männer und Frauen sind gleichberechtigt.*
 1949: Grundgesetz tritt in Kraft, 23. Mai. Artikel 1: *Die Würde des Menschen ist unantastbar.* Artikel 79,3: nicht abänderbar.
 1951: Bundesverfassungsgericht in Karlsruhe nimmt die Arbeit auf.
+1961: Bau der Berliner Mauer. Die Teilung sichtbar im Beton.
 1970: Willy Brandt kniet in Warschau. Er musste nicht. Er kniete trotzdem.
+1989: Mauerfall am 9. November. Die DDR öffnet die Grenze; der Riss von 843 schließt sich.
 1990: Wiedervereinigung. Das Grundgesetz gilt für alle Deutschen; Artikel 1 unverändert.
 2021: Klimabeschluss des BVerfG. Artikel 1 immer noch Boden.
 
 ---
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-
-*culture_german_piece_grundgesetz.md - 07.05.2026*
-
-v0.1.0 - KAI Worlds
+*hofstede: aggregate in [README.md](README.md).*
+*khai: piece*
+*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

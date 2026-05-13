@@ -8,6 +8,18 @@ scalable Hofstede integration across all 198+ cultures.
 For countries without empirical Hofstede data, provides approximation guidance
 and prompts for best judgment reasoning.
 
+The Content Overview table reflects the **Cultures v2 schema**: 8 canonical
+kinds (language, history, position, process, piece, place, male, female)
+layered on the 5 KAI structural types (process, position, piece, place,
+persona). Every `culture_*.md` file in a v2-migrated country carries a
+``*khai: <type>*`` footer declaration that validators read to apply the
+right structural contract -- see PR #118 (step 1/5) and
+docs/migration/cultures-kind-schema-history-piece-split.md.
+
+Band labels (Low / Moderate / High) match the canonical Hofstede band
+contract: 0-39 Low, 40-69 Moderate, 70-100 High. Keep in sync with
+``score_to_band()`` in ``scripts/audit_readme_bands.py``.
+
 Usage:
   scripts/scaffold_all_hofstede.py                    # shows what would be generated
   scripts/scaffold_all_hofstede.py --apply            # generates files
@@ -73,21 +85,23 @@ def generate_readme(country_name: str, scores: dict | None) -> str:
         for dim in ["PDI", "IDV", "UAI", "MAS", "LTO", "IND"]:
             score = scores[dim]
             
-            # Determine level
-            if score < 33:
+            # Canonical Hofstede band contract: 0-39 Low, 40-69 Moderate,
+            # 70-100 High. Keep in sync with score_to_band() in
+            # scripts/audit_readme_bands.py.
+            if score <= 39:
                 level = "**Low**"
-            elif score < 67:
-                level = "**Medium**"
+            elif score <= 69:
+                level = "**Moderate**"
             else:
                 level = "**High**"
             
             meanings = {
-                "PDI": {"Low": "Equality valued; hierarchy questioned", "Medium": "Moderate hierarchy", "High": "Hierarchy accepted"},
-                "IDV": {"Low": "Collective; group harmony", "Medium": "Balanced", "High": "Individual achievement"},
-                "UAI": {"Low": "Flexible; comfortable with ambiguity", "Medium": "Balanced", "High": "Structure and predictability"},
-                "MAS": {"Low": "Caring and cooperation", "Medium": "Balanced", "High": "Competitive and achievement-focused"},
-                "LTO": {"Low": "Short-term focused", "Medium": "Balanced", "High": "Long-term planning oriented"},
-                "IND": {"Low": "Restraint and discipline", "Medium": "Balanced", "High": "Indulgence and gratification"},
+                "PDI": {"Low": "Equality valued; hierarchy questioned", "Moderate": "Moderate hierarchy", "High": "Hierarchy accepted"},
+                "IDV": {"Low": "Collective; group harmony", "Moderate": "Balanced", "High": "Individual achievement"},
+                "UAI": {"Low": "Flexible; comfortable with ambiguity", "Moderate": "Balanced", "High": "Structure and predictability"},
+                "MAS": {"Low": "Caring and cooperation", "Moderate": "Balanced", "High": "Competitive and achievement-focused"},
+                "LTO": {"Low": "Short-term focused", "Moderate": "Balanced", "High": "Long-term planning oriented"},
+                "IND": {"Low": "Restraint and discipline", "Moderate": "Balanced", "High": "Indulgence and gratification"},
             }
             
             meaning = meanings[dim].get(level.replace("**", ""), "")
@@ -106,7 +120,7 @@ def generate_readme(country_name: str, scores: dict | None) -> str:
 
 ### How Dimensions Shape This Culture
 
-The six dimensions inform the **Position** (how the culture operates), **Pieces** (historical moments where dimensions intersected), **Place** (where dimensions are visible daily), and **Personas** (how individuals navigate these cultural pressures).
+The six dimensions inform all eight v2 kinds -- **Language**, **History**, **Position**, **Process**, **Piece**, **Place**, and the **Male / Female personas** -- shaping how each surface expresses the cultural profile. The eight Cultures kinds map to the five KAI structural types (language -> position, history -> piece, male/female -> persona); validators read the `*khai: <type>*` footer on every `culture_*.md` to apply the right structural contract.
 
 ---
 
@@ -128,9 +142,11 @@ This culture does not have published Hofstede research. Use the table below with
 
 **Source:** Best judgment approximation - see REFERENCES.md for reasoning.
 
+**Bands:** Low 0-39, Moderate 40-69, High 70-100 (canonical Hofstede contract).
+
 ### How Dimensions Shape This Culture
 
-The six dimensions inform the **Position**, **Pieces**, **Place**, and **Personas**.
+The six dimensions inform all eight v2 kinds -- **Language**, **History**, **Position**, **Process**, **Piece**, **Place**, and the **Male / Female personas** -- shaping how each surface expresses the cultural profile. The eight Cultures kinds map to the five KAI structural types (language -> position, history -> piece, male/female -> persona); validators read the `*khai: <type>*` footer on every `culture_*.md` to apply the right structural contract.
 
 ---
 
@@ -138,20 +154,30 @@ The six dimensions inform the **Position**, **Pieces**, **Place**, and **Persona
         
     content = f"""# {country_name.replace('_', ' ').title()} - Culture Content
 
-This folder contains culture content for {country_name.replace('_', ' ').lower()}: historical personas, cultural pieces, and geographical places that represent {country_name.replace('_', ' ').lower()} society and identity.
+This folder contains culture content for {country_name.replace('_', ' ').lower()}: the language that carries meaning, the pivotal moments of history, the position the culture occupies, the recurring processes, the artifacts and pieces, the defining places, and the male and female personas that inhabit this society.
 
 ## Content Overview
 
-| File | Type | Purpose |
-|------|------|---------|
-| `culture_*_position.md` | Position | Culture position (state role) - narrative anchor |
-| `culture_*_place_*.md` | Place | Defining location as geographical anchor |
-| `culture_*_piece_*.md` | Piece | Historical moment or cultural artifact/concept |
-| `persona_*.md` | Persona | Character carrying the culture's position |
+The v2 schema requires 8 canonical kinds per country, mapped to the 5 KAI structural types. The KAI type column determines which structural contract (section order, fields, links) validators apply.
+
+| File pattern | Cultures kind | KAI structural type | Purpose |
+|------|------|------|---------|
+| `culture_*_language_*.md` | Language | position | Language as cultural position (Has / Orders / Loses / Drives) |
+| `culture_*_history_*.md` | History | piece | Pivotal historical moment or formative event (Place / Load-bearing / Apparent / Yearbook) |
+| `culture_*_position.md` | Position | position | Culture position (state role) - narrative anchor |
+| `culture_*_process_*.md` | Process | process | Recurring practice or ritual (Is / Drives / Leaves / Ends) |
+| `culture_*_piece_*.md` | Piece | piece | Cultural artifact or concept |
+| `culture_*_place_*.md` | Place | place | Defining geographical location |
+| `culture_*_male_*.md` | Male persona | persona | Male character carrying the culture's position (Projection / Action / Shadow / Tell) |
+| `culture_*_female_*.md` | Female persona | persona | Female character carrying the culture's position |
+
+> Every `culture_*.md` file ends with a `*khai: <type>*` footer where `<type>` is one of `process`, `position`, `piece`, `place`, `persona`. The declaration tells validators which KAI structural contract to apply -- Cultures-specific kinds (`language`, `history`, `male`, `female`) map to a KAI type via the table above. Filename token and footer must agree.
 
 {hofstede_section}
 
 ## Content Audit Status
+
+The audit table is ordered by the 8 v2 kinds (language, history, position, process, piece, place, male, female) so reviewers can scan for gaps at a glance.
 
 | File | Audit Status | Verified | Auditor | Date |
 |------|--------------|----------|---------|------|
@@ -163,7 +189,7 @@ See [REFERENCES.md](REFERENCES.md) for source attribution and sourcing methodolo
 
 ---
 
-*v0.1.0 - Kai Schlueter - Cultures - May 2026*
+*v0.2.0 - Kai Schlueter - Cultures - May 2026*
 """
     return content
 
@@ -228,31 +254,31 @@ For countries without empirical Hofstede research, this section documents the re
 
 | Source | Scope | Trust Level |
 |--------|-------|------------|
-| National government websites | Official information | ⭐⭐⭐⭐⭐ |
-| National archives / historical records | Historical documents | ⭐⭐⭐⭐⭐ |
-| National statistical office | Official statistics | ⭐⭐⭐⭐⭐ |
+| National government websites | Official information | ***** |
+| National archives / historical records | Historical documents | ***** |
+| National statistical office | Official statistics | ***** |
 
 ### Academic & Historical References
 
 | Source | Scope | Trust Level |
 |--------|-------|------------|
-| University press publications | Historical scholarship | ⭐⭐⭐⭐ |
-| National historical institutes | Academic research | ⭐⭐⭐⭐ |
+| University press publications | Historical scholarship | **** |
+| National historical institutes | Academic research | **** |
 
 ### Secondary References
 
 | Source | Scope | Trust Level |
 |--------|-------|------------|
-| Wikipedia | General facts, cultural context | ⭐⭐⭐ |
-| Britannica | Historical overviews | ⭐⭐⭐⭐ |
-| CIA World Factbook | Geographic, demographic data | ⭐⭐⭐⭐ |
+| Wikipedia | General facts, cultural context | *** |
+| Britannica | Historical overviews | **** |
+| CIA World Factbook | Geographic, demographic data | **** |
 
 ### Journalistic & Media Archives
 
 | Source | Scope | Trust Level |
 |--------|-------|------------|
-| National newspapers | News and investigations | ⭐⭐⭐⭐ |
-| International media | External perspective | ⭐⭐⭐⭐ |
+| National newspapers | News and investigations | **** |
+| International media | External perspective | **** |
 
 ---
 
@@ -260,9 +286,9 @@ For countries without empirical Hofstede research, this section documents the re
 
 | Source | Scope | Trust Level |
 |--------|-------|------------|
-| Hofstede Insights (hofstede-insights.com) | Cultural Dimensions scores by country | ⭐⭐⭐⭐⭐ |
-| Hofstede, G., Hofstede, G. J., & Minkov, M. (2010). *Cultures and Organizations* | Foundational research on 6 dimensions | ⭐⭐⭐⭐⭐ |
-| ITIM International (geert-hofstede.com) | Original Hofstede research database | ⭐⭐⭐⭐⭐ |
+| Hofstede Insights (hofstede-insights.com) | Cultural Dimensions scores by country | ***** |
+| Hofstede, G., Hofstede, G. J., & Minkov, M. (2010). *Cultures and Organizations* | Foundational research on 6 dimensions | ***** |
+| ITIM International (geert-hofstede.com) | Original Hofstede research database | ***** |
 
 ---
 
@@ -270,7 +296,7 @@ For countries without empirical Hofstede research, this section documents the re
 
 ## Verified Facts by File
 
-(To be completed: List each content file with verified facts)
+(To be completed: List each content file with verified facts, grouped by the 8 v2 kinds: language, history, position, process, piece, place, male, female.)
 
 ---
 
@@ -288,9 +314,9 @@ When content is spot-checked:
 2. **Verify each:** Search sources in hierarchy order
 3. **Check paraphrase risk:** Search source text for 7+ consecutive word matches
 4. **Mark verdict:**
-   - ✅ **clean** - All facts verified, no paraphrase risk
-   - ⚠️ **minor** - One minor inaccuracy or weak paraphrase
-   - ❌ **issues** - Factual error or significant paraphrase risk
+   - **clean** - All facts verified, no paraphrase risk
+   - **minor** - One minor inaccuracy or weak paraphrase
+   - **issues** - Factual error or significant paraphrase risk
 
 ---
 
@@ -307,7 +333,7 @@ If you find potential issues:
 
 ---
 
-*v0.1.0 - Kai Schlueter - Cultures - May 2026*
+*v0.2.0 - Kai Schlueter - Cultures - May 2026*
 """
     return content
 

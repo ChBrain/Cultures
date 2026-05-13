@@ -49,11 +49,17 @@ from pathlib import Path
 # Country/region/world culture work all share this shape; the slug after
 # the slash is resolved against the on-disk regions/ tree to pick the
 # narrower allowed-path prefix.
-CULTURE_BRANCH_PATTERN = re.compile(r"^culture/[a-z0-9][a-z0-9_-]*$")
+CULTURE_BRANCH_PATTERN = re.compile(r"^culture/[a-z0-9][a-z0-9_.-]*$")
 
 # Governance work: dedicated kind so edits to the rules themselves are
 # visible in the branch name and gateable in CI.
-GOVERNANCE_BRANCH_PATTERN = re.compile(r"^governance/[a-z0-9][a-z0-9_-]*$")
+GOVERNANCE_BRANCH_PATTERN = re.compile(r"^governance/[a-z0-9][a-z0-9_.-]*$")
+
+# Sync branches funnel main's HEAD into culture/release. They carry no new
+# commits — the branch is a snapshot of main used as a PR head so the merge
+# into culture/release can be reviewed and audited. Because the content is
+# identical to main, scope is unrestricted (anything main has is allowed).
+SYNC_BRANCH_PATTERN = re.compile(r"^sync/[a-z0-9][a-z0-9_.-]*$")
 
 # World-level integration slugs: may touch all of regions/**.
 # These are the integration targets feature branches merge into;
@@ -63,15 +69,22 @@ WORLD_SLUGS = frozenset({"staging", "release"})
 # Metadata files allowed on culture branches alongside regions/** changes.
 # Exact path match — `subdir/.gitignore` is NOT safe; only the listed paths.
 #
-# `data/hofstede_bag_locks.yaml` is the one cross-boundary file: bag migration
-# PRs (culture/<country>) need to update the lock entry for the country in
-# the same commit that adds the bag YAML. Strategy v2 carves it out explicitly.
+# Cross-boundary files (data lives outside regions/ but belongs in a culture
+# migration PR alongside the per-country changes):
+#   - ``data/hofstede_bag_locks.yaml`` — bag migration PRs (culture/<country>)
+#     update the lock entry for the country in the same commit that adds the
+#     bag YAML. Strategy v2 carves it out explicitly.
+#   - ``data/v2_migrated_countries.txt`` — per-country opt-in to v2-strict L4a
+#     validation. Migration PRs (culture/<country>) add the country here in
+#     the same commit that renames persona_* -> male_*/female_* and adds the
+#     khai declaration footers.
 SAFE_PATTERNS = frozenset({
     ".validation-stamp",
     ".bump-type",
     ".gitignore",
     ".editorconfig",
     "data/hofstede_bag_locks.yaml",
+    "data/v2_migrated_countries.txt",
 })
 
 # Governance territory: files that define or enforce repository rules.
@@ -97,23 +110,30 @@ GOVERNANCE_GLOB_PATTERNS = (
     "scripts/validate_general.py",
     "scripts/setup-hooks.sh",
     "scripts/setup-hooks.bat",
+    "scripts/audit_readme_bands.py",
+    "scripts/update_hofstede_readme.py",
     "data/hofstede_denylist.yaml",
     "data/hofstede_keywords.py",
     "data/hofstede_scores.json",
     "data/hofstede_bag_loader.py",
+    "data/language_policy.yaml",
+    "data/phrase_denylist.txt",
+    "docs/BRANCHING.md",
 )
 
 _DEFAULT_REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 def classify_branch(branch: str) -> str:
-    """Return 'main', 'culture', 'governance', or 'other'."""
+    """Return 'main', 'culture', 'governance', 'sync', or 'other'."""
     if branch == "main":
         return "main"
     if CULTURE_BRANCH_PATTERN.match(branch):
         return "culture"
     if GOVERNANCE_BRANCH_PATTERN.match(branch):
         return "governance"
+    if SYNC_BRANCH_PATTERN.match(branch):
+        return "sync"
     return "other"
 
 
@@ -230,6 +250,10 @@ def check_scope(
             f for f in staged
             if f.startswith("regions/") or is_governance_path(f)
         ]
+    elif branch_kind == "sync":
+        # Sync branches carry main's content unchanged into culture/release.
+        # No scope restriction: the diff reflects whatever main has accumulated.
+        unsafe = []
     else:
         unsafe = []
     return not unsafe, unsafe
