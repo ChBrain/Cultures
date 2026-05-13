@@ -80,6 +80,23 @@ The filename token and the footer must agree. Examples:
 
 Validators read both surfaces and reject any mismatch. The footer drives KAIHACKS `khai-tests` v0.1.6 component detection; the filename drives the Cultures-side completeness check (`tests/test_completeness.py`).
 
+### Full footer (v2)
+
+The khai line is one of three italicized footer lines every `culture_*.md` carries in v2-migrated countries. The full block, separator above:
+
+```
+---
+*hofstede: aggregate in [README.md](README.md).*
+*khai: <type>*
+*<YYYY-MM-DD> | KAI HACKS AI | v<X.Y.Z> | CC-BY-NC-4.0*
+```
+
+- The **hofstede line** is the aggregate-score sentinel. Per-file Hofstede scores are forbidden; the README is the single source of truth. The legacy form `*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*` is accepted during the v2 rollout (per PR #130); canonical is the shorter `hofstede:` form above.
+- The **khai line** declares the KAI structural type (see the previous subsection for the filename ↔ footer agreement table).
+- The **IP safeguard line** carries four pipe-separated fields: the last-edit date in ISO 8601, the project owner (`KAI HACKS AI`), the KAIWorlds release version at last edit, and the license shorthand. The authoritative license lives in the repo `LICENSE` file at the root.
+
+Authoritative spec: [`ARCHITECTURE.md`](../ARCHITECTURE.md) > Footer.
+
 ### Per-country v2 opt-in
 
 The v2-strict validator runs only against countries listed in `data/v2_migrated_countries.txt` (one slug per line, blank lines and `#` comments ignored). Countries not on the list run the legacy v1 rules and stay readable in the meantime.
@@ -88,8 +105,8 @@ A migration PR (`culture/<country>`) adds its slug to that file in the same comm
 - renames `persona_*` to `male_*` / `female_*`
 - renames `piece_*` to `history_*` where the file is actually history (a pivotal moment, not an artifact)
 - adds an authentic `piece` if the old `piece_*` doubled as history
-- adds the `*khai: <type>*` footer to every `culture_*.md`
-- updates the audit table in `README.md` to the canonical 8-kind order
+- adds the 3-line v2 footer (hofstede sentinel, khai declaration, IP safeguard line) to every `culture_*.md`
+- updates the audit table in `README.md` to the canonical 8-kind order via `scripts/update_hofstede_readme.py`
 
 `data/v2_migrated_countries.txt` is in `SAFE_PATTERNS`, so culture branches are allowed to edit it. Once every developed country is on the list, stage 4 deprecates the opt-in mechanism and the validator becomes unconditionally v2.
 
@@ -133,6 +150,7 @@ Governance paths (single source of truth: `tests/branch_scope.py` `GOVERNANCE_DI
 - `scripts/validate.py`, `scripts/validate_general.py` — orchestrator + helper
 - `scripts/setup-hooks.sh`, `scripts/setup-hooks.bat` — hook installation
 - `scripts/audit_readme_bands.py` — canonical Hofstede band contract
+- `scripts/update_hofstede_readme.py` — deterministic README Hofstede-tables updater
 - `data/hofstede_denylist.yaml`, `data/hofstede_keywords.py` — validator inputs
 - `data/hofstede_scores.json` — Hofstede Insights reference dataset
 - `data/hofstede_bag_loader.py` — bag-validation infrastructure

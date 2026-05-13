@@ -30,21 +30,23 @@ These rules apply to **all** content files (`.md`) in the repository:
 
 ### Footer
 
-Every content file ends with three footer lines (v2 schema):
+Every content file ends with three italicized footer lines (v2 schema, Option C):
 
 ```
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-
+*hofstede: aggregate in [README.md](README.md).*
 *khai: <type>*
-
-v0.1.0 - KAI Worlds
+*<YYYY-MM-DD> | KAI HACKS AI | v<X.Y.Z> | CC-BY-NC-4.0*
 ```
 
-- **Hofstede signal line:** Identifies the file as a contributor to the culture's aggregate Hofstede signal. Declared per-country scores live in the country `README.md`, never inline. The leading token `Hofstede signal:` is a stable sentinel for validators.
+- **hofstede sentinel line:** Identifies the file as a contributor to the culture's aggregate Hofstede signal. Declared per-country scores live in the country `README.md`, never inline. The leading token `hofstede:` is a stable sentinel for L4e (`tests/test_hofstede_structure.py`). The legacy form `*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*` is accepted during the v2 rollout (per PR #130); canonical is the shorter `hofstede:` form above. Cultures migrate to canonical per-country during stage 3 PRs.
 - **khai declaration line:** Declares the file's KAI structural type. `<type>` is exactly one of `process`, `position`, `piece`, `place`, `persona`. Filename token and footer must agree (see [Cultures v2 Schema](#cultures-v2-schema) for the mapping). KAIHACKS `khai-tests` v0.1.6 reads this footer to apply the right structural contract. Required in every `culture_*.md` for v2-migrated countries; pre-v2 countries may omit it until their migration PR.
-- **Version line:** `vX.Y.Z - KAI Worlds` where X.Y.Z matches repo version
-- **Placement:** Hofstede signal line first, then khai declaration, then the version line as the final line of file
-- **Required in:** All `culture_*.md` files
+- **IP safeguard line:** Carries authorship/IP metadata in four pipe-separated fields:
+  - `<YYYY-MM-DD>` -- ISO 8601 date of the file's last published edit (set when the migration / authoring PR merges to main)
+  - `KAI HACKS AI` -- the project owner; same across all culture files
+  - `v<X.Y.Z>` -- KAIWorlds release version at the time of the last published edit
+  - `CC-BY-NC-4.0` -- license shorthand; the authoritative license text lives in the repo `LICENSE` file at the root
+- **Placement:** hofstede sentinel first, then khai declaration, then the IP safeguard line as the final line of the file. Italics on all three; no blank lines between them. A horizontal rule (`---`) separates the footer block from the body.
+- **Required in:** All `culture_*.md` files. The legacy single-line version footer (`v0.1.0 - KAI Worlds`) and the filename+date self-stamp (`*culture_<adj>_<kind>_<slug>.md - DD.MM.YYYY*`) are both retired by this spec -- the IP safeguard line carries the same information in one row.
 - **Forbidden:** Per-file Hofstede score lines (e.g. `**Hofstede:** PDI 35 · IDV 67 ...`). Scoring is aggregate, not per-file.
 
 ### Filenames
@@ -201,8 +203,9 @@ A migration PR (`culture/<country>`) is one atomic commit that:
 2. Renames `piece_*` to `history_*` where the file is actually a pivotal moment
 3. Authors an authentic `piece_*` where the old `piece_*` doubled as history
 4. Adds the `*khai: <type>*` footer to every `culture_*.md`
-5. Updates the country `README.md` audit table to the canonical 8-kind order
-6. Adds the country slug to `data/v2_migrated_countries.txt`
+5. Adopts the v2 footer block (`*hofstede:`, `*khai:`, IP safeguard line) on each migrated file
+6. Updates the country `README.md` audit table to the canonical 8-kind order via `scripts/update_hofstede_readme.py`
+7. Adds the country slug to `data/v2_migrated_countries.txt`
 
 `data/v2_migrated_countries.txt` is carved into `SAFE_PATTERNS` so culture branches can edit it alongside the per-country file renames. The marker is forward-only: removing a country from the list is unsupported; to back out a migration, revert the PR.
 
@@ -323,7 +326,7 @@ The dimensional signal is **distributed across all culture files for a given cul
 - Each `culture_*.md` file contributes keywords (in its native language) to the country's aggregate signal. Position carries the spine; piece/place/process/persona/language/history each carry the dimensions they naturally express.
 - The validating layer is **L4f** (`tests/validate_hofstede_derived.py`): it sums keyword counts across every culture file in the country and compares the derived score to the README declared score, with ±10 PASS / ±5 EXCELLENT tolerance.
 - **L4e** is structure-only (README has the section, score table, source attribution). It does not score per-file content.
-- Each culture file ends with the **Hofstede signal footer** (see [Footer](#footer)) declaring its participation in the aggregate model and pointing at the README.
+- Each culture file ends with the **hofstede sentinel line** (see [Footer](#footer)) declaring its participation in the aggregate model and pointing at the README.
 
 Per-file score footers (e.g. `**Hofstede:** PDI 35 · IDV 67 ...`) are forbidden — they imply per-file scoring and create a false alignment target.
 
@@ -348,13 +351,14 @@ Rather than pre-populating all countries with README/REFERENCES at once, documen
 
 1. **Infrastructure:** `data/hofstede_scores.json` contains 50+ countries with empirical scores
 2. **Generator:** `scripts/scaffold_country.py` (v0.2.0, v2-aware) creates README.md and REFERENCES.md for any country
-3. **Workflow:** When you start a country, run:
+3. **Updater:** `scripts/update_hofstede_readme.py` rewrites the Hofstede Cultural Dimensions and Alignment Status tables in an existing README -- deterministic per-country sync
+4. **Workflow:** When you start a country, run:
    ```bash
    python3 scripts/scaffold_country.py --apply COUNTRY
    git add regions/REGION/COUNTRY/{README,REFERENCES}.md
    # Then run validators and edit as needed
    ```
-4. **Baseline:** Germany is the canonical template - all scaffolded countries follow this structure
+5. **Baseline:** Germany is the canonical template - all scaffolded countries follow this structure
 
 This approach:
 - Avoids bulk generation of 200+ files
@@ -772,12 +776,12 @@ If you find potential plagiarism or factual errors:
 
 ## To document
 
-- **v2 migration sweep** - per-country migration PRs add countries to `data/v2_migrated_countries.txt` and bring their content to the 8-kind layout (rename `persona_*` to `male_*`/`female_*`, split `piece_*` into `piece_*` + `history_*` where the file was actually history, add khai footers). Tracked in `docs/migration/cultures-kind-schema-history-piece-split.md`.
+- **v2 migration sweep** - per-country migration PRs add countries to `data/v2_migrated_countries.txt` and bring their content to the 8-kind layout (rename `persona_*` to `male_*`/`female_*`, split `piece_*` into `piece_*` + `history_*` where the file was actually history, add khai footers, adopt the 3-line IP footer). Tracked in `docs/migration/cultures-kind-schema-history-piece-split.md`.
 - **Legacy Owner-block migration** - the canonical Owner block is locked (see Owner above). The L2 validator enforces it on changed files. The corpus still contains hundreds of legacy shapes (`- *` placeholders, bolded `- **Project:**`, `— Americas` suffixes, `- Place: [...]` second tiers); these will fail validation when their file is next touched.
 - **Legacy mixed-gender coverage** - the rule is locked (see Minimum per Country above) and L4a enforces it on changed countries. Most legacy countries currently have personas without engine gender links; they will fail the country check when any of their files is next touched.
 - **BOM cleanup** - several existing files start with U+FEFF; non-conformant with the encoding rule. The pre-commit hook strips BOMs from staged files; legacy files retain theirs until next touched.
 - **Engine section contracts** - the section shape for `engine/stack.md` and for per-platform instruction files is not yet specified.
-- **Versioning workflow** - bump-type declaration, pre-commit hook, version sync from Autobahn not yet adopted.
+- **Versioning workflow** - bump-type declaration, pre-commit hook, version sync from Autobahn not yet adopted; the IP safeguard line's `v<X.Y.Z>` field is set manually per migration PR until the workflow lands.
 - **Position `Has` enumeration** - some countries have multiple pieces; whether `Has` must enumerate all of them or only the load-bearing one needs confirmation.
 - **Multi-country sampling** - this architecture is derived primarily from the Germany sample. A pass over a representative country per region (Brazil, Nigeria, Japan, Australia) will confirm whether the section sets and Owner formats hold or need broadening.
 - **Cross-country relationships** - currently only `engine/process_world_is_spinning.md` is referenced from every place via relative path. Cross-country culture relationships are not modelled and may not need to be.
