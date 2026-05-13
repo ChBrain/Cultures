@@ -9,19 +9,23 @@ Arkitekt
 
 ## Projection
 Sofie er en [kvinde](../../../engine/position_female.md) fra [Danmark](culture_danish_position.md).
-Hendes egen bedømmelse er værktøj, ikke meningsforskel. Samarbejde gennem ligeværd.
+Arkitekt.
+Født 1985.
+Hun har en blyant i hånden, ikke en mus.
+Hun tegner mens hun lytter.
+Stregerne bliver til skitser bliver til alternativer.
 
 ## Action
 Klienten: vi har brug for mere lys. Sofie ser halvdelen af problemet - layout, ikke lys. Hun tilbyder: rum der fungerer, eller begge. Vælg selv.
 
 ## Shadow
-Positionen siger bestem selv.
-Sofie bygger mulighederne og tilbyder valget.
-Det oplever hun som respekt for klientens autonomi.
-Hvad positionen aldrig sagde: at definere mulighederne er beslutningen.
-At vælg selv kun gælder inden for det rum hun allerede har skabt.
-Hun ved hvad der er muligt. Hun tilbyder det som åbenhed.
-Forskellen er ikke synlig fra hendes side af bordet.
+Sofie kommer til mødet med tre tegninger.
+Hver er gennemtænkt.
+Hun forklarer hver mulighed med samme grundighed.
+Hun siger: vælg selv.
+For Sofie er det åbenhed.
+Klienten havde sin egen idé med ind. Den blev aldrig tegnet.
+Tre er åbenhed nok.
 
 ## Tell
 Når klienten vælger den mulighed hun ikke ville have valgt, lægger hun blyanten ned, inden hun svarer.
