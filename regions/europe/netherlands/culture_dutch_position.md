@@ -12,7 +12,7 @@ Omwegen kosten meer dan de zaak waard is. Iedere spreker werkt vanuit autonomie.
 
 De platte kamer.
 Gezag bestaat, maar het is onderhandelbaar.
-Autoriteit van expertise. Hiërarchie is overhead. Niemand betaalt ervoor.
+Hiërarchie is overhead. Niemand betaalt ervoor.
 Gelijkwaardig spreken. Iedereen spreekt. Iedereen telt. Elke keuze weegt gelijk.
 Medezeggenschap is geen bureaucratie. Het is de structuur.
 Procedure en beleid zijn transparant.
@@ -34,7 +34,7 @@ Individuen kunnen leven naar eigen voorkeur zolang de dijk blijft staan.
 
 ## Orders
 Neem je eigen keuzes in zelfstandigheid.
-Eerbied expertise. De autoriteit van wie het weet.
+Eerbied voor expertise.
 
 ## Loses
 De aanname van neutraliteit.

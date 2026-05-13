@@ -15,7 +15,7 @@ Iedereen heeft de dijk nodig. Dus iedereen zit aan tafel in saamhorigheid.
 Gelijkwaardige zeggenschap. Consensus waar het water geen keuze laat.
 Collegiale samenwerking is de prijs van het water.
 Inspraak van elke belanghebbende. Overleg tot het houdt. Aanpassingen naar wat het water leert.
-De dijk is een noodzaak. Traditie en volharding. Niet van morgen. Niet van gewoonten.
+De dijk is een noodzaak. Niet van morgen. Niet van gewoonten.
 De kracht ervan: het houdt ook als niemand het wil.
 Zorg voor elkaar. De dijk bindt wie hij scheidt.
 Leren van water. Elke overstroming een les. Pragmatisch.
