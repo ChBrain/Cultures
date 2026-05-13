@@ -40,10 +40,10 @@ Netherlands's cultural profile measured against Hofstede's framework:
 | Dimension | Declared | Derived | Gap | Status |
 |-----------|----------|---------|-----|--------|
 | PDI | 38 | 30 | 8 | ✅ PASS |
-| IDV | 80 | 72 | 8 | ✅ PASS |
-| MAS | 14 | 16 | 2 | ✅ EXCELLENT |
+| IDV | 80 | 80 | 0 | ✅ EXCELLENT |
+| MAS | 14 | 20 | 6 | ✅ PASS |
 | UAI | 53 | 50 | 3 | ✅ EXCELLENT |
-| LTO | 67 | 66 | 1 | ✅ EXCELLENT |
+| LTO | 67 | 50 | 17 | ❌ FAIL |
 | IND | 68 | 66 | 2 | ✅ EXCELLENT |
 
 **Current Status:** All 6 Hofstede dimensions validated within ±10 tolerance (4/6 within ±5 EXCELLENT). Audit run May 11, 2026.
