@@ -29,3 +29,6 @@
 #   - tests/test_completeness.py (per-country mode switch)
 #   - docs/migration/cultures-kind-schema-history-piece-split.md (full plan)
 #   - KAIHACKS khai-tests v0.1.6 (declaration-driven _component.py)
+
+germany
+netherlands

@@ -10,12 +10,13 @@ De zin begint waar hij moet beginnen. Directheid zonder voorbereiding. Individue
 Niet kortaf uit onbeleefdheid. Kortaf omdat alles voor de kern iets kost.
 
 Ieder spreker is zelfstandig. Onafhankelijk van protocol.
-Elk woord draagt zijn eigen gewicht. Autonomie van het woord zelf.
+Elk woord draagt zijn eigen gewicht.
+Autonomie van het woord.
 Het woord dat zijn eigen werk doet.
 De taal doet haar eigen werk. De spreker neemt initiatief.
 
 De taal van de transactie die sluit.
-De factuur die ook de relatie is.
+De factuur die ook de verbinding is.
 Het gewone woord als contract.
 
 ## Orders
@@ -25,7 +26,7 @@ Zeg het direct.
 De aanname dat recht door zee neutraal is.
 Buiten de Nederlandse kamer krijgt het gewone woord gewicht onderweg.
 De taal had zich daar niet op voorbereid.
-Het risico is onzichtbaar vanuit de onafhankelijkheid.
+Het risico blijft onzichtbaar.
 
 ## Drives
 Op dat verlies:
@@ -35,8 +36,6 @@ Betaalt die.
 Doet niet alsof het vanzelf gaat.
 
 ---
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-
-*culture_dutch_language_nederlands.md - 08.05.2026*
-
-v0.1.0 - KAI Cultures
+*hofstede: aggregate in [README.md](README.md).*
+*khai: position*
+*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*
