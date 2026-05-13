@@ -28,7 +28,7 @@ Du kan gå fra mødet med egen opfattelse intakt, og de andres også.
 
 ## Withheld
 Hvad mennesker tænker hjemme.
-Det borgere drømmer om uden at dele det.
+Det danskerne drømmer om uden at dele det.
 Den private verden som løber parallelt med det offentlige.
 Mødet er hvor idéer bliver delt.
 Mødet er hvor beslutninger formes - ikke hvor de er fattet.
