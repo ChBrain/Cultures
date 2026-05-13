@@ -63,24 +63,28 @@ Netherlands's cultural profile measured against Hofstede's framework:
 
 | File | Type | Status | Notes |
 |------|------|--------|-------|
-| culture_dutch_position.md | Position | ✅ Validated | All dimensions within tolerance |
 | culture_dutch_language_nederlands.md | Language | ✅ Validated | All dimensions within tolerance |
+| culture_dutch_history_beeldenstorm.md | History | ✅ Validated | 1566 Beeldenstorm - foundational moment |
+| culture_dutch_position.md | Position | ✅ Validated | All dimensions within tolerance |
 | culture_dutch_process_polderen.md | Process | ✅ Validated | All dimensions within tolerance |
 | culture_dutch_piece_poldermodel.md | Piece | ✅ Validated | All dimensions within tolerance |
 | culture_dutch_place_amsterdam.md | Place | ✅ Validated | All dimensions within tolerance |
-| culture_dutch_persona_anneke.md | Persona | ✅ Validated | All dimensions within tolerance |
-| culture_dutch_persona_jeroen.md | Persona | ✅ Validated | All dimensions within tolerance |
+| culture_dutch_female_anneke.md | Female Persona | ✅ Validated | Mediator. Tell redesigned. |
+| culture_dutch_male_jeroen.md | Male Persona | ✅ Validated | Journalist. Tell redesigned. |
 
 ## Content
 
+**V2 Schema Order (Language → History → Position → Process → Piece → Place → Personas):**
+
+- **Language**: [culture_dutch_language_nederlands.md](culture_dutch_language_nederlands.md) - Direct. No wrapper. Efficiency over politeness.
+- **History**: [culture_dutch_history_beeldenstorm.md](culture_dutch_history_beeldenstorm.md) - 1566 Beeldenstorm - when religious coexistence became infrastructure, not choice
 - **Position**: [culture_dutch_position.md](culture_dutch_position.md) - De platte kamer, het Poldermodel, tolerantie uit noodzaak
 - **Process**: [culture_dutch_process_polderen.md](culture_dutch_process_polderen.md) - Polderen - negotiation when the stakes are shared (water)
-- **Piece**: [culture_dutch_piece_poldermodel.md](culture_dutch_piece_poldermodel.md) - The Polder Model - load-bearing history (1421-2024)
+- **Piece**: [culture_dutch_piece_poldermodel.md](culture_dutch_piece_poldermodel.md) - The Polder Model - load-bearing framework (1421-2024)
 - **Place**: [culture_dutch_place_amsterdam.md](culture_dutch_place_amsterdam.md) - Amsterdam - canal belt infrastructure and tolerance logic
-- **Language**: [culture_dutch_language_nederlands.md](culture_dutch_language_nederlands.md) - Direct. No wrapper. Efficiency over politeness.
 - **Personas**:
-  - [Anneke](culture_dutch_persona_anneke.md) - Mediator. The shortest line. Notitieblok. Already chose.
-  - [Jeroen](culture_dutch_persona_jeroen.md) - Journalist. Says what he sees. Footnotes matter.
+  - [Anneke (Female)](culture_dutch_female_anneke.md) - Mediator. The shortest line. Notitieblok. Tell shows her blind spot.
+  - [Jeroen (Male)](culture_dutch_male_jeroen.md) - Journalist. Says what he sees. Footnotes matter. Tell shows his blind spot.
 
 ---
 

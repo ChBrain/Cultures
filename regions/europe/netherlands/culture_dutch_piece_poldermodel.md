@@ -44,8 +44,8 @@ Gedoogkoffieshops. Open. Legaal illegaal.
 2024: Poldermodel onder druk. Woningmarkt. Migratie. Wilders. Het water wacht nog steeds.
 
 ---
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-
-*culture_dutch_piece_poldermodel.md - 08.05.2026*
+*hofstede: aggregate in [README.md](README.md).*
+*khai: piece*
+*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*
 
 v0.1.0 - KAI Cultures

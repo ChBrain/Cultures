@@ -31,13 +31,11 @@ Die aanname zit in de positie. Niet in haar.
 Ze kan haar daarom niet zien.
 
 ## Tell
-Als een partij zegt dat ze zich niet gehoord voelen, vraagt ze welk feit ze hebben gemist.
+Als een partij zegt dat ze zich niet gehoord voelen, tikt Anneke twee keer met haar pen op het blad.
+Niet om iets op te schrijven. Om te controleren of zij al een besluit had genomen voordat zij spraken.
 
 ---
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-
+*hofstede: aggregate in [README.md](README.md).*
+*khai: persona*
 *Type: Fictional*
-
-*culture_dutch_persona_anneke.md - 12.05.2026*
-
-v0.1.0 - KAI Cultures
+*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

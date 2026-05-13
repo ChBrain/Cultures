@@ -28,13 +28,12 @@ Dat gewicht zit niet in de feiten. Het zit in de positie die ze draagt.
 Die positie is onzichtbaar voor wie erin staat.
 
 ## Tell
-Als iemand zegt dat zijn stuk pijn heeft gedaan, vraagt hij welk gegeven onjuist was.
+Als iemand zegt dat zijn stuk pijn heeft gedaan, zoekt Jeroen in zijn notitieboek naar wat hij heeft geschreven.
+Hij vergelijkt wat zij nu zegt met wat in het stuk staat.
+Hij zoekt naar het feit dat zij miste. Niet naar het gevoel dat zij had.
 
 ---
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-
+*hofstede: aggregate in [README.md](README.md).*
+*khai: persona*
 *Type: Fictional*
-
-*culture_dutch_persona_jeroen.md - 12.05.2026*
-
-v0.1.0 - KAI Cultures
+*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*
