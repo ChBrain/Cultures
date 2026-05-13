@@ -39,14 +39,14 @@ Netherlands's cultural profile measured against Hofstede's framework:
 
 | Dimension | Declared | Derived | Gap | Status |
 |-----------|----------|---------|-----|--------|
-| PDI | 38 | 36 | 2 | ✅ EXCELLENT |
+| PDI | 38 | 30 | 8 | ✅ PASS |
 | IDV | 80 | 80 | 0 | ✅ EXCELLENT |
-| UAI | 53 | 50 | 3 | ✅ EXCELLENT |
+| UAI | 53 | 57 | 4 | ✅ EXCELLENT |
 | MAS | 14 | 14 | 0 | ✅ EXCELLENT |
-| LTO | 67 | 71 | 4 | ✅ EXCELLENT |
+| LTO | 67 | 57 | 10 | ✅ PASS |
 | IND | 68 | 66 | 2 | ✅ EXCELLENT |
 
-**Current Status:** Perfect alignment - all 6 Hofstede dimensions EXCELLENT (6/6 within ±5 tolerance). Audit run May 13, 2026.
+**Current Status:** Hofstede alignment complete - 4/6 EXCELLENT, 2/6 PASS (all within ±10 tolerance). L4 density blockers resolved. Audit run May 13, 2026.
 
 **Target Keyword Distribution:** When revision is complete, Dutch-language culture files (position, language, process, piece, place, personas) will express core dimensions through strategic keyword density:
 
@@ -57,7 +57,7 @@ Netherlands's cultural profile measured against Hofstede's framework:
 - **High LTO (target 67):** "toekomst", "pragmatisch", "duurzaam", "investering", "voortbestaan", "continuïteit" - future and long-term planning
 - **High IND (target 68):** "genieten", "plezier", "levensvreugde", "vriendschap", "gezelligheid", "optimisme" - enjoyment and leisure as legitimate
 
-**Note:** Hofstede keyword mapping is semantic - keywords express cultural concept meaning, not literal text extraction. Scores derived from aggregate keyword presence across all 7 culture files. Audit run May 11, 2026.
+**Note:** Hofstede keyword mapping is semantic - keywords express cultural concept meaning, not literal text extraction. Scores derived from aggregate keyword presence across all 7 culture files. Audit run May 13, 2026.
 
 ## Content Audit Status
 
