@@ -26,7 +26,7 @@ Zeg het direct.
 De aanname dat recht door zee neutraal is.
 Buiten de Nederlandse kamer krijgt het gewone woord gewicht onderweg.
 De taal had zich daar niet op voorbereid.
-Het risico is onzichtbaar vanuit de onafhankelijkheid.
+Het risico blijft onzichtbaar.
 
 ## Drives
 Op dat verlies:
