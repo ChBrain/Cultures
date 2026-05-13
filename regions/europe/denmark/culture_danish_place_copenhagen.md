@@ -18,7 +18,7 @@ Cyklen er sædvane - ikke valg.
 ## Holds
 Den danske position - [Dansk](culture_danish_position.md).
 [Janteloven](culture_danish_piece_janteloven.md).
-Den [danske historie](culture_danish_history_danmark.md): hver dag bæres videre.
+Den [danske historie](culture_danish_piece_history.md): hver dag bæres videre.
 Frederiksberg. Christiania. Begge inden for samme by.
 ## Offers
 Du kan være med mennesker uden at skulle være tavs.
