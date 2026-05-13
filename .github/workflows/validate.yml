@@ -3,8 +3,6 @@ name: validate
 on:
   pull_request:
     branches: [main, culture/release]
-  push:
-    branches: [main, culture/release]
 
 jobs:
   khai-encoding:
@@ -355,10 +353,11 @@ jobs:
           HEAD_REF: ${{ github.head_ref }}
         run: |
           # Sync branches (sync/<name>) are pointer branches at main's HEAD.
-          # Content was already validated when it landed on main. Re-running
-          # content validators on sync adds no value and can hit lingua
-          # false-positives or other transient state. Short-circuit here so
-          # all downstream content jobs gated on `any == 'true'` skip cleanly.
+          # Content was already validated when it landed on main. The PR diff
+          # against culture/release would re-surface every file that has
+          # advanced on main since the last sync, which is pure waste --
+          # short-circuit here so all downstream content jobs gated on
+          # `any == 'true'` skip cleanly.
           if [[ "$HEAD_REF" == sync/* ]]; then
             echo "Sync branch detected ($HEAD_REF); skipping content-validator file detection."
             echo "any=false" >> "$GITHUB_OUTPUT"
@@ -366,15 +365,11 @@ jobs:
             echo "data_changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            RANGE="origin/${{ github.base_ref }}...HEAD"
-          else
-            BEFORE="${{ github.event.before }}"
-            if [ "$BEFORE" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "$BEFORE" 2>/dev/null; then
-              BEFORE="HEAD~1"
-            fi
-            RANGE="$BEFORE..HEAD"
-          fi
+          # Validate fires only on pull_request, so the diff range is always
+          # the merge base. (The previous push trigger required handling
+          # `github.event.before` and HEAD~1 fallback; dropped along with
+          # the push trigger -- post-merge re-validation added no value.)
+          RANGE="origin/${{ github.base_ref }}...HEAD"
           # --diff-filter=ACMRT skips deletions; the validator must not be handed paths that no longer exist.
           ALL_CHANGED=$(git diff --name-only --diff-filter=ACMRT "$RANGE")
           FILES=$(echo "$ALL_CHANGED" | { grep -E '^regions/.*\.md$' || true; } | tr '\n' ' ' | sed 's/ *$//')
