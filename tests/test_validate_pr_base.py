@@ -4,6 +4,7 @@ Pins the allowed_bases() routing layer:
   culture/<country|region>          -> {"culture/release"}
   culture/release, culture/staging  -> {"main"}
   governance/<name>                 -> {"main"}
+  sync/<name>                       -> {"culture/release"}
   chore/*, fix/*, feat/*, other     -> {"main"}
   main                              -> set()  (invalid head)
 
@@ -59,6 +60,19 @@ def test_culture_world_slug_routes_to_main(head):
 ])
 def test_governance_routes_to_main(head):
     assert allowed_bases(head) == {"main"}
+
+
+# ---------------------------------------------------------------------------
+# sync -> culture/release
+# ---------------------------------------------------------------------------
+
+@pytest.mark.parametrize("head", [
+    "sync/release-from-main",
+    "sync/release-from-main-2026-05-13",
+    "sync/foo.bar_v1",
+])
+def test_sync_routes_to_release(head):
+    assert allowed_bases(head) == {"culture/release"}
 
 
 # ---------------------------------------------------------------------------
