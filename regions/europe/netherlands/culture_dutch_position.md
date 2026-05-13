@@ -30,7 +30,7 @@ Pragmatisch, niet principieel. Zelfredzaamheid: de onuitgesproken verwachting va
 Individuen kunnen leven naar eigen voorkeur zolang de dijk blijft staan.
 
 ## Orders
-Neem je keuzes zelf.
+Neem je eigen keuzes.
 
 ## Loses
 De aanname van neutraliteit.

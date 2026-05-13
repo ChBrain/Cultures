@@ -11,7 +11,7 @@
 
 Calvinistische beeldenstormers verplaatsten zich door kerken. Standbeelden vielen. Ramen barstten. Ikonen brandden.
 De doelen: afbeeldingen, reliquiarissen, priestergewaden. Al het zichtbare apparaat van katholieke ritueel.
-Maar wat met de standbeelden viel, was iets groters: het zekerheid dat een geloof ruimte kon domineren.
+Maar wat met de standbeelden viel, was iets groters: dat religie geen ruimte kon domineren.
 
 De Spaanse kroon bezette Nederland. De Contrareformatie dwong katholieke uniformiteit.
 Calvinistische vluchtelingen kwamen met ander schrift, ander God.
@@ -38,7 +38,7 @@ Religieuze vrede door samenleven, niet door overwinning.
 "Ieder persoon blijft vrij in hun religie" - niet als ideaal, maar als bestuursinstrument.
 Je kon de ander niet onderdrukken. Dus je moest ze laten bestaan.
 
-Dit was radicaal: de eerste schriftelijke garantie van religieuze vrijheid in Europese wet.
+Dit was radicaal: de eerste schriftelijke garantie van godsdienstvrijheid in Europese wet.
 Niet omdat de Hollanders filosofische libertariers waren. Omdat zij geen keuze hadden.
 
 De katholieke, calvinistische en lutheraanse leiders die de Unie onderhandelden, waren geen idealisten.
@@ -52,7 +52,7 @@ Tolerantie werd infrastructuur. Een watersysteem. Iets wat je onderhoudt omdat h
 
 Maar infrastructuur is onzichtbaar voor wie erin leeft.
 
-Door de 20e eeuw vertelden de Hollanders zichzelf een verhaal: *Wij zijn tolerant.*
+Door de 20e eeuw vertelden de Hollanders zichzelf een verhaal: ze zijn tolerant.
 Alsof tolerantie een deugd was die zij hadden gekozen.
 
 Zij waren vergeten wat de Beeldenstorm leerde: tolerantie werd geboren op het moment dat één groep besefte dat zij niet kon winnen.

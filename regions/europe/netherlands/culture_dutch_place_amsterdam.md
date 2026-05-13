@@ -7,7 +7,7 @@
 ## Shown
 Zeventiende-eeuwse grachtengordel. UNESCO. Gebouwd op palen.
 Fietsen. Meer per hoofd dan waar ook ter wereld.
-Gedoogkoffieshop. Open. Legaal illegaal.
+Gedoogkoffieshop. Zichtbaar. Legaal illegaal.
 Het Rijksmuseum. Rembrandt. Vermeer.
 Smalle gevels. Elk zo breed als het pakhuis erachter.
 Hijsbalken boven de ramen. De handel zit in de architectuur.

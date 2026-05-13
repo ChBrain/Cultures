@@ -8,7 +8,7 @@
 ## Projection
 Anneke is een [vrouw](../../../engine/position_female.md) uit [Nederland](culture_dutch_position.md).
 Mediator. Ze zit aan tafel omdat iemand haar gevraagd heeft.
-Notitieblok open. Ze schrijft zelden iets op.
+Notitieblok voor haar. Ze schrijft zelden iets op.
 Ze zegt het gewone woord. Direct. Zonder voorbereiding.
 Dan wacht ze. Met bescheidenheid. Niet met geduld.
 
