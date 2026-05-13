@@ -161,19 +161,19 @@ class TestRenderAlignmentTable:
         declared = {"PDI": 35, "IDV": 67, "UAI": 65, "MAS": 66, "LTO": 83, "IND": 40}
         derived  = {"PDI": 33, "IDV": 75, "UAI": 66, "MAS": 60, "LTO": 87, "IND": 33}
         out = upd.render_alignment_table(declared, derived)
-        assert "| PDI | 35 | 33 | 2 | OK EXCELLENT |" in out
-        assert "| IDV | 67 | 75 | 8 | OK PASS |" in out
-        assert "| UAI | 65 | 66 | 1 | OK EXCELLENT |" in out
-        assert "| MAS | 66 | 60 | 6 | OK PASS |" in out
-        assert "| LTO | 83 | 87 | 4 | OK EXCELLENT |" in out
-        assert "| IND | 40 | 33 | 7 | OK PASS |" in out
+        assert "| PDI | 35 | 33 | 2 | ✅ EXCELLENT |" in out
+        assert "| IDV | 67 | 75 | 8 | ✅ PASS |" in out
+        assert "| UAI | 65 | 66 | 1 | ✅ EXCELLENT |" in out
+        assert "| MAS | 66 | 60 | 6 | ✅ PASS |" in out
+        assert "| LTO | 83 | 87 | 4 | ✅ EXCELLENT |" in out
+        assert "| IND | 40 | 33 | 7 | ✅ PASS |" in out
 
     def test_warn_and_fail_surface(self):
         declared = {"PDI": 50, "IDV": 50}
         derived  = {"PDI": 65, "IDV": 90}
         out = upd.render_alignment_table(declared, derived)
-        assert "WARN WARN" in out  # 50 vs 65 -> gap 15 -> WARN
-        assert "FAIL FAIL" in out  # 50 vs 90 -> gap 40 -> FAIL
+        assert "⚠️ WARN" in out  # 50 vs 65 -> gap 15 -> WARN
+        assert "❌ FAIL" in out  # 50 vs 90 -> gap 40 -> FAIL
 
     def test_missing_derived_marks_na(self):
         declared = {"PDI": 35}
@@ -235,7 +235,7 @@ class TestUpdateReadme:
         assert "**High** - DRIFTED" not in new_text
         assert "| Individualism (IDV) | 67 | **Moderate**" in new_text
         # Alignment table updated with new derived value
-        assert "| PDI | 35 | 33 | 2 | OK EXCELLENT |" in new_text
+        assert "| PDI | 35 | 33 | 2 | ✅ EXCELLENT |" in new_text
         # OLD EXCELLENT label removed (was wrong format)
         assert "OLD EXCELLENT" not in new_text
 
@@ -279,7 +279,7 @@ class TestUpdateReadme:
             text, "X", {"PDI": 35}, {"PDI": 33},
         )
         # Alignment table updated
-        assert "| PDI | 35 | 33 | 2 | OK EXCELLENT |" in new_text
+        assert "| PDI | 35 | 33 | 2 | ✅ EXCELLENT |" in new_text
         # Cultural Dimensions heading missing -> one warning
         assert len(warnings) == 1
         assert "Cultural Dimensions" in warnings[0]

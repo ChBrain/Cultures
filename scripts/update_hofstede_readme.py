@@ -238,10 +238,10 @@ def compute_status(declared: int, derived: int) -> tuple[int, str]:
 
 def _status_emoji(status: str) -> str:
     return {
-        "EXCELLENT": "OK",
-        "PASS":      "OK",
-        "WARN":      "WARN",
-        "FAIL":      "FAIL",
+        "EXCELLENT": "✅",
+        "PASS":      "✅",
+        "WARN":      "⚠️",
+        "FAIL":      "❌",
     }[status]
 
 
