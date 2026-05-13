@@ -17,7 +17,7 @@ Das Reichstagsgebäude: Autorität sichtbar gemacht.
 Das Brandenburger Tor: Symbol der Teilung und der Versöhnung.
 Das Denkmal für die ermordeten Juden Europas, mit Sanftmut gebaut.
 Die Topographie des Terrors: Arbeit der Trauer.
-Das [Grundgesetz](culture_german_piece_grundgesetz.md): hier gilt es besonders.
+Die [deutsche Geschichte](culture_german_history_deutschland.md): hier wird sie täglich gesichert.
 
 ## Offers
 Du kannst [Erinnern](culture_german_process_erinnern.md) praktizieren, mit Sanftmut gegenüber dir und anderen in der Trauer.
@@ -32,8 +32,6 @@ Was Ost und West voneinander denken, und trotzdem persönlich bauen, wenn nieman
 Die Grenzen der Offenheit. Wo sie aufhört.
 
 ---
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-
-*culture_german_place_berlin.md - 07.05.2026*
-
-v0.1.0 - KAI Worlds
+*hofstede: aggregate in [README.md](README.md).*
+*khai: place*
+*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*
