@@ -25,7 +25,7 @@ Het Sociaal-Economische Raad. 1950. Consensus-orgaan.
 Werkgevers, vakbonden, overheid. Gelijkwaardig aan tafel.
 Het woord polderen staat in het woordenboek als werkwoord.
 De Deltawerken besloten. Participatie van alle belanghebbenden.
-Gedoogkoffieshops. Open. Legaal illegaal.
+Gedoogkoffieshops. Zichtbaar. Legaal illegaal.
 
 ## Yearbook
 1421: Sint-Elisabethsvloed. Zestig dorpen verdronken in één nacht. Het water maakt geen onderscheid. De les: coördineer of sterf.
