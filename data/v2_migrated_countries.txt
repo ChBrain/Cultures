@@ -1,0 +1,37 @@
+# Countries that have migrated to the v2 schema.
+#
+# One country slug per line. Blank lines and `#` comments are ignored.
+# Slugs match the country folder name under regions/<region>/<slug>/
+# (lowercase ASCII with underscores; e.g. `germany`, `czech_republic`).
+#
+# Listing a country here activates v2-strict validation for it:
+#   - 8 canonical kinds required (language, history, position, process,
+#     piece, place, male, female)
+#   - Each culture_*.md file must carry a `*khai: <type>*` footer
+#     declaration matching one of the 5 KAI structural types
+#     (process, position, piece, place, persona)
+#
+# Adding a country here belongs in the SAME PR that migrates its content
+# to v2 (rename persona_* -> male_*/female_*, rename piece_* -> history_*,
+# author the new true piece, add khai declaration footers, update audit
+# table to canonical 1-8 order). The L4a validator switches modes per
+# country: countries on this list run v2-strict; countries not on this
+# list run the legacy v1 rules.
+#
+# Removing a country from this list is not supported -- v2 is forward-only.
+# To "back out" a migration, revert the migration PR; the country drops
+# off this list automatically as part of the revert.
+#
+# Once every developed country is on this list, stage 4 deprecates the
+# opt-in mechanism entirely and the validator becomes unconditionally v2.
+#
+# Coordinated with:
+#   - tests/test_completeness.py (per-country mode switch)
+#   - docs/migration/cultures-kind-schema-history-piece-split.md (full plan)
+#   - KAIHACKS khai-tests v0.1.6 (declaration-driven _component.py)
+
+denmark
+germany
+netherlands
+poland
+spain
