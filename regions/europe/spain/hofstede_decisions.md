@@ -2,6 +2,7 @@
 
 **Scores:** PDI 57 · IDV 51 · UAI 86 · MAS 42 · LTO 48 · IND 44
 **Generated:** 2026-05-12
+**Updated:** 2026-05-13 (v2 migration: TYPE-as-slot rename, persona-anchor filename refresh, derived-score tune-up)
 **Forked from:** none -- fresh bootstrap
 
 ---
@@ -72,7 +73,7 @@ Root-proximity flags: cargo/mando share command-register; retained for different
   cargo = role/positional authority
   mando = command/operational authority
 Register spread: social-cultural 4, institutional 4, everyday 2
-Persona-anchor words: cargo (isabel, diego -- institutional authority register)
+Persona-anchor words: cargo (persona_female_isabel, persona_male_alejandro -- institutional authority register)
 ```
 
 ### PDI low
@@ -89,7 +90,7 @@ Root-proximity flags: cercanía/proximidad share closeness-register; retained fo
   cercanía = relational warmth, emotional accessibility
   proximidad = structural/physical closeness between ranks
 Register spread: relational 4, procedural 3, everyday 3
-Persona-anchor words: confianza (isabel -- network-trust register)
+Persona-anchor words: confianza (persona_female_isabel -- network-trust register)
 ```
 
 ### IDV high
@@ -106,7 +107,7 @@ Root-proximity flags: criterio/decisión share judgment-register; retained
   criterio = standard of judgment
   decisión = act of deciding
 Register spread: social-cultural 4, everyday 4, professional 2
-Persona-anchor words: iniciativa (diego -- entrepreneurial register); trayectoria (isabel -- career-path register)
+Persona-anchor words: iniciativa (persona_male_alejandro -- interpreter-initiative register); trayectoria (persona_female_isabel and persona_male_alejandro -- career-path register); voluntad / criterio / responsabilidad (both personas -- post-v2 tuning additions)
 Score-band note: individuo dropped; at IDV 51 the bag reads individual agency within social context, not individual primacy
 ```
 
@@ -125,7 +126,7 @@ Root-proximity flags: cofradía/clan/grupo overlap in collective-register; retai
   clan = structural collective
   grupo = everyday collective
 Register spread: social-cultural 4, everyday 4, institutionally anchored 2
-Persona-anchor words: familia (position file -- first loyalty register); red (isabel -- network register)
+Persona-anchor words: familia (position file -- first loyalty register); red (place_madrid and position -- network register)
 ```
 
 ### UAI high
@@ -143,7 +144,7 @@ Score-band note: score 86 requires affect-register words alongside structural wo
   seguridad and garantía added to carry the emotional need behind the rules
   burocracia retained as lived-experience word at everyday register
 Register spread: legal/bureaucratic 3, procedural 2, affect/security 3, everyday 2
-Persona-anchor words: burocracia (diego -- obstacle register); garantía (isabel -- relationship-as-guarantee register)
+Persona-anchor words: burocracia (position_language and position files -- obstacle register); garantía (position -- relationship-as-guarantee register)
 ```
 
 ### UAI low
