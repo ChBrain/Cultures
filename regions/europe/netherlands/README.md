@@ -41,12 +41,12 @@ Netherlands's cultural profile measured against Hofstede's framework:
 |-----------|----------|---------|-----|--------|
 | PDI | 38 | 30 | 8 | ✅ PASS |
 | IDV | 80 | 80 | 0 | ✅ EXCELLENT |
+| UAI | 53 | 60 | 7 | ✅ PASS |
 | MAS | 14 | 20 | 6 | ✅ PASS |
-| UAI | 53 | 50 | 3 | ✅ EXCELLENT |
-| LTO | 67 | 50 | 17 | ❌ FAIL |
+| LTO | 67 | 75 | 8 | ✅ PASS |
 | IND | 68 | 66 | 2 | ✅ EXCELLENT |
 
-**Current Status:** All 6 Hofstede dimensions validated within ±10 tolerance (4/6 within ±5 EXCELLENT). Audit run May 11, 2026.
+**Current Status:** All 6 Hofstede dimensions validated within ±10 tolerance (2/6 within ±5 EXCELLENT). Audit run May 13, 2026.
 
 **Target Keyword Distribution:** When revision is complete, Dutch-language culture files (position, language, process, piece, place, personas) will express core dimensions through strategic keyword density:
 

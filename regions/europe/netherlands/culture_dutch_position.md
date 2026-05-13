@@ -12,9 +12,11 @@ Omwegen kosten meer dan de zaak waard is. Iedere spreker werkt vanuit autonomie.
 
 De platte kamer.
 Gezag bestaat, maar het is onderhandelbaar.
+Gezag van wie weet. Autoriteit van wie antwoordt.
 Hiërarchie is overhead. Niemand betaalt ervoor.
 Gelijkwaardig spreken. Iedereen spreekt. Iedereen telt. Elke keuze weegt gelijk.
 Medezeggenschap is geen bureaucratie. Het is de structuur.
+Procedure en beleid: transparant, niet verborgen. Regels die iedereen kent. Planning van het overleven, niet van de macht, flexibel ingericht.
 Protocol alleen als de dijk het vraagt.
 Voorzichtigheid en zorg zijn ook gezag, niet overhead.
 
