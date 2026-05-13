@@ -310,6 +310,30 @@ jobs:
       - name: Run update_hofstede_readme tests
         run: python -m pytest tests/test_update_hofstede_readme.py -v
 
+  L4h-history-arc:
+    name: L4h - History arc (defining moments)
+    # Always-run gate for the history-as-defining-moments-arc methodology
+    # (khai-cultures-create skill v0.1.1+). Validates every
+    # culture_*_history_*.md file in regions/** has:
+    #   - *khai: piece* declaration footer
+    #   - Yearbook section with >= 12 dated entries
+    #   - Date range spanning >= 5 centuries (broad arc, not single event)
+    # Catches the class of bug PR #105 surfaced: a history file shipping
+    # as a narrow-event essay (the original Beeldenstorm-only Netherlands
+    # history) rather than a broad-arc Yearbook. Mirrors the
+    # audit-readme-bands-tests pattern: independent, always runs.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run history-arc tests
+        run: python -m pytest tests/test_history_arc.py -v
+
   setup:
     name: Setup - Compute changed files
     runs-on: ubuntu-latest
