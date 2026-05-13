@@ -13,8 +13,7 @@ Men alle har samme vurdering - i lighed og ligeværd.
 
 Den [danske historie](culture_danish_history_danmark.md) ligger under.
 Vedholdenhed gennem generationer.
-Langsigtet planlægning som folkelig forpligtelse.
-Tålmodighed bygger institutioner.
+Forpligtelse til langsigtet planlægning.
 
 ## Orders
 Bestem selv.

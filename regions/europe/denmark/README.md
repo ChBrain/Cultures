@@ -21,8 +21,8 @@ The zip contains all culture files flattened at root level with links rewritten 
 | `culture_danish_process_hygge.md` | Process | Hygge - the art of coziness and shared presence |
 | `culture_danish_piece_janteloven.md` | Piece | Janteloven (Law of Jante) - social code prohibiting standing out |
 | `culture_danish_place_copenhagen.md` | Place | Copenhagen - capital city as social anchor |
-| `culture_danish_persona_female_sofie.md` | Persona (female) | Sofie - Arkitekt (Position-shaped Shadow) |
 | `culture_danish_persona_male_lars.md` | Persona (male) | Lars - Ingeniør (Position-shaped Shadow) |
+| `culture_danish_persona_female_sofie.md` | Persona (female) | Sofie - Arkitekt (Position-shaped Shadow) |
 
 ## Hofstede Cultural Dimensions - Denmark
 
@@ -47,7 +47,7 @@ Denmark's cultural profile measured against Hofstede's framework:
 | IDV | 74 | 75 | 1 | ✅ EXCELLENT |
 | UAI | 23 | 25 | 2 | ✅ EXCELLENT |
 | MAS | 16 | 20 | 4 | ✅ EXCELLENT |
-| LTO | 46 | 50 | 4 | ✅ EXCELLENT |
+| LTO | 46 | 46 | 0 | ✅ EXCELLENT |
 | IND | 70 | 67 | 3 | ✅ EXCELLENT |
 
 Keyword density analysis validates that content keywords across all files (language, history, position, process, piece, place, personas) align with declared Hofstede scores. Gap tolerance: ±10 PASS, ±5 EXCELLENT. Audited May 13, 2026.
@@ -73,8 +73,8 @@ These dimensions inform the **[Position](culture_danish_position.md)** (how Denm
 | culture_danish_process_hygge.md | Process | ✅ Complete | Hygge process with direction, lever, echo |
 | culture_danish_piece_janteloven.md | Piece | ✅ Complete | Janteloven cultural code with yearbook |
 | culture_danish_place_copenhagen.md | Place | ✅ Complete | Copenhagen as social anchor with offers and withheld |
-| culture_danish_persona_female_sofie.md | Persona (female) | ✅ Complete | Arkitekt: projection, action, Position-shaped shadow, physical tell |
 | culture_danish_persona_male_lars.md | Persona (male) | ✅ Complete | Ingeniør: projection, action, Position-shaped shadow, physical tell |
+| culture_danish_persona_female_sofie.md | Persona (female) | ✅ Complete | Arkitekt: projection, action, Position-shaped shadow, physical tell |
 
 ---
 

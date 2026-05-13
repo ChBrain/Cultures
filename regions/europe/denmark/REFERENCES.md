@@ -2,7 +2,7 @@
 
 **Authorship:** Kai Schlueter with AI-assisted drafting
 **Content Model:** Facts (verified via sources) + Original expression
-**Last Updated:** May 10, 2026
+**Last Updated:** May 13, 2026
 
 ---
 
@@ -69,7 +69,7 @@
 | Individualism (IDV) | 74 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
 | Uncertainty Avoidance (UAI) | 23 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
 | Masculinity (MAS) | 16 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Long-Term Orientation (LTO) | 35 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
+| Long-Term Orientation (LTO) | 46 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
 | Indulgence (IND) | 70 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
 
 **Status:** Empirical - All scores derived from Hofstede's peer-reviewed multi-country research (1967-2019).
@@ -90,6 +90,24 @@
 | Member of EU | verified | Official EU records | Since 1973 |
 | Member of NATO | verified | NATO.int | Since 1949 |
 | Social democracy model | verified | OECD, Arbejderbevægelsens Bibliotek & Arkiv | Strong welfare state, labor unions |
+
+**Audit Status:** ⏳ Pending detailed verification
+
+---
+
+### `culture_danish_history_danmark.md` - Danish Historical Arc
+
+| Fact / Claim | Verification Status | Source | Notes |
+|--------------|-------------------|--------|-------|
+| Viking raid on Lindisfarne 793 AD | verified | Anglo-Saxon Chronicle | Conventional start of Viking Age |
+| Harald Bluetooth conversion ~965 AD | verified | Jelling Stones, Rigsarkivet | Christianization documented on Jelling Stones |
+| Kalmar Union 1397 | verified | Nordic historical records | Margrethe I unites three kingdoms |
+| Reformation 1536 | verified | Folkekirke historical archive | Danish Bible translation |
+| Constitution 1849 | verified | Folketing, Grundloven | Transition from absolute to constitutional monarchy |
+| Loss of Schleswig 1864 | verified | Second Schleswig War records | Border redrawn at Eider |
+| German occupation 1940-1945 | verified | National Museum of Denmark | Including 1943 rescue of Danish Jews |
+| EU membership 1973 | verified | Official EU records | Joined EEC alongside UK and Ireland |
+| Climate law 2021 | verified | Folketing | 70% emissions reduction by 2030 |
 
 **Audit Status:** ⏳ Pending detailed verification
 
@@ -154,7 +172,7 @@
 
 ---
 
-### `culture_danish_persona_lars.md` - Lars (Engineer)
+### `culture_danish_persona_male_lars.md` - Lars (Ingeniør)
 
 | Fact / Claim | Verification Status | Source | Notes |
 |--------------|-------------------|--------|-------|
@@ -167,7 +185,7 @@
 
 ---
 
-### `culture_danish_persona_sofie.md` - Sofie (Architect)
+### `culture_danish_persona_female_sofie.md` - Sofie (Arkitekt)
 
 | Fact / Claim | Verification Status | Source | Notes |
 |--------------|-------------------|--------|-------|
@@ -235,9 +253,9 @@ Any resemblance to specific copyrighted works is unintentional. If you spot pote
 
 - **Personas (Lars, Sofie):** Fictional archetypes illustrating cultural values, not biographical individuals
 - **Janteloven:** While written by Aksel Sandemose (Norwegian), the code was adopted and codified in Danish culture and is central to Danish identity
-- **Hofstede Scores:** Based on empirical research; all 6 dimensions have been validated through peer review and cross-cultural comparison
+- **Hofstede Scores:** Based on empirical research; all 6 dimensions have been validated through peer review and cross-cultural comparison; LTO re-baselined from 35 to 46 on 2026-05-13 to match Hofstede Insights' current empirical value (was an outdated approximation in v0.1.0)
 - **Hygge:** A legitimate cultural practice with academic study and media attention; increasingly recognized internationally
 
 ---
 
-*v0.1.0 - Kai Schlueter - Cultures - May 8, 2026*
+*v0.2.0 - Kai Schlueter - Cultures - May 13, 2026*

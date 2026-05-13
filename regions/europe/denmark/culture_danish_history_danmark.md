@@ -15,10 +15,15 @@ Kortet skrumpet i nutid, hukommelsen vedholder.
 Uden den mister det [danske](culture_danish_position.md) ligeværd sin historiske rod.
 Smålandet har lært autonomi gennem tab.
 Tab af Norge, tab af Slesvig, tab af kolonierne: hver gang vendte vi indad og fandt ligeværd i resterne.
-Investering i fremtid gennem fælles institutioner: skole, sundhed, pension.
+Indre genopbygning er folkets svar på ydre nederlag.
+Investering gennem fælles institutioner: skole, sundhed, pension.
+Folkekirke og folkeoplysning som fælles ankerpunkter siden Reformationen.
 Langsigtet planlægning som folkesvar på smålandets sårbarhed.
-Vedholdenhed gennem generationer: socialdemokrati, folkekirke, andelsbevægelsen.
-Forpligtelse til de næste, ikke kun til de nuværende.
+Socialdemokratiet vokser nedefra.
+Vedholdenhed bæres af mange.
+Gennem generationer bygges institutionerne.
+Forpligtelse til de næste forbliver kerneprincippet.
+Fremtid bygges af både sten og forventning.
 Historisk erfaring som grundlag for nuværende politik.
 Arven bæres videre, fordi den ikke gemmes væk.
 
