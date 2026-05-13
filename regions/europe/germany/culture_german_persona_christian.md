@@ -24,7 +24,7 @@ Nicht weil der Kunde es fragt.
 Nicht weil das eine optimale Lösung ist.
 Weil er das Problem sieht und weil er es sehen muss, muss er es beheben.
 
-Der Kunde hat jetzt ein neues Problem: das alte war verborgen, das neue ist offen.
+Der Kunde hat jetzt ein neues Problem: das Alte war verborgen, das Neue ist offen.
 Das ist Leistung.
 
 ## Shadow
@@ -42,6 +42,8 @@ Wenn der Kunde dankt, schaut er bereits auf den Bildschirm.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+
+*Type: Fictional*
 
 *culture_german_persona_christian.md - 07.05.2026*
 

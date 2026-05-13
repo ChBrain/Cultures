@@ -31,15 +31,17 @@ Widerstand gegen die Versuchung, leicht zu haben.
 Pflicht und Verpflichtung: die wahre Grundlage.
 Ernsthaftigkeit vor Erfolg.
 Nachhaltigkeit im Denken, nicht Sofortigkeit.
-Langfristigkeit als Standard: Geduld und Ausdauer im Aufbau.
-Beharrlichkeit statt Hastigkeit.
-Weitblick: Investition in die Zukunft, nicht in den Moment.
+Langfristigkeit als Standard im Aufbau.
+Geduld, die aus Pflicht entsteht.
 
 Ordnung.
 Struktur braucht die Seele nicht, aber die Gesellschaft.
 Systematik in Arbeit; Flexibilität in Seele nicht.
 Zurückhaltung im Privaten; Struktur im Öffentlichen.
 Genauigkeit und Gründlichkeit als Ausdruck von Respekt.
+Beharrlichkeit statt Hastigkeit.
+Ausdauer als Maßstab.
+Weitblick: Investition in die Zukunft, nicht in den Moment.
 
 ## Orders
 Denke klar.

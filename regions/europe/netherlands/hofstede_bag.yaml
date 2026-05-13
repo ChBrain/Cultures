@@ -1,0 +1,181 @@
+# Hofstede Bag: Netherlands
+#
+# This file is the scoring contract for the country's Hofstede dimensions.
+# Culture files (regions/<region>/<country>/culture_*.md) are written to
+# carry these words organically. Each appearance of a bag word adds to the
+# dimension's score; binary scoring (each word counts once).
+#
+# Schema (Strategy v2): country / language / parent / hofstede_scores / bags.
+# Tests: tests/test_hofstede_bag_shape.py asserts all of these are present.
+
+country: netherlands
+language: nl
+parent: null
+status: draft
+generated: 2026-05-11
+hofstede_scores:
+  PDI: 38
+  IDV: 80
+  MAS: 14
+  UAI: 53
+  LTO: 67
+  IND: 68
+denylist:
+- gelijkheid
+- vrijheid
+- wij
+- nu
+- open
+- zelf
+- norm
+- rang
+- relatie
+- vermijden
+- sparen
+- meten
+- instrument
+- afstand
+- dimensie
+- vergelijken
+- modelleren
+- zekerheid
+- normatiefheid
+bags:
+  PDI:
+    low:
+    - gelijkwaardig
+    - toegankelijk
+    - informeel
+    - directheid
+    - collegialiteit
+    - overleg
+    - medezeggenschap
+    - inspraak
+    - participatie
+    - consensus
+    high:
+    - hiërarchie
+    - gezag
+    - autoriteit
+    - ondergeschiktheid
+    - gehoorzaamheid
+    - protocol
+    - formaliteit
+    - eerbied
+    - titulering
+    - distantie
+  IDV:
+    high:
+    - zelfredzaamheid
+    - zelfstandigheid
+    - individueel
+    - privacy
+    - initiatief
+    - verantwoordelijkheid
+    - onafhankelijkheid
+    - merite
+    - contract
+    - autonomie
+    low:
+    - collectief
+    - loyaliteit
+    - saamhorigheid
+    - solidariteit
+    - clan
+    - gemeenschap
+    - ingroep
+    - trouw
+    - afhankelijkheid
+    - harmonie
+  MAS:
+    low:
+    - zorg
+    - bescheidenheid
+    - samenwerking
+    - welzijn
+    - empathie
+    - mededogen
+    - kwetsbaar
+    - naasten
+    - inclusief
+    - sociaal
+    high:
+    - ambitie
+    - prestatie
+    - competitie
+    - winnaar
+    - assertiviteit
+    - doelgericht
+    - resultaat
+    - carrière
+    - dominantie
+    - prestatiegerichtheid
+  UAI:
+    high:
+    - structuur
+    - regels
+    - planning
+    - procedure
+    - precisie
+    - beleid
+    - systematisch
+    - kader
+    - voorbereiding
+    - overzicht
+    low:
+    - flexibel
+    - experiment
+    - aanpassen
+    - tolerantie
+    - risico
+    - improvisatie
+    - ruimte
+    - onzekerheid
+    - testen
+    - spontaniteit
+  LTO:
+    high:
+    - toekomst
+    - volharding
+    - investering
+    - pragmatisch
+    - duurzaam
+    - doorzetten
+    - leren
+    - ontwikkeling
+    - langetermijn
+    - continuïteit
+    low:
+    - traditie
+    - kortetermijn
+    - gewoonten
+    - snel
+    - verleden
+    - stabiliteit
+    - onmiddellijk
+    - bewezen
+    - behoudend
+    - kortzichtig
+  IND:
+    high:
+    - genieten
+    - plezier
+    - ontspanning
+    - geluk
+    - levensvreugde
+    - humor
+    - spontaan
+    - vriendschap
+    - gezelligheid
+    - optimisme
+    low:
+    - beheersing
+    - discipline
+    - plicht
+    - matigheid
+    - terughoudendheid
+    - zelfbeheersing
+    - verplichting
+    - ernst
+    - soberheid
+    - onthechting

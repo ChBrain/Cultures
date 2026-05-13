@@ -1,0 +1,11 @@
+# Cultures phrase denylist
+# One phrase per line. Phrases must be 7 words or longer to avoid
+# false positives on common factual language.
+# Comments start with #. Empty lines are ignored.
+#
+# Convention: phrases are case-insensitive, word-boundary matched.
+# Add a phrase when a source passage is close enough to risk verbatim copying.
+# Cross-reference each phrase against REFERENCES.md in the relevant culture folder.
+#
+# Example (remove leading # to activate):
+# the organisation operates through formal hierarchical structures and procedures

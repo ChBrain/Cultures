@@ -9,6 +9,7 @@ Den [danske](culture_danish_position.md) træder ind i et rum.
 Ikke alle rum.
 Rummet ved det uden personen skal sige det.
 [Janteloven](culture_danish_piece_janteloven.md) er valgfrit her.
+Hygge har ingen regler.
 Reglerne er i pausemodus - ligeværd geninstalleres.
 Hygge opstår når folk vælger at være sammen uden at skulle noget.
 Ikke planlagt.

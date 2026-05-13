@@ -348,19 +348,31 @@ Structure-only. Per-file dimension scoring lives in **L4f**, which scores aggreg
 
 **Structure pass (FAIL, hard-block):** the country must declare a Hofstede mapping.
 - README has a `## Hofstede` section.
-- README contains a score table with all six dimensions filled in. Rows match `| DIM | NN | **Low/High/Very High** ... |`. Header rows alone or prose mentions of dimension codes do not count.
+- README contains a score table with all six dimensions filled in. Rows match `| DIM | NN | **Low/Moderate/High** ... |`. Header rows alone or prose mentions of dimension codes do not count.
+- **Band + mismatch check.** The Level column is a closed enum: `Low`, `Moderate`, `High`. `Medium`, `Very High`, `Very Low`, `Medium-High` and other variants are intentionally not matched and surface as "scores incomplete" failures. On top of that, the Level cell must equal `score_to_band(score)`:
+  - 0-39 → Low
+  - 40-69 → Moderate
+  - 70-100 → High
+
+  Per PR #120, the canonical thresholds are 39/69 (not 39/59 as L4e used pre-PR-#130). A Level cell that disagrees with its score is a hard FAIL with the verdict `set Level to {band} (score {score} sits in the {band} band, 0-39 Low / 40-69 Moderate / 70-100 High)`. **Transition note:** During the canonical 39/69 rollout, `test_level_matches_band` runs `xfail(strict=False)` so existing READMEs with drifted `**High**` labels (Germany IDV=67, etc.) don't immediately block CI. Each stage-3 per-country migration PR clears its README via `scripts/update_hofstede_readme.py`; once all countries migrate, the xfail decorator comes off and the check goes back to strict FAIL.
+
+- **Classifier prose** like `Very Low` / `Very High` is not a band -- it belongs in the Description column of the Detailed Profile table and is not parsed by L4e. The audit script `scripts/audit_readme_bands.py` (diagnostic, run separately) reports every band mismatch across all country READMEs -- both the score-table Level cell (the same contract L4e enforces) and bold-with-colon prose leads of the form `**<Band> <DIM>:**`, e.g. `**Low PDI + High IDV:**` (How Dimensions section) or `**Moderate UAI (target 53):**` (Target Keyword Distribution section). For each prose `<Band> <DIM>` pair the declared band is compared to the table score's `score_to_band` value; `Medium` is normalized to `Moderate` for the equivalence check but is still surfaced in the `declared` column so the non-canonical word stays visible. Output schema: `country | source | dimension | score | declared | expected | needs_change`, with `source` being `table` or `prose:L<line>`. The table-row count holds at zero on main; prose-row drift is tracked separately and cleaned up per country migration. The audit's parsing contract is pinned by `tests/test_audit_readme_bands.py`. Graduating the prose check into L4e (so CI gates on it) is a deferred follow-up once the prose row count also reaches zero.
 - README has source attribution (mentions Hofstede, empirical, or research).
 - `REFERENCES.md`, if present, cites Hofstede.
 
 **Footer sentinel pass (WARN, advisory):** every `culture_*.md` file in the country should:
-- Carry the Hofstede signal footer line: `*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*`
+- Carry the hofstede sentinel line. Two forms are accepted during the v2 rollout (per PR #130):
+  - Canonical v2 form: `*hofstede: aggregate in [README.md](README.md).*`
+  - Legacy form (transitional): `*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*`
+
+  The regex `r"\*hofstede(\s+signal)?:"` (case-insensitive) matches both. Stage-3 per-country migration PRs flip each country to the canonical short form as part of adopting the v2 3-line footer.
 - Not carry a legacy per-file score footer (`**Hofstede:** PDI ... · IDV ... · ...`). These imply per-file scoring and are forbidden under the aggregate-scoring contract.
 
 The sentinel pass is advisory during rollout (started May 2026, DK/DE/NL first). It will graduate to FAIL once all completed countries are migrated.
 
 **Verdicts:**
 - Structure failure: add the missing section/rows/source/citation as indicated.
-- Missing sentinel: add the Hofstede signal line above the version footer.
+- Missing sentinel: add the v2 footer block to the file (3 italicized lines above the version line). See [ARCHITECTURE.md > Footer](../ARCHITECTURE.md#footer).
 - Legacy score footer present: remove the `**Hofstede:** PDI ...` line.
 
 **Script:** `tests/validate_hofstede_alignment.py`
@@ -377,8 +389,8 @@ python3 tests/validate_hofstede_alignment.py regions/europe/germany/
 
 # With sentinel warning (advisory, during rollout):
 python3 tests/validate_hofstede_alignment.py regions/europe/france/
-# WARN france/culture_french_position.md: missing Hofstede signal footer
-#   verdict: add line above version footer: `*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*`
+# WARN france/culture_french_position.md: missing hofstede sentinel line
+#   verdict: add the v2 footer block (3 italicized lines) above the version footer. See ARCHITECTURE.md > Footer.
 ```
 
 ---
@@ -470,9 +482,9 @@ Validates that **audit tables in country READMEs stay synchronized with current 
 - **Stale:** Any dimension drifts due to content changes (even 1 point is flagged)
 
 **Verdict when stale:**
-1. Run: `python tests/validate_hofstede_derived.py` to get current scores
-2. Update README audit table with new Derived values
-3. Re-commit
+1. Run: `python3 scripts/update_hofstede_readme.py <country>` (deterministic, recommended) -- rewrites the README's Hofstede Cultural Dimensions and Alignment Status tables with current declared + derived scores under canonical bands. Or:
+2. Run: `python tests/validate_hofstede_derived.py` to get current scores, then update the README audit table by hand.
+3. Re-commit.
 
 **Script:** `tests/validate_hofstede_readme_audit.py`
 
@@ -485,7 +497,7 @@ python3 tests/validate_hofstede_readme_audit.py
 # [OK] denmark: Hofstede audit table synchronized
 # [STALE] france: Hofstede audit table stale
 #   → README audit table shows MAS=70 (Derived), current content derives MAS=72 (drift 2 points)
-#   → Update README audit table: change Derived from 70 to 72, Gap from 4 to 2, Status from PASS to EXCELLENT
+#   → Run: python3 scripts/update_hofstede_readme.py france
 ```
 
 ---
@@ -576,6 +588,8 @@ git config core.hooksPath .githooks
 | `tests/findings.py` | shared | data structure | ✅ Complete |
 | `tests/language_exceptions.txt` | L1b | exceptions | ✅ Complete (template) |
 | `tests/requirements.txt` | dependencies | env setup | ✅ Complete |
+| `scripts/audit_readme_bands.py` | governance | canonical band contract | ✅ Complete |
+| `scripts/update_hofstede_readme.py` | governance | deterministic README updater | ✅ Complete |
 
 ---
 
@@ -666,6 +680,14 @@ Stands at the front of the room.
 ---
 
 ## Testing locally
+
+**Unit tests (parser/contract pins):**
+```bash
+pip install -r tests/requirements.txt   # one-time: pytest, lingua, PyYAML
+python3 -m pytest tests/                # 136 tests across 9 suites
+```
+
+`pytest` discovers both unittest-style suites (`test_hofstede_alignment.py`, `test_audit_readme_bands.py`, `test_branch_scope.py`, `test_hook_scope_e2e.py`) and pytest-style suites (`test_hofstede_bag_*.py`) in the same run -- no separate harness needed. Run a single suite with `python3 -m pytest tests/test_audit_readme_bands.py`. These pin parser regexes, band/score contracts, branch-scope policy, and the bag-loader behavior; they do not read `regions/` content.
 
 **Full validation on changed files (CI simulation):**
 ```bash

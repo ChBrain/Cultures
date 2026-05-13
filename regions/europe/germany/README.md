@@ -34,7 +34,7 @@ Germany's cultural profile measured against Hofstede's framework:
 | Uncertainty Avoidance (UAI) | 65 | **High** - Rules, structure, and planning preferred |
 | Masculinity (MAS) | 66 | **High** - Competitiveness, achievement valued |
 | Long-Term Orientation (LTO) | 83 | **High** - Long-term planning and adaptation emphasized |
-| Indulgence (IND) | 40 | **Low** - Restrained pole; gratification regulated by social norms |
+| Indulgence (IND) | 40 | **Moderate** - Restrained pole; gratification regulated by social norms |
 
 **Source:** Hofstede et al. (2010). Empirical research published in *Cultures and Organizations*.
 
@@ -43,13 +43,13 @@ Germany's cultural profile measured against Hofstede's framework:
 | Dimension | Declared | Derived | Gap | Status |
 |-----------|----------|---------|-----|--------|
 | PDI | 35 | 33 | 2 | ✅ EXCELLENT |
-| IDV | 67 | 66 | 1 | ✅ EXCELLENT |
-| UAI | 65 | 72 | 7 | ✅ PASS |
-| MAS | 66 | 71 | 5 | ✅ EXCELLENT |
-| LTO | 83 | 85 | 2 | ✅ EXCELLENT |
-| IND | 40 | 37 | 3 | ✅ EXCELLENT |
+| IDV | 67 | 75 | 8 | ✅ PASS |
+| UAI | 65 | 66 | 1 | ✅ EXCELLENT |
+| MAS | 66 | 60 | 6 | ✅ PASS |
+| LTO | 83 | 87 | 4 | ✅ EXCELLENT |
+| IND | 40 | 33 | 7 | ✅ PASS |
 
-Keyword density analysis validates that content keywords across all files (position, pieces, places, processes, personas) align with declared Hofstede scores. Gap tolerance: ±10 PASS, ±5 EXCELLENT. Audited May 8, 2026.
+Keyword density analysis validates that content keywords across all files (position, pieces, places, processes, personas) align with declared Hofstede scores. Gap tolerance: ±10 PASS, ±5 EXCELLENT. Audited May 11, 2026.
 
 ### How Dimensions Shape German Culture
 
@@ -57,7 +57,7 @@ Keyword density analysis validates that content keywords across all files (posit
 - **High UAI:** Strong preference for rules, planning, and structured processes. Visible in engineering precision, bureaucratic systems, and legal frameworks.
 - **High MAS:** Achievement and competition matter. Success is measured in tangible outcomes.
 - **High LTO:** Long-term strategic thinking. Investment in education, infrastructure, and future planning.
-- **Low IND:** Restraint over indulgence. Gratification of desires is regulated by social norms; deferred reward and self-discipline carry more weight than immediate enjoyment.
+- **Moderate IND:** Restraint leaning over indulgence at 40, near the Low/Moderate boundary. Gratification of desires is regulated by social norms; deferred reward and self-discipline carry more weight than immediate enjoyment.
 
 These dimensions inform the **[Position](culture_german_position.md)** (how Germany operates), **Pieces** (historical moments where dimensions collided), **Place** (Berlin's infrastructure and social patterns), and **Personas** (how individuals navigate these cultural pressures). Culture files carry standard Hofstede signal footers linking to this README; scoring is aggregate across all files, not per-file.
 

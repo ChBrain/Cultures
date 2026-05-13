@@ -69,6 +69,19 @@ All content in this culture module is original expression unless directly quoted
 
 ---
 
+## Persona Authenticity
+
+**Fictional Personas (Cultural Illustrations):**
+
+The following personas are fictional character constructs created to illustrate Dutch cultural dimensions. They are not based on real individuals and should not be attributed to any living person.
+
+- **Anneke** - Fictional mediator persona illustrating PDI_low (flat structures), MAS_low (consensus), and consensus-building orientation
+- **Jeroen** - Fictional journalist persona illustrating IDV_high (direct speech), and cultural assumptions about neutrality
+
+Both personas are designed to carry Hofstede cultural dimension concepts organically through character and narrative, not biographical representation.
+
+---
+
 ## Key Facts Verified
 
 - **Polder Model:** Consensus-based governance framework formalized through SER (Sociaal-Economische Raad), 1950

@@ -1,4 +1,4 @@
-﻿name: validate
+name: validate
 
 on:
   pull_request:
@@ -7,6 +7,188 @@ on:
     branches: [main, culture/release]
 
 jobs:
+  khai-encoding:
+    name: khai - Encoding rules
+    needs: [setup, L0-stamp-check]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+      - name: Run encoding tests
+        run: python -m pytest --pyargs khai_tests.test_khai_encoding --khai-files="${{ needs.setup.outputs.files }}" -v
+
+  khai-process:
+    name: khai - Process rules
+    needs: [setup, khai-encoding]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+      - name: Run process tests
+        run: python -m pytest --pyargs khai_tests.components.test_khai_process --khai-files="${{ needs.setup.outputs.files }}" -v
+
+  khai-position:
+    name: khai - Position rules
+    needs: [setup, khai-encoding]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+      - name: Run position tests
+        run: python -m pytest --pyargs khai_tests.components.test_khai_position --khai-files="${{ needs.setup.outputs.files }}" -v
+
+  khai-piece:
+    name: khai - Piece rules
+    needs: [setup, khai-encoding]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+      - name: Run piece tests
+        run: python -m pytest --pyargs khai_tests.components.test_khai_piece --khai-files="${{ needs.setup.outputs.files }}" -v
+
+  khai-place:
+    name: khai - Place rules
+    needs: [setup, khai-encoding]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+      - name: Run place tests
+        run: python -m pytest --pyargs khai_tests.components.test_khai_place --khai-files="${{ needs.setup.outputs.files }}" -v
+
+  khai-persona:
+    name: khai - Persona rules
+    needs: [setup, khai-encoding]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+      - name: Run persona tests
+        run: python -m pytest --pyargs khai_tests.components.test_khai_persona --khai-files="${{ needs.setup.outputs.files }}" -v
+
+  cultures-sections:
+    name: Cultures - Section structure
+    needs: [setup, khai-process, khai-position, khai-piece, khai-place, khai-persona]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+      - name: Run section tests
+        run: python -m pytest tests/test_sections.py --khai-files="${{ needs.setup.outputs.files }}" -v
+
   branch-scope-tests:
     name: Branch scope - test suite
     runs-on: ubuntu-latest
@@ -17,11 +199,10 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install Python deps
-        # Required for the E2E test: the hook now invokes
-        # tests/validate_country_bag.py which imports PyYAML.
-        run: pip install -r tests/requirements.txt
+        # PyYAML required for E2E test (hook invokes validate_country_bag.py).
+        run: pip install -r tests/requirements.txt pytest
       - name: Run branch_scope unit + E2E tests
-        run: python3 -m unittest tests.test_branch_scope tests.test_hook_scope_e2e -v
+        run: python -m pytest tests/test_branch_scope.py tests/test_hook_scope_e2e.py -v
 
   branch-scope-mirror:
     name: Branch scope - enforce on PR diff
@@ -66,19 +247,101 @@ jobs:
           print(f"OK: branch '{branch}' (classified '{kind}') passes scope check ({len(files)} file(s)).")
           PY
 
+  pr-base-tests:
+    name: PR base - test suite
+    # Unit-test gate for tests/validate_pr_base.py (the PR base routing
+    # contract). Independent, always runs, no culture-file dependency.
+    # Catches routing regressions before pr-gate.yml enforces them in
+    # production. CLI file exercises the script pr-gate.yml actually calls.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run PR base routing tests
+        run: python -m pytest tests/test_validate_pr_base.py tests/test_validate_pr_base_cli.py -v
+
+  audit-readme-bands-tests:
+    name: Audit README bands - test suite
+    # Unit-test gate for scripts/audit_readme_bands.py (the canonical Hofstede
+    # band contract: 0-39 Low, 40-69 Moderate, 70-100 High). Mirrors the
+    # branch-scope-tests pattern: independent, always runs, exercises the
+    # contract on every PR. Closes the gap noted during the v2 stage 2
+    # sequence where this test had no CI runner.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run audit_readme_bands tests
+        run: python -m pytest tests/test_audit_readme_bands.py -v
+
+  update-hofstede-readme-tests:
+    name: Update Hofstede README - test suite
+    # Unit-test gate for scripts/update_hofstede_readme.py (deterministic
+    # rewriter for the Hofstede Cultural Dimensions + Alignment Status tables
+    # in country READMEs). Pins the EXCELLENT/PASS/WARN/FAIL thresholds, the
+    # canonical band-label rendering, and the table-replacement contract.
+    # Mirrors the audit-readme-bands-tests pattern: independent, always runs.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Python deps
+        # Mirrors L4f / hofstede-bag-loader-tests: tests/requirements.txt
+        # has lingua-language-detector, PyYAML, and pytest. Required because
+        # update_hofstede_readme imports data.hofstede_keywords transitively
+        # via hofstede_bag_loader, and data.hofstede_keywords imports lingua
+        # at module level (for detect_language). The unit tests don't call
+        # detect_language but the import has to succeed for the module to
+        # load.
+        run: pip install -r tests/requirements.txt
+      - name: Run update_hofstede_readme tests
+        run: python -m pytest tests/test_update_hofstede_readme.py -v
+
   setup:
     name: Setup - Compute changed files
     runs-on: ubuntu-latest
     outputs:
       any: ${{ steps.changed.outputs.any }}
       files: ${{ steps.changed.outputs.files }}
+      # `data_changed`: true when the PR diff touches the Hofstede reference
+      # dataset (data/hofstede_scores.json). Drives L4g into audit mode (run
+      # across all countries) so a reference update doesn't silently widen
+      # divergence for cultures whose declared scores are now off-band.
+      data_changed: ${{ steps.changed.outputs.data_changed }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Get changed regions/*.md files
         id: changed
+        env:
+          HEAD_REF: ${{ github.head_ref }}
         run: |
+          # Sync branches (sync/<name>) are pointer branches at main's HEAD.
+          # Content was already validated when it landed on main. Re-running
+          # content validators on sync adds no value and can hit lingua
+          # false-positives or other transient state. Short-circuit here so
+          # all downstream content jobs gated on `any == 'true'` skip cleanly.
+          if [[ "$HEAD_REF" == sync/* ]]; then
+            echo "Sync branch detected ($HEAD_REF); skipping content-validator file detection."
+            echo "any=false" >> "$GITHUB_OUTPUT"
+            echo "files=" >> "$GITHUB_OUTPUT"
+            echo "data_changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             RANGE="origin/${{ github.base_ref }}...HEAD"
           else
@@ -89,10 +352,13 @@ jobs:
             RANGE="$BEFORE..HEAD"
           fi
           # --diff-filter=ACMRT skips deletions; the validator must not be handed paths that no longer exist.
-          FILES=$(git diff --name-only --diff-filter=ACMRT "$RANGE" | { grep -E '^regions/.*\.md$' || true; } | tr '\n' ' ' | sed 's/ *$//')
+          ALL_CHANGED=$(git diff --name-only --diff-filter=ACMRT "$RANGE")
+          FILES=$(echo "$ALL_CHANGED" | { grep -E '^regions/.*\.md$' || true; } | tr '\n' ' ' | sed 's/ *$//')
           ANY=$(if [ -z "$FILES" ]; then echo "false"; else echo "true"; fi)
+          DATA_CHANGED=$(if echo "$ALL_CHANGED" | grep -qx 'data/hofstede_scores.json'; then echo "true"; else echo "false"; fi)
           echo "any=$ANY" >> "$GITHUB_OUTPUT"
           echo "files=$FILES" >> "$GITHUB_OUTPUT"
+          echo "data_changed=$DATA_CHANGED" >> "$GITHUB_OUTPUT"
 
   L0-stamp-check:
     name: L0 - Validation stamp gate
@@ -106,7 +372,7 @@ jobs:
       - name: Check validation stamp exists
         run: |
           if [ ! -f ".validation-stamp" ]; then
-            echo "Γ¥î VALIDATION FAILED: .validation-stamp missing"
+            echo "❌ VALIDATION FAILED: .validation-stamp missing"
             echo ""
             echo "This file records that local validators passed before commit."
             echo "Run locally to generate it:"
@@ -115,69 +381,104 @@ jobs:
             echo "  git commit --amend -m 'your message'"
             exit 1
           fi
-          echo "Γ£ô Validation stamp present"
+          echo "✔️ Validation stamp present"
 
-  L1-general:
-    name: L1 - General file format
-    needs: [setup, L0-stamp-check]
+  khai-language:
+    name: khai - Language policy (per-file detection)
+    needs: [setup, cultures-sections]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Validate general format
-        run: python3 tests/validate_general.py ${{ needs.setup.outputs.files }}
+      - name: Install khai-tests + lingua + pyyaml
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME" lingua-language-detector pyyaml
+      - name: Run language detection tests
+        run: python -m pytest --pyargs khai_tests.test_khai_language --khai-files="${{ needs.setup.outputs.files }}" -v
 
-  L1b-language:
-    name: L1b - English-only language policy
-    needs: [setup, L1-general]
+  cultures-language:
+    name: Cultures - Language policy (static checks)
+    needs: [setup, khai-language]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install lingua-language-detector
-        run: pip install lingua-language-detector
-      - name: Validate language policy
-        run: python3 tests/validate_language.py ${{ needs.setup.outputs.files }}
+      - name: Install pytest + pyyaml
+        run: pip install pytest pyyaml
+      - name: Run static language checks
+        run: python -m pytest tests/test_language.py -v
 
-  L2-sections:
-    name: L2 - Section structure
-    needs: [setup, L1b-language]
+  khai-links:
+    name: khai - Link integrity
+    needs: [setup, cultures-language]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Validate section structure
-        run: python3 tests/validate_sections.py ${{ needs.setup.outputs.files }}
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+      - name: Run link tests
+        run: python -m pytest --pyargs khai_tests.test_khai_links --khai-files="${{ needs.setup.outputs.files }}" -v
 
-  L3-links:
-    name: L3 - Link integrity
-    needs: [setup, L2-sections]
+  cultures-links:
+    name: Cultures - Link integrity
+    needs: [setup, khai-links]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Validate link integrity
-        run: python3 tests/validate_links.py ${{ needs.setup.outputs.files }}
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+      - name: Run link tests
+        run: python -m pytest tests/test_links.py --khai-roots=engine --khai-files="${{ needs.setup.outputs.files }}" -v
 
   L4a-completeness:
     name: L4a - Culture completeness
-    needs: [setup, L3-links]
+    needs: [setup, cultures-links]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
@@ -186,8 +487,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
       - name: Validate culture completeness
-        run: python3 tests/validate_culture_completeness.py ${{ needs.setup.outputs.files }}
+        run: python -m pytest tests/test_completeness.py -v
 
   L4b-audit-readme:
     name: L4b - Audit README status tables
@@ -200,8 +503,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
       - name: Validate audit README
-        run: python3 tests/validate_audit_readme.py ${{ needs.setup.outputs.files }}
+        run: python -m pytest tests/test_audit_readme.py -v
 
   L4c-audit-consistency:
     name: L4c - Audit table consistency
@@ -214,26 +519,55 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
       - name: Validate audit consistency
-        run: python3 tests/validate_audit_consistency.py ${{ needs.setup.outputs.files }}
+        run: python -m pytest tests/test_audit_consistency.py -v
 
-  L4d-plagiarism:
-    name: L4d - IP/plagiarism heuristics
+  khai-plagiarism:
+    name: khai - Phrase denylist
     needs: [setup, L4c-audit-consistency]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Validate plagiarism heuristics
-        run: python3 tests/validate_plagiarism.py ${{ needs.setup.outputs.files }}
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+      - name: Run phrase denylist tests
+        run: python -m pytest --pyargs khai_tests.test_khai_plagiarism --khai-files="${{ needs.setup.outputs.files }}" -v
+
+  cultures-plagiarism:
+    name: Cultures - Plagiarism structural checks
+    needs: [setup, khai-plagiarism]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run plagiarism structural checks
+        run: python -m pytest tests/test_plagiarism.py -v
 
   L4e-hofstede-alignment:
-    name: L4e - Hofstede dimension alignment
-    needs: [setup, L4d-plagiarism]
+    name: L4e - Hofstede structure
+    needs: [setup, cultures-plagiarism]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
@@ -242,10 +576,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install Python deps
-        run: pip install -r tests/requirements.txt
-      - name: Validate Hofstede alignment
-        run: python3 tests/validate_hofstede_alignment.py ${{ needs.setup.outputs.files }}
+      - name: Install pytest
+        run: pip install pytest
+      - name: Validate Hofstede structure
+        run: python -m pytest tests/test_hofstede_structure.py -v
 
   L4f-hofstede-derived:
     name: L4f - Hofstede derived vs declared
@@ -261,7 +595,23 @@ jobs:
       - name: Install Python deps
         run: pip install -r tests/requirements.txt
       - name: Validate Hofstede derived scores
-        run: python3 tests/validate_hofstede_derived.py
+        run: python -m pytest tests/test_hofstede_derived.py -v
+
+  L4g-hofstede-reference:
+    name: L4g - Hofstede declared vs reference
+    needs: [setup, L4f-hofstede-derived]
+    if: needs.setup.outputs.any == 'true' || needs.setup.outputs.data_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run Hofstede reference tests
+        run: python -m pytest tests/test_hofstede_reference.py -v
 
   hofstede-bag-loader-tests:
     name: Hofstede - bag loader tests
@@ -275,7 +625,7 @@ jobs:
       - name: Install Python deps
         run: pip install -r tests/requirements.txt
       - name: Run loader tests
-        run: python3 -m unittest tests.test_hofstede_bag_loader -v
+        run: python -m pytest tests/test_hofstede_bag_loader.py -v
 
   bag-integrity:
     name: Hofstede - bag integrity (shape, quality, lock, completeness, fork)
