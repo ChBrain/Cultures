@@ -38,7 +38,9 @@ Na tej stracie: słowa wybiera się bardziej ostrożnie.
 Przynależność do grupy rośnie. Obowiązek rośnie.
 
 ---
-*culture_polish_language_polski.md - 09.05.2026*
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+*hofstede: aggregate in [README.md](README.md).*
+*khai: position*
+
+*culture_polish_position_language.md - 2026-05-13*
 
 v0.1.0 - KAI Worlds

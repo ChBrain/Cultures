@@ -5,7 +5,7 @@
 - Culture: Poland
 
 ## Has
-[Konstytucja](culture_polish_piece_konstytucja.md).
+[Hejnał Mariacki](culture_polish_piece_hejnal.md).
 Krąg.
 Status w kręgu się natychmiastowo wyjaśnia poprzez zobowiązanie.
 Kompetencja i doświadczenie w kręgu tworzą uznany autorytet: uznana przewaga, nie urzędowa pozycja.
@@ -41,7 +41,9 @@ Relacja z kimś spoza kręgu zaczyna się od partnerstwa, nie hierarchii.
 Dialog jest możliwy. Decyzja należy do kręgu.
 
 ---
+*hofstede: aggregate in [README.md](README.md).*
+*khai: position*
+
 *culture_polish_position.md - 09.05.2026*
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
 
 v0.1.0 - KAI Worlds
