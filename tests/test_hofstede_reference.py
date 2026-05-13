@@ -11,6 +11,7 @@ No imports from validate_hofstede_reference.py -- logic is self-contained.
 from __future__ import annotations
 
 import json
+import os
 import re
 from pathlib import Path
 
@@ -69,6 +70,20 @@ def _justified_dims(decisions_text: str) -> set[str]:
 
 _REFERENCE = _load_reference()
 _COUNTRIES = _country_dirs()
+
+# Narrow to PR-changed countries when CI is running on a PR. Env vars are
+# set by the L4g job in .github/workflows/validate.yml; absent on push events
+# or local runs, which keeps the full corpus in scope. PR_DATA_CHANGED=true
+# (the reference table itself moved) overrides and re-checks every country.
+_pr_changed = os.environ.get("PR_CHANGED_FILES", "").strip()
+_pr_data_changed = os.environ.get("PR_DATA_CHANGED", "").strip().lower() == "true"
+if _pr_changed and not _pr_data_changed:
+    _pr_slugs = {
+        p.split("/")[2]
+        for p in _pr_changed.split()
+        if p.startswith("regions/") and len(p.split("/")) >= 4
+    }
+    _COUNTRIES = [d for d in _COUNTRIES if d.name in _pr_slugs]
 
 
 @pytest.mark.parametrize("country_dir", _COUNTRIES, ids=[c.name for c in _COUNTRIES])
