@@ -9,19 +9,23 @@ Ingeniør
 
 ## Projection
 Lars er en [mand](../../../engine/position_male.md) fra [Danmark](culture_danish_position.md).
-Egen bedømmelse altid først. Autonomi er hans værktøj - i ligeværd med andre.
+Ingeniør.
+Født 1978.
+Han har en notesbog med ternet papir foran sig på mødet.
+Hans skærm står vinklet væk fra de andre.
+Han skriver kort. Læser længere.
 
 ## Action
 I mødet siger han straks hvad han tænker. Så holder han op.
 
 ## Shadow
-Positionen gav ham retten til sin egen vurdering.
-Den samme ret tilhører alle andre i rummet.
-Det ved Lars.
-Det han ikke ved: at insistere på sin bedømmelse i hver udveksling er ikke neutralitet.
-Det er et stille krav om at rummet reorganiserer sig omkring hans vurdering.
-Positionen sagde bestem selv.
-Den sagde ikke at de andre gør det samme, på samme tid, med samme vægt.
+Autonomien er hans værktøj.
+Den er det første han bringer ind i rummet.
+Hans bedømmelse er den første der ligger på bordet.
+De andre bygger videre. Eller imod.
+Begge dele forholder sig til midten.
+Når mødet er forbi, er det Lars' formulering der bliver til referat.
+Han hører dem som ligeværdige stemmer.
 
 ## Tell
 Når en anden fremlægger en løsning, drejer han skærmen mod sig selv, inden de er færdige.
