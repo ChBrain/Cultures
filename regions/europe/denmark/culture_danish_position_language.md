@@ -48,6 +48,12 @@ Hierarki for hvem der må tale.
 Stilhed som lydighed.
 Selvkontrol omkring ikke at høre andre.
 
+## Drives
+På tabet af lydighed:
+Sproget kræver, at man taler.
+Stilhed er ikke neutralitet, men frasigelse.
+Trangen til at sige det, der er - før det bliver påtvingelse.
+
 ---
 *hofstede: aggregate in [README.md](README.md).*
 *khai: position*
