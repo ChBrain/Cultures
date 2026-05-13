@@ -16,7 +16,7 @@ Terrasjes. Zomers vol mensen. Gezelligheid zonder aanleiding.
 ## Holds
 [Nederlands](culture_dutch_position.md).
 [Het Poldermodel](culture_dutch_piece_poldermodel.md).
-De grachtengordel als infrastructuur, niet als decor.
+De grachtengordel als duurzame infrastructuur. Gebouwd voor toekomst, niet voor mode.
 
 ## Offers
 Je kunt het zeggen zonder het in te leiden.

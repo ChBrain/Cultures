@@ -34,6 +34,7 @@ Individuen kunnen leven naar eigen voorkeur zolang de dijk blijft staan.
 
 ## Orders
 Neem je eigen keuzes in zelfstandigheid.
+Eerbied expertise. De autoriteit van wie het weet.
 
 ## Loses
 De aanname van neutraliteit.
