@@ -266,6 +266,32 @@ jobs:
       - name: Run audit_readme_bands tests
         run: python -m pytest tests/test_audit_readme_bands.py -v
 
+  update-hofstede-readme-tests:
+    name: Update Hofstede README - test suite
+    # Unit-test gate for scripts/update_hofstede_readme.py (deterministic
+    # rewriter for the Hofstede Cultural Dimensions + Alignment Status tables
+    # in country READMEs). Pins the EXCELLENT/PASS/WARN/FAIL thresholds, the
+    # canonical band-label rendering, and the table-replacement contract.
+    # Mirrors the audit-readme-bands-tests pattern: independent, always runs.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Python deps
+        # Mirrors L4f / hofstede-bag-loader-tests: tests/requirements.txt
+        # has lingua-language-detector, PyYAML, and pytest. Required because
+        # update_hofstede_readme imports data.hofstede_keywords transitively
+        # via hofstede_bag_loader, and data.hofstede_keywords imports lingua
+        # at module level (for detect_language). The unit tests don't call
+        # detect_language but the import has to succeed for the module to
+        # load.
+        run: pip install -r tests/requirements.txt
+      - name: Run update_hofstede_readme tests
+        run: python -m pytest tests/test_update_hofstede_readme.py -v
+
   setup:
     name: Setup - Compute changed files
     runs-on: ubuntu-latest

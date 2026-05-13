@@ -105,6 +105,7 @@ GOVERNANCE_GLOB_PATTERNS = (
     "scripts/setup-hooks.sh",
     "scripts/setup-hooks.bat",
     "scripts/audit_readme_bands.py",
+    "scripts/update_hofstede_readme.py",
     "data/hofstede_denylist.yaml",
     "data/hofstede_keywords.py",
     "data/hofstede_scores.json",
