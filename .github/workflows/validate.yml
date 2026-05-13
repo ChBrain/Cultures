@@ -281,10 +281,14 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install Python deps
-        # PyYAML required because update_hofstede_readme imports
-        # data/hofstede_bag_loader.py at module level (for derive_scores),
-        # which uses yaml to read bag YAMLs.
-        run: pip install pytest pyyaml
+        # Mirrors L4f / hofstede-bag-loader-tests: tests/requirements.txt
+        # has lingua-language-detector, PyYAML, and pytest. Required because
+        # update_hofstede_readme imports data.hofstede_keywords transitively
+        # via hofstede_bag_loader, and data.hofstede_keywords imports lingua
+        # at module level (for detect_language). The unit tests don't call
+        # detect_language but the import has to succeed for the module to
+        # load.
+        run: pip install -r tests/requirements.txt
       - name: Run update_hofstede_readme tests
         run: python -m pytest tests/test_update_hofstede_readme.py -v
 
