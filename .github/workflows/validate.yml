@@ -327,7 +327,21 @@ jobs:
           fetch-depth: 0
       - name: Get changed regions/*.md files
         id: changed
+        env:
+          HEAD_REF: ${{ github.head_ref }}
         run: |
+          # Sync branches (sync/<name>) are pointer branches at main's HEAD.
+          # Content was already validated when it landed on main. Re-running
+          # content validators on sync adds no value and can hit lingua
+          # false-positives or other transient state. Short-circuit here so
+          # all downstream content jobs gated on `any == 'true'` skip cleanly.
+          if [[ "$HEAD_REF" == sync/* ]]; then
+            echo "Sync branch detected ($HEAD_REF); skipping content-validator file detection."
+            echo "any=false" >> "$GITHUB_OUTPUT"
+            echo "files=" >> "$GITHUB_OUTPUT"
+            echo "data_changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             RANGE="origin/${{ github.base_ref }}...HEAD"
           else
