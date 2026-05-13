@@ -15,6 +15,7 @@ Rozmawia szybko, ręce ruszają się podczas mówienia.
 ## Action
 Inwestor mówi: chcemy coś nowoczesnego, ale żeby pasowało do okolicy.
 Tomasz rozkłada makietę na stole.
+Inicjatywa jest cała jego.
 Wskazuje: tutaj jest napięcie między tym, co było, a tym, co może być. To jest właśnie projekt.
 Inwestor mówi: ale sąsiedzi mogą narzekać.
 Tomasz: narzekanie jest częścią procesu. Projekt broni się sam.
@@ -28,6 +29,7 @@ Każdy urząd, każdy inwestor, każda komisja: najpierw człowiek, potem proced
 Budynki, które projektuje, będą stały po tym, jak krąg, który je zbudował, się rozejdzie.
 Będą je użytkować ludzie, których nie zna.
 Projektuje dla swoich.
+Determinacja jest na rysunku, nie w głosie.
 Komuś spoza kręgu by nie powiedział, że to wybór.
 
 ## Tell
