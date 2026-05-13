@@ -64,7 +64,7 @@ Netherlands's cultural profile measured against Hofstede's framework:
 | File | Type | Status | Notes |
 |------|------|--------|-------|
 | culture_dutch_language_nederlands.md | Language | ✅ Validated | All dimensions within tolerance |
-| culture_dutch_history_netherlands.md | History | ✅ Validated | 1566 Beeldenstorm - foundational moment |
+| culture_dutch_history_netherlands.md | History | ✅ Validated | Broad Dutch history: Romeinse limes -> 2024, 26 dated entries |
 | culture_dutch_position.md | Position | ✅ Validated | All dimensions within tolerance |
 | culture_dutch_process_polderen.md | Process | ✅ Validated | All dimensions within tolerance |
 | culture_dutch_piece_poldermodel.md | Piece | ✅ Validated | All dimensions within tolerance |
@@ -77,7 +77,7 @@ Netherlands's cultural profile measured against Hofstede's framework:
 **V2 Schema Order (Language → History → Position → Process → Piece → Place → Personas):**
 
 - **Language**: [culture_dutch_language_nederlands.md](culture_dutch_language_nederlands.md) - Direct. No wrapper. Efficiency over politeness.
-- **History**: [culture_dutch_history_netherlands.md](culture_dutch_history_netherlands.md) - 1566 Beeldenstorm - when religious coexistence became infrastructure, not choice
+- **History**: [culture_dutch_history_netherlands.md](culture_dutch_history_netherlands.md) - From Romeinse limes to 2024 - water as governance, tolerance as infrastructure, the Polder Model's institutional continuity
 - **Position**: [culture_dutch_position.md](culture_dutch_position.md) - De platte kamer, het Poldermodel, tolerantie uit noodzaak
 - **Process**: [culture_dutch_process_polderen.md](culture_dutch_process_polderen.md) - Polderen - negotiation when the stakes are shared (water)
 - **Piece**: [culture_dutch_piece_poldermodel.md](culture_dutch_piece_poldermodel.md) - The Polder Model - load-bearing framework (1421-2024)
