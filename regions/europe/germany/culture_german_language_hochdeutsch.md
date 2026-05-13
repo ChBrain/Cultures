@@ -11,7 +11,7 @@ Der Rundfunk spricht es. Das Gericht spricht es. Die Schule lehrt es.
 Wer anderes spricht, muss Hochdeutsch können (die Passprüfung der Teilhabe).
 
 Genauigkeit in den Wörtern. Nicht nahe bei der Bedeutung, sondern genau bei der Bedeutung.
-Präzision über Wärme. Verlässlichkeit über Charme.
+Präzision über Wärme. Klarheit über Charme.
 
 Es ist kein Dialekt. Es ist ein System.
 Jedes Wort hat seinen Platz. Jeder Satz hat seine Struktur.
@@ -36,8 +36,6 @@ Im Privaten, im Dialekt, in dem, was kein Standard ist.
 Die Sprache kann nicht alles regeln. Die Seele bleibt frei.
 
 ---
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-
-*culture_german_language_hochdeutsch.md - 07.05.2026*
-
-v0.1.0 - KAI Worlds
+*hofstede: aggregate in [README.md](README.md).*
+*khai: position*
+*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*
