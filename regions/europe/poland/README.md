@@ -43,14 +43,14 @@ Filename convention: `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5
 
 | Dimension | Declared | Derived | Gap | Status |
 |---|---|---|---|---|
-| PDI | 68 | 71 | 3 | ✅ EXCELLENT |
-| IDV | 60 | 56 | 4 | ✅ EXCELLENT |
-| MAS | 64 | 60 | 4 | ✅ EXCELLENT |
-| UAI | 93 | 88 | 5 | ✅ EXCELLENT |
-| LTO | 38 | 36 | 2 | ✅ EXCELLENT |
-| IND | 29 | 33 | 4 | ✅ EXCELLENT |
+| PDI | 68 | 73 | 5 | ✅ EXCELLENT |
+| IDV | 60 | 57 | 3 | ✅ EXCELLENT |
+| MAS | 64 | 64 | 0 | ✅ EXCELLENT |
+| UAI | 93 | 93 | 0 | ✅ EXCELLENT |
+| LTO | 38 | 33 | 5 | ✅ EXCELLENT |
+| IND | 29 | 25 | 4 | ✅ EXCELLENT |
 
-**Derivation method**: Each keyword in hofstede_bag.yaml is counted once per culture file if present (word-boundary matching, no substring inflation). Score = (high_keyword_count / (high_count + low_count)) × 100. Gap tolerance: ±10 PASS, ±5 EXCELLENT. Audited May 11, 2026; re-audit pending after the v2 migration (new history file adds LTO-high and IDV-low signals; piece swap konstytucja→hejnal_mariacki shifts the UAI-high register spread). CI L4f will produce the actual derived numbers.
+**Derivation method**: Each keyword in hofstede_bag.yaml is counted once per culture file if present (word-boundary matching against the bag word in nominative form; no substring inflation). Score = (high_keyword_count / (high_count + low_count)) × 100. Gap tolerance: ±10 PASS, ±5 EXCELLENT. Re-audited May 13, 2026 against the post-v2-migration content (piece swap konstytucja→hejnal_mariacki + Option B IDV tune-up adding wolność / inicjatywa / determinacja). All 6 dimensions within ±5 EXCELLENT band. CI L4f will confirm.
 
 ## How Dimensions Shape Polish Culture
 
@@ -73,16 +73,16 @@ These dimensions inform the **[Language](culture_polish_position_language.md)** 
 | File | TYPE | Status | Notes |
 |------|------|--------|-------|
 | culture_polish_position_language.md | position | ✅ Complete | Polski linguistic anchor (Has / Orders / Loses / Drives) |
-| culture_polish_piece_history.md | piece | ✅ Complete | 26 Yearbook entries 966 to 2023: chrzest, Grunwald, three partitions, uprisings, Solidarność, EU accession, TK dispute |
+| culture_polish_piece_history.md | piece | ✅ Complete | 26 Yearbook entries 966 to 2023: chrzest, Grunwald, three partitions, uprisings, 1918 wolność, Solidarność, EU accession, TK dispute |
 | culture_polish_position.md | position | ✅ Complete | Hofstede dimensions: PDI 68, IDV 60, UAI 93, MAS 64, LTO 38, IND 29 |
 | culture_polish_process_przetrwanie.md | process | ✅ Complete | Przetrwanie process (Initiated by / Direction / Lever / Echo) |
 | culture_polish_piece_hejnal.md | piece | ✅ Complete | Hejnał Mariacki: hourly trumpet call, Tatar-arrow mid-note cut-off since 1241, broadcast on Polskie Radio Jedynka at noon since 1927 |
 | culture_polish_place_warsaw.md | place | ✅ Complete | Warsaw as social anchor with offers and withheld |
-| culture_polish_persona_male_tomasz.md | persona | ✅ Complete | Architekt: projection, action, position-shaped shadow (fixed narrator-told tail), tell |
-| culture_polish_persona_female_malgorzata.md | persona | ✅ Complete | Lekarka: projection, action, position-shaped shadow (fixed narrator-told tail), tell |
+| culture_polish_persona_male_tomasz.md | persona | ✅ Complete | Architekt: projection, action with inicjatywa, position-shaped shadow with determinacja (narrator-told tail fixed), tell |
+| culture_polish_persona_female_malgorzata.md | persona | ✅ Complete | Lekarka: projection, action, position-shaped shadow (narrator-told tail fixed), tell |
 
 ---
 
-*Audited May 11, 2026; v2 migration May 13, 2026 (piece swap: konstytucja retired, hejnal_mariacki added)*
+*Audited May 13, 2026 (re-derived against post-v2-migration content; all 6 dimensions ±5 EXCELLENT)*
 
-*v0.2.0 - Kai Schlueter - Cultures - May 2026*
+*v0.2.1 - Kai Schlueter - Cultures - May 2026*
