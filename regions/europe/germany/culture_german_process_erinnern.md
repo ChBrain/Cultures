@@ -7,7 +7,7 @@
 ## Initiated by
 Der [Deutsche](culture_german_position.md) betritt einen Raum.
 Jeder Raum.
-Das [Grundgesetz](culture_german_piece_grundgesetz.md) ist bereits darin: als Pflicht zur Disziplin.
+Die [deutsche Geschichte](culture_german_history_deutschland.md) ist bereits darin: als Pflicht zur Disziplin.
 Nicht als Text.
 Als Bedingung des Verantwortungsgefühls.
 Nicht spontan: als systematisches Werk mit Zurückhaltung.
@@ -22,14 +22,12 @@ Nicht aus Hoffnung. Aus Pflichterfüllung.
 ## Lever
 Die Kraft: die Notwendigkeit, zu verstehen, um nicht zu wiederholen.
 Der Widerstand: die Versuchung, alles zu verbieten: die Vergangenheit zu sperren, nicht zu sehen.
-Das Lever hält beide: ohne Verstehen wird die Versuchung stärker; ohne Versuchung verfällt das Verstehen zur Bürokratie.
+Der Hebel hält beide: ohne Verstehen wird die Versuchung stärker; ohne Versuchung verfällt das Verstehen zur Bürokratie.
 
 ## Echo
-Der nächste Prozess erbt das Wissen und die Freiheit, es anders zu machen. Gelassenheit und Anpassungsfähigkeit: das Erbe von Erinnern. Die Disziplin bleibt.
+Der nächste Prozess erbt das Wissen und die Möglichkeit, es anders zu machen. Gelassenheit und Anpassungsfähigkeit: das Erbe von Erinnern. Die Disziplin bleibt.
 
 ---
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-
-*culture_german_process_erinnern.md - 07.05.2026*
-
-v0.1.0 - KAI Worlds
+*hofstede: aggregate in [README.md](README.md).*
+*khai: process*
+*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*
