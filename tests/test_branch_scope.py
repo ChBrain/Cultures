@@ -337,6 +337,8 @@ def test_check_scope_other_blocks_governance_paths():
         "tests/test_branch_scope.py",
         ".github/workflows/validate.yml",
         "scripts/validate.py",
+        "scripts/validate_sections.py",
+        "scripts/validate_history_arc.py",
         "scripts/audit_readme_bands.py",
         "scripts/update_hofstede_readme.py",
         "data/hofstede_keywords.py",
@@ -350,6 +352,8 @@ def test_check_scope_other_blocks_governance_paths():
     assert "tests/test_branch_scope.py" in unsafe
     assert ".github/workflows/validate.yml" in unsafe
     assert "scripts/validate.py" in unsafe
+    assert "scripts/validate_sections.py" in unsafe
+    assert "scripts/validate_history_arc.py" in unsafe
     assert "scripts/audit_readme_bands.py" in unsafe
     assert "scripts/update_hofstede_readme.py" in unsafe
     assert "data/hofstede_keywords.py" in unsafe
@@ -419,6 +423,8 @@ def test_check_scope_governance_allows_governance_paths():
         "tests/test_branch_scope.py",
         "tests/validate_culture_completeness.py",
         "scripts/validate.py",
+        "scripts/validate_sections.py",
+        "scripts/validate_history_arc.py",
         "scripts/audit_readme_bands.py",
         "scripts/update_hofstede_readme.py",
         "data/hofstede_keywords.py",
@@ -489,6 +495,7 @@ def test_is_governance_path_subtrees(path):
     "tests/test_branch_scope.py",
     "tests/test_hook_scope_e2e.py",
     "tests/test_hofstede_alignment.py",
+    "tests/test_history_arc.py",
     "tests/validate_general.py",
     "tests/validate_culture_completeness.py",
     "tests/validate_hofstede_derived.py",
@@ -497,6 +504,8 @@ def test_is_governance_path_subtrees(path):
     "tests/language_exceptions.txt",
     "scripts/validate.py",
     "scripts/validate_general.py",
+    "scripts/validate_sections.py",
+    "scripts/validate_history_arc.py",
     "scripts/setup-hooks.sh",
     "scripts/setup-hooks.bat",
     "scripts/audit_readme_bands.py",
@@ -546,7 +555,7 @@ def test_governance_glob_patterns_locked():
         "tests/requirements.txt",
         "tests/language_exceptions.txt",
         "scripts/validate.py",
-        "scripts/validate_general.py",
+        "scripts/validate_*.py",
         "scripts/setup-hooks.sh",
         "scripts/setup-hooks.bat",
         "scripts/audit_readme_bands.py",
