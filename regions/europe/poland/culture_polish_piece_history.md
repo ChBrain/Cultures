@@ -45,7 +45,7 @@ Tablice pamiątkowe na fasadach kamienic w Warszawie.
 1795: Trzeci rozbiór. Polska znika z mapy na 123 lata.
 1830: Powstanie listopadowe. Klęska, emigracja, kultura na wygnaniu.
 1863: Powstanie styczniowe. Klęska, ale pamięć trzyma.
-1918: Niepodległość. 11 listopada. Polska wraca na mapę.
+1918: Niepodległość. 11 listopada. Polska wraca na mapę: wolność po stu dwudziestu trzech latach.
 1920: Bitwa Warszawska. *Cud nad Wisłą*. Polska zatrzymuje Armię Czerwoną.
 1939: 1 września. Niemcy atakują. 17 września. Sowieci wkraczają od wschodu.
 1940: Katyń. NKWD morduje polskich oficerów.
