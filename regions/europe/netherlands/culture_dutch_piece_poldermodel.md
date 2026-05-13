@@ -11,7 +11,7 @@ De Lage Landen.
 ## Load Bearing
 Zonder het verliest de [Nederlandse](culture_dutch_position.md) positie haar grond.
 De tolerantie was geen ideaal. Het was de ontdekking dat uitsluiting de dijk kost.
-Iedereen heeft de dijk nodig. Dus iedereen zit aan tafel.
+Iedereen heeft de dijk nodig. Dus iedereen zit aan tafel in saamhorigheid.
 Gelijkwaardige zeggenschap. Consensus waar het water geen keuze laat.
 Collegiale samenwerking is de prijs van het water.
 Inspraak van elke belanghebbende. Overleg tot het houdt.
