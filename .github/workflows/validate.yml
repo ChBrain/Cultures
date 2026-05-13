@@ -247,6 +247,24 @@ jobs:
           print(f"OK: branch '{branch}' (classified '{kind}') passes scope check ({len(files)} file(s)).")
           PY
 
+  pr-base-tests:
+    name: PR base - test suite
+    # Unit-test gate for tests/validate_pr_base.py (the PR base routing
+    # contract). Independent, always runs, no culture-file dependency.
+    # Catches routing regressions before pr-gate.yml enforces them in
+    # production. CLI file exercises the script pr-gate.yml actually calls.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run PR base routing tests
+        run: python -m pytest tests/test_validate_pr_base.py tests/test_validate_pr_base_cli.py -v
+
   audit-readme-bands-tests:
     name: Audit README bands - test suite
     # Unit-test gate for scripts/audit_readme_bands.py (the canonical Hofstede
