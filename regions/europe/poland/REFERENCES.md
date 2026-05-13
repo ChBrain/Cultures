@@ -18,6 +18,9 @@
 | Główny Urząd Statystyczny (GUS) | https://stat.gov.pl/ | Official statistics | ⭐⭐⭐⭐⭐ |
 | Sejm RP | https://www.sejm.gov.pl/ | 1997 Constitution, legislation | ⭐⭐⭐⭐⭐ |
 | Miasto Warszawa | https://www.warszawa.pl/ | Warsaw-specific facts, administration | ⭐⭐⭐⭐⭐ |
+| Archidiecezja Krakowska | https://diecezja.pl/ | Bazylika Mariacka, hejnał regulations | ⭐⭐⭐⭐⭐ |
+| Straż Miejska Krakowa | https://www.strazmiejska.krakow.pl/ | Hejnał trumpeter service, regulamin | ⭐⭐⭐⭐⭐ |
+| Polskie Radio Jedynka | https://jedynka.polskieradio.pl/ | Noon hejnał broadcast since 1927 | ⭐⭐⭐⭐⭐ |
 
 ### Academic & Historical References
 
@@ -107,6 +110,26 @@
 
 ---
 
+## Verified Facts: Hejnał Mariacki (culture_polish_piece_hejnal.md)
+
+| Claim | Status | Source | Notes |
+|-------|--------|--------|-------|
+| Hejnał played hourly from Bazylika Mariacka tower | verified | Archidiecezja Krakowska, Straż Miejska Krakowa | Ongoing daily practice |
+| Four cardinal directions per performance | verified | Straż Miejska Krakowa regulamin | Established order: east, south, west, north |
+| Melody cut off mid-note | verified | Polish cultural-historical consensus | Commemorating the trumpeter killed by Tatar arrow in 1241 |
+| Tatar invasion of Kraków 1241 | verified | IPN, Polish medieval history | Mongol-Tatar incursion into Małopolska |
+| Earliest written reference 1392 | verified | Kraków municipal archive | "Hejnał" in city records |
+| Modern musical notation 1838 | verified | Polish musicology | First notation of contemporary melody |
+| Trumpeter formally part of straż miejska 1873 | verified | Straż Miejska Krakowa historical archive | Hejnał written into city guard regulamin |
+| Polskie Radio Jedynka noon broadcast since 1927 | verified | Polskie Radio archives | National time signal since pre-war |
+| Continued under German occupation 1939-1945 | verified | Polish wartime archives | Tower playing continued; radio broadcast suspended |
+| Trębacz Andrzej Strączek | verified | Polish press coverage | One of the long-serving postwar trumpeters |
+| Continued during pandemic 2020 | verified | Polish news coverage | Hejnał uninterrupted during COVID-19 |
+
+**Audit Status:** Cross-checked against Archidiecezja Krakowska and Straż Miejska Krakowa public records; ⏳ pending detailed verification of individual trumpeter tenures.
+
+---
+
 ## Verified Facts: Persona Declarations
 
 ### Dr. Małgorzata (culture_polish_persona_female_malgorzata.md)
@@ -185,9 +208,10 @@ Any resemblance to specific copyrighted works is unintentional. If you spot pote
 
 - **Filename convention:** Files follow `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5 KAI structural types (process, position, piece, place, persona) matching the file's `*khai: <type>*` footer declaration. Single-instance kinds (language, history) drop the redundant country suffix.
 - **Personas (Tomasz, Małgorzata):** Composite fictional archetypes illustrating cultural values, not biographical individuals. Shadow architecture is Position-shaped same-pole (both anchor to the krąg-trust dimension dominant in Polish PDI 68 + IDV 60); gender is the variation axis.
-- **History (`piece_history.md`) vs Piece (`piece_konstytucja.md`):** Both use KAI piece structure (`*khai: piece*` footer); the file NAME slot distinguishes the subject. History is the broad arc of defining moments (966 to 2023); konstytucja is the specific 1997 document still in active legal force.
+- **History (`piece_history.md`) vs Piece (`piece_hejnal.md`):** Both use KAI piece structure (`*khai: piece*` footer); the file NAME slot distinguishes the subject. History is the broad arc of defining moments (966 to 2023); hejnal_mariacki is the specific cultural artifact still in active daily circulation (hourly trumpet call from Bazylika Mariacka, broadcast on Polskie Radio Jedynka at noon since 1927).
+- **Piece swap (May 13, 2026):** The original culture package shipped `piece_konstytucja.md` (1997 Constitution) as the piece. Retired during v2 migration because its Yearbook duplicated the broad-arc constitutional moments now in `piece_history.md`, and the constitutional document doesn't satisfy the SKILL.md piece criterion ("currently makes / performs / holds / eats / practices"). Replaced with `piece_hejnal.md` -- a piece that IS currently performed, hourly, daily, observable. All Polish constitutional moments remain as Yearbook entries in `piece_history.md`.
 
 ---
 
 *REFERENCES.md - 13.05.2026*
-*v0.2.0 - KAI Worlds*
+*v0.2.1 - KAI Worlds*
