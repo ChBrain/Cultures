@@ -28,11 +28,11 @@ Du kan høre på andre uden at skulle være enig - med omsorg for deres selvbest
 Du kan gå fra mødet med egen opfattelse intakt, og de andres også.
 
 ## Withheld
-Hvad mennesker tænker hjemme.
-Det danskerne drømmer om uden at dele det.
+Hvad danskerne tænker derhjemme.
+Det de drømmer om uden at dele det.
 Den private verden som løber parallelt med det offentlige.
-Mødet er hvor idéer bliver delt.
-Mødet er hvor beslutninger formes - ikke hvor de er fattet.
+Mødet er hvor idéerne bliver delt.
+Mødet er hvor beslutningerne formes - ikke hvor de er fattet.
 Den der tror mødet ikke betyder noget, har ikke hørt på dansk.
 Den der tror mødet bestemmer udfaldet, har ikke hørt græsrødderne bringe det ind.
 
