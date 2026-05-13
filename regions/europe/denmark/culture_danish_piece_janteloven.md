@@ -30,20 +30,7 @@ Når hver person bestemmer absolut selv uden at respektere andres ret til at gø
 Ti påbud. I lighed med hinanden.
 Alle danske børn kan dem.
 
-## Yearbook
-0700: Tingmødet. Frie mænd stemmer.
-1536: Bibelen på dansk. Hver person læser selv.
-1849: Grundloven. Lighed under lov.
-1933: Sandemose skriver Janteloven ned. Den var allerede der - en tradition.
-1953: Grundloven revideret. Fuld lighed blandt mennesker.
-1980: Børn får eget navn. Individet først.
-2000: Lighed nu international norm.
-2010: Danske cykelstjerner vinder internationalt.
-Janteloven lever over generationer.
-
 ---
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-
-*culture_danish_piece_janteloven.md - 08.05.2026*
-
-v0.1.0 - KAI Worlds
+*hofstede: aggregate in [README.md](README.md).*
+*khai: piece*
+*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

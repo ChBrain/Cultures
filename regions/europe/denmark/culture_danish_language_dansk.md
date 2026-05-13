@@ -35,8 +35,8 @@ Sig det nu.
 Din personlige vurdering.
 Kort og klart.
 Uden at påtvinge.
-Pragmatisk - hvis det ikke virker, sig det straks.
-Fleksibel - høre andre og tilpas hvis der er bedre ide.
+Pragmatisk — hvis det ikke virker, sig det straks.
+Fleksibel — høre andre og tilpas hvis der er bedre ide.
 Improvisere sammen hvis situationen kræver det.
 Uformel og direkte.
 Dialog frem for monolog.
@@ -49,8 +49,6 @@ Stilhed som lydighed.
 Selvkontrol omkring ikke at høre andre.
 
 ---
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-
-*culture_danish_language_dansk.md - 07.05.2026*
-
-v0.1.0 - KAI Worlds
+*hofstede: aggregate in [README.md](README.md).*
+*khai: position*
+*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

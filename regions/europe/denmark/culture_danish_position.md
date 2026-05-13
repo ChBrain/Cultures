@@ -9,7 +9,12 @@ Autonomi.
 Din personlige vurdering betyder.
 Dit eget valg betyder.
 Din egen bedømmelse er værdifuld.
-Men alle har samme vurdering - i lighed og ligeværd.
+Men alle har samme vurdering — i lighed og ligeværd.
+
+Den [danske historie](culture_danish_history_danmark.md) ligger under.
+Ikke som tradition der bestemmer, men som arv der bæres videre.
+Langsigtet planlægning som folkelig forpligtelse.
+Tålmodighed gennem institutioner.
 
 ## Orders
 Bestem selv.
@@ -23,8 +28,6 @@ Desperationen til at få det tilbage.
 Genopbygning af eget rum til at dømme selv.
 
 ---
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-
-*culture_danish_position.md - 08.05.2026*
-
-v0.1.0 - KAI Worlds
+*hofstede: aggregate in [README.md](README.md).*
+*khai: position*
+*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*
