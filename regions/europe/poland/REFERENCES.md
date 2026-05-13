@@ -2,7 +2,7 @@
 
 **Authorship:** Kai Schlueter
 **Content Model:** Hofstede dimensions (empirical) + Culture writing (original expression)
-**Last Updated:** May 11, 2026
+**Last Updated:** May 13, 2026
 
 ---
 
@@ -72,9 +72,44 @@
 
 ---
 
+## Verified Facts: Polish History (culture_polish_piece_history.md)
+
+| Claim | Status | Source | Notes |
+|-------|--------|--------|-------|
+| Chrzest Polski 966 | verified | IPN, historical consensus | Mieszko I's baptism, conventional founding date |
+| Akademia Krakowska 1364 | verified | UJ archives | Second oldest university in Central Europe |
+| Bitwa pod Grunwaldem 1410 | verified | IPN, Polish-Lithuanian sources | Decisive defeat of the Teutonic Order |
+| Nihil novi 1505 | verified | Sejm RP historical archive | Foundational legislative principle |
+| Konfederacja warszawska 1573 | verified | Polish constitutional history | First European religious tolerance act |
+| Odsiecz Wiedeńska 1683 | verified | Polish and Austrian historical records | Sobieski's relief of Vienna |
+| Konstytucja 3 Maja 1791 | verified | Sejm RP, constitutional historians | Second modern constitution in the world |
+| Trzeci rozbiór 1795 | verified | Polish historical consensus | End of First Republic |
+| Powstanie listopadowe 1830 | verified | IPN, 19th-century uprisings archive | November Uprising |
+| Powstanie styczniowe 1863 | verified | IPN | January Uprising |
+| Niepodległość 1918 | verified | Polish state archives | 11 listopada, Second Republic restored |
+| Bitwa Warszawska 1920 | verified | Polish military history | Cud nad Wisłą |
+| September 1939 / Soviet invasion 17 września | verified | IPN, multiple national archives | Two-front opening of WWII for Poland |
+| Katyń 1940 | verified | IPN, declassified Soviet records | NKWD massacre of Polish officers |
+| Powstanie w getcie warszawskim 1943 | verified | Muzeum Historii Żydów Polskich POLIN, IPN | Warsaw Ghetto Uprising |
+| Powstanie Warszawskie 1944 | verified | Muzeum Powstania Warszawskiego | 63-day uprising |
+| Granica zachodnia 1945 | verified | Yalta and Potsdam records | Odra-Nysa line |
+| Jan Paweł II 1978 | verified | Vatican and Polish church records | Karol Wojtyła elected pope |
+| Solidarność 1980 | verified | Europejskie Centrum Solidarności | Gdańsk shipyard strike |
+| Stan wojenny 1981 | verified | IPN | Martial law declared 13 December |
+| Okrągły Stół 1989 | verified | IPN, Polish negotiated transition records | Round Table negotiations |
+| Konstytucja RP 1997 | verified | Sejm RP, Dziennik Ustaw nr 78 poz 483 | Current constitution |
+| NATO accession 1999 | verified | NATO.int | Polish entry into alliance |
+| EU accession 2004 | verified | Official EU records | Joined 1 May 2004 |
+| Katastrofa smoleńska 2010 | verified | IPN, Polish state commission reports | Plane crash, 96 killed including President Kaczyński |
+| Spór o TK 2015-2023 | verified | Polish constitutional law scholarship | Constitutional Tribunal crisis |
+
+**Audit Status:** ⏳ Pending detailed verification
+
+---
+
 ## Verified Facts: Persona Declarations
 
-### Dr. Małgorzata (culture_polish_persona_malgorzata.md)
+### Dr. Małgorzata (culture_polish_persona_female_malgorzata.md)
 
 | Claim | Status | Note |
 |-------|--------|------|
@@ -84,7 +119,7 @@
 | Workplace | Warsaw hospital, outpatient clinic | Consistent with Polish healthcare structure |
 | All biographical details | Invented | No real person intended or represented |
 
-### Tomasz (culture_polish_persona_tomasz.md)
+### Tomasz (culture_polish_persona_male_tomasz.md)
 
 | Claim | Status | Note |
 |-------|--------|------|
@@ -146,5 +181,13 @@ Any resemblance to specific copyrighted works is unintentional. If you spot pote
 
 ---
 
-*REFERENCES.md - 11.05.2026*
-*v0.1.0 - KAI Worlds*
+## Notes on Content
+
+- **Filename convention:** Files follow `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5 KAI structural types (process, position, piece, place, persona) matching the file's `*khai: <type>*` footer declaration. Single-instance kinds (language, history) drop the redundant country suffix.
+- **Personas (Tomasz, Małgorzata):** Composite fictional archetypes illustrating cultural values, not biographical individuals. Shadow architecture is Position-shaped same-pole (both anchor to the krąg-trust dimension dominant in Polish PDI 68 + IDV 60); gender is the variation axis.
+- **History (`piece_history.md`) vs Piece (`piece_konstytucja.md`):** Both use KAI piece structure (`*khai: piece*` footer); the file NAME slot distinguishes the subject. History is the broad arc of defining moments (966 to 2023); konstytucja is the specific 1997 document still in active legal force.
+
+---
+
+*REFERENCES.md - 13.05.2026*
+*v0.2.0 - KAI Worlds*
