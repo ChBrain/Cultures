@@ -107,7 +107,7 @@ GOVERNANCE_GLOB_PATTERNS = (
     "tests/requirements.txt",
     "tests/language_exceptions.txt",
     "scripts/validate.py",
-    "scripts/validate_general.py",
+    "scripts/validate_*.py",
     "scripts/setup-hooks.sh",
     "scripts/setup-hooks.bat",
     "scripts/audit_readme_bands.py",
