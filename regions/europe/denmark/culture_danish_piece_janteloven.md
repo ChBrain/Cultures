@@ -5,16 +5,12 @@
 - Culture: Denmark
 
 ## Place
-Grenen. 1933.
-Aksel Sandemose skrev ti påbud.
-Ikke om hvad man skal gøre.
-Om hvad man IKKE skal påstå.
-Alle danske kender dem.
+Aksel Sandemose.
 
 ## Load Bearing
 Uden Janteloven bliver personlig autonomi til dominans.
 Ydmyghed er erkendelse af fælles betingelse.
-Når hver person bestemmer absolut selv uden at respektere andres ret til at gøre det samme, kollapser ligheden.
+Når hver person bestemmer absolut selv uden at anerkende andres ret til at gøre det samme, kollapser ligheden.
 ## Apparent
 *Du skal ikke tro at du er noget.*
 *Du skal ikke tro at du er vigtigere end os.*
