@@ -15,16 +15,16 @@ Iedereen heeft de dijk nodig. Dus iedereen zit aan tafel in saamhorigheid.
 Gelijkwaardige zeggenschap. Consensus waar het water geen keuze laat.
 Collegiale samenwerking is de prijs van het water.
 Inspraak van elke belanghebbende. Overleg tot het houdt. Aanpassingen naar wat het water leert.
-De dijk is traditie en voortdurende noodzaak. Niet van morgen. Niet van gewoonten. Steeds. Duurzaam overleven vereist investering en volharding.
+De dijk is een noodzaak. Traditie en volharding. Niet van morgen. Niet van gewoonten.
 De kracht ervan: het houdt ook als niemand het wil.
-Zorg voor elkaar. Empathie voor de zwaksten. Mededogen in nood. De dijk bindt wie hij scheidt.
-Leren van water. Elke overstroming een experiment. Pragmatisch. Improvisatie waar voorbereiding faalt. Continuïteit door volharding.
+Zorg voor elkaar. De dijk bindt wie hij scheidt.
+Leren van water. Elke overstroming een les. Pragmatisch.
 
 ## Apparent
 Het Sociaal-Economische Raad. 1950. Consensus-orgaan.
 Werkgevers, vakbonden, overheid. Gelijkwaardig aan tafel.
 Het woord polderen staat in het woordenboek als werkwoord.
-De Deltawerken besloten. Participatie van alle belanghebbenden.
+De Deltawerken besloten. Participatie van alle belanghebbenden. Duurzame infrastructuur voor generaties.
 Gedoogkoffieshops. Zichtbaar. Legaal illegaal.
 
 ## Yearbook
