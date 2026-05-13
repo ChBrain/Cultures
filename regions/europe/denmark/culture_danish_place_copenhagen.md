@@ -9,15 +9,15 @@ Cykelstier med cykelkø i myldretiden.
 Flade bygninger. Ingen én bygning rager op over andre.
 Kanalen. Nyhavn. Farvede bygninger, turister, borde udenfor.
 Tivoli i mitten af byen.
-Folketing. Et kammer. 179 sæder i halvkreds. Demokratisk opstilling.
+Folketing. Et kammer. 179 sæder i halvkreds.
 Ingen overhus.
 Vesterbro og Nørrebro tæt på centrum.
-Christiania: egen vej, egen frihed - og accepteret.
-Cykelsti som transport, ikke som fornøjelse.
-Cyklen er sædvane - ikke valg.
+Christiania med egen indgang ved Bådsmandsstræde, inden for byens grænser.
+Cykelparkering ved hver S-togsstation.
 ## Holds
 Den danske position - [Dansk](culture_danish_position.md).
 [Janteloven](culture_danish_piece_janteloven.md).
+Den [danske historie](culture_danish_piece_history.md): hver dag bæres videre.
 Frederiksberg. Christiania. Begge inden for samme by.
 ## Offers
 Du kan være med mennesker uden at skulle være tavs.
@@ -28,17 +28,15 @@ Du kan høre på andre uden at skulle være enig - med omsorg for deres selvbest
 Du kan gå fra mødet med egen opfattelse intakt, og de andres også.
 
 ## Withheld
-Hvad mennesker tænker hjemme.
-Det danskerne drømmer om uden at dele det.
+Hvad danskerne tænker derhjemme.
+Det de drømmer om uden at dele det.
 Den private verden som løber parallelt med det offentlige.
-Mødet er hvor idéer bliver delt.
-Mødet er hvor beslutninger formes - ikke hvor de er fattet.
+Mødet er hvor idéerne bliver delt.
+Mødet er hvor beslutningerne formes - ikke hvor de er fattet.
 Den der tror mødet ikke betyder noget, har ikke hørt på dansk.
 Den der tror mødet bestemmer udfaldet, har ikke hørt græsrødderne bringe det ind.
 
 ---
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-
-*culture_danish_place_copenhagen.md - 07.05.2026*
-
-v0.1.0 - KAI Worlds
+*hofstede: aggregate in [README.md](README.md).*
+*khai: place*
+*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

@@ -1,8 +1,11 @@
 # Hofstede Decisions: Denmark
 
-**Scores:** PDI 18 · IDV 74 · UAI 23 · MAS 16 · LTO 35 · IND 70
+**Scores:** PDI 18 · IDV 74 · UAI 23 · MAS 16 · LTO 46 · IND 70
 **Generated:** 2026-05-10
 **Forked from:** none -- fresh bootstrap
+**Updated:**
+- 2026-05-13: LTO re-baselined 35 → 46 to match Hofstede Insights empirical score; bag unchanged.
+- 2026-05-13: Persona-anchor filenames updated for TYPE-as-slot rename (language_dansk → position_language, history_danmark → piece_history).
 
 ---
 
@@ -84,7 +87,7 @@ Multi-word entries: none. personlig vurdering was a candidate but replaced by d�
 Cross-country root flags: autonomi -- may appear in NL and DE bags when produced; flag for cross-country review at that point
 Root-proximity flags (same country): selvbestemmelse and selvstændighed share selv- root; retained because they signal meaningfully different aspects (constitutional right vs. behavioral capacity)
 Register spread: legal 2 (meningsfrihed, ytringsfrihed), social-cultural 4 (autonomi, selvbestemmelse, selvstændighed, egenart), everyday 4 (frihed, initiativ, integritet, dømmekraft)
-Persona-anchor words: autonomi (culture_danish_position.md, culture_danish_language_dansk.md, persona files), selvbestemmelse (culture_danish_language_dansk.md, culture_danish_place_copenhagen.md)
+Persona-anchor words: autonomi (culture_danish_position.md, culture_danish_position_language.md, persona files), selvbestemmelse (culture_danish_position_language.md, culture_danish_place_copenhagen.md)
 
 NOTE -- autonomi appears in no other bag for this country. IDV-high is its only valid placement.
 ```
@@ -131,7 +134,7 @@ Multi-word entries: none
 Cross-country root flags: none
 Root-proximity flags (same country): spontan (UAI-low) and spontanitet (IND-high) -- different lemma forms, different dimensions. Root-proximity pair: spontan = methodological openness to unplanned situations (UAI-low); spontanitet = pleasurable spontaneity (IND-high). Matcher fires on different strings. Documented in both UAI-low and IND-high decision logs per Skill Rule 11.
 Register spread: social-cultural 3 (uhøjtidelighed, tolerance, afslappet), procedural 3 (fleksibel, pragmatisk, tilpasningsevne), everyday 4 (improvisere, spontan, åbenhed, eksperimentere)
-Persona-anchor words: fleksibel (culture_danish_language_dansk.md), pragmatisk (culture_danish_language_dansk.md)
+Persona-anchor words: fleksibel (culture_danish_position_language.md), pragmatisk (culture_danish_position_language.md)
 ```
 
 ### MAS high
@@ -170,13 +173,13 @@ Persona-anchor words: omsorg (culture_danish_process_hygge.md), nærvær (cultur
 Country: denmark
 Dimension: LTO
 Polarity: high
-Declared score: 35
+Declared score: 46
 
 Multi-word entries: none
 Cross-country root flags: none
 Root-proximity flags (same country): forpligtelse (LTO-high) -- same word was candidate for IND-low but replaced there with mådehold. No collision in final bags.
 Register spread: financial 2 (investering, opsparing), temporal 3 (langsigtet, fremtid, generationer), behavioral 3 (vedholdenhed, tålmodighed, kontinuitet), strategic 2 (forpligtelse, strategi)
-Persona-anchor words: none (opposing bag)
+Persona-anchor words: forpligtelse (culture_danish_piece_history.md), vedholdenhed (culture_danish_piece_history.md), langsigtet (culture_danish_piece_history.md, culture_danish_position.md), generationer (culture_danish_piece_history.md, culture_danish_piece_janteloven.md yearbook), tålmodighed (culture_danish_position.md), arv (culture_danish_position.md)
 ```
 
 ### LTO low
@@ -185,15 +188,16 @@ Persona-anchor words: none (opposing bag)
 Country: denmark
 Dimension: LTO
 Polarity: low
-Declared score: 35
+Declared score: 46
 
 Multi-word entries: none
 Cross-country root flags: none
 Root-proximity flags (same country): tradition, sædvane, skik -- all three in same bag, same concept cluster. Cross-register sibling scan applied: tradition = the abstract value; sædvane = established custom practice; skik = social custom and norm. Sufficient register separation to retain all three. LTO-low bag; traditional anchoring is the correct signal; three words at different abstraction levels is appropriate.
 Register spread: abstract 3 (tradition, nutid, fortid), everyday 5 (sædvane, arv, aktuel, erfaring, skik), behavioral 2 (umiddelbar, øjeblikkelig)
-Persona-anchor words: none (dimension not strongly represented in existing DK culture files)
+Persona-anchor words: tradition (culture_danish_piece_janteloven.md), sædvane (culture_danish_place_copenhagen.md), nutid (culture_danish_piece_history.md), erfaring (culture_danish_piece_history.md), umiddelbar (culture_danish_process_hygge.md), øjeblikkelig (culture_danish_process_hygge.md)
 
 NOTE -- tradition appears in the country denylist as unsafe for LTO-high. Its placement here in LTO-low is correct per the polarity reference table.
+NOTE -- LTO re-baselined from 35 to 46 (2026-05-13) to match Hofstede Insights' empirical Danish LTO score. Bag composition unchanged; v2 content tuning (history file + hygge present-moment markers) calibrates derived score to match new declared.
 ```
 
 ### IND high
