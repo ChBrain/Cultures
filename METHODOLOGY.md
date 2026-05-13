@@ -15,7 +15,7 @@ The Hofstede keyword-density method is independent of the file schema -- the val
 - **v2 schema** (8 kinds: language, history, position, process, piece, place, male, female) -- for countries listed in `data/v2_migrated_countries.txt`
 - **v1 schema** (6 kinds: language, position, process, piece, place, personas) -- for countries not yet migrated; valid until the migration PR lands
 
-See [`ARCHITECTURE.md`](ARCHITECTURE.md) > Cultures v2 Schema for the full structural contract, including the `*khai: <type>*` declaration footer that every `culture_*.md` carries in v2-migrated countries. The keyword-density rules in this document apply identically to both layouts; the file enumeration shifts but the per-file authoring discipline stays the same.
+See [`ARCHITECTURE.md`](ARCHITECTURE.md) > Cultures v2 Schema for the full structural contract, including the `*khai: <type>*` declaration footer and the 3-line v2 footer block that every `culture_*.md` carries in v2-migrated countries. The keyword-density rules in this document apply identically to both layouts; the file enumeration shifts but the per-file authoring discipline stays the same.
 
 ---
 
@@ -27,7 +27,12 @@ In **v2-migrated countries**, the contributing files are: language, history, pos
 
 - **Validating layer:** `tests/validate_hofstede_derived.py` (L4f) — sums keyword counts across every `culture_*.md` file in the country, derives 0-100 per dimension, compares to README declared, reports gap/status.
 - **Structure layer:** `tests/validate_hofstede_alignment.py` (L4e) — checks the README has the section, score table, and source. It does **not** score per-file content.
-- **Footer contract:** every culture file ends with a `*Hofstede signal: ...*` line pointing at the README, and (in v2) a `*khai: <type>*` declaration footer. Per-file score lines are forbidden — they imply per-file scoring and trigger false alignment failures.
+- **Footer contract:** every culture file in a v2-migrated country ends with a 3-line italicized footer block (see [`ARCHITECTURE.md`](ARCHITECTURE.md) > Footer for the spec):
+  - `*hofstede: aggregate in [README.md](README.md).*` — aggregate-score sentinel. The legacy `*Hofstede signal: this file contributes...*` form is accepted during the v2 rollout (per PR #130); canonical is the shorter `hofstede:` form.
+  - `*khai: <type>*` — KAI structural type declaration (one of `process`, `position`, `piece`, `place`, `persona`).
+  - `*<YYYY-MM-DD> | KAI HACKS AI | v<X.Y.Z> | CC-BY-NC-4.0*` — IP safeguard line; license authoritative in the repo `LICENSE` file.
+
+  Per-file Hofstede score lines (e.g. `**Hofstede:** PDI 35 · IDV 67 ...`) are forbidden — they imply per-file scoring and trigger false alignment failures.
 
 **Practical consequence:** if a dimension is under-represented, you can add keywords to the most natural carrier (e.g. UAI-high → the piece on legal/constitutional structure; IND-high → the process on leisure/celebration) rather than forcing every dimension into the position file. In v2, the natural carriers expand: history can absorb dimensions that emerged from a founding moment (LTO from a constitution), language can absorb formality dimensions (PDI / UAI from address forms), male/female personas can carry MAS / IND.
 
@@ -131,7 +136,7 @@ KAIHACKS `khai-tests` v0.1.6 reads the footer to apply the right structural cont
 - Move ambiguous keywords OUT of other files into position only
 - Avoid: filler words, cross-dimension keywords, explanatory phrases
 - Target: 50 lines max, zero ambiguity
-- In v2: end the file with `*khai: position*`
+- In v2: end the file with the 3-line footer (`*hofstede:`, `*khai: position*`, IP line)
 
 **Example (Danish):**
 - Target PDI 18 (very low hierarchy) → fill position with "lighed", "demokratisk", "autonomi", "ligeværd"
@@ -265,6 +270,7 @@ python tests/validate_hofstede_derived.py 2>&1 | Select-String -Pattern "^<cultu
 
 **Step 4: Band Audit**
 - Run `python3 scripts/audit_readme_bands.py --mismatch` to flag any README band labels that disagree with the score's canonical band (0-39 Low, 40-69 Moderate, 70-100 High)
+- Or run `python3 scripts/update_hofstede_readme.py <country>` to deterministically rewrite the README's Hofstede tables with canonical bands and current derived scores
 - Fix mismatches in the score table cell and in any prose mentions
 
 **Step 5: Compression Phase (If All Pass)**
@@ -286,7 +292,7 @@ python tests/validate_hofstede_derived.py 2>&1 | Select-String -Pattern "^<cultu
 | IND at 100 (max indulgence) | Excessive IND-high keywords | Files full of frihed, nydelse, hygge | Restore IND-low (disciplin, selvkontrol); find 50-50 balance |
 | MAS stuck at 33 (high masculinity) | Removed all MAS-high but missing MAS-low | No omsorg, empati, medmenneskelig | Add explicit MAS-low keywords; distribute across multiple files |
 | All dimensions pass but at boundary | Keyword distribution fragile | Scores at ±10 limits | Aggressive trim: remove competing keywords → often improves to ±5 |
-| Band audit flags a row | README label disagrees with `score_to_band(score)` | `audit_readme_bands.py --mismatch` | Fix the table cell and any prose mention; bands are 0-39 / 40-69 / 70-100 |
+| Band audit flags a row | README label disagrees with `score_to_band(score)` | `audit_readme_bands.py --mismatch` | Fix the table cell and any prose mention; bands are 0-39 / 40-69 / 70-100. Or run `update_hofstede_readme.py <country>` for a deterministic rewrite. |
 | khai footer / filename mismatch (v2) | Filename token disagrees with footer type | `tests/test_completeness.py` flags it | Fix the `*khai: <type>*` line; persona files take `persona`, history takes `piece`, language takes `position` |
 
 ---
@@ -357,7 +363,7 @@ Both reference models are currently authored in v1 layout (7 files each: positio
 ### 3. Position File Sprint
 
 - [ ] Write position.md (~50 lines, ultra-dense, target dimensions only)
-- [ ] In v2: add `*khai: position*` footer
+- [ ] In v2: add the 3-line footer (`*hofstede:`, `*khai: position*`, IP line)
 - [ ] Validate: Run initial test, check if target dimensions appear
 - [ ] Trim: Remove all ambiguous/competing keywords
 
@@ -382,15 +388,15 @@ Both reference models are currently authored in v1 layout (7 files each: positio
 - [ ] Run full validation: target 4+ dimensions in tolerance (±10)
 - [ ] Gap analysis: Fix FAIL/WARN dimensions with targeted keywords
 - [ ] Aggressive trim: Remove competing keywords across all files
-- [ ] Run `python3 scripts/audit_readme_bands.py --mismatch` and fix any band label drift
+- [ ] Run `python3 scripts/update_hofstede_readme.py <country>` to sync the README's two Hofstede tables (declared/derived/gap/status under canonical bands)
 - [ ] Final validation: 5-6 dimensions should be in tolerance
 
 ### 7. Documentation
 
-- [ ] Update country README with Hofstede reference table
+- [ ] Update country README via `scripts/update_hofstede_readme.py` (deterministic) or by hand if approximation country
 - [ ] Document authenticity tradeoffs (if any dimensions don't match target exactly)
 - [ ] List keyword sources/references
-- [ ] In v2: Add the country slug to `data/v2_migrated_countries.txt` in the same commit as the file renames and khai footers
+- [ ] In v2: Add the country slug to `data/v2_migrated_countries.txt` in the same commit as the file renames and the 3-line v2 footer adoption
 
 ---
 
@@ -407,6 +413,10 @@ python tests/validate_hofstede_derived.py 2>&1 | Select-String -Pattern "^<cultu
 
 # Band audit (canonical 0-39 / 40-69 / 70-100)
 python3 scripts/audit_readme_bands.py --mismatch
+
+# Deterministic README sync (rewrites Hofstede tables in country README)
+python3 scripts/update_hofstede_readme.py <country>
+python3 scripts/update_hofstede_readme.py <country> --dry-run
 ```
 
 ---
@@ -429,7 +439,7 @@ A: Theoretically unlimited. But implementation starts with primary language. Add
 A: No. Validator counts keyword occurrences, not position. Density (keyword count / total words) is what matters.
 
 **Q: Do I need to migrate to v2 to author a new country?**
-A: New countries should be authored in v2 directly (8 kinds, khai footers, country slug added to `data/v2_migrated_countries.txt`). The v2-strict L4a validator runs only against listed countries, so an unmigrated country authored in v2 still passes; listing it activates the strict checks. v1 layout is only meaningful for countries that already exist in v1 and have not yet been touched.
+A: New countries should be authored in v2 directly (8 kinds, khai footers, 3-line v2 footer, country slug added to `data/v2_migrated_countries.txt`). The v2-strict L4a validator runs only against listed countries, so an unmigrated country authored in v2 still passes; listing it activates the strict checks. v1 layout is only meaningful for countries that already exist in v1 and have not yet been touched.
 
 **Q: Where does the piece-vs-history split sit?**
 A: A piece is an artifact, work, or concept (a constitution, a film, a movement, an idea). A history is a dated pivotal moment with a yearbook of events. In v1, both lived in `piece_*`. In v2, history gets its own file so pieces can stay focused on the artifact's load-bearing quality without mixing in dated context.
@@ -447,6 +457,8 @@ A: A piece is an artifact, work, or concept (a constitution, a film, a movement,
   - Reference models annotated with v2 migration notes (file content unchanged)
   - Next Culture Workflow updated with v2 steps (khai footers, v2 list opt-in)
   - Added Band audit step to validation phase
+  - Footer contract bullet updated to the 3-line v2 footer (Option C): `*hofstede:` sentinel, `*khai:` declaration, IP safeguard line
+  - Validation Command block + Next Culture Workflow reference `scripts/update_hofstede_readme.py` for deterministic README sync
 - **v0.1.0** - Initial methodology from Denmark case study (May 2026)
   - Discovered less-is-more principle
   - Documented 5-phase implementation workflow
