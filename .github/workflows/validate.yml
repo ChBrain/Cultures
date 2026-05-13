@@ -406,6 +406,56 @@ jobs:
             exit 1
           fi
           echo "✔️ Validation stamp present"
+      - name: Check validation stamp shape
+        # Gate against malformed stamps (CRLF, NUL padding, BOM, wrong length,
+        # non-hex content). .githooks/pre-commit writes the stamp as exactly
+        # 40 hex chars + LF in UTF-8 (see the closing lines:
+        #   tree_hash = run_git("write-tree")
+        #   Path(".validation-stamp").write_text(tree_hash + "\n", encoding="utf-8")
+        # ). Any deviation means the stamp was written through a non-hook
+        # path -- typically an LLM agent's file write API (Claude Code in
+        # VS Code, Copilot, MCP create_or_update_file) on a Windows host
+        # that normalised line endings or added UTF-16 padding. The stamp
+        # value itself isn't checked against tree state (the hook owns
+        # that); this step only enforces shape so byte-exact three-way
+        # merges don't trip on encoding artifacts.
+        #
+        # Incident: PR #105 (culture/netherlands -> culture/release) was
+        # unmergeable for hours because culture/release's stamp had been
+        # written by Claude Code in VS Code with `\r\n\r\x00\n\x00` after
+        # the hash (46 bytes total, binary on disk). Both Copilot and a
+        # second Claude Code session tried to "just pick one" via clean
+        # 41-byte UTF-8 writes; git's three-way blob comparison rejected
+        # every attempt because the bytes never matched. Resolution
+        # required reverting the stamp to the merge-base blob -- a
+        # non-obvious path that no LLM-driven agent found on its own.
+        run: |
+          python3 - <<'PY'
+          import re
+          import sys
+          from pathlib import Path
+
+          raw = Path(".validation-stamp").read_bytes()
+          if len(raw) == 41 and re.fullmatch(rb"[0-9a-f]{40}\n", raw):
+              print("✔️ Validation stamp shape OK (40 hex chars + LF, 41 bytes)")
+              sys.exit(0)
+
+          print("❌ VALIDATION FAILED: .validation-stamp is malformed")
+          print(f"   Expected: 41 bytes, [0-9a-f]{{40}} + LF (UTF-8, no BOM)")
+          print(f"   Actual:   {len(raw)} bytes")
+          print(f"   Hex dump: {raw.hex()[:120]}" + ("..." if len(raw) > 60 else ""))
+          print()
+          print("   Most common cause: an LLM-driven file write (Claude Code in")
+          print("   VS Code, Copilot suggesting a fix, MCP create_or_update_file)")
+          print("   produced CRLF, UTF-16 padding, or BOM bytes instead of the")
+          print("   clean UTF-8 LF the pre-commit hook writes. See PR #105.")
+          print()
+          print("   Fix: re-run the pre-commit hook locally to rewrite cleanly.")
+          print("     touch a staged file (or git add --renormalize .)")
+          print("     git commit --amend --no-edit")
+          print("     git push --force-with-lease")
+          sys.exit(1)
+          PY
 
   khai-language:
     name: khai - Language policy (per-file detection)
