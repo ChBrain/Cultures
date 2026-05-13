@@ -586,6 +586,8 @@ jobs:
     needs: [setup, L4e-hofstede-alignment]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
+    env:
+      PR_CHANGED_FILES: ${{ needs.setup.outputs.files }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -602,6 +604,9 @@ jobs:
     needs: [setup, L4f-hofstede-derived]
     if: needs.setup.outputs.any == 'true' || needs.setup.outputs.data_changed == 'true'
     runs-on: ubuntu-latest
+    env:
+      PR_CHANGED_FILES: ${{ needs.setup.outputs.files }}
+      PR_DATA_CHANGED: ${{ needs.setup.outputs.data_changed }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -654,4 +659,3 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "No regions/*.md files changed - skipping validation"
-
