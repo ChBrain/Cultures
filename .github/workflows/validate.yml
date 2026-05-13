@@ -238,7 +238,7 @@ jobs:
           if kind == "main":
               print(f"ERROR: PR head branch is main; impossible state.")
               sys.exit(1)
-          ok, unsafe = check_scope(kind, files)
+          ok, unsafe = check_scope(kind, files, branch)
           if not ok:
               print(f"ERROR: branch '{branch}' (classified '{kind}') has scope violations:")
               for u in unsafe:
