@@ -21,7 +21,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -47,7 +47,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -73,7 +73,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -99,7 +99,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -125,7 +125,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -151,7 +151,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -177,7 +177,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -397,7 +397,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -438,7 +438,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -464,7 +464,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -538,7 +538,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.6)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -654,3 +654,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "No regions/*.md files changed - skipping validation"
+
