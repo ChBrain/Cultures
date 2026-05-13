@@ -20,7 +20,7 @@ El orgullo y la culpa dejan de tener objeto.
 
 ## Apparent
 La Torre del Oro en Sevilla, a orillas del Guadalquivir.
-El archivo de Indias en Sevilla: ochenta millones de páginas de documentos originales.
+El Archivo de Indias en Sevilla: ochenta millones de páginas de documentos originales.
 El mapa de Juan de la Cosa, 1500: primer mapa que incluye el continente americano.
 Estatuas de Colón en Barcelona, Valladolid, Madrid, Sevilla: cada ciudad con su versión.
 La catedral de Santo Domingo, 1512: la primera catedral construida en América.
@@ -39,12 +39,13 @@ La Real Academia Española en Madrid: fachada del siglo XVIII, puerta siempre ce
 1600: El Imperio español en su máxima extensión: doce millones de kilómetros cuadrados.
 1810: Las guerras de independencia comienzan en América Latina. El Imperio se deshace en veinte años.
 1898: Cuba, Puerto Rico, Filipinas. España pierde sus últimas colonias. El 98 entra en el idioma como herida.
-1992: Quinto centenario. España celebra. América Latina debat. El mismo hecho, dos memorias distintas.
+1992: Quinto centenario. España celebra. América Latina debate. El mismo hecho, dos memorias distintas.
 2021: México presenta una solicitud formal de disculpa a España por la Conquista. Madrid no responde.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+*khai: piece*
 
-*culture_spanish_piece_conquista.md - 12.05.2026*
+*culture_spanish_piece_conquista.md - 13.05.2026*
 
-v0.1.0 - KAI Worlds
+v0.2.0 - KAI Worlds
