@@ -189,11 +189,11 @@ Canonical thresholds (pinned by `scripts/audit_readme_bands.py` + `tests/test_au
    - Approved and merged independently
    - Does not block culture releases
 
-## L0-stamp-check Gate
+## Validation stamp gate
 
-GitHub Actions **L0-stamp-check** verifies that `.validation-stamp` exists in your commit. This proof that you ran local validation before pushing - it prevents accidental commits from bypassing checks.
+GitHub Actions **cultures - Validation stamp gate** verifies that `.validation-stamp` exists in your commit. This proof that you ran local validation before pushing - it prevents accidental commits from bypassing checks.
 
-If you see "L0-stamp-check FAILED":
+If you see "cultures - Validation stamp gate FAILED":
 - Your `.validation-stamp` is missing
 - This means local validators didn't run or didn't pass
 - Recovery: `git reset HEAD~1`, fix issues, commit again
@@ -204,7 +204,7 @@ If you see "L0-stamp-check FAILED":
 |-------|------|------|---|
 | Local pre-commit | `.githooks/pre-commit` | Before every `git commit` on **culture/*** | YES |
 | Local pre-commit | `.githooks/pre-commit` | Before every `git commit` on **chore/*, fix/*** | NO |
-| L0-stamp-check | CI job | Every PR, every push to main | - |
+| cultures - Validation stamp gate | CI job | Every PR, every push to main | - |
 | L1-L4 validation | CI jobs (chained) | Every PR, when L0 passes | Base validation only |
 | L1-L7 validation | CI jobs (chained) | PR to **culture/staging**, when L0 passes | Includes Hofstede (L5-L7) |
 
@@ -212,19 +212,19 @@ If you see "L0-stamp-check FAILED":
 
 **Culture Branch Path (culture/<name> → culture/staging → main):**
 - Local: L1-L4 + **Hofstede** (pre-commit hook enforces alignment)
-- CI on culture/staging: L1-L7 full validation + L0-stamp-check
+- CI on culture/staging: L1-L7 full validation + cultures - Validation stamp gate
 - CI on main (from staging): verify scope stayed in regions/, no scope creep
 
 **Infrastructure Branch Path (chore/*, fix/*, feat/* non-culture → main):**
 - Local: L1-L4 only, no Hofstede (pre-commit hook skips)
-- CI on main: L1-L4 validation + L0-stamp-check
+- CI on main: L1-L4 validation + cultures - Validation stamp gate
 - Hofstede not required (infrastructure/metadata don't carry cultural dimensions)
 
 ## Protection
 
 - ✅ Pre-commit hook prevents main commits locally
 - ✅ Pre-commit hook prevents culture-branch scope creep (non-regions/ changes)
-- ✅ L0-stamp-check prevents commits without proof of local validation
+- ✅ cultures - Validation stamp gate prevents commits without proof of local validation
 - ✅ GitHub branch protection requires PR + passing checks before merge
 - ✅ All commits to main must pass full CI validation
 

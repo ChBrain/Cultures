@@ -39,7 +39,7 @@ The `.validation-stamp` file records the tree hash of the last validated commit.
 - **Purpose:** Proves that local validators ran before commit
 - **Location:** `.validation-stamp` at repo root
 - **Generated:** Pre-commit hook, after all L1-L4 validators pass
-- **CI check:** L0-stamp-check job (hard block)
+- **CI check:** cultures - Validation stamp gate job (hard block)
 
 **Related files:** `.githooks/pre-commit`
 
@@ -507,34 +507,36 @@ python3 tests/validate_hofstede_readme_audit.py
 ```
 setup (compute changed files)
   ↓
-L0-stamp-check (validation stamp exists)
+cultures-stamp-check (validation stamp exists)
   ↓
-L1-general (encoding, filenames, em-dash, newline)
+khai-encoding (encoding, filenames, em-dash, newline)
   ↓
-L1b-language (English-only prose)
+khai-{process,position,piece,place,persona} (per-file-type rules, in parallel)
   ↓
-L2-sections (section structure per file type)
+cultures-sections (section structure per file type)
   ↓
-L3-links (link integrity, no orphaned files)
+khai-language → cultures-language (language policy: per-file + static)
   ↓
-L4a-completeness (minimum files per country)
+khai-links → cultures-links (link integrity)
   ↓
-L4b-audit-readme (README with status tables)
+cultures-completeness (minimum files per country)
   ↓
-L4c-audit-consistency (audit table matches files)
+cultures-audit-readme (README with status tables)
   ↓
-L4d-plagiarism (heuristic patterns - advisory)
+cultures-audit-consistency (audit table matches files)
   ↓
-L4e-hofstede-alignment (dimension keywords - advisory)
+khai-plagiarism → cultures-plagiarism (phrase denylist + structural)
   ↓
-L4f-hofstede-derived (derived vs declared scores - advisory)
+cultures-hofstede-structure (Hofstede sections / dimension alignment)
   ↓
-L4g-hofstede-readme-audit (audit table sync - advisory)
+cultures-hofstede-derived (derived vs declared scores)
+  ↓
+cultures-hofstede-reference (declared vs reference dataset)
   ↓
 ✅ PR passes
 ```
 
-L0-L4e are hard-block (fail PR if fail). L4d-L4g are advisory (warn if issues, do not block PR).
+CI display names use the `khai - …` prefix for jobs that run the `khai_tests` package (from the KAIHACKS release) and the `cultures - …` prefix for jobs that run local `tests/*.py` files. The architectural layer model (L0-L4) above describes the conceptual scope of each check, not the CI job names.
 
 ---
 
