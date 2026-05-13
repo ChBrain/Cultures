@@ -30,7 +30,7 @@ Die positie is onzichtbaar voor wie erin staat.
 ## Tell
 Als iemand zegt dat zijn stuk pijn heeft gedaan, zoekt Jeroen in zijn notitieboek naar wat hij heeft geschreven.
 Hij vergelijkt wat zij zegt met wat in het stuk staat.
-Hij zoekt naar het feit dat zij miste. Niet naar het gevoel dat zij had.
+Hij zoekt naar het feit dat zij miste. Niet naar het gevoel waarmee zij sprak.
 
 ---
 *hofstede: aggregate in [README.md](README.md).*
