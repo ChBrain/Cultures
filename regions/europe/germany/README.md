@@ -13,16 +13,18 @@ The zip contains all culture files flattened at root level with links rewritten 
 
 ## Content Overview
 
-| File | Type | Purpose |
+Filename convention: `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5 KAI structural types (process, position, piece, place, persona). Single-instance kinds (language, history) drop the redundant country suffix.
+
+| File | TYPE | Purpose |
 |------|------|---------|
-| `culture_german_language_hochdeutsch.md` | Language | Standard German (Hochdeutsch) - linguistic anchor |
-| `culture_german_history_deutschland.md` | History | The arc of German history (9 AD to today) |
-| `culture_german_position.md` | Position | German cultural position (state role) - narrative anchor |
-| `culture_german_process_erinnern.md` | Process | Erinnern - reckoning with history |
-| `culture_german_piece_autobahn.md` | Piece | Autobahn - the federal road network as cultural artifact |
-| `culture_german_place_berlin.md` | Place | Berlin - capital city as geographical anchor |
-| `culture_german_persona_female_brigitte.md` | Persona (female) | Brigitte - Rechtsanwältin (b. 1960) |
-| `culture_german_persona_male_christian.md` | Persona (male) | Christian - Softwareentwickler (b. 1985) |
+| `culture_german_position_language.md` | position | Standard German (Hochdeutsch) - linguistic anchor |
+| `culture_german_piece_history.md` | piece | The arc of German history (9 AD to today) |
+| `culture_german_position.md` | position | German cultural position (state role) - narrative anchor |
+| `culture_german_process_erinnern.md` | process | Erinnern - reckoning with history |
+| `culture_german_piece_autobahn.md` | piece | Autobahn - the federal road network as cultural artifact |
+| `culture_german_place_berlin.md` | place | Berlin - capital city as geographical anchor |
+| `culture_german_persona_female_brigitte.md` | persona | Brigitte - Rechtsanwältin (b. 1960) |
+| `culture_german_persona_male_christian.md` | persona | Christian - Softwareentwickler (b. 1985) |
 
 ## Hofstede Cultural Dimensions - Germany
 
@@ -60,20 +62,20 @@ Keyword density analysis validates that content keywords across all files (langu
 - **High LTO:** Long-term strategic thinking. Investment in education, infrastructure, and future planning.
 - **Moderate IND:** Restraint leaning over indulgence at 40, near the Low/Moderate boundary. Gratification of desires is regulated by social norms; deferred reward and self-discipline carry more weight than immediate enjoyment.
 
-These dimensions inform the **[Position](culture_german_position.md)** (how Germany operates), **[History](culture_german_history_deutschland.md)** (the arc that produced today's institutions), **[Pieces](culture_german_piece_autobahn.md)** (artifacts where dimensions concentrate), **Place** (Berlin's infrastructure and social patterns), and **Personas** (how individuals navigate these cultural pressures). Culture files carry standard hofstede sentinel footers linking to this README; scoring is aggregate across all files, not per-file.
+These dimensions inform the **[Position](culture_german_position.md)** (how Germany operates), **[History](culture_german_piece_history.md)** (the arc that produced today's institutions), **[Pieces](culture_german_piece_autobahn.md)** (artifacts where dimensions concentrate), **Place** (Berlin's infrastructure and social patterns), and **Personas** (how individuals navigate these cultural pressures). Culture files carry standard hofstede sentinel footers linking to this README; scoring is aggregate across all files, not per-file.
 
 ## Content Audit Status
 
-| File | Type | Status | Notes |
+| File | TYPE | Status | Notes |
 |------|------|--------|-------|
-| culture_german_language_hochdeutsch.md | Language | ✅ Complete | German (Hochdeutsch) linguistic anchor |
-| culture_german_history_deutschland.md | History | ✅ Complete | The arc of German history; full yearbook 9 AD to today |
-| culture_german_position.md | Position | ✅ Complete | Hofstede dimensions: PDI 35, IDV 67, UAI 65, MAS 66, LTO 83, IND 40 |
-| culture_german_process_erinnern.md | Process | ✅ Complete | Erinnern (remembering) process with lever and echo |
-| culture_german_piece_autobahn.md | Piece | ✅ Complete | The Autobahn as German cultural artifact (mobility, engineering, discipline) |
-| culture_german_place_berlin.md | Place | ✅ Complete | Berlin as social anchor with offers and withheld |
-| culture_german_persona_female_brigitte.md | Persona (female) | ✅ Complete | Rechtsanwältin: projection, action, shadow, tell |
-| culture_german_persona_male_christian.md | Persona (male) | ✅ Complete | Softwareentwickler: projection, action, shadow, tell |
+| culture_german_position_language.md | position | ✅ Complete | German (Hochdeutsch) linguistic anchor |
+| culture_german_piece_history.md | piece | ✅ Complete | 25 Yearbook entries 9 AD to 2021: constitutional, cultural (Bach, Beethoven, Grimm), sports (1954, 2006, 2014) |
+| culture_german_position.md | position | ✅ Complete | Hofstede dimensions: PDI 35, IDV 67, UAI 65, MAS 66, LTO 83, IND 40 |
+| culture_german_process_erinnern.md | process | ✅ Complete | Erinnern (remembering) process with lever and echo |
+| culture_german_piece_autobahn.md | piece | ✅ Complete | The Autobahn as German cultural artifact (mobility, engineering, discipline) |
+| culture_german_place_berlin.md | place | ✅ Complete | Berlin as social anchor with offers and withheld |
+| culture_german_persona_female_brigitte.md | persona | ✅ Complete | Rechtsanwältin: projection, action, shadow, tell |
+| culture_german_persona_male_christian.md | persona | ✅ Complete | Softwareentwickler: projection, action, shadow, tell |
 
 ---
 
