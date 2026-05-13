@@ -9,12 +9,11 @@ Cykelstier med cykelkø i myldretiden.
 Flade bygninger. Ingen én bygning rager op over andre.
 Kanalen. Nyhavn. Farvede bygninger, turister, borde udenfor.
 Tivoli i mitten af byen.
-Folketing. Et kammer. 179 sæder i halvkreds. Demokratisk opstilling.
+Folketing. Et kammer. 179 sæder i halvkreds.
 Ingen overhus.
 Vesterbro og Nørrebro tæt på centrum.
-Christiania: egen vej, egen frihed - og accepteret.
-Cykelsti som transport, ikke som fornøjelse.
-Cyklen er sædvane - ikke valg.
+Christiania med egen indgang ved Bådsmandsstræde, inden for byens grænser.
+Cykelparkering ved hver S-togsstation.
 ## Holds
 Den danske position - [Dansk](culture_danish_position.md).
 [Janteloven](culture_danish_piece_janteloven.md).
