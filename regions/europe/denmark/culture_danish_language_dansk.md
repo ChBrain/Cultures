@@ -35,8 +35,8 @@ Sig det nu.
 Din personlige vurdering.
 Kort og klart.
 Uden at påtvinge.
-Pragmatisk — hvis det ikke virker, sig det straks.
-Fleksibel — høre andre og tilpas hvis der er bedre ide.
+Pragmatisk - hvis det ikke virker, sig det straks.
+Fleksibel - høre andre og tilpas hvis der er bedre ide.
 Improvisere sammen hvis situationen kræver det.
 Uformel og direkte.
 Dialog frem for monolog.

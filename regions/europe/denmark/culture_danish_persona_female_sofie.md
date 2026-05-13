@@ -12,7 +12,7 @@ Sofie er en [kvinde](../../../engine/position_female.md) fra [Danmark](culture_d
 Hendes egen bedømmelse er værktøj, ikke meningsforskel. Samarbejde gennem ligeværd.
 
 ## Action
-Klienten: vi har brug for mere lys. Sofie ser halvdelen af problemet — layout, ikke lys. Hun tilbyder: rum der fungerer, eller begge. Vælg selv.
+Klienten: vi har brug for mere lys. Sofie ser halvdelen af problemet - layout, ikke lys. Hun tilbyder: rum der fungerer, eller begge. Vælg selv.
 
 ## Shadow
 Positionen siger bestem selv.

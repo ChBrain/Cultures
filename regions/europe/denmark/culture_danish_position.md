@@ -9,12 +9,12 @@ Autonomi.
 Din personlige vurdering betyder.
 Dit eget valg betyder.
 Din egen bedømmelse er værdifuld.
-Men alle har samme vurdering — i lighed og ligeværd.
+Men alle har samme vurdering - i lighed og ligeværd.
 
 Den [danske historie](culture_danish_history_danmark.md) ligger under.
-Ikke som tradition der bestemmer, men som arv der bæres videre.
+Vedholdenhed gennem generationer.
 Langsigtet planlægning som folkelig forpligtelse.
-Tålmodighed gennem institutioner.
+Tålmodighed bygger institutioner.
 
 ## Orders
 Bestem selv.

@@ -9,7 +9,7 @@ Ingeniør
 
 ## Projection
 Lars er en [mand](../../../engine/position_male.md) fra [Danmark](culture_danish_position.md).
-Egen bedømmelse altid først. Autonomi er hans værktøj — i ligeværd med andre.
+Egen bedømmelse altid først. Autonomi er hans værktøj - i ligeværd med andre.
 
 ## Action
 I mødet siger han straks hvad han tænker. Så holder han op.

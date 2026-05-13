@@ -47,16 +47,16 @@ Denmark's cultural profile measured against Hofstede's framework:
 | IDV | 74 | 75 | 1 | ✅ EXCELLENT |
 | UAI | 23 | 25 | 2 | ✅ EXCELLENT |
 | MAS | 16 | 20 | 4 | ✅ EXCELLENT |
-| LTO | 46 | 46 | 0 | ✅ EXCELLENT |
+| LTO | 46 | 50 | 4 | ✅ EXCELLENT |
 | IND | 70 | 67 | 3 | ✅ EXCELLENT |
 
 Keyword density analysis validates that content keywords across all files (language, history, position, process, piece, place, personas) align with declared Hofstede scores. Gap tolerance: ±10 PASS, ±5 EXCELLENT. Audited May 13, 2026.
 
 ### How Dimensions Shape Danish Culture
 
-**The Autonomy-Restraint Paradox:** Danish culture uniquely combines low power distance and high individual autonomy (PDI 18, IDV 74) with low masculinity — restraint from imposing (MAS 16). Each Dane claims their own judgment passionately and independently — then respects everyone else's equally. No one defers to hierarchy; everyone defers to others' autonomy.
+**The Autonomy-Restraint Paradox:** Danish culture uniquely combines low power distance and high individual autonomy (PDI 18, IDV 74) with low masculinity - restraint from imposing (MAS 16). Each Dane claims their own judgment passionately and independently - then respects everyone else's equally. No one defers to hierarchy; everyone defers to others' autonomy.
 
-- **Low PDI + High IDV:** Equality and personal autonomy. Hierarchy is minimized; everyone's judgment matters equally. Janteloven enforces this paradox — don't claim superiority, but do claim your own autonomy.
+- **Low PDI + High IDV:** Equality and personal autonomy. Hierarchy is minimized; everyone's judgment matters equally. Janteloven enforces this paradox - don't claim superiority, but do claim your own autonomy.
 - **Low UAI:** Pragmatism over rules. Danes adapt to what works rather than defend fixed systems. Ambiguity is acceptable; improvisation is valued.
 - **Low MAS + High IND:** Cooperation over competition; care over conquest. Enjoyment is legitimate. Hygge (present-moment togetherness) is culturally celebrated, not indulgent.
 - **Moderate LTO:** Balance between present-moment focus (hygge, immediate relational warmth) and long-term institutions (welfare state, andelsbevægelsen, pension). Danes invest in the future through collective institutions while living the present.
@@ -71,7 +71,7 @@ These dimensions inform the **[Position](culture_danish_position.md)** (how Denm
 | culture_danish_history_danmark.md | History | ✅ Complete | The arc of Danish history; full yearbook 793 AD to today |
 | culture_danish_position.md | Position | ✅ Complete | Hofstede dimensions: PDI 18, IDV 74, UAI 23, MAS 16, LTO 46, IND 70 |
 | culture_danish_process_hygge.md | Process | ✅ Complete | Hygge process with direction, lever, echo |
-| culture_danish_piece_janteloven.md | Piece | ✅ Complete | Janteloven cultural code |
+| culture_danish_piece_janteloven.md | Piece | ✅ Complete | Janteloven cultural code with yearbook |
 | culture_danish_place_copenhagen.md | Place | ✅ Complete | Copenhagen as social anchor with offers and withheld |
 | culture_danish_persona_female_sofie.md | Persona (female) | ✅ Complete | Arkitekt: projection, action, Position-shaped shadow, physical tell |
 | culture_danish_persona_male_lars.md | Persona (male) | ✅ Complete | Ingeniør: projection, action, Position-shaped shadow, physical tell |

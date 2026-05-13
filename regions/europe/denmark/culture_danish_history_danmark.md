@@ -8,8 +8,8 @@
 Danmark.
 Skandinavien, Jylland og 406 øer, mellem Tyskland og Sverige.
 Et lille land med stor søfart, gammel kongerække, ung republik i sind.
-Grænserne har skiftet over tusind år — fra Nordsøen til Østersøen, fra Skåne til Slesvig.
-Kartet skrumpet i nutid, hukommelsen vedholder.
+Grænserne har skiftet over tusind år, fra Nordsøen til Østersøen, fra Skåne til Slesvig.
+Kortet skrumpet i nutid, hukommelsen vedholder.
 
 ## Load Bearing
 Uden den mister det [danske](culture_danish_position.md) ligeværd sin historiske rod.
@@ -36,13 +36,13 @@ Tre løver i alle kommuner, rigsvåbnet uden afbrydelse siden 1190.
 ## Yearbook
 793: Vikinger angriber Lindisfarne. Skandinavien træder ind i Europas hukommelse.
 965: Harald Blåtand kristner Danmark og samler riget. Jellingstenen, dåbsattesten på sten.
-1397: Kalmarunionen. Margrethe 1. samler tre kongeriger gennem vedholdende diplomati.
+1397: Kalmarunionen. Margrethe 1. samler tre kongeriger med vedholdenhed i diplomatiet.
 1536: Reformationen. Bibelen på dansk. Hver bonde læser selv.
 1660: Enevælden indføres. Kongen alene; institution udvikles over generationer.
 1814: Norge tabt. Smålandet bliver mindre.
 1849: Grundloven. Frihed, lighed, folkestyre. Forpligtelse til borgerne.
 1864: Slesvig tabt. Det indre vendes opad: hvad ydre er tabt, skal indre genopbygges.
-1872: Andelsbevægelsen begynder. Bønder slår sig sammen — langsigtet økonomisk fællesskab.
+1872: Andelsbevægelsen begynder. Bønder slår sig sammen i langsigtet økonomisk fællesskab.
 1915: Kvinder får stemmeret. Ligeværd udvides.
 1940-1945: Tysk besættelse. Modstandsbevægelsen vokser frem; jødiske medborgere reddes over Øresund.
 1949: Danmark medstifter af NATO. Smålandet i alliance.

@@ -10,11 +10,11 @@ Ikke alle rum.
 Rummet ved det uden personen skal sige det.
 [Janteloven](culture_danish_piece_janteloven.md) er valgfrit her.
 Hygge har ingen regler.
-Reglerne er i pausemodus — ligeværd geninstalleres.
+Reglerne er i pausemodus - ligeværd geninstalleres.
 Hygge opstår når folk vælger at være sammen uden at skulle noget.
 Ikke planlagt.
 Ikke forklaret.
-Bare muligt — eller ikke.
+Bare muligt - eller ikke.
 Med disciplin omkring grænserne.
 Med selvkontrol i at give plads til andre.
 
