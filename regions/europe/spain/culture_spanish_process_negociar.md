@@ -20,6 +20,7 @@ Hacia el acuerdo que ambas partes puedan defender ante los suyos.
 No hacia la verdad objetiva.
 Hacia lo que sostiene la relación después de que termine la reunión.
 Hacia la familia, el grupo, la comunidad que espera el resultado.
+El diálogo se abre antes que el orden del día. El mérito se reconoce en lo que se concede sin perder cara.
 
 ## Lever
 La fuerza: la lealtad al vínculo por encima del resultado inmediato.
@@ -34,11 +35,12 @@ Lo acordado se convierte en precedente dentro del grupo.
 Lo no acordado permanece como deuda pendiente.
 El proceso no termina con la firma.
 Termina cuando ambas partes han contado lo mismo a los suyos.
-La lus se cierra aquí y se abre de nuevo en Initiated by.
+La luz se cierra aquí y se abre de nuevo en Initiated by.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+*khai: process*
 
-*culture_spanish_process_negociar.md - 12.05.2026*
+*culture_spanish_process_negociar.md - 13.05.2026*
 
-v0.1.0 - KAI Worlds
+v0.2.0 - KAI Worlds
