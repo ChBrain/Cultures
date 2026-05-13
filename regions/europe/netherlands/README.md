@@ -40,13 +40,13 @@ Netherlands's cultural profile measured against Hofstede's framework:
 | Dimension | Declared | Derived | Gap | Status |
 |-----------|----------|---------|-----|--------|
 | PDI | 38 | 30 | 8 | ✅ PASS |
-| IDV | 80 | 72 | 8 | ✅ PASS |
-| MAS | 14 | 16 | 2 | ✅ EXCELLENT |
-| UAI | 53 | 50 | 3 | ✅ EXCELLENT |
-| LTO | 67 | 66 | 1 | ✅ EXCELLENT |
+| IDV | 80 | 80 | 0 | ✅ EXCELLENT |
+| UAI | 53 | 57 | 4 | ✅ EXCELLENT |
+| MAS | 14 | 14 | 0 | ✅ EXCELLENT |
+| LTO | 67 | 57 | 10 | ✅ PASS |
 | IND | 68 | 66 | 2 | ✅ EXCELLENT |
 
-**Current Status:** All 6 Hofstede dimensions validated within ±10 tolerance (4/6 within ±5 EXCELLENT). Audit run May 11, 2026.
+**Current Status:** Hofstede alignment complete - 4/6 EXCELLENT, 2/6 PASS (all within ±10 tolerance). L4 density blockers resolved. Audit run May 13, 2026.
 
 **Target Keyword Distribution:** When revision is complete, Dutch-language culture files (position, language, process, piece, place, personas) will express core dimensions through strategic keyword density:
 
@@ -57,30 +57,36 @@ Netherlands's cultural profile measured against Hofstede's framework:
 - **High LTO (target 67):** "toekomst", "pragmatisch", "duurzaam", "investering", "voortbestaan", "continuïteit" - future and long-term planning
 - **High IND (target 68):** "genieten", "plezier", "levensvreugde", "vriendschap", "gezelligheid", "optimisme" - enjoyment and leisure as legitimate
 
-**Note:** Hofstede keyword mapping is semantic - keywords express cultural concept meaning, not literal text extraction. Scores derived from aggregate keyword presence across all 7 culture files. Audit run May 11, 2026.
+**Note:** Hofstede keyword mapping is semantic - keywords express cultural concept meaning, not literal text extraction. Scores derived from aggregate keyword presence across all 7 culture files. Audit run May 13, 2026.
 
 ## Content Audit Status
 
-| File | Type | Status | Notes |
+Filename convention: `culture_<culture>_<TYPE>_<NAME>` where TYPE is one of the 5 KHAI structural types (process, position, piece, place, persona). Redundant country suffixes dropped for single-instance kinds (language, history).
+
+| File | TYPE | Status | Notes |
 |------|------|--------|-------|
-| culture_dutch_position.md | Position | ✅ Validated | All dimensions within tolerance |
-| culture_dutch_language_nederlands.md | Language | ✅ Validated | All dimensions within tolerance |
-| culture_dutch_process_polderen.md | Process | ✅ Validated | All dimensions within tolerance |
-| culture_dutch_piece_poldermodel.md | Piece | ✅ Validated | All dimensions within tolerance |
-| culture_dutch_place_amsterdam.md | Place | ✅ Validated | All dimensions within tolerance |
-| culture_dutch_persona_anneke.md | Persona | ✅ Validated | All dimensions within tolerance |
-| culture_dutch_persona_jeroen.md | Persona | ✅ Validated | All dimensions within tolerance |
+| culture_dutch_position_language.md | position | ✅ Validated | All dimensions within tolerance |
+| culture_dutch_piece_history.md | piece | ✅ Validated | Broad Dutch history: Romeinse limes -> 2024, 26 dated entries |
+| culture_dutch_position.md | position | ✅ Validated | All dimensions within tolerance |
+| culture_dutch_process_polderen.md | process | ✅ Validated | All dimensions within tolerance |
+| culture_dutch_piece_poldermodel.md | piece | ✅ Validated | All dimensions within tolerance |
+| culture_dutch_place_amsterdam.md | place | ✅ Validated | All dimensions within tolerance |
+| culture_dutch_persona_female_anneke.md | persona | ✅ Validated | Mediator. Tell redesigned. |
+| culture_dutch_persona_male_jeroen.md | persona | ✅ Validated | Journalist. Tell redesigned. |
 
 ## Content
 
+**V2 Schema Order (Language → History → Position → Process → Piece → Place → Personas):**
+
+- **Language**: [culture_dutch_position_language.md](culture_dutch_position_language.md) - Direct. No wrapper. Efficiency over politeness.
+- **History**: [culture_dutch_piece_history.md](culture_dutch_piece_history.md) - From Romeinse limes to 2024 - water as governance, tolerance as infrastructure, the Polder Model's institutional continuity
 - **Position**: [culture_dutch_position.md](culture_dutch_position.md) - De platte kamer, het Poldermodel, tolerantie uit noodzaak
 - **Process**: [culture_dutch_process_polderen.md](culture_dutch_process_polderen.md) - Polderen - negotiation when the stakes are shared (water)
-- **Piece**: [culture_dutch_piece_poldermodel.md](culture_dutch_piece_poldermodel.md) - The Polder Model - load-bearing history (1421-2024)
+- **Piece**: [culture_dutch_piece_poldermodel.md](culture_dutch_piece_poldermodel.md) - The Polder Model - load-bearing framework (1421-2024)
 - **Place**: [culture_dutch_place_amsterdam.md](culture_dutch_place_amsterdam.md) - Amsterdam - canal belt infrastructure and tolerance logic
-- **Language**: [culture_dutch_language_nederlands.md](culture_dutch_language_nederlands.md) - Direct. No wrapper. Efficiency over politeness.
 - **Personas**:
-  - [Anneke](culture_dutch_persona_anneke.md) - Mediator. The shortest line. Notitieblok. Already chose.
-  - [Jeroen](culture_dutch_persona_jeroen.md) - Journalist. Says what he sees. Footnotes matter.
+  - [Anneke (Female)](culture_dutch_persona_female_anneke.md) - Mediator. The shortest line. Notitieblok. Tell shows her blind spot.
+  - [Jeroen (Male)](culture_dutch_persona_male_jeroen.md) - Journalist. Says what he sees. Footnotes matter. Tell shows his blind spot.
 
 ---
 

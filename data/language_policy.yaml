@@ -1,0 +1,53 @@
+# Language policy for this repo.
+#
+# Single source of truth for L1b language validation (tests/validate_language.py).
+# Anything previously buried in the validator's module-level constants moves here.
+#
+# Phase 1 of the language-hardening track. Phase 2 will add per-culture
+# exception files; Phase 3 will lift this schema + the validator into the
+# KAIHACKS khai package so other content repos can reuse it.
+
+# Languages this repo is allowed to contain. Each entry must be a lingua
+# language name that validate_language.py knows how to map onto
+# lingua.Language. To add a new language:
+#   1. add the slug here
+#   2. add the lingua.Language entry to _LINGUA_LANGUAGES_BY_NAME in the validator
+# Both changes go in the same governance/* PR.
+#
+# Each culture's README declares which of these it uses via
+# `**Language(s):**` -- those declarations are cross-checked against this list
+# and fail loudly on typos (no silent fallback to english-only).
+languages:
+  - english
+  - german
+  - dutch
+  - danish
+  - polish
+
+# Section headings (##) whose body gets language-checked. Names match
+# case-insensitively against the heading text. Anything not listed is
+# treated as structured data and skipped.
+#
+# This is currently an allow-list (only listed sections checked). Phase 2
+# will likely invert to a deny-list so new prose sections are automatically
+# covered; deferred to avoid mixing schema introduction with policy change.
+prose_sections:
+  - action
+  - apparent
+  - drives
+  - load bearing
+  - loses
+  - offers
+  - orders
+  - projection
+  - shadow
+  - shown
+  - tagline
+  - tell
+  - withheld
+  - yearbook
+
+# Minimum word count of a non-allowed-language span to count as a
+# violation. Short spans (< this) are treated as proper nouns and ignored.
+# If the validator over-fires, fix the content; do not raise this number.
+min_span_words: 15

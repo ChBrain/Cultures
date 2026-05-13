@@ -25,7 +25,7 @@ No previous bag -- fresh bootstrap.
 | pflicht | IND-low | Duty as restraint is the IND signal; IDV is self-direction not obligation | IDV-high gets selbstständigkeit |
 | bescheidenheit | IND-low | Modesty as self-restraint fits IND-low; cannot serve MAS-low simultaneously | MAS-low gets gemeinwohl; bescheidenheit to denylist |
 | freiheit | IDV-high | Freedom as self-determination is IDV; IND-high gratification-freedom is secondary register | IND-high gets unbeschwertheit |
-| kontinuität | UAI-high | Continuity signals predictability and order more than future investment | LTO-high gets weitsicht |
+| kontinuität | dropped | Continuity intended for UAI-high but absent from final bag; dropped in favour of ordnung/verlässlichkeit | LTO-high gets weitsicht |
 | wohlbefinden | MAS-low | Wellbeing as quality of life is the MAS-low signal | IND-high drops wohlbefinden; to denylist |
 
 ---

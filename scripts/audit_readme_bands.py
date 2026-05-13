@@ -18,10 +18,10 @@ Catches two kinds of drift:
    (the canonical L4e form), but is still shown in the `declared`
    column so the non-canonical word is visible.
 
-Band contract:
-  0-39   -> Low
-  40-59  -> Moderate
-  60-100 -> High
+Band contract (canonical Hofstede bands):
+  0-39    -> Low
+  40-69   -> Moderate
+  70-100  -> High
 
 Output is one TSV row per finding, with a `needs_change` flag:
 
@@ -76,9 +76,19 @@ Row = tuple[str, str, str, int, str, str, bool]
 
 
 def score_to_band(score: int) -> str:
+    """Map a 0-100 Hofstede score to its canonical band.
+
+    Canonical Hofstede band contract:
+        0-39    -> Low
+        40-69   -> Moderate
+        70-100  -> High
+
+    Kept in sync with the band thresholds in
+    ``scripts/scaffold_country.py``.
+    """
     if score <= 39:
         return "Low"
-    if score <= 59:
+    if score <= 69:
         return "Moderate"
     return "High"
 
