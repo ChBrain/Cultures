@@ -23,12 +23,18 @@ Y la certeza de que quien tiene la verdad, tiene la obligación de llevarla.
 La norma existe. El reglamento existe. La burocracia existe.
 Se respetan. Se gestionan. Se rodean cuando es necesario.
 La garantía no viene del sistema: viene de la persona que responde.
-La seguridad la da quien conoces, no el procedimiento.
+La seguridad la da quien conoces, no el trámite.
 
 Dignidad como valor no negociable.
 Hospitalidad como obligación voluntaria.
 Cuidado hacia los del grupo como condición de pertenencia.
 Conciliación como habilidad, no como debilidad.
+
+La iniciativa personal es respetada cuando responde por lo que hace.
+El criterio propio se gana, no se hereda.
+La responsabilidad sobre la propia trayectoria define la persona ante los suyos.
+Igualdad en el trato como exigencia moderna; la proximidad entre rangos es ya hábito en la calle y en la mesa.
+La accesibilidad del jefe no es debilidad: es prueba de que está al frente.
 
 ## Orders
 Conoce a quién tienes delante antes de decidir qué le debes.
@@ -41,14 +47,15 @@ Y quien solo tiene el reglamento, está solo.
 
 ## Drives
 En esa pérdida:
-reconstruye el vínculo antes de reconstruir el procedimiento.
+reconstruye el vínculo antes de reconstruir el trámite.
 La red se activa. Los suyos responden.
 Lo que el sistema no da, lo da la comunidad.
 Y la comunidad cobra en lealtad, no en euros.
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+*khai: position*
 
-*culture_spanish_position.md - 12.05.2026*
+*culture_spanish_position.md - 13.05.2026*
 
-v0.1.0 - KAI Worlds
+v0.2.0 - KAI Worlds
