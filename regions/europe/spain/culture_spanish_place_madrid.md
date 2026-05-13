@@ -6,7 +6,7 @@
 
 ## Shown
 La Puerta del Sol: kilómetro cero de todas las carreteras de España. Gente a cualquier hora.
-El Rastro, domingo por la mañana: puestos de mercado, voces, regateo, familias completas.
+El Rastro, domingo por la mañana: puestos de mercado, voces, regateo, familias completas. Cuidado mutuo entre puestos vecinos que se conocen de treinta años.
 El Retiro: parejas, jubilados, estudiantes, el barquero del estanque que lleva cuarenta años en el mismo puesto.
 Edificios del siglo XVII junto a rascacielos de cristal. La ciudad no eligió entre los dos.
 Bares con jamón colgado del techo. La barra siempre más concurrida que las mesas.
@@ -18,6 +18,7 @@ El metro lleno a las once de la noche. La cena no ha terminado todavía.
 ## Holds
 La [posición española](culture_spanish_position.md).
 [La Conquista](culture_spanish_piece_conquista.md): en el Archivo, en los nombres de las plazas, en la arquitectura de los ministerios.
+La [historia](culture_spanish_piece_history.md): en las cunetas, en las placas, en los apellidos.
 El [negociar](culture_spanish_process_negociar.md): en cada barra de bar, en cada despacho, en cada reunión que empieza tarde.
 
 ## Offers
@@ -27,6 +28,7 @@ Puedes pertenecer a un grupo sin explicar por qué.
 Puedes comer solo en la barra sin que nadie te pregunte nada.
 Puedes negociar el precio, el plazo, las condiciones, y nadie lo llama falta de respeto.
 Puedes ser de fuera y encontrar hospitalidad genuina, no turística.
+Puedes quedarte seis horas en una mesa: el disfrute no necesita motivo y el ocio no pide disculpa.
 
 ## Withheld
 Quién decide realmente y en qué momento ya estaba decidido.
@@ -38,7 +40,8 @@ Lo que la ciudad guarda de sus muertos: la Guerra Civil en las cunetas, en los s
 
 ---
 *Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+*khai: place*
 
-*culture_spanish_place_madrid.md - 12.05.2026*
+*culture_spanish_place_madrid.md - 13.05.2026*
 
-v0.1.0 - KAI Worlds
+v0.2.0 - KAI Worlds
