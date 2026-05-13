@@ -2,7 +2,7 @@
 
 **Language(s):** Polish (Polski)
 
-This folder contains culture content for Poland: the Polish language, the historical arc, the cultural position, the survival process, the 1997 constitution, Warsaw, and two personas embodying the culture.
+This folder contains culture content for Poland: the Polish language, the historical arc, the cultural position, the survival process, the hourly trumpet call from St. Mary's Tower in Kraków, Warsaw, and two personas embodying the culture.
 
 ## Quick Start
 
@@ -21,7 +21,7 @@ Filename convention: `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5
 | `culture_polish_piece_history.md` | piece | The arc of Polish history (966 to 2023) |
 | `culture_polish_position.md` | position | Polish cultural position (krąg and state) - narrative anchor |
 | `culture_polish_process_przetrwanie.md` | process | Przetrwanie - survival as cultural direction |
-| `culture_polish_piece_konstytucja.md` | piece | Konstytucja - 1997 Polish Constitution as load-bearing artifact |
+| `culture_polish_piece_hejnal.md` | piece | Hejnał Mariacki - hourly trumpet call from the tower of Bazylika Mariacka, Kraków; broadcast nationally at noon |
 | `culture_polish_place_warsaw.md` | place | Warsaw - capital city as geographical anchor |
 | `culture_polish_persona_male_tomasz.md` | persona | Tomasz - architect, b. 1990 |
 | `culture_polish_persona_female_malgorzata.md` | persona | Dr. Małgorzata - internist, b. 1958 |
@@ -50,7 +50,7 @@ Filename convention: `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5
 | LTO | 38 | 36 | 2 | ✅ EXCELLENT |
 | IND | 29 | 33 | 4 | ✅ EXCELLENT |
 
-**Derivation method**: Each keyword in hofstede_bag.yaml is counted once per culture file if present (word-boundary matching, no substring inflation). Score = (high_keyword_count / (high_count + low_count)) × 100. Gap tolerance: ±10 PASS, ±5 EXCELLENT. Audited May 11, 2026; re-audit pending after the v2 migration adds piece_history.md content (LTO-high and IDV-low signals).
+**Derivation method**: Each keyword in hofstede_bag.yaml is counted once per culture file if present (word-boundary matching, no substring inflation). Score = (high_keyword_count / (high_count + low_count)) × 100. Gap tolerance: ±10 PASS, ±5 EXCELLENT. Audited May 11, 2026; re-audit pending after the v2 migration (new history file adds LTO-high and IDV-low signals; piece swap konstytucja→hejnal_mariacki shifts the UAI-high register spread). CI L4f will produce the actual derived numbers.
 
 ## How Dimensions Shape Polish Culture
 
@@ -66,7 +66,7 @@ Filename convention: `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5
 
 - **Low IND (29)** means restraint and duty are deeply valued. Self-indulgence is viewed with suspicion. The Catholic emphasis on asceza (asceticism) and wyrzeczenie (self-denial) is cultural bedrock. Pleasure exists, but always with an undertone of obligation.
 
-These dimensions inform the **[Language](culture_polish_position_language.md)** (Polski as the acoustic register with its case system and address forms), **[Position](culture_polish_position.md)** (the krąg as fallback when institutions fail), **[History](culture_polish_piece_history.md)** (the broad arc that produced today's institutions), **[Process](culture_polish_process_przetrwanie.md)** (przetrwanie as recurring cultural movement), **[Pieces](culture_polish_piece_konstytucja.md)** (Konstytucja as load-bearing artifact), **[Place](culture_polish_place_warsaw.md)** (Warsaw rebuilt from ruins), and Personas ([Tomasz](culture_polish_persona_male_tomasz.md), [Małgorzata](culture_polish_persona_female_malgorzata.md)): how individuals navigate these cultural pressures. Culture files carry standard hofstede sentinel footers linking to this README; scoring is aggregate across all files, not per-file.
+These dimensions inform the **[Language](culture_polish_position_language.md)** (Polski as the acoustic register with its case system and address forms), **[Position](culture_polish_position.md)** (the krąg as fallback when institutions fail), **[History](culture_polish_piece_history.md)** (the broad arc that produced today's institutions), **[Process](culture_polish_process_przetrwanie.md)** (przetrwanie as recurring cultural movement), **[Pieces](culture_polish_piece_hejnal.md)** (Hejnał Mariacki as the daily ritual that holds a wound through repetition), **[Place](culture_polish_place_warsaw.md)** (Warsaw rebuilt from ruins), and Personas ([Tomasz](culture_polish_persona_male_tomasz.md), [Małgorzata](culture_polish_persona_female_malgorzata.md)): how individuals navigate these cultural pressures. Culture files carry standard hofstede sentinel footers linking to this README; scoring is aggregate across all files, not per-file.
 
 ## Content Audit Status
 
@@ -76,13 +76,13 @@ These dimensions inform the **[Language](culture_polish_position_language.md)** 
 | culture_polish_piece_history.md | piece | ✅ Complete | 26 Yearbook entries 966 to 2023: chrzest, Grunwald, three partitions, uprisings, Solidarność, EU accession, TK dispute |
 | culture_polish_position.md | position | ✅ Complete | Hofstede dimensions: PDI 68, IDV 60, UAI 93, MAS 64, LTO 38, IND 29 |
 | culture_polish_process_przetrwanie.md | process | ✅ Complete | Przetrwanie process (Initiated by / Direction / Lever / Echo) |
-| culture_polish_piece_konstytucja.md | piece | ✅ Complete | 1997 Constitution as load-bearing artifact |
+| culture_polish_piece_hejnal.md | piece | ✅ Complete | Hejnał Mariacki: hourly trumpet call, Tatar-arrow mid-note cut-off since 1241, broadcast on Polskie Radio Jedynka at noon since 1927 |
 | culture_polish_place_warsaw.md | place | ✅ Complete | Warsaw as social anchor with offers and withheld |
 | culture_polish_persona_male_tomasz.md | persona | ✅ Complete | Architekt: projection, action, position-shaped shadow (fixed narrator-told tail), tell |
 | culture_polish_persona_female_malgorzata.md | persona | ✅ Complete | Lekarka: projection, action, position-shaped shadow (fixed narrator-told tail), tell |
 
 ---
 
-*Audited May 11, 2026; v2 migration May 13, 2026*
+*Audited May 11, 2026; v2 migration May 13, 2026 (piece swap: konstytucja retired, hejnal_mariacki added)*
 
 *v0.2.0 - Kai Schlueter - Cultures - May 2026*
