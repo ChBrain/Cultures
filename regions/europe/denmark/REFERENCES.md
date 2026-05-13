@@ -95,7 +95,7 @@
 
 ---
 
-### `culture_danish_history_danmark.md` - Danish Historical Arc
+### `culture_danish_piece_history.md` - Danish Historical Arc
 
 | Fact / Claim | Verification Status | Source | Notes |
 |--------------|-------------------|--------|-------|
@@ -144,7 +144,7 @@
 
 ---
 
-### `culture_danish_language_dansk.md` - Danish Language
+### `culture_danish_position_language.md` - Danish Language
 
 | Fact / Claim | Verification Status | Source | Notes |
 |--------------|-------------------|--------|-------|
@@ -255,6 +255,7 @@ Any resemblance to specific copyrighted works is unintentional. If you spot pote
 - **Janteloven:** While written by Aksel Sandemose (Norwegian), the code was adopted and codified in Danish culture and is central to Danish identity
 - **Hofstede Scores:** Based on empirical research; all 6 dimensions have been validated through peer review and cross-cultural comparison; LTO re-baselined from 35 to 46 on 2026-05-13 to match Hofstede Insights' current empirical value (was an outdated approximation in v0.1.0)
 - **Hygge:** A legitimate cultural practice with academic study and media attention; increasingly recognized internationally
+- **Filename convention:** Files follow `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5 KAI structural types (process, position, piece, place, persona) matching the file's `*khai: <type>*` footer declaration. Single-instance kinds (language, history) drop the redundant country suffix.
 
 ---
 
