@@ -28,21 +28,16 @@ This installs `.githooks/pre-commit` which validates every commit locally before
 
 ## Branches
 
-The branch-kind contract (allowed paths per kind, governance vs safe metadata,
-splitting work, rejection messages) lives in
-[../docs/BRANCHING.md](../docs/BRANCHING.md). It is the single source of truth
-for what each branch may touch and is mirrored from the executable rules in
-[`tests/branch_scope.py`](../tests/branch_scope.py).
+**See [docs/BRANCHING.md](../docs/BRANCHING.md) for the complete branch-kind contract.**
 
-Short version: match the branch kind to the change's primary target.
+That document is the single source of truth for all branch types, allowed paths, scope rules, and governance enforcement. It is mirrored from the executable classifier in [`tests/branch_scope.py`](../tests/branch_scope.py).
 
-- Culture content -> `culture/<country>` (or `<region>`, `staging`, `release`)
-- Validators, hooks, workflows -> `governance/<name>`
-- Tooling, scripts, docs -> `chore/<name>`
-- Fixes outside culture and governance -> `fix/<name>`
-- Non-culture, non-governance features -> `feat/<name>`
-
-If a change spans two kinds, split it into separate branches/PRs.
+Quick reference:
+- `culture/<country>` - culture content (scope-locked to that country)
+- `culture/<region>` - cross-country culture work
+- `culture/staging`, `culture/release` - all culture content (regions/**)
+- `governance/<name>` - validators, hooks, workflows
+- `chore/<name>`, `fix/<name>`, `feat/<name>` - general tooling (not regions/**, not governance)
 
 ## Cultures v2 Schema
 
