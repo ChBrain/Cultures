@@ -23,6 +23,7 @@ languages:
   - dutch
   - danish
   - polish
+  - spanish
 
 # Section headings (##) whose body gets language-checked. Names match
 # case-insensitively against the heading text. Anything not listed is
