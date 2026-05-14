@@ -332,6 +332,44 @@ jobs:
       - name: Run history-arc tests
         run: python -m pytest tests/test_history_arc.py -v
 
+  language-preflight:
+    name: Language pre-flight - registry check
+    # Always-run pre-flight: every country README's **Language(s):** slug
+    # must already appear in data/language_policy.yaml. Mirrors the
+    # audit-readme-bands-tests / L4h-history-arc pattern: independent,
+    # always runs, no setup-job dependency. Fast (no lingua, no whl
+    # install) -- under 30 seconds.
+    #
+    # Why a separate job: the same assertion runs late in the chain via
+    # cultures-language, which depends on khai-language, which depends
+    # on the components chain (encoding -> process/position/piece/place/
+    # persona -> sections). When the registry is missing an entry, that
+    # failure surfaces 5-10 minutes into CI after every other validator
+    # has run. This job surfaces it in ~30 seconds on every PR so a
+    # missing-language case fails before the rest of the chain spins up.
+    #
+    # Incident: PR #166 (culture/spain) cleared every other validator
+    # then failed on this assertion because `spanish` was not in
+    # data/language_policy.yaml. Emergency PRs #167 (governance) and
+    # #168 (sync) unblocked the release at the cost of two extra round
+    # trips. The check itself was correct; it just ran too late to be
+    # useful for prevention.
+    #
+    # LANGUAGES.md section "Pre-flight: check language enablement before
+    # starting a culture" documents the human-side procedure that this
+    # gate enforces.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest + pyyaml
+        run: pip install pytest pyyaml
+      - name: Run registry pre-flight
+        run: python -m pytest tests/test_language.py::test_readme_language_in_registry -v
+
   setup:
     name: Setup - Compute changed files
     runs-on: ubuntu-latest
