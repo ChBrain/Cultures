@@ -7,7 +7,7 @@ on:
 jobs:
   khai-encoding:
     name: khai - Encoding rules
-    needs: [setup, L0-stamp-check]
+    needs: [setup, cultures-stamp-check]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
@@ -162,7 +162,7 @@ jobs:
         run: python -m pytest --pyargs khai_tests.components.test_khai_persona --khai-files="${{ needs.setup.outputs.files }}" -v
 
   cultures-sections:
-    name: Cultures - Section structure
+    name: cultures - Section structure
     needs: [setup, khai-process, khai-position, khai-piece, khai-place, khai-persona]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
@@ -187,8 +187,8 @@ jobs:
       - name: Run section tests
         run: python -m pytest tests/test_sections.py --khai-files="${{ needs.setup.outputs.files }}" -v
 
-  branch-scope-tests:
-    name: Branch scope - test suite
+  cultures-branch-scope-tests:
+    name: cultures - Branch scope tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -202,8 +202,8 @@ jobs:
       - name: Run branch_scope unit + E2E tests
         run: python -m pytest tests/test_branch_scope.py tests/test_hook_scope_e2e.py -v
 
-  branch-scope-mirror:
-    name: Branch scope - enforce on PR diff
+  cultures-branch-scope-diff-check:
+    name: cultures - Branch scope diff check
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
@@ -245,8 +245,8 @@ jobs:
           print(f"OK: branch '{branch}' (classified '{kind}') passes scope check ({len(files)} file(s)).")
           PY
 
-  pr-base-tests:
-    name: PR base - test suite
+  cultures-pr-base-tests:
+    name: cultures - PR base tests
     # Unit-test gate for tests/validate_pr_base.py (the PR base routing
     # contract). Independent, always runs, no culture-file dependency.
     # Catches routing regressions before pr-gate.yml enforces them in
@@ -263,11 +263,11 @@ jobs:
       - name: Run PR base routing tests
         run: python -m pytest tests/test_validate_pr_base.py tests/test_validate_pr_base_cli.py -v
 
-  audit-readme-bands-tests:
-    name: Audit README bands - test suite
+  cultures-audit-readme-bands-tests:
+    name: cultures - Audit README bands tests
     # Unit-test gate for scripts/audit_readme_bands.py (the canonical Hofstede
     # band contract: 0-39 Low, 40-69 Moderate, 70-100 High). Mirrors the
-    # branch-scope-tests pattern: independent, always runs, exercises the
+    # cultures-branch-scope-tests pattern: independent, always runs, exercises the
     # contract on every PR. Closes the gap noted during the v2 stage 2
     # sequence where this test had no CI runner.
     runs-on: ubuntu-latest
@@ -282,13 +282,13 @@ jobs:
       - name: Run audit_readme_bands tests
         run: python -m pytest tests/test_audit_readme_bands.py -v
 
-  update-hofstede-readme-tests:
-    name: Update Hofstede README - test suite
+  cultures-hofstede-readme-updater-tests:
+    name: cultures - Hofstede README updater tests
     # Unit-test gate for scripts/update_hofstede_readme.py (deterministic
     # rewriter for the Hofstede Cultural Dimensions + Alignment Status tables
     # in country READMEs). Pins the EXCELLENT/PASS/WARN/FAIL thresholds, the
     # canonical band-label rendering, and the table-replacement contract.
-    # Mirrors the audit-readme-bands-tests pattern: independent, always runs.
+    # Mirrors the cultures-audit-readme-bands-tests pattern: independent, always runs.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -297,7 +297,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install Python deps
-        # Mirrors L4f / hofstede-bag-loader-tests: tests/requirements.txt
+        # Mirrors cultures-hofstede-derived / cultures-hofstede-bag-loader-tests: tests/requirements.txt
         # has lingua-language-detector, PyYAML, and pytest. Required because
         # update_hofstede_readme imports data.hofstede_keywords transitively
         # via hofstede_bag_loader, and data.hofstede_keywords imports lingua
@@ -308,8 +308,8 @@ jobs:
       - name: Run update_hofstede_readme tests
         run: python -m pytest tests/test_update_hofstede_readme.py -v
 
-  L4h-history-arc:
-    name: L4h - History arc (defining moments)
+  cultures-history-arc:
+    name: cultures - History arc
     # Always-run gate for the history-as-defining-moments-arc methodology
     # (khai-cultures-create skill v0.1.1+). Validates every
     # culture_*_history_*.md file in regions/** has:
@@ -319,7 +319,7 @@ jobs:
     # Catches the class of bug PR #105 surfaced: a history file shipping
     # as a narrow-event essay (the original Beeldenstorm-only Netherlands
     # history) rather than a broad-arc Yearbook. Mirrors the
-    # audit-readme-bands-tests pattern: independent, always runs.
+    # cultures-audit-readme-bands-tests pattern: independent, always runs.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -332,11 +332,11 @@ jobs:
       - name: Run history-arc tests
         run: python -m pytest tests/test_history_arc.py -v
 
-  language-preflight:
-    name: Language pre-flight - registry check
+  cultures-language-preflight:
+    name: cultures - Language pre-flight
     # Always-run pre-flight: every country README's **Language(s):** slug
     # must already appear in data/language_policy.yaml. Mirrors the
-    # audit-readme-bands-tests / L4h-history-arc pattern: independent,
+    # cultures-audit-readme-bands-tests / cultures-history-arc pattern: independent,
     # always runs, no setup-job dependency. Fast (no lingua, no whl
     # install) -- under 30 seconds.
     #
@@ -377,7 +377,7 @@ jobs:
       any: ${{ steps.changed.outputs.any }}
       files: ${{ steps.changed.outputs.files }}
       # `data_changed`: true when the PR diff touches the Hofstede reference
-      # dataset (data/hofstede_scores.json). Drives L4g into audit mode (run
+      # dataset (data/hofstede_scores.json). Drives cultures-hofstede-reference into audit mode (run
       # across all countries) so a reference update doesn't silently widen
       # divergence for cultures whose declared scores are now off-band.
       data_changed: ${{ steps.changed.outputs.data_changed }}
@@ -417,8 +417,8 @@ jobs:
           echo "files=$FILES" >> "$GITHUB_OUTPUT"
           echo "data_changed=$DATA_CHANGED" >> "$GITHUB_OUTPUT"
 
-  L0-stamp-check:
-    name: L0 - Validation stamp gate
+  cultures-stamp-check:
+    name: cultures - Validation stamp gate
     needs: [setup]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
@@ -491,7 +491,7 @@ jobs:
           PY
 
   khai-language:
-    name: khai - Language policy (per-file detection)
+    name: khai - Language rules
     needs: [setup, cultures-sections]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
@@ -517,7 +517,7 @@ jobs:
         run: python -m pytest --pyargs khai_tests.test_khai_language --khai-files="${{ needs.setup.outputs.files }}" -v
 
   cultures-language:
-    name: Cultures - Language policy (static checks)
+    name: cultures - Language policy
     needs: [setup, khai-language]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
@@ -532,7 +532,7 @@ jobs:
         run: python -m pytest tests/test_language.py -v
 
   khai-links:
-    name: khai - Link integrity
+    name: khai - Link rules
     needs: [setup, cultures-language]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
@@ -558,7 +558,7 @@ jobs:
         run: python -m pytest --pyargs khai_tests.test_khai_links --khai-files="${{ needs.setup.outputs.files }}" -v
 
   cultures-links:
-    name: Cultures - Link integrity
+    name: cultures - Link integrity
     needs: [setup, khai-links]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
@@ -583,8 +583,8 @@ jobs:
       - name: Run link tests
         run: python -m pytest tests/test_links.py --khai-roots=engine --khai-files="${{ needs.setup.outputs.files }}" -v
 
-  L4a-completeness:
-    name: L4a - Culture completeness
+  cultures-completeness:
+    name: cultures - Culture completeness
     needs: [setup, cultures-links]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
@@ -599,9 +599,9 @@ jobs:
       - name: Validate culture completeness
         run: python -m pytest tests/test_completeness.py -v
 
-  L4b-audit-readme:
-    name: L4b - Audit README status tables
-    needs: [setup, L4a-completeness]
+  cultures-audit-readme:
+    name: cultures - Audit README status tables
+    needs: [setup, cultures-completeness]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
@@ -615,9 +615,9 @@ jobs:
       - name: Validate audit README
         run: python -m pytest tests/test_audit_readme.py -v
 
-  L4c-audit-consistency:
-    name: L4c - Audit table consistency
-    needs: [setup, L4b-audit-readme]
+  cultures-audit-consistency:
+    name: cultures - Audit table consistency
+    needs: [setup, cultures-audit-readme]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
@@ -632,8 +632,8 @@ jobs:
         run: python -m pytest tests/test_audit_consistency.py -v
 
   khai-plagiarism:
-    name: khai - Phrase denylist
-    needs: [setup, L4c-audit-consistency]
+    name: khai - Phrase denylist rules
+    needs: [setup, cultures-audit-consistency]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
@@ -658,7 +658,7 @@ jobs:
         run: python -m pytest --pyargs khai_tests.test_khai_plagiarism --khai-files="${{ needs.setup.outputs.files }}" -v
 
   cultures-plagiarism:
-    name: Cultures - Plagiarism structural checks
+    name: cultures - Plagiarism structure
     needs: [setup, khai-plagiarism]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
@@ -672,8 +672,8 @@ jobs:
       - name: Run plagiarism structural checks
         run: python -m pytest tests/test_plagiarism.py -v
 
-  L4e-hofstede-alignment:
-    name: L4e - Hofstede structure
+  cultures-hofstede-structure:
+    name: cultures - Hofstede structure
     needs: [setup, cultures-plagiarism]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
@@ -688,9 +688,9 @@ jobs:
       - name: Validate Hofstede structure
         run: python -m pytest tests/test_hofstede_structure.py -v
 
-  L4f-hofstede-derived:
-    name: L4f - Hofstede derived vs declared
-    needs: [setup, L4e-hofstede-alignment]
+  cultures-hofstede-derived:
+    name: cultures - Hofstede derived vs declared
+    needs: [setup, cultures-hofstede-structure]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     env:
@@ -706,9 +706,9 @@ jobs:
       - name: Validate Hofstede derived scores
         run: python -m pytest tests/test_hofstede_derived.py -v
 
-  L4g-hofstede-reference:
-    name: L4g - Hofstede declared vs reference
-    needs: [setup, L4f-hofstede-derived]
+  cultures-hofstede-reference:
+    name: cultures - Hofstede declared vs reference
+    needs: [setup, cultures-hofstede-derived]
     if: needs.setup.outputs.any == 'true' || needs.setup.outputs.data_changed == 'true'
     runs-on: ubuntu-latest
     env:
@@ -725,8 +725,8 @@ jobs:
       - name: Run Hofstede reference tests
         run: python -m pytest tests/test_hofstede_reference.py -v
 
-  hofstede-bag-loader-tests:
-    name: Hofstede - bag loader tests
+  cultures-hofstede-bag-loader-tests:
+    name: cultures - Hofstede bag loader tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -739,8 +739,8 @@ jobs:
       - name: Run loader tests
         run: python -m pytest tests/test_hofstede_bag_loader.py -v
 
-  bag-integrity:
-    name: Hofstede - bag integrity (shape, quality, lock, completeness, fork)
+  cultures-hofstede-bag-integrity:
+    name: cultures - Hofstede bag integrity
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
