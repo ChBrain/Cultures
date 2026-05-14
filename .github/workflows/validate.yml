@@ -3,8 +3,6 @@ name: validate
 on:
   pull_request:
     branches: [main, culture/release]
-  push:
-    branches: [main, culture/release]
 
 jobs:
   khai-encoding:
@@ -269,8 +267,8 @@ jobs:
     name: cultures - Audit README bands tests
     # Unit-test gate for scripts/audit_readme_bands.py (the canonical Hofstede
     # band contract: 0-39 Low, 40-69 Moderate, 70-100 High). Mirrors the
-    # cultures-branch-scope-tests pattern: independent, always runs, exercises
-    # the contract on every PR. Closes the gap noted during the v2 stage 2
+    # cultures-branch-scope-tests pattern: independent, always runs, exercises the
+    # contract on every PR. Closes the gap noted during the v2 stage 2
     # sequence where this test had no CI runner.
     runs-on: ubuntu-latest
     steps:
@@ -299,16 +297,78 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install Python deps
-        # Mirrors cultures-hofstede-derived / cultures-hofstede-bag-loader-tests:
-        # tests/requirements.txt has lingua-language-detector, PyYAML, and
-        # pytest. Required because update_hofstede_readme imports
-        # data.hofstede_keywords transitively via hofstede_bag_loader, and
-        # data.hofstede_keywords imports lingua at module level (for
-        # detect_language). The unit tests don't call detect_language but the
-        # import has to succeed for the module to load.
+        # Mirrors cultures-hofstede-derived / cultures-hofstede-bag-loader-tests: tests/requirements.txt
+        # has lingua-language-detector, PyYAML, and pytest. Required because
+        # update_hofstede_readme imports data.hofstede_keywords transitively
+        # via hofstede_bag_loader, and data.hofstede_keywords imports lingua
+        # at module level (for detect_language). The unit tests don't call
+        # detect_language but the import has to succeed for the module to
+        # load.
         run: pip install -r tests/requirements.txt
       - name: Run update_hofstede_readme tests
         run: python -m pytest tests/test_update_hofstede_readme.py -v
+
+  cultures-history-arc:
+    name: cultures - History arc
+    # Always-run gate for the history-as-defining-moments-arc methodology
+    # (khai-cultures-create skill v0.1.1+). Validates every
+    # culture_*_history_*.md file in regions/** has:
+    #   - *khai: piece* declaration footer
+    #   - Yearbook section with >= 12 dated entries
+    #   - Date range spanning >= 5 centuries (broad arc, not single event)
+    # Catches the class of bug PR #105 surfaced: a history file shipping
+    # as a narrow-event essay (the original Beeldenstorm-only Netherlands
+    # history) rather than a broad-arc Yearbook. Mirrors the
+    # cultures-audit-readme-bands-tests pattern: independent, always runs.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run history-arc tests
+        run: python -m pytest tests/test_history_arc.py -v
+
+  cultures-language-preflight:
+    name: cultures - Language pre-flight
+    # Always-run pre-flight: every country README's **Language(s):** slug
+    # must already appear in data/language_policy.yaml. Mirrors the
+    # cultures-audit-readme-bands-tests / cultures-history-arc pattern: independent,
+    # always runs, no setup-job dependency. Fast (no lingua, no whl
+    # install) -- under 30 seconds.
+    #
+    # Why a separate job: the same assertion runs late in the chain via
+    # cultures-language, which depends on khai-language, which depends
+    # on the components chain (encoding -> process/position/piece/place/
+    # persona -> sections). When the registry is missing an entry, that
+    # failure surfaces 5-10 minutes into CI after every other validator
+    # has run. This job surfaces it in ~30 seconds on every PR so a
+    # missing-language case fails before the rest of the chain spins up.
+    #
+    # Incident: PR #166 (culture/spain) cleared every other validator
+    # then failed on this assertion because `spanish` was not in
+    # data/language_policy.yaml. Emergency PRs #167 (governance) and
+    # #168 (sync) unblocked the release at the cost of two extra round
+    # trips. The check itself was correct; it just ran too late to be
+    # useful for prevention.
+    #
+    # LANGUAGES.md section "Pre-flight: check language enablement before
+    # starting a culture" documents the human-side procedure that this
+    # gate enforces.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest + pyyaml
+        run: pip install pytest pyyaml
+      - name: Run registry pre-flight
+        run: python -m pytest tests/test_language.py::test_readme_language_in_registry -v
 
   setup:
     name: Setup - Compute changed files
@@ -317,10 +377,9 @@ jobs:
       any: ${{ steps.changed.outputs.any }}
       files: ${{ steps.changed.outputs.files }}
       # `data_changed`: true when the PR diff touches the Hofstede reference
-      # dataset (data/hofstede_scores.json). Drives cultures-hofstede-reference
-      # into audit mode (run across all countries) so a reference update
-      # doesn't silently widen divergence for cultures whose declared scores
-      # are now off-band.
+      # dataset (data/hofstede_scores.json). Drives cultures-hofstede-reference into audit mode (run
+      # across all countries) so a reference update doesn't silently widen
+      # divergence for cultures whose declared scores are now off-band.
       data_changed: ${{ steps.changed.outputs.data_changed }}
     steps:
       - uses: actions/checkout@v4
@@ -332,10 +391,11 @@ jobs:
           HEAD_REF: ${{ github.head_ref }}
         run: |
           # Sync branches (sync/<name>) are pointer branches at main's HEAD.
-          # Content was already validated when it landed on main. Re-running
-          # content validators on sync adds no value and can hit lingua
-          # false-positives or other transient state. Short-circuit here so
-          # all downstream content jobs gated on `any == 'true'` skip cleanly.
+          # Content was already validated when it landed on main. The PR diff
+          # against culture/release would re-surface every file that has
+          # advanced on main since the last sync, which is pure waste --
+          # short-circuit here so all downstream content jobs gated on
+          # `any == 'true'` skip cleanly.
           if [[ "$HEAD_REF" == sync/* ]]; then
             echo "Sync branch detected ($HEAD_REF); skipping content-validator file detection."
             echo "any=false" >> "$GITHUB_OUTPUT"
@@ -343,15 +403,11 @@ jobs:
             echo "data_changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            RANGE="origin/${{ github.base_ref }}...HEAD"
-          else
-            BEFORE="${{ github.event.before }}"
-            if [ "$BEFORE" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "$BEFORE" 2>/dev/null; then
-              BEFORE="HEAD~1"
-            fi
-            RANGE="$BEFORE..HEAD"
-          fi
+          # Validate fires only on pull_request, so the diff range is always
+          # the merge base. (The previous push trigger required handling
+          # `github.event.before` and HEAD~1 fallback; dropped along with
+          # the push trigger -- post-merge re-validation added no value.)
+          RANGE="origin/${{ github.base_ref }}...HEAD"
           # --diff-filter=ACMRT skips deletions; the validator must not be handed paths that no longer exist.
           ALL_CHANGED=$(git diff --name-only --diff-filter=ACMRT "$RANGE")
           FILES=$(echo "$ALL_CHANGED" | { grep -E '^regions/.*\.md$' || true; } | tr '\n' ' ' | sed 's/ *$//')
@@ -383,6 +439,56 @@ jobs:
             exit 1
           fi
           echo "✔️ Validation stamp present"
+      - name: Check validation stamp shape
+        # Gate against malformed stamps (CRLF, NUL padding, BOM, wrong length,
+        # non-hex content). .githooks/pre-commit writes the stamp as exactly
+        # 40 hex chars + LF in UTF-8 (see the closing lines:
+        #   tree_hash = run_git("write-tree")
+        #   Path(".validation-stamp").write_text(tree_hash + "\n", encoding="utf-8")
+        # ). Any deviation means the stamp was written through a non-hook
+        # path -- typically an LLM agent's file write API (Claude Code in
+        # VS Code, Copilot, MCP create_or_update_file) on a Windows host
+        # that normalised line endings or added UTF-16 padding. The stamp
+        # value itself isn't checked against tree state (the hook owns
+        # that); this step only enforces shape so byte-exact three-way
+        # merges don't trip on encoding artifacts.
+        #
+        # Incident: PR #105 (culture/netherlands -> culture/release) was
+        # unmergeable for hours because culture/release's stamp had been
+        # written by Claude Code in VS Code with `\r\n\r\x00\n\x00` after
+        # the hash (46 bytes total, binary on disk). Both Copilot and a
+        # second Claude Code session tried to "just pick one" via clean
+        # 41-byte UTF-8 writes; git's three-way blob comparison rejected
+        # every attempt because the bytes never matched. Resolution
+        # required reverting the stamp to the merge-base blob -- a
+        # non-obvious path that no LLM-driven agent found on its own.
+        run: |
+          python3 - <<'PY'
+          import re
+          import sys
+          from pathlib import Path
+
+          raw = Path(".validation-stamp").read_bytes()
+          if len(raw) == 41 and re.fullmatch(rb"[0-9a-f]{40}\n", raw):
+              print("✔️ Validation stamp shape OK (40 hex chars + LF, 41 bytes)")
+              sys.exit(0)
+
+          print("❌ VALIDATION FAILED: .validation-stamp is malformed")
+          print(f"   Expected: 41 bytes, [0-9a-f]{{40}} + LF (UTF-8, no BOM)")
+          print(f"   Actual:   {len(raw)} bytes")
+          print(f"   Hex dump: {raw.hex()[:120]}" + ("..." if len(raw) > 60 else ""))
+          print()
+          print("   Most common cause: an LLM-driven file write (Claude Code in")
+          print("   VS Code, Copilot suggesting a fix, MCP create_or_update_file)")
+          print("   produced CRLF, UTF-16 padding, or BOM bytes instead of the")
+          print("   clean UTF-8 LF the pre-commit hook writes. See PR #105.")
+          print()
+          print("   Fix: re-run the pre-commit hook locally to rewrite cleanly.")
+          print("     touch a staged file (or git add --renormalize .)")
+          print("     git commit --amend --no-edit")
+          print("     git push --force-with-lease")
+          sys.exit(1)
+          PY
 
   khai-language:
     name: khai - Language rules
@@ -587,6 +693,8 @@ jobs:
     needs: [setup, cultures-hofstede-structure]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
+    env:
+      PR_CHANGED_FILES: ${{ needs.setup.outputs.files }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -603,6 +711,9 @@ jobs:
     needs: [setup, cultures-hofstede-derived]
     if: needs.setup.outputs.any == 'true' || needs.setup.outputs.data_changed == 'true'
     runs-on: ubuntu-latest
+    env:
+      PR_CHANGED_FILES: ${{ needs.setup.outputs.files }}
+      PR_DATA_CHANGED: ${{ needs.setup.outputs.data_changed }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
