@@ -19,13 +19,14 @@ La relación entre España y América del Sur pierde su raíz.
 El orgullo y la culpa dejan de tener objeto.
 
 ## Apparent
+El idioma español viaja con cada nombre, cada plaza y cada moneda de este apartado.
 La Torre del Oro en Sevilla, a orillas del Guadalquivir.
-El Archivo de Indias en Sevilla: ochenta millones de páginas de documentos originales.
+El Archivo de Indias en Sevilla: ochenta millones de páginas de documentos originales escritos en español.
 El mapa de Juan de la Cosa, 1500: primer mapa que incluye el continente americano.
-Estatuas de Colón en Barcelona, Valladolid, Madrid, Sevilla: cada ciudad con su versión.
+Estatuas de Colón en Barcelona, Valladolid, Madrid, Sevilla: cada ciudad española con su versión.
 La catedral de Santo Domingo, 1512: la primera catedral construida en América.
 Nombres en español en dos continentes: ciudades, ríos, cordilleras, países.
-El peso mexicano, el peso colombiano, el peso argentino: la misma moneda, distintos estados.
+El peso mexicano, el peso colombiano, el peso argentino: la misma moneda heredada del español, distintos estados.
 La Real Academia Española en Madrid: fachada del siglo XVIII, puerta siempre cerrada al turista.
 
 ## Yearbook
@@ -43,9 +44,6 @@ La Real Academia Española en Madrid: fachada del siglo XVIII, puerta siempre ce
 2021: México presenta una solicitud formal de disculpa a España por la Conquista. Madrid no responde.
 
 ---
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+*hofstede: aggregate in [README.md](README.md).*
 *khai: piece*
-
-*culture_spanish_piece_conquista.md - 13.05.2026*
-
-v0.2.0 - KAI Worlds
+*2026-05-14 | KAI HACKS AI | v0.2.1 | CC-BY-NC-4.0*
