@@ -25,13 +25,14 @@ La paciencia heredada de generaciones que aprendieron a esperar el cambio.
 La historia trama el vínculo cuando la institución vacila.
 
 ## Apparent
+Cada piedra y cada apellido en español llevan tres siglos al menos sobre la espalda.
 La muralla romana de Lugo, todavía en pie.
 La Mezquita-Catedral de Córdoba: arcos andalusíes y altar barroco en el mismo espacio.
 La Alhambra de Granada y los Reyes Católicos enterrados en la Capilla Real, a tres kilómetros.
 El Monasterio de Yuste donde Carlos V se retiró.
-El monumento a los caídos en la plaza de cada pueblo: nombres reescritos tres veces.
+El monumento a los caídos en la plaza de cada pueblo: nombres reescritos tres veces en español.
 El Valle de los Caídos, ahora Valle de Cuelgamuros: cruz visible desde cuarenta kilómetros.
-Las placas en las fachadas de Madrid con los nombres de los fusilados.
+Las placas en las fachadas de Madrid con los nombres de los fusilados, todas en español.
 El Congreso de los Diputados con los agujeros de bala de 1981 todavía visibles.
 La estatua de Federico García Lorca en la Plaza de Santa Ana.
 Las urnas guardadas en cajas en Cataluña, 1 de octubre de 2017.
@@ -60,9 +61,6 @@ Las urnas guardadas en cajas en Cataluña, 1 de octubre de 2017.
 2023-2024: Ley de amnistía. La política se rompe en dos. La transición empieza a ser cuestionada por quienes la heredaron.
 
 ---
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+*hofstede: aggregate in [README.md](README.md).*
 *khai: piece*
-
-*culture_spanish_piece_history.md - 13.05.2026*
-
-v0.2.0 - KAI Worlds
+*2026-05-14 | KAI HACKS AI | v0.2.1 | CC-BY-NC-4.0*
