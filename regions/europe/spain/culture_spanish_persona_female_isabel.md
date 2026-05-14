@@ -28,13 +28,10 @@ Nunca lo llama método. Lo llama experiencia. Su discreción es total: nadie sab
 Su nieta le preguntó una vez si la había dejado ganar al ajedrez. Isabel respondió: nunca te dejé ganar.
 
 ## Tell
-Cuando la sala llega a un acuerdo, ella ya no está escuchando.
+Cuando la sala llega a un acuerdo, ella ya no está escuchando, y nadie en la habitación lo nota nunca.
 
 ---
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+*hofstede: aggregate in [README.md](README.md).*
 *Type: Composite*
 *khai: persona*
-
-*culture_spanish_persona_female_isabel.md - 13.05.2026*
-
-v0.2.0 - KAI Worlds
+*2026-05-14 | KAI HACKS AI | v0.2.1 | CC-BY-NC-4.0*
