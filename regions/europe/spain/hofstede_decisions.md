@@ -2,8 +2,10 @@
 
 **Scores:** PDI 57 · IDV 51 · UAI 86 · MAS 42 · LTO 48 · IND 44
 **Generated:** 2026-05-12
-**Updated:** 2026-05-13 (v2 migration: TYPE-as-slot rename, persona-anchor filename refresh, derived-score tune-up)
 **Forked from:** none -- fresh bootstrap
+**Updated:**
+- 2026-05-13: v2 migration -- TYPE-as-slot rename, persona-anchor filename refresh, derived-score tune-up.
+- 2026-05-14: Bag quality remediation. Eight bag words moved out of bags because they were also in the country denylist (self-collision detected by `test_hofstede_bag_quality::test_keywords_not_in_country_denylist`), plus one cross-bag collision (`previsión` in both UAI.high and LTO.high) resolved. See "Bag quality remediation 2026-05-14" section below. All replacements verified clean against denylist + other bags. Re-derived Hofstede after the swaps: all 6 dimensions within ±5 EXCELLENT (PDI 4 / IDV 1 / UAI 3 / MAS 5 / LTO 1 / IND 4).
 
 ---
 
@@ -43,6 +45,40 @@ No previous bag -- fresh bootstrap.
 | planificación | dropped from LTO-high | Within-country collision: planificación retained in UAI-high (planning-as-control); LTO needs investment vocabulary not control vocabulary | formación |
 | moderación | dropped from IND-low | Redundant with mesura; mesura is more culturally specific and classical register | austeridad |
 | gozo | dropped from IND-high | Religious register (gozo espiritual) muddies IND-high signal; matcher fires on devotional prose | juerga |
+
+---
+
+## Bag quality remediation 2026-05-14
+
+These ten denylisted words were retained in the original bag draft and the resolution-pass log above documents them as bag assignments. CI test `test_hofstede_bag_quality::test_keywords_not_in_country_denylist` correctly flags this as inconsistent: a word in the country denylist cannot also live in a bag, regardless of how the Conflict resolution table reads. Plus one within-country collision (`previsión` in both UAI.high and LTO.high) caught by `test_no_within_country_collisions`. All resolved here.
+
+| Word | Was in bag | Issue | Replacement | Replacement rationale |
+|---|---|---|---|---|
+| autonomía | IDV.high | In country denylist (correctly: ambiguous between IDV-high and political-regional-autonomy register) | independencia | Clean IDV-high; political-and-personal independence register; fires twice in piece_history (1810 "guerras de independencia", 1808 "Guerra de la Independencia") |
+| planificación | UAI.high | In country denylist (correctly: ambiguous between UAI-high control register and LTO-high investment register) | método | Clean UAI-high; methodical-procedure register; one-lemma, no compound risk |
+| espontaneidad | UAI.low | In country denylist (correctly: ambiguous between UAI-low and IND-high) | naturalidad | Clean UAI-low; ease-without-rules register; no IND-high reading |
+| informalidad | UAI.low | In country denylist (correctly: ambiguous between UAI-low rule-avoidance and PDI-low flat-structure) | desenfado | Clean UAI-low; casual-comfort register; no PDI reading |
+| flexibilidad | UAI.low | In country denylist (correctly: ambiguous between UAI-low and LTO-high adaptability) | versatilidad | Clean UAI-low; capable-of-multiple-modes register; no LTO reading |
+| previsión | LTO.high (also UAI.high -- COLLISION) | Cross-bag collision: appears in both UAI.high (anticipation-as-anxiety-control) and LTO.high (forecast-as-investment-horizon) | proyección (LTO.high; previsión stays in UAI.high) | proyección reads forward-projection without the anxiety register; LTO-high register clean |
+| fiesta | LTO.low | In country denylist (correctly: ambiguous between LTO-low collective ritual and IND-high celebration) | rito | Clean LTO-low; ceremonial-traditional register; no IND-high reading |
+| celebración | LTO.low | In country denylist (correctly: same ambiguity as fiesta) | ceremonia | Clean LTO-low; formal-ritual register; no IND-high reading |
+
+All eight replacements verified clean against:
+- The full country denylist (none of `independencia`, `método`, `naturalidad`, `desenfado`, `versatilidad`, `proyección`, `rito`, `ceremonia` appears in `hofstede_bag.yaml denylist:`)
+- All other bag entries (no new within-country collision introduced)
+
+Re-derivation after the swaps (manual word-boundary Unicode matching, nominative form, per the standard derivation method):
+
+| Dim | Declared | Derived (pre-fix) | Derived (post-fix) | Gap (post-fix) | Status |
+|---|---|---|---|---|---|
+| PDI | 57 | 61 | 61 | 4 | EXCELLENT |
+| IDV | 51 | 47 | 50 | 1 | EXCELLENT (improved by 3 from `independencia` firing in piece_history) |
+| UAI | 86 | 82 | 83 | 3 | EXCELLENT |
+| MAS | 42 | 47 | 47 | 5 | EXCELLENT |
+| LTO | 48 | 47 | 47 | 1 | EXCELLENT |
+| IND | 44 | 40 | 40 | 4 | EXCELLENT |
+
+No content tuning needed; the swap-and-rederive cycle produced 6/6 EXCELLENT without any culture file edits beyond the language-policy anchors added in parallel commits.
 
 ---
 
@@ -102,13 +138,14 @@ Polarity: high
 Declared score: 51
 
 Multi-word entries: none
-Cross-country root flags: autonomía cognate in nl/da IDV-high context; same dimension, same polarity; no divergence
+Cross-country root flags: independencia (post 2026-05-14 swap from autonomía) is a Romance cognate (it indipendenza, fr indépendance); same dimension, same polarity expected when sibling Romance bags arrive; no divergence
 Root-proximity flags: criterio/decisión share judgment-register; retained
   criterio = standard of judgment
   decisión = act of deciding
 Register spread: social-cultural 4, everyday 4, professional 2
-Persona-anchor words: iniciativa (persona_male_alejandro -- interpreter-initiative register); trayectoria (persona_female_isabel and persona_male_alejandro -- career-path register); voluntad / criterio / responsabilidad (both personas -- post-v2 tuning additions)
+Persona-anchor words: iniciativa (persona_male_alejandro -- interpreter-initiative register); trayectoria (persona_female_isabel and persona_male_alejandro -- career-path register); voluntad / criterio / responsabilidad (both personas -- post-v2 tuning additions); independencia (piece_history Yearbook 1808 + 1810 -- national-and-personal independence register)
 Score-band note: individuo dropped; at IDV 51 the bag reads individual agency within social context, not individual primacy
+Bag-quality 2026-05-14 note: autonomía replaced by independencia (autonomía was in country denylist); the swap improved derived IDV by 3 points (47 -> 50) because independencia has stronger firing in piece_history Yearbook
 ```
 
 ### IDV low
@@ -145,6 +182,7 @@ Score-band note: score 86 requires affect-register words alongside structural wo
   burocracia retained as lived-experience word at everyday register
 Register spread: legal/bureaucratic 3, procedural 2, affect/security 3, everyday 2
 Persona-anchor words: burocracia (position_language and position files -- obstacle register); garantía (position -- relationship-as-guarantee register)
+Bag-quality 2026-05-14 note: planificación replaced by método (planificación was in country denylist); previsión retained here as anxiety-anticipation register (resolves the cross-bag collision with LTO-high, which now uses proyección)
 ```
 
 ### UAI low
@@ -157,12 +195,13 @@ Declared score: 86
 
 Multi-word entries: none
 Cross-country root flags: none
-Root-proximity flags: improvisación/espontaneidad share spontaneity-cluster; retained
+Root-proximity flags: improvisación/naturalidad share spontaneity-cluster; retained
   improvisación = structural improvisation, method
-  espontaneidad = behavioral spontaneity
+  naturalidad = behavioral ease-without-rules
 apertura register note: confirmed UAI-low in Spanish cultural prose (apertura democrática, apertura al cambio); not generic positivity word
 Register spread: behavioral 4, attitudinal 4, everyday 2
 Persona-anchor words: none
+Bag-quality 2026-05-14 note: three denylisted UAI-low words swapped -- espontaneidad → naturalidad, informalidad → desenfado, flexibilidad → versatilidad. Low count was already appropriate for UAI=86 declared; swaps preserve the low count without firing new content.
 ```
 
 ### MAS high
@@ -220,6 +259,7 @@ planificación drop note: within-country collision with UAI-high; planning-as-co
 formación replacement: development investment over time; unambiguous LTO-high; no UAI reading
 Register spread: economic 4, developmental 3, temporal 3
 Persona-anchor words: none
+Bag-quality 2026-05-14 note: previsión replaced by proyección (resolves the cross-bag collision with UAI-high which retains previsión as anxiety-anticipation register). proyección reads forward-projection without anxiety; clean LTO-high.
 ```
 
 ### LTO low
@@ -238,9 +278,9 @@ Root-proximity flags: orgullo/honor share reputational-register; retained
 tradición placement: LTO-low confirmed per skill gotcha 1 (tradition is LTO-low, not LTO-high)
 pronto drop note: adverb reading dominates in cultural prose; replaced by memoria
 memoria placement: past-anchoring without future investment; tradition-facing; LTO-low register
-celebración placement confirmed: collective ritual register (LTO-low) dominates over gratification (IND-high); retained
 Register spread: social-cultural 5, historical 3, everyday 2
 Persona-anchor words: honor (piece file -- Conquista register); tradición (position file)
+Bag-quality 2026-05-14 note: two denylisted LTO-low words swapped -- fiesta → rito, celebración → ceremonia. The ritual register is preserved (both rito and ceremonia carry collective-traditional weight); the denylist hit is cleared.
 ```
 
 ### IND high
@@ -293,3 +333,8 @@ Persona-anchor words: decoro (position file -- dignidad register); deber (proces
 - [ ] juerga: confirm register is culturally marked IND-high without being too colloquial for cultural file prose
 - [ ] apertura: confirm UAI-low reading dominates in cultural prose over generic positivity reading
 - [ ] obediencia: confirm PDI-high reading (deference to persons) dominates over UAI-high reading (compliance with rules) in Spanish organizational prose
+- [ ] rito vs ceremonia (post 2026-05-14): confirm both are recognized as LTO-low traditional-ritual register in contemporary Spanish, not interchangeable noise; if interchangeable, drop one and find a different LTO-low word
+- [ ] desenfado: confirm UAI-low reading (casual ease) is the dominant register in Spanish prose, not specifically literary
+- [ ] versatilidad: confirm UAI-low reading (capable-of-multiple-modes) over a broader read; if too broad, replace with adaptabilidad (denylisted? no -- adaptación is the existing bag word but versatilidad is sufficiently distinct)
+- [ ] método: confirm UAI-high reading dominates in Spanish cultural prose; if it reads as neutral-procedural without affect, the score-band-86 register may need a more affect-laden replacement (e.g., minuciosidad)
+- [ ] independencia: confirm IDV-high reading dominates over the political-territorial reading in Spanish prose (the 2017 Catalan referendum context could activate the political register); if the political reading dominates in given files, the IDV signal may need rebalancing
