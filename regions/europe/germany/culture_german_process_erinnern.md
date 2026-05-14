@@ -7,7 +7,7 @@
 ## Initiated by
 Der [Deutsche](culture_german_position.md) betritt einen Raum.
 Jeder Raum.
-Die [deutsche Geschichte](culture_german_history_deutschland.md) ist bereits darin: als Pflicht zur Disziplin.
+Die [deutsche Geschichte](culture_german_piece_history.md) ist bereits darin: als Pflicht zur Disziplin.
 Nicht als Text.
 Als Bedingung des Verantwortungsgefühls.
 Nicht spontan: als systematisches Werk mit Zurückhaltung.
