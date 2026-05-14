@@ -16,8 +16,8 @@ name: pr-gate
 # tree hash of HEAD. That gate was dropped because API-driven PR pushes
 # (via the GitHub MCP / web UI) cannot run the local pre-commit hook to
 # refresh the stamp, which created persistent friction. The remaining
-# protection is the L0 - Validation stamp gate in validate.yml (file
-# existence check, regions-only) plus every actual validator job in
+# protection is the cultures - Validation stamp gate in validate.yml
+# (file existence check, regions-only) plus every actual validator job in
 # validate.yml. Branch protection still requires those checks before merge.
 
 on:
@@ -25,7 +25,7 @@ on:
 
 jobs:
   base-branch-check:
-    name: PR gate - Allowed base for head
+    name: pr-gate - Allowed base for head
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -39,7 +39,7 @@ jobs:
             "${{ github.base_ref }}"
 
   branch-scope-check:
-    name: PR gate - Diff within branch scope
+    name: pr-gate - Diff within branch scope
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
