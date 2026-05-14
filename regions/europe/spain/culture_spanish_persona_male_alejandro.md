@@ -28,13 +28,10 @@ Tiene amigos en seis salas. En ninguna está la suya.
 Cuando va a casa de sus padres, oye el acento que tuvo de niño y le suena de otro.
 
 ## Tell
-Cuando le preguntan qué piensa, pregunta primero para qué contexto necesitan la respuesta.
+Cuando le preguntan qué piensa, pregunta primero para qué contexto necesitan la respuesta, y elige entonces qué versión de él mismo va a hablar.
 
 ---
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+*hofstede: aggregate in [README.md](README.md).*
 *Type: Composite*
 *khai: persona*
-
-*culture_spanish_persona_male_alejandro.md - 13.05.2026*
-
-v0.2.0 - KAI Worlds
+*2026-05-14 | KAI HACKS AI | v0.2.1 | CC-BY-NC-4.0*
