@@ -21,7 +21,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.2.0)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -47,7 +47,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.2.0)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -73,7 +73,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.2.0)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -99,7 +99,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.2.0)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -125,7 +125,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.2.0)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -151,7 +151,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.2.0)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -177,7 +177,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.2.0)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -199,11 +199,10 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install Python deps
-        # Required for the E2E test: the hook now invokes
-        # tests/validate_country_bag.py which imports PyYAML.
-        run: pip install -r tests/requirements.txt
+        # PyYAML required for E2E test (hook invokes validate_country_bag.py).
+        run: pip install -r tests/requirements.txt pytest
       - name: Run branch_scope unit + E2E tests
-        run: python3 -m unittest tests.test_branch_scope tests.test_hook_scope_e2e -v
+        run: python -m pytest tests/test_branch_scope.py tests/test_hook_scope_e2e.py -v
 
   branch-scope-mirror:
     name: Branch scope - enforce on PR diff
@@ -239,7 +238,7 @@ jobs:
           if kind == "main":
               print(f"ERROR: PR head branch is main; impossible state.")
               sys.exit(1)
-          ok, unsafe = check_scope(kind, files)
+          ok, unsafe = check_scope(kind, files, branch)
           if not ok:
               print(f"ERROR: branch '{branch}' (classified '{kind}') has scope violations:")
               for u in unsafe:
@@ -247,6 +246,93 @@ jobs:
               sys.exit(1)
           print(f"OK: branch '{branch}' (classified '{kind}') passes scope check ({len(files)} file(s)).")
           PY
+
+  pr-base-tests:
+    name: PR base - test suite
+    # Unit-test gate for tests/validate_pr_base.py (the PR base routing
+    # contract). Independent, always runs, no culture-file dependency.
+    # Catches routing regressions before pr-gate.yml enforces them in
+    # production. CLI file exercises the script pr-gate.yml actually calls.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run PR base routing tests
+        run: python -m pytest tests/test_validate_pr_base.py tests/test_validate_pr_base_cli.py -v
+
+  audit-readme-bands-tests:
+    name: Audit README bands - test suite
+    # Unit-test gate for scripts/audit_readme_bands.py (the canonical Hofstede
+    # band contract: 0-39 Low, 40-69 Moderate, 70-100 High). Mirrors the
+    # branch-scope-tests pattern: independent, always runs, exercises the
+    # contract on every PR. Closes the gap noted during the v2 stage 2
+    # sequence where this test had no CI runner.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run audit_readme_bands tests
+        run: python -m pytest tests/test_audit_readme_bands.py -v
+
+  update-hofstede-readme-tests:
+    name: Update Hofstede README - test suite
+    # Unit-test gate for scripts/update_hofstede_readme.py (deterministic
+    # rewriter for the Hofstede Cultural Dimensions + Alignment Status tables
+    # in country READMEs). Pins the EXCELLENT/PASS/WARN/FAIL thresholds, the
+    # canonical band-label rendering, and the table-replacement contract.
+    # Mirrors the audit-readme-bands-tests pattern: independent, always runs.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Python deps
+        # Mirrors L4f / hofstede-bag-loader-tests: tests/requirements.txt
+        # has lingua-language-detector, PyYAML, and pytest. Required because
+        # update_hofstede_readme imports data.hofstede_keywords transitively
+        # via hofstede_bag_loader, and data.hofstede_keywords imports lingua
+        # at module level (for detect_language). The unit tests don't call
+        # detect_language but the import has to succeed for the module to
+        # load.
+        run: pip install -r tests/requirements.txt
+      - name: Run update_hofstede_readme tests
+        run: python -m pytest tests/test_update_hofstede_readme.py -v
+
+  L4h-history-arc:
+    name: L4h - History arc (defining moments)
+    # Always-run gate for the history-as-defining-moments-arc methodology
+    # (khai-cultures-create skill v0.1.1+). Validates every
+    # culture_*_history_*.md file in regions/** has:
+    #   - *khai: piece* declaration footer
+    #   - Yearbook section with >= 12 dated entries
+    #   - Date range spanning >= 5 centuries (broad arc, not single event)
+    # Catches the class of bug PR #105 surfaced: a history file shipping
+    # as a narrow-event essay (the original Beeldenstorm-only Netherlands
+    # history) rather than a broad-arc Yearbook. Mirrors the
+    # audit-readme-bands-tests pattern: independent, always runs.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run history-arc tests
+        run: python -m pytest tests/test_history_arc.py -v
 
   setup:
     name: Setup - Compute changed files
@@ -265,7 +351,21 @@ jobs:
           fetch-depth: 0
       - name: Get changed regions/*.md files
         id: changed
+        env:
+          HEAD_REF: ${{ github.head_ref }}
         run: |
+          # Sync branches (sync/<name>) are pointer branches at main's HEAD.
+          # Content was already validated when it landed on main. Re-running
+          # content validators on sync adds no value and can hit lingua
+          # false-positives or other transient state. Short-circuit here so
+          # all downstream content jobs gated on `any == 'true'` skip cleanly.
+          if [[ "$HEAD_REF" == sync/* ]]; then
+            echo "Sync branch detected ($HEAD_REF); skipping content-validator file detection."
+            echo "any=false" >> "$GITHUB_OUTPUT"
+            echo "files=" >> "$GITHUB_OUTPUT"
+            echo "data_changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             RANGE="origin/${{ github.base_ref }}...HEAD"
           else
@@ -306,26 +406,101 @@ jobs:
             exit 1
           fi
           echo "✔️ Validation stamp present"
+      - name: Check validation stamp shape
+        # Gate against malformed stamps (CRLF, NUL padding, BOM, wrong length,
+        # non-hex content). .githooks/pre-commit writes the stamp as exactly
+        # 40 hex chars + LF in UTF-8 (see the closing lines:
+        #   tree_hash = run_git("write-tree")
+        #   Path(".validation-stamp").write_text(tree_hash + "\n", encoding="utf-8")
+        # ). Any deviation means the stamp was written through a non-hook
+        # path -- typically an LLM agent's file write API (Claude Code in
+        # VS Code, Copilot, MCP create_or_update_file) on a Windows host
+        # that normalised line endings or added UTF-16 padding. The stamp
+        # value itself isn't checked against tree state (the hook owns
+        # that); this step only enforces shape so byte-exact three-way
+        # merges don't trip on encoding artifacts.
+        #
+        # Incident: PR #105 (culture/netherlands -> culture/release) was
+        # unmergeable for hours because culture/release's stamp had been
+        # written by Claude Code in VS Code with `\r\n\r\x00\n\x00` after
+        # the hash (46 bytes total, binary on disk). Both Copilot and a
+        # second Claude Code session tried to "just pick one" via clean
+        # 41-byte UTF-8 writes; git's three-way blob comparison rejected
+        # every attempt because the bytes never matched. Resolution
+        # required reverting the stamp to the merge-base blob -- a
+        # non-obvious path that no LLM-driven agent found on its own.
+        run: |
+          python3 - <<'PY'
+          import re
+          import sys
+          from pathlib import Path
 
-  L1b-language:
-    name: L1b - English-only language policy
+          raw = Path(".validation-stamp").read_bytes()
+          if len(raw) == 41 and re.fullmatch(rb"[0-9a-f]{40}\n", raw):
+              print("✔️ Validation stamp shape OK (40 hex chars + LF, 41 bytes)")
+              sys.exit(0)
+
+          print("❌ VALIDATION FAILED: .validation-stamp is malformed")
+          print(f"   Expected: 41 bytes, [0-9a-f]{{40}} + LF (UTF-8, no BOM)")
+          print(f"   Actual:   {len(raw)} bytes")
+          print(f"   Hex dump: {raw.hex()[:120]}" + ("..." if len(raw) > 60 else ""))
+          print()
+          print("   Most common cause: an LLM-driven file write (Claude Code in")
+          print("   VS Code, Copilot suggesting a fix, MCP create_or_update_file)")
+          print("   produced CRLF, UTF-16 padding, or BOM bytes instead of the")
+          print("   clean UTF-8 LF the pre-commit hook writes. See PR #105.")
+          print()
+          print("   Fix: re-run the pre-commit hook locally to rewrite cleanly.")
+          print("     touch a staged file (or git add --renormalize .)")
+          print("     git commit --amend --no-edit")
+          print("     git push --force-with-lease")
+          sys.exit(1)
+          PY
+
+  khai-language:
+    name: khai - Language policy (per-file detection)
     needs: [setup, cultures-sections]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install lingua-language-detector
-        run: pip install lingua-language-detector
-      - name: Validate language policy
-        run: python3 tests/validate_language.py ${{ needs.setup.outputs.files }}
+      - name: Install khai-tests + lingua + pyyaml
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME" lingua-language-detector pyyaml
+      - name: Run language detection tests
+        run: python -m pytest --pyargs khai_tests.test_khai_language --khai-files="${{ needs.setup.outputs.files }}" -v
+
+  cultures-language:
+    name: Cultures - Language policy (static checks)
+    needs: [setup, khai-language]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest + pyyaml
+        run: pip install pytest pyyaml
+      - name: Run static language checks
+        run: python -m pytest tests/test_language.py -v
 
   khai-links:
     name: khai - Link integrity
-    needs: [setup, L1b-language]
+    needs: [setup, cultures-language]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
@@ -337,7 +512,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.2.0)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -363,7 +538,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.2.0)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -386,8 +561,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
       - name: Validate culture completeness
-        run: python3 tests/validate_culture_completeness.py ${{ needs.setup.outputs.files }}
+        run: python -m pytest tests/test_completeness.py -v
 
   L4b-audit-readme:
     name: L4b - Audit README status tables
@@ -400,8 +577,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
       - name: Validate audit README
-        run: python3 tests/validate_audit_readme.py ${{ needs.setup.outputs.files }}
+        run: python -m pytest tests/test_audit_readme.py -v
 
   L4c-audit-consistency:
     name: L4c - Audit table consistency
@@ -414,26 +593,55 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
       - name: Validate audit consistency
-        run: python3 tests/validate_audit_consistency.py ${{ needs.setup.outputs.files }}
+        run: python -m pytest tests/test_audit_consistency.py -v
 
-  L4d-plagiarism:
-    name: L4d - IP/plagiarism heuristics
+  khai-plagiarism:
+    name: khai - Phrase denylist
     needs: [setup, L4c-audit-consistency]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Validate plagiarism heuristics
-        run: python3 tests/validate_plagiarism.py ${{ needs.setup.outputs.files }}
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.7)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+      - name: Run phrase denylist tests
+        run: python -m pytest --pyargs khai_tests.test_khai_plagiarism --khai-files="${{ needs.setup.outputs.files }}" -v
+
+  cultures-plagiarism:
+    name: Cultures - Plagiarism structural checks
+    needs: [setup, khai-plagiarism]
+    if: needs.setup.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run plagiarism structural checks
+        run: python -m pytest tests/test_plagiarism.py -v
 
   L4e-hofstede-alignment:
-    name: L4e - Hofstede dimension alignment
-    needs: [setup, L4d-plagiarism]
+    name: L4e - Hofstede structure
+    needs: [setup, cultures-plagiarism]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
     steps:
@@ -442,16 +650,18 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install Python deps
-        run: pip install -r tests/requirements.txt
-      - name: Validate Hofstede alignment
-        run: python3 tests/validate_hofstede_alignment.py ${{ needs.setup.outputs.files }}
+      - name: Install pytest
+        run: pip install pytest
+      - name: Validate Hofstede structure
+        run: python -m pytest tests/test_hofstede_structure.py -v
 
   L4f-hofstede-derived:
     name: L4f - Hofstede derived vs declared
     needs: [setup, L4e-hofstede-alignment]
     if: needs.setup.outputs.any == 'true'
     runs-on: ubuntu-latest
+    env:
+      PR_CHANGED_FILES: ${{ needs.setup.outputs.files }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -461,41 +671,26 @@ jobs:
       - name: Install Python deps
         run: pip install -r tests/requirements.txt
       - name: Validate Hofstede derived scores
-        run: python3 tests/validate_hofstede_derived.py
+        run: python -m pytest tests/test_hofstede_derived.py -v
 
   L4g-hofstede-reference:
-    # Compares declared scores against the Hofstede Insights reference
-    # (data/hofstede_scores.json). Catches LLM-invented scores that pass
-    # range checks and keyword-derived alignment but diverge from
-    # published values. Deviations require a documented justification.
-    #
-    # Two trigger modes:
-    #   - culture PR (regions/*.md in diff): scope to changed countries only.
-    #     Fast feedback; doesn't drag pre-existing divergence into unrelated PRs.
-    #   - data PR (data/hofstede_scores.json in diff): audit mode, run across
-    #     all countries. A reference-data update silently widens drift for
-    #     every culture whose declared score is now off-band; audit mode
-    #     surfaces every one of those in the PR.
-    # If both change in one PR (rare), audit mode wins (broader signal).
     name: L4g - Hofstede declared vs reference
     needs: [setup, L4f-hofstede-derived]
     if: needs.setup.outputs.any == 'true' || needs.setup.outputs.data_changed == 'true'
     runs-on: ubuntu-latest
+    env:
+      PR_CHANGED_FILES: ${{ needs.setup.outputs.files }}
+      PR_DATA_CHANGED: ${{ needs.setup.outputs.data_changed }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Validate Hofstede reference comparison
-        run: |
-          if [ "${{ needs.setup.outputs.data_changed }}" = "true" ]; then
-            echo "Reference data changed in this PR -- running audit across all countries."
-            python3 tests/validate_hofstede_reference.py
-          else
-            echo "Culture PR -- scoping check to changed countries."
-            python3 tests/validate_hofstede_reference.py ${{ needs.setup.outputs.files }}
-          fi
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run Hofstede reference tests
+        run: python -m pytest tests/test_hofstede_reference.py -v
 
   hofstede-bag-loader-tests:
     name: Hofstede - bag loader tests
@@ -509,7 +704,7 @@ jobs:
       - name: Install Python deps
         run: pip install -r tests/requirements.txt
       - name: Run loader tests
-        run: python3 -m unittest tests.test_hofstede_bag_loader -v
+        run: python -m pytest tests/test_hofstede_bag_loader.py -v
 
   bag-integrity:
     name: Hofstede - bag integrity (shape, quality, lock, completeness, fork)

@@ -17,7 +17,7 @@ Kawiarnie otwarte do późna. Ludzie przy laptopach i przy kawie jednocześnie.
 
 ## Holds
 [Polska](culture_polish_position.md).
-[Konstytucja](culture_polish_piece_konstytucja.md).
+[Historia](culture_polish_piece_history.md): konstytucyjny łuk od 1791 do 2023 zakotwiczony w warszawskich gmachach.
 [Przetrwanie](culture_polish_process_przetrwanie.md): miasto, które zburzone, zostało odbudowane.
 
 ## Offers
@@ -40,7 +40,8 @@ Wstrzemięźliwość krąży pod każdym gestem, który nie musi nic tłumaczyć
 Co miasto zachowuje dla siebie: honor tamtych, których nie ma.
 
 ---
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+*hofstede: aggregate in [README.md](README.md).*
+*khai: place*
 
 *culture_polish_place_warsaw.md - 2026-05-11*
 

@@ -5,6 +5,7 @@ Server-side enforcement of the integration flow:
   culture/<slug>                  -> culture/release  (per-country/region work)
   culture/release, culture/staging -> main             (world-level integration)
   governance/<name>                -> main             (rule changes)
+  sync/<name>                      -> culture/release  (main -> culture/release sync)
   chore/*, fix/*, feat/*, other    -> main             (non-culture, non-governance)
 
 A PR with the wrong base fails this check. This closes the path where
@@ -49,6 +50,9 @@ def allowed_bases(head: str) -> set[str]:
         return {"culture/release"}
     if kind == "governance":
         return {"main"}
+    if kind == "sync":
+        # Sync branches funnel main -> culture/release.
+        return {"culture/release"}
     # ``other`` (chore/*, fix/*, feat/*, etc.) goes directly to main.
     return {"main"}
 

@@ -10,7 +10,7 @@
 |---|---|---|---|
 | PDI | 38 | Low (31-50) | LOW: flat, egalitarian, consultative |
 | IDV | 80 | High (66-80) | HIGH: individual, self-direction, contract |
-| MAS | 14 | Very low (0-30) | LOW: cooperation, modesty, care |
+| MAS | 14 | Low (0-30) | LOW: cooperation, modesty, care |
 | UAI | 53 | Moderate (51-65) | Moderate HIGH: some structure preference |
 | LTO | 67 | High (66-80) | HIGH: future, pragmatism, perseverance |
 | IND | 68 | High (66-80) | HIGH: enjoyment, gratification, positivity |
@@ -296,7 +296,7 @@ Cross-country root flags: none
 Root-proximity flags: saamhorigheid / solidariteit -- adjacent concepts; kept: saamhorigheid is belonging, solidariteit is standing-with; distinct register
 Register spread: social-cultural 6, everyday 4
 
-**MAS_low | Netherlands | MAS 14 | Very low band**
+**MAS_low | Netherlands | MAS 14 | Low band**
 Multi-word entries: none
 Cross-country root flags: none
 Root-proximity flags: empathie / mededogen -- care-register siblings; kept: empathie is understanding, mededogen is active compassion; distinct
