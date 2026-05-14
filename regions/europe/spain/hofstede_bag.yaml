@@ -73,7 +73,7 @@ bags:
 
   IDV:
     high:
-      - autonomía
+      - independencia
       - iniciativa
       - criterio
       - decisión
@@ -103,21 +103,21 @@ bags:
       - estructura
       - previsión
       - certeza
-      - planificación
+      - método
       - burocracia
       - seguridad
       - garantía
     low:
       - improvisación
-      - espontaneidad
+      - naturalidad
       - adaptación
       - riesgo
       - apertura
       - cambio
       - intuición
-      - informalidad
+      - desenfado
       - tolerancia
-      - flexibilidad
+      - versatilidad
 
   MAS:
     high:
@@ -149,7 +149,7 @@ bags:
       - persistencia
       - continuidad
       - ahorro
-      - previsión
+      - proyección
       - futuro
       - desarrollo
       - sostenibilidad
@@ -158,14 +158,14 @@ bags:
     low:
       - presente
       - tradición
-      - fiesta
+      - rito
       - honor
       - costumbre
       - inmediatez
       - memoria
       - legado
       - orgullo
-      - celebración
+      - ceremonia
 
   IND:
     high:
