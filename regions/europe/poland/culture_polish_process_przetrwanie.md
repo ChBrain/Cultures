@@ -8,7 +8,7 @@
 [Polska](culture_polish_position.md) wchodzi w sytuację, której nie wybrała.
 Nie zawsze.
 Ale wystarczająco często, żeby to pamiętać.
-[Konstytucja](culture_polish_piece_konstytucja.md) jest już w tym pokoju: jako pamięć o tym, co kosztuje brak zasad.
+[Historia](culture_polish_piece_history.md) jest już w tym pokoju: jako pamięć o tym, co kosztuje brak zasad.
 Nie jako tekst.
 Jako warunek działania z odpowiedzialnością.
 Procedura zaczyna się bez ogłoszenia.
@@ -43,7 +43,8 @@ Dyscyplina, która przeżyła, nie pyta już o powód.
 Samorealizacja, która nie odrywa od korzeni, jest możliwa.
 
 ---
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
+*hofstede: aggregate in [README.md](README.md).*
+*khai: process*
 
 *culture_polish_process_przetrwanie.md - 2026-05-11*
 

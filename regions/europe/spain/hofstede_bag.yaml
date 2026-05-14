@@ -1,0 +1,192 @@
+# Hofstede Bag: Spain
+#
+# This file is the scoring contract for the country's Hofstede dimensions.
+# Culture files (regions/europe/spain/culture_*.md) are written to
+# carry these words organically. Each appearance of a bag word adds to the
+# dimension's score; binary scoring (each word counts once).
+#
+# Schema (Strategy v2): country / language / parent / hofstede_scores / bags.
+# Tests: tests/test_hofstede_bag_shape.py asserts all of these are present.
+
+country: spain
+language: es
+parent: null
+status: draft
+generated: 2026-05-12
+
+hofstede_scores:
+  PDI: 57
+  IDV: 51
+  UAI: 86
+  MAS: 42
+  LTO: 48
+  IND: 44
+
+# Country-specific denylist: words considered for this country's bags but
+# rejected. Combined at validation time with data/hofstede_denylist.yaml.
+# Reasons documented in hofstede_decisions.md.
+denylist:
+  - individuo
+  - calidad-de-vida
+  - armonía
+  - regla
+  - procedimiento
+  - pronto
+  - planificación
+  - moderación
+  - gozo
+  - autonomía
+  - protocolo
+  - consenso
+  - solidaridad
+  - fiesta
+  - celebración
+  - espontaneidad
+  - informalidad
+  - flexibilidad
+  - libertad
+
+bags:
+  PDI:
+    high:
+      - jerarquía
+      - cargo
+      - autoridad
+      - superior
+      - mando
+      - rango
+      - deferencia
+      - obediencia
+      - posición
+      - centralización
+    low:
+      - horizontalidad
+      - cercanía
+      - consulta
+      - igualdad
+      - participación
+      - mérito
+      - diálogo
+      - accesibilidad
+      - confianza
+      - proximidad
+
+  IDV:
+    high:
+      - independencia
+      - iniciativa
+      - criterio
+      - decisión
+      - personalidad
+      - voluntad
+      - trayectoria
+      - identidad
+      - responsabilidad
+      - preferencia
+    low:
+      - familia
+      - grupo
+      - comunidad
+      - lealtad
+      - pertenencia
+      - vínculo
+      - red
+      - clan
+      - cofradía
+      - compañerismo
+
+  UAI:
+    high:
+      - norma
+      - reglamento
+      - orden
+      - estructura
+      - previsión
+      - certeza
+      - método
+      - burocracia
+      - seguridad
+      - garantía
+    low:
+      - improvisación
+      - naturalidad
+      - adaptación
+      - riesgo
+      - apertura
+      - cambio
+      - intuición
+      - desenfado
+      - tolerancia
+      - versatilidad
+
+  MAS:
+    high:
+      - competencia
+      - logro
+      - éxito
+      - ambición
+      - rendimiento
+      - victoria
+      - resultado
+      - superioridad
+      - reconocimiento
+      - triunfo
+    low:
+      - dignidad
+      - cuidado
+      - compasión
+      - bienestar
+      - empatía
+      - equilibrio
+      - conciliación
+      - generosidad
+      - hospitalidad
+      - humanidad
+
+  LTO:
+    high:
+      - inversión
+      - persistencia
+      - continuidad
+      - ahorro
+      - proyección
+      - futuro
+      - desarrollo
+      - sostenibilidad
+      - paciencia
+      - formación
+    low:
+      - presente
+      - tradición
+      - rito
+      - honor
+      - costumbre
+      - inmediatez
+      - memoria
+      - legado
+      - orgullo
+      - ceremonia
+
+  IND:
+    high:
+      - disfrute
+      - placer
+      - goce
+      - ocio
+      - alegría
+      - juerga
+      - gratificación
+      - indulgencia
+      - diversión
+      - vitalidad
+    low:
+      - contención
+      - deber
+      - obligación
+      - sacrificio
+      - decoro
+      - sobriedad
+      - discreción
+      - templanza
+      - mesura
+      - austeridad

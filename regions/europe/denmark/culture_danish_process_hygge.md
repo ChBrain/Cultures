@@ -21,6 +21,8 @@ Med selvkontrol i at give plads til andre.
 ## Direction
 Skabe et rum hvor nærvær betyder mere end handling.
 Hvor omsorg er mulighedens betingelse.
+Umiddelbar tilstedeværelse uden langsigtet plan.
+Det øjeblikkelige bærer.
 
 ## Lever
 Tiltrækningen til sammen-være uden krav.
@@ -35,8 +37,6 @@ Men hygge er kun for dem der vælger det gennem nydelse af tilstedeværelsen.
 Fryd findes når omsorg mødes med autonomi.
 
 ---
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-
-*culture_danish_process_hygge.md - 07.05.2026*
-
-v0.1.0 - KAI Worlds
+*hofstede: aggregate in [README.md](README.md).*
+*khai: process*
+*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

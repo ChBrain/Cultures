@@ -19,7 +19,7 @@ hofstede_scores:
   IDV: 74
   UAI: 23
   MAS: 16
-  LTO: 35
+  LTO: 46
   IND: 70
 
 # Country-specific denylist: words considered for this country's bags but
@@ -77,7 +77,7 @@ bags:
       - solidaritet
       - harmoni
       - sammenhold
-      - fællesånd
+      - fælleshånd
 
   UAI:
     high:

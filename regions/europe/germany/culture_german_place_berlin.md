@@ -17,7 +17,7 @@ Das Reichstagsgebäude: Autorität sichtbar gemacht.
 Das Brandenburger Tor: Symbol der Teilung und der Versöhnung.
 Das Denkmal für die ermordeten Juden Europas, mit Sanftmut gebaut.
 Die Topographie des Terrors: Arbeit der Trauer.
-Die [deutsche Geschichte](culture_german_history_deutschland.md): hier wird sie täglich gesichert.
+Die [deutsche Geschichte](culture_german_piece_history.md): hier wird sie täglich gesichert.
 
 ## Offers
 Du kannst [Erinnern](culture_german_process_erinnern.md) praktizieren, mit Sanftmut gegenüber dir und anderen in der Trauer.

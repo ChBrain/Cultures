@@ -15,11 +15,14 @@ Gezag bestaat, maar het is onderhandelbaar.
 Hiërarchie is overhead. Niemand betaalt ervoor.
 Gelijkwaardig spreken. Iedereen spreekt. Iedereen telt. Elke keuze weegt gelijk.
 Medezeggenschap is geen bureaucratie. Het is de structuur.
+Procedure en beleid zijn transparant.
+Experimenten met wat werkt. Traditie waar die houdt. Langetermijn-denken in elk overleg.
 Protocol alleen als de dijk het vraagt.
-Voorzichtigheid en zorg zijn ook gezag, niet overhead.
+Voorzichtigheid en zorg zijn ook gezag, niet overhead. Empathie en mededogen voor wie het water bedreigt.
+Groep voor groep, maar één dijk voor iedereen. Solidariteit door noodzaak.
 
 [Het Poldermodel](culture_dutch_piece_poldermodel.md).
-Niet als methode. Als conditie van bestaan.
+Niet als methode. Als conditie van bestaan. Korte termijn: overleven vandaag. Lange termijn: nog steeds hier morgen.
 Het water onderhandelt niet. De dijk vraagt iedereen.
 Consensus hier werkt want het water treft iedereen gelijk.
 
@@ -30,7 +33,8 @@ Pragmatisch, niet principieel. Zelfredzaamheid: de onuitgesproken verwachting va
 Individuen kunnen leven naar eigen voorkeur zolang de dijk blijft staan.
 
 ## Orders
-Neem je keuzes zelf.
+Neem je eigen keuzes in zelfstandigheid.
+Eerbied voor expertise.
 
 ## Loses
 De aanname van neutraliteit.
@@ -45,8 +49,6 @@ Draagt belasting zonder vreugde.
 Belasting. Gaat door.
 
 ---
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-
-*culture_dutch_position.md - 08.05.2026*
-
-v0.1.0 - KAI Cultures
+*hofstede: aggregate in [README.md](README.md).*
+*khai: position*
+*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

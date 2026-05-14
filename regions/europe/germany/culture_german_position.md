@@ -20,7 +20,7 @@ Aber auch: Entspannung. Freizeit ist heilig. Der Genuss ist erlaubt, zu Hause, n
 Lebensfreude, nicht ständig, aber echt wenn sie kommt.
 Gelassenheit, wenn die Pflicht ruht.
 
-Die [deutsche Geschichte](culture_german_history_deutschland.md).
+Die [deutsche Geschichte](culture_german_piece_history.md).
 Nicht als Befehl: als Rahmen der Pflicht, mit Prinzipien.
 Vertrag über Handeln, mit Selbstkontrolle.
 Lehren gelten, nicht zum Brechen gedacht.
