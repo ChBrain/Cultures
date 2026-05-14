@@ -30,7 +30,8 @@ El peso mexicano, el peso colombiano, el peso argentino: la misma moneda heredad
 La Real Academia Española en Madrid: fachada del siglo XVIII, puerta siempre cerrada al turista.
 
 ## Yearbook
-711: Los moros entran por Gibraltar. España aprende durante ocho siglos lo que es ser conquistada.
+Cada año en español aquí lleva una España que todavía explica su propia decisión a sí misma y a sus antiguas colonias americanas.
+711: Los moros entran por Gibraltar. España aprende, en su idioma español y bajo otra autoridad, durante ocho siglos lo que es ser conquistada por extranjeros.
 1492: Fin de la Reconquista. Granada cae. Colón sale. El mismo año, dos hechos que definen el siglo.
 1494: Tratado de Tordesillas. España y Portugal dividen el mundo entre ellos con una línea.
 1519: Hernán Cortés desembarca en México con quinientos hombres. Tres años después, el Imperio Azteca no existe.

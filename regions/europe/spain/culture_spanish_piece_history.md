@@ -38,8 +38,9 @@ La estatua de Federico García Lorca en la Plaza de Santa Ana.
 Las urnas guardadas en cajas en Cataluña, 1 de octubre de 2017.
 
 ## Yearbook
-218 a.C.: Roma desembarca en Empúries. Comienza la conquista de Hispania. Doscientos años para someter la península.
-711: Las tropas omeyas cruzan el Estrecho. Al-Ándalus se establece. España aprende durante ocho siglos lo que es ser conquistada.
+Cada año en español aquí pesa sobre el siguiente y obliga a España a recordar su propio nombre en el siglo que viene después.
+218 a.C.: Roma desembarca en Empúries. Comienza la conquista de Hispania. Doscientos años para someter la península ibérica entera.
+711: Las tropas omeyas cruzan el Estrecho. Al-Ándalus se establece. España aprende, en su idioma español y bajo dominio extranjero, durante ocho siglos lo que es ser conquistada por otra autoridad.
 1085: Alfonso VI toma Toledo. La Escuela de Traductores reúne a cristianos, judíos y musulmanes en el mismo trabajo.
 1212: Las Navas de Tolosa. Las tropas castellanas, leonesas, navarras y aragonesas vencen al califato almohade. La Reconquista se acelera.
 1469: Isabel de Castilla y Fernando de Aragón se casan en Valladolid. Dos coronas se unen sin fundirse.
@@ -49,8 +50,8 @@ Las urnas guardadas en cajas en Cataluña, 1 de octubre de 2017.
 1898: Cuba, Puerto Rico, Filipinas. España pierde sus últimas colonias. El 98 entra en el idioma como herida y como generación literaria.
 1931: Segunda República. Sufragio femenino. Constitución laica. Igualdad y participación entran en el texto. Cinco años después, golpe militar.
 1936-1939: Guerra Civil. Trescientos mil muertos. Medio millón al exilio. Familias partidas por el medio. La empatía hacia el otro bando se hereda como deuda no saldada.
-1939-1975: Dictadura de Franco. Treinta y seis años de un solo idioma oficial, una sola memoria oficial.
-1975: Franco muere en La Paz. El régimen queda sin centro.
+1939-1975: Dictadura de Franco. Treinta y seis años de un solo idioma español oficial impuesto, una sola memoria oficial sostenida por el Estado.
+1975: Franco muere en La Paz. El régimen español queda sin centro y la dictadura no encuentra heredero.
 1978: Constitución española. Aprobada en referéndum. Pacta lo que no se podía pactar. Diálogo en el lugar de la trinchera. Tolerancia escrita en el papel.
 1981: 23 de febrero. Tejero entra en el Congreso con un tricornio y una pistola. El golpe fracasa en la misma noche.
 1986: España entra en la Comunidad Económica Europea. Cinco siglos mirando hacia América, ahora mirando hacia Bruselas. Desarrollo, inversión, futuro escritos en el mismo acuerdo.
