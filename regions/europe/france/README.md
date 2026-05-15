@@ -61,16 +61,16 @@ Last audit: 2026-05-15
 
 ## Audit Status
 
-| File | Type | Status |
-|---|---|---|
-| culture_french_position_language.md | language | Draft |
-| culture_french_piece_history.md | history | Draft |
-| culture_french_position.md | position | Draft |
-| culture_french_process_debattre.md | process | Draft |
-| culture_french_piece_laicite.md | piece | Draft |
-| culture_french_place_paris.md | place | Draft |
-| culture_french_persona_male_luc.md | male | Draft |
-| culture_french_persona_female_amina.md | female | Draft |
+| File | # | Type | Status |
+|---|---|---|---|
+| culture_french_position_language.md | 1 | language | Draft |
+| culture_french_piece_history.md | 2 | history | Draft |
+| culture_french_position.md | 3 | position | Draft |
+| culture_french_process_debattre.md | 4 | process | Draft |
+| culture_french_piece_laicite.md | 5 | piece | Draft |
+| culture_french_place_paris.md | 6 | place | Draft |
+| culture_french_persona_male_luc.md | 7 | male | Draft |
+| culture_french_persona_female_amina.md | 8 | female | Draft |
 
 ---
 

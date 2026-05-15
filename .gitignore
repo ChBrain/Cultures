@@ -4,6 +4,9 @@ __pycache__/
 # Claude Code session worktrees (see .claude/CLAUDE.md)
 .claude/worktrees/
 
+# Global agent worktrees location
+.worktrees/
+
 # Gemini CLI runtime artifacts; keep only the committed brief + settings
 .gemini/*
 !.gemini/GEMINI.md
