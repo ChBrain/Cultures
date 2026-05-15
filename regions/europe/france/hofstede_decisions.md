@@ -29,6 +29,14 @@ No previous bag -- fresh bootstrap.
 | contrôle | UAI-high | Rule-enforcement register | IND-low: removed |
 | effort | LTO-high | Sustained-investment register | IND-low: removed |
 | obligation | UAI-high | Compulsory-rule register | IND-low: removed |
+| norme | UAI-high | Rule-standard cluster kept without duplication | UAI-high: replaced with règle |
+| informel | UAI-low | Register became too broad/sector-specific in review | UAI-low: replaced with approximation |
+| consensus | MAS-low | Kept deliberative polarity with nominal form | MAS-low: replaced with négociation |
+| harmonie | MAS-low | Reduced synonym overlap in care cluster | MAS-low: replaced with désaccord |
+| conciliation | MAS-low | Preserved via adjacent compromise lexeme | MAS-low: replaced with concession |
+| victoire | MAS-high | Agentive emphasis preferred in achievement cluster | MAS-high: replaced with vainqueur |
+| anticipation | LTO-high | Transmission-timescale emphasis preferred | LTO-high: replaced with génération |
+| réserve | IND-low | Restraint cluster redundancy cleanup | IND-low: replaced with ascèse |
 
 ---
 
@@ -76,33 +84,33 @@ Persona-anchor words: none
 
 **Country: France | Dimension: MAS | Polarity: LOW | Declared score: 43**
 Multi-word entries: none
-Cross-country root flags: consensus vs Dutch. Documented in cross-language flags.
-Register spread: legal/bureaucratic 0, procedural 2 (conciliation, compromis), social-cultural 4 (consensus, bienveillance, empathie, harmonie), everyday 4 (modestie, soin, équilibre, dialogue)
+Cross-country root flags: none
+Register spread: legal/bureaucratic 0, procedural 2 (négociation, compromis), social-cultural 4 (désaccord, bienveillance, empathie, concession), everyday 4 (modestie, soin, équilibre, dialogue)
 Persona-anchor words: none
 
 **Country: France | Dimension: MAS | Polarity: HIGH | Declared score: 43**
 Multi-word entries: none
 Cross-country root flags: excellence strongly associated with French grandes écoles. Institutionally anchored. Valid.
-Register spread: legal/bureaucratic 0, procedural 0, social-cultural 4 (réussite, excellence, victoire, accomplissement), everyday 6 (ambition, performance, domination, défi, succès, compétition)
+Register spread: legal/bureaucratic 0, procedural 0, social-cultural 4 (réussite, excellence, vainqueur, accomplissement), everyday 6 (ambition, performance, domination, défi, succès, compétition)
 Persona-anchor words: none
 
 **Country: France | Dimension: UAI | Polarity: HIGH | Declared score: 86**
 Multi-word entries: none
 Cross-country root flags: règlement/German Regelwerk. Same dimension same polarity. Consistent.
-Root-proximity flags: norme/conformité/règlement share rule-cluster. Kept: norme is the standard; règlement is the codified rule; conformité is the act of following it.
-Register spread: legal/bureaucratic 4 (règlement, norme, obligation, conformité), procedural 3 (procédure, formalité, cadre), social-cultural 2 (certitude, précision), everyday 1 (contrôle)
+Root-proximity flags: règle/conformité/règlement share rule-cluster. Kept: règle is the explicit rule unit; règlement is the codified rule-set; conformité is the act of following it.
+Register spread: legal/bureaucratic 4 (règlement, règle, obligation, conformité), procedural 3 (procédure, formalité, cadre), social-cultural 2 (certitude, précision), everyday 1 (contrôle)
 Persona-anchor words: none
 
 **Country: France | Dimension: UAI | Polarity: LOW | Declared score: 86**
 Multi-word entries: none
 Cross-country root flags: débrouillardise -- culturally specific French term for resourceful improvisation (Système D). Uniquely French. Strong cultural marker.
-Register spread: legal/bureaucratic 0, procedural 2 (adaptation, pragmatisme), social-cultural 4 (improvisation, spontanéité, débrouillardise, créativité), everyday 4 (flexibilité, expérimentation, souplesse, informel)
+Register spread: legal/bureaucratic 0, procedural 2 (adaptation, pragmatisme), social-cultural 4 (improvisation, spontanéité, débrouillardise, créativité), everyday 4 (flexibilité, expérimentation, souplesse, approximation)
 Persona-anchor words: none
 
 **Country: France | Dimension: LTO | Polarity: HIGH | Declared score: 63**
 Multi-word entries: none
 Root-proximity flags: continuité/pérennité/durabilité share permanence cluster. Kept: continuité is unbroken sequence; pérennité is permanence of institution; durabilité is sustainability over time.
-Register spread: legal/bureaucratic 1 (investissement), procedural 2 (projet, anticipation), social-cultural 4 (continuité, transmission, pérennité, avenir), everyday 3 (patience, persévérance, durabilité)
+Register spread: legal/bureaucratic 1 (investissement), procedural 2 (projet, génération), social-cultural 4 (continuité, transmission, pérennité, avenir), everyday 3 (patience, persévérance, durabilité)
 Persona-anchor words: none
 
 **Country: France | Dimension: LTO | Polarity: LOW | Declared score: 63**
@@ -113,8 +121,8 @@ Persona-anchor words: none
 
 **Country: France | Dimension: IND | Polarity: LOW | Declared score: 48**
 Multi-word entries: none
-Root-proximity flags: retenue/réserve/discrétion share restraint cluster. Kept: retenue is held-back comportment; réserve is social distance-keeping; discrétion is information-withholding.
-Register spread: legal/bureaucratic 0, procedural 1 (devoir), social-cultural 5 (retenue, pudeur, discrétion, abnégation, sacrifice), everyday 4 (sobriété, modération, réserve, maîtrise)
+Root-proximity flags: retenue/ascèse/discrétion share restraint cluster. Kept: retenue is held-back comportment; ascèse is deliberate self-limitation; discrétion is information-withholding.
+Register spread: legal/bureaucratic 0, procedural 1 (devoir), social-cultural 5 (retenue, pudeur, discrétion, abnégation, sacrifice), everyday 4 (sobriété, modération, ascèse, maîtrise)
 Persona-anchor words: none
 
 **Country: France | Dimension: IND | Polarity: HIGH | Declared score: 48**
@@ -129,7 +137,7 @@ Persona-anchor words: none
 
 - débrouillardise: register is colloquial-cultural. Verify it appears in formal cultural prose, not only in journalism/everyday speech.
 - pudeur: verify breadth in 2020+ prose; contemporary usage may be narrower (body modesty specifically).
-- informel: verify that "informel" appears as standalone adjective in cultural prose rather than only in "secteur informel."
+- approximation: verify polarity remains UAI-low in native usage and does not collapse into UAI-high error framing.
 - fête nationale: verify it functions as a single lexical unit in French cultural prose.
 - abnégation: formal register. Verify natural appearance in contemporary French cultural discourse.
 - préséance: formal/ceremonial register. Verify resonance beyond strict protocol contexts.
