@@ -18,6 +18,8 @@ Treat these as the source of truth; do not restate them, link to them:
   governance vs safe metadata, splitting work.
 - [`.worktree/WORKTREES.md`](../.worktree/WORKTREES.md) - local worktree lifecycle,
   naming, and cleanup workflow.
+- [`docs/LIFECYCLE.md`](../docs/LIFECYCLE.md) - shared execution chapters
+   (plan, code, build, test, release, deploy, operate, monitor).
 - [`ARCHITECTURE.md`](../ARCHITECTURE.md) - file standards (encoding, footer,
   filenames), the v2 8-kind schema with khai mapping, sourcing and IP rules.
 - [`METHODOLOGY.md`](../METHODOLOGY.md) - Hofstede keyword-density model and
