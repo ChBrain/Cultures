@@ -8,6 +8,7 @@ on:
 
 jobs:
   sync:
+    if: ${{ !contains(github.event.head_commit.message, 'from ChBrain/sync/') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
