@@ -4,7 +4,7 @@ Reads Name Sources sections from every country REFERENCES.md,
 diffs against data/names/name_register.json, and writes an updated register.
 
 Called by .github/workflows/sync_name_register.yml after a culture/* branch
-merges to main. Never run manually on a culture branch — that would violate
+merges to main. Never run manually on a culture branch -- that would violate
 branch scope rules. The workflow opens a governance/* PR with the result.
 
 Usage (called by the Action, or dry-run locally):
@@ -12,7 +12,7 @@ Usage (called by the Action, or dry-run locally):
 
 Exit codes:
     0  register written (or unchanged in dry-run)
-    1  parse error in a REFERENCES.md — aborts without writing
+    1  parse error in a REFERENCES.md -- aborts without writing
 """
 from __future__ import annotations
 
@@ -34,7 +34,7 @@ _META_RE = re.compile(
 )
 # Markdown table row: | Name | Gender | File | ... |
 _ROW_RE = re.compile(
-    r"^\|\s*(?P<name>[A-Za-zÀ-ÖØ-öø-ÿ]+)\s*"
+    r"^\|\s*(?P<name>[A-Za-z\u00c0-\u00d6\u00d8-\u00f6\u00f8-\u00ff]+)\s*"
     r"\|\s*(?P<gender>male|female|non-binary)\s*"
     r"\|\s*(?P<file>[^|]+?)\s*"
     r"\|.*$"
@@ -52,8 +52,15 @@ def _parse_meta(block: str) -> dict:
 
 
 def _country_path(references_path: Path) -> str:
-    """Derive the repo-relative country folder path from a REFERENCES.md path."""
-    return str(references_path.parent.relative_to(REPO_ROOT))
+    """Derive the repo-relative country folder path from a REFERENCES.md path.
+
+    Falls back to the parent directory name when the path is outside REPO_ROOT
+    (e.g. pytest tmp_path directories during unit tests).
+    """
+    try:
+        return str(references_path.parent.relative_to(REPO_ROOT))
+    except ValueError:
+        return references_path.parent.name
 
 
 def extract_entries(references_path: Path) -> list[dict]:
@@ -66,10 +73,10 @@ def extract_entries(references_path: Path) -> list[dict]:
 
     meta_match = _META_RE.search(text)
     if not meta_match:
-        return []  # No name_sources section — country not yet registered
+        return []  # No name_sources section -- country not yet registered
 
     meta = _parse_meta(meta_match.group(1))
-    country     = meta.get("country", "").strip()
+    country         = meta.get("country", "").strip()
     cultural_source = meta.get("cultural_source", "").strip()
 
     if not country:
@@ -77,7 +84,7 @@ def extract_entries(references_path: Path) -> list[dict]:
     if not cultural_source:
         raise ValueError(f"{references_path}: name_sources block missing 'cultural_source'")
 
-    # Find the Name Sources table — lines after the comment block
+    # Find the Name Sources table -- lines after the comment block
     post = text[meta_match.end():]
     entries = []
     country_folder = _country_path(references_path)
