@@ -5,8 +5,8 @@ parent: null
 status: draft
 generated: 2026-05-15
 hofstede_scores:
-  PDI: 77
-  IDV: 20
+  PDI: 80
+  IDV: 30
   MAS: 60
   UAI: 54
   LTO: 13

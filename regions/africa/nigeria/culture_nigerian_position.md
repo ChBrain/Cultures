@@ -53,7 +53,6 @@ Outside the Nigerian room, the obligation structure is invisible.
 The oga network reads as nepotism to those who do not carry it.
 The communal will reads as inefficiency to those who expect individual decision.
 The greeting-before-business reads as delay to those who have no relationship to protect.
-An egalitarian reading misses what the circle is solving.
 The circle does not explain itself. It expects to be read.
 Outside, it is not read.
 
@@ -62,7 +61,6 @@ On that loss:
 builds a new circle in the new room.
 Finds the person who can receive the message.
 Routes through relationship because the alternative is to route through a system that was not built for you and will not hold you.
-The route is adaptive to the room, not evasive.
 E go better. The circle extends.
 
 ---

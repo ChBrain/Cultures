@@ -18,6 +18,8 @@ Toward the node that holds what is needed.
 Not through procedure. Through person.
 The formal channel exists. It is used when it serves.
 When it does not serve, the circle routes around it.
+Timing remains negotiable until the right node is reached.
+The route remains flexible as the room changes.
 The oga who can open the door is found through someone who knows someone.
 Loyalty is the currency. Access is the return.
 

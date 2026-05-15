@@ -12,8 +12,8 @@ Date: 2026-05-15
 
 | Dimension | Score | Level |
 |---|---|---|
-| PDI - Power Distance | 77 | **High** |
-| IDV - Individualism | 20 | **Low** |
+| PDI - Power Distance | 80 | **High** |
+| IDV - Individualism | 30 | **Low** |
 | MAS - Masculinity | 60 | **Moderate** |
 | UAI - Uncertainty Avoidance | 54 | **Moderate** |
 | LTO - Long-Term Orientation | 13 | **Low** |
@@ -42,7 +42,7 @@ Source: Hofstede Insights
 
 **Emeka** (male, born 1971, Onitsha/Lagos): Igbo subculture. Contractor. Built through the circle. Lived through SAP and the Abacha years. The Oha na Eze runs as his default governance model. His position tips toward Igbo merit-permeable circle logic: achievement earns standing, the circle is built as well as inherited.
 
-**Funke** (female, born 1989, Ibadan/Lagos): Yoruba subculture. Lawyer. Left 2010, returned 2014. The been-to. Her position tips toward Yoruba ceremonial register: titles, greeting protocols, warmth preceding transaction. Her shadow is the gap between the person who left and the place the circle held for her.
+**Funke** (female, born 1989, Ibadan/Lagos): Yoruba subculture. Lawyer. Built in Lagos. She works with both the formal channel and the circle channel in the same move. Her shadow is that this dual access has always been available to her, so she cannot see the junior who was never handed the call path.
 
 ---
 

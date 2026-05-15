@@ -19,11 +19,11 @@ The Benin Kingdom maintained a continuous court, a continuous art tradition, and
 The Igbo republican tradition -- stateless, merit-based, governed through the Oha na Eze -- is the oldest model of the circle as governance unit on the continent.
 The Oyo Empire at its height administered a territory larger than Britain through a system of checks on royal power that had no European equivalent in the same century.
 The Sokoto Caliphate built a federated Islamic state across the north that survived British conquest by transformation, not erasure.
+The continuity of these systems still shapes the present map of authority.
 Colonialism interrupted a civilisation. It did not begin one.
 The oil years gave the state revenue without accountability and taught a generation that institutions serve those who control them, not those who built them.
-The Biafra war is the wound that explains why the circle is the primary unit of trust. The state killed its own people. The circle held.
 The 1999 return to civilian rule is the current ground. Fragile, contested, still running.
-The history trams because it has not been told in full. Telling it in full is itself a political act.
+The history carries because it has not been told in full. Telling it in full is itself a political act.
 
 ## Apparent
 Nok terracotta figures in the National Museum Lagos and Jos: seated, standing, hollow-headed, 2500 years old.

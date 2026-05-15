@@ -11,12 +11,14 @@ Danfo buses, yellow and battered, routes known by conductors who shout them into
 Bode Thomas, Allen Avenue, Victoria Island, Lekki, Ajah: each a different city inside the same one.
 The Third Mainland Bridge at 5am: headlights crossing the lagoon in both directions, the city already awake.
 Bar Beach and Elegushi: the Atlantic arriving without announcement.
+Evening vendors line the sand and the crowd stays in exuberance.
 Buka joints open at dawn, plastic chairs, pepper soup, jollof in the pot before seven.
 Generators running in every compound. NEPA has taken light. Life continues.
 Alaba market: electronics from everywhere, sold by someone who knows someone who can find anything.
 The church on Sunday: full, loud, certain. The mosque on Friday: full, quiet, certain.
 Nollywood sets in Surulere and Ikeja, cameras running, the story being told before it is finished.
 Afrobeats from every phone, every shop, every passing car.
+The night traffic on the mainland carries its own vitality.
 The ocean smell when the wind comes from the south.
 
 ## Holds
@@ -36,7 +38,6 @@ You can make money here that cannot be made anywhere else in the country.
 You can hear five languages before you reach the bus stop.
 You can eat the best jollof on the continent at a roadside buka for three hundred naira.
 You can belong to a church, a mosque, an age grade, an alumni network, a market association, all simultaneously.
-Belonging is not optional in the city; it is how the city holds you.
 You can build something here that the circle will protect.
 The city rewards the person who knows how to move through it.
 
