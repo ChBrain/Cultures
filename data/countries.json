@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "description": "Canonical country registry. Maps ISO 3166-1 alpha-2 codes to hofstede_scores.json keys, language codes, and approved name sources. Add a country here once — all systems benefit.",
+  "countries": [
+    {
+      "iso": "DE",
+      "key": "germany",
+      "name": "Germany",
+      "language": "de",
+      "name_source": "DESTATIS_DE_2023"
+    },
+    {
+      "iso": "DK",
+      "key": "denmark",
+      "name": "Denmark",
+      "language": "da",
+      "name_source": "DST_DK_2023"
+    },
+    {
+      "iso": "NL",
+      "key": "netherlands",
+      "name": "Netherlands",
+      "language": "nl",
+      "name_source": "CBS_NL_2023"
+    },
+    {
+      "iso": "PL",
+      "key": "poland",
+      "name": "Poland",
+      "language": "pl",
+      "name_source": "GUS_PL_2023"
+    },
+    {
+      "iso": "ES",
+      "key": "spain",
+      "name": "Spain",
+      "language": "es",
+      "name_source": "INE_ES_2023"
+    }
+  ]
+}

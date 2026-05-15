@@ -1,0 +1,100 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "description": "Central name register for all Cultures personas. Each name is a unique key across the entire project.",
+    "schema": "data/names/name_register.schema.json",
+    "updated": "2026-05-15"
+  },
+  "names": [
+    {
+      "name": "Christian",
+      "given": "Christian",
+      "gender": "male",
+      "country": "DE",
+      "persona_file": "regions/europe/germany/culture_german_persona_male_christian.md",
+      "cultural_source": "Destatis_DE_Vornamen_2022",
+      "added": "2026-05-15"
+    },
+    {
+      "name": "Brigitte",
+      "given": "Brigitte",
+      "gender": "female",
+      "country": "DE",
+      "persona_file": "regions/europe/germany/culture_german_persona_female_brigitte.md",
+      "cultural_source": "Destatis_DE_Vornamen_2022",
+      "added": "2026-05-15"
+    },
+    {
+      "name": "Lars",
+      "given": "Lars",
+      "gender": "male",
+      "country": "DK",
+      "persona_file": "regions/europe/denmark/culture_danish_persona_male_lars.md",
+      "cultural_source": "DST_DK_Navne_2023",
+      "added": "2026-05-15"
+    },
+    {
+      "name": "Sofie",
+      "given": "Sofie",
+      "gender": "female",
+      "country": "DK",
+      "persona_file": "regions/europe/denmark/culture_danish_persona_female_sofie.md",
+      "cultural_source": "DST_DK_Navne_2023",
+      "added": "2026-05-15"
+    },
+    {
+      "name": "Jeroen",
+      "given": "Jeroen",
+      "gender": "male",
+      "country": "NL",
+      "persona_file": "regions/europe/netherlands/culture_dutch_persona_male_jeroen.md",
+      "cultural_source": "CBS_NL_Voornamen_2022",
+      "added": "2026-05-15"
+    },
+    {
+      "name": "Anneke",
+      "given": "Anneke",
+      "gender": "female",
+      "country": "NL",
+      "persona_file": "regions/europe/netherlands/culture_dutch_persona_female_anneke.md",
+      "cultural_source": "CBS_NL_Voornamen_2022",
+      "added": "2026-05-15"
+    },
+    {
+      "name": "Alejandro",
+      "given": "Alejandro",
+      "gender": "male",
+      "country": "ES",
+      "persona_file": "regions/europe/spain/culture_spanish_persona_male_alejandro.md",
+      "cultural_source": "INE_ES_Nombres_2022",
+      "added": "2026-05-15"
+    },
+    {
+      "name": "Isabel",
+      "given": "Isabel",
+      "gender": "female",
+      "country": "ES",
+      "persona_file": "regions/europe/spain/culture_spanish_persona_female_isabel.md",
+      "cultural_source": "INE_ES_Nombres_2022",
+      "added": "2026-05-15"
+    },
+    {
+      "name": "Tomasz",
+      "given": "Tomasz",
+      "gender": "male",
+      "country": "PL",
+      "persona_file": "regions/europe/poland/culture_polish_persona_male_tomasz.md",
+      "cultural_source": "GUS_PL_Imiona_2022",
+      "added": "2026-05-15"
+    },
+    {
+      "name": "Malgorzata",
+      "given": "Ma\u0142gorzata",
+      "gender": "female",
+      "country": "PL",
+      "persona_file": "regions/europe/poland/culture_polish_persona_female_malgorzata.md",
+      "cultural_source": "GUS_PL_Imiona_2022",
+      "added": "2026-05-15"
+    }
+  ]
+}
