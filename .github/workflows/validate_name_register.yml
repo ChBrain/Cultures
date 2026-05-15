@@ -15,7 +15,7 @@ on:
     paths:
       - 'data/names/name_register.json'
       - 'regions/**/REFERENCES.md'
-      - 'scripts/sync_name_register.py'
+      - 'scripts/validate_name_register.py'
       - 'tests/test_name_register.py'
 
 jobs:

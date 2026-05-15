@@ -1,4 +1,4 @@
-"""scripts/sync_name_register.py
+"""scripts/validate_name_register.py
 
 Reads Name Sources sections from every country REFERENCES.md,
 diffs against data/names/name_register.json, and writes an updated register.
@@ -8,7 +8,7 @@ merges to main. Never run manually on a culture branch -- that would violate
 branch scope rules. The workflow opens a governance/* PR with the result.
 
 Usage (called by the Action, or dry-run locally):
-    python scripts/sync_name_register.py [--dry-run]
+    python scripts/validate_name_register.py [--dry-run]
 
 Exit codes:
     0  register written (or unchanged in dry-run)

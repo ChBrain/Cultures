@@ -101,7 +101,7 @@ class TestRegisterFile:
         keys = [(e["country"], e["name"]) for e in self.entries]
         assert keys == sorted(keys), (
             "name_register.json is not sorted by (country, name).\n"
-            "Re-run sync_name_register.py to restore order."
+            "Re-run validate_name_register.py to restore order."
         )
 
     def test_persona_file_references_exist(self):
@@ -123,7 +123,7 @@ class TestRegisterFile:
 
 import sys
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
-from sync_name_register import extract_entries, merge  # noqa: E402
+from validate_name_register import extract_entries, merge  # noqa: E402
 
 
 class TestExtract:

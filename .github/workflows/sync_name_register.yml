@@ -43,7 +43,7 @@ jobs:
           echo "Detected country: $COUNTRY"
 
       - name: Run sync script
-        run: python scripts/sync_name_register.py
+        run: python scripts/validate_name_register.py
 
       - name: Check for changes
         id: diff
