@@ -1,92 +1,9 @@
-# Worktrees
+# WORKTREES (compatibility redirect)
 
-*Canonical local worktree workflow for the Cultures repo.*
+Canonical worktree governance document moved to:
 
-## Scope
+- [../.worktree/WORKTREES.md](../.worktree/WORKTREES.md)
 
-This file defines **how** to run local worktrees.
+Branch policy remains in:
 
-- Branch policy (kinds, allowed paths, scope enforcement) lives in
-  [BRANCHING.md](./BRANCHING.md).
-- Worktree mechanics (create, enter, split, retire) live here.
-
-If these documents ever disagree, branch policy from
-[BRANCHING.md](./BRANCHING.md) and executable enforcement in
-[`tests/branch_scope.py`](../tests/branch_scope.py) win.
-
-## Worktree-first rule
-
-Use the main checkout (`c:/Code/Cultures`) as a clean control plane.
-Any non-trivial edit should happen in a dedicated worktree.
-
-Recommended path pattern:
-
-`.claude/worktrees/<kind>/<slug>/`
-
-Where `<kind>/<slug>` is the real branch name (for example
-`culture/netherlands` or `governance/language-policy-french-enable`).
-
-## Pick branch kind first
-
-Before creating a worktree, choose branch kind from
-[BRANCHING.md](./BRANCHING.md).
-
-If a request spans multiple branch kinds, split the work into multiple
-worktrees and multiple PRs.
-
-## Create a worktree
-
-Use real branch names (do not rewrite `/` into `+`):
-
-```bash
-git fetch origin
-git worktree add -b <kind>/<slug> .claude/worktrees/<kind>/<slug> origin/main
-```
-
-Examples:
-
-```bash
-git worktree add -b culture/poland .claude/worktrees/culture/poland origin/main
-git worktree add -b governance/language-policy .claude/worktrees/governance/language-policy origin/main
-git worktree add -b chore/docs-worktrees .claude/worktrees/chore/docs-worktrees origin/main
-```
-
-## Re-enter an existing worktree
-
-If it already exists:
-
-```bash
-git worktree list
-```
-
-Then enter by path in your tool/editor.
-
-## Lifecycle
-
-Keep worktrees alive through first push and review iteration.
-Remove them after merge or explicit abandonment.
-
-```bash
-git worktree remove .claude/worktrees/<kind>/<slug>
-git branch -d <kind>/<slug>
-```
-
-Use `-D` only when branch history is intentionally disposable.
-
-## Parallel work
-
-For concurrent tasks, give each task its own branch + worktree pair.
-Do not edit multiple tasks in one worktree.
-
-## Quick checklist
-
-1. Pick branch kind from [BRANCHING.md](./BRANCHING.md).
-2. Create worktree from `origin/main`.
-3. Make edits only within that task scope.
-4. Commit and push.
-5. Open PR with matching branch kind.
-6. Remove worktree after PR lands (or on explicit abandon).
-
----
-
-*v0.1.0 - KAI Worlds*
+- [BRANCHING.md](./BRANCHING.md)

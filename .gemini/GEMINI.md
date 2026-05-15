@@ -16,7 +16,7 @@ Treat these as the source of truth; do not restate them, link to them:
 
 - [`docs/BRANCHING.md`](../docs/BRANCHING.md) - branch kinds, allowed paths,
   governance vs safe metadata, splitting work.
-- [`docs/WORKTREES.md`](../docs/WORKTREES.md) - local worktree lifecycle,
+- [`.worktree/WORKTREES.md`](../.worktree/WORKTREES.md) - local worktree lifecycle,
   naming, and cleanup workflow.
 - [`ARCHITECTURE.md`](../ARCHITECTURE.md) - file standards (encoding, footer,
   filenames), the v2 8-kind schema with khai mapping, sourcing and IP rules.
@@ -29,7 +29,7 @@ Treat these as the source of truth; do not restate them, link to them:
 
 1. **Branch kind and worktree chosen before any edit.** Pick branch kind from
    [`docs/BRANCHING.md`](../docs/BRANCHING.md), then follow
-   [`docs/WORKTREES.md`](../docs/WORKTREES.md). If a change spans two kinds,
+   [`.worktree/WORKTREES.md`](../.worktree/WORKTREES.md). If a change spans two kinds,
    split it into two branches/PRs. Refuse to start work without a kind.
 
 2. **Pre-commit hook is the gate, not a suggestion.** Never bypass with

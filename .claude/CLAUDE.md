@@ -5,7 +5,7 @@
 ## Canonical references
 
 - Branch-kind and scope contract: [docs/BRANCHING.md](../docs/BRANCHING.md)
-- Worktree lifecycle and commands: [docs/WORKTREES.md](../docs/WORKTREES.md)
+- Worktree lifecycle and commands: [.worktree/WORKTREES.md](../.worktree/WORKTREES.md)
 
 If these markdown files disagree with executable rules, the executable rules
 (`tests/branch_scope.py` + pre-commit + CI) win.
@@ -15,7 +15,7 @@ If these markdown files disagree with executable rules, the executable rules
 `EnterWorktree(name:)` can rewrite branch names (`/` -> `+`, `worktree-`
 prefix), which can break branch-scope classification. Use path-based entry
 after creating the real branch/worktree pair with git as documented in
-[docs/WORKTREES.md](../docs/WORKTREES.md).
+[.worktree/WORKTREES.md](../.worktree/WORKTREES.md).
 
 ## Rule 1 - Subagent isolation
 

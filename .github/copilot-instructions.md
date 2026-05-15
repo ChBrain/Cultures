@@ -30,7 +30,7 @@ This installs `.githooks/pre-commit` which validates every commit locally before
 
 **See [docs/BRANCHING.md](../docs/BRANCHING.md) for the complete branch-kind contract.**
 
-**See [docs/WORKTREES.md](../docs/WORKTREES.md) for the canonical worktree workflow.**
+**See [.worktree/WORKTREES.md](../.worktree/WORKTREES.md) for the canonical worktree workflow.**
 
 That document is the single source of truth for all branch types, allowed paths, scope rules, and governance enforcement. It is mirrored from the executable classifier in [`tests/branch_scope.py`](../tests/branch_scope.py).
 
