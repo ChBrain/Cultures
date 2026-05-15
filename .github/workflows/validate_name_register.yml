@@ -1,0 +1,42 @@
+# .github/workflows/validate_name_register.yml
+#
+# Runs pytest on every governance/update-name-register-* PR.
+# Must pass before the PR can merge.
+#
+# Also runs on PRs that touch REFERENCES.md directly, so authors
+# get fast feedback before a culture/* branch reaches main.
+
+name: Validate name register
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'data/names/name_register.json'
+      - 'regions/**/REFERENCES.md'
+      - 'scripts/sync_name_register.py'
+      - 'tests/test_name_register.py'
+
+jobs:
+  validate:
+    name: pytest - name register
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -e ".[dev]"
+
+      - name: Run sync script (dry-run)
+        run: python scripts/sync_name_register.py --dry-run
+
+      - name: Run pytest
+        run: pytest tests/test_name_register.py -v --tb=short
