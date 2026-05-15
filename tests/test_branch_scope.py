@@ -1,4 +1,4 @@
-"""Unit tests for tests/branch_scope.py — pins classify/scope/governance contracts.
+"""Unit tests for tests/branch_scope.py - pins classify/scope/governance contracts.
 
 Rewritten from unittest to pytest (Loop F). Logic unchanged from the original.
 """
@@ -61,7 +61,7 @@ def test_classify_culture(branch):
     "culture/denmark ",
 ])
 def test_classify_culture_near_misses_are_other(branch):
-    """The bypass surface — every one of these must NOT be 'culture'."""
+    """The bypass surface - every one of these must NOT be 'culture'."""
     assert classify_branch(branch) == "other"
 
 
@@ -103,7 +103,7 @@ def test_classify_governance(branch):
     "gov/x",
 ])
 def test_classify_governance_near_misses_are_other(branch):
-    """Typos must NOT be 'governance' — fall through to 'other' (safer default)."""
+    """Typos must NOT be 'governance' - fall through to 'other' (safer default)."""
     assert classify_branch(branch) == "other"
 
 
@@ -128,7 +128,7 @@ def test_classify_sync(branch):
     "syncs/x",
 ])
 def test_classify_sync_near_misses_are_other(branch):
-    """Typos must NOT be 'sync' — fall through to 'other' (safer default)."""
+    """Typos must NOT be 'sync' - fall through to 'other' (safer default)."""
     assert classify_branch(branch) == "other"
 
 
@@ -181,7 +181,7 @@ def test_culture_scope_dot_slug_resolves_to_none():
 
 
 # ---------------------------------------------------------------------------
-# check_scope — culture branches
+# check_scope - culture branches
 # ---------------------------------------------------------------------------
 
 def test_check_scope_culture_own_country():
@@ -313,7 +313,7 @@ def test_check_scope_missing_branch_name_blocks_everything():
 
 
 # ---------------------------------------------------------------------------
-# check_scope — other branches
+# check_scope - other branches
 # ---------------------------------------------------------------------------
 
 def test_check_scope_other_allows_non_governance():
@@ -394,7 +394,7 @@ def test_check_scope_main_is_noop():
 
 
 # ---------------------------------------------------------------------------
-# check_scope — sync branches (main -> culture/release funnel)
+# check_scope - sync branches (main -> culture/release funnel)
 # ---------------------------------------------------------------------------
 
 def test_check_scope_sync_allows_any_path():
@@ -412,7 +412,7 @@ def test_check_scope_sync_allows_any_path():
 
 
 # ---------------------------------------------------------------------------
-# check_scope — governance branches
+# check_scope - governance branches
 # ---------------------------------------------------------------------------
 
 def test_check_scope_governance_allows_governance_paths():
@@ -458,7 +458,7 @@ def test_check_scope_governance_blocks_non_governance_infra():
 
 
 # ---------------------------------------------------------------------------
-# Locked sets — any change here is a contract change
+# Locked sets - any change here is a contract change
 # ---------------------------------------------------------------------------
 
 def test_safe_patterns_set_locked():

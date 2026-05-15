@@ -85,7 +85,7 @@ bug.
 so `culture/release` (the integration target for `culture/<country>` PRs) can
 stay current with `main` without bypassing branch protection.
 
-A sync branch carries no new commits — the branch ref points directly at
+A sync branch carries no new commits - the branch ref points directly at
 `main`'s tip. The PR (sync/<name> -> culture/release) is reviewed and merged
 through the normal flow; CI's PR-base gate allows the routing, and the
 PR-scope check is permissive on sync because the content is whatever `main`
