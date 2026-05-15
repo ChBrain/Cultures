@@ -27,6 +27,7 @@ from lingua import Language, LanguageDetectorBuilder
 # Language mapping for lingua library.
 LINGUA_LANGUAGES = {
     "english": Language.ENGLISH,
+    "french": Language.FRENCH,
     "german": Language.GERMAN,
     "danish": Language.DANISH,
     "dutch": Language.DUTCH,
@@ -44,6 +45,8 @@ def detect_language(text: str) -> str:
     detected = _detector.detect_language_of(text)
     if detected == Language.ENGLISH:
         return "en"
+    if detected == Language.FRENCH:
+        return "fr"
     if detected == Language.GERMAN:
         return "de"
     if detected == Language.DANISH:

@@ -19,6 +19,7 @@
 # and fail loudly on typos (no silent fallback to english-only).
 languages:
   - english
+  - french
   - german
   - dutch
   - danish
