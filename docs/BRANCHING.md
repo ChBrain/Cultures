@@ -72,6 +72,7 @@ Files that define or enforce repository rules. Editing any of these requires a
 - `data/hofstede_bag_loader.py` - bag-validation infrastructure
 - `data/language_policy.yaml` - per-language policy data
 - `data/phrase_denylist.txt` - plagiarism phrase denylist
+- `.worktree/WORKTREES.md`, `.worktree/.gitignore` - worktree governance policy
 
 Authoritative list: `GOVERNANCE_DIR_PREFIXES` + `GOVERNANCE_GLOB_PATTERNS` in
 [`tests/branch_scope.py`](../tests/branch_scope.py). This document is
@@ -98,7 +99,7 @@ include non-target content.
 
 Branching policy and scope constraints are defined in this document.
 Local worktree lifecycle and command workflow are defined in
-[WORKTREES.md](./WORKTREES.md).
+[../.worktree/WORKTREES.md](../.worktree/WORKTREES.md).
 
 ## Safe metadata
 

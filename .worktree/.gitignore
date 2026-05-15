@@ -1,0 +1,4 @@
+# Keep only governance policy files tracked under .worktree.
+*
+!.gitignore
+!WORKTREES.md

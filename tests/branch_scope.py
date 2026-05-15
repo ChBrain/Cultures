@@ -119,6 +119,8 @@ GOVERNANCE_GLOB_PATTERNS = (
     "data/language_policy.yaml",
     "data/phrase_denylist.txt",
     "docs/BRANCHING.md",
+    ".worktree/WORKTREES.md",
+    ".worktree/.gitignore",
 )
 
 _DEFAULT_REPO_ROOT = Path(__file__).resolve().parent.parent
