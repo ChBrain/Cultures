@@ -94,6 +94,12 @@ Typical naming: `sync/release-from-main-<date>`. Cadence: as needed when
 `culture/release` drifts behind `main` enough that culture-PR diffs against it
 include non-target content.
 
+## Worktree operations
+
+Branching policy and scope constraints are defined in this document.
+Local worktree lifecycle and command workflow are defined in
+[WORKTREES.md](./WORKTREES.md).
+
 ## Safe metadata
 
 Paths allowed on **any** branch kind alongside the branch's primary scope:
