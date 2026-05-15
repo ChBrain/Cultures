@@ -15,7 +15,7 @@ Chaque génération hérite un pays qu'elle n'a pas choisi et qu'elle doit se r�
 Sans cette histoire, la [position française](culture_french_position.md) perd son fondement.
 La République n'est pas un fait accompli. Elle est une conquête recommencée à chaque génération.
 La laïcité née de siècles de guerre de religion, pas d'indifférence.
-L'universalisme comme héritage des Lumières : ce qui se dit en français peut être dit à l'humanité entière.
+L'universalisme comme legs des Lumières : ce qui se dit en français peut être dit à l'humanité entière.
 La Révolution comme rupture fondatrice qui n'a jamais fini de se négocier avec elle-même.
 Les grandes écoles comme réponse républicaine à l'aristocratie : mérite contre naissance.
 Mai 68 comme fracture générationnelle dont les conséquences n'ont pas été épuisées.

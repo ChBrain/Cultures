@@ -22,7 +22,7 @@ Qui se tait, cède.
 L'universalité dans la structure.
 Ce que tu dis en français peut être dit à n'importe qui.
 La langue n'appartient pas à un groupe.
-Elle appartient à la raison.
+Elle appartient à l'argument commun.
 C'est la promesse.
 C'est aussi l'exigence.
 
@@ -53,7 +53,7 @@ la langue cherche le mot qui manque.
 Elle ne s'arrête pas à l'approximation.
 Elle invente si nécessaire.
 L'Académie statue. La rue devance.
-Les deux ont raison à leur échelle.
+Les deux sont recevables à leur échelle.
 La langue avance dans cet écart.
 
 ---

@@ -6,7 +6,7 @@
 
 | # | File | Kind | Purpose |
 |---|---|---|---|
-| 1 | culture_french_position_language.md | language | The French language as acoustic layer: precision, register, the word that closes the question |
+| 1 | [culture_french_position_language.md](culture_french_position_language.md) | language | The French language as acoustic layer: precision, register, the word that closes the question |
 | 2 | culture_french_piece_history.md | history | Defining moments from Alésia to Paris 2024; the Republic as perpetual reconquest |
 | 3 | culture_french_position.md | position | What the French position demands: argument as authority, universalism as both mission and blind spot |
 | 4 | culture_french_process_debattre.md | process | Débattre: debate as compulsion, not communication; dignity and conviction in tension |
