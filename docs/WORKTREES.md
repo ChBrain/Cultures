@@ -7,3 +7,7 @@ Canonical worktree governance document moved to:
 Branch policy remains in:
 
 - [BRANCHING.md](./BRANCHING.md)
+
+Shared execution chapters live in:
+
+- [LIFECYCLE.md](./LIFECYCLE.md)

@@ -6,14 +6,15 @@
 
 ## Operating model
 
-This agent runs via GitHub MCP tools — not a local checkout or git CLI.
+This agent runs via GitHub MCP tools - not a local checkout or git CLI.
 All file reads, writes, branches, and pull requests are executed through
-the GitHub API. Worktree mechanics (`.claude/CLAUDE.md`, `docs/WORKTREES.md`)
-do not apply. The discipline below is the API-equivalent contract.
+the GitHub API. Worktree mechanics (`.claude/CLAUDE.md`, `.worktree/WORKTREES.md`)
+do not apply. Shared lifecycle guidance still applies from `docs/LIFECYCLE.md`.
+The discipline below is the API-equivalent contract.
 
 ---
 
-## Rule 1 — Branch-first
+## Rule 1 - Branch-first
 
 Every file change lands on a dedicated branch, never directly on `main`.
 Choose the branch kind before touching any file.
@@ -28,12 +29,12 @@ Follow the contract in [docs/BRANCHING.md](../docs/BRANCHING.md):
 | `feat/` | `feat/<name>` | Non-culture, non-governance features |
 
 Culture slug must resolve against the on-disk `regions/` tree.
-A typo does not silently widen scope — unknown slugs are rejected.
+A typo does not silently widen scope - unknown slugs are rejected.
 If a change spans two kinds, use two branches and two PRs.
 
 ---
 
-## Rule 2 — Read before write
+## Rule 2 - Read before write
 
 Before editing any file, read the current version to confirm the SHA
 (required for the GitHub API update call) and to understand existing
@@ -41,7 +42,7 @@ structure. Never overwrite blindly.
 
 ---
 
-## Rule 3 — PR before merge
+## Rule 3 - PR before merge
 
 All changes are proposed as pull requests. The human reviews before
 merging. The agent does not self-merge unless explicitly instructed.
@@ -51,14 +52,14 @@ PR body: what changed and why. No meta-commentary about tooling.
 
 ---
 
-## Rule 4 — Commit message discipline
+## Rule 4 - Commit message discipline
 
 Imperative mood. Lowercase. Under 72 characters.  
 No emojis. No "as an AI" language.
 
 ---
 
-## Rule 5 — Respect the branch-scope contract
+## Rule 5 - Respect the branch-scope contract
 
 Branch name determines which paths are writable and which validators
 run. Do not route culture changes through `chore/` or `fix/` to bypass
@@ -70,7 +71,7 @@ This document is downstream of that file.
 
 ---
 
-## Rule 6 — Capability scope
+## Rule 6 - Capability scope
 
 **Can do (via GitHub API):**
 - Read any file, directory, commit, branch, tag, release

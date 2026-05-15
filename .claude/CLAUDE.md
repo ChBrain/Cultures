@@ -6,6 +6,7 @@
 
 - Branch-kind and scope contract: [docs/BRANCHING.md](../docs/BRANCHING.md)
 - Worktree lifecycle and commands: [.worktree/WORKTREES.md](../.worktree/WORKTREES.md)
+- Shared delivery chapters: [docs/LIFECYCLE.md](../docs/LIFECYCLE.md)
 
 If these markdown files disagree with executable rules, the executable rules
 (`tests/branch_scope.py` + pre-commit + CI) win.
