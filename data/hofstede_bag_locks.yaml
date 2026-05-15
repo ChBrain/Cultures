@@ -31,5 +31,5 @@ locks:
   # Global denylist — pronouns, function words, polysemous English.
   # Locked alongside bags per Strategy v2: same treatment, same review
   # discipline, same SHA-based drift protection.
-  data/hofstede_denylist.yaml: 00eb798457bbab546fcdcd2675da1bbd6e824e836f09073221d711773d122bd0
-  regions/europe/france/hofstede_bag.yaml: a692f8f302958da6ad88eb1deefd7c6244093f8c7c571cceb68e0c641418f815
+  data/hofstede_denylist.yaml: a9d2b3556a2fa8009820b52e5e97e0c9aeb2aba8f14e2e817dfbe8931b16b8e3
+  regions/europe/france/hofstede_bag.yaml: 3189126cff2e6aef90ab565bbe06b507607a5b679b31375b3d6ed0fdb8a56f86

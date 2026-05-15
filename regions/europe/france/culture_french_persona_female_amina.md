@@ -6,7 +6,7 @@
 - Culture: France
 
 ## Projection
-Amina est une [femme](position_female.md) de [Française](culture_french_position.md).
+Amina est une [femme](../../../engine/position_female.md) de [Française](culture_french_position.md).
 Journaliste et essayiste.
 Née en 1989 à Aubervilliers.
 Elle a grandi dans une école publique qui lui a appris la laïcité comme émancipation.
