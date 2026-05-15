@@ -6,7 +6,7 @@
 - Culture: France
 
 ## Projection
-Luc est un [homme](position_male.md) de [Français](culture_french_position.md).
+Luc est un [homme](position_male.md) de la [position française](culture_french_position.md).
 Philosophe. Professeur en khâgne.
 Né en 1962 à Lyon.
 Il porte un cahier. Pas un ordinateur.

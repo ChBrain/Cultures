@@ -41,7 +41,7 @@ La journée de la laïcité, le 9 décembre, dans les écoles publiques depuis 2
 1793 : Déchristianisation révolutionnaire. Les églises fermées, le calendrier républicain institué. L'excès prépare la réaction.
 1801 : Concordat de Napoléon avec le pape. L'État reprend la main sur l'Église mais ne la sépare pas encore.
 1882 : Jules Ferry. L'école primaire publique, gratuite et laïque. Les crucifix retirés des salles de classe.
-1905 : Loi de séparation des Églises et de l'État. Aristide Briand rapporteur. Onze articles. La France invente un modèle.
+1905 : Loi de séparation des Églises et de l'État. Aristide Briand rapporteur. Le texte comporte onze articles. La France invente un modèle.
 1946 : La laïcité entre dans le préambule de la Constitution. Principe constitutionnel.
 1989 : Première affaire du voile à Creil. Le principe rencontre le quotidien scolaire. Le débat recommence.
 2004 : Loi sur les signes religieux ostensibles à l'école publique. La laïcité devient règlement, pas seulement principe.
