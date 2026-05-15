@@ -30,6 +30,10 @@ This installs `.githooks/pre-commit` which validates every commit locally before
 
 **See [docs/BRANCHING.md](../docs/BRANCHING.md) for the complete branch-kind contract.**
 
+**See [.worktree/WORKTREES.md](../.worktree/WORKTREES.md) for the canonical worktree workflow.**
+
+**See [docs/LIFECYCLE.md](../docs/LIFECYCLE.md) for the shared chapter flow (plan, code, build, test, release, deploy, operate, monitor).**
+
 That document is the single source of truth for all branch types, allowed paths, scope rules, and governance enforcement. It is mirrored from the executable classifier in [`tests/branch_scope.py`](../tests/branch_scope.py).
 
 Quick reference:
@@ -125,6 +129,45 @@ Canonical thresholds (pinned by `scripts/audit_readme_bands.py` + `tests/test_au
 
 "Medium" is an accepted prose alias for "Moderate" (the audit normalizes for equivalence but surfaces the non-canonical word in the `declared` column). README band labels and any prose mentions like `**Low PDI + High IDV:**` must agree with each dimension's score.
 
+### Language policy
+
+`data/language_policy.yaml` is the single source of truth: registered languages, prose sections to check, span threshold. Each culture's `README.md` declares which registered languages it uses via `**Language(s):** <name>[, <name>...]`. Typos fail loudly (no silent english-only fallback).
+
+**Proper-noun exceptions** are layered:
+
+- **Global** (`tests/language_exceptions.txt`): proper nouns allowed everywhere. Governance-tracked.
+- **Per-culture** (`regions/<region>/<country>/language_exceptions.txt`): country-specific. Lives with the culture content, so contributors add country-specific names alongside the culture PR; no separate `governance/*` change needed.
+
+**Quoted source material**: wrap in markdown blockquotes (`> ...`). Blockquoted lines are stripped before detection, so faithful citations in any language pass cleanly.
+
+**Useful CLIs:**
+
+```bash
+# What languages does this repo allow?
+python3 tests/validate_language.py --list-repo-languages
+
+# What does each country declare?
+python3 tests/validate_language.py --list-country-languages
+
+# Are all READMEs consistent with the registry?
+python3 tests/validate_language.py --check-readmes-only
+
+# Why is this specific file failing? (per-section span trace)
+python3 tests/validate_language.py --explain regions/europe/germany/culture_*.md
+```
+
+**Failure messages** carry a fix ladder (cheapest first):
+
+```
+FAIL regions/europe/germany/culture_german_persona_brigitte.md:
+  German span (18 words) in ## Shown: 'Die Wuerde des Menschen ist unantastbar...'
+  verdict: if a quoted source, wrap as `> ...` blockquote (skipped);
+           if proper nouns, add proper nouns to regions/europe/germany/language_exceptions.txt;
+           otherwise rewrite in english
+```
+
+**Strategy and roadmap**: see [LANGUAGES.md](../LANGUAGES.md) for the full enablement tier model, current enabled languages, pre-flight checklist, and macro-language priority roadmap.
+
 ## Workflow
 
 ### Culture Work (culture/<country> or culture/<region>)
@@ -189,11 +232,11 @@ Canonical thresholds (pinned by `scripts/audit_readme_bands.py` + `tests/test_au
    - Approved and merged independently
    - Does not block culture releases
 
-## L0-stamp-check Gate
+## Validation stamp gate
 
-GitHub Actions **L0-stamp-check** verifies that `.validation-stamp` exists in your commit. This proof that you ran local validation before pushing - it prevents accidental commits from bypassing checks.
+GitHub Actions **cultures - Validation stamp gate** verifies that `.validation-stamp` exists in your commit. This proof that you ran local validation before pushing - it prevents accidental commits from bypassing checks.
 
-If you see "L0-stamp-check FAILED":
+If you see "cultures - Validation stamp gate FAILED":
 - Your `.validation-stamp` is missing
 - This means local validators didn't run or didn't pass
 - Recovery: `git reset HEAD~1`, fix issues, commit again
@@ -204,7 +247,7 @@ If you see "L0-stamp-check FAILED":
 |-------|------|------|---|
 | Local pre-commit | `.githooks/pre-commit` | Before every `git commit` on **culture/*** | YES |
 | Local pre-commit | `.githooks/pre-commit` | Before every `git commit` on **chore/*, fix/*** | NO |
-| L0-stamp-check | CI job | Every PR, every push to main | - |
+| cultures - Validation stamp gate | CI job | Every PR, every push to main | - |
 | L1-L4 validation | CI jobs (chained) | Every PR, when L0 passes | Base validation only |
 | L1-L7 validation | CI jobs (chained) | PR to **culture/staging**, when L0 passes | Includes Hofstede (L5-L7) |
 
@@ -212,19 +255,19 @@ If you see "L0-stamp-check FAILED":
 
 **Culture Branch Path (culture/<name> → culture/staging → main):**
 - Local: L1-L4 + **Hofstede** (pre-commit hook enforces alignment)
-- CI on culture/staging: L1-L7 full validation + L0-stamp-check
+- CI on culture/staging: L1-L7 full validation + cultures - Validation stamp gate
 - CI on main (from staging): verify scope stayed in regions/, no scope creep
 
 **Infrastructure Branch Path (chore/*, fix/*, feat/* non-culture → main):**
 - Local: L1-L4 only, no Hofstede (pre-commit hook skips)
-- CI on main: L1-L4 validation + L0-stamp-check
+- CI on main: L1-L4 validation + cultures - Validation stamp gate
 - Hofstede not required (infrastructure/metadata don't carry cultural dimensions)
 
 ## Protection
 
 - ✅ Pre-commit hook prevents main commits locally
 - ✅ Pre-commit hook prevents culture-branch scope creep (non-regions/ changes)
-- ✅ L0-stamp-check prevents commits without proof of local validation
+- ✅ cultures - Validation stamp gate prevents commits without proof of local validation
 - ✅ GitHub branch protection requires PR + passing checks before merge
 - ✅ All commits to main must pass full CI validation
 

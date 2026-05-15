@@ -16,6 +16,10 @@ Treat these as the source of truth; do not restate them, link to them:
 
 - [`docs/BRANCHING.md`](../docs/BRANCHING.md) - branch kinds, allowed paths,
   governance vs safe metadata, splitting work.
+- [`.worktree/WORKTREES.md`](../.worktree/WORKTREES.md) - local worktree lifecycle,
+  naming, and cleanup workflow.
+- [`docs/LIFECYCLE.md`](../docs/LIFECYCLE.md) - shared execution chapters
+   (plan, code, build, test, release, deploy, operate, monitor).
 - [`ARCHITECTURE.md`](../ARCHITECTURE.md) - file standards (encoding, footer,
   filenames), the v2 8-kind schema with khai mapping, sourcing and IP rules.
 - [`METHODOLOGY.md`](../METHODOLOGY.md) - Hofstede keyword-density model and
@@ -25,8 +29,9 @@ Treat these as the source of truth; do not restate them, link to them:
 
 ## House rules
 
-1. **Branch kind chosen before any edit.** Pick from
-   [`docs/BRANCHING.md`](../docs/BRANCHING.md). If a change spans two kinds,
+1. **Branch kind and worktree chosen before any edit.** Pick branch kind from
+   [`docs/BRANCHING.md`](../docs/BRANCHING.md), then follow
+   [`.worktree/WORKTREES.md`](../.worktree/WORKTREES.md). If a change spans two kinds,
    split it into two branches/PRs. Refuse to start work without a kind.
 
 2. **Pre-commit hook is the gate, not a suggestion.** Never bypass with
