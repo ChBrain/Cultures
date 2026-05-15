@@ -1,0 +1,35 @@
+country: Nigeria
+region: africa
+language: en
+parent: null
+status: draft
+generated: 2026-05-15
+hofstede_scores:
+  PDI: 77
+  IDV: 20
+  MAS: 60
+  UAI: 54
+  LTO: 13
+  IND: 84
+
+bags:
+  PDI:
+    high: [hierarchy, elder, respect, authority, seniority, deference, title, patron, rank, status]
+    low: [equality, levelness, merit, peers, accessible, plainspoken, horizontal, initiative, egalitarian, independent]
+  IDV:
+    high: [self-rule, selfhood, self-reliant, personal, autonomy, self-sphere, choice, separate, self-made, atomized]
+    low: [community, loyalty, kinship, solidarity, collective, family, belonging, obligation, group, bond]
+  MAS:
+    high: [ambition, hustle, success, competitive, winning, striver, assertion, performance, grind, excel]
+    low: [care, cooperation, modesty, nurture, compassion, relationship, harmony, uplift, gentle, reconciliation]
+  UAI:
+    high: [procedure, structure, order, formality, planning, rules, precision, systematic, regulated, defined]
+    low: [flexible, improvise, spontaneous, adaptive, fluid, tolerance, informal, ambiguity, risk, negotiable]
+  LTO:
+    high: [perseverance, sustained, investment, continuity, future, long-term, patience, thrift, accumulated, legacy]
+    low: [tradition, celebration, immediate, present-day, festivity, ancestral, custom, blessing, heritage, ritual]
+  IND:
+    high: [joy, pleasure, exuberance, freedom, dance, laughter, enjoyment, vibrancy, delight, vitality]
+    low: [restraint, duty, temperance, self-control, sacrifice, denial, sobriety, austerity, moderation, frugality]
+
+denylist: []
