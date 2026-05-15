@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Name Register Schema",
+  "description": "Validates entries in data/names/name_register.json",
+  "type": "object",
+  "required": ["_meta", "names"],
+  "properties": {
+    "_meta": {
+      "type": "object",
+      "required": ["version", "description", "schema", "updated"],
+      "additionalProperties": true
+    },
+    "names": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "given",
+          "gender",
+          "country",
+          "persona_file",
+          "cultural_source",
+          "added"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Unique ASCII key used as identifier across Cultures. JSON Schema cannot guarantee uniqueness by one property, so enforce that elsewhere later if needed.",
+            "pattern": "^[A-Za-z]+$"
+          },
+          "given": {
+            "type": "string",
+            "description": "Display form of the given name, may include diacritics."
+          },
+          "gender": {
+            "type": "string",
+            "enum": ["male", "female", "neutral"]
+          },
+          "country": {
+            "type": "string",
+            "description": "ISO 3166-1 alpha-2 country code.",
+            "pattern": "^[A-Z]{2}$"
+          },
+          "persona_file": {
+            "type": "string",
+            "pattern": "^regions/.*\\.md$"
+          },
+          "cultural_source": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Source proving the name is culturally fitting. Keep this as an open string for now."
+          },
+          "added": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
