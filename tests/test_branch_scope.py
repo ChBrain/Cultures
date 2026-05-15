@@ -567,4 +567,6 @@ def test_governance_glob_patterns_locked():
         "data/language_policy.yaml",
         "data/phrase_denylist.txt",
         "docs/BRANCHING.md",
+        ".worktree/WORKTREES.md",
+        ".worktree/.gitignore",
     )
