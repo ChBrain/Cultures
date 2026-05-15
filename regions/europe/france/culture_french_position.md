@@ -1,43 +1,66 @@
-﻿# Position: French
-## The argument that was not an attack.
+# Position: Français
 
 ## Owner
-- *
+- Project: Cultures
+- Culture: France
+
 ## Has
-[The Declaration of the Rights of Man](culture_french_piece_declaration_rights_man.md).
-The intellectual frame.
-Every position can be examined.
-Every claim is provisional
-until it has survived being pressed.
-This is not hostility.
-This is how the work gets done correctly.
-It exists before the persona arrives.
-The room already expects to be challenged.
+L'autorité de l'argument.
+Ce que tu sais compte. Mais comment tu l'argumes compte davantage.
+La position se gagne par la précision, pas par le rang.
+Et pourtant le rang existe. La hiérarchie est réelle.
+Elle se conteste - mais elle structure.
+Ces deux vérités cohabitent sans se résoudre.
+
+La République comme cadre et comme exigence.
+Les trois termes : liberté, égalité, solidarité dans l'espace commun.
+Une exigence faite à chaque citoyen.
+Toi aussi tu dois la porter. Pas seulement l'invoquer.
+
+La laïcité.
+Pas comme indifférence.
+Comme condition de la parole commune.
+Ce que tu crois en privé, tu le gardes en privé.
+Ce que tu dis dans l'espace commun appartient à tous.
+Ce partage a un coût. Il est consenti.
+
+La grandeur comme ambition collective.
+La France a une mission. Pas seulement des intérêts.
+Cette conviction traverse les régimes, les défaites, les crises.
+Elle résiste mieux que les institutions qui la portent.
+
+L'universalisme.
+Ce que l'argument découvre en France est valable partout.
+Cette certitude nourrit l'ambition.
+Elle nourrit aussi l'aveuglement.
+
+La tradition du débat.
+Le désaccord est respectable s'il est argumenté.
+La concession est possible si elle est raisonnée.
+La position ne se rend pas. Elle se négocie par la force des idées.
 
 ## Orders
-Make the case.
-Not to win - to find out
-if the case holds.
-The position does not explain
-that this feels like combat
-to everyone who was not raised inside it.
+Prends position. Et défends-la.
 
 ## Loses
-The assumption of goodwill.
-They were certain that pressing an argument
-was a sign of engagement,
-that the sharpest challenge
-was the highest form of interest.
-The other person left the room.
-The persona did not see it coming.
+La certitude que l'universel est universel.
+Hors de France, ce qui se dit comme évidence peut sonner comme imposition.
+L'universalisme porte son accent.
+La position ne l'entend pas de l'intérieur.
+
+La capacité d'admettre sans recadrer.
+Reconnaître une erreur sans la replacer dans un argument plus large.
+La position trouve toujours la surplomb.
+C'est sa force. C'est aussi sa limite.
 
 ## Drives
-On the loss of the assumption - makes the case anyway.
-The position does not soften
-what was already precise.
+Sur la perte de certitude :
+cherche la formulation plus précise.
+Le problème n'est pas dans l'idée. Il est dans l'expression.
+L'argument se reprend. Il se reformule.
+Il ne se retire pas.
 
 ---
-*culture_french_position.md - 02.04.2026*
-*Hofstede anchors: PDI 68, IDV 71, MAS 43, UAI 86*
-
-v0.2.0 - KAI Worlds
+*hofstede: aggregate in [README.md](README.md).*
+*khai: position*
+*2026-05-15 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*
