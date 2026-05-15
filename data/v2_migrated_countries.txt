@@ -31,6 +31,7 @@
 #   - KAIHACKS khai-tests v0.1.6 (declaration-driven _component.py)
 
 denmark
+france
 germany
 netherlands
 poland
