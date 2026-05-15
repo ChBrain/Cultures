@@ -16,7 +16,7 @@ Culture work has three nesting scopes, all of which converge on
             ``culture/release``        ``regions/**``
 
 Country and region slugs are resolved against the actual ``regions/``
-directory layout — a typo in the branch name fails fast instead of
+directory layout - a typo in the branch name fails fast instead of
 silently widening scope to all cultures.
 
 Governance work is anything that defines or enforces repository rules:
@@ -34,7 +34,7 @@ culture content. So governance edits are walled into their own kind:
 
 Used by:
 - .githooks/pre-commit (local enforcement, all four directions)
-- (planned) CI workflow (server-side mirror — closes --no-verify and Web UI bypass)
+- (planned) CI workflow (server-side mirror - closes --no-verify and Web UI bypass)
 
 Don't relax the regex or paths without understanding the security model.
 See .github/copilot-instructions.md > "Branch Scope Guards".
@@ -56,7 +56,7 @@ CULTURE_BRANCH_PATTERN = re.compile(r"^culture/[a-z0-9][a-z0-9_.-]*$")
 GOVERNANCE_BRANCH_PATTERN = re.compile(r"^governance/[a-z0-9][a-z0-9_.-]*$")
 
 # Sync branches funnel main's HEAD into culture/release. They carry no new
-# commits — the branch is a snapshot of main used as a PR head so the merge
+# commits - the branch is a snapshot of main used as a PR head so the merge
 # into culture/release can be reviewed and audited. Because the content is
 # identical to main, scope is unrestricted (anything main has is allowed).
 SYNC_BRANCH_PATTERN = re.compile(r"^sync/[a-z0-9][a-z0-9_.-]*$")
@@ -67,14 +67,14 @@ SYNC_BRANCH_PATTERN = re.compile(r"^sync/[a-z0-9][a-z0-9_.-]*$")
 WORLD_SLUGS = frozenset({"staging", "release"})
 
 # Metadata files allowed on culture branches alongside regions/** changes.
-# Exact path match — `subdir/.gitignore` is NOT safe; only the listed paths.
+# Exact path match - `subdir/.gitignore` is NOT safe; only the listed paths.
 #
 # Cross-boundary files (data lives outside regions/ but belongs in a culture
 # migration PR alongside the per-country changes):
-#   - ``data/hofstede_bag_locks.yaml`` — bag migration PRs (culture/<country>)
+#   - ``data/hofstede_bag_locks.yaml`` - bag migration PRs (culture/<country>)
 #     update the lock entry for the country in the same commit that adds the
 #     bag YAML. Strategy v2 carves it out explicitly.
-#   - ``data/v2_migrated_countries.txt`` — per-country opt-in to v2-strict L4a
+#   - ``data/v2_migrated_countries.txt`` - per-country opt-in to v2-strict L4a
 #     validation. Migration PRs (culture/<country>) add the country here in
 #     the same commit that renames persona_* -> male_*/female_* and adds the
 #     khai declaration footers.
@@ -119,6 +119,8 @@ GOVERNANCE_GLOB_PATTERNS = (
     "data/language_policy.yaml",
     "data/phrase_denylist.txt",
     "docs/BRANCHING.md",
+    ".worktree/WORKTREES.md",
+    ".worktree/.gitignore",
 )
 
 _DEFAULT_REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -225,7 +227,7 @@ def check_scope(
 
     Governance branches may only touch governance paths (plus the
     SAFE_PATTERNS root files like ``.validation-stamp``). Other branches
-    may touch anything except ``regions/`` and governance paths — this is
+    may touch anything except ``regions/`` and governance paths - this is
     the tightening that protects the gates from silent edits.
 
     'main' is gated separately (no commits at all) and is treated as a

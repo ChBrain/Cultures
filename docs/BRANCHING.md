@@ -72,6 +72,7 @@ Files that define or enforce repository rules. Editing any of these requires a
 - `data/hofstede_bag_loader.py` - bag-validation infrastructure
 - `data/language_policy.yaml` - per-language policy data
 - `data/phrase_denylist.txt` - plagiarism phrase denylist
+- `.worktree/WORKTREES.md`, `.worktree/.gitignore` - worktree governance policy
 
 Authoritative list: `GOVERNANCE_DIR_PREFIXES` + `GOVERNANCE_GLOB_PATTERNS` in
 [`tests/branch_scope.py`](../tests/branch_scope.py). This document is
@@ -84,7 +85,7 @@ bug.
 so `culture/release` (the integration target for `culture/<country>` PRs) can
 stay current with `main` without bypassing branch protection.
 
-A sync branch carries no new commits — the branch ref points directly at
+A sync branch carries no new commits - the branch ref points directly at
 `main`'s tip. The PR (sync/<name> -> culture/release) is reviewed and merged
 through the normal flow; CI's PR-base gate allows the routing, and the
 PR-scope check is permissive on sync because the content is whatever `main`
@@ -93,6 +94,12 @@ already has.
 Typical naming: `sync/release-from-main-<date>`. Cadence: as needed when
 `culture/release` drifts behind `main` enough that culture-PR diffs against it
 include non-target content.
+
+## Worktree operations
+
+Branching policy and scope constraints are defined in this document.
+Local worktree lifecycle and command workflow are defined in
+[../.worktree/WORKTREES.md](../.worktree/WORKTREES.md).
 
 ## Safe metadata
 
