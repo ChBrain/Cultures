@@ -1,0 +1,163 @@
+country: france
+language: fr
+parent: null
+status: draft
+generated: 2026-05-15
+hofstede_scores:
+  PDI: 68
+  IDV: 71
+  UAI: 86
+  MAS: 43
+  LTO: 63
+  IND: 48
+denylist:
+  - discipline
+  - rigueur
+  - effort
+  - prestige
+  - protocole
+  - planification
+  - engagement
+  - coopération
+  - jouissance
+  - suffrage
+  - individu
+bags:
+  PDI:
+    high:
+      - hiérarchie
+      - autorité
+      - rang
+      - titre
+      - déférence
+      - statut
+      - grade
+      - élite
+      - grandeur
+      - préséance
+    low:
+      - égalité
+      - mérite
+      - horizontalité
+      - collégialité
+      - transparence
+      - accessibilité
+      - participation
+      - consultation
+      - équité
+      - parité
+  IDV:
+    high:
+      - autonomie
+      - indépendance
+      - initiative
+      - responsabilité
+      - conscience
+      - singularité
+      - jugement
+      - critique
+      - émancipation
+      - affirmation
+    low:
+      - solidarité
+      - communauté
+      - appartenance
+      - collectif
+      - cohésion
+      - loyauté
+      - entraide
+      - lien
+      - mutualité
+      - partage
+  UAI:
+    high:
+      - règlement
+      - procédure
+      - précision
+      - contrôle
+      - certitude
+      - conformité
+      - règle
+      - obligation
+      - formalité
+      - cadre
+    low:
+      - improvisation
+      - flexibilité
+      - adaptation
+      - spontanéité
+      - débrouillardise
+      - expérimentation
+      - pragmatisme
+      - souplesse
+      - créativité
+      - approximation
+  MAS:
+    high:
+      - ambition
+      - performance
+      - réussite
+      - excellence
+      - vainqueur
+      - domination
+      - accomplissement
+      - défi
+      - succès
+      - compétition
+    low:
+      - négociation
+      - modestie
+      - désaccord
+      - bienveillance
+      - empathie
+      - soin
+      - compromis
+      - équilibre
+      - dialogue
+      - concession
+  LTO:
+    high:
+      - continuité
+      - investissement
+      - durabilité
+      - transmission
+      - patience
+      - persévérance
+      - avenir
+      - projet
+      - pérennité
+      - génération
+    low:
+      - tradition
+      - instantané
+      - coutume
+      - habitude
+      - ancienneté
+      - commémoration
+      - conservatisme
+      - stabilité
+      - nostalgie
+      - fête-nationale
+  IND:
+    high:
+      - plaisir
+      - loisir
+      - détente
+      - épanouissement
+      - fête
+      - désir
+      - satisfaction
+      - bonheur
+      - saveur
+      - volupté
+    low:
+      - retenue
+      - devoir
+      - sobriété
+      - modération
+      - ascèse
+      - pudeur
+      - discrétion
+      - sacrifice
+      - maîtrise
+      - abnégation
