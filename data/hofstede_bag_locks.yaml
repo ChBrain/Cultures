@@ -32,4 +32,4 @@ locks:
   # Locked alongside bags per Strategy v2: same treatment, same review
   # discipline, same SHA-based drift protection.
   data/hofstede_denylist.yaml: a9d2b3556a2fa8009820b52e5e97e0c9aeb2aba8f14e2e817dfbe8931b16b8e3
-  regions/europe/france/hofstede_bag.yaml: 24ff284087500ad35ff894ff4d628e1e0cf9b830961b8bff2b3aaab760d95538
+  regions/europe/france/hofstede_bag.yaml: 9f24f18dc15eef1deff337d27de457a6c0aa29599d16b890173e1561a3ec40db

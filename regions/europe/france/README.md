@@ -47,11 +47,11 @@
 
 | Dimension | Declared | Derived (estimated) | Gap | Status |
 |---|---|---|---|---|
-| PDI | 68 | 65 | 3 | EXCELLENT |
-| IDV | 71 | 68 | 3 | EXCELLENT |
-| MAS | 43 | 45 | 2 | EXCELLENT |
-| UAI | 86 | 82 | 4 | EXCELLENT |
-| LTO | 63 | 60 | 3 | EXCELLENT |
+| PDI | 68 | 71 | 3 | EXCELLENT |
+| IDV | 71 | 70 | 1 | EXCELLENT |
+| MAS | 43 | 40 | 3 | EXCELLENT |
+| UAI | 86 | 83 | 3 | EXCELLENT |
+| LTO | 63 | 67 | 4 | EXCELLENT |
 | IND | 48 | 50 | 2 | EXCELLENT |
 
 Gap tolerance: ±10 PASS · ±5 EXCELLENT

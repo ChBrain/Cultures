@@ -11,8 +11,6 @@ hofstede_scores:
   LTO: 63
   IND: 48
 denylist:
-  - héritage
-  - liberté
   - discipline
   - rigueur
   - effort
@@ -22,12 +20,8 @@ denylist:
   - engagement
   - coopération
   - jouissance
-  - raison
   - suffrage
   - individu
-  - ordre
-  - mémoire
-  - présent
 bags:
   PDI:
     high:
@@ -83,7 +77,7 @@ bags:
       - contrôle
       - certitude
       - conformité
-      - norme
+      - règle
       - obligation
       - formalité
       - cadre
@@ -97,23 +91,23 @@ bags:
       - pragmatisme
       - souplesse
       - créativité
-      - informel
+      - approximation
   MAS:
     high:
       - ambition
       - performance
       - réussite
       - excellence
-      - victoire
+      - vainqueur
       - domination
       - accomplissement
       - défi
       - succès
       - compétition
     low:
-      - consensus
+      - négocie
       - modestie
-      - conciliation
+      - désaccord
       - bienveillance
       - empathie
       - soin
@@ -132,7 +126,7 @@ bags:
       - avenir
       - projet
       - pérennité
-      - anticipation
+      - génération
     low:
       - tradition
       - instantané
