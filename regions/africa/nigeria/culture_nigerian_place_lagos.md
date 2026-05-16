@@ -11,14 +11,14 @@ Danfo buses, yellow and battered, routes known by conductors who shout them into
 Bode Thomas, Allen Avenue, Victoria Island, Lekki, Ajah: each a different city inside the same one.
 The Third Mainland Bridge at 5am: headlights crossing the lagoon in both directions, the city already awake.
 Bar Beach and Elegushi: the Atlantic arriving without announcement.
-Evening vendors line the sand and the crowd stays in exuberance.
+Evening vendors line the sand, and the crowd carries exuberance, music, and jokes into midnight.
 Buka joints open at dawn, plastic chairs, pepper soup, jollof in the pot before seven.
 Generators running in every compound. NEPA has taken light. Life continues.
 Alaba market: electronics from everywhere, sold by someone who knows someone who can find anything.
 The church on Sunday: full, loud, certain. The mosque on Friday: full, quiet, certain.
 Nollywood sets in Surulere and Ikeja, cameras running, the story being told before it is finished.
 Afrobeats from every phone, every shop, every passing car.
-The night traffic on the mainland carries its own vitality.
+The night traffic on the mainland carries vitality, buses, and horns until dawn.
 The ocean smell when the wind comes from the south.
 
 ## Holds
@@ -31,7 +31,8 @@ The circle as survival infrastructure, not sentiment.
 
 ## Offers
 You can arrive without connection and build one.
-You can hold personal autonomy and still answer to the circle.
+You can see personal logos painted on kiosks that were plywood last month.
+New kiosks advertise autonomy in handwritten paint beside phone-number boards.
 The city does not ask where you are from before it lets you try.
 But it will find out. And it will remember.
 You can make money here that cannot be made anywhere else in the country.

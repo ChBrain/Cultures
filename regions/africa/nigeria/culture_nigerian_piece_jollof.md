@@ -25,7 +25,7 @@ Party jollof: cooked over live flame until the bottom catches.
 The smoky crust at the bottom of the pot is not a mistake. It is the prize.
 The big spoon scrapes it up last. The person who gets it knows what it means.
 Served with fried plantain, coleslaw, moin moin, chicken, beef, fish.
-The order of serving follows custom before improvisation.
+Even in present-day Lagos, serving order follows the host's sequence.
 The caterer's reputation rides on the pot.
 The guest who says the jollof was not correct has said something about the host.
 #JollofWars on social media: millions of posts, multiple continents, the argument conducted in full seriousness and full humor simultaneously.

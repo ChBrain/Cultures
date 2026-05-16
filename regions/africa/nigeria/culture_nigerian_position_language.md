@@ -13,7 +13,7 @@ Every educated Nigerian knows both and moves between them without announcement.
 
 Authority arrives in full title.
 Engineer. Doctor. Chief. Alhaji. Barrister.
-The room reads these forms before it reads the request.
+People hear the rhythm before they hear the ask.
 The title is not courtesy. It is placement.
 It tells the room who holds what before a word of substance is spoken.
 To skip the title is not informality. It is a statement.
