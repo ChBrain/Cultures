@@ -12,8 +12,8 @@ The institution speaks formal. The market speaks different.
 Every educated Nigerian knows both and moves between them without announcement.
 
 Authority arrives in full title.
-Engineer. Doctor. Chief. Alhaji. Barrister.
 People hear the rhythm before they hear the ask.
+Engineer, Doctor, Chief, Alhaji, Barrister are heard before the matter is named.
 The title is not courtesy. It is placement.
 It tells the room who holds what before a word of substance is spoken.
 To skip the title is not informality. It is a statement.

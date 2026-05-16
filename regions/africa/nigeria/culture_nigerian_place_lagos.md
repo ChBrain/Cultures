@@ -32,7 +32,7 @@ The circle as survival infrastructure, not sentiment.
 ## Offers
 You can arrive without connection and build one.
 You can see personal logos painted on kiosks that were plywood last month.
-New kiosks advertise autonomy in handwritten paint beside phone-number boards.
+New kiosks advertise plans, prices, and choice in handwritten paint beside phone-number boards.
 The city does not ask where you are from before it lets you try.
 But it will find out. And it will remember.
 You can make money here that cannot be made anywhere else in the country.
