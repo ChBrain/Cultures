@@ -36,6 +36,20 @@
       "name": "Spain",
       "language": "es",
       "name_source": "INE_ES_2023"
+    },
+    {
+      "iso": "FR",
+      "key": "france",
+      "name": "France",
+      "language": "fr",
+      "name_source": "INSEE_FR_2023"
+    },
+    {
+      "iso": "NG",
+      "key": "nigeria",
+      "name": "Nigeria",
+      "language": "en",
+      "name_source": "Cultures_persona_archetype"
     }
   ]
 }
