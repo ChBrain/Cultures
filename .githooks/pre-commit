@@ -104,7 +104,7 @@ def main() -> int:
                 print( "  Rule:    culture/<slug> must resolve to a country, region, or integration target")
                 print( "  Country: culture/<country>     -> regions/<region>/<country>/**")
                 print( "  Region:  culture/<region>      -> regions/<region>/**")
-                print( "  World:   culture/staging, culture/release -> regions/**")
+                print( "  World:   culture/release -> regions/**")
             else:
                 print(f">>> ERROR: Culture branch out of scope (allowed: {prefix}**)")
                 print("")
@@ -115,7 +115,7 @@ def main() -> int:
                 print(f"  Branch:  {current_branch}")
                 print(f"  Allowed: {prefix}** + " + ", ".join(sorted(SAFE_PATTERNS)))
                 print( "  Rule:    culture/<slug> may only touch its own slug's subtree")
-                print( "  Wider:   use culture/<region> or culture/staging for cross-cutting work")
+                print( "  Wider:   use culture/<region> or culture/release for cross-cutting work")
         elif branch_kind == "governance":
             print(">>> ERROR: Governance branch out of scope")
             print("")

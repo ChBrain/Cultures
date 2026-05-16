@@ -2,7 +2,7 @@
 
 Pins the allowed_bases() routing layer:
   culture/<country|region>          -> {"culture/release"}
-  culture/release, culture/staging  -> {"main"}
+    culture/release                   -> {"main"}
   governance/<name>                 -> {"main"}
   sync/<name>                       -> {"culture/release"}
   chore/*, fix/*, feat/*, other     -> {"main"}
@@ -45,7 +45,7 @@ def test_culture_non_world_routes_to_release(head):
 # culture world slugs -> main
 # ---------------------------------------------------------------------------
 
-@pytest.mark.parametrize("head", ["culture/release", "culture/staging"])
+@pytest.mark.parametrize("head", ["culture/release"])
 def test_culture_world_slug_routes_to_main(head):
     assert allowed_bases(head) == {"main"}
 

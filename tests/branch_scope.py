@@ -12,8 +12,7 @@ Culture work has three nesting scopes, all of which converge on
   -------   ------------------------   ------------------------------
   country   ``culture/<country>``      ``regions/<region>/<country>/**``
   region    ``culture/<region>``       ``regions/<region>/**``
-  world     ``culture/staging``        ``regions/**``
-            ``culture/release``        ``regions/**``
+    world     ``culture/release``        ``regions/**``
 
 Country and region slugs are resolved against the actual ``regions/``
 directory layout - a typo in the branch name fails fast instead of
@@ -61,10 +60,10 @@ GOVERNANCE_BRANCH_PATTERN = re.compile(r"^governance/[a-z0-9][a-z0-9_.-]*$")
 # identical to main, scope is unrestricted (anything main has is allowed).
 SYNC_BRANCH_PATTERN = re.compile(r"^sync/[a-z0-9][a-z0-9_.-]*$")
 
-# World-level integration slugs: may touch all of regions/**.
-# These are the integration targets feature branches merge into;
+# World-level integration slug: may touch all of regions/**.
+# This is the integration target feature branches merge into;
 # everything else under culture/* must resolve to a country or region.
-WORLD_SLUGS = frozenset({"staging", "release"})
+WORLD_SLUGS = frozenset({"release"})
 
 # Metadata files allowed on culture branches alongside regions/** changes.
 # Exact path match - `subdir/.gitignore` is NOT safe; only the listed paths.

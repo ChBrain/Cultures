@@ -38,7 +38,6 @@ def test_classify_main():
     "culture/x",
     "culture/x_y-z",
     "culture/burkina_faso",
-    "culture/staging",
     "culture/a1",
     "culture/rollout-v1.2",
     "culture/fix-v0.1.5",
@@ -151,10 +150,6 @@ def test_culture_scope_region(region):
     assert culture_scope(f"culture/{region}") == f"regions/{region}/"
 
 
-def test_culture_scope_world_staging():
-    assert culture_scope("culture/staging") == "regions/"
-
-
 def test_culture_scope_world_release():
     assert culture_scope("culture/release") == "regions/"
 
@@ -234,16 +229,6 @@ def test_check_scope_region_blocks_other_region():
     ], "culture/europe")
     assert not ok
     assert unsafe == ["regions/asia/japan/culture_japanese_position.md"]
-
-
-def test_check_scope_world_staging_allows_all():
-    ok, unsafe = check_scope("culture", [
-        "regions/europe/germany/culture_german_position.md",
-        "regions/asia/japan/culture_japanese_position.md",
-        "regions/africa/kenya/culture_kenyan_position.md",
-    ], "culture/staging")
-    assert ok
-    assert unsafe == []
 
 
 def test_check_scope_world_release_allows_all():
@@ -473,7 +458,7 @@ def test_safe_patterns_set_locked():
 
 
 def test_world_slugs_set_locked():
-    assert WORLD_SLUGS == frozenset({"staging", "release"})
+    assert WORLD_SLUGS == frozenset({"release"})
 
 
 # ---------------------------------------------------------------------------
