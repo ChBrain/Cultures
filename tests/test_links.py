@@ -26,6 +26,10 @@ _LEAF_NAMES = frozenset({"README", "REFERENCES", "hofstede_decisions"})
 # position and piece are the only types expected to have inbound links;
 # process, language, place, and persona are standalone by design.
 _LEAF_SEGMENTS = frozenset({"persona", "place", "language", "process"})
+_ORPHAN_LOCAL_REPRO = (
+    "\n\nLocal repro (PR-scoped): "
+    "python -m pytest -q tests/test_links.py --khai-files=\"<space-separated regions/*.md paths>\""
+)
 
 
 def _is_leaf(path: Path) -> bool:
@@ -125,4 +129,5 @@ def test_no_orphans(pytestconfig):
     assert not orphans, (
         f"{len(orphans)} orphaned file(s) added in this PR (never referenced):\n"
         + "\n".join(f"  {f.relative_to(root)}" for f in sorted(orphans))
+        + _ORPHAN_LOCAL_REPRO
     )
