@@ -12,7 +12,7 @@
 
 | # | File | Kind | Purpose |
 |---|---|---|---|
-| 1 | `culture_mexican_position_language.md` | language | The acoustic layer: how Castellano mexicano structures relationships before content |
+| 1 | [culture_mexican_position_language.md](culture_mexican_position_language.md) | language | The acoustic layer: how Castellano mexicano structures relationships before content |
 | 2 | `culture_mexican_piece_history.md` | history | The culture's defining moments across its full arc, 900 BC to 2024 |
 | 3 | `culture_mexican_position.md` | position | What the Mexican position demands of anyone who holds it |
 | 4 | `culture_mexican_process_tramite.md` | process | The recurring cultural movement through institutions, formal and informal |
