@@ -60,10 +60,17 @@ Validation ownership model:
 - CI PR gates: authoritative server-side rerun of required checks.
 - CI release/promotion gates: staged checks tied to integration and release flow.
 
+Test suites used in this repo:
+
+- **khai tests** (`khai_tests.*`) for structural, component, language, and link contracts.
+- **Cultures repo tests** (`tests/*`) for branch policy, validators, scope, and project-specific contracts.
+
 Validation matrix (operational):
 
 | Check | Local pre-commit | CI PR gates | CI release/promotion |
 |---|---|---|---|
+| khai tests (scope-targeted) | required where runnable | required | required |
+| Cultures repo tests (scope-targeted) | required where runnable | required | required |
 | L1a general format | required | required | required |
 | L1b language policy | required | required | required |
 | L2 section structure | required | required | required |
