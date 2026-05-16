@@ -8,7 +8,11 @@ jobs:
   khai-encoding:
     name: khai - Encoding rules
     needs: [setup, cultures-stamp-check]
-    if: needs.setup.outputs.any == 'true'
+    # Fork guard: every job that installs the private khai-tests wheel via
+    # secrets.KAIHACKS runs only for same-repo PRs. Forked PRs get no
+    # secrets, so these jobs would fail regardless -- skip them cleanly
+    # instead. Each secrets.KAIHACKS job below carries the same condition.
+    if: needs.setup.outputs.any == 'true' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,7 +38,7 @@ jobs:
   khai-process:
     name: khai - Process rules
     needs: [setup, khai-encoding]
-    if: needs.setup.outputs.any == 'true'
+    if: needs.setup.outputs.any == 'true' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -60,7 +64,7 @@ jobs:
   khai-position:
     name: khai - Position rules
     needs: [setup, khai-encoding]
-    if: needs.setup.outputs.any == 'true'
+    if: needs.setup.outputs.any == 'true' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -86,7 +90,7 @@ jobs:
   khai-piece:
     name: khai - Piece rules
     needs: [setup, khai-encoding]
-    if: needs.setup.outputs.any == 'true'
+    if: needs.setup.outputs.any == 'true' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -112,7 +116,7 @@ jobs:
   khai-place:
     name: khai - Place rules
     needs: [setup, khai-encoding]
-    if: needs.setup.outputs.any == 'true'
+    if: needs.setup.outputs.any == 'true' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -138,7 +142,7 @@ jobs:
   khai-persona:
     name: khai - Persona rules
     needs: [setup, khai-encoding]
-    if: needs.setup.outputs.any == 'true'
+    if: needs.setup.outputs.any == 'true' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -164,7 +168,7 @@ jobs:
   cultures-sections:
     name: cultures - Section structure
     needs: [setup, khai-process, khai-position, khai-piece, khai-place, khai-persona]
-    if: needs.setup.outputs.any == 'true'
+    if: needs.setup.outputs.any == 'true' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -493,7 +497,7 @@ jobs:
   khai-language:
     name: khai - Language rules
     needs: [setup, cultures-sections]
-    if: needs.setup.outputs.any == 'true'
+    if: needs.setup.outputs.any == 'true' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -534,7 +538,7 @@ jobs:
   khai-links:
     name: khai - Link rules
     needs: [setup, cultures-language]
-    if: needs.setup.outputs.any == 'true'
+    if: needs.setup.outputs.any == 'true' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -560,7 +564,7 @@ jobs:
   cultures-links:
     name: cultures - Link integrity
     needs: [setup, khai-links]
-    if: needs.setup.outputs.any == 'true'
+    if: needs.setup.outputs.any == 'true' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -634,7 +638,7 @@ jobs:
   khai-plagiarism:
     name: khai - Phrase denylist rules
     needs: [setup, cultures-audit-consistency]
-    if: needs.setup.outputs.any == 'true'
+    if: needs.setup.outputs.any == 'true' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
