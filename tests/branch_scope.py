@@ -101,6 +101,7 @@ GOVERNANCE_DIR_PREFIXES = (
 
 GOVERNANCE_GLOB_PATTERNS = (
     "tests/branch_scope.py",
+    "tests/conftest.py",
     "tests/test_*.py",
     "tests/validate_*.py",
     "tests/requirements.txt",

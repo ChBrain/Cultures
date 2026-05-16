@@ -535,6 +535,7 @@ def test_governance_dir_prefixes_locked():
 def test_governance_glob_patterns_locked():
     assert GOVERNANCE_GLOB_PATTERNS == (
         "tests/branch_scope.py",
+        "tests/conftest.py",
         "tests/test_*.py",
         "tests/validate_*.py",
         "tests/requirements.txt",
