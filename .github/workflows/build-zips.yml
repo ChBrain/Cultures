@@ -99,6 +99,97 @@ jobs:
               )
               
               return content
+
+          def strip_markdown_footer(content):
+              """Strip trailing metadata footer blocks from markdown for deployment artifacts.
+
+              Expected footer styles include:
+              - --- + italic metadata lines (v2 culture footer blocks)
+              - trailing italic metadata lines without a divider
+              """
+              lines = content.splitlines()
+              if not lines:
+                  return content
+
+              end = len(lines) - 1
+              while end >= 0 and not lines[end].strip():
+                  end -= 1
+              if end < 0:
+                  return content
+
+              # Pattern A: trailing block after '---' where every non-empty line is italic metadata
+              divider = None
+              for i in range(end, -1, -1):
+                  if lines[i].strip() == '---':
+                      divider = i
+                      break
+
+              if divider is not None:
+                  block = [ln.strip() for ln in lines[divider + 1:end + 1] if ln.strip()]
+                  if block and all(re.match(r'^\*.*\*$', ln) for ln in block):
+                      kept = lines[:divider]
+                      while kept and not kept[-1].strip():
+                          kept.pop()
+                      return '\n'.join(kept) + '\n'
+
+              # Pattern B: trailing italic metadata lines without a divider
+              metadata_tokens = ('khai:', 'hofstede:', 'v0.', 'v1.', 'v2.', 'KAI', 'CC-BY')
+              cut = end + 1
+              i = end
+              while i >= 0:
+                  stripped = lines[i].strip()
+                  if not stripped:
+                      i -= 1
+                      continue
+                  is_italic_line = re.match(r'^\*.*\*$', stripped) is not None
+                  has_metadata_token = any(token in stripped for token in metadata_tokens)
+                  if is_italic_line and has_metadata_token:
+                      cut = i
+                      i -= 1
+                      continue
+                  break
+
+              if cut <= end:
+                  kept = lines[:cut]
+                  while kept and not kept[-1].strip():
+                      kept.pop()
+                  if kept and kept[-1].strip() == '---':
+                      kept.pop()
+                      while kept and not kept[-1].strip():
+                          kept.pop()
+                  return '\n'.join(kept) + '\n'
+
+              return '\n'.join(lines[:end + 1]) + ('\n' if content.endswith('\n') else '')
+
+          def strip_footers_in_folder(folder: Path):
+              """Strip deployment footers from all markdown files in a folder."""
+              for markdown_file in folder.glob('*.md'):
+                  try:
+                      content = markdown_file.read_text(encoding='utf-8')
+                      stripped = strip_markdown_footer(content)
+                      markdown_file.write_text(stripped, encoding='utf-8')
+                  except:
+                      pass
+
+          def create_engine_platform_zip(platform: str):
+              """Create per-platform engine zip with Claude footer stripping."""
+              zip_path = Path(f'dist/engine_{platform}.zip')
+              files = [
+                  (Path('engine') / platform / 'instructions.md', 'instructions.md'),
+                  (Path('engine') / 'stack.md', 'stack.md'),
+                  (Path('engine') / 'process_world_is_spinning.md', 'process_world_is_spinning.md'),
+              ]
+
+              with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zf:
+                  for src_path, arcname in files:
+                      if not src_path.exists():
+                          continue
+                      content = src_path.read_text(encoding='utf-8')
+                      if platform == 'claude':
+                          content = strip_markdown_footer(content)
+                      zf.writestr(arcname, content)
+
+              print(f'Created engine_{platform}.zip (footer strip: {platform == "claude"})')
           
           def create_culture_zip(staging_dir, zip_name):
               """Helper to create a single culture zip from staging directory."""
@@ -159,8 +250,16 @@ jobs:
                       markdown_file.write_text(content, encoding='utf-8')
                   except:
                       pass
+
+              # Strip footers for Claude deployment in staged culture and engine files
+              strip_footers_in_folder(staging_dir / 'culture')
+              strip_footers_in_folder(staging_dir / 'engine')
               
               return culture_count
+
+          # Rebuild Stage 3 engine zips in Python so Claude engine files can be footer-stripped.
+          for platform in ['claude', 'copilot', 'gemini']:
+              create_engine_platform_zip(platform)
           
           # Stage 4a: Individual country culture zips
           regions_path = Path('regions')
@@ -296,6 +395,10 @@ jobs:
                               markdown_file.write_text(content, encoding='utf-8')
                           except:
                               pass
+
+                      # Strip footers for Claude deployment in staged culture and engine files
+                      strip_footers_in_folder(staging_dir / 'culture')
+                      strip_footers_in_folder(staging_dir / 'engine')
                       
                       # Create regional combined zip
                       culture_count = create_culture_zip(staging_dir, region_name)
@@ -356,6 +459,10 @@ jobs:
                   markdown_file.write_text(content, encoding='utf-8')
               except:
                   pass
+
+          # Strip footers for Claude deployment in staged culture and engine files
+          strip_footers_in_folder(staging_dir / 'culture')
+          strip_footers_in_folder(staging_dir / 'engine')
 
           create_culture_zip(staging_dir, 'cultures-full')
           shutil.rmtree(staging_dir)
