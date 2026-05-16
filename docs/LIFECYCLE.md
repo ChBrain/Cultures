@@ -60,6 +60,19 @@ Validation ownership model:
 - CI PR gates: authoritative server-side rerun of required checks.
 - CI release/promotion gates: staged checks tied to integration and release flow.
 
+Validation matrix (operational):
+
+| Check | Local pre-commit | CI PR gates | CI release/promotion |
+|---|---|---|---|
+| L1a general format | required | required | required |
+| L1b language policy | required | required | required |
+| L2 section structure | required | required | required |
+| L3 link integrity | required | required | required |
+| L4 completeness + L4h history arc | required | required | required |
+| Hofstede derived/reference checks (culture branches) | required | required | required |
+| Branch base/scope routing rules | local branch guard | required | required |
+| Validation stamp presence | written locally | required | required |
+
 If a check is CI-only today but can run locally at acceptable cost, move it to local as well.
 
 Output: checks pass for the changed scope.
