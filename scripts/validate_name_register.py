@@ -1,18 +1,30 @@
 """scripts/validate_name_register.py
 
-Reads Name Sources sections from every country REFERENCES.md,
-diffs against data/names/name_register.json, and writes an updated register.
+Harvests persona names from culture persona files and syncs them into
+data/names/name_register.json.
 
-Called by .github/workflows/sync_name_register.yml after a culture/* branch
-merges to main. Never run manually on a culture branch -- that would violate
-branch scope rules. The workflow opens a governance/* PR with the result.
+The source of truth is the persona file itself, not a hand-authored block:
+  - legacy personas:  regions/<region>/<slug>/persona_<name>.md
+  - v2 personas:      regions/<region>/<slug>/culture_<adj>_persona_<gender>_<name>.md
 
-Usage (called by the Action, or dry-run locally):
-    python scripts/validate_name_register.py [--dry-run]
+For each persona file the script reads:
+  - name    -- from the `# Persona: <Name>` heading (ASCII-folded for the key)
+  - gender  -- from the v2 filename token, or pronoun frequency for legacy files
+  - country -- ISO code + approved name source from data/countries.json
+
+A country must be registered in data/countries.json before its personas can
+be synced; an unregistered country is a hard error.
+
+Called by .github/workflows/sync_name_register.yml after culture content
+merges to main. The workflow passes each changed country slug via --country.
+With no --country, every country in countries.json is harvested (manual reseed).
+
+Usage:
+    python scripts/validate_name_register.py [--country SLUG ...] [--dry-run]
 
 Exit codes:
-    0  register written (or unchanged in dry-run)
-    1  parse error in a REFERENCES.md -- aborts without writing
+    0  register written (or unchanged / dry-run)
+    1  error -- unregistered country, unparseable persona, or name collision
 """
 from __future__ import annotations
 
@@ -20,105 +32,119 @@ import argparse
 import json
 import re
 import sys
+import unicodedata
 from datetime import date
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).parent.parent
 REGISTER  = REPO_ROOT / "data" / "names" / "name_register.json"
+COUNTRIES = REPO_ROOT / "data" / "countries.json"
 REGIONS   = REPO_ROOT / "regions"
 
-# HTML comment block that carries machine-readable metadata
-_META_RE = re.compile(
-    r"<!-- name_sources\s+(.*?)-->",
-    re.DOTALL,
-)
-# Markdown table row: | Name | Gender | File | ... |
-_ROW_RE = re.compile(
-    r"^\|\s*(?P<name>[A-Za-z\u00c0-\u00d6\u00d8-\u00f6\u00f8-\u00ff]+)\s*"
-    r"\|\s*(?P<gender>male|female|non-binary)\s*"
-    r"\|\s*(?P<file>[^|]+?)\s*"
-    r"\|.*$"
-)
+_HEADING_RE = re.compile(r"^#\s+Persona:\s*(?P<name>.+?)\s*$", re.MULTILINE)
+_SHE_RE = re.compile(r"\b(?:she|her|hers|herself)\b", re.IGNORECASE)
+_HE_RE  = re.compile(r"\b(?:he|him|his|himself)\b", re.IGNORECASE)
+
+# Fields merge() may update on an existing entry. 'name' is the key and
+# 'added' is immutable once first recorded.
+_MUTABLE = ("given", "gender", "country", "persona_file", "cultural_source")
+
+# Latin letters NFKD does not decompose into base + combining mark.
+_TRANSLIT = str.maketrans({
+    "ł": "l", "Ł": "L", "ø": "o", "Ø": "O", "đ": "d", "Đ": "D",
+    "ð": "d", "Ð": "D", "ħ": "h", "Ħ": "H", "ı": "i", "ß": "ss",
+    "æ": "ae", "Æ": "Ae", "œ": "oe", "Œ": "Oe", "þ": "th", "Þ": "Th",
+})
 
 
-def _parse_meta(block: str) -> dict:
-    """Parse key: value lines from the HTML comment block."""
-    meta = {}
-    for line in block.strip().splitlines():
-        if ":" in line:
-            k, _, v = line.partition(":")
-            meta[k.strip()] = v.strip()
-    return meta
+def ascii_key(display: str) -> str:
+    """Fold a display name to its ASCII-letter key ('Małgorzata' -> 'Malgorzata')."""
+    folded = unicodedata.normalize("NFKD", display.translate(_TRANSLIT))
+    folded = "".join(c for c in folded if not unicodedata.combining(c))
+    return re.sub(r"[^A-Za-z]", "", folded)
 
 
-def _country_path(references_path: Path) -> str:
-    """Derive the repo-relative country folder path from a REFERENCES.md path.
+def persona_name(text: str) -> str:
+    """Read the display name from a persona file's `# Persona: <Name>` heading."""
+    m = _HEADING_RE.search(text)
+    if not m:
+        raise ValueError("no '# Persona: <Name>' heading")
+    return m.group("name").strip()
 
-    Falls back to the parent directory name when the path is outside REPO_ROOT
-    (e.g. pytest tmp_path directories during unit tests).
+
+def persona_gender(filename: str, text: str) -> str:
+    """Determine gender: v2 filename token, else pronoun frequency in the prose."""
+    parts = Path(filename).stem.split("_")
+    if parts and parts[0] == "culture" and "persona" in parts:
+        token = parts[parts.index("persona") + 1]
+        if token in ("male", "female"):
+            return token
+    she = len(_SHE_RE.findall(text))
+    he  = len(_HE_RE.findall(text))
+    if she > he:
+        return "female"
+    if he > she:
+        return "male"
+    raise ValueError(f"{filename}: cannot determine gender (she={she}, he={he})")
+
+
+def persona_files(country_dir: Path) -> list[Path]:
+    """Persona files in a country folder: legacy persona_*.md + v2 culture_*_persona_*.md."""
+    found = set(country_dir.glob("persona_*.md")) | set(country_dir.glob("culture_*_persona_*.md"))
+    return sorted(found)
+
+
+def load_countries() -> dict[str, dict]:
+    """Load data/countries.json as a slug -> {iso, name, name_source, ...} map."""
+    data = json.loads(COUNTRIES.read_text(encoding="utf-8"))
+    return {c["key"]: c for c in data.get("countries", [])}
+
+
+def find_country_dir(slug: str) -> Path:
+    """Locate regions/<region>/<slug>/."""
+    matches = sorted(REGIONS.glob(f"*/{slug}"))
+    if not matches:
+        raise ValueError(f"no country folder regions/*/{slug}")
+    return matches[0]
+
+
+def extract_country(slug: str, countries: dict[str, dict]) -> list[dict]:
+    """Extract name register entries for every persona in one country folder.
+
+    Raises ValueError on an unregistered country or an unparseable persona.
     """
-    try:
-        return str(references_path.parent.relative_to(REPO_ROOT))
-    except ValueError:
-        return references_path.parent.name
+    meta = countries.get(slug)
+    if meta is None:
+        raise ValueError(
+            f"country '{slug}' is not in data/countries.json -- register it there first"
+        )
 
-
-def extract_entries(references_path: Path) -> list[dict]:
-    """Extract name register entries from a single REFERENCES.md.
-
-    Returns a list of dicts ready for name_register.json.
-    Raises ValueError on parse errors.
-    """
-    text = references_path.read_text(encoding="utf-8")
-
-    meta_match = _META_RE.search(text)
-    if not meta_match:
-        return []  # No name_sources section -- country not yet registered
-
-    meta = _parse_meta(meta_match.group(1))
-    country         = meta.get("country", "").strip()
-    cultural_source = meta.get("cultural_source", "").strip()
-
-    if not country:
-        raise ValueError(f"{references_path}: name_sources block missing 'country'")
-    if not cultural_source:
-        raise ValueError(f"{references_path}: name_sources block missing 'cultural_source'")
-
-    # Find the Name Sources table -- lines after the comment block
-    post = text[meta_match.end():]
     entries = []
-    country_folder = _country_path(references_path)
-
-    for line in post.splitlines():
-        m = _ROW_RE.match(line.strip())
-        if not m:
-            continue
-        name = m.group("name")
-        gender = m.group("gender")
-        persona_file = f"{country_folder}/{m.group('file').strip()}"
+    for pf in persona_files(find_country_dir(slug)):
+        text = pf.read_text(encoding="utf-8")
+        rel = pf.relative_to(REPO_ROOT)
+        try:
+            display = persona_name(text)
+            gender  = persona_gender(pf.name, text)
+        except ValueError as exc:
+            raise ValueError(f"{rel}: {exc}") from exc
         entries.append({
-            "name":            name,
-            "country":         country,
+            "name":            ascii_key(display),
+            "given":           display,
             "gender":          gender,
-            "persona_file":    persona_file,
-            "cultural_source": cultural_source,
+            "country":         meta["iso"],
+            "persona_file":    str(rel),
+            "cultural_source": meta["name_source"],
             "added":           str(date.today()),
         })
-
     return entries
 
 
-def load_register() -> list[dict]:
-    if not REGISTER.exists():
-        return []
-    data = json.loads(REGISTER.read_text(encoding="utf-8"))
-    return data.get("names", [])
-
-
 def merge(existing: list[dict], fresh: list[dict]) -> tuple[list[dict], list[str]]:
-    """Merge fresh entries into existing, keyed by 'name'.
+    """Merge fresh entries into existing, keyed by globally-unique 'name'.
 
-    Returns (merged_list, change_log).
+    Returns (merged_list, change_log). Raises ValueError on a name collision
+    (same name, different persona file).
     """
     index = {e["name"]: e for e in existing}
     log = []
@@ -128,28 +154,32 @@ def merge(existing: list[dict], fresh: list[dict]) -> tuple[list[dict], list[str
         if key not in index:
             index[key] = entry
             log.append(f"ADD  {key} ({entry['country']} / {entry['gender']})")
-        else:
-            old = index[key]
-            changed_fields = [
-                f for f in ("country", "gender", "persona_file", "cultural_source")
-                if old.get(f) != entry.get(f)
-            ]
-            if changed_fields:
-                index[key] = {**old, **{f: entry[f] for f in changed_fields}}
-                log.append(f"UPD  {key}: {', '.join(changed_fields)}")
+            continue
+
+        old = index[key]
+        if old.get("persona_file") != entry.get("persona_file"):
+            raise ValueError(
+                f"name collision: '{key}' is used by {old.get('persona_file')} "
+                f"and {entry.get('persona_file')} -- names must be globally unique"
+            )
+        changed = [f for f in _MUTABLE if old.get(f) != entry.get(f)]
+        if changed:
+            index[key] = {**old, **{f: entry[f] for f in changed}}
+            log.append(f"UPD  {key}: {', '.join(changed)}")
 
     merged = sorted(index.values(), key=lambda e: (e["country"], e["name"]))
     return merged, log
 
 
-def main(dry_run: bool = False) -> int:
-    errors = []
-    fresh_entries: list[dict] = []
+def main(country_slugs: list[str] | None = None, dry_run: bool = False) -> int:
+    countries = load_countries()
+    slugs = country_slugs if country_slugs else sorted(countries)
 
-    for ref_file in sorted(REGIONS.rglob("REFERENCES.md")):
+    errors: list[str] = []
+    fresh: list[dict] = []
+    for slug in slugs:
         try:
-            entries = extract_entries(ref_file)
-            fresh_entries.extend(entries)
+            fresh.extend(extract_country(slug, countries))
         except ValueError as exc:
             errors.append(str(exc))
 
@@ -158,8 +188,14 @@ def main(dry_run: bool = False) -> int:
             print(f"ERROR: {e}", file=sys.stderr)
         return 1
 
-    existing = load_register()
-    merged, log = merge(existing, fresh_entries)
+    register = json.loads(REGISTER.read_text(encoding="utf-8")) if REGISTER.exists() else {}
+    existing = register.get("names", [])
+
+    try:
+        merged, log = merge(existing, fresh)
+    except ValueError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 1
 
     if not log:
         print("name_register.json is already up to date.")
@@ -173,9 +209,11 @@ def main(dry_run: bool = False) -> int:
         print("[dry-run] no file written.")
         return 0
 
+    register["names"] = merged
+    register.setdefault("_meta", {})["updated"] = str(date.today())
     REGISTER.parent.mkdir(parents=True, exist_ok=True)
     REGISTER.write_text(
-        json.dumps({"names": merged}, indent=2, ensure_ascii=False) + "\n",
+        json.dumps(register, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
     )
     print(f"Written: {REGISTER.relative_to(REPO_ROOT)}")
@@ -183,7 +221,11 @@ def main(dry_run: bool = False) -> int:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Sync name register from REFERENCES.md files")
-    parser.add_argument("--dry-run", action="store_true", help="Parse and diff without writing")
+    parser = argparse.ArgumentParser(description="Sync name register from culture persona files")
+    parser.add_argument(
+        "--country", action="append", dest="countries", metavar="SLUG",
+        help="country folder slug to harvest (repeatable); default: all registered countries",
+    )
+    parser.add_argument("--dry-run", action="store_true", help="parse and diff without writing")
     args = parser.parse_args()
-    sys.exit(main(dry_run=args.dry_run))
+    sys.exit(main(country_slugs=args.countries, dry_run=args.dry_run))
