@@ -11,8 +11,8 @@
 
 ## Cross-language flags
 
-- Emeka projection first line (Igbo) needs native-speaker verification.
-- Funke projection first line (Yoruba) needs native-speaker verification.
+- Emeka projection first line (Igbo): corrected to 'Emeka bụ nwoke si Naijiriya' per research session 2026-05-16. Locked. Exception registered in language_exceptions.txt.
+- Funke projection first line (Yoruba): confirmed clean per research session 2026-05-16. Locked.
 
 ## Notes
 

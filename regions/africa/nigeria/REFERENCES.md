@@ -53,10 +53,10 @@ https://en.wikipedia.org/wiki/Nigerian_energy_supply_crisis
 The Culture Factor. Nigeria country profile. https://www.theculturefactor.com/countries/nigeria -- screenshot captured 2026-05-16. Shows IDV 0, LTO 8. Package uses Hofstede Insights country-specific scores (IDV 30, LTO 13) as primary source per project decision 2026-05-16.
 
 ## Native Speaker Checks Required
-- Emeka Projection first line: Igbo verb form "sitere na" -- confirm with Igbo speaker
-- Funke Projection first line: Yoruba tonal marks and "Nàìjíríà" spelling -- confirm with Yoruba speaker
-- Igbo proverb in language file: "Uchu onye n'eme ya mma" -- confirm accuracy with Igbo speaker
-- Yoruba proverb in language file: "Ọmọ tí a kò kọ ni yóò ta ilé tì í" -- confirm tonal marks with Yoruba speaker
+- Emeka Projection first line (Igbo): corrected to 'Emeka bụ nwoke si Naijiriya' per research session 2026-05-16. Locked.
+- Funke Projection first line (Yoruba): confirmed clean per research session 2026-05-16. Locked.
+- Igbo proverb in language file: 'Uchu onye n'eme ya mma' -- native-speaker confirmation still required before production merge.
+- Yoruba proverb in language file: 'Ọmọ tí a kò kọ ni yóò ta ilé tì í' -- native-speaker confirmation still required before production merge.
 
 ---
 *2026-05-15 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

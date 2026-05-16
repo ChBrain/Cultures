@@ -15,10 +15,10 @@ Evening vendors line the sand, and the crowd carries music, laughter, noise, and
 Buka joints open at dawn, plastic chairs, pepper soup, jollof in the pot before seven.
 Generators running in every compound. NEPA has taken light. Life continues.
 Alaba market: electronics from everywhere, sold by someone who knows someone who can find anything.
+Market stalls open before dawn and close after dark, winning measured by the day's take.
 The church on Sunday: full, loud, certain. The mosque on Friday: full, quiet, certain.
 Nollywood sets in Surulere and Ikeja, cameras running, the story being told before it is finished.
 Afrobeats from every phone, every shop, every passing car.
-By dusk, sidewalk card games turn competitive, and winners take delight in the noise.
 The night traffic on the mainland carries buses, horns, and headlights until dawn.
 The ocean smell when the wind comes from the south.
 
@@ -32,6 +32,7 @@ The circle as survival infrastructure, not sentiment.
 
 ## Offers
 You can arrive without connection and build one.
+The city runs on noise, vibrancy, and movement that newcomers can step into before they are known.
 You can see personal logos painted on kiosks that were plywood last month.
 New kiosks advertise plans, prices, and choice in handwritten paint beside phone-number boards.
 The city does not ask where you are from before it lets you try.
