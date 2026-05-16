@@ -36,12 +36,7 @@ This installs `.githooks/pre-commit` which validates every commit locally before
 
 That document is the single source of truth for all branch types, allowed paths, scope rules, and governance enforcement. It is mirrored from the executable classifier in [`tests/branch_scope.py`](../tests/branch_scope.py).
 
-Quick reference:
-- `culture/<country>` - culture content (scope-locked to that country)
-- `culture/<region>` - cross-country culture work
-- `culture/staging`, `culture/release` - all culture content (regions/**)
-- `governance/<name>` - validators, hooks, workflows
-- `chore/<name>`, `fix/<name>`, `feat/<name>` - general tooling (not regions/**, not governance)
+Do not duplicate branch-kind rules in this file. When in doubt, follow [`docs/BRANCHING.md`](../docs/BRANCHING.md) and the executable checks in [`tests/branch_scope.py`](../tests/branch_scope.py).
 
 ## Cultures v2 Schema
 
@@ -170,106 +165,17 @@ FAIL regions/europe/germany/culture_german_persona_brigitte.md:
 
 ## Workflow
 
-### Culture Work (culture/<country> or culture/<region>)
+Use canonical workflow docs instead of repeating branch logic here:
 
-1. **Create culture branch**
-   ```bash
-   git checkout -b culture/netherlands
-   ```
+- Branch kinds, allowed paths, and PR target rules: [`docs/BRANCHING.md`](../docs/BRANCHING.md)
+- Worktree lifecycle and commands: [`/.worktree/WORKTREES.md`](../.worktree/WORKTREES.md)
+- Shared delivery chapters: [`docs/LIFECYCLE.md`](../docs/LIFECYCLE.md)
 
-2. **Make changes only to culture files** in `regions/<region>/<country>/`
+Validation enforcement remains hook-first and CI-backed:
 
-3. **Commit locally** - Pre-commit hook automatically:
-   - ✓ Strips UTF-8 BOM from PowerShell files
-   - ✓ Prevents direct commits to `main`
-   - ✓ **Blocks commits with non-regions/ changes** (culture-only guard)
-   - ✓ Runs L1-L4 validators (general format, language policy, sections, links, completeness)
-   - ✓ **Runs Hofstede validation** (dimension alignment ±10 tolerance)
-   - ✓ Writes `.validation-stamp` (git tree hash) on success
-   - ✗ Rejects commits if validation fails
-
-   ```bash
-   git add regions/europe/netherlands/culture_*.md
-   git commit -m "feat: add Netherlands culture with Hofstede alignment"
-   ```
-
-4. **Push to remote**
-   ```bash
-   git push -u origin culture/netherlands
-   ```
-
-5. **Open PR to `culture/staging`** - Culture content gets staged for review
-   - GitHub CI runs full validation (L0-L4f)
-   - Culture reviewers can batch-test before main merge
-   - All checks must pass
-
-6. **Merge to `culture/staging`** - Queues for release
-
-7. **Release cycle** - When ready to deploy:
-   - Create PR from `culture/staging` → `main`
-   - Merge to `main`
-   - Create GitHub release tag (v0.X.Y)
-   - Workflow deploys
-
-### Infrastructure Work (chore/*, fix/*)
-
-1. **Create non-culture branch**
-   ```bash
-   git checkout -b chore/validation-script
-   ```
-
-2. **Make changes to scripts, tooling, documentation** (anywhere outside regions/)
-
-3. **Commit locally** - Pre-commit hook validates as before
-   - ✓ Strips UTF-8 BOM from PowerShell files
-   - ✓ Prevents direct commits to `main`
-   - ✓ **Blocks commits that touch `regions/`** (non-culture branches stay outside culture content)
-   - ✓ Runs L1-L4 validators only (no Hofstede)
-   - ✓ Writes `.validation-stamp`
-   - ✗ Rejects commits if validation fails
-
-4. **Open PR directly to `main`** - Infrastructure PRs bypass staging
-   - Approved and merged independently
-   - Does not block culture releases
-
-## Validation stamp gate
-
-GitHub Actions **cultures - Validation stamp gate** verifies that `.validation-stamp` exists in your commit. This proof that you ran local validation before pushing - it prevents accidental commits from bypassing checks.
-
-If you see "cultures - Validation stamp gate FAILED":
-- Your `.validation-stamp` is missing
-- This means local validators didn't run or didn't pass
-- Recovery: `git reset HEAD~1`, fix issues, commit again
-
-## Validators run at each stage
-
-| Stage | Tool | When | Includes Hofstede? |
-|-------|------|------|---|
-| Local pre-commit | `.githooks/pre-commit` | Before every `git commit` on **culture/*** | YES |
-| Local pre-commit | `.githooks/pre-commit` | Before every `git commit` on **chore/*, fix/*** | NO |
-| cultures - Validation stamp gate | CI job | Every PR, every push to main | - |
-| L1-L4 validation | CI jobs (chained) | Every PR, when L0 passes | Base validation only |
-| L1-L7 validation | CI jobs (chained) | PR to **culture/staging**, when L0 passes | Includes Hofstede (L5-L7) |
-
-## Validation Chain
-
-**Culture Branch Path (culture/<name> → culture/staging → main):**
-- Local: L1-L4 + **Hofstede** (pre-commit hook enforces alignment)
-- CI on culture/staging: L1-L7 full validation + cultures - Validation stamp gate
-- CI on main (from staging): verify scope stayed in regions/, no scope creep
-
-**Infrastructure Branch Path (chore/*, fix/*, feat/* non-culture → main):**
-- Local: L1-L4 only, no Hofstede (pre-commit hook skips)
-- CI on main: L1-L4 validation + cultures - Validation stamp gate
-- Hofstede not required (infrastructure/metadata don't carry cultural dimensions)
-
-## Protection
-
-- ✅ Pre-commit hook prevents main commits locally
-- ✅ Pre-commit hook prevents culture-branch scope creep (non-regions/ changes)
-- ✅ cultures - Validation stamp gate prevents commits without proof of local validation
-- ✅ GitHub branch protection requires PR + passing checks before merge
-- ✅ All commits to main must pass full CI validation
+- Local pre-commit gate: `.githooks/pre-commit`
+- Server-side PR/base and scope gate: `.github/workflows/pr-gate.yml`
+- Validation chain: `.github/workflows/validate.yml`
 
 ---
 
