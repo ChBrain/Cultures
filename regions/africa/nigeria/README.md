@@ -28,7 +28,7 @@ Source: Hofstede Insights (PDI 80, IDV 30, MAS 60, UAI 55, LTO 13, IND 84)
 
 | # | Kind | File | Status |
 |---|---|---|---|
-| 1 | Language | culture_nigerian_position_language.md | delivered |
+| 1 | Language | [culture_nigerian_position_language.md](culture_nigerian_position_language.md) | delivered |
 | 2 | History | culture_nigerian_piece_history.md | delivered |
 | 3 | Position | culture_nigerian_position.md | delivered |
 | 4 | Process | culture_nigerian_process_oga.md | delivered |
