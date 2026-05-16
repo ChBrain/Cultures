@@ -6,7 +6,7 @@
 - Culture: Nigeria
 
 ## Projection
-Emeka bụ [nwoke](position_male.md) si [Naijiriya](culture_nigerian_position.md).
+Emeka bụ [nwoke](../../../engine/position_male.md) si [Naijiriya](culture_nigerian_position.md).
 Contractor. Lagos.
 Born 1971 in Onitsha. Arrived Lagos 1993 with one contact and a notebook.
 He does not carry a briefcase. He carries a phone with two SIM cards.

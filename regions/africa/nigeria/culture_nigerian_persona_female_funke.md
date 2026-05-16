@@ -6,7 +6,7 @@
 - Culture: Nigeria
 
 ## Projection
-Funke jẹ [obìnrin](position_female.md) kan láti [Nàìjíríà](culture_nigerian_position.md).
+Funke jẹ [obìnrin](../../../engine/position_female.md) kan láti [Nàìjíríà](culture_nigerian_position.md).
 Lawyer. Lagos.
 Born 1989 in Ibadan. Built in Lagos.
 She greets everyone in the room before she sits down. She knows the titles.
