@@ -2,6 +2,7 @@
 ## KAI HACKS AI -- Culture Package
 
 Region: Africa
+**Language(s):** English
 Language: English (Nigerian English / Naija Pidgin)
 Version: v0.2.0
 Date: 2026-05-15
