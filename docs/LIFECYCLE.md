@@ -47,6 +47,41 @@ Run required validation/tests for touched files.
 - Run required gates for branch kind.
 - Ensure `.validation-stamp` reflects current validated tree.
 
+### Test strategy - Trust, but verify
+
+- What can be tested locally shall be tested locally before commit.
+- What can be tested only locally must be tested locally before push.
+- What can be tested in CI shall be tested in CI, staged by branch target and release phase.
+
+Validation ownership model:
+
+- Local pre-commit: fast scoped checks on staged files.
+- Local pre-push/manual: broader branch-scope checks when needed.
+- CI PR gates: authoritative server-side rerun of required checks.
+- CI release/promotion gates: staged checks tied to integration and release flow.
+
+Test suites used in this repo:
+
+- **khai tests** (`khai_tests.*`) for structural, component, language, and link contracts.
+- **Cultures repo tests** (`tests/*`) for branch policy, validators, scope, and project-specific contracts.
+
+Validation matrix (operational):
+
+| Check | Local pre-commit | CI PR gates | CI release/promotion |
+|---|---|---|---|
+| khai tests (scope-targeted) | required where runnable | required | required |
+| Cultures repo tests (scope-targeted) | required where runnable | required | required |
+| L1a general format | required | required | required |
+| L1b language policy | required | required | required |
+| L2 section structure | required | required | required |
+| L3 link integrity | required | required | required |
+| L4 completeness + L4h history arc | required | required | required |
+| Hofstede derived/reference checks (culture branches) | required | required | required |
+| Branch base/scope routing rules | local branch guard | required | required |
+| Validation stamp presence | written locally | required | required |
+
+If a check is CI-only today but can run locally at acceptable cost, move it to local as well.
+
 Output: checks pass for the changed scope.
 
 ## 5. Release
