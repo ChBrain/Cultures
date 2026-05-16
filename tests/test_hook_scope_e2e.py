@@ -226,7 +226,7 @@ def test_region_branch_blocks_other_region(repo):
 
 
 def test_world_branch_allows_anything_in_regions(repo):
-    _checkout(repo, "culture/staging")
+    _checkout(repo, "culture/release")
     _stage(repo, "regions/europe/germany/foo.txt")
     _stage(repo, "regions/asia/japan/foo.txt")
     result = _run_hook(repo)

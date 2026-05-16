@@ -3,7 +3,7 @@
 Server-side enforcement of the integration flow:
 
   culture/<slug>                  -> culture/release  (per-country/region work)
-  culture/release, culture/staging -> main             (world-level integration)
+    culture/release                 -> main             (world-level integration)
   governance/<name>                -> main             (rule changes)
   sync/<name>                      -> culture/release  (main -> culture/release sync)
   chore/*, fix/*, feat/*, other    -> main             (non-culture, non-governance)
@@ -43,7 +43,7 @@ def allowed_bases(head: str) -> set[str]:
     if kind == "culture":
         slug = head[len("culture/"):]
         if slug in WORLD_SLUGS:
-            # World-level integration branches (culture/release, culture/staging)
+            # World-level integration branch (culture/release)
             # PR upward into main.
             return {"main"}
         # Country/region branches must funnel through culture/release first.

@@ -2,7 +2,7 @@ name: prose-review
 
 on:
   pull_request:
-    branches: [culture/staging]
+    branches: [culture/release]
 
 jobs:
   prose-review:

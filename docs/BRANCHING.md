@@ -26,7 +26,7 @@ and their scope rules are below.
 | `main` | exact `main` | nothing - direct commits forbidden | n/a |
 | culture (country) | `culture/<country>` | `regions/<region>/<country>/**` + safe metadata | yes (±10 gap) |
 | culture (region) | `culture/<region>` | `regions/<region>/**` + safe metadata | yes (±10 gap) |
-| culture (world) | `culture/staging`, `culture/release` | `regions/**` + safe metadata | yes (±10 gap) |
+| culture (world) | `culture/release` | `regions/**` + safe metadata | yes (±10 gap) |
 | governance | `governance/<name>` | governance paths + safe metadata | n/a |
 | sync | `sync/<name>` | unrestricted (snapshot of `main`) | n/a |
 | other | `chore/*`, `fix/*`, `feat/*`, … | everything **except** `regions/**` **and except** governance paths | n/a |
@@ -38,14 +38,14 @@ The pattern is anchored. `feat/culture-x`, `cultures/x`, and `culture/Denmark`
 
 `culture/<slug>` is resolved against the on-disk `regions/` tree:
 
-- `<slug>` ∈ `{staging, release}` -> world-level -> may touch `regions/**`.
+- `<slug>` = `release` -> world-level -> may touch `regions/**`.
 - `<slug>` matches a region folder -> region-level -> may touch `regions/<slug>/**`.
 - `<slug>` matches a country folder -> country-level -> may touch `regions/<region>/<slug>/**`.
 - Otherwise: unknown slug -> reject (typo does not silently widen scope).
 
 A `culture/germany` branch cannot touch Denmark even though both live under
 `regions/europe/`. For multi-country work in one PR, use `culture/<region>` or
-`culture/staging`.
+`culture/release`.
 
 ## Governance paths
 
@@ -118,7 +118,7 @@ Authoritative list: `SAFE_PATTERNS` in
 
 If a change spans two kinds, split it into separate branches/PRs:
 
-1. Culture content -> `culture/<country>` (or `<region>`, `staging`, `release`)
+1. Culture content -> `culture/<country>` (or `<region>`, `release`)
 2. Validator / hook / workflow changes -> `governance/<name>`
 3. General tooling / docs -> `chore/<name>`
 4. Bug fixes outside culture and governance -> `fix/<name>`
