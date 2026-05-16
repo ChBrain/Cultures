@@ -26,7 +26,7 @@ La [posición mexicana](culture_mexican_position.md).
 Puedes llegar sin cita y ser recibido si traes el nombre de alguien que te presente.
 Puedes disentir en voz alta en una mesa sin que la mesa se rompa.
 Puedes comer en la calle lo que no encuentras en ningún restaurante.
-Puedes pertenecer a la colonia sin explicar por qué llegaste.
+Puedes pertenecer al barrio sin explicar por qué llegaste ahí.
 Puedes negociar casi todo: el precio, el plazo, el horario, las condiciones.
 Puedes encontrar hospitalidad genuina en una ciudad de veinte millones.
 Puedes quedarte cuatro horas en una taquería sin que nadie te pregunte si ya vas a pedir algo más.

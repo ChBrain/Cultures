@@ -7,8 +7,8 @@
 
 ## Projection
 Valentina es una [mujer](../../../engine/position_female.md) de [México](culture_mexican_position.md).
-Fundadora de una startup de logística. Nacida en 1991 en Guadalajara.
-Su trayectoria pasa por el ITESO, por un año en San Francisco, por el regreso que ella llama decisión y que su familia llama alivio.
+Es fundadora de una empresa de logística y nació en 1991 en Guadalajara.
+Su trayectoria pasa por el ITESO, por un año en San Francisco y por el regreso que ella llama decisión y que su familia llama alivio.
 Laptop siempre abierta. Reuniones de pie. Contesta el teléfono en cualquier idioma.
 
 ## Action
