@@ -30,7 +30,6 @@ La palanca sostiene los dos: sin el protocolo no hay legitimidad; sin la red no 
 El que solo tiene normas espera. El que solo tiene red, acumula deudas.
 Lo que queda sin decir en la ventanilla a veces se dice en el estacionamiento.
 Y lo que se acuerda en el estacionamiento a veces es más vinculante que lo que dice el reglamento.
-Incluso en esa fricción, una cooperación mínima entre quien sella y quien espera evita que todo se detenga.
 
 ## Echo
 El sello llega o no llega.
@@ -39,6 +38,7 @@ Si no llega: la deuda con quien intentó ayudar queda pendiente igual.
 El proceso no termina con el documento.
 Termina cuando ambas partes saben qué se debe y a quién.
 La memoria de lo que costó organiza la siguiente vez.
+Lo que hubo de cooperación entre las partes queda registrado también. Define cómo empieza la próxima vez.
 La luz se cierra aquí y se abre de nuevo en Initiated by.
 
 ---
