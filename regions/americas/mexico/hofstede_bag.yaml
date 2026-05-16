@@ -1,0 +1,172 @@
+country: mexico
+language: es
+parent: null
+status: draft
+generated: 2026-05-16
+region: americas
+
+hofstede_scores:
+  PDI: 81
+  IDV: 30
+  UAI: 82
+  MAS: 69
+  LTO: 24
+  IND: 97
+
+bags:
+  PDI:
+    high:
+      - jerarquía
+      - respeto
+      - patrón
+      - autoridad
+      - mando
+      - compadrazgo
+      - cargo
+      - señor
+      - obediencia
+      - antigüedad
+    low:
+      - horizontalidad
+      - participación
+      - diálogo
+      - consenso
+      - colega
+      - acuerdo
+      - acceso
+      - voz
+      - apertura
+      - criterio
+
+  IDV:
+    high:
+      - individuo
+      - autonomía
+      - trayectoria
+      - independencia
+      - elección
+      - iniciativa
+      - privacidad
+      - camino
+      - identidad
+      - voluntad
+    low:
+      - familia
+      - comunidad
+      - lealtad
+      - nosotros
+      - pertenencia
+      - grupo
+      - vínculo
+      - compromiso
+      - red
+      - hermandad
+
+  UAI:
+    high:
+      - norma
+      - protocolo
+      - procedimiento
+      - certeza
+      - orden
+      - estructura
+      - formalidad
+      - trámite
+      - reglamento
+      - documento
+    low:
+      - improvisación
+      - flexibilidad
+      - informalidad
+      - riesgo
+      - intuición
+      - adaptación
+      - inventiva
+      - soltura
+      - tanteo
+      - ingenio
+
+  MAS:
+    high:
+      - éxito
+      - ambición
+      - logro
+      - competencia
+      - triunfo
+      - rendimiento
+      - reconocimiento
+      - ascenso
+      - empuje
+      - esfuerzo
+    low:
+      - cuidado
+      - cooperación
+      - modestia
+      - apoyo
+      - comprensión
+      - armonía
+      - bienestar
+      - empatía
+      - generosidad
+      - acompañamiento
+
+  LTO:
+    high:
+      - planificación
+      - inversión
+      - futuro
+      - continuidad
+      - proyecto
+      - estrategia
+      - previsión
+      - acumulación
+      - horizonte
+      - formación
+    low:
+      - tradición
+      - presente
+      - herencia
+      - costumbre
+      - ancestro
+      - memoria
+      - origen
+      - raíz
+      - rito
+      - legado
+
+  IND:
+    high:
+      - fiesta
+      - alegría
+      - disfrute
+      - placer
+      - música
+      - baile
+      - comida
+      - humor
+      - sabor
+      - gozo
+    low:
+      - sacrificio
+      - deber
+      - contención
+      - sobriedad
+      - aguante
+      - silencio
+      - recato
+      - moderación
+      - renuncia
+      - templanza
+
+denylist:
+  - libertad
+  - mérito
+  - poder
+  - disciplina
+  - solidaridad
+  - celebración
+  - espontaneidad
+  - convivencia
+  - obligación
+  - superación
+  - don
