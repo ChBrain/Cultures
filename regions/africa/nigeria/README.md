@@ -26,16 +26,16 @@ Source: Hofstede Insights (PDI 80, IDV 30, MAS 60, UAI 55, LTO 13, IND 84)
 
 ## Audit Status
 
-| # | Kind | File | Status |
-|---|---|---|---|
-| 1 | Language | [culture_nigerian_position_language.md](culture_nigerian_position_language.md) | delivered |
-| 2 | History | culture_nigerian_piece_history.md | delivered |
-| 3 | Position | culture_nigerian_position.md | delivered |
-| 4 | Process | culture_nigerian_process_oga.md | delivered |
-| 5 | Piece | culture_nigerian_piece_jollof.md | delivered |
-| 6 | Place | culture_nigerian_place_lagos.md | delivered |
-| 7 | Persona (male) | culture_nigerian_persona_male_emeka.md | delivered |
-| 8 | Persona (female) | culture_nigerian_persona_female_funke.md | delivered |
+| File | Type | Status |
+|---|---|---|
+| culture_nigerian_position_language.md | Language | delivered |
+| culture_nigerian_piece_history.md | History | delivered |
+| culture_nigerian_position.md | Position | delivered |
+| culture_nigerian_process_oga.md | Process | delivered |
+| culture_nigerian_piece_jollof.md | Piece | delivered |
+| culture_nigerian_place_lagos.md | Place | delivered |
+| culture_nigerian_persona_male_emeka.md | Persona (male) | delivered |
+| culture_nigerian_persona_female_funke.md | Persona (female) | delivered |
 
 ---
 
@@ -58,7 +58,7 @@ The north carries the highest PDI signal of the three major groups, the deepest 
 
 Nigerian English is the declared language of this package. Naija Pidgin surfaces in specific files as the register that carries what formal English cannot. Two load-bearing Pidgin anchors:
 
-- **No wahala**: appears in the language file. Social contract running as acceptance. Not agreement.
+- **No wahala**: appears in the [language file](culture_nigerian_position_language.md). Social contract running as acceptance. Not agreement.
 - **E go better**: appears in the position file Drives section. Forward motion. The circle extends.
 - **E don do**: appears in the language file. Present-tense closure. The moment is complete.
 
