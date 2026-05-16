@@ -196,6 +196,33 @@ def main() -> int:
     # On culture branches: also run Hofstede validation
     # Culture content must maintain declared dimension alignment (±10 gap tolerance)
     if branch_kind == "culture":
+        # Language gate: the staged country's README-declared language must
+        # be registered in data/language_policy.yaml ("already working")
+        # before its culture content can land. The orchestrator above only
+        # does per-file detection, which silently falls back to English for
+        # an unregistered language -- this check catches it loudly.
+        if staged_content:
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    "tests/validate_language.py",
+                    "--check-readmes-only",
+                    *staged_content,
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            if result.returncode != 0:
+                print(">>> LANGUAGE REGISTRY CHECK FAILED")
+                print("")
+                if result.stdout.strip():
+                    print(result.stdout.strip())
+                if result.stderr.strip():
+                    print(result.stderr.strip())
+                print("")
+                return 1
+
         culture_files = [
             f for f in staged_content
             if "culture_" in f

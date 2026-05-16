@@ -156,6 +156,34 @@ class TestReadmeRegistryCrossCheck:
             + "\n".join(f"  - {v.error}" for v in violations)
         )
 
+    def test_scoped_to_given_country_dirs(self, tmp_path):
+        """country_dirs restricts the check; an out-of-root path is safe."""
+        policy = load_policy(POLICY_PATH)
+        country = tmp_path / "regions" / "asia" / "testland"
+        country.mkdir(parents=True)
+        (country / "README.md").write_text(
+            "# Testland\n\n**Language(s):** klingon\n", encoding="utf-8",
+        )
+        violations = _readme_registry_violations(policy, [country])
+        assert len(violations) == 1
+        assert "klingon" in violations[0].error
+        assert "testland" in violations[0].error  # relative_to(ROOT) fallback
+
+    def test_scoped_missing_language_line_flagged(self, tmp_path):
+        policy = load_policy(POLICY_PATH)
+        country = tmp_path / "regions" / "asia" / "noland"
+        country.mkdir(parents=True)
+        (country / "README.md").write_text(
+            "# Noland\n\nno declaration here\n", encoding="utf-8",
+        )
+        violations = _readme_registry_violations(policy, [country])
+        assert len(violations) == 1
+        assert "Language(s)" in violations[0].error
+
+    def test_scoped_empty_list_checks_nothing(self):
+        policy = load_policy(POLICY_PATH)
+        assert _readme_registry_violations(policy, []) == []
+
 
 # ---------------------------------------------------------------------
 # _resolve_allowed_languages
