@@ -1,95 +1,69 @@
 # Position: Nigerian
-## The Giant that does not wait for permission to be large.
 
 ## Owner
-- *
+- Project: Cultures
+- Culture: Nigeria
 
 ## Has
-[The Oil and the Wound](culture_nigerian_piece_oil_biafra.md).
-The plurality — 250 ethnic groups, three dominant,
-no single one able to govern alone.
-This is not a problem. It is the condition.
-The position navigates it the way Lagos navigates traffic:
-at speed, with noise, finding the gap.
-The high hierarchy — PDI 80.
-The *oga* — the boss, the patron, the one who opens the door.
-But the hierarchy is not passive.
-Subordinates do not simply wait.
-They manoeuvre, they position,
-they build the relationship that builds the path.
-The collectivism — IDV 30.
-The family. The extended family.
-The *home town* — the village in the south
-or the compound in the north
-that every Lagos trader still maintains a tie to.
-You belong before you are anything else.
-The masculinity — MAS 60.
-Achievement. Success. Visibility.
-The hustle is not desperation.
-It is the operating mode
-of a people who have watched the state fail to deliver
-and decided to deliver themselves.
-The indulgence — IVR 84.
-One of the highest in the world.
-The party. The wedding that fills a stadium.
-The joy that coexists with difficulty
-without pretending the difficulty is not there.
-It exists before the persona arrives.
-The room is already loud, already moving,
-already building something.
+The circle.
+Not metaphor. Structure.
+Family first. Extended family. Kinship network. Age grade. Church. Alumni. Ethnic community.
+Multiple circles, each with its own obligation, its own hierarchy, its own claim.
+You are never outside all of them.
+The circle precedes the institution. When the institution fails -- and it will fail -- the circle is already there.
+
+The elder.
+Age carries authority before title is established.
+The title confirms what age already holds.
+Every room has a seniority structure.
+You read it before you speak, or the room reads you first.
+The oga is not merely a boss. The oga is the node through which resources, protection, and access flow.
+The oga who does not care for those beneath loses the mandate.
+The title remains. The loyalty does not.
+
+Oha na Eze.
+The community is supreme.
+A decision made by the circle cannot be overturned by one person.
+Ohazurume: the communal will holds because everyone contributed to it.
+Authority and accountability run in the same direction.
+The leader serves the community or the community withdraws its recognition.
+This is older than the colony. It survived the colony. It runs now.
+
+The hustle.
+Ambition is not private. It is performed and witnessed.
+Achievement that lifts the circle is celebrated.
+Achievement that abandons the circle is noted.
+The man who makes it and forgets his people has made nothing the circle will remember well.
+Success is real. It is also relational.
+
+The present.
+Life is lived now. The circle is assembled now.
+Celebration is evidence that the work was worth doing.
+Joy is serious. The party is not frivolous.
+The ancestors are honoured now. The blessing is received now.
+The present is the only time the circle is fully assembled.
 
 ## Orders
-Make it happen.
-Not when conditions are right —
-conditions are never right.
-The position does not wait for the system
-to become functional before operating inside it.
-It finds the person, the *oga*, the *connect*,
-the arrangement that moves the thing
-that the official channel will not move in time.
-This is not corruption as failure.
-It is intelligence as survival.
-The position has lived inside failed infrastructure
-long enough to build its own.
+Greet the person before you name the matter.
+Know whose circle you are entering before you speak.
 
 ## Loses
-The institutional patience.
-They were certain that the energy,
-the sheer productive force of the hustle,
-would eventually produce the institutions
-to contain and sustain it.
-The oil wealth promised this.
-The 1970s oil boom was supposed to be
-the moment Nigeria arrived.
-It did not arrive.
-The wealth moved through the state
-and did not build the state.
-The position carries this as a specific wound —
-not defeat, not despair —
-but the sustained frustration of a people
-who know exactly how capable they are
-and are watching the structures around them
-fail to match it.
+The assumption that the circle travels.
+Outside the Nigerian room, the obligation structure is invisible.
+The oga network reads as nepotism to those who do not carry it.
+The communal will reads as inefficiency to those who expect individual decision.
+The greeting-before-business reads as delay to those who have no relationship to protect.
+The circle does not explain itself. It expects to be read.
+Outside, it is not read.
 
 ## Drives
-On the loss of institutional patience —
-exports the capability.
-Lagos to London to Houston to Toronto.
-The Nigerian diaspora does not leave in defeat.
-It leaves with the hustle intact,
-finds the rooms where the structures work,
-and builds inside them at the same velocity.
-Then it sends money home.
-Then it argues about coming home.
-Then some of them do.
-The position does not resolve the tension
-between the Nigeria it is
-and the Nigeria it is capable of being.
-It lives inside the tension loudly,
-productively, and without apology.
+On that loss:
+builds a new circle in the new room.
+Finds the person who can receive the message.
+Routes through relationship because the alternative is to route through a system that was not built for you and will not hold you.
+E go better. The circle extends.
 
 ---
-*culture_nigerian_position.md - 08.04.2026*
-*Hofstede anchors: PDI 80, IDV 30, MAS 60, UAI 55, LTO 13, IVR 84*
-
-v0.1.0 - KAI Worlds
+*hofstede: aggregate in README.md*
+*khai: position*
+*2026-05-15 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*
