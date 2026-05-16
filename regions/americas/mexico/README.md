@@ -1,6 +1,7 @@
 # KAI Worlds Culture Package: Mexico
 
-**Language(s):** Castellano mexicano (es)
+**Language(s):** Spanish
+**Local Register:** Castellano mexicano (es)
 **Region:** Americas
 **Status:** Draft
 **Generated:** 2026-05-16
