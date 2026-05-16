@@ -15,7 +15,7 @@ El Día de Muertos no es conmemoración. Es convocatoria.
 El ancestro no se recuerda desde la distancia. Se invita, se espera, se recibe.
 La ofrenda no es decoración: es protocolo de recepción para quien viene de lejos.
 Agua porque el viaje da sed. Comida porque el regreso da hambre. Flores de cempasúchil porque el color ayuda a encontrar el camino.
-La alegría no es decorado, es método de vínculo; el placer de compartir y el sabor de la mesa también sostienen el rito.
+La alegría es parte del rito, no su decoración. La mesa llena, el sabor compartido, el placer de estar juntos: también son ofrenda.
 La tradición aquí no es pasado: es el presente que se organiza alrededor del ancestro presente.
 Retira el Día de Muertos y el origen pierde su fecha de visita.
 La memoria colectiva pierde su ritual de mantenimiento.

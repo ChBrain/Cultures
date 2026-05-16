@@ -6,7 +6,7 @@
 - Culture: Mexico
 
 ## Projection
-Rodrigo es un [hombre](../../../engine/position_male.md) de [Mexico](culture_mexican_position.md).
+Rodrigo es un [hombre](../../../engine/position_male.md) de [México](culture_mexican_position.md).
 Arquitecto. Retirado. Nacido en 1948 en la Ciudad de México.
 Su trayectoria pasa por el Politécnico, por dos despachos grandes, por cuarenta años de obra construida.
 Saco sin corbata en las reuniones. Saluda de mano a todos antes de sentarse.

@@ -1,6 +1,6 @@
 # KAI Worlds Culture Package: Mexico
 
-**Language(s):** Spanish
+**Language(s):** Castellano mexicano (es)
 **Region:** Americas
 **Status:** Draft
 **Generated:** 2026-05-16
@@ -78,16 +78,16 @@ Gap tolerance: ±10 PASS / ±5 EXCELLENT. Derived scores populated after khai-cu
 
 ## Audit Status
 
-| File | Type | Round 1 | Notes |
-|---|---|---|---|
-| culture_mexican_position_language.md | language | PASS | -- |
-| culture_mexican_piece_history.md | history | PASS | Apparent fragment tightened |
-| culture_mexican_position.md | position | PASS | Broken Conquista link removed |
-| culture_mexican_process_tramite.md | process | PASS | -- |
-| culture_mexican_piece_diamuertos.md | piece | PASS | L1 English line fixed |
-| culture_mexican_place_cdmx.md | place | PASS | -- |
-| culture_mexican_persona_male_rodrigo.md | male persona | PASS | -- |
-| culture_mexican_persona_female_valentina.md | female persona | PASS | -- |
+| File | # | Type | Round 1 | Notes |
+|---|---|---|---|---|
+| culture_mexican_position_language.md | 1 | language | PASS | -- |
+| culture_mexican_piece_history.md | 2 | history | PASS | Apparent fragment tightened |
+| culture_mexican_position.md | 3 | position | PASS | Broken Conquista link removed |
+| culture_mexican_process_tramite.md | 4 | process | PASS | -- |
+| culture_mexican_piece_diamuertos.md | 5 | piece | PASS | L1 English line fixed |
+| culture_mexican_place_cdmx.md | 6 | place | PASS | -- |
+| culture_mexican_persona_male_rodrigo.md | 7 | male persona | PASS | -- |
+| culture_mexican_persona_female_valentina.md | 8 | female persona | PASS | -- |
 
 ---
 

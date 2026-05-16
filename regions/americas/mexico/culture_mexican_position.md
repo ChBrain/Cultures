@@ -19,8 +19,7 @@ La red que parece informal es la más formal de todas: sus reglas no están escr
 La jerarquía que se respeta y se negocia al mismo tiempo.
 El señor tiene mando. El mando tiene respeto. El respeto tiene precio.
 Pero el patrón que no cuida a los suyos pierde la lealtad sin perder el cargo.
-El cargo es real. La autoridad que produce el cargo depende de lo que se hace con él.
-La obediencia se concede al puesto, y la antigüedad se reconoce como derecho a hablar primero.
+El cargo es real. La antigüedad da el derecho a hablar primero. La obediencia se concede al puesto, no a la persona.
 
 La Conquista como herida que organiza el presente.
 No como historia terminada. Como condición activa.
@@ -56,8 +55,7 @@ activa la red antes de seguir.
 Busca al que conoce al que puede.
 El camino que pasa por tres personas y llega, vale más que el camino directo que no llega.
 Y cuando la red no alcanza, improvisa con lo que hay.
-El ingenio no es segunda opción. Es el método que nadie enseñó porque nadie tuvo que enseñarlo.
-La cooperación sostiene esa maniobra, el compromiso la vuelve estable, y la flexibilidad evita que se rompa.
+El ingenio no es segunda opción. La red lo sostiene, el compromiso lo vuelve estable, y la flexibilidad evita que se rompa cuando el camino cambia.
 
 ---
 

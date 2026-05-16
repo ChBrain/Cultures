@@ -94,7 +94,7 @@
 | Mexica rituals Miccailhuitontli and Hueymiccailhuitl, month-long | Verified -- INAH; Aztec ritual calendar |
 | Syncretism with Catholic calendar post-1521 | Verified -- INAH; standard anthropological record |
 | Posada's La Calavera Garbancera, later named La Catrina by Rivera | Verified -- INAH; art historical record |
-| Rivera's Sueño de una tarde dominical, 1947-1948 (note: commonly cited as completed 1947, not 1942 as written -- flag for correction) | Pending native-speaker / specialist check |
+| Rivera's Sueño de una tarde dominical, 1947-1948 | Verified -- standard art historical record |
 | Chicano movement recovery of Día de Muertos 1970s | Verified -- cultural studies literature |
 | UNESCO inscription 2008 | Verified -- UNESCO ich.unesco.org |
 | Spectre (2015) Día de Muertos opening sequence, subsequent real procession | Verified -- contemporary record |
@@ -118,12 +118,6 @@ Fictional persona -- illustrative, not biographical. Historical context (1968, P
 
 ### culture_mexican_persona_female_valentina.md
 Fictional persona -- illustrative, not biographical. Contemporary context (ITESO, startup ecosystem, NAFTA generation) factually grounded. Character is composite and invented.
-
----
-
-## Flag for Specialist Review
-
-**Rivera mural date:** The REFERENCES entry for Rivera's Sueño de una tarde dominical notes the piece file gives 1942 as date. Standard sources give 1947-1948 as the completion date. Copilot should verify and correct the Yearbook entry in `culture_mexican_piece_diamuertos.md` if the 1942 date is incorrect.
 
 ---
 

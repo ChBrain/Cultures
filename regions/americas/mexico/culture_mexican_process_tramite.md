@@ -30,6 +30,7 @@ La palanca sostiene los dos: sin el protocolo no hay legitimidad; sin la red no 
 El que solo tiene normas espera. El que solo tiene red, acumula deudas.
 Lo que queda sin decir en la ventanilla a veces se dice en el estacionamiento.
 Y lo que se acuerda en el estacionamiento a veces es más vinculante que lo que dice el reglamento.
+Incluso en esa fricción, una cooperación mínima entre quien sella y quien espera evita que todo se detenga.
 
 ## Echo
 El sello llega o no llega.
