@@ -8,20 +8,19 @@ hofstede_scores:
   PDI: 80
   IDV: 30
   MAS: 60
-  UAI: 54
+  UAI: 55
   LTO: 13
   IND: 84
-
 bags:
   PDI:
     high: [hierarchy, elder, respect, authority, seniority, deference, title, patron, rank, status]
-    low: [equality, levelness, merit, peers, accessible, plainspoken, horizontal, initiative, egalitarian, independent]
+    low: [equality, sameness, merit, peers, accessible, plainspoken, horizontal, initiative, egalitarian, independent]
   IDV:
-    high: [self-rule, selfhood, self-reliant, personal, autonomy, self-sphere, choice, separate, self-made, atomized]
+    high: [self-rule, selfhood, self-reliant, personal, autonomy, solitary, choice, separate, self-made, solo]
     low: [community, loyalty, kinship, solidarity, collective, family, belonging, obligation, group, bond]
   MAS:
     high: [ambition, hustle, success, competitive, winning, striver, assertion, performance, grind, excel]
-    low: [care, cooperation, modesty, nurture, compassion, relationship, harmony, uplift, gentle, reconciliation]
+    low: [care, cooperation, modesty, nurture, compassion, relationship, harmony, carry, gentle, reconciliation]
   UAI:
     high: [procedure, structure, order, formality, planning, rules, precision, systematic, regulated, defined]
     low: [flexible, improvise, spontaneous, adaptive, fluid, tolerance, informal, ambiguity, risk, negotiable]
@@ -31,5 +30,4 @@ bags:
   IND:
     high: [joy, pleasure, exuberance, freedom, dance, laughter, enjoyment, vibrancy, delight, vitality]
     low: [restraint, duty, temperance, self-control, sacrifice, denial, sobriety, austerity, moderation, frugality]
-
 denylist: []

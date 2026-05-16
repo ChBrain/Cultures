@@ -1,0 +1,2 @@
+# Nigeria-specific proper-noun and native-language exceptions for language validator
+Emeka bụ nwoke si Naijiriya

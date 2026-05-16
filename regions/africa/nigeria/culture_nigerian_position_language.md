@@ -15,6 +15,7 @@ Authority arrives in full title.
 People hear the rhythm before they hear the ask.
 Engineer, Doctor, Chief, Alhaji, Barrister are heard before the matter is named.
 The title is not courtesy. It is placement.
+The room already knows.
 It tells the room who holds what before a word of substance is spoken.
 To skip the title is not informality. It is a statement.
 

@@ -7,8 +7,7 @@
 	until a score-lock decision is made.
 - LTO: declared 13 in this package while the current Culture Factor reading used in review is 8.
 	The package keeps 13 for this round for the same continuity reason pending score lock.
-- UAI: declared 54 in this package while the prior built value was 55.
-	This 1-point adjustment remains inside tolerance and is retained.
+- UAI: declared 55, matching Hofstede Insights. No deviation. Previous Copilot change to 54 reverted.
 
 ## Cross-language flags
 

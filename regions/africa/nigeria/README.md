@@ -15,11 +15,11 @@ Date: 2026-05-15
 | PDI - Power Distance | 80 | **High** |
 | IDV - Individualism | 30 | **Low** |
 | MAS - Masculinity | 60 | **Moderate** |
-| UAI - Uncertainty Avoidance | 54 | **Moderate** |
+| UAI - Uncertainty Avoidance | 55 | **Moderate** |
 | LTO - Long-Term Orientation | 13 | **Low** |
 | IND - Indulgence | 84 | **High** |
 
-Source: Hofstede Insights
+Source: Hofstede Insights (PDI 80, IDV 30, MAS 60, UAI 55, LTO 13, IND 84)
 
 ---
 

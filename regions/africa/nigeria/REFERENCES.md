@@ -49,6 +49,9 @@ https://newdailyprime.news/nigeria-opinion-analysis/why-does-nepa-still-take-lig
 Nigerian energy supply crisis. Wikipedia.
 https://en.wikipedia.org/wiki/Nigerian_energy_supply_crisis
 
+## Score Comparison
+The Culture Factor. Nigeria country profile. https://www.theculturefactor.com/countries/nigeria -- screenshot captured 2026-05-16. Shows IDV 0, LTO 8. Package uses Hofstede Insights country-specific scores (IDV 30, LTO 13) as primary source per project decision 2026-05-16.
+
 ## Native Speaker Checks Required
 - Emeka Projection first line: Igbo verb form "sitere na" -- confirm with Igbo speaker
 - Funke Projection first line: Yoruba tonal marks and "Nàìjíríà" spelling -- confirm with Yoruba speaker
