@@ -5,9 +5,6 @@ from pathlib import Path
 import pytest
 
 _ROOT = Path(__file__).resolve().parent.parent
-_LOCAL_REPRO_NOTE = (
-    "\n\nLocal repro: python -m pytest -q tests/test_audit_consistency.py -k <country-slug>"
-)
 
 _SECTION_RE = re.compile(r"##\s+(Content\s+)?Audit\s+Status\s*\n", re.IGNORECASE)
 _HEADER_RE = re.compile(r"File.*Type", re.IGNORECASE)
@@ -78,7 +75,6 @@ def test_no_orphaned_audit_entries(country_dir: Path):
     orphans = sorted(listed - _content_files(country_dir))
     assert not orphans, (
         f"{country_dir.name}/README.md: audit table lists files not on disk: {orphans}"
-        + _LOCAL_REPRO_NOTE
     )
 
 
@@ -93,5 +89,4 @@ def test_no_missing_audit_entries(country_dir: Path):
     missing = sorted(_content_files(country_dir) - listed)
     assert not missing, (
         f"{country_dir.name}/README.md: files on disk missing from audit table: {missing}"
-        + _LOCAL_REPRO_NOTE
     )
