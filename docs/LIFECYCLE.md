@@ -47,6 +47,21 @@ Run required validation/tests for touched files.
 - Run required gates for branch kind.
 - Ensure `.validation-stamp` reflects current validated tree.
 
+### Test strategy - Trust, but verify
+
+- What can be tested locally shall be tested locally before commit.
+- What can be tested only locally must be tested locally before push.
+- What can be tested in CI shall be tested in CI, staged by branch target and release phase.
+
+Validation ownership model:
+
+- Local pre-commit: fast scoped checks on staged files.
+- Local pre-push/manual: broader branch-scope checks when needed.
+- CI PR gates: authoritative server-side rerun of required checks.
+- CI release/promotion gates: staged checks tied to integration and release flow.
+
+If a check is CI-only today but can run locally at acceptable cost, move it to local as well.
+
 Output: checks pass for the changed scope.
 
 ## 5. Release
