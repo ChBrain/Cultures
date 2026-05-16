@@ -28,7 +28,7 @@ The history carries because it has not been told in full. Telling it in full is 
 ## Apparent
 Nok terracotta figures in the National Museum Lagos and Jos: seated, standing, hollow-headed, 2500 years old.
 Benin bronzes in the Benin Royal Palace -- and in the British Museum, the Ethnologisches Museum Berlin, the Pitt Rivers Museum Oxford. Repatriation negotiations ongoing.
-The walls of Benin: the largest earthwork in the world before industrialisation, visible in aerial photography across Edo State.
+The walls of Benin: the largest earthwork in the world before industrial growth, seen in aerial photos across Edo State.
 Osun-Osogbo Sacred Grove, UNESCO: continuous Yoruba sacred practice, still active.
 The National War Museum in Umuahia: Biafran memorabilia, photographs, the silence around them.
 The National Assembly complex in Abuja: built on the plateau, visible from the highway, glass and concrete.
