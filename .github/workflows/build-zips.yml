@@ -104,8 +104,9 @@ jobs:
               """Strip trailing metadata footer blocks from markdown for deployment artifacts.
 
               Expected footer styles include:
-              - --- + italic metadata lines (v2 culture footer blocks)
-              - trailing italic metadata lines without a divider
+              - v2 footer blocks with italic metadata lines
+              - legacy Hofstede signal lines
+              - plain version lines like: v0.2.0 - KAI Worlds
               """
               lines = content.splitlines()
               if not lines:
@@ -117,40 +118,55 @@ jobs:
               if end < 0:
                   return content
 
-              # Pattern A: trailing block after '---' where every non-empty line is italic metadata
-              divider = None
-              for i in range(end, -1, -1):
-                  if lines[i].strip() == '---':
-                      divider = i
-                      break
+              def unwrap_italic(s):
+                  if len(s) >= 2 and s.startswith('*') and s.endswith('*'):
+                      return s[1:-1].strip()
+                  return s
 
-              if divider is not None:
-                  block = [ln.strip() for ln in lines[divider + 1:end + 1] if ln.strip()]
-                  if block and all(re.match(r'^\*.*\*$', ln) for ln in block):
-                      kept = lines[:divider]
-                      while kept and not kept[-1].strip():
-                          kept.pop()
-                      return '\n'.join(kept) + '\n'
+              def is_footer_metadata_line(s):
+                  stripped = s.strip()
+                  if not stripped:
+                      return False
 
-              # Pattern B: trailing italic metadata lines without a divider
-              metadata_tokens = ('khai:', 'hofstede:', 'v0.', 'v1.', 'v2.', 'KAI', 'CC-BY')
-              cut = end + 1
+                  core = unwrap_italic(stripped)
+                  lower = core.lower()
+
+                  if lower.startswith('khai:'):
+                      return True
+                  if lower.startswith('hofstede:'):
+                      return True
+                  if lower.startswith('hofstede signal:'):
+                      return True
+
+                  # Legacy per-file stamp such as: culture_spanish_place_madrid.md - 13.05.2026
+                  if re.match(r'^culture_[a-z0-9_\-]+\.md\s*-\s*\d{1,2}[./-]\d{1,2}[./-]\d{2,4}$', lower):
+                      return True
+
+                  # v2 IP safeguard line: YYYY-MM-DD | owner | version | license
+                  if re.match(r'^\d{4}-\d{2}-\d{2}\s*\|\s*.+\|\s*v\d+\.\d+\.\d+\s*\|\s*.+$', core, re.IGNORECASE):
+                      return True
+
+                  # Plain or italic version lines.
+                  if re.match(r'^v\d+\.\d+\.\d+\s*-\s*(kai worlds|kai labs|kai hacks ai|cultures).*$' , core, re.IGNORECASE):
+                      return True
+
+                  return False
+
               i = end
+              stripped_any = False
               while i >= 0:
                   stripped = lines[i].strip()
                   if not stripped:
                       i -= 1
                       continue
-                  is_italic_line = re.match(r'^\*.*\*$', stripped) is not None
-                  has_metadata_token = any(token in stripped for token in metadata_tokens)
-                  if is_italic_line and has_metadata_token:
-                      cut = i
+                  if is_footer_metadata_line(lines[i]):
+                      stripped_any = True
                       i -= 1
                       continue
                   break
 
-              if cut <= end:
-                  kept = lines[:cut]
+              if stripped_any:
+                  kept = lines[:i + 1]
                   while kept and not kept[-1].strip():
                       kept.pop()
                   if kept and kept[-1].strip() == '---':
@@ -274,6 +290,7 @@ jobs:
                   if is_complete_culture(country_dir):
                       # Determine culture name from folder
                       culture_name = country_dir.name
+                      zip_name = f'cultures-{region_dir.name}-{culture_name}'
                       
                       # Create temp staging directory with structure
                       staging_dir = Path(f'dist/staging-{culture_name}')
@@ -318,12 +335,12 @@ jobs:
                       culture_count = stage_culture_files(staging_dir, country_dir, culture_name)
                       
                       # Create structured zip
-                      create_culture_zip(staging_dir, culture_name)
+                      create_culture_zip(staging_dir, zip_name)
                       
                       # Cleanup staging
                       shutil.rmtree(staging_dir)
                       
-                      print(f'Created {culture_name}.zip with structured layout (LICENSE + README + REFERENCES + engine/ + culture/{culture_count} files)')
+                      print(f'Created {zip_name}.zip with structured layout (LICENSE + README + REFERENCES + engine/ + culture/{culture_count} files)')
           
           # Stage 4b: Regional combined zips (manifests that combine multiple countries)
           for region_dir in regions_path.iterdir():
