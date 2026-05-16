@@ -274,6 +274,7 @@ jobs:
                   if is_complete_culture(country_dir):
                       # Determine culture name from folder
                       culture_name = country_dir.name
+                      zip_name = f'cultures-{region_dir.name}-{culture_name}'
                       
                       # Create temp staging directory with structure
                       staging_dir = Path(f'dist/staging-{culture_name}')
@@ -318,12 +319,12 @@ jobs:
                       culture_count = stage_culture_files(staging_dir, country_dir, culture_name)
                       
                       # Create structured zip
-                      create_culture_zip(staging_dir, culture_name)
+                      create_culture_zip(staging_dir, zip_name)
                       
                       # Cleanup staging
                       shutil.rmtree(staging_dir)
                       
-                      print(f'Created {culture_name}.zip with structured layout (LICENSE + README + REFERENCES + engine/ + culture/{culture_count} files)')
+                      print(f'Created {zip_name}.zip with structured layout (LICENSE + README + REFERENCES + engine/ + culture/{culture_count} files)')
           
           # Stage 4b: Regional combined zips (manifests that combine multiple countries)
           for region_dir in regions_path.iterdir():
