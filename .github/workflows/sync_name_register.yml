@@ -1,9 +1,10 @@
 # .github/workflows/sync_name_register.yml
 #
-# Triggered when a culture/* branch merges to main and touches either
-# a persona file or a REFERENCES.md.
+# Triggered when culture content merges to main and touches a persona file
+# or a REFERENCES.md.
 #
-# Opens a governance/update-name-register-{country}-{sha} PR.
+# Harvests persona names for each changed country and, if the name register
+# changes, opens a governance/update-name-register-* PR.
 # That PR must pass the validate-name-register workflow before it can merge.
 
 name: Sync name register
@@ -14,7 +15,8 @@ on:
       - main
     paths:
       - 'regions/**/REFERENCES.md'
-      - 'regions/**/*_persona_*.md'
+      - 'regions/**/persona_*.md'
+      - 'regions/**/culture_*_persona_*.md'
 
 jobs:
   sync:
@@ -34,24 +36,37 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Detect changed country
+      - name: Detect changed countries
         id: country
         run: |
-          CHANGED=$(git diff --name-only HEAD~1 HEAD | grep '^regions/' | head -1)
-          COUNTRY=$(echo "$CHANGED" | cut -d'/' -f3)
-          echo "slug=$COUNTRY" >> $GITHUB_OUTPUT
-          echo "Detected country: $COUNTRY"
+          SLUGS=$(git diff --name-only HEAD~1 HEAD \
+            | { grep '^regions/' || true; } \
+            | cut -d/ -f3 | sort -u)
+          ARGS=""
+          FIRST=""
+          for s in $SLUGS; do
+            if printf '%s' "$s" | grep -qE '^[a-z_]+$'; then
+              ARGS="$ARGS --country $s"
+              [ -z "$FIRST" ] && FIRST="$s"
+            fi
+          done
+          echo "args=$ARGS" >> "$GITHUB_OUTPUT"
+          echo "slug=${FIRST:-unknown}" >> "$GITHUB_OUTPUT"
+          echo "Detected countries:${ARGS:- <none>}"
 
       - name: Run sync script
-        run: python scripts/validate_name_register.py
+        if: steps.country.outputs.args != ''
+        env:
+          SYNC_ARGS: ${{ steps.country.outputs.args }}
+        run: python scripts/validate_name_register.py $SYNC_ARGS
 
       - name: Check for changes
         id: diff
         run: |
           if git diff --quiet data/names/name_register.json; then
-            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
-            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Create governance PR
@@ -66,8 +81,8 @@ jobs:
           body: |
             Automated update to `data/names/name_register.json`.
 
-            Triggered by merge of a `culture/${{ steps.country.outputs.slug }}` branch.
-            Source: `regions/**/${{ steps.country.outputs.slug }}/REFERENCES.md`
+            Harvested persona names for culture content that merged to main.
+            Detected country: `${{ steps.country.outputs.slug }}`
 
             Merging is blocked until **validate-name-register** passes.
           labels: governance
