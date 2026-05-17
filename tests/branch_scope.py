@@ -265,6 +265,216 @@ def check_scope(
 
 
 # ---------------------------------------------------------------------------
+# Failure diagnosis
+# ---------------------------------------------------------------------------
+#
+# check_scope answers "which files are out of scope". That is not enough for a
+# contributor -- least of all an LLM -- to act on, because a bare file list has
+# two very different causes that demand opposite fixes:
+#
+#   1. The branch was cut from (or merged) main while its PR base -- typically
+#      culture/release -- is stale. The base...HEAD diff then surfaces every
+#      file main changed in that gap as if this branch authored it. The fix is
+#      to rebase; touching those files is actively wrong.
+#   2. The branch genuinely changed an out-of-scope file. The fix is to revert
+#      it or move it to the correct branch kind.
+#
+# diagnose_scope_failure separates the two so render_scope_failure can tell the
+# contributor which one they are looking at. The git plumbing (which commit
+# touched which file, which commits are on main) is injected, so both helpers
+# stay pure and unit-testable without a repo.
+
+
+def diagnose_scope_failure(
+    unsafe,
+    *,
+    commits_for_file,
+    is_on_main,
+):
+    """Split scope-violating files into (inherited_from_main, genuine).
+
+    ``commits_for_file(path)`` returns the commit SHAs in the PR's
+    ``base..HEAD`` range that touched ``path``. ``is_on_main(sha)`` returns
+    True when ``sha`` is reachable from ``origin/main``.
+
+    A file is *inherited* when every range commit that touched it is already
+    on main: the branch absorbed main's lead over a stale base, so the file
+    is not this branch's work. Otherwise it is a *genuine* violation -- this
+    branch actually changed an out-of-scope file.
+
+    A file with no range commits is treated as genuine: never silently
+    excuse a flagged file just because its history could not be resolved.
+    """
+    inherited: list[str] = []
+    genuine: list[str] = []
+    for path in unsafe:
+        commits = list(commits_for_file(path))
+        if commits and all(is_on_main(sha) for sha in commits):
+            inherited.append(path)
+        else:
+            genuine.append(path)
+    return inherited, genuine
+
+
+def render_scope_failure(
+    branch: str,
+    base_ref: str,
+    inherited: list[str],
+    genuine: list[str],
+    base_behind_main: int = 0,
+) -> str:
+    """Render a branch-scope failure as a contributor- and LLM-readable report.
+
+    ``base_behind_main`` is how many commits ``origin/main`` is ahead of the
+    PR base; when positive, the base itself needs a sync and the remedy says
+    so. The output names the cause explicitly and, for the inherited case,
+    states plainly that editing validators/hooks/workflows is the wrong fix
+    -- the failure mode this whole helper exists to stop.
+    """
+    total = len(inherited) + len(genuine)
+    lines: list[str] = [
+        f"FAIL: branch '{branch}' has {total} file(s) outside its scope.",
+        "",
+    ]
+    if inherited:
+        lines.append(
+            f"{len(inherited)} of {total} were last changed by commit(s) "
+            f"already on 'main' but absent from '{base_ref}'. This branch "
+            f"carries main's history -- these files are NOT your work:"
+        )
+        lines += [f"  - {p}" for p in inherited]
+        lines.append("")
+    if genuine:
+        lines.append(
+            f"{len(genuine)} of {total} are genuine scope violations -- "
+            f"this branch actually changed out-of-scope file(s):"
+        )
+        lines += [f"  - {p}" for p in genuine]
+        lines.append("")
+
+    if inherited and not genuine:
+        lines += [
+            f"Cause: this branch was based on 'main' (or had it merged in), "
+            f"not on '{base_ref}'. Every flagged file is main's lead, not a "
+            f"real violation.",
+            "",
+            "Do NOT move these files, and do NOT edit validators, hooks, or "
+            "workflows to make this check pass -- that is the wrong fix and "
+            "will be rejected.",
+            "",
+            "Fix (no file edits):",
+        ]
+        step = 1
+        if base_behind_main > 0:
+            lines.append(
+                f"  {step}. sync 'main' -> '{base_ref}' "
+                f"({base_behind_main} commit(s) behind) via a sync/* PR"
+            )
+            step += 1
+        lines.append(f"  {step}. git fetch origin")
+        lines.append(f"  {step + 1}. git rebase origin/{base_ref}")
+    elif inherited and genuine:
+        lines += [
+            "Cause: this branch carries main's history AND has genuine "
+            "out-of-scope edits. Rebase first to clear the inherited files, "
+            "then address the genuine violations.",
+            "",
+            "Fix:",
+        ]
+        step = 1
+        if base_behind_main > 0:
+            lines.append(
+                f"  {step}. sync 'main' -> '{base_ref}' via a sync/* PR"
+            )
+            step += 1
+        lines.append(
+            f"  {step}. git fetch origin && git rebase origin/{base_ref}"
+        )
+        lines.append(
+            f"  {step + 1}. revert the genuine violation(s), or move them to "
+            f"the correct branch (governance/* for hooks, workflows, and "
+            f"validators)"
+        )
+    else:  # genuine only
+        lines += [
+            "Cause: this branch changed file(s) outside its allowed scope. "
+            "Hooks, workflows, and validators belong on a governance/* "
+            "branch; they cannot ride on a culture/* or other branch.",
+            "",
+            "Fix: revert the out-of-scope change(s), or move them to the "
+            "correct branch kind.",
+        ]
+
+    lines += ["", "See docs/BRANCHING.md for the integration flow."]
+    return "\n".join(lines)
+
+
+# ---------------------------------------------------------------------------
+# Culture branch base check
+# ---------------------------------------------------------------------------
+#
+# A culture/<country|region> branch must be cut from culture/release, the
+# integration branch -- never from main. Branch creation itself cannot be
+# gated (there is no base-aware "branch created" event), so this is detection
+# after the first push: a branch cut from main carries commits that are
+# already on main but absent from culture/release. The scope check only
+# catches that incidentally (when main's lead happens to include out-of-scope
+# files); this check catches it directly, on commit ancestry alone.
+
+
+def misbased_commits(commits, *, is_on_main):
+    """Return the commits that prove a culture branch has the wrong base.
+
+    ``commits`` is a list of ``(short_sha, subject)`` pairs reachable from
+    the branch's HEAD but not from ``origin/culture/release`` -- the output
+    of ``git log culture/release..HEAD``. For a branch correctly cut from
+    culture/release these are only its own culture commits, none of which
+    are on main yet. ``is_on_main(short_sha)`` returns True when the commit
+    is reachable from origin/main; any such commit here means the branch
+    was cut from main (or merged it in) instead of the integration branch.
+    """
+    return [(sha, subject) for sha, subject in commits if is_on_main(sha)]
+
+
+def render_misbased_branch(
+    branch: str,
+    offending: list,
+    base_ref: str = "culture/release",
+) -> str:
+    """Render the 'culture branch cut from the wrong base' failure report.
+
+    ``offending`` is the list of ``(short_sha, subject)`` commits on the
+    branch that are already on main but absent from ``base_ref`` -- the
+    proof the branch was started from main. The remedy replays only the
+    branch's own culture commits onto the integration branch.
+    """
+    lines = [
+        f"FAIL: culture branch '{branch}' was started from the wrong base.",
+        "",
+        f"It carries {len(offending)} commit(s) that are already on 'main' "
+        f"but not on '{base_ref}'. A culture/* branch must be cut from the "
+        f"integration branch '{base_ref}', never from 'main' -- a branch "
+        f"cut from main drags main's lead into the PR diff.",
+        "",
+        "Commits that should not be here (main's history, not your work):",
+    ]
+    lines += [f"  {sha}  {subject}" for sha, subject in offending]
+    lines += [
+        "",
+        "Do not edit or revert these commits, and do not edit validators "
+        "or workflows to silence this check.",
+        "",
+        f"Fix: replay only your culture commits onto '{base_ref}':",
+        "  git fetch origin",
+        f"  git rebase --onto origin/{base_ref} origin/main {branch}",
+        "  git push --force-with-lease",
+        "",
+        "See docs/BRANCHING.md for the integration flow.",
+    ]
+    return "\n".join(lines)
+
+
+# ---------------------------------------------------------------------------
 # Branch advisor (operation -> prescribed branch)
 # ---------------------------------------------------------------------------
 #
