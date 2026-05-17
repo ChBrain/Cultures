@@ -1,3 +1,12 @@
+---
+khai: position
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-15'
+---
 # Position: Nigerian
 
 ## Owner
@@ -62,8 +71,3 @@ builds a new circle in the new room.
 Finds the person who can receive the message.
 Routes through relationship because the alternative is to route through a system that was not built for you and will not hold you.
 E go better. The circle extends.
-
----
-*hofstede: aggregate in README.md*
-*khai: position*
-*2026-05-15 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

@@ -1,3 +1,12 @@
+---
+khai: process
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-15'
+---
 # Process: Oga
 
 ## Owner
@@ -41,8 +50,3 @@ The circle carries both without announcing either.
 The next approach already knows what the last approach found.
 The process does not close. It accumulates.
 The loop opens again at Initiated by with that knowledge already in the room.
-
----
-*hofstede: aggregate in README.md*
-*khai: process*
-*2026-05-15 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

@@ -1,3 +1,13 @@
+---
+khai: persona
+type: Fictional
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-15'
+---
 # Persona: Funke
 ## Title: Lawyer
 
@@ -35,9 +45,3 @@ Neither can see the other's version from inside their own.
 
 ## Tell
 When a junior brings a file that is procedurally correct but going nowhere, she picks up her phone before she finishes reading it.
-
----
-*hofstede: aggregate in README.md*
-*khai: persona*
-*Type: Fictional*
-*2026-05-15 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

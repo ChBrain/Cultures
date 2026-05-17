@@ -1,3 +1,12 @@
+---
+khai: position
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-15'
+---
 # Language: Nigerian English
 
 ## Owner
@@ -53,8 +62,3 @@ finds the person in the room who can receive the message.
 Routes through relationship, not around it.
 The extra step is not inefficiency.
 It is the condition under which the thing gets done at all.
-
----
-*hofstede: aggregate in README.md*
-*khai: position*
-*2026-05-15 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*
