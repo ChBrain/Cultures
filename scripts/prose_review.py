@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Prose naturalness review for culture_*.md files.
+Native-speaker writing check for culture_*.md files.
 Uses GitHub Models API (GITHUB_TOKEN) — no external key needed.
 
 Usage: python3 scripts/prose_review.py regions/.../culture_*.md ...
@@ -68,19 +68,29 @@ def get_language(path: Path) -> str:
 def call_model(prose: str, language: str, filename: str) -> str:
     token = os.environ.get("GITHUB_TOKEN", "")
     prompt = (
-        f"You are reviewing a short cultural prose fragment written in {language}.\n"
+        f"You are checking whether a short cultural prose fragment reads as "
+        f"writing by a native {language} speaker.\n"
         f"File: {filename}\n\n"
-        f"Flag only sentences that sound unnatural, mechanical, translated word-for-word, "
-        f"or like a keyword list dressed as prose. Do not comment on cultural content — "
-        f"only on whether the language sounds natural to a native {language} speaker.\n"
-        f"If everything reads naturally, reply with just: OK\n\n"
+        f"It should read as natural, fluent prose in complete, flowing sentences. "
+        f"Flag anything a careful native {language} speaker would not write:\n"
+        f"1. Phrasing that sounds machine-translated or unnatural: wrong idiom, "
+        f"English word order, word-for-word calques.\n"
+        f"2. Terse, fragmented writing: one-word sentences, sentence fragments, "
+        f"or keyword lists dressed as prose. These must be rewritten as full, "
+        f"flowing sentences.\n"
+        f"Judge the language only, not the cultural content.\n\n"
+        f"Reply in exactly this format:\n"
+        f"First line: PASS if every line reads as natural native writing, "
+        f"otherwise FLAG.\n"
+        f"If FLAG, add one bullet per problem, each quoting the phrase:\n"
+        f"- \"<quoted phrase>\" - <one-line reason>\n\n"
         f"Text:\n{prose}"
     )
     payload = json.dumps({
         "model": MODEL,
         "messages": [{"role": "user", "content": prompt}],
         "temperature": 0.2,
-        "max_tokens": 512,
+        "max_tokens": 800,
     }).encode()
     req = urllib.request.Request(
         MODELS_ENDPOINT,
@@ -114,21 +124,28 @@ def main():
         if prose:
             results.append((p.name, call_model(prose, get_language(p), p.name)))
 
-    print("## Prose naturalness review\n")
+    print("## Native-speaker writing check\n")
     if not results:
         print("No prose content found in changed files.")
         return
 
-    all_ok = all(r.strip().upper() == "OK" for _, r in results)
-    if all_ok:
-        print("✅ All files read naturally in their target language.")
+    def verdict_pass(finding: str) -> bool:
+        return finding.strip().upper().startswith("PASS")
+
+    if all(verdict_pass(r) for _, r in results):
+        print("✅ All files read as natural native-speaker writing.")
         return
 
     for filename, finding in results:
-        if finding.strip().upper() == "OK":
-            print(f"### `{filename}` — ✅ OK\n")
-        else:
-            print(f"### `{filename}`\n\n{finding}\n")
+        if verdict_pass(finding):
+            print(f"### `{filename}` — ✅ PASS\n")
+            continue
+        # Drop a leading bare "FLAG" line; keep the bulleted findings.
+        body = finding.strip()
+        lines = body.splitlines()
+        if lines and lines[0].strip().upper().startswith("FLAG"):
+            body = "\n".join(lines[1:]).strip()
+        print(f"### `{filename}` — flagged\n\n{body}\n")
 
     print("---\n*Advisory only — does not block merge.*")
 
