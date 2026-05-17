@@ -1,3 +1,7 @@
+---
+khai: process
+hofstede: aggregate
+---
 # Process: Negociar
 
 ## Owner
@@ -36,11 +40,3 @@ Lo no acordado permanece como deuda pendiente.
 El proceso no termina con la firma.
 Termina cuando ambas partes han contado lo mismo a los suyos.
 La luz se cierra aquí y se abre de nuevo en Initiated by.
-
----
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-*khai: process*
-
-*culture_spanish_process_negociar.md - 13.05.2026*
-
-v0.2.0 - KAI Worlds

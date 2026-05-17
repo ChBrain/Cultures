@@ -1,3 +1,12 @@
+---
+khai: process
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # Process: Hygge
 
 ## Owner
@@ -35,8 +44,3 @@ Og hvem der bar frustrationen ind.
 Begge er menneskelige. Begge kan være dansk.
 Men hygge er kun for dem der vælger det gennem nydelse af tilstedeværelsen.
 Fryd findes når omsorg mødes med autonomi.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: process*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

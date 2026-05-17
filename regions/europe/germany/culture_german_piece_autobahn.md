@@ -1,3 +1,12 @@
+---
+khai: piece
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # Piece: Autobahn
 
 ## Owner
@@ -51,8 +60,3 @@ Verkehrswende-Debatten in Berlin; auf der Strecke fährt sie weiter.
 2018: Stickoxid-Urteile. Dieselverbot in Städten; auf der Autobahn fährt das System weiter.
 2021: Verkehrswende-Koalition. Tempolimit-Debatte erneut; bleibt offen.
 2025: Über 13.000 Kilometer in Betrieb. Wartung gegen Sanierungsstau im Wettlauf.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: piece*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

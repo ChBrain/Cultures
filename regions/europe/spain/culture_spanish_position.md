@@ -1,3 +1,7 @@
+---
+khai: position
+hofstede: aggregate
+---
 # Position: Español
 
 ## Owner
@@ -51,11 +55,3 @@ reconstruye el vínculo antes de reconstruir el trámite.
 La red se activa. Los suyos responden.
 Lo que el sistema no da, lo da la comunidad.
 Y la comunidad cobra en lealtad, no en euros.
-
----
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-*khai: position*
-
-*culture_spanish_position.md - 13.05.2026*
-
-v0.2.0 - KAI Worlds

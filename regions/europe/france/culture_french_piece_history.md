@@ -1,3 +1,12 @@
+---
+khai: piece
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-15'
+---
 # History: France
 
 ## Owner
@@ -62,8 +71,3 @@ Le 14 juillet dans chaque ville de France, feux d'artifice et bal des pompiers.
 2015 : Attentats de janvier et novembre. Charlie Hebdo. Le Bataclan. La République sous pression directe.
 2018 : Gilets jaunes. La fracture entre Paris et la province devient visible. La démocratie représentative interrogée.
 2024 : Jeux olympiques de Paris. La France se présente au monde. Ce qu'elle montre et ce qu'elle tait, les deux à la fois.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: piece*
-*2026-05-15 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

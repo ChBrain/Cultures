@@ -1,3 +1,7 @@
+---
+khai: process
+hofstede: aggregate
+---
 # Process: Przetrwanie
 
 ## Owner
@@ -41,11 +45,3 @@ Pamięć o tym, co kosztowało, zmienia sposób trzymania.
 Poświęcenie poprzednich pokoleń jest obecne w tym, co przetrwało.
 Dyscyplina, która przeżyła, nie pyta już o powód.
 Samorealizacja, która nie odrywa od korzeni, jest możliwa.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: process*
-
-*culture_polish_process_przetrwanie.md - 2026-05-11*
-
-v0.1.0 - KAI Worlds

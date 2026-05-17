@@ -1,3 +1,12 @@
+---
+khai: position
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-15'
+---
 # Position: Français
 
 ## Owner
@@ -59,8 +68,3 @@ cherche la formulation plus précise.
 Le problème n'est pas dans l'idée. Il est dans l'expression.
 L'argument se reprend. Il se reformule.
 Il ne se retire pas.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: position*
-*2026-05-15 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

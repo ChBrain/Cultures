@@ -1,3 +1,13 @@
+---
+khai: persona
+type: Fictional
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # Persona: Brigitte
 
 ## Title
@@ -34,9 +44,3 @@ Die Position hat ihr nie gesagt, dass das ein Unterschied ist.
 
 ## Tell
 Wenn jemand eine Aussage unscharf formuliert, schiebt sie das Dokument einen Zentimeter zurück, bevor sie antwortet.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: persona*
-*Type: Fictional*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

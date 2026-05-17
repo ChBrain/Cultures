@@ -1,3 +1,13 @@
+---
+khai: persona
+type: Fictional
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # Persona: Lars
 
 ## Title
@@ -29,9 +39,3 @@ Han hører dem som ligeværdige stemmer.
 
 ## Tell
 Når en anden fremlægger en løsning, drejer han skærmen mod sig selv, inden de er færdige.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: persona*
-*Type: Fictional*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

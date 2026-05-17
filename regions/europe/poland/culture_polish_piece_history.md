@@ -1,3 +1,12 @@
+---
+khai: piece
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # History: Polska
 
 ## Owner
@@ -61,8 +70,3 @@ Tablice pamiątkowe na fasadach kamienic w Warszawie.
 2004: Polska wstępuje do Unii Europejskiej.
 2010: Katastrofa smoleńska. 96 ofiar, w tym Prezydent Lech Kaczyński, w drodze na obchody Katynia.
 2015-2023: Spór o Trybunał Konstytucyjny. Kto pilnuje zasady, gdy zasada jest przedmiotem sporu.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: piece*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

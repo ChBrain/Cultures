@@ -1,3 +1,13 @@
+---
+khai: persona
+type: Fictional
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # Persona: Sofie
 
 ## Title
@@ -29,9 +39,3 @@ Tre er åbenhed nok.
 
 ## Tell
 Når klienten vælger den mulighed hun ikke ville have valgt, lægger hun blyanten ned, inden hun svarer.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: persona*
-*Type: Fictional*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

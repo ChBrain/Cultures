@@ -1,3 +1,12 @@
+---
+khai: position
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-15'
+---
 # Language: Français
 
 ## Owner
@@ -55,8 +64,3 @@ Elle invente si nécessaire.
 L'Académie statue. La rue devance.
 Les deux sont recevables à leur échelle.
 La langue avance dans cet écart.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: position*
-*2026-05-15 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

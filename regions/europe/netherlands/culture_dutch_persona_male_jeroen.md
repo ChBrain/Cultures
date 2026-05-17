@@ -1,3 +1,13 @@
+---
+khai: persona
+type: Fictional
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # Persona: Jeroen
 ## Journalist
 
@@ -31,9 +41,3 @@ Die positie is onzichtbaar voor wie erin staat.
 Als iemand zegt dat zijn stuk pijn heeft gedaan, zoekt Jeroen in zijn notitieboek naar wat hij heeft geschreven.
 Hij vergelijkt wat zij zegt met wat in het stuk staat.
 Hij zoekt naar het feit dat zij miste. Niet naar het gevoel waarmee zij sprak.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: persona*
-*Type: Fictional*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

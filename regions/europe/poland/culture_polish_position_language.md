@@ -1,3 +1,7 @@
+---
+khai: position
+hofstede: aggregate
+---
 # Language: Polski
 
 ## Owner
@@ -36,11 +40,3 @@ Polska precyzja bez przynależności to tylko zasady.
 ## Drives
 Na tej stracie: słowa wybiera się bardziej ostrożnie.
 Przynależność do grupy rośnie. Obowiązek rośnie.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: position*
-
-*culture_polish_position_language.md - 2026-05-13*
-
-v0.1.0 - KAI Worlds
