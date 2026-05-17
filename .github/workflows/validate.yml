@@ -491,7 +491,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install pytest
-        run: pip install pytest
+        run: pip install pytest pyyaml
       - name: Run history-arc tests
         run: python -m pytest tests/test_history_arc.py -v
 
@@ -777,7 +777,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install pytest
-        run: pip install pytest
+        run: pip install pytest pyyaml
       - name: Validate culture completeness
         run: python -m pytest tests/test_completeness.py -v
 
@@ -866,7 +866,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install pytest
-        run: pip install pytest
+        run: pip install pytest pyyaml
       - name: Validate Hofstede structure
         run: python -m pytest tests/test_hofstede_structure.py -v
 
