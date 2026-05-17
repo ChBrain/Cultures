@@ -137,6 +137,11 @@ jobs:
                       return True
                   if lower.startswith('hofstede signal:'):
                       return True
+                  # v2 footer classification line, e.g. *Type: Fictional*.
+                  # Without this the strip loop breaks on the Type: line and
+                  # leaves the whole footer block (and its --- rule) in the zip.
+                  if lower.startswith('type:'):
+                      return True
 
                   # Legacy per-file stamp such as: culture_spanish_place_madrid.md - 13.05.2026
                   if re.match(r'^culture_[a-z0-9_\-]+\.md\s*-\s*\d{1,2}[./-]\d{1,2}[./-]\d{2,4}$', lower):
