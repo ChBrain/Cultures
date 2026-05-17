@@ -29,8 +29,12 @@ jobs:
         run: |
           FILES=$(git diff --name-only --diff-filter=ACMRT "origin/${{ github.base_ref }}...HEAD" \
             | grep -E '^regions/.*/culture_.*\.md$' || true)
-          echo "files=$FILES" >> "$GITHUB_OUTPUT"
-          echo "any=$([ -n "$FILES" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          {
+            echo "files<<EOF"
+            printf '%s\n' "$FILES"
+            echo "EOF"
+            echo "any=$([ -n "$FILES" ] && echo true || echo false)"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Run prose review
         if: steps.changed.outputs.any == 'true'
