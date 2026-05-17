@@ -1,3 +1,7 @@
+---
+khai: place
+hofstede: aggregate
+---
 # Place: Ciudad de México
 
 ## Owner
@@ -40,10 +44,3 @@ La diferencia entre lo que la ciudad muestra al visitante y lo que guarda para q
 El costo de llegar sin red: invisible hasta que lo necesitas y no está.
 Lo que la ciudad carga de sus muertos: los del 68, los del 85, los desaparecidos cuyo número el Estado no terminó de contar.
 Lo que el sur de la ciudad sabe del norte y viceversa, y que ninguno de los dos dice en voz alta porque la distancia entre los dos es más que geografía.
-
----
-
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-*khai: place*
-
-*culture_mexican_place_cdmx.md - 2026-05-16*

@@ -1,3 +1,7 @@
+---
+khai: piece
+hofstede: aggregate
+---
 # History: México
 
 ## Owner
@@ -55,10 +59,3 @@ Las ofrendas en casas particulares, en escuelas, en oficinas públicas durante l
 2000: Vicente Fox gana la presidencia. El PRI pierde por primera vez en setenta y un años. La alternancia como hecho posible. El sistema que parecía permanente no lo era.
 2017: 19 de septiembre. Nuevo terremoto. La misma fecha que 1985. La comunidad vuelve a responder antes que el gobierno. La memoria colectiva activa el mismo músculo.
 2019-2024: La Cuarta Transformación. López Obrador en el poder. El Estado vuelve al centro. PEMEX, los programas sociales, la consulta popular como legitimidad. La discusión sobre si la Revolución regresó o si solo regresó su lenguaje no termina.
-
----
-
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-*khai: piece*
-
-*culture_mexican_piece_history.md - 2026-05-16*

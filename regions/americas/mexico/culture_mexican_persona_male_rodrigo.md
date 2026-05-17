@@ -1,3 +1,8 @@
+---
+khai: persona
+type: Composite
+hofstede: aggregate
+---
 # Persona: Rodrigo
 ## Title: Arquitecto
 
@@ -35,11 +40,3 @@ Sigue llamando a los que quedan.
 
 ## Tell
 Cuando alguien propone resolver el problema en línea, Rodrigo pregunta primero con quién hay que hablar ahí adentro.
-
----
-
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-*Type: Composite*
-*khai: persona*
-
-*culture_mexican_persona_male_rodrigo.md - 2026-05-16*
