@@ -11,6 +11,11 @@ name: pr-gate
 # Adding a check: define a new job below and run a tests/validate_pr_*.py
 # helper. Keep CI logic in Python (testable) and yaml as orchestration only.
 #
+# The report job turns a rejection into instruction: it posts the validators'
+# prescriptive remedy as a PR comment. The validators also rule out a wrong
+# base/scope; this workflow exists so an agent that opened the PR via the
+# GitHub API (and never reads CI logs) still sees how to fix the routing.
+#
 # Note on the validation stamp: this workflow used to include a third job
 # (stamp-tree-hash-check) that verified .validation-stamp equalled the
 # tree hash of HEAD. That gate was dropped because API-driven PR pushes
@@ -22,6 +27,9 @@ name: pr-gate
 
 on:
   pull_request:
+
+permissions:
+  contents: read
 
 jobs:
   base-branch-check:
@@ -54,3 +62,88 @@ jobs:
           python3 tests/validate_pr_scope.py \
             "${{ github.head_ref }}" \
             "origin/${{ github.base_ref }}"
+
+  report:
+    name: pr-gate - Routing remedy
+    needs: [base-branch-check, branch-scope-check]
+    # Always runs for same-repo PRs: on failure it posts the prescriptive fix
+    # as a PR comment (so an agent that opened the PR via the API still sees
+    # it); on success it marks any earlier remedy comment resolved. Forked PRs
+    # get a read-only token, so they are skipped -- they still get the check
+    # failures and the step summary.
+    if: always() && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build routing remedy
+        id: build
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          base_out=$(python3 tests/validate_pr_base.py "$HEAD_REF" "$BASE_REF" 2>&1); base_rc=$?
+          scope_out=$(python3 tests/validate_pr_scope.py "$HEAD_REF" "origin/$BASE_REF" 2>&1); scope_rc=$?
+          if [ "$base_rc" -eq 0 ] && [ "$scope_rc" -eq 0 ]; then
+            echo "status=pass" >> "$GITHUB_OUTPUT"
+          else
+            echo "status=fail" >> "$GITHUB_OUTPUT"
+          fi
+          {
+            echo "## pr-gate routing"
+            echo
+            echo "Branch routing is decided by the *operation*, not the file types a"
+            echo "change happens to touch. A failure here is fixed by re-routing the"
+            echo "PR (branch kind / base), never by editing validators or workflows."
+            echo
+            echo "### Allowed base for head"
+            echo '```'
+            echo "$base_out"
+            echo '```'
+            echo "### Diff within branch scope"
+            echo '```'
+            echo "$scope_out"
+            echo '```'
+            echo
+            echo "Pre-flight next time: \`python tests/branch_scope.py advise --op <operation>\`"
+          } > remedy.md
+      - name: Post or update PR comment
+        uses: actions/github-script@v7
+        env:
+          STATUS: ${{ steps.build.outputs.status }}
+        with:
+          script: |
+            const fs = require('fs');
+            const marker = '<!-- pr-gate-remedy -->';
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner, repo, issue_number,
+            });
+            const existing = comments.find(c => c.body && c.body.includes(marker));
+            if (process.env.STATUS === 'pass') {
+              if (existing) {
+                await github.rest.issues.updateComment({
+                  owner, repo, comment_id: existing.id,
+                  body: marker + '\n## pr-gate routing\n\n✅ Routing checks pass.',
+                });
+              }
+              return;
+            }
+            const body = marker + '\n' + fs.readFileSync('remedy.md', 'utf8');
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner, repo, comment_id: existing.id, body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner, repo, issue_number, body,
+              });
+            }

@@ -1,4 +1,4 @@
-"""Unit tests for tests/validate_pr_base.py -- PR base routing contract.
+"""Unit tests for the PR base routing contract (branch_scope.allowed_bases).
 
 Pins the allowed_bases() routing layer:
   culture/<country|region>          -> {"culture/release"}
@@ -25,7 +25,7 @@ import pytest
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
-from validate_pr_base import allowed_bases  # noqa: E402
+from branch_scope import allowed_bases  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
