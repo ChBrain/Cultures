@@ -42,18 +42,25 @@ branch name after the fact; the advisor hands you the right one up front.
 
 ## Branch kinds
 
-| Kind | Pattern | Allowed paths | Hofstede check |
-|---|---|---|---|
-| `main` | exact `main` | nothing - direct commits forbidden | n/a |
-| culture (country) | `culture/<country>` | `regions/<region>/<country>/**` + safe metadata | yes (±10 gap) |
-| culture (region) | `culture/<region>` | `regions/<region>/**` + safe metadata | yes (±10 gap) |
-| culture (world) | `culture/release` | `regions/**` + safe metadata | yes (±10 gap) |
-| governance | `governance/<name>` | governance paths + safe metadata | n/a |
-| sync | `sync/<name>` | unrestricted (snapshot of `main`) | n/a |
-| other | `chore/*`, `fix/*`, `feat/*`, … | everything **except** `regions/**` **and except** governance paths | n/a |
+| Kind | Pattern | PR base | Allowed paths | Hofstede check |
+|---|---|---|---|---|
+| `main` | exact `main` | — (not a PR head) | nothing - direct commits forbidden | n/a |
+| culture (country) | `culture/<country>` | `culture/release` | `regions/<region>/<country>/**` + safe metadata | yes (±10 gap) |
+| culture (region) | `culture/<region>` | `culture/release` | `regions/<region>/**` + safe metadata | yes (±10 gap) |
+| culture (world) | `culture/release` | `main` | `regions/**` + safe metadata | yes (±10 gap) |
+| governance | `governance/<name>` | `main` | governance paths + safe metadata | n/a |
+| sync | `sync/<name>` | `culture/release` | unrestricted (snapshot of `main`) | n/a |
+| other | `chore/*`, `fix/*`, `feat/*`, … | `main` | everything **except** `regions/**` **and except** governance paths | n/a |
 
 The pattern is anchored. `feat/culture-x`, `cultures/x`, and `culture/Denmark`
 (uppercase) all classify as `other` and are blocked from `regions/`.
+
+The **PR base** column is the only base each kind may target; it mirrors
+`allowed_bases()` in `tests/branch_scope.py`, which the `pr-gate` workflow
+enforces. Note the two directions are different lanes: `sync/<name>` carries
+`main` *into* `culture/release`; carrying `culture/release` the other way,
+*into* `main`, is not a sync at all - it is the release PR, whose head is
+`culture/release` itself.
 
 ## Culture slug resolution
 
@@ -136,6 +143,13 @@ already has.
 Typical naming: `sync/release-from-main-<date>`. Cadence: as needed when
 `culture/release` drifts behind `main` enough that culture-PR diffs against it
 include non-target content.
+
+A `sync/<name>` branch only ever targets `culture/release`. The reverse -
+landing `culture/release`'s accumulated culture content on `main` - is **not**
+a sync: it is the release PR, opened with head `culture/release` and base
+`main` (no intermediate branch). Filing that as `sync/* -> main` fails the
+`pr-gate` base check; `python tests/branch_scope.py advise --op release`
+prescribes the correct routing.
 
 ## Worktree operations
 

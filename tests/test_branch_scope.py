@@ -18,6 +18,8 @@ from branch_scope import (  # noqa: E402
     SAFE_PATTERNS,
     WORLD_SLUGS,
     advise_operation,
+    allowed_bases,
+    base_remedy,
     check_scope,
     classify_branch,
     culture_scope,
@@ -893,3 +895,58 @@ def test_render_files_advice_single_lane():
 def test_render_files_advice_safe_only():
     out = render_files_advice(lanes_for_files([".validation-stamp"]))
     assert "safe metadata" in out.lower()
+
+
+# ---------------------------------------------------------------------------
+# base_remedy - prescriptive PR base routing
+# ---------------------------------------------------------------------------
+
+@pytest.mark.parametrize("head,base", [
+    ("culture/germany", "culture/release"),
+    ("culture/release", "main"),
+    ("governance/harden-validators", "main"),
+    ("sync/release-from-main-2026-05-17", "culture/release"),
+    ("chore/tidy", "main"),
+])
+def test_base_remedy_none_for_valid_pair(head, base):
+    assert base_remedy(head, base) is None
+
+
+def test_base_remedy_matches_allowed_bases():
+    """base_remedy returns None exactly when the pair is in allowed_bases."""
+    heads = ["culture/germany", "culture/release", "governance/x",
+             "sync/x", "chore/x", "main"]
+    for head in heads:
+        for base in ("main", "culture/release"):
+            in_contract = base in allowed_bases(head)
+            assert (base_remedy(head, base) is None) == in_contract
+
+
+def test_base_remedy_sync_into_main_points_at_release_pr():
+    """The PR #223 trap: a sync/* head aimed at main is told to use a release PR."""
+    msg = base_remedy("sync/main-from-culture-release-2026-05-17", "main")
+    assert msg is not None
+    assert "not allowed" in msg
+    assert "release PR" in msg
+    assert "base 'main'" in msg
+    assert "culture/release" in msg
+
+
+def test_base_remedy_country_into_main_points_at_release():
+    msg = base_remedy("culture/germany", "main")
+    assert msg is not None
+    assert "not allowed" in msg
+    assert "culture/release" in msg
+
+
+def test_base_remedy_release_wrong_base_points_at_main():
+    msg = base_remedy("culture/release", "culture/release")
+    assert msg is not None
+    assert "Retarget" in msg
+    assert "main" in msg
+
+
+def test_base_remedy_main_is_not_a_valid_head():
+    msg = base_remedy("main", "main")
+    assert msg is not None
+    assert "not a valid PR head" in msg
