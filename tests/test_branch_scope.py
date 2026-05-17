@@ -17,10 +17,20 @@ from branch_scope import (  # noqa: E402
     GOVERNANCE_GLOB_PATTERNS,
     SAFE_PATTERNS,
     WORLD_SLUGS,
+    advise_operation,
     check_scope,
     classify_branch,
     culture_scope,
+    diagnose_scope_failure,
     is_governance_path,
+    lane_of_path,
+    lanes_for_files,
+    misbased_commits,
+    render_files_advice,
+    render_misbased_branch,
+    render_operation_advice,
+    render_scope_failure,
+    valid_operations,
 )
 
 # ---------------------------------------------------------------------------
@@ -556,3 +566,328 @@ def test_governance_glob_patterns_locked():
         ".worktree/WORKTREES.md",
         ".worktree/.gitignore",
     )
+
+
+# ---------------------------------------------------------------------------
+# diagnose_scope_failure
+# ---------------------------------------------------------------------------
+
+def _fake_history(file_commits: dict[str, list[str]], on_main: set[str]):
+    """Build (commits_for_file, is_on_main) callbacks from in-memory data."""
+    return (
+        lambda path: file_commits.get(path, []),
+        lambda sha: sha in on_main,
+    )
+
+
+def test_diagnose_all_inherited_from_main():
+    """Every flagged file traces only to commits already on main."""
+    commits_for_file, is_on_main = _fake_history(
+        {
+            "tests/validate_language.py": ["c1"],
+            ".githooks/pre-commit": ["c1", "c2"],
+        },
+        on_main={"c1", "c2"},
+    )
+    inherited, genuine = diagnose_scope_failure(
+        ["tests/validate_language.py", ".githooks/pre-commit"],
+        commits_for_file=commits_for_file,
+        is_on_main=is_on_main,
+    )
+    assert inherited == ["tests/validate_language.py", ".githooks/pre-commit"]
+    assert genuine == []
+
+
+def test_diagnose_all_genuine():
+    """Flagged files trace to commits the branch authored (not on main)."""
+    commits_for_file, is_on_main = _fake_history(
+        {"tests/validate_language.py": ["branchC"]},
+        on_main={"c1"},
+    )
+    inherited, genuine = diagnose_scope_failure(
+        ["tests/validate_language.py"],
+        commits_for_file=commits_for_file,
+        is_on_main=is_on_main,
+    )
+    assert inherited == []
+    assert genuine == ["tests/validate_language.py"]
+
+
+def test_diagnose_mixed():
+    """A file touched by both an on-main and a branch commit is genuine."""
+    commits_for_file, is_on_main = _fake_history(
+        {
+            "data/countries.json": ["c1"],
+            "tests/test_x.py": ["c1", "branchC"],
+        },
+        on_main={"c1"},
+    )
+    inherited, genuine = diagnose_scope_failure(
+        ["data/countries.json", "tests/test_x.py"],
+        commits_for_file=commits_for_file,
+        is_on_main=is_on_main,
+    )
+    assert inherited == ["data/countries.json"]
+    assert genuine == ["tests/test_x.py"]
+
+
+def test_diagnose_no_commits_is_genuine():
+    """A flagged file whose history cannot be resolved is never excused."""
+    commits_for_file, is_on_main = _fake_history({}, on_main={"c1"})
+    inherited, genuine = diagnose_scope_failure(
+        ["mystery.py"],
+        commits_for_file=commits_for_file,
+        is_on_main=is_on_main,
+    )
+    assert inherited == []
+    assert genuine == ["mystery.py"]
+
+
+def test_diagnose_empty():
+    commits_for_file, is_on_main = _fake_history({}, on_main=set())
+    assert diagnose_scope_failure(
+        [], commits_for_file=commits_for_file, is_on_main=is_on_main,
+    ) == ([], [])
+
+
+# ---------------------------------------------------------------------------
+# render_scope_failure
+# ---------------------------------------------------------------------------
+
+def test_render_inherited_only_names_cause_and_forbids_edits():
+    msg = render_scope_failure(
+        "culture/mexico", "culture/release",
+        inherited=["tests/validate_language.py", ".githooks/pre-commit"],
+        genuine=[],
+        base_behind_main=14,
+    )
+    assert "2 file(s) outside its scope" in msg
+    assert "carries main's history" in msg
+    # The whole point: steer the LLM away from editing the validator.
+    assert "Do NOT" in msg
+    assert "git rebase origin/culture/release" in msg
+    # base is stale -> the sync step is present.
+    assert "sync 'main' -> 'culture/release'" in msg
+    assert "14 commit(s) behind" in msg
+
+
+def test_render_inherited_only_no_sync_step_when_base_fresh():
+    msg = render_scope_failure(
+        "culture/mexico", "culture/release",
+        inherited=["data/countries.json"],
+        genuine=[],
+        base_behind_main=0,
+    )
+    assert "sync 'main'" not in msg
+    assert "git fetch origin" in msg
+    assert "git rebase origin/culture/release" in msg
+
+
+def test_render_genuine_only_points_at_governance_branch():
+    msg = render_scope_failure(
+        "culture/germany", "culture/release",
+        inherited=[],
+        genuine=["tests/branch_scope.py"],
+        base_behind_main=0,
+    )
+    assert "genuine scope violations" in msg
+    assert "governance/*" in msg
+    assert "carries main's history" not in msg
+
+
+def test_render_mixed_lists_both_and_orders_rebase_first():
+    msg = render_scope_failure(
+        "culture/mexico", "culture/release",
+        inherited=["data/countries.json"],
+        genuine=["tests/test_x.py"],
+        base_behind_main=3,
+    )
+    assert "carries main's history" in msg
+    assert "genuine scope violations" in msg
+    assert "data/countries.json" in msg
+    assert "tests/test_x.py" in msg
+    # Rebase step precedes the genuine-violation step.
+    assert msg.index("git rebase") < msg.index("revert the genuine")
+
+
+# ---------------------------------------------------------------------------
+# misbased_commits
+# ---------------------------------------------------------------------------
+
+def test_misbased_commits_flags_on_main_only():
+    commits = [
+        ("aaa1111", "feat: tune mexico package"),   # branch's own work
+        ("bbb2222", "Merge pull request #209"),      # main's lead
+        ("ccc3333", "fix: stabilize mexico spans"),  # branch's own work
+        ("ddd4444", "chore: seed name register"),    # main's lead
+    ]
+    offending = misbased_commits(
+        commits, is_on_main=lambda sha: sha in {"bbb2222", "ddd4444"},
+    )
+    assert offending == [
+        ("bbb2222", "Merge pull request #209"),
+        ("ddd4444", "chore: seed name register"),
+    ]
+
+
+def test_misbased_commits_clean_branch_returns_empty():
+    """A branch cut from culture/release has no commit on main yet."""
+    commits = [("aaa1111", "feat: x"), ("ccc3333", "fix: y")]
+    assert misbased_commits(commits, is_on_main=lambda sha: False) == []
+
+
+def test_misbased_commits_empty():
+    assert misbased_commits([], is_on_main=lambda sha: True) == []
+
+
+# ---------------------------------------------------------------------------
+# render_misbased_branch
+# ---------------------------------------------------------------------------
+
+def test_render_misbased_branch_names_cause_and_remedy():
+    msg = render_misbased_branch(
+        "culture/mexico",
+        [("bbb2222", "Merge pull request #209"),
+         ("ddd4444", "chore: seed name register")],
+    )
+    assert "wrong base" in msg
+    assert "2 commit(s)" in msg
+    assert "bbb2222" in msg and "ddd4444" in msg
+    # Steer away from the wrong fix; give the exact rebase remedy.
+    assert "do not edit validators" in msg.lower()
+    assert "git rebase --onto origin/culture/release origin/main culture/mexico" in msg
+
+
+def test_render_misbased_branch_respects_base_ref():
+    msg = render_misbased_branch(
+        "culture/europe", [("eee5555", "x")], base_ref="culture/release",
+    )
+    assert "culture/release" in msg
+
+
+# ---------------------------------------------------------------------------
+# advise_operation - operation -> prescribed branch
+# ---------------------------------------------------------------------------
+
+@pytest.mark.parametrize("operation,kind,base", [
+    ("new-country", "culture", "culture/release"),
+    ("new-region", "culture", "culture/release"),
+    ("release", "culture", "main"),
+    ("sync", "sync", "culture/release"),
+    ("governance", "governance", "main"),
+    ("chore", "other", "main"),
+    ("fix", "other", "main"),
+    ("feat", "other", "main"),
+])
+def test_advise_operation_kind_and_base(operation, kind, base):
+    advice = advise_operation(operation)
+    assert advice is not None
+    assert advice.kind == kind
+    assert advice.base == base
+
+
+def test_advise_operation_unknown_returns_none():
+    assert advise_operation("sink") is None
+    assert advise_operation("workflow-fix") is None
+
+
+def test_valid_operations_is_the_registry():
+    ops = valid_operations()
+    assert set(ops) == {
+        "new-country", "new-region", "release", "sync",
+        "governance", "chore", "fix", "feat",
+    }
+
+
+def test_advise_sync_routes_to_sync_not_governance():
+    """A sync touches workflow files but is a sync lane, not governance."""
+    advice = advise_operation("sync")
+    assert advice.kind == "sync"
+    assert advice.branch.startswith("sync/")
+    assert advice.base == "culture/release"
+    assert advice.start == "origin/main"
+
+
+def test_advise_new_country_resolves_real_slug():
+    advice = advise_operation("new-country", "germany")
+    assert advice.branch == "culture/germany"
+    assert advice.scope.startswith("regions/europe/germany/")
+
+
+def test_advise_new_country_flags_unknown_slug():
+    advice = advise_operation("new-country", "atlantis")
+    assert advice.branch == "culture/atlantis"
+    assert "UNRESOLVED" in advice.scope
+
+
+def test_render_operation_advice_gives_create_command():
+    advice = advise_operation("new-country", "germany")
+    out = render_operation_advice(advice)
+    assert "git checkout -b culture/germany origin/culture/release" in out
+    assert "Base:      culture/release" in out
+
+
+def test_render_operation_advice_release_has_no_create_command():
+    out = render_operation_advice(advise_operation("release"))
+    assert "do not create it" in out
+    assert "git checkout -b" not in out
+
+
+# ---------------------------------------------------------------------------
+# lane_of_path / lanes_for_files - files -> branch lane
+# ---------------------------------------------------------------------------
+
+@pytest.mark.parametrize("path,lane,kind", [
+    ("regions/europe/germany/culture_german_position.md", "culture/germany", "culture"),
+    ("regions/africa/nigeria/README.md", "culture/nigeria", "culture"),
+    (".github/workflows/validate.yml", "governance/<name>", "governance"),
+    ("tests/validate_language.py", "governance/<name>", "governance"),
+    ("tests/branch_scope.py", "governance/<name>", "governance"),
+    (".validation-stamp", "(safe metadata)", "safe"),
+    ("data/hofstede_bag_locks.yaml", "(safe metadata)", "safe"),
+    (".github/copilot-instructions.md", "chore/<name>", "other"),
+    ("ARCHITECTURE.md", "chore/<name>", "other"),
+    ("data/countries.json", "chore/<name>", "other"),
+])
+def test_lane_of_path(path, lane, kind):
+    assert lane_of_path(path) == (lane, kind)
+
+
+def test_lanes_for_files_single_lane():
+    lanes = lanes_for_files([
+        "regions/europe/germany/culture_german_position.md",
+        "regions/europe/germany/README.md",
+    ])
+    assert lanes == {"culture/germany": [
+        "regions/europe/germany/culture_german_position.md",
+        "regions/europe/germany/README.md",
+    ]}
+
+
+def test_lanes_for_files_split_detects_mexico_bundle():
+    """The PR #213 shape: culture content + validators + workflow + data."""
+    lanes = lanes_for_files([
+        "regions/americas/mexico/README.md",
+        "tests/validate_language.py",
+        ".github/workflows/validate.yml",
+        "data/countries.json",
+        ".validation-stamp",
+    ])
+    non_safe = {k for k in lanes if k != "(safe metadata)"}
+    assert non_safe == {"culture/mexico", "governance/<name>", "chore/<name>"}
+    out = render_files_advice(lanes)
+    assert "SPLIT REQUIRED" in out
+    assert "3 branch lanes" in out
+
+
+def test_render_files_advice_single_lane():
+    out = render_files_advice(lanes_for_files([
+        "regions/europe/denmark/culture_danish_position.md",
+    ]))
+    assert "one lane: culture/denmark" in out
+    assert "base: culture/release" in out
+
+
+def test_render_files_advice_safe_only():
+    out = render_files_advice(lanes_for_files([".validation-stamp"]))
+    assert "safe metadata" in out.lower()

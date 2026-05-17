@@ -38,6 +38,8 @@ That document is the single source of truth for all branch types, allowed paths,
 
 Do not duplicate branch-kind rules in this file. When in doubt, follow [`docs/BRANCHING.md`](../docs/BRANCHING.md) and the executable checks in [`tests/branch_scope.py`](../tests/branch_scope.py).
 
+**Before `git checkout -b`, run the advisor.** `python tests/branch_scope.py advise --op <operation>` routes by operation (not file type) and prints the branch name, required base, and create command. `python tests/branch_scope.py advise --files <paths>` reports a change that must be split across branches. See [`docs/BRANCHING.md`](../docs/BRANCHING.md) "Pre-flight: ask the advisor".
+
 ## Cultures v2 Schema
 
 Every country has **8 canonical kinds**, mapped to the **5 KAI structural types**. The mapping is enforced by validators that read a footer declaration on every content file.

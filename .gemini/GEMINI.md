@@ -29,10 +29,13 @@ Treat these as the source of truth; do not restate them, link to them:
 
 ## House rules
 
-1. **Branch kind and worktree chosen before any edit.** Pick branch kind from
-   [`docs/BRANCHING.md`](../docs/BRANCHING.md), then follow
-   [`.worktree/WORKTREES.md`](../.worktree/WORKTREES.md). If a change spans two kinds,
-   split it into two branches/PRs. Refuse to start work without a kind.
+1. **Branch kind and worktree chosen before any edit.** Run the advisor to
+   pick the kind: `python tests/branch_scope.py advise --op <operation>`
+   routes by operation (not file type) and prints the branch, base, and
+   `git checkout -b` command; `--files <paths>` flags a change that must be
+   split. Then follow [`.worktree/WORKTREES.md`](../.worktree/WORKTREES.md).
+   If a change spans two kinds, split it into two branches/PRs. Refuse to
+   start work without a kind. Contract: [`docs/BRANCHING.md`](../docs/BRANCHING.md).
 
 2. **Pre-commit hook is the gate, not a suggestion.** Never bypass with
    `--no-verify`. If it rejects, fix the root cause; do not retarget the
