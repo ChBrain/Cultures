@@ -68,6 +68,27 @@ A `culture/germany` branch cannot touch Denmark even though both live under
 `regions/europe/`. For multi-country work in one PR, use `culture/<region>` or
 `culture/release`.
 
+## Culture branch base
+
+A `culture/<country>` or `culture/<region>` branch must be **cut from
+`culture/release`**, the integration branch - never from `main`:
+
+```
+git fetch origin
+git checkout -b culture/<country> origin/culture/release
+```
+
+A branch cut from `main` - or one that later merges `main` in - carries
+commits that are on `main` but not yet on `culture/release`. Those commits
+pollute the PR diff: the branch-scope check then flags every file `main`
+changed in that gap as if the branch authored it, and contributors chase
+scope violations that are really just a mis-based branch.
+
+CI enforces this. The `cultures - Culture branch base` job fails any
+`culture/*` PR whose branch contains a commit already on `main` but absent
+from `culture/release`, and prints the `git rebase --onto` remedy.
+`culture/release` itself is exempt - it integrates upward into `main`.
+
 ## Governance paths
 
 Files that define or enforce repository rules. Editing any of these requires a

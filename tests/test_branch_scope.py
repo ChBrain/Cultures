@@ -21,11 +21,15 @@ from branch_scope import (  # noqa: E402
     check_scope,
     classify_branch,
     culture_scope,
+    diagnose_scope_failure,
     is_governance_path,
     lane_of_path,
     lanes_for_files,
+    misbased_commits,
     render_files_advice,
+    render_misbased_branch,
     render_operation_advice,
+    render_scope_failure,
     valid_operations,
 )
 
@@ -562,6 +566,203 @@ def test_governance_glob_patterns_locked():
         ".worktree/WORKTREES.md",
         ".worktree/.gitignore",
     )
+
+
+# ---------------------------------------------------------------------------
+# diagnose_scope_failure
+# ---------------------------------------------------------------------------
+
+def _fake_history(file_commits: dict[str, list[str]], on_main: set[str]):
+    """Build (commits_for_file, is_on_main) callbacks from in-memory data."""
+    return (
+        lambda path: file_commits.get(path, []),
+        lambda sha: sha in on_main,
+    )
+
+
+def test_diagnose_all_inherited_from_main():
+    """Every flagged file traces only to commits already on main."""
+    commits_for_file, is_on_main = _fake_history(
+        {
+            "tests/validate_language.py": ["c1"],
+            ".githooks/pre-commit": ["c1", "c2"],
+        },
+        on_main={"c1", "c2"},
+    )
+    inherited, genuine = diagnose_scope_failure(
+        ["tests/validate_language.py", ".githooks/pre-commit"],
+        commits_for_file=commits_for_file,
+        is_on_main=is_on_main,
+    )
+    assert inherited == ["tests/validate_language.py", ".githooks/pre-commit"]
+    assert genuine == []
+
+
+def test_diagnose_all_genuine():
+    """Flagged files trace to commits the branch authored (not on main)."""
+    commits_for_file, is_on_main = _fake_history(
+        {"tests/validate_language.py": ["branchC"]},
+        on_main={"c1"},
+    )
+    inherited, genuine = diagnose_scope_failure(
+        ["tests/validate_language.py"],
+        commits_for_file=commits_for_file,
+        is_on_main=is_on_main,
+    )
+    assert inherited == []
+    assert genuine == ["tests/validate_language.py"]
+
+
+def test_diagnose_mixed():
+    """A file touched by both an on-main and a branch commit is genuine."""
+    commits_for_file, is_on_main = _fake_history(
+        {
+            "data/countries.json": ["c1"],
+            "tests/test_x.py": ["c1", "branchC"],
+        },
+        on_main={"c1"},
+    )
+    inherited, genuine = diagnose_scope_failure(
+        ["data/countries.json", "tests/test_x.py"],
+        commits_for_file=commits_for_file,
+        is_on_main=is_on_main,
+    )
+    assert inherited == ["data/countries.json"]
+    assert genuine == ["tests/test_x.py"]
+
+
+def test_diagnose_no_commits_is_genuine():
+    """A flagged file whose history cannot be resolved is never excused."""
+    commits_for_file, is_on_main = _fake_history({}, on_main={"c1"})
+    inherited, genuine = diagnose_scope_failure(
+        ["mystery.py"],
+        commits_for_file=commits_for_file,
+        is_on_main=is_on_main,
+    )
+    assert inherited == []
+    assert genuine == ["mystery.py"]
+
+
+def test_diagnose_empty():
+    commits_for_file, is_on_main = _fake_history({}, on_main=set())
+    assert diagnose_scope_failure(
+        [], commits_for_file=commits_for_file, is_on_main=is_on_main,
+    ) == ([], [])
+
+
+# ---------------------------------------------------------------------------
+# render_scope_failure
+# ---------------------------------------------------------------------------
+
+def test_render_inherited_only_names_cause_and_forbids_edits():
+    msg = render_scope_failure(
+        "culture/mexico", "culture/release",
+        inherited=["tests/validate_language.py", ".githooks/pre-commit"],
+        genuine=[],
+        base_behind_main=14,
+    )
+    assert "2 file(s) outside its scope" in msg
+    assert "carries main's history" in msg
+    # The whole point: steer the LLM away from editing the validator.
+    assert "Do NOT" in msg
+    assert "git rebase origin/culture/release" in msg
+    # base is stale -> the sync step is present.
+    assert "sync 'main' -> 'culture/release'" in msg
+    assert "14 commit(s) behind" in msg
+
+
+def test_render_inherited_only_no_sync_step_when_base_fresh():
+    msg = render_scope_failure(
+        "culture/mexico", "culture/release",
+        inherited=["data/countries.json"],
+        genuine=[],
+        base_behind_main=0,
+    )
+    assert "sync 'main'" not in msg
+    assert "git fetch origin" in msg
+    assert "git rebase origin/culture/release" in msg
+
+
+def test_render_genuine_only_points_at_governance_branch():
+    msg = render_scope_failure(
+        "culture/germany", "culture/release",
+        inherited=[],
+        genuine=["tests/branch_scope.py"],
+        base_behind_main=0,
+    )
+    assert "genuine scope violations" in msg
+    assert "governance/*" in msg
+    assert "carries main's history" not in msg
+
+
+def test_render_mixed_lists_both_and_orders_rebase_first():
+    msg = render_scope_failure(
+        "culture/mexico", "culture/release",
+        inherited=["data/countries.json"],
+        genuine=["tests/test_x.py"],
+        base_behind_main=3,
+    )
+    assert "carries main's history" in msg
+    assert "genuine scope violations" in msg
+    assert "data/countries.json" in msg
+    assert "tests/test_x.py" in msg
+    # Rebase step precedes the genuine-violation step.
+    assert msg.index("git rebase") < msg.index("revert the genuine")
+
+
+# ---------------------------------------------------------------------------
+# misbased_commits
+# ---------------------------------------------------------------------------
+
+def test_misbased_commits_flags_on_main_only():
+    commits = [
+        ("aaa1111", "feat: tune mexico package"),   # branch's own work
+        ("bbb2222", "Merge pull request #209"),      # main's lead
+        ("ccc3333", "fix: stabilize mexico spans"),  # branch's own work
+        ("ddd4444", "chore: seed name register"),    # main's lead
+    ]
+    offending = misbased_commits(
+        commits, is_on_main=lambda sha: sha in {"bbb2222", "ddd4444"},
+    )
+    assert offending == [
+        ("bbb2222", "Merge pull request #209"),
+        ("ddd4444", "chore: seed name register"),
+    ]
+
+
+def test_misbased_commits_clean_branch_returns_empty():
+    """A branch cut from culture/release has no commit on main yet."""
+    commits = [("aaa1111", "feat: x"), ("ccc3333", "fix: y")]
+    assert misbased_commits(commits, is_on_main=lambda sha: False) == []
+
+
+def test_misbased_commits_empty():
+    assert misbased_commits([], is_on_main=lambda sha: True) == []
+
+
+# ---------------------------------------------------------------------------
+# render_misbased_branch
+# ---------------------------------------------------------------------------
+
+def test_render_misbased_branch_names_cause_and_remedy():
+    msg = render_misbased_branch(
+        "culture/mexico",
+        [("bbb2222", "Merge pull request #209"),
+         ("ddd4444", "chore: seed name register")],
+    )
+    assert "wrong base" in msg
+    assert "2 commit(s)" in msg
+    assert "bbb2222" in msg and "ddd4444" in msg
+    # Steer away from the wrong fix; give the exact rebase remedy.
+    assert "do not edit validators" in msg.lower()
+    assert "git rebase --onto origin/culture/release origin/main culture/mexico" in msg
+
+
+def test_render_misbased_branch_respects_base_ref():
+    msg = render_misbased_branch(
+        "culture/europe", [("eee5555", "x")], base_ref="culture/release",
+    )
+    assert "culture/release" in msg
 
 
 # ---------------------------------------------------------------------------
