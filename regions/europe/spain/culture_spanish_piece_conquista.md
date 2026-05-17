@@ -1,3 +1,12 @@
+---
+khai: piece
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.1
+  date: '2026-05-14'
+---
 # Piece: La Conquista
 
 ## Owner
@@ -43,8 +52,3 @@ Cada año en español aquí lleva una España que todavía explica su propia dec
 1898: Cuba, Puerto Rico, Filipinas. España pierde sus últimas colonias. El 98 entra en el idioma como herida.
 1992: Quinto centenario. España celebra. América Latina debate. El mismo hecho, dos memorias distintas.
 2021: México presenta una solicitud formal de disculpa a España por la Conquista. Madrid no responde.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: piece*
-*2026-05-14 | KAI HACKS AI | v0.2.1 | CC-BY-NC-4.0*

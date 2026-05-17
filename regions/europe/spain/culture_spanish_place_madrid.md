@@ -1,3 +1,7 @@
+---
+khai: place
+hofstede: aggregate
+---
 # Place: Madrid
 
 ## Owner
@@ -37,11 +41,3 @@ Lo que se habló en la cena de antes y no aparecerá en el acta.
 La diferencia entre lo que se dice en público y lo que se negocia en privado.
 El coste de no pertenecer: invisible hasta que lo necesitas y no está.
 Lo que la ciudad guarda de sus muertos: la Guerra Civil en las cunetas, en los silencios, en los apellidos que nadie pronuncia.
-
----
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-*khai: place*
-
-*culture_spanish_place_madrid.md - 13.05.2026*
-
-v0.2.0 - KAI Worlds

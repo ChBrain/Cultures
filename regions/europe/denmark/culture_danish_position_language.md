@@ -1,3 +1,12 @@
+---
+khai: position
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # Language: Dansk
 
 ## Owner
@@ -53,8 +62,3 @@ På tabet af lydighed:
 Sproget kræver, at man taler.
 Stilhed er ikke neutralitet, men frasigelse.
 Trangen til at sige det, der er - før det bliver påtvingelse.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: position*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

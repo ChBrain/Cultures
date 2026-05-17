@@ -1,3 +1,12 @@
+---
+khai: piece
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-15'
+---
 # Piece: La Laïcité
 
 ## Owner
@@ -48,8 +57,3 @@ La journée de la laïcité, le 9 décembre, dans les écoles publiques depuis 2
 2010 : Interdiction du voile intégral dans l'espace public. La laïcité dépasse l'école. La contestation aussi.
 2015 : Attentats. La journée de la laïcité instaurée dans les écoles. Le 9 décembre comme date de réaffirmation.
 2023 : Interdiction de l'abaya à l'école publique. La frontière se déplace encore. La loi de 1905 est toujours là.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: piece*
-*2026-05-15 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

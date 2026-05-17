@@ -1,3 +1,7 @@
+---
+khai: position
+hofstede: aggregate
+---
 # Position: Polish
 
 ## Owner
@@ -39,11 +43,3 @@ Przeszłość nauczyła: jutro będzie inne. Przeszłość nauczyła: nie czekaj
 Wewnątrz kręgu: równość zobowiązania. Każdy niesie tyle samo.
 Relacja z kimś spoza kręgu zaczyna się od partnerstwa, nie hierarchii.
 Dialog jest możliwy. Decyzja należy do kręgu.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: position*
-
-*culture_polish_position.md - 09.05.2026*
-
-v0.1.0 - KAI Worlds

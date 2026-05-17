@@ -1,3 +1,12 @@
+---
+khai: place
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-15'
+---
 # Place: Paris
 
 ## Owner
@@ -37,8 +46,3 @@ La différence entre les grandes écoles et le reste du système : deux Frances 
 Ce qui se dit dans les dîners en ville et ce qui se dit dans les réunions de copropriété.
 Ce que Paris pense de la province, et ce que la province pense de Paris, et que les deux gardent pour eux jusqu'à ce que ce ne soit plus possible.
 Les morts dont les noms sont sur les plaques mais dont les familles n'ont jamais reçu d'explication officielle.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: place*
-*2026-05-15 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

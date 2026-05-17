@@ -1,3 +1,12 @@
+---
+khai: piece
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # History: Danmark
 
 ## Owner
@@ -58,8 +67,3 @@ Tre løver i alle kommuner, rigsvåbnet uden afbrydelse siden 1190.
 2009: Kvinder kan blive folkekirkeprovst.
 2021: Klimalov vedtaget med bred enighed: 70% reduktion inden 2030.
 2025: Velfærdsstaten vedholder. Tradition og forpligtelse bæres videre.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: piece*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

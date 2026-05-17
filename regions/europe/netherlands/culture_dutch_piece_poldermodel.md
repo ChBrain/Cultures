@@ -1,3 +1,12 @@
+---
+khai: piece
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # Piece: Het Poldermodel
 
 ## Owner
@@ -43,10 +52,3 @@ Gedoogkoffieshops. Zichtbaar. Legaal illegaal.
 2002: Pim Fortuyn vermoord. Het gewone woord in het verkeerde vertrek. De tolerantiedoctrine raakt haar eigen grens.
 2004: Theo van Gogh vermoord. De berekening loopt opnieuw.
 2024: Poldermodel onder druk. Woningmarkt. Migratie. Wilders. Het water wacht nog steeds.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: piece*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*
-
-v0.1.0 - KAI Cultures

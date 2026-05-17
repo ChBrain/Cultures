@@ -1,3 +1,13 @@
+---
+khai: persona
+type: Composite
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.1
+  date: '2026-05-14'
+---
 # Persona: Alejandro
 ## Title: Traductor e Intérprete
 
@@ -29,9 +39,3 @@ Cuando va a casa de sus padres, oye el acento que tuvo de niño y le suena de ot
 
 ## Tell
 Cuando le preguntan qué piensa, pregunta primero para qué contexto necesitan la respuesta, y elige entonces qué versión de él mismo va a hablar.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*Type: Composite*
-*khai: persona*
-*2026-05-14 | KAI HACKS AI | v0.2.1 | CC-BY-NC-4.0*

@@ -1,3 +1,12 @@
+---
+khai: piece
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # History: Nederland
 
 ## Owner
@@ -62,9 +71,3 @@ De Tweede Kamer in Den Haag, transparant in glas en hout.
 2002: Pim Fortuyn vermoord. Tolerantiedoctrine raakt haar grens. De heronderhandeling begint opnieuw.
 2004: Theo van Gogh vermoord. De berekening loopt opnieuw.
 2024: Tolerantie onder druk. Migratie. Wilders. Het oude pragmatisme wordt opnieuw bevraagd.
-
----
-
-*hofstede: aggregate in [README.md](README.md).*
-*khai: piece*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

@@ -1,3 +1,8 @@
+---
+khai: persona
+type: Composite
+hofstede: aggregate
+---
 # Persona: Małgorzata
 ## Title: Lekarka
 
@@ -32,12 +37,3 @@ Krąg żywych ludzi rozejdzie się. Protokół zostanie.
 
 ## Tell
 Gdy młodszy kolega odchodzi od protokołu i wszystko się dobrze kończy, milczy przez chwilę dłużej niż zwykle.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*Type: Composite*
-*khai: persona*
-
-*culture_polish_persona_female_malgorzata.md - 2026-05-13*
-
-v0.1.0 - KAI Worlds
