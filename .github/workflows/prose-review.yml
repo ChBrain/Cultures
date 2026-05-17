@@ -11,6 +11,7 @@ jobs:
     permissions:
       pull-requests: write
       contents: read
+      models: read
     steps:
       - uses: actions/checkout@v4
         with:

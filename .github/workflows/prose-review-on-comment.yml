@@ -4,11 +4,14 @@ name: prose-review-on-comment
 # The automatic prose-review.yml workflow is unaffected and still runs.
 #
 # Security model: issue_comment workflows always run from the default branch
-# with a write token and repo secrets. This workflow is therefore gated to
+# with a write token and repo secrets. This workflow is gated to
 #   1. non-fork PRs only (resolved via the API), and
 #   2. repo OWNER / MEMBER / COLLABORATOR actors.
-# Both gates together mean the actor already has write access, so running the
-# PR-head copy of scripts/prose_review.py carries no extra privilege.
+# The review tooling (scripts/parse_review_command.py, scripts/prose_review.py)
+# is always run from the default branch, never the PR head: a PR must not be
+# able to alter the code that reviews it, and a PR branched before the tooling
+# landed must still work. Only the culture content under review is read from
+# the PR head.
 
 on:
   issue_comment:
@@ -17,6 +20,7 @@ on:
 permissions:
   contents: read
   issues: write
+  models: read
   pull-requests: write
 
 concurrency:
@@ -102,6 +106,19 @@ jobs:
       - name: Install deps
         if: steps.gate.outputs.proceed == 'true'
         run: pip install pyyaml
+
+      - name: Pin review scripts to the default branch
+        if: steps.gate.outputs.proceed == 'true'
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          # Run the review tooling from the default branch, never the PR
+          # head: a PR branched before the tooling landed would not have
+          # these scripts, and a PR must not be able to alter the code that
+          # reviews it. The culture content stays at the PR head checkout.
+          git fetch --no-tags origin "$DEFAULT_BRANCH"
+          git checkout "origin/$DEFAULT_BRANCH" -- \
+            scripts/parse_review_command.py scripts/prose_review.py
 
       - name: Resolve review scope
         id: scope
