@@ -3,24 +3,24 @@
     "version": "1.0.0",
     "description": "Central name register for all Cultures personas. Each name is a unique key across the entire project.",
     "schema": "data/names/name_register.schema.json",
-    "updated": "2026-05-15"
+    "updated": "2026-05-16"
   },
   "names": [
-    {
-      "name": "Christian",
-      "given": "Christian",
-      "gender": "male",
-      "country": "DE",
-      "persona_file": "regions/europe/germany/culture_german_persona_male_christian.md",
-      "cultural_source": "Destatis_DE_Vornamen_2022",
-      "added": "2026-05-15"
-    },
     {
       "name": "Brigitte",
       "given": "Brigitte",
       "gender": "female",
       "country": "DE",
       "persona_file": "regions/europe/germany/culture_german_persona_female_brigitte.md",
+      "cultural_source": "Destatis_DE_Vornamen_2022",
+      "added": "2026-05-15"
+    },
+    {
+      "name": "Christian",
+      "given": "Christian",
+      "gender": "male",
+      "country": "DE",
+      "persona_file": "regions/europe/germany/culture_german_persona_male_christian.md",
       "cultural_source": "Destatis_DE_Vornamen_2022",
       "added": "2026-05-15"
     },
@@ -43,24 +43,6 @@
       "added": "2026-05-15"
     },
     {
-      "name": "Jeroen",
-      "given": "Jeroen",
-      "gender": "male",
-      "country": "NL",
-      "persona_file": "regions/europe/netherlands/culture_dutch_persona_male_jeroen.md",
-      "cultural_source": "CBS_NL_Voornamen_2022",
-      "added": "2026-05-15"
-    },
-    {
-      "name": "Anneke",
-      "given": "Anneke",
-      "gender": "female",
-      "country": "NL",
-      "persona_file": "regions/europe/netherlands/culture_dutch_persona_female_anneke.md",
-      "cultural_source": "CBS_NL_Voornamen_2022",
-      "added": "2026-05-15"
-    },
-    {
       "name": "Alejandro",
       "given": "Alejandro",
       "gender": "male",
@@ -79,20 +61,74 @@
       "added": "2026-05-15"
     },
     {
+      "name": "Amina",
+      "given": "Amina",
+      "gender": "female",
+      "country": "FR",
+      "persona_file": "regions/europe/france/culture_french_persona_female_amina.md",
+      "cultural_source": "INSEE_FR_2023",
+      "added": "2026-05-16"
+    },
+    {
+      "name": "Luc",
+      "given": "Luc",
+      "gender": "male",
+      "country": "FR",
+      "persona_file": "regions/europe/france/culture_french_persona_male_luc.md",
+      "cultural_source": "INSEE_FR_2023",
+      "added": "2026-05-16"
+    },
+    {
+      "name": "Emeka",
+      "given": "Emeka",
+      "gender": "male",
+      "country": "NG",
+      "persona_file": "regions/africa/nigeria/culture_nigerian_persona_male_emeka.md",
+      "cultural_source": "Cultures_persona_archetype",
+      "added": "2026-05-16"
+    },
+    {
+      "name": "Funke",
+      "given": "Funke",
+      "gender": "female",
+      "country": "NG",
+      "persona_file": "regions/africa/nigeria/culture_nigerian_persona_female_funke.md",
+      "cultural_source": "Cultures_persona_archetype",
+      "added": "2026-05-16"
+    },
+    {
+      "name": "Anneke",
+      "given": "Anneke",
+      "gender": "female",
+      "country": "NL",
+      "persona_file": "regions/europe/netherlands/culture_dutch_persona_female_anneke.md",
+      "cultural_source": "CBS_NL_Voornamen_2022",
+      "added": "2026-05-15"
+    },
+    {
+      "name": "Jeroen",
+      "given": "Jeroen",
+      "gender": "male",
+      "country": "NL",
+      "persona_file": "regions/europe/netherlands/culture_dutch_persona_male_jeroen.md",
+      "cultural_source": "CBS_NL_Voornamen_2022",
+      "added": "2026-05-15"
+    },
+    {
+      "name": "Malgorzata",
+      "given": "Małgorzata",
+      "gender": "female",
+      "country": "PL",
+      "persona_file": "regions/europe/poland/culture_polish_persona_female_malgorzata.md",
+      "cultural_source": "GUS_PL_Imiona_2022",
+      "added": "2026-05-15"
+    },
+    {
       "name": "Tomasz",
       "given": "Tomasz",
       "gender": "male",
       "country": "PL",
       "persona_file": "regions/europe/poland/culture_polish_persona_male_tomasz.md",
-      "cultural_source": "GUS_PL_Imiona_2022",
-      "added": "2026-05-15"
-    },
-    {
-      "name": "Malgorzata",
-      "given": "Ma\u0142gorzata",
-      "gender": "female",
-      "country": "PL",
-      "persona_file": "regions/europe/poland/culture_polish_persona_female_malgorzata.md",
       "cultural_source": "GUS_PL_Imiona_2022",
       "added": "2026-05-15"
     }

@@ -253,7 +253,9 @@ def _resolve_allowed_languages(file_path: Path, policy: dict) -> set[str]:
     return set(valid) if valid else {"english"}
 
 
-def _readme_registry_violations(policy: dict) -> list[Issue]:
+def _readme_registry_violations(
+    policy: dict, country_dirs: list[Path] | None = None
+) -> list[Issue]:
     """Flag README declarations that don't resolve against the registry.
 
     Two failure modes:
@@ -263,17 +265,25 @@ def _readme_registry_violations(policy: dict) -> list[Issue]:
     Both are loud failures -- silent english-only fallback was the bug
     that motivated Phase 1.
 
+    ``country_dirs`` scopes the check; ``None`` walks every country on
+    disk (audit mode). The pre-commit hook passes the staged country so
+    a culture commit is gated on its own language being registered
+    without re-flagging unrelated brownfield countries.
+
     Countries with no README at all are SKIPPED here: that's a culture-
     completeness gap (L4's job), not a language-policy gap. Flagging them
     would dilute the signal in busy repos with many stub countries.
     """
     issues: list[Issue] = []
     registry = set(policy["languages"])
-    for country in _country_dirs():
+    for country in (_country_dirs() if country_dirs is None else country_dirs):
         readme = country / "README.md"
         if not readme.is_file():
             continue
-        rel = readme.relative_to(ROOT)
+        try:
+            rel = readme.relative_to(ROOT)
+        except ValueError:
+            rel = Path(country.name) / "README.md"
         declared = parse_readme_languages(readme.read_text(encoding="utf-8"))
         if not declared:
             issues.append(Issue(
@@ -605,7 +615,8 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument(
         "--check-readmes-only", action="store_true",
-        help="only run the registry cross-check on every country README; "
+        help="only run the registry cross-check on country READMEs "
+             "(scoped to the countries owning any given files); "
              "skip per-file language detection",
     )
     parser.add_argument(
@@ -641,8 +652,17 @@ def main(argv: list[str] | None = None) -> int:
 
     # README registry cross-check runs in all detection modes -- it
     # catches the silent-fallback bug that motivated Phase 1 and costs
-    # nothing.
-    readme_issues = _readme_registry_violations(policy)
+    # nothing. With explicit file args, scope it to the countries owning
+    # them so it mirrors the pre-commit staged-file scope.
+    if args.files:
+        scoped: list[Path] = []
+        for arg in args.files:
+            owner = _country_dir_for(Path(arg))
+            if owner is not None and owner not in scoped:
+                scoped.append(owner)
+        readme_issues = _readme_registry_violations(policy, scoped)
+    else:
+        readme_issues = _readme_registry_violations(policy)
 
     if args.check_readmes_only:
         for issue in readme_issues:

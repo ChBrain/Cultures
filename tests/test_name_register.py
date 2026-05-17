@@ -1,11 +1,12 @@
 """tests/test_name_register.py
 
-Validates data/names/name_register.json against the two core rules:
+Validates data/names/name_register.json against the core rules:
   1. Every name is unique across the entire register.
   2. Every entry has a non-empty cultural_source.
+  3. Every entry carries the required fields with valid values.
 
-Also smoke-tests the sync script's extract/merge logic in isolation
-so regressions are caught before they reach the register.
+Also unit-tests the sync script's harvest/merge logic so regressions are
+caught before they reach the register.
 
 Run:
     pytest tests/test_name_register.py -v
@@ -13,7 +14,6 @@ Run:
 from __future__ import annotations
 
 import json
-import textwrap
 from pathlib import Path
 
 import pytest
@@ -68,7 +68,7 @@ class TestRegisterFile:
         )
 
     def test_required_fields(self):
-        required = {"name", "country", "gender", "persona_file", "cultural_source", "added"}
+        required = {"name", "given", "gender", "country", "persona_file", "cultural_source", "added"}
         bad = [
             e.get("name", "<unnamed>")
             for e in self.entries
@@ -99,9 +99,8 @@ class TestRegisterFile:
     def test_sorted_by_country_then_name(self):
         """Register ordering should be stable; tolerate legacy unsorted seed data.
 
-        The initial seed on main may not be sorted yet. The sync script writes
-        sorted output on update, so this check should enforce order for future
-        generated updates without blocking governance bootstrap PRs.
+        The sync script writes sorted output on update, so this check enforces
+        order for generated updates without blocking governance bootstrap PRs.
         """
         keys = [(e["country"], e["name"]) for e in self.entries]
         if keys != sorted(keys):
@@ -119,119 +118,84 @@ class TestRegisterFile:
         ]
         assert not missing, (
             f"persona_file paths not found on disk: {missing}\n"
-            "Check filename or update the REFERENCES.md table."
+            "Check filename or update the harvest source."
         )
 
 
 # ---------------------------------------------------------------------------
-# Unit tests for the sync script logic (isolated, no file I/O)
+# Unit tests for the sync script logic
 # ---------------------------------------------------------------------------
 
 import sys
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
-from validate_name_register import extract_entries, merge  # noqa: E402
+from validate_name_register import (  # noqa: E402
+    ascii_key, extract_country, load_countries, merge, persona_gender, persona_name,
+)
 
 
-class TestExtract:
-    """Unit tests for extract_entries() using tmp files."""
+class TestPersonaParsing:
+    """Unit tests for the persona-file field extractors."""
 
-    def _write(self, tmp_path: Path, content: str) -> Path:
-        f = tmp_path / "REFERENCES.md"
-        f.write_text(textwrap.dedent(content), encoding="utf-8")
-        return f
+    def test_name_from_heading(self):
+        assert persona_name("# Persona: Adaeze\n## Clearing agent\n") == "Adaeze"
 
-    def test_no_section_returns_empty(self, tmp_path):
-        f = self._write(tmp_path, "# References\n\nNo name sources here.\n")
-        assert extract_entries(f) == []
+    def test_name_heading_with_extra_whitespace(self):
+        assert persona_name("#   Persona:   Luc  \n") == "Luc"
 
-    def test_extracts_two_names(self, tmp_path):
-        f = self._write(tmp_path, """
-            ## Name Sources
+    def test_missing_heading_raises(self):
+        with pytest.raises(ValueError, match="no '# Persona"):
+            persona_name("# References\n\nNo persona heading here.\n")
 
-            <!-- name_sources
-            country: DE
-            cultural_source: Destatis 2023
-            -->
+    def test_gender_from_v2_filename(self):
+        assert persona_gender("culture_french_persona_male_luc.md", "") == "male"
+        assert persona_gender("culture_french_persona_female_amina.md", "") == "female"
 
-            | Name      | Gender | File                      | Notes |
-            |-----------|--------|---------------------------|-------|
-            | Christian | male   | persona_christian.md      | top name |
-            | Brigitte  | female | persona_brigitte.md       | postwar |
-        """)
-        entries = extract_entries(f)
-        assert len(entries) == 2
-        names = {e["name"] for e in entries}
-        assert names == {"Christian", "Brigitte"}
+    def test_gender_from_pronouns_legacy(self):
+        female = "She works the ports. Her mother calls. She knows the officers."
+        male   = "He teaches physics. His students respect him. He stays late."
+        assert persona_gender("persona_adaeze.md", female) == "female"
+        assert persona_gender("persona_emeka.md", male) == "male"
 
-    def test_all_fields_populated(self, tmp_path):
-        f = self._write(tmp_path, """
-            <!-- name_sources
-            country: DE
-            cultural_source: Destatis 2023
-            -->
+    def test_gender_indeterminate_raises(self):
+        with pytest.raises(ValueError, match="cannot determine gender"):
+            persona_gender("persona_x.md", "The work continues without pause.")
 
-            | Name | Gender | File          | Notes |
-            |------|--------|---------------|-------|
-            | Lars | male   | persona_lars.md | - |
-        """)
-        entry = extract_entries(f)[0]
-        assert entry["name"] == "Lars"
-        assert entry["country"] == "DE"
-        assert entry["gender"] == "male"
-        assert entry["cultural_source"] == "Destatis 2023"
-        assert entry["persona_file"].endswith("persona_lars.md")
-        assert entry["added"]  # non-empty date string
+    def test_ascii_key_folds_diacritics(self):
+        assert ascii_key("Małgorzata") == "Malgorzata"
+        assert ascii_key("José") == "Jose"
+        assert ascii_key("Luc") == "Luc"
 
-    def test_missing_country_raises(self, tmp_path):
-        f = self._write(tmp_path, """
-            <!-- name_sources
-            cultural_source: Destatis 2023
-            -->
 
-            | Name | Gender | File | Notes |
-            |------|--------|------|-------|
-            | Lars | male   | x.md | - |
-        """)
-        with pytest.raises(ValueError, match="missing 'country'"):
-            extract_entries(f)
+class TestExtractCountry:
+    """Unit tests for extract_country() against the real repository."""
 
-    def test_missing_cultural_source_raises(self, tmp_path):
-        f = self._write(tmp_path, """
-            <!-- name_sources
-            country: DE
-            -->
+    def test_unregistered_country_raises(self):
+        with pytest.raises(ValueError, match="not in data/countries.json"):
+            extract_country("atlantis", load_countries())
 
-            | Name | Gender | File | Notes |
-            |------|--------|------|-------|
-            | Lars | male   | x.md | - |
-        """)
-        with pytest.raises(ValueError, match="missing 'cultural_source'"):
-            extract_entries(f)
+    def test_extract_france(self):
+        entries = {e["name"]: e for e in extract_country("france", load_countries())}
+        assert {"Amina", "Luc"} <= set(entries)
+        assert entries["Amina"]["gender"] == "female"
+        assert entries["Luc"]["gender"] == "male"
+        assert entries["Luc"]["country"] == "FR"
+        assert entries["Luc"]["cultural_source"]  # non-empty
 
-    def test_header_row_skipped(self, tmp_path):
-        """The | Name | Gender | ... header row must not become an entry."""
-        f = self._write(tmp_path, """
-            <!-- name_sources
-            country: DE
-            cultural_source: Destatis 2023
-            -->
-
-            | Name | Gender | File | Notes |
-            |------|--------|------|-------|
-            | Lars | male   | persona_lars.md | - |
-        """)
-        entries = extract_entries(f)
-        assert len(entries) == 1
-        assert entries[0]["name"] == "Lars"
+    def test_extract_nigeria(self):
+        entries = {e["name"]: e for e in extract_country("nigeria", load_countries())}
+        assert {"Funke", "Emeka"} <= set(entries)
+        assert entries["Funke"]["gender"] == "female"
+        assert entries["Emeka"]["gender"] == "male"
+        assert entries["Emeka"]["country"] == "NG"
 
 
 class TestMerge:
     """Unit tests for merge()."""
 
-    def _entry(self, name, country="DE", gender="male", source="Destatis"):
+    def _entry(self, name, country="DE", gender="male", source="Destatis", pf=None):
         return {
-            "name": name, "country": country, "gender": gender,
-            "persona_file": f"regions/{country}/{name}.md",
+            "name": name, "given": name, "gender": gender, "country": country,
+            "persona_file": pf or f"regions/europe/x/persona_{name.lower()}.md",
             "cultural_source": source, "added": "2026-05-15",
         }
 
@@ -244,7 +208,7 @@ class TestMerge:
         existing = [self._entry("Lars")]
         merged, log = merge(existing, [self._entry("Lars")])
         assert len(merged) == 1
-        assert log == []  # no change logged
+        assert log == []  # same persona, no change logged
 
     def test_update_changed_field(self):
         existing = [self._entry("Lars", source="OldSource")]
@@ -253,13 +217,24 @@ class TestMerge:
         assert merged[0]["cultural_source"] == "NewSource"
         assert any("UPD" in l and "Lars" in l for l in log)
 
+    def test_added_date_is_immutable(self):
+        existing = [self._entry("Lars")]
+        fresh    = [{**self._entry("Lars"), "added": "2099-01-01"}]
+        merged, _ = merge(existing, fresh)
+        assert merged[0]["added"] == "2026-05-15"  # original date preserved
+
+    def test_collision_raises(self):
+        existing = [self._entry("Lars", country="DK", pf="regions/europe/denmark/persona_lars.md")]
+        fresh    = [self._entry("Lars", country="SE", pf="regions/europe/sweden/persona_lars.md")]
+        with pytest.raises(ValueError, match="name collision"):
+            merge(existing, fresh)
+
     def test_merge_preserves_existing_not_in_fresh(self):
         """Names from countries not in the current fresh batch must survive."""
         existing = [self._entry("Lars", country="DE"), self._entry("Sofia", country="ES")]
         fresh    = [self._entry("Lars", country="DE")]  # only DE this run
         merged, _ = merge(existing, fresh)
-        names = {e["name"] for e in merged}
-        assert "Sofia" in names  # ES name preserved
+        assert "Sofia" in {e["name"] for e in merged}
 
     def test_output_sorted(self):
         fresh = [
