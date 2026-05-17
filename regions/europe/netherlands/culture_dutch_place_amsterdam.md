@@ -1,3 +1,12 @@
+---
+khai: place
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # Place: Amsterdam
 
 ## Owner
@@ -30,8 +39,3 @@ De privéberekening of de tolerantie nog werkt. Die loopt continu.
 Het resultaat wordt niet aangekondigd.
 Matigheid is de stille voorwaarde.
 Wie denkt dat de gedoogruimte onbegrensd is heeft de kamer verkeerd gelezen.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: place*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

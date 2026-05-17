@@ -1,3 +1,13 @@
+---
+khai: persona
+type: Composite
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-15'
+---
 # Persona: Amina
 ## Journaliste et essayiste
 
@@ -35,9 +45,3 @@ Les deux en même temps, et elle ne peut pas sortir de l'une pour entrer dans l'
 
 ## Tell
 Quand on lui demande d'où elle vient avant de lui demander ce qu'elle pense, elle répond à la question suivante comme si la première n'avait pas été posée.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*Type: Composite*
-*khai: persona*
-*2026-05-15 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

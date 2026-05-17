@@ -1,3 +1,13 @@
+---
+khai: persona
+type: Fictional
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-15'
+---
 # Persona: Emeka
 ## Title: Contractor
 
@@ -36,9 +46,3 @@ She is already in a different understanding.
 
 ## Tell
 When the problem in the room has no person attached to it, he picks up his phone, checks it, puts it down, and checks it again.
-
----
-*hofstede: aggregate in README.md*
-*khai: persona*
-*Type: Fictional*
-*2026-05-15 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

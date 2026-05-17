@@ -1,3 +1,12 @@
+---
+khai: place
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-15'
+---
 # Place: Lagos
 
 ## Owner
@@ -54,8 +63,3 @@ What the hustle costs in the body over twenty years.
 The Japa calculation running in the head of every educated professional under forty: stay and build, or go and build somewhere that will hold what you build.
 What the city looks like to the person who did not make it here and cannot say so.
 The lagoon at night, the lights on the water, what it holds beneath.
-
----
-*hofstede: aggregate in README.md*
-*khai: place*
-*2026-05-15 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

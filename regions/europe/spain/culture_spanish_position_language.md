@@ -1,3 +1,7 @@
+---
+khai: position
+hofstede: aggregate
+---
 # Language: Castellano
 
 ## Owner
@@ -40,11 +44,3 @@ recalibra el registro sin abandonar la calidez.
 La obligación de saber en qué habitación está.
 No hay neutro. Hay dentro y hay fuera.
 Y hay que saber cuál es cuál antes de abrir la boca.
-
----
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-*khai: position*
-
-*culture_spanish_position_language.md - 13.05.2026*
-
-v0.2.0 - KAI Worlds

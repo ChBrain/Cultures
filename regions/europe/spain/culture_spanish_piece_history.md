@@ -1,3 +1,12 @@
+---
+khai: piece
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.1
+  date: '2026-05-14'
+---
 # History: España
 
 ## Owner
@@ -60,8 +69,3 @@ Cada año en español aquí pesa sobre el siguiente y obliga a España a recorda
 2011: 15-M. Las plazas se llenan. La generación que no recuerda Franco exige una democracia distinta. La iniciativa pasa de los partidos a las plazas.
 2017: 1 de octubre. Referéndum unilateral en Cataluña. Cargas policiales. Aplicación del artículo 155. La cuestión territorial vuelve sin haberse cerrado.
 2023-2024: Ley de amnistía. La política se rompe en dos. La transición empieza a ser cuestionada por quienes la heredaron.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: piece*
-*2026-05-14 | KAI HACKS AI | v0.2.1 | CC-BY-NC-4.0*

@@ -1,3 +1,7 @@
+---
+khai: piece
+hofstede: aggregate
+---
 # Piece: Día de Muertos
 
 ## Owner
@@ -46,10 +50,3 @@ Siglos XVII-XIX: Sincretismo completo. La ofrenda, el panteón, la vigilia noctu
 2015: La película Spectre de James Bond abre con una procesión de Día de Muertos en el Zócalo. La procesión no existía antes de la película. Al año siguiente, el gobierno de la Ciudad de México organiza una procesión real, inspirada en la ficción. El rito se retroalimenta de su propia imagen.
 2017: La película Coco de Pixar lleva el Día de Muertos al mercado global. Debate en México: ¿apropiación o difusión? La respuesta no es única. Depende de a quién le preguntes y en qué pueblo.
 2024: Los altares se montan en la Ciudad de México, en Oaxaca, en Michoacán, en Los Ángeles, en Chicago, en Nueva York. El ancestro sigue teniendo fecha de visita, a los dos lados de la frontera.
-
----
-
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-*khai: piece*
-
-*culture_mexican_piece_diamuertos.md - 2026-05-16*

@@ -1,3 +1,7 @@
+---
+khai: process
+hofstede: aggregate
+---
 # Process: El Trámite
 
 ## Owner
@@ -40,10 +44,3 @@ Termina cuando ambas partes saben qué se debe y a quién.
 La memoria de lo que costó organiza la siguiente vez.
 Lo que hubo de cooperación entre las partes queda registrado también. Define cómo empieza la próxima vez.
 La luz se cierra aquí y se abre de nuevo en Initiated by.
-
----
-
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-*khai: process*
-
-*culture_mexican_process_tramite.md - 2026-05-16*

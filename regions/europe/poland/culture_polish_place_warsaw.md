@@ -1,3 +1,7 @@
+---
+khai: place
+hofstede: aggregate
+---
 # Place: Warsaw
 
 ## Owner
@@ -38,11 +42,3 @@ Granica między lojalnością wobec swoich a lojalnością wobec zasady: kiedy t
 Samokontrola kosztuje każde publiczne pojawienie się. Powściągliwość nie jest ozdobą: jest nawykiem.
 Wstrzemięźliwość krąży pod każdym gestem, który nie musi nic tłumaczyć.
 Co miasto zachowuje dla siebie: honor tamtych, których nie ma.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: place*
-
-*culture_polish_place_warsaw.md - 2026-05-11*
-
-v0.1.0 - KAI Worlds

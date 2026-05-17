@@ -1,3 +1,13 @@
+---
+khai: persona
+type: Fictional
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # Persona: Anneke
 ## Mediator
 
@@ -33,9 +43,3 @@ Ze kan haar daarom niet zien.
 ## Tell
 Als een partij zegt dat ze zich niet gehoord voelen, tikt Anneke twee keer met haar pen op het blad.
 Niet om iets op te schrijven. Om te controleren of zij al een besluit had genomen voordat zij spraken.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: persona*
-*Type: Fictional*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*
