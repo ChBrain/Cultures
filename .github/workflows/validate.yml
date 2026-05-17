@@ -475,6 +475,25 @@ jobs:
       - name: Run history-arc tests
         run: python -m pytest tests/test_history_arc.py -v
 
+  cultures-metadata-format:
+    name: cultures - Metadata format
+    # Always-run guard for the footer -> YAML-frontmatter migration. Per
+    # country: no culture_*.md carries both a frontmatter block and a
+    # trailing footer, and frontmatter is all-or-nothing within a country
+    # (a country migrates as a unit, never half-and-half). Mirrors the
+    # cultures-history-arc pattern: independent, always runs.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run metadata-format guard
+        run: python -m pytest tests/test_metadata_format.py -v
+
   cultures-language-preflight:
     name: cultures - Language pre-flight
     # Always-run pre-flight: every country README's **Language(s):** slug
