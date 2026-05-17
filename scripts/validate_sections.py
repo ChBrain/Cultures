@@ -27,6 +27,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 sys.path.insert(0, str(ROOT / "tests"))
 
+from culture_metadata import read_metadata  # noqa: E402
 from findings import Issue  # noqa: E402
 
 # khai structural type -> required `## Section` headers, in canonical order.
@@ -41,10 +42,6 @@ SECTIONS: dict[str, list[str]] = {
     "persona":  ["## Projection", "## Action", "## Shadow", "## Tell"],
 }
 
-# Footer: `*khai: <type>*` on its own line, lowercase prefix.
-KHAI_RE = re.compile(r"^\*khai:\s*(\w+)\s*\*\s*$", re.MULTILINE)
-
-
 def validate_file(path: Path) -> list[Issue]:
     """Return list of Issue records for `path`. Empty list = OK."""
     if not path.exists():
@@ -52,14 +49,13 @@ def validate_file(path: Path) -> list[Issue]:
 
     text = path.read_text(encoding="utf-8", errors="replace")
 
-    match = KHAI_RE.search(text)
-    if not match:
+    khai_type = read_metadata(text).get("khai")
+    if not khai_type:
         # No declaration -> not our concern. The khai-declaration-present
         # check lives elsewhere (Lens 1 in khai-cultures-review); this
         # script only enforces sections when a declaration exists.
         return []
 
-    khai_type = match.group(1)
     if khai_type not in SECTIONS:
         return [Issue(
             error=(

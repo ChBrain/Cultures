@@ -33,8 +33,10 @@ import pytest
 _HERE = Path(__file__).resolve().parent
 _ROOT = _HERE.parent
 sys.path.insert(0, str(_ROOT / "scripts"))
+sys.path.insert(0, str(_HERE))
 
 from audit_readme_bands import score_to_band  # noqa: E402  -- canonical 39/69
+from culture_metadata import read_metadata  # noqa: E402
 
 _DIMS = ["PDI", "IDV", "UAI", "MAS", "LTO", "IND"]
 
@@ -44,12 +46,6 @@ _SCORE_RE = re.compile(
     r"\s*\*\*(Low|Moderate|High)\*\*[^\|\n]*\|",
     re.IGNORECASE,
 )
-
-# Accept both the legacy "Hofstede signal:" sentinel and the new
-# "hofstede:" sentinel during the v2 footer transition. The corpus
-# migrates per-country; the wider regex is what lets both forms coexist
-# while individual countries flip to the new format in their stage 3 PRs.
-_SIGNAL_RE = re.compile(r"\*hofstede(\s+signal)?:", re.IGNORECASE)
 
 _LEGACY_RE = re.compile(r"\*\*Hofstede:\*\*\s*PDI\s*\d+", re.IGNORECASE)
 
@@ -159,6 +155,8 @@ def test_no_legacy_score_footer(country_dir: Path):
 def test_hofstede_signal_footer(country_dir: Path):
     missing = [
         f.name for f in sorted(country_dir.glob("culture_*.md"))
-        if not _SIGNAL_RE.search(f.read_text(encoding="utf-8", errors="replace"))
+        if not read_metadata(
+            f.read_text(encoding="utf-8", errors="replace")
+        ).get("hofstede")
     ]
     assert not missing, f"{country_dir.name}: missing Hofstede signal footer in: {missing}"

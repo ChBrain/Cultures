@@ -35,13 +35,11 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 sys.path.insert(0, str(ROOT / "tests"))
 
+from culture_metadata import read_metadata  # noqa: E402
 from findings import Issue  # noqa: E402
 
 MIN_ENTRIES = 12
 MIN_CENTURY_SPAN = 5
-
-# Footer marker for khai-piece declaration.
-KHAI_RE = re.compile(r"^\*khai:\s*(\w+)\s*\*\s*$", re.MULTILINE)
 
 YEARBOOK_HEADER_RE = re.compile(r"^##\s+Yearbook\s*$", re.MULTILINE | re.IGNORECASE)
 
@@ -127,16 +125,16 @@ def validate_file(path: Path) -> list[Issue]:
     issues: list[Issue] = []
 
     # Check 1: khai declaration
-    khai_match = KHAI_RE.search(text)
-    if not khai_match:
+    khai = read_metadata(text).get("khai")
+    if not khai:
         issues.append(Issue(
-            error=f"{path.name}: missing *khai: <type>* footer (expected *khai: piece*)"
+            error=f"{path.name}: missing khai declaration (expected khai: piece)"
         ))
-    elif khai_match.group(1) != "piece":
+    elif khai != "piece":
         issues.append(Issue(
             error=(
-                f"{path.name}: declared *khai: {khai_match.group(1)}* but history "
-                f"files must declare *khai: piece* (share piece structure)"
+                f"{path.name}: declared khai: {khai} but history "
+                f"files must declare khai: piece (share piece structure)"
             )
         ))
 
