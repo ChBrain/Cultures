@@ -179,7 +179,7 @@ def test_validate_file_flags_wrong_khai_declaration(tmp_path):
     p = tmp_path / "culture_test_history_test.md"
     p.write_text(body, encoding="utf-8")
     issues = vha.validate_file(p)
-    assert any("must declare *khai: piece*" in i.error for i in issues), (
+    assert any("must declare khai: piece" in i.error for i in issues), (
         f"expected wrong-declaration message; got: {[i.error for i in issues]}"
     )
 

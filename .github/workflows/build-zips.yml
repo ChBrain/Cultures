@@ -40,9 +40,13 @@ jobs:
           python3 << 'PYTHON_EOF'
           import os
           import re
+          import sys
           import zipfile
           import shutil
           from pathlib import Path
+
+          sys.path.insert(0, 'tests')
+          from culture_metadata import strip_metadata
           
           def is_complete_culture(culture_dir):
               """Check if culture folder has all required components."""
@@ -101,81 +105,14 @@ jobs:
               return content
 
           def strip_markdown_footer(content):
-              """Strip trailing metadata footer blocks from markdown for deployment artifacts.
+              """Strip the metadata block -- YAML frontmatter or trailing footer.
 
-              Expected footer styles include:
-              - v2 footer blocks with italic metadata lines
-              - legacy Hofstede signal lines
-              - plain version lines like: v0.2.0 - KAI Worlds
+              Delegates to tests/culture_metadata.strip_metadata so the zip
+              builder and the validators share one metadata implementation;
+              deployment artifacts ship with zero metadata lines in either
+              on-disk format.
               """
-              lines = content.splitlines()
-              if not lines:
-                  return content
-
-              end = len(lines) - 1
-              while end >= 0 and not lines[end].strip():
-                  end -= 1
-              if end < 0:
-                  return content
-
-              def unwrap_italic(s):
-                  if len(s) >= 2 and s.startswith('*') and s.endswith('*'):
-                      return s[1:-1].strip()
-                  return s
-
-              def is_footer_metadata_line(s):
-                  stripped = s.strip()
-                  if not stripped:
-                      return False
-
-                  core = unwrap_italic(stripped)
-                  lower = core.lower()
-
-                  if lower.startswith('khai:'):
-                      return True
-                  if lower.startswith('hofstede:'):
-                      return True
-                  if lower.startswith('hofstede signal:'):
-                      return True
-
-                  # Legacy per-file stamp such as: culture_spanish_place_madrid.md - 13.05.2026
-                  if re.match(r'^culture_[a-z0-9_\-]+\.md\s*-\s*\d{1,2}[./-]\d{1,2}[./-]\d{2,4}$', lower):
-                      return True
-
-                  # v2 IP safeguard line: YYYY-MM-DD | owner | version | license
-                  if re.match(r'^\d{4}-\d{2}-\d{2}\s*\|\s*.+\|\s*v\d+\.\d+\.\d+\s*\|\s*.+$', core, re.IGNORECASE):
-                      return True
-
-                  # Plain or italic version lines.
-                  if re.match(r'^v\d+\.\d+\.\d+\s*-\s*(kai worlds|kai labs|kai hacks ai|cultures).*$' , core, re.IGNORECASE):
-                      return True
-
-                  return False
-
-              i = end
-              stripped_any = False
-              while i >= 0:
-                  stripped = lines[i].strip()
-                  if not stripped:
-                      i -= 1
-                      continue
-                  if is_footer_metadata_line(lines[i]):
-                      stripped_any = True
-                      i -= 1
-                      continue
-                  break
-
-              if stripped_any:
-                  kept = lines[:i + 1]
-                  while kept and not kept[-1].strip():
-                      kept.pop()
-                  if kept and kept[-1].strip() == '---':
-                      kept.pop()
-                      while kept and not kept[-1].strip():
-                          kept.pop()
-                  return '\n'.join(kept) + '\n'
-
-              return '\n'.join(lines[:end + 1]) + ('\n' if content.endswith('\n') else '')
+              return strip_metadata(content)
 
           def strip_footers_in_folder(folder: Path):
               """Strip deployment footers from all markdown files in a folder."""

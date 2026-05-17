@@ -37,11 +37,15 @@ The ``_v2_files`` detector picks up a kind token in either slot: the
 was dropped.
 """
 import re
+import sys
 from pathlib import Path
 
 import pytest
 
 _ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(_ROOT / "tests"))
+
+from culture_metadata import read_metadata  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Legacy v1 helpers
@@ -55,10 +59,6 @@ _PROJECTION_RE = re.compile(r"^## Projection\s*$(.+?)^## ", re.MULTILINE | re.DO
 # v2 helpers
 # ---------------------------------------------------------------------------
 
-# Matches the footer marker convention from KAIHACKS khai-tests v0.1.6:
-#     *khai: persona*
-# (lowercase prefix, italicized, one of the 5 KAI structural types as value)
-_KHAI_DECLARATION_RE = re.compile(r"^\*khai:\s*(\w+)\s*\*\s*$", re.MULTILINE)
 _VALID_KHAI_TYPES = frozenset({"process", "position", "piece", "place", "persona"})
 
 
@@ -169,10 +169,10 @@ def _khai_declaration(path: Path) -> str | None:
     of the 5 valid KAI structural types -- both are v2 schema failures.
     """
     text = path.read_text(encoding="utf-8", errors="replace")
-    m = _KHAI_DECLARATION_RE.search(text)
-    if m is None:
+    declared = read_metadata(text).get("khai")
+    if not declared:
         return None
-    value = m.group(1).lower()
+    value = str(declared).lower()
     return value if value in _VALID_KHAI_TYPES else None
 
 
