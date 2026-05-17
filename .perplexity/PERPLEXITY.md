@@ -17,8 +17,10 @@ The discipline below is the API-equivalent contract.
 ## Rule 1 - Branch-first
 
 Every file change lands on a dedicated branch, never directly on `main`.
-Choose the branch kind before touching any file.
-Follow the contract in [docs/BRANCHING.md](../docs/BRANCHING.md):
+Choose the branch kind by the *operation*, not the file types you expect to
+touch. The advisor (`python tests/branch_scope.py advise --op <operation>`)
+is the oracle; with no local checkout, apply its operation routing from the
+"Pre-flight: ask the advisor" section of [docs/BRANCHING.md](../docs/BRANCHING.md):
 
 | Kind | Pattern | Use for |
 |------|---------|---------|

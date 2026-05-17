@@ -11,6 +11,17 @@
 If these markdown files disagree with executable rules, the executable rules
 (`tests/branch_scope.py` + pre-commit + CI) win.
 
+## Before you branch
+
+Pick the branch kind by the *operation*, not by the file types you expect to
+touch. Run the advisor before `git checkout -b`:
+
+`python tests/branch_scope.py advise --op <operation>`
+
+It prints the branch name, the required base, and the `git checkout -b`
+command; `--files <paths>` flags a change that must be split across branches.
+See [docs/BRANCHING.md](../docs/BRANCHING.md) "Pre-flight: ask the advisor".
+
 ## Claude-specific note
 
 `EnterWorktree(name:)` can rewrite branch names (`/` -> `+`, `worktree-`
