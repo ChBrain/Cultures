@@ -1,3 +1,12 @@
+---
+khai: process
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # Process: Polderen
 
 ## Owner
@@ -25,8 +34,3 @@ Wat stand hield wordt de basis van de volgende collegiale sessie.
 Wat niet stand hield blijft drukken.
 De polder is nooit af. Overleg herhaalt.
 De lus sluit hier en opent opnieuw bij Initiated by.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: process*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

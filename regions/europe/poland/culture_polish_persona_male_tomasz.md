@@ -1,3 +1,8 @@
+---
+khai: persona
+type: Composite
+hofstede: aggregate
+---
 # Persona: Tomasz
 ## Title: Architekt
 
@@ -34,12 +39,3 @@ Komuś spoza kręgu by nie powiedział, że to wybór.
 
 ## Tell
 Gdy pokazuje projekt komuś spoza swojego kręgu, zaczyna od tego, kto go zlecił.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*Type: Composite*
-*khai: persona*
-
-*culture_polish_persona_male_tomasz.md - 2026-05-13*
-
-v0.1.0 - KAI Worlds

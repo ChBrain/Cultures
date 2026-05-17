@@ -1,3 +1,12 @@
+---
+khai: piece
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # History: Germany
 
 ## Owner
@@ -62,8 +71,3 @@ Eine Republik, die ihr Werden vor dem Spiegel hält.
 2006: Sommermärchen. WM im eigenen Land; das Land entdeckt sich als Gastgeber, schwarz-rot-gold ohne Pathos.
 2014: Weltmeister in Rio. Vierter Stern; eine multikulturelle Mannschaft im Trikot der Republik.
 2021: Klimabeschluss des BVerfG. Artikel 1 immer noch Boden, jetzt mit Pflicht gegenüber den Ungeborenen.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: piece*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

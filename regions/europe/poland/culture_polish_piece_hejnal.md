@@ -1,3 +1,12 @@
+---
+khai: piece
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # Piece: Hejnał Mariacki
 
 ## Owner
@@ -39,8 +48,3 @@ Tablica na wieży upamiętniająca trębacza zabitego tatarską strzałą.
 2000: Trębacz Andrzej Strączek mija 30 lat na służbie.
 2020: Pandemia. Kościół zamknięty, Rynek pusty, trębacz gra dalej.
 2024: Hejnał gra niezmiennie, co godzina, cztery razy. W południe radio Jedynka łączy się z Krakowem na żywo.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: piece*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

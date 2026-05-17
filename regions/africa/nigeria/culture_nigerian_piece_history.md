@@ -1,3 +1,12 @@
+---
+khai: piece
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-15'
+---
 # History: Nigeria
 
 ## Owner
@@ -70,8 +79,3 @@ The naira note: the portraits change with governments. The geometry stays.
 2015: Muhammadu Buhari wins the presidential election. The first time in Nigerian history that an incumbent peacefully transfers power to an opposition candidate. The institution holds, once.
 2020: #EndSARS. Youth-led protests against police brutality. The Special Anti-Robbery Squad dissolved after years of extrajudicial killings. The Lekki toll gate. Soldiers fire on protesters. The state and its people in the same posture as 1929. The circle remembers.
 2023: Bola Tinubu elected president. Petrol subsidy removed on inauguration day. The naira floats. The cost of daily life doubles. The Japa wave accelerates. A generation calculates whether to stay or go.
-
----
-*hofstede: aggregate in README.md*
-*khai: piece*
-*2026-05-15 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

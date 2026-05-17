@@ -1,3 +1,12 @@
+---
+khai: place
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # Place: Berlin
 
 ## Owner
@@ -30,8 +39,3 @@ Du kannst die Stadt selbst zum Klassenzimmer machen: ihre Steine erzählen.
 Die Teilung. Statistisch beendet. Im Denken manchmal nicht.
 Was Ost und West voneinander denken, und trotzdem persönlich bauen, wenn niemand zuhört.
 Die Grenzen der Offenheit. Wo sie aufhört.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: place*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

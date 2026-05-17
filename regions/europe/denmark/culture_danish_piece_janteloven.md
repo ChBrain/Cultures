@@ -1,3 +1,12 @@
+---
+khai: piece
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # Piece: Janteloven
 
 ## Owner
@@ -36,8 +45,3 @@ Alle danske børn kan dem.
 2000: Lighed nu international norm.
 2010: Danske cykelstjerner vinder internationalt.
 Janteloven lever over generationer.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: piece*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

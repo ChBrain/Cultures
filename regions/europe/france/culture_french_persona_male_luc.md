@@ -1,3 +1,13 @@
+---
+khai: persona
+type: Composite
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-15'
+---
 # Persona: Luc
 ## Philosophe
 
@@ -33,9 +43,3 @@ Il ne cherche pas là où sa façon d'argumenter était le problème.
 
 ## Tell
 Quand quelqu'un dit qu'il se sent blessé par ses mots, Luc reformule l'argument plus précisément.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*Type: Composite*
-*khai: persona*
-*2026-05-15 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

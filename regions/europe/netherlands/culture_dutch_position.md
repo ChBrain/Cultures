@@ -1,3 +1,12 @@
+---
+khai: position
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # Position: Nederlands
 
 ## Owner
@@ -47,8 +56,3 @@ Op die verliezen:
 past de verpakking aan, niet de inhoud.
 Draagt belasting zonder vreugde.
 Belasting. Gaat door.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: position*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

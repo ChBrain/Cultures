@@ -1,3 +1,12 @@
+---
+khai: place
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # Place: København
 
 ## Owner
@@ -35,8 +44,3 @@ Mødet er hvor idéerne bliver delt.
 Mødet er hvor beslutningerne formes - ikke hvor de er fattet.
 Den der tror mødet ikke betyder noget, har ikke hørt på dansk.
 Den der tror mødet bestemmer udfaldet, har ikke hørt græsrødderne bringe det ind.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: place*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

@@ -1,3 +1,13 @@
+---
+khai: persona
+type: Composite
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.1
+  date: '2026-05-14'
+---
 # Persona: Isabel
 ## Title: Diplomática
 
@@ -29,9 +39,3 @@ Su nieta le preguntó una vez si la había dejado ganar al ajedrez. Isabel respo
 
 ## Tell
 Cuando la sala llega a un acuerdo, ella ya no está escuchando, y nadie en la habitación lo nota nunca.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*Type: Composite*
-*khai: persona*
-*2026-05-14 | KAI HACKS AI | v0.2.1 | CC-BY-NC-4.0*

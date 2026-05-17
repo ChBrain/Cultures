@@ -1,3 +1,12 @@
+---
+khai: process
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-15'
+---
 # Process: Débattre
 
 ## Owner
@@ -39,8 +48,3 @@ Le débat ne clôt pas. Il reporte.
 La salle se souvient de ce qui a été dit.
 Et de ce qui ne l'a pas été.
 La boucle se ferme ici et se rouvre à Initiated by.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: process*
-*2026-05-15 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

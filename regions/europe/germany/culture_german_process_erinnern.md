@@ -1,3 +1,12 @@
+---
+khai: process
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-13'
+---
 # Process: Erinnern
 
 ## Owner
@@ -26,8 +35,3 @@ Der Hebel hält beide: ohne Verstehen wird die Versuchung stärker; ohne Versuch
 
 ## Echo
 Der nächste Prozess erbt das Wissen und die Möglichkeit, es anders zu machen. Gelassenheit und Anpassungsfähigkeit: das Erbe von Erinnern. Die Disziplin bleibt.
-
----
-*hofstede: aggregate in [README.md](README.md).*
-*khai: process*
-*2026-05-13 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*
