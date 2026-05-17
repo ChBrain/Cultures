@@ -41,7 +41,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          python3 scripts/prose_review.py ${{ steps.changed.outputs.files }} > /tmp/review.md
+          mapfile -t files < <(printf '%s\n' '${{ steps.changed.outputs.files }}' | sed '/^$/d')
+          python3 scripts/prose_review.py "${files[@]}" > /tmp/review.md
           cat /tmp/review.md
 
       - name: Post PR comment
