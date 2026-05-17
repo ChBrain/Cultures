@@ -23,13 +23,11 @@ _FRONTMATTER = (
     "khai: position\n"
     "type: Fictional\n"
     "hofstede: aggregate\n"
-    "provenance:\n"
-    "  date: 2026-05-13\n"
+    "license: CC-BY-NC-4.0\n"
+    "stamp:\n"
     "  owner: KAI HACKS AI\n"
     "  version: v0.2.0\n"
-    "license:\n"
-    "  content: CC-BY-NC-4.0\n"
-    "  architecture: Apache-2.0\n"
+    "  date: 2026-05-13\n"
     "---\n"
 ) + _BODY
 
@@ -100,8 +98,8 @@ def test_read_metadata_frontmatter():
     meta = read_metadata(_FRONTMATTER)
     assert meta["khai"] == "position"
     assert meta["type"] == "Fictional"
-    assert meta["provenance"]["version"] == "v0.2.0"
-    assert meta["license"]["content"] == "CC-BY-NC-4.0"
+    assert meta["stamp"]["version"] == "v0.2.0"
+    assert meta["license"] == "CC-BY-NC-4.0"
 
 
 def test_read_metadata_footer_type():
@@ -114,8 +112,8 @@ def test_read_metadata_footer_type():
 def test_read_metadata_footer_ip_line_decomposed():
     meta = read_metadata(_FOOTER_IP)
     assert meta["khai"] == "position"
-    assert meta["provenance"] == {
-        "date": "2026-05-13", "owner": "KAI HACKS AI", "version": "v0.2.0",
+    assert meta["stamp"] == {
+        "owner": "KAI HACKS AI", "version": "v0.2.0", "date": "2026-05-13",
     }
     assert meta["license"] == "CC-BY-NC-4.0"
 

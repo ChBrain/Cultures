@@ -152,8 +152,8 @@ def _parse_footer(lines: list[str], start: int) -> dict:
             parts = [p.strip() for p in core.split("|")]
             if len(parts) == 4:
                 date, owner, version, license_ = parts
-                meta["provenance"] = {
-                    "date": date, "owner": owner, "version": version,
+                meta["stamp"] = {
+                    "owner": owner, "version": version, "date": date,
                 }
                 meta["license"] = license_
     return meta
