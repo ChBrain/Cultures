@@ -19,6 +19,27 @@ Every branch is classified by its name. `.githooks/pre-commit` rejects
 out-of-scope commits locally; CI mirrors the same classifier. The four kinds
 and their scope rules are below.
 
+## Pre-flight: ask the advisor
+
+Before `git checkout -b`, ask the advisor which branch and base the work
+needs - do not guess from the file types you expect to touch (a sync touches
+workflow files but is a sync, not governance):
+
+```
+python tests/branch_scope.py advise --op <operation>
+python tests/branch_scope.py advise --op new-country --slug <country>
+python tests/branch_scope.py advise --files <path> [<path> ...]
+```
+
+- `--op` routes by *operation* - `new-country`, `new-region`, `release`,
+  `sync`, `governance`, `chore`, `fix`, `feat` - and prints the branch name,
+  the required base, and the `git checkout -b` command.
+- `--files` reports which lane a set of paths belongs to, and refuses a set
+  that spans lanes with `SPLIT REQUIRED` plus the per-lane breakdown.
+
+The advisor is the inverse of the classifier: the classifier rejects a wrong
+branch name after the fact; the advisor hands you the right one up front.
+
 ## Branch kinds
 
 | Kind | Pattern | Allowed paths | Hofstede check |
@@ -46,6 +67,27 @@ The pattern is anchored. `feat/culture-x`, `cultures/x`, and `culture/Denmark`
 A `culture/germany` branch cannot touch Denmark even though both live under
 `regions/europe/`. For multi-country work in one PR, use `culture/<region>` or
 `culture/release`.
+
+## Culture branch base
+
+A `culture/<country>` or `culture/<region>` branch must be **cut from
+`culture/release`**, the integration branch - never from `main`:
+
+```
+git fetch origin
+git checkout -b culture/<country> origin/culture/release
+```
+
+A branch cut from `main` - or one that later merges `main` in - carries
+commits that are on `main` but not yet on `culture/release`. Those commits
+pollute the PR diff: the branch-scope check then flags every file `main`
+changed in that gap as if the branch authored it, and contributors chase
+scope violations that are really just a mis-based branch.
+
+CI enforces this. The `cultures - Culture branch base` job fails any
+`culture/*` PR whose branch contains a commit already on `main` but absent
+from `culture/release`, and prints the `git rebase --onto` remedy.
+`culture/release` itself is exempt - it integrates upward into `main`.
 
 ## Governance paths
 

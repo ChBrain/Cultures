@@ -40,9 +40,12 @@ See .github/copilot-instructions.md > "Branch Scope Guards".
 """
 from __future__ import annotations
 
+import argparse
 import fnmatch
 import re
+import sys
 from pathlib import Path
+from typing import NamedTuple
 
 # Anchored regex avoids silent bypasses on near-miss branch names.
 # Country/region/world culture work all share this shape; the slug after
@@ -259,3 +262,507 @@ def check_scope(
     else:
         unsafe = []
     return not unsafe, unsafe
+
+
+# ---------------------------------------------------------------------------
+# Failure diagnosis
+# ---------------------------------------------------------------------------
+#
+# check_scope answers "which files are out of scope". That is not enough for a
+# contributor -- least of all an LLM -- to act on, because a bare file list has
+# two very different causes that demand opposite fixes:
+#
+#   1. The branch was cut from (or merged) main while its PR base -- typically
+#      culture/release -- is stale. The base...HEAD diff then surfaces every
+#      file main changed in that gap as if this branch authored it. The fix is
+#      to rebase; touching those files is actively wrong.
+#   2. The branch genuinely changed an out-of-scope file. The fix is to revert
+#      it or move it to the correct branch kind.
+#
+# diagnose_scope_failure separates the two so render_scope_failure can tell the
+# contributor which one they are looking at. The git plumbing (which commit
+# touched which file, which commits are on main) is injected, so both helpers
+# stay pure and unit-testable without a repo.
+
+
+def diagnose_scope_failure(
+    unsafe,
+    *,
+    commits_for_file,
+    is_on_main,
+):
+    """Split scope-violating files into (inherited_from_main, genuine).
+
+    ``commits_for_file(path)`` returns the commit SHAs in the PR's
+    ``base..HEAD`` range that touched ``path``. ``is_on_main(sha)`` returns
+    True when ``sha`` is reachable from ``origin/main``.
+
+    A file is *inherited* when every range commit that touched it is already
+    on main: the branch absorbed main's lead over a stale base, so the file
+    is not this branch's work. Otherwise it is a *genuine* violation -- this
+    branch actually changed an out-of-scope file.
+
+    A file with no range commits is treated as genuine: never silently
+    excuse a flagged file just because its history could not be resolved.
+    """
+    inherited: list[str] = []
+    genuine: list[str] = []
+    for path in unsafe:
+        commits = list(commits_for_file(path))
+        if commits and all(is_on_main(sha) for sha in commits):
+            inherited.append(path)
+        else:
+            genuine.append(path)
+    return inherited, genuine
+
+
+def render_scope_failure(
+    branch: str,
+    base_ref: str,
+    inherited: list[str],
+    genuine: list[str],
+    base_behind_main: int = 0,
+) -> str:
+    """Render a branch-scope failure as a contributor- and LLM-readable report.
+
+    ``base_behind_main`` is how many commits ``origin/main`` is ahead of the
+    PR base; when positive, the base itself needs a sync and the remedy says
+    so. The output names the cause explicitly and, for the inherited case,
+    states plainly that editing validators/hooks/workflows is the wrong fix
+    -- the failure mode this whole helper exists to stop.
+    """
+    total = len(inherited) + len(genuine)
+    lines: list[str] = [
+        f"FAIL: branch '{branch}' has {total} file(s) outside its scope.",
+        "",
+    ]
+    if inherited:
+        lines.append(
+            f"{len(inherited)} of {total} were last changed by commit(s) "
+            f"already on 'main' but absent from '{base_ref}'. This branch "
+            f"carries main's history -- these files are NOT your work:"
+        )
+        lines += [f"  - {p}" for p in inherited]
+        lines.append("")
+    if genuine:
+        lines.append(
+            f"{len(genuine)} of {total} are genuine scope violations -- "
+            f"this branch actually changed out-of-scope file(s):"
+        )
+        lines += [f"  - {p}" for p in genuine]
+        lines.append("")
+
+    if inherited and not genuine:
+        lines += [
+            f"Cause: this branch was based on 'main' (or had it merged in), "
+            f"not on '{base_ref}'. Every flagged file is main's lead, not a "
+            f"real violation.",
+            "",
+            "Do NOT move these files, and do NOT edit validators, hooks, or "
+            "workflows to make this check pass -- that is the wrong fix and "
+            "will be rejected.",
+            "",
+            "Fix (no file edits):",
+        ]
+        step = 1
+        if base_behind_main > 0:
+            lines.append(
+                f"  {step}. sync 'main' -> '{base_ref}' "
+                f"({base_behind_main} commit(s) behind) via a sync/* PR"
+            )
+            step += 1
+        lines.append(f"  {step}. git fetch origin")
+        lines.append(f"  {step + 1}. git rebase origin/{base_ref}")
+    elif inherited and genuine:
+        lines += [
+            "Cause: this branch carries main's history AND has genuine "
+            "out-of-scope edits. Rebase first to clear the inherited files, "
+            "then address the genuine violations.",
+            "",
+            "Fix:",
+        ]
+        step = 1
+        if base_behind_main > 0:
+            lines.append(
+                f"  {step}. sync 'main' -> '{base_ref}' via a sync/* PR"
+            )
+            step += 1
+        lines.append(
+            f"  {step}. git fetch origin && git rebase origin/{base_ref}"
+        )
+        lines.append(
+            f"  {step + 1}. revert the genuine violation(s), or move them to "
+            f"the correct branch (governance/* for hooks, workflows, and "
+            f"validators)"
+        )
+    else:  # genuine only
+        lines += [
+            "Cause: this branch changed file(s) outside its allowed scope. "
+            "Hooks, workflows, and validators belong on a governance/* "
+            "branch; they cannot ride on a culture/* or other branch.",
+            "",
+            "Fix: revert the out-of-scope change(s), or move them to the "
+            "correct branch kind.",
+        ]
+
+    lines += ["", "See docs/BRANCHING.md for the integration flow."]
+    return "\n".join(lines)
+
+
+# ---------------------------------------------------------------------------
+# Culture branch base check
+# ---------------------------------------------------------------------------
+#
+# A culture/<country|region> branch must be cut from culture/release, the
+# integration branch -- never from main. Branch creation itself cannot be
+# gated (there is no base-aware "branch created" event), so this is detection
+# after the first push: a branch cut from main carries commits that are
+# already on main but absent from culture/release. The scope check only
+# catches that incidentally (when main's lead happens to include out-of-scope
+# files); this check catches it directly, on commit ancestry alone.
+
+
+def misbased_commits(commits, *, is_on_main):
+    """Return the commits that prove a culture branch has the wrong base.
+
+    ``commits`` is a list of ``(short_sha, subject)`` pairs reachable from
+    the branch's HEAD but not from ``origin/culture/release`` -- the output
+    of ``git log culture/release..HEAD``. For a branch correctly cut from
+    culture/release these are only its own culture commits, none of which
+    are on main yet. ``is_on_main(short_sha)`` returns True when the commit
+    is reachable from origin/main; any such commit here means the branch
+    was cut from main (or merged it in) instead of the integration branch.
+    """
+    return [(sha, subject) for sha, subject in commits if is_on_main(sha)]
+
+
+def render_misbased_branch(
+    branch: str,
+    offending: list,
+    base_ref: str = "culture/release",
+) -> str:
+    """Render the 'culture branch cut from the wrong base' failure report.
+
+    ``offending`` is the list of ``(short_sha, subject)`` commits on the
+    branch that are already on main but absent from ``base_ref`` -- the
+    proof the branch was started from main. The remedy replays only the
+    branch's own culture commits onto the integration branch.
+    """
+    lines = [
+        f"FAIL: culture branch '{branch}' was started from the wrong base.",
+        "",
+        f"It carries {len(offending)} commit(s) that are already on 'main' "
+        f"but not on '{base_ref}'. A culture/* branch must be cut from the "
+        f"integration branch '{base_ref}', never from 'main' -- a branch "
+        f"cut from main drags main's lead into the PR diff.",
+        "",
+        "Commits that should not be here (main's history, not your work):",
+    ]
+    lines += [f"  {sha}  {subject}" for sha, subject in offending]
+    lines += [
+        "",
+        "Do not edit or revert these commits, and do not edit validators "
+        "or workflows to silence this check.",
+        "",
+        f"Fix: replay only your culture commits onto '{base_ref}':",
+        "  git fetch origin",
+        f"  git rebase --onto origin/{base_ref} origin/main {branch}",
+        "  git push --force-with-lease",
+        "",
+        "See docs/BRANCHING.md for the integration flow.",
+    ]
+    return "\n".join(lines)
+
+
+# ---------------------------------------------------------------------------
+# Branch advisor (operation -> prescribed branch)
+# ---------------------------------------------------------------------------
+#
+# classify_branch / check_scope answer "is this branch name wrong?" -- checks
+# that fire only AFTER a name was chosen, as a rejection. The advisor answers
+# the question a contributor actually has BEFORE `git checkout -b`: "I am
+# about to do X; which branch and base must I use?"
+#
+# Routing is keyed on the *operation*, on purpose. The recurring contributor
+# (and LLM) failure is routing by file type -- "this touches a .yml, so it is
+# governance" -- when the operation owns the lane: a sync touches workflow
+# files too, but it is a sync, not governance.
+
+
+class BranchAdvice(NamedTuple):
+    operation: str
+    kind: str       # culture / sync / governance / other
+    branch: str     # concrete name when resolvable, else a <template>
+    base: str       # required PR base
+    start: str      # ref to branch from, "" when not applicable
+    scope: str      # human-readable allowed-paths summary
+    note: str
+
+
+# Operation -> lane. The key is what the contributor is trying to DO.
+_OPERATIONS: dict[str, dict] = {
+    "new-country": dict(
+        kind="culture", branch="culture/<country>", base="culture/release",
+        start="origin/culture/release",
+        scope="regions/<region>/<country>/** + safe metadata",
+        note="One country's culture package.",
+    ),
+    "new-region": dict(
+        kind="culture", branch="culture/<region>", base="culture/release",
+        start="origin/culture/release",
+        scope="regions/<region>/** + safe metadata",
+        note="Culture work spanning several countries in one region.",
+    ),
+    "release": dict(
+        kind="culture", branch="culture/release", base="main", start="",
+        scope="regions/** + safe metadata",
+        note="culture/release is the long-lived integration branch -- you do "
+             "not create it; you PR it into main.",
+    ),
+    "sync": dict(
+        kind="sync", branch="sync/release-from-main-<date>",
+        base="culture/release", start="origin/main",
+        scope="unrestricted (a snapshot of main)",
+        note="Funnel main's HEAD into culture/release. The branch IS main's "
+             "tip -- it carries no commits of its own.",
+    ),
+    "governance": dict(
+        kind="governance", branch="governance/<name>", base="main",
+        start="origin/main",
+        scope=".githooks/**, .github/workflows/**, validators, the branch "
+              "contract, validator data files",
+        note="Any change to hooks, CI workflows, validators, or the branch "
+             "contract itself.",
+    ),
+    "chore": dict(
+        kind="other", branch="chore/<name>", base="main", start="origin/main",
+        scope="anything except regions/** and governance paths",
+        note="General tooling or docs -- including agent instruction files "
+             "(.github/copilot-instructions.md, .claude/, .gemini/, ...).",
+    ),
+    "fix": dict(
+        kind="other", branch="fix/<name>", base="main", start="origin/main",
+        scope="anything except regions/** and governance paths",
+        note="Bug fix outside culture content and governance.",
+    ),
+    "feat": dict(
+        kind="other", branch="feat/<name>", base="main", start="origin/main",
+        scope="anything except regions/** and governance paths",
+        note="New non-culture, non-governance feature.",
+    ),
+}
+
+
+def valid_operations() -> list[str]:
+    """The operation keys ``advise_operation`` accepts, in registry order."""
+    return list(_OPERATIONS)
+
+
+def advise_operation(
+    operation: str,
+    slug: str | None = None,
+    repo_root: Path = _DEFAULT_REPO_ROOT,
+) -> BranchAdvice | None:
+    """Return the prescribed branch / base / scope for an intended operation.
+
+    ``slug`` fills the ``<country>``/``<region>`` placeholder for culture
+    operations; when it resolves against the on-disk ``regions/`` tree the
+    scope is made concrete, and when it does not the scope says so loudly.
+    Returns ``None`` for an unknown operation -- callers list
+    ``valid_operations()``.
+    """
+    spec = _OPERATIONS.get(operation)
+    if spec is None:
+        return None
+    branch = spec["branch"]
+    scope = spec["scope"]
+    if operation in ("new-country", "new-region") and slug:
+        branch = f"culture/{slug}"
+        prefix = culture_scope(branch, repo_root)
+        if prefix is not None:
+            scope = f"{prefix}** + safe metadata"
+        else:
+            noun = "country" if operation == "new-country" else "region"
+            scope = (
+                f"UNRESOLVED: '{slug}' is not an existing {noun} folder under "
+                "regions/ -- check the spelling, or create the folder in the "
+                "branch's first commit"
+            )
+    return BranchAdvice(
+        operation, spec["kind"], branch, spec["base"],
+        spec["start"], scope, spec["note"],
+    )
+
+
+def _kind_from_lane(lane: str) -> str:
+    if lane.startswith("culture/"):
+        return "culture"
+    if lane.startswith("governance/"):
+        return "governance"
+    if lane == "(safe metadata)":
+        return "safe"
+    return "other"
+
+
+def _base_for_kind(kind: str) -> str:
+    return {"culture": "culture/release", "sync": "culture/release"}.get(
+        kind, "main",
+    )
+
+
+def lane_of_path(path: str, repo_root: Path = _DEFAULT_REPO_ROOT) -> tuple[str, str]:
+    """Classify one repo-relative path into the branch lane that owns it.
+
+    Returns ``(lane, kind)``:
+      - ``("(safe metadata)", "safe")`` -- SAFE_PATTERNS, allowed on any branch
+      - ``("governance/<name>", "governance")``
+      - ``("culture/<slug>", "culture")``
+      - ``("chore/<name>", "other")``
+    """
+    if path in SAFE_PATTERNS:
+        return ("(safe metadata)", "safe")
+    if path.startswith("regions/"):
+        parts = path.split("/")
+        region_slugs, country_to_region = _world_topology(repo_root)
+        if len(parts) >= 3 and parts[2] in country_to_region:
+            return (f"culture/{parts[2]}", "culture")
+        if len(parts) >= 2 and parts[1] in region_slugs:
+            return (f"culture/{parts[1]}", "culture")
+        return ("culture/release", "culture")
+    if is_governance_path(path):
+        return ("governance/<name>", "governance")
+    return ("chore/<name>", "other")
+
+
+def lanes_for_files(
+    files, repo_root: Path = _DEFAULT_REPO_ROOT,
+) -> dict[str, list[str]]:
+    """Group files by the branch lane that owns them.
+
+    More than one non-safe lane in the result means the change spans branch
+    kinds and MUST be split into separate branches/PRs -- one cannot ride on
+    the other.
+    """
+    lanes: dict[str, list[str]] = {}
+    for f in files:
+        lane, _kind = lane_of_path(f, repo_root)
+        lanes.setdefault(lane, []).append(f)
+    return lanes
+
+
+def render_operation_advice(advice: BranchAdvice) -> str:
+    """Render a BranchAdvice as a copy-pasteable report."""
+    lines = [
+        f"Operation: {advice.operation}",
+        f"Kind:      {advice.kind}",
+        f"Branch:    {advice.branch}",
+        f"Base:      {advice.base}  (PR target -- nothing else is allowed)",
+        f"Scope:     {advice.scope}",
+        f"Note:      {advice.note}",
+    ]
+    if advice.start:
+        lines += [
+            "",
+            "Create it:",
+            "  git fetch origin",
+            f"  git checkout -b {advice.branch} {advice.start}",
+        ]
+        if "<" in advice.branch:
+            lines.append(
+                "  (replace <...> with a short, lowercase, hyphenated name)"
+            )
+    else:
+        lines += ["", "  (existing long-lived branch -- do not create it)"]
+    return "\n".join(lines)
+
+
+def render_files_advice(lanes: dict[str, list[str]]) -> str:
+    """Render lanes_for_files() output: one lane, or a SPLIT instruction."""
+    non_safe = {k: v for k, v in lanes.items() if k != "(safe metadata)"}
+    safe = lanes.get("(safe metadata)", [])
+
+    if not non_safe:
+        return ("All listed files are safe metadata -- allowed on any branch "
+                "alongside its primary scope.")
+
+    if len(non_safe) == 1:
+        lane, files = next(iter(non_safe.items()))
+        base = _base_for_kind(_kind_from_lane(lane))
+        lines = [f"All files belong to one lane: {lane}  (base: {base})"]
+        lines += [f"  {f}" for f in files]
+        if safe:
+            lines.append("safe metadata (rides along): " + ", ".join(safe))
+        return "\n".join(lines)
+
+    lines = [
+        f"SPLIT REQUIRED: these files span {len(non_safe)} branch lanes. "
+        "One PR cannot carry them -- open one PR per lane:",
+    ]
+    for lane, files in non_safe.items():
+        base = _base_for_kind(_kind_from_lane(lane))
+        lines.append("")
+        lines.append(f"  {lane}  (base: {base})")
+        lines += [f"    {f}" for f in files]
+    if sum(1 for k in non_safe if k.startswith("culture/")) > 1:
+        lines += [
+            "",
+            "The culture lanes could instead share one culture/<region> "
+            "branch if every country is in the same region, or "
+            "culture/release for cross-region work.",
+        ]
+    if safe:
+        lines += ["", "Safe metadata rides with any of the above: "
+                  + ", ".join(safe)]
+    return "\n".join(lines)
+
+
+def main(argv: list[str] | None = None) -> int:
+    """CLI: `python tests/branch_scope.py advise --op OP | --files PATH...`."""
+    parser = argparse.ArgumentParser(
+        prog="branch_scope.py",
+        description=(
+            "Branch advisor -- before `git checkout -b`, ask which branch "
+            "and base an operation requires."
+        ),
+    )
+    parser.add_argument("mode", choices=["advise"])
+    parser.add_argument(
+        "--op", metavar="OPERATION",
+        help="intended operation: " + ", ".join(valid_operations()),
+    )
+    parser.add_argument(
+        "--slug", metavar="NAME",
+        help="country or region slug, for culture operations",
+    )
+    parser.add_argument(
+        "--files", nargs="+", metavar="PATH",
+        help="repo-relative paths -- report which lane(s) they belong to",
+    )
+    args = parser.parse_args(argv)
+
+    if args.op:
+        advice = advise_operation(args.op, args.slug)
+        if advice is None:
+            print(f"Unknown operation: {args.op!r}", file=sys.stderr)
+            print("Valid operations: " + ", ".join(valid_operations()),
+                  file=sys.stderr)
+            return 2
+        if "<date>" in advice.branch:
+            from datetime import date
+            advice = advice._replace(
+                branch=advice.branch.replace(
+                    "<date>", date.today().isoformat()),
+            )
+        print(render_operation_advice(advice))
+        return 0
+
+    if args.files:
+        print(render_files_advice(lanes_for_files(args.files)))
+        return 0
+
+    parser.error("give --op OPERATION or --files PATH [PATH ...]")
+    return 2
+
+
+if __name__ == "__main__":
+    sys.exit(main())
