@@ -1,3 +1,8 @@
+---
+khai: persona
+type: Composite
+hofstede: aggregate
+---
 # Persona: Valentina
 ## Title: Fundadora
 
@@ -31,11 +36,3 @@ La cuenta crece en quietud porque nadie la presenta como urgente. Todavía.
 
 ## Tell
 Cuando alguien del equipo se marcha, Valentina pregunta si es por algo que ella hizo antes de preguntar a dónde se va.
-
----
-
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-*Type: Composite*
-*khai: persona*
-
-*culture_mexican_persona_female_valentina.md - 2026-05-16*

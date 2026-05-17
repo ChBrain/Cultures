@@ -1,3 +1,7 @@
+---
+khai: position
+hofstede: aggregate
+---
 # Language: Castellano mexicano
 
 ## Owner
@@ -45,10 +49,3 @@ En esa pérdida:
 recalibra el registro antes de abrir la boca.
 Busca al que puede hacer la presentación.
 El camino que parece largo porque pasa por tres personas es más corto que el que va directo y no llega.
-
----
-
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-*khai: position*
-
-*culture_mexican_position_language.md - 2026-05-16*

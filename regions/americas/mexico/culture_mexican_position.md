@@ -1,3 +1,7 @@
+---
+khai: position
+hofstede: aggregate
+---
 # Position: Mexicano
 
 ## Owner
@@ -56,10 +60,3 @@ Busca al que conoce al que puede.
 El camino que pasa por tres personas y llega, vale más que el camino directo que no llega.
 Y cuando la red no alcanza, improvisa con lo que hay.
 El ingenio no es segunda opción. La red lo sostiene, el compromiso lo vuelve estable, y la flexibilidad evita que se rompa cuando el camino cambia.
-
----
-
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-*khai: position*
-
-*culture_mexican_position.md - 2026-05-16*
