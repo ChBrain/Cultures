@@ -1,3 +1,12 @@
+---
+khai: piece
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-15'
+---
 # Piece: Jollof
 
 ## Owner
@@ -42,8 +51,3 @@ The smell of jollof in a house on a Sunday means the circle is gathering.
 2016: Ghanaian artist Sister Deborah releases "Ghana Jollof," a song disparaging the Nigerian version. Nigeria responds at volume.
 2021: UNESCO lists Senegal's thieboudienne as intangible cultural heritage. Nigerian jollof remains the best jollof.
 2024: Nigerian party jollof served at events in Lagos, London, Houston, Toronto, Amsterdam. The pot is on the fire. The circle is gathering.
-
----
-*hofstede: aggregate in README.md*
-*khai: piece*
-*2026-05-15 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*

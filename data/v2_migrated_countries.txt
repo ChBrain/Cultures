@@ -35,5 +35,6 @@ france
 germany
 mexico
 netherlands
+nigeria
 poland
 spain
