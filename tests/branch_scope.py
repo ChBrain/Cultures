@@ -40,9 +40,12 @@ See .github/copilot-instructions.md > "Branch Scope Guards".
 """
 from __future__ import annotations
 
+import argparse
 import fnmatch
 import re
+import sys
 from pathlib import Path
+from typing import NamedTuple
 
 # Anchored regex avoids silent bypasses on near-miss branch names.
 # Country/region/world culture work all share this shape; the slug after
@@ -259,3 +262,297 @@ def check_scope(
     else:
         unsafe = []
     return not unsafe, unsafe
+
+
+# ---------------------------------------------------------------------------
+# Branch advisor (operation -> prescribed branch)
+# ---------------------------------------------------------------------------
+#
+# classify_branch / check_scope answer "is this branch name wrong?" -- checks
+# that fire only AFTER a name was chosen, as a rejection. The advisor answers
+# the question a contributor actually has BEFORE `git checkout -b`: "I am
+# about to do X; which branch and base must I use?"
+#
+# Routing is keyed on the *operation*, on purpose. The recurring contributor
+# (and LLM) failure is routing by file type -- "this touches a .yml, so it is
+# governance" -- when the operation owns the lane: a sync touches workflow
+# files too, but it is a sync, not governance.
+
+
+class BranchAdvice(NamedTuple):
+    operation: str
+    kind: str       # culture / sync / governance / other
+    branch: str     # concrete name when resolvable, else a <template>
+    base: str       # required PR base
+    start: str      # ref to branch from, "" when not applicable
+    scope: str      # human-readable allowed-paths summary
+    note: str
+
+
+# Operation -> lane. The key is what the contributor is trying to DO.
+_OPERATIONS: dict[str, dict] = {
+    "new-country": dict(
+        kind="culture", branch="culture/<country>", base="culture/release",
+        start="origin/culture/release",
+        scope="regions/<region>/<country>/** + safe metadata",
+        note="One country's culture package.",
+    ),
+    "new-region": dict(
+        kind="culture", branch="culture/<region>", base="culture/release",
+        start="origin/culture/release",
+        scope="regions/<region>/** + safe metadata",
+        note="Culture work spanning several countries in one region.",
+    ),
+    "release": dict(
+        kind="culture", branch="culture/release", base="main", start="",
+        scope="regions/** + safe metadata",
+        note="culture/release is the long-lived integration branch -- you do "
+             "not create it; you PR it into main.",
+    ),
+    "sync": dict(
+        kind="sync", branch="sync/release-from-main-<date>",
+        base="culture/release", start="origin/main",
+        scope="unrestricted (a snapshot of main)",
+        note="Funnel main's HEAD into culture/release. The branch IS main's "
+             "tip -- it carries no commits of its own.",
+    ),
+    "governance": dict(
+        kind="governance", branch="governance/<name>", base="main",
+        start="origin/main",
+        scope=".githooks/**, .github/workflows/**, validators, the branch "
+              "contract, validator data files",
+        note="Any change to hooks, CI workflows, validators, or the branch "
+             "contract itself.",
+    ),
+    "chore": dict(
+        kind="other", branch="chore/<name>", base="main", start="origin/main",
+        scope="anything except regions/** and governance paths",
+        note="General tooling or docs -- including agent instruction files "
+             "(.github/copilot-instructions.md, .claude/, .gemini/, ...).",
+    ),
+    "fix": dict(
+        kind="other", branch="fix/<name>", base="main", start="origin/main",
+        scope="anything except regions/** and governance paths",
+        note="Bug fix outside culture content and governance.",
+    ),
+    "feat": dict(
+        kind="other", branch="feat/<name>", base="main", start="origin/main",
+        scope="anything except regions/** and governance paths",
+        note="New non-culture, non-governance feature.",
+    ),
+}
+
+
+def valid_operations() -> list[str]:
+    """The operation keys ``advise_operation`` accepts, in registry order."""
+    return list(_OPERATIONS)
+
+
+def advise_operation(
+    operation: str,
+    slug: str | None = None,
+    repo_root: Path = _DEFAULT_REPO_ROOT,
+) -> BranchAdvice | None:
+    """Return the prescribed branch / base / scope for an intended operation.
+
+    ``slug`` fills the ``<country>``/``<region>`` placeholder for culture
+    operations; when it resolves against the on-disk ``regions/`` tree the
+    scope is made concrete, and when it does not the scope says so loudly.
+    Returns ``None`` for an unknown operation -- callers list
+    ``valid_operations()``.
+    """
+    spec = _OPERATIONS.get(operation)
+    if spec is None:
+        return None
+    branch = spec["branch"]
+    scope = spec["scope"]
+    if operation in ("new-country", "new-region") and slug:
+        branch = f"culture/{slug}"
+        prefix = culture_scope(branch, repo_root)
+        if prefix is not None:
+            scope = f"{prefix}** + safe metadata"
+        else:
+            noun = "country" if operation == "new-country" else "region"
+            scope = (
+                f"UNRESOLVED: '{slug}' is not an existing {noun} folder under "
+                "regions/ -- check the spelling, or create the folder in the "
+                "branch's first commit"
+            )
+    return BranchAdvice(
+        operation, spec["kind"], branch, spec["base"],
+        spec["start"], scope, spec["note"],
+    )
+
+
+def _kind_from_lane(lane: str) -> str:
+    if lane.startswith("culture/"):
+        return "culture"
+    if lane.startswith("governance/"):
+        return "governance"
+    if lane == "(safe metadata)":
+        return "safe"
+    return "other"
+
+
+def _base_for_kind(kind: str) -> str:
+    return {"culture": "culture/release", "sync": "culture/release"}.get(
+        kind, "main",
+    )
+
+
+def lane_of_path(path: str, repo_root: Path = _DEFAULT_REPO_ROOT) -> tuple[str, str]:
+    """Classify one repo-relative path into the branch lane that owns it.
+
+    Returns ``(lane, kind)``:
+      - ``("(safe metadata)", "safe")`` -- SAFE_PATTERNS, allowed on any branch
+      - ``("governance/<name>", "governance")``
+      - ``("culture/<slug>", "culture")``
+      - ``("chore/<name>", "other")``
+    """
+    if path in SAFE_PATTERNS:
+        return ("(safe metadata)", "safe")
+    if path.startswith("regions/"):
+        parts = path.split("/")
+        region_slugs, country_to_region = _world_topology(repo_root)
+        if len(parts) >= 3 and parts[2] in country_to_region:
+            return (f"culture/{parts[2]}", "culture")
+        if len(parts) >= 2 and parts[1] in region_slugs:
+            return (f"culture/{parts[1]}", "culture")
+        return ("culture/release", "culture")
+    if is_governance_path(path):
+        return ("governance/<name>", "governance")
+    return ("chore/<name>", "other")
+
+
+def lanes_for_files(
+    files, repo_root: Path = _DEFAULT_REPO_ROOT,
+) -> dict[str, list[str]]:
+    """Group files by the branch lane that owns them.
+
+    More than one non-safe lane in the result means the change spans branch
+    kinds and MUST be split into separate branches/PRs -- one cannot ride on
+    the other.
+    """
+    lanes: dict[str, list[str]] = {}
+    for f in files:
+        lane, _kind = lane_of_path(f, repo_root)
+        lanes.setdefault(lane, []).append(f)
+    return lanes
+
+
+def render_operation_advice(advice: BranchAdvice) -> str:
+    """Render a BranchAdvice as a copy-pasteable report."""
+    lines = [
+        f"Operation: {advice.operation}",
+        f"Kind:      {advice.kind}",
+        f"Branch:    {advice.branch}",
+        f"Base:      {advice.base}  (PR target -- nothing else is allowed)",
+        f"Scope:     {advice.scope}",
+        f"Note:      {advice.note}",
+    ]
+    if advice.start:
+        lines += [
+            "",
+            "Create it:",
+            "  git fetch origin",
+            f"  git checkout -b {advice.branch} {advice.start}",
+        ]
+        if "<" in advice.branch:
+            lines.append(
+                "  (replace <...> with a short, lowercase, hyphenated name)"
+            )
+    else:
+        lines += ["", "  (existing long-lived branch -- do not create it)"]
+    return "\n".join(lines)
+
+
+def render_files_advice(lanes: dict[str, list[str]]) -> str:
+    """Render lanes_for_files() output: one lane, or a SPLIT instruction."""
+    non_safe = {k: v for k, v in lanes.items() if k != "(safe metadata)"}
+    safe = lanes.get("(safe metadata)", [])
+
+    if not non_safe:
+        return ("All listed files are safe metadata -- allowed on any branch "
+                "alongside its primary scope.")
+
+    if len(non_safe) == 1:
+        lane, files = next(iter(non_safe.items()))
+        base = _base_for_kind(_kind_from_lane(lane))
+        lines = [f"All files belong to one lane: {lane}  (base: {base})"]
+        lines += [f"  {f}" for f in files]
+        if safe:
+            lines.append("safe metadata (rides along): " + ", ".join(safe))
+        return "\n".join(lines)
+
+    lines = [
+        f"SPLIT REQUIRED: these files span {len(non_safe)} branch lanes. "
+        "One PR cannot carry them -- open one PR per lane:",
+    ]
+    for lane, files in non_safe.items():
+        base = _base_for_kind(_kind_from_lane(lane))
+        lines.append("")
+        lines.append(f"  {lane}  (base: {base})")
+        lines += [f"    {f}" for f in files]
+    if sum(1 for k in non_safe if k.startswith("culture/")) > 1:
+        lines += [
+            "",
+            "The culture lanes could instead share one culture/<region> "
+            "branch if every country is in the same region, or "
+            "culture/release for cross-region work.",
+        ]
+    if safe:
+        lines += ["", "Safe metadata rides with any of the above: "
+                  + ", ".join(safe)]
+    return "\n".join(lines)
+
+
+def main(argv: list[str] | None = None) -> int:
+    """CLI: `python tests/branch_scope.py advise --op OP | --files PATH...`."""
+    parser = argparse.ArgumentParser(
+        prog="branch_scope.py",
+        description=(
+            "Branch advisor -- before `git checkout -b`, ask which branch "
+            "and base an operation requires."
+        ),
+    )
+    parser.add_argument("mode", choices=["advise"])
+    parser.add_argument(
+        "--op", metavar="OPERATION",
+        help="intended operation: " + ", ".join(valid_operations()),
+    )
+    parser.add_argument(
+        "--slug", metavar="NAME",
+        help="country or region slug, for culture operations",
+    )
+    parser.add_argument(
+        "--files", nargs="+", metavar="PATH",
+        help="repo-relative paths -- report which lane(s) they belong to",
+    )
+    args = parser.parse_args(argv)
+
+    if args.op:
+        advice = advise_operation(args.op, args.slug)
+        if advice is None:
+            print(f"Unknown operation: {args.op!r}", file=sys.stderr)
+            print("Valid operations: " + ", ".join(valid_operations()),
+                  file=sys.stderr)
+            return 2
+        if "<date>" in advice.branch:
+            from datetime import date
+            advice = advice._replace(
+                branch=advice.branch.replace(
+                    "<date>", date.today().isoformat()),
+            )
+        print(render_operation_advice(advice))
+        return 0
+
+    if args.files:
+        print(render_files_advice(lanes_for_files(args.files)))
+        return 0
+
+    parser.error("give --op OPERATION or --files PATH [PATH ...]")
+    return 2
+
+
+if __name__ == "__main__":
+    sys.exit(main())

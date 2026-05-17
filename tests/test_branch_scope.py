@@ -17,10 +17,16 @@ from branch_scope import (  # noqa: E402
     GOVERNANCE_GLOB_PATTERNS,
     SAFE_PATTERNS,
     WORLD_SLUGS,
+    advise_operation,
     check_scope,
     classify_branch,
     culture_scope,
     is_governance_path,
+    lane_of_path,
+    lanes_for_files,
+    render_files_advice,
+    render_operation_advice,
+    valid_operations,
 )
 
 # ---------------------------------------------------------------------------
@@ -556,3 +562,131 @@ def test_governance_glob_patterns_locked():
         ".worktree/WORKTREES.md",
         ".worktree/.gitignore",
     )
+
+
+# ---------------------------------------------------------------------------
+# advise_operation - operation -> prescribed branch
+# ---------------------------------------------------------------------------
+
+@pytest.mark.parametrize("operation,kind,base", [
+    ("new-country", "culture", "culture/release"),
+    ("new-region", "culture", "culture/release"),
+    ("release", "culture", "main"),
+    ("sync", "sync", "culture/release"),
+    ("governance", "governance", "main"),
+    ("chore", "other", "main"),
+    ("fix", "other", "main"),
+    ("feat", "other", "main"),
+])
+def test_advise_operation_kind_and_base(operation, kind, base):
+    advice = advise_operation(operation)
+    assert advice is not None
+    assert advice.kind == kind
+    assert advice.base == base
+
+
+def test_advise_operation_unknown_returns_none():
+    assert advise_operation("sink") is None
+    assert advise_operation("workflow-fix") is None
+
+
+def test_valid_operations_is_the_registry():
+    ops = valid_operations()
+    assert set(ops) == {
+        "new-country", "new-region", "release", "sync",
+        "governance", "chore", "fix", "feat",
+    }
+
+
+def test_advise_sync_routes_to_sync_not_governance():
+    """A sync touches workflow files but is a sync lane, not governance."""
+    advice = advise_operation("sync")
+    assert advice.kind == "sync"
+    assert advice.branch.startswith("sync/")
+    assert advice.base == "culture/release"
+    assert advice.start == "origin/main"
+
+
+def test_advise_new_country_resolves_real_slug():
+    advice = advise_operation("new-country", "germany")
+    assert advice.branch == "culture/germany"
+    assert advice.scope.startswith("regions/europe/germany/")
+
+
+def test_advise_new_country_flags_unknown_slug():
+    advice = advise_operation("new-country", "atlantis")
+    assert advice.branch == "culture/atlantis"
+    assert "UNRESOLVED" in advice.scope
+
+
+def test_render_operation_advice_gives_create_command():
+    advice = advise_operation("new-country", "germany")
+    out = render_operation_advice(advice)
+    assert "git checkout -b culture/germany origin/culture/release" in out
+    assert "Base:      culture/release" in out
+
+
+def test_render_operation_advice_release_has_no_create_command():
+    out = render_operation_advice(advise_operation("release"))
+    assert "do not create it" in out
+    assert "git checkout -b" not in out
+
+
+# ---------------------------------------------------------------------------
+# lane_of_path / lanes_for_files - files -> branch lane
+# ---------------------------------------------------------------------------
+
+@pytest.mark.parametrize("path,lane,kind", [
+    ("regions/europe/germany/culture_german_position.md", "culture/germany", "culture"),
+    ("regions/africa/nigeria/README.md", "culture/nigeria", "culture"),
+    (".github/workflows/validate.yml", "governance/<name>", "governance"),
+    ("tests/validate_language.py", "governance/<name>", "governance"),
+    ("tests/branch_scope.py", "governance/<name>", "governance"),
+    (".validation-stamp", "(safe metadata)", "safe"),
+    ("data/hofstede_bag_locks.yaml", "(safe metadata)", "safe"),
+    (".github/copilot-instructions.md", "chore/<name>", "other"),
+    ("ARCHITECTURE.md", "chore/<name>", "other"),
+    ("data/countries.json", "chore/<name>", "other"),
+])
+def test_lane_of_path(path, lane, kind):
+    assert lane_of_path(path) == (lane, kind)
+
+
+def test_lanes_for_files_single_lane():
+    lanes = lanes_for_files([
+        "regions/europe/germany/culture_german_position.md",
+        "regions/europe/germany/README.md",
+    ])
+    assert lanes == {"culture/germany": [
+        "regions/europe/germany/culture_german_position.md",
+        "regions/europe/germany/README.md",
+    ]}
+
+
+def test_lanes_for_files_split_detects_mexico_bundle():
+    """The PR #213 shape: culture content + validators + workflow + data."""
+    lanes = lanes_for_files([
+        "regions/americas/mexico/README.md",
+        "tests/validate_language.py",
+        ".github/workflows/validate.yml",
+        "data/countries.json",
+        ".validation-stamp",
+    ])
+    non_safe = {k for k in lanes if k != "(safe metadata)"}
+    assert non_safe == {"culture/mexico", "governance/<name>", "chore/<name>"}
+    out = render_files_advice(lanes)
+    assert "SPLIT REQUIRED" in out
+    assert "3 branch lanes" in out
+
+
+def test_render_files_advice_single_lane():
+    out = render_files_advice(lanes_for_files([
+        "regions/europe/denmark/culture_danish_position.md",
+    ]))
+    assert "one lane: culture/denmark" in out
+    assert "base: culture/release" in out
+
+
+def test_render_files_advice_safe_only():
+    out = render_files_advice(lanes_for_files([".validation-stamp"]))
+    assert "safe metadata" in out.lower()
