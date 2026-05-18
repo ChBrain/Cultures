@@ -1,0 +1,38 @@
+# Hofstede score source catalog.
+#
+# This is the machine-readable catalog of where Hofstede dimension scores
+# come from. As each country is migrated to the structured-source schema
+# (one country at a time), the `source` field of its entry in
+# data/hofstede_scores.json will reference an `id` defined here. Until a
+# country is migrated, its `source` remains the legacy free-text string.
+#
+# Two axes describe a source:
+#   priority - provenance trust ladder; lower number = more authoritative
+#   kind     - empirical | cluster | estimate
+#
+# Plus license/access metadata, so the IP posture of every score is
+# auditable per source. The Hofstede data is third-party (see /NOTICE);
+# it is NOT covered by the repository CC BY-NC 4.0 license.
+#
+# Note: website-vs-book is NOT a trust ranking - it is the same primary
+# source at different vintages. The official Hofstede dimension data
+# matrix is the current edition; the `vintage` field on a score entry
+# records which edition supplied it. Hence one `hofstede_official` tier,
+# not separate "website" and "book" tiers.
+
+sources:
+  hofstede_official:
+    priority: 1
+    kind: empirical
+    label: "Official Hofstede dimension data (country-specific empirical)"
+    origin: "https://geerthofstede.com/research-and-vsm/dimension-data-matrix/"
+    rights_holder: "Geert Hofstede BV"
+    usage: "Free for research/non-commercial use. Commercial use requires permission from Geert Hofstede BV (rights@geerthofstede.nl)."
+
+  hofstede_cluster:
+    priority: 2
+    kind: cluster
+    label: "Hofstede regional-cluster proxy (no country-specific data)"
+    origin: "https://geerthofstede.com/research-and-vsm/dimension-data-matrix/"
+    rights_holder: "Geert Hofstede BV"
+    usage: "Free for research/non-commercial use. Commercial use requires permission from Geert Hofstede BV (rights@geerthofstede.nl)."
