@@ -23,10 +23,12 @@ De platte kamer.
 Gezag bestaat, maar het is onderhandelbaar.
 Hiërarchie is overhead. Niemand betaalt ervoor.
 Gelijkwaardig spreken. Iedereen spreekt. Iedereen telt. Elke keuze weegt gelijk.
-Medezeggenschap is geen bureaucratie. Het is de structuur.
-Procedure en beleid zijn transparant.
-Experimenten met wat werkt. Traditie waar die houdt. Langetermijn-denken in elk overleg.
-Protocol alleen als de dijk het vraagt.
+Medezeggenschap is geen bureaucratie. Het is de structuur waarbinnen overleg zichzelf bijstelt.
+Beleid is transparant, maar een afspraak geldt zolang ze werkt; werkt ze niet, dan praat je opnieuw.
+Experiment met wat werkt. Traditie waar die houdt. Aanpassen waar de zaak erom vraagt.
+Een voorschrift is een uitgangspunt, geen heilig huisje; je denkt ermee, niet ervoor.
+Een vaste vorm alleen als de dijk het echt vraagt; verder veel ruimte om het anders te doen.
+Het overzicht telt; de procedure dient de zaak, niet andersom.
 Voorzichtigheid en zorg zijn ook gezag, niet overhead. Empathie en mededogen voor wie het water bedreigt.
 Groep voor groep, maar één dijk voor iedereen. Solidariteit door noodzaak.
 
