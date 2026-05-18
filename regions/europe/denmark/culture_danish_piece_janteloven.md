@@ -20,7 +20,7 @@ Aksel Sandemose.
 Uden Janteloven bliver personlig autonomi til dominans.
 Ydmyghed er erkendelse af fælles betingelse.
 Samarbejde bærer fællesskabet.
-Balance mellem den enkelte og de andre.
+Der må være balance mellem den enkelte og de andre.
 Når hver person bestemmer absolut selv uden at anerkende andres ret til at gøre det samme, kollapser ligheden.
 ## Apparent
 *Du skal ikke tro at du er noget.*
