@@ -22,6 +22,27 @@ The Schleswig-Holstein position is a region position, not a national one. It ref
 
 ---
 
+## Hofstede Dimension Scores
+
+The six-dimension scores below are the canonical record for the developed cultures. They follow Hofstede Insights' published country profiles (hofstede-insights.com/country/&lt;slug&gt;/). The country-specific profiles supersede the older Hofstede regional-cluster figures - for example the "West Africa" cluster's 77/20/54 for Nigeria, which the Nigeria country profile updates to 80/30/55.
+
+Each row is the single source of truth for that country. `data/hofstede_scores.json`, the country's `hofstede_bag.yaml`, and the country `README.md` are all checked against this table by `tests/test_hofstede_references.py`; any drift fails CI.
+
+| Country | PDI | IDV | UAI | MAS | LTO | IND | Source (Hofstede Insights) |
+|---|---|---|---|---|---|---|---|
+| Denmark | 18 | 74 | 23 | 16 | 46 | 70 | country/denmark/ |
+| France | 68 | 71 | 86 | 43 | 63 | 48 | country/france/ |
+| Germany | 35 | 67 | 65 | 66 | 83 | 40 | country/germany/ |
+| Mexico | 81 | 30 | 82 | 69 | 24 | 97 | country/mexico/ |
+| Netherlands | 38 | 80 | 53 | 14 | 67 | 68 | country/netherlands/ |
+| Nigeria | 80 | 30 | 55 | 60 | 13 | 84 | country/nigeria/ |
+| Poland | 68 | 60 | 93 | 64 | 38 | 29 | country/poland/ |
+| Spain | 57 | 51 | 86 | 42 | 48 | 44 | country/spain/ |
+
+*Scores accessed 2026-05-18. PDI = Power Distance, IDV = Individualism, UAI = Uncertainty Avoidance, MAS = Motivation toward Achievement and Success, LTO = Long-Term Orientation, IND = Indulgence.*
+
+---
+
 *The Cultures world claims no intellectual property in any of the cultures, historical events, symbols, or national identities it draws on - only in the method of their application.*
 
 ---

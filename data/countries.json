@@ -50,6 +50,13 @@
       "name": "Nigeria",
       "language": "en",
       "name_source": "Cultures_persona_archetype"
+    },
+    {
+      "iso": "MX",
+      "key": "mexico",
+      "name": "Mexico",
+      "language": "es",
+      "name_source": "INEGI_MX_2023"
     }
   ]
 }
