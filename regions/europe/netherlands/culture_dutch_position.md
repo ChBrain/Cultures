@@ -32,4 +32,4 @@ Je maakt je eigen keuzes in zelfstandigheid, en je hebt eerbied voor expertise.
 Wat de Nederlander hier uit het oog verliest, is de aanname van neutraliteit, het idee dat recht door zee zijn nergens kwaad bloed zet, en de gedachte dat consensus zonder gevolgen kan bestaan. Buiten de Nederlandse kamer klopt geen van die aannames.
 
 ## Drives
-Op die verliezen reageert de Nederlander door de verpakking aan te passen, niet de inhoud. Hij draagt de belasting zonder vreugde — belasting blijft belasting — en hij gaat door.
+Op die verliezen reageert de Nederlander door de verpakking aan te passen, niet de inhoud. Hij draagt de belasting zonder vreugde, want belasting blijft belasting, en hij gaat door.
