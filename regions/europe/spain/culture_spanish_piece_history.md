@@ -17,24 +17,24 @@ stamp:
 La península ibérica.
 Entre el Atlántico y el Mediterráneo, entre los Pirineos y el Estrecho.
 Cruce de Europa, África y América.
-La tierra recuerda capas: romana, visigoda, andalusí, cristiana, imperial, republicana, dictatorial, democrática.
-Cada generación hereda un país que no escogió y que tiene que reconocer como suyo: una tradición que pesa más como costumbre vivida que como proyecto.
+La tierra guarda capas: romana, visigoda, andalusí, cristiana, imperial, republicana, dictatorial, democrática.
+Cada generación hereda un país que no escogió y que debe reconocer como propio: una tradición que pesa más como costumbre vivida que como proyecto.
 
 ## Load Bearing
 Sin esta historia la [posición española](culture_spanish_position.md) pierde su nervio.
 Una identidad construida sobre la reconquista de su propio territorio.
-Ocho siglos aprendiendo lo que es ser conquistada antes de aprender a conquistar.
-La memoria de haber tenido un imperio que se deshizo.
-La herida de 1898 inscrita en el idioma.
+El país pasó ocho siglos aprendiendo lo que significa ser conquistada antes de aprender a conquistar.
+Pesa la memoria de haber tenido un imperio que se deshizo.
+La herida de 1898 quedó inscrita en el idioma.
 La Guerra Civil como ausencia que no termina: los muertos sin nombre en las cunetas, los apellidos que nadie pronuncia.
 Cuarenta años de silencio bajo Franco como infraestructura todavía presente.
-La transición de 1978 como acuerdo entre quienes habían sido enemigos: apertura sin victoria.
+La transición de 1978 fue un acuerdo entre quienes habían sido enemigos: una apertura sin victoria.
 La pertenencia a Europa después de cinco siglos mirando hacia América: inversión en una continuidad nueva.
 La paciencia heredada de generaciones que aprendieron a esperar el cambio.
 La historia trama el vínculo cuando la institución vacila.
 
 ## Apparent
-Cada piedra y cada apellido en español llevan tres siglos al menos sobre la espalda.
+Cada piedra y cada apellido en español llevan al menos tres siglos de historia.
 La muralla romana de Lugo, todavía en pie.
 La Mezquita-Catedral de Córdoba: arcos andalusíes y altar barroco en el mismo espacio.
 La Alhambra de Granada y los Reyes Católicos enterrados en la Capilla Real, a tres kilómetros.
@@ -44,10 +44,10 @@ El Valle de los Caídos, ahora Valle de Cuelgamuros: cruz visible desde cuarenta
 Las placas en las fachadas de Madrid con los nombres de los fusilados, todas en español.
 El Congreso de los Diputados con los agujeros de bala de 1981 todavía visibles.
 La estatua de Federico García Lorca en la Plaza de Santa Ana.
-Las urnas guardadas en cajas en Cataluña, 1 de octubre de 2017.
+Las urnas fueron guardadas en cajas en Cataluña el 1 de octubre de 2017.
 
 ## Yearbook
-Cada año en español aquí pesa sobre el siguiente y obliga a España a recordar su propio nombre en el siglo que viene después.
+Cada año en español aquí pesa sobre el siguiente y obliga a España a recordar su propio nombre en el siglo venidero.
 218 a.C.: Roma desembarca en Empúries. Comienza la conquista de Hispania. Doscientos años para someter la península ibérica entera.
 711: Las tropas omeyas cruzan el Estrecho. Al-Ándalus se establece. España aprende, en su idioma español y bajo dominio extranjero, durante ocho siglos lo que es ser conquistada por otra autoridad.
 1085: Alfonso VI toma Toledo. La Escuela de Traductores reúne a cristianos, judíos y musulmanes en el mismo trabajo.
