@@ -889,7 +889,7 @@ jobs:
         run: python -m pytest tests/test_hofstede_derived.py -v
 
   cultures-hofstede-reference:
-    name: cultures - Hofstede declared vs reference
+    name: cultures - Culture docs Hofstede-free
     needs: [setup, cultures-hofstede-derived]
     if: needs.setup.outputs.any == 'true' || needs.setup.outputs.data_changed == 'true'
     runs-on: ubuntu-latest
