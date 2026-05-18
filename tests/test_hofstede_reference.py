@@ -42,7 +42,14 @@ def _pr_touched_countries() -> list[str]:
     PR_CHANGED_FILES is set by the setup job in validate.yml on PR events.
     Absent (push events, local runs) -> no countries: the gate is a no-op,
     because the PR is where it enforces.
+
+    A sync/* PR is exempt: it mechanically funnels main's HEAD into
+    culture/release (see tests/branch_scope.py), so it is integration, not
+    a culture edit. The gate enforces on culture-development PRs and on the
+    culture/release -> main promotion, not on syncs.
     """
+    if os.environ.get("GITHUB_HEAD_REF", "").startswith("sync/"):
+        return []
     changed = os.environ.get("PR_CHANGED_FILES", "").strip()
     if not changed:
         return []
