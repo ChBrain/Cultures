@@ -33,3 +33,14 @@ locks:
   # discipline, same SHA-based drift protection.
   data/hofstede_denylist.yaml: a9d2b3556a2fa8009820b52e5e97e0c9aeb2aba8f14e2e817dfbe8931b16b8e3
   regions/europe/france/hofstede_bag.yaml: ef21fd99fef49d2a4f0a214680bd5a2473c7a400ff215d236e3a18c72351b3cf
+  # Remaining v2-migrated countries. Every country in
+  # data/v2_migrated_countries.txt must have its bag locked here so the
+  # loader treats it as migrated (fail-loud on a missing/malformed bag)
+  # rather than silently falling back to the legacy keyword dict.
+  regions/europe/denmark/hofstede_bag.yaml: 55e4c28854887c54decd37fe77cde8a2e4b02da4c35148e1c68a83d5d889c271
+  regions/europe/germany/hofstede_bag.yaml: a60014237d3761cc18836cab140ad1767b555876e264a4ea4ccc44832cef62da
+  regions/americas/mexico/hofstede_bag.yaml: 42fc1f37139342f46a49c18b80acfcaa8669acae7e54a709fb5ee03b959bd7af
+  regions/europe/netherlands/hofstede_bag.yaml: a9ecd197efee7d8b8b38bfbd59645ed72d30f8aad65923d99ebab4eab7be1b70
+  regions/africa/nigeria/hofstede_bag.yaml: 2655c2064c0ff1b822639d4cdc1f9cd9b897b4be7354144ac4c792bf39eb64c1
+  regions/europe/poland/hofstede_bag.yaml: c8b23a3ec5ad09dc5a799401b872e0fa718a32e5aaa1b326335fa79226ac0d0f
+  regions/europe/spain/hofstede_bag.yaml: 9f3bd650ecf4c1ce91139b90cb2df6213c2d6089ddc9ee69c0c0b009b17ace7c
