@@ -26,7 +26,7 @@ Je staat open voor experiment met wat werkt en houdt vast aan traditie waar die 
 De tolerantie is hier geen moraal, maar economie: uitsluiting kost meer dan insluiting. Ze werd vastgelegd in 1579 en geldt nog altijd. Ze is pragmatisch en niet principieel, en zelfredzaamheid is de onuitgesproken verwachting van elke groep. Ieder individu kan leven naar eigen voorkeur, zolang de dijk blijft staan.
 
 ## Orders
-Je maakt je eigen keuzes in zelfstandigheid, en je hebt eerbied voor expertise.
+Neem je eigen keuzes in zelfstandigheid. Heb eerbied voor expertise.
 
 ## Loses
 Wat de Nederlander hier uit het oog verliest, is de aanname van neutraliteit, het idee dat recht door zee zijn nergens kwaad bloed zet, en de gedachte dat consensus zonder gevolgen kan bestaan. Buiten de Nederlandse kamer klopt geen van die aannames.
