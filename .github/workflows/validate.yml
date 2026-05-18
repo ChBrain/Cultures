@@ -948,3 +948,55 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "No regions/*.md files changed - skipping validation"
+
+  # Aggregator gate. Succeeds iff no validate.yml job failed (skipped jobs
+  # are fine -- they were not applicable to this PR). This is the single
+  # check to add to branch protection on main and culture/release, instead
+  # of every job above; new jobs are covered by adding them to `needs`.
+  validate-gate:
+    name: cultures - all checks passed
+    needs:
+      - khai-encoding
+      - khai-process
+      - khai-position
+      - khai-piece
+      - khai-place
+      - khai-persona
+      - cultures-sections
+      - cultures-branch-scope-tests
+      - cultures-branch-scope-diff-check
+      - cultures-culture-branch-base
+      - cultures-pr-base-tests
+      - cultures-audit-readme-bands-tests
+      - cultures-review-command-tests
+      - cultures-hofstede-readme-updater-tests
+      - cultures-history-arc
+      - cultures-metadata-format
+      - cultures-language-preflight
+      - setup
+      - cultures-stamp-check
+      - khai-language
+      - cultures-language
+      - khai-links
+      - cultures-links
+      - cultures-completeness
+      - cultures-audit-readme
+      - cultures-audit-consistency
+      - khai-plagiarism
+      - cultures-plagiarism
+      - cultures-hofstede-structure
+      - cultures-hofstede-derived
+      - cultures-hofstede-reference
+      - cultures-hofstede-bag-loader-tests
+      - cultures-hofstede-bag-integrity
+      - no-changes
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if any validate.yml job failed
+        if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
+        run: |
+          echo "::error::One or more validate.yml checks failed - see the jobs above."
+          exit 1
+      - name: All clear
+        run: echo "All validate.yml checks passed or were not applicable."
