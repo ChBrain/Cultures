@@ -18,7 +18,7 @@ La península ibérica.
 Entre el Atlántico y el Mediterráneo, entre los Pirineos y el Estrecho.
 Cruce de Europa, África y América.
 La tierra recuerda capas: romana, visigoda, andalusí, cristiana, imperial, republicana, dictatorial, democrática.
-Cada generación hereda un país que no escogió y que tiene que reconocer como suyo.
+Cada generación hereda un país que no escogió y que tiene que reconocer como suyo: una tradición que pesa más como costumbre vivida que como proyecto.
 
 ## Load Bearing
 Sin esta historia la [posición española](culture_spanish_position.md) pierde su nervio.
@@ -61,7 +61,7 @@ Cada año en español aquí pesa sobre el siguiente y obliga a España a recorda
 1936-1939: Guerra Civil. Trescientos mil muertos. Medio millón al exilio. Familias partidas por el medio. La empatía hacia el otro bando se hereda como deuda no saldada.
 1939-1975: Dictadura de Franco. Treinta y seis años de un solo idioma español oficial impuesto, una sola memoria oficial sostenida por el Estado.
 1975: Franco muere en La Paz. El régimen español queda sin centro y la dictadura no encuentra heredero.
-1978: Constitución española. Aprobada en referéndum. Pacta lo que no se podía pactar. Diálogo en el lugar de la trinchera. Tolerancia escrita en el papel.
+1978: Constitución española. Aprobada en referéndum. Pacta lo que no se podía pactar. Diálogo en el lugar de la trinchera. Cada equilibrio fijado por escrito como norma, para que ningún pacto quedara expuesto a la interpretación.
 1981: 23 de febrero. Tejero entra en el Congreso con un tricornio y una pistola. El golpe fracasa en la misma noche.
 1986: España entra en la Comunidad Económica Europea. Cinco siglos mirando hacia América, ahora mirando hacia Bruselas. Desarrollo, inversión, futuro escritos en el mismo acuerdo.
 1992: Barcelona organiza los Juegos Olímpicos. Sevilla organiza la Exposición Universal. España se presenta al mundo como país nuevo: ambición y reconocimiento en el mismo verano.
