@@ -1,0 +1,95 @@
+name: release-gating action
+
+# When culture content enters culture/release, stage its release gating
+# data -- the data/countries.json registry entry -- on main BEFORE the
+# culture/release -> main promotion.
+#
+# For every culture present in culture/release, generate a skeleton
+# countries.json entry (scripts/generate_country_entry.py); if that
+# changes the registry, open a chore/release-gating-* PR against main. A
+# human completes the TODO fields (anchor.iso, name_source) -- the release
+# audit -- and the blocking gate (release-gating-gate.yml) holds the
+# promotion until this PR merges. See issue #257.
+#
+# Scope: this stages the COUNTRY REGISTRY only. Persona names continue to
+# sync via sync_name_register.yml -- name_register.json is governance-lane
+# and cannot share this chore-lane PR; the blocking gate covers the
+# registry only. Gating name_register would be a separate extension.
+
+on:
+  push:
+    branches:
+      - culture/release
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  stage-registry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        # Work on main so the generated change -- and only it -- is what
+        # the PR carries; culture/release is fetched separately to diff.
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Detect cultures present in culture/release
+        id: detect
+        run: |
+          git fetch origin culture/release
+          SLUGS=$(git diff --name-only main origin/culture/release \
+            | { grep '^regions/' || true; } \
+            | cut -d/ -f3 \
+            | { grep -E '^[a-z_]+$' || true; } \
+            | sort -u)
+          echo "slugs=$(echo $SLUGS | tr '\n' ' ')" >> "$GITHUB_OUTPUT"
+          echo "first=$(echo $SLUGS | awk '{print $1}')" >> "$GITHUB_OUTPUT"
+          echo "Cultures in culture/release: ${SLUGS:-<none>}"
+
+      - name: Generate skeleton registry entries
+        if: steps.detect.outputs.slugs != ''
+        run: python scripts/generate_country_entry.py ${{ steps.detect.outputs.slugs }}
+
+      - name: Detect registry change
+        id: diff
+        run: |
+          if git diff --quiet data/countries.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open gating-data PR
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: chore/release-gating-${{ steps.detect.outputs.first }}-${{ github.sha }}
+          base: main
+          commit-message: 'chore: stage release gating data for ${{ steps.detect.outputs.first }}'
+          title: 'chore: release gating data - ${{ steps.detect.outputs.first }}'
+          body: |
+            Automated release gating data -- generated because culture
+            content for an unregistered culture is present in `culture/release`.
+
+            Skeleton `data/countries.json` entries were added. **Complete every
+            `TODO` field** (`anchor.iso`, `name_source`) before merging -- that
+            completion is the release audit.
+
+            The blocking gate (`release-gating-gate.yml`) holds the
+            `culture/release -> main` promotion until this PR is merged.
+
+            See issue #257.
+          labels: chore
+          draft: false
