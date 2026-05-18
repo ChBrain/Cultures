@@ -1,0 +1,174 @@
+country: singapore
+language: en
+parent: null
+region: asia
+status: draft
+generated: 2026-05-17
+source: "Hofstede Insights / The Culture Factor Group (scores confirmed 2026-05-17; IDV and LTO updated October 2023)"
+
+hofstede_scores:
+  PDI: 74
+  IDV: 20
+  UAI: 8
+  MAS: 48
+  LTO: 72
+  IND: 46
+
+denylist:
+  - deference
+  - formal
+  - harmony
+  - protocol
+  - discipline
+  - spontaneous
+  - merit
+  - pragmatic
+  - sobriety
+  - self-expression
+  - adaptable
+  - consensus
+
+bags:
+  PDI:
+    high:
+      - hierarchy
+      - seniority
+      - authority
+      - rank
+      - superior
+      - obedience
+      - title
+      - respect
+      - command
+      - patron
+    low:
+      - decentralized
+      - equal
+      - peer
+      - informal
+      - accessible
+      - horizontal
+      - collaborative
+      - voice
+      - bottom-up
+      - accountable
+
+  IDV:
+    high:
+      - individual
+      - autonomy
+      - self-reliance
+      - independence
+      - privacy
+      - personal
+      - freedom
+      - assertion
+      - initiative
+      - detachment
+    low:
+      - loyalty
+      - collective
+      - kinship
+      - community
+      - in-group
+      - obligation
+      - belonging
+      - filial
+      - solidarity
+      - interdependence
+
+  UAI:
+    high:
+      - rules
+      - structure
+      - procedure
+      - certainty
+      - standardized
+      - predictable
+      - regulation
+      - compliance
+      - systematic
+      - controlled
+    low:
+      - experimental
+      - flexible
+      - improvise
+      - adapt
+      - ambiguity
+      - risk
+      - tolerance
+      - fluid
+      - opportunistic
+      - agile
+
+  MAS:
+    high:
+      - achievement
+      - ambition
+      - competition
+      - success
+      - performance
+      - winning
+      - assertive
+      - excellence
+      - status
+      - advancement
+    low:
+      - care
+      - quality
+      - modesty
+      - cooperation
+      - welfare
+      - nurture
+      - balance
+      - compassion
+      - relationship
+      - wellbeing
+
+  LTO:
+    high:
+      - perseverance
+      - investment
+      - thrift
+      - continuity
+      - planning
+      - sustainability
+      - patience
+      - prudence
+      - foresight
+      - frugality
+    low:
+      - tradition
+      - immediate
+      - present
+      - convention
+      - heritage
+      - norm
+      - custom
+      - quick
+      - ceremonial
+      - established
+
+  IND:
+    high:
+      - enjoyment
+      - leisure
+      - pleasure
+      - fun
+      - gratification
+      - festive
+      - celebration
+      - expressive
+      - desire
+      - entertainment
+    low:
+      - restraint
+      - self-control
+      - duty
+      - gravity
+      - moderation
+      - propriety
+      - decorum
+      - temperance
+      - measured
+      - composed
