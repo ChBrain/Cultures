@@ -16,12 +16,12 @@ stamp:
 ## Initiated by
 Den [danske](culture_danish_position.md) træder ind i et rum.
 Ikke alle rum.
-Rummet ved det uden personen skal sige det.
+Rummet ved det uden at personen skal sige det.
 [Janteloven](culture_danish_piece_janteloven.md) er valgfrit her.
 Hygge har ingen regler.
 Stemningen er afslappet.
 Med tolerance for det uplanlagte.
-Reglerne er i pausemodus - ligeværd geninstalleres.
+Reglerne er sat på pause - ligeværd geninstalleres.
 Hygge opstår når folk vælger at være sammen uden at skulle noget.
 Ikke planlagt.
 Ikke forklaret.
