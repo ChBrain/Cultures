@@ -18,7 +18,7 @@ La península ibérica.
 Entre el Atlántico y el Mediterráneo, entre los Pirineos y el Estrecho.
 Cruce de Europa, África y América.
 La tierra guarda capas: romana, visigoda, andalusí, cristiana, imperial, republicana, dictatorial, democrática.
-Cada generación hereda un país que no escogió y que debe reconocer como propio: una tradición que pesa más como costumbre vivida que como proyecto.
+Cada generación hereda un país que no escogió y que debe reconocer como propio. Es una tradición que pesa más como costumbre vivida que como proyecto.
 
 ## Load Bearing
 Sin esta historia la [posición española](culture_spanish_position.md) pierde su nervio.
@@ -29,7 +29,7 @@ La herida de 1898 quedó inscrita en el idioma.
 La Guerra Civil como ausencia que no termina: los muertos sin nombre en las cunetas, los apellidos que nadie pronuncia.
 Cuarenta años de silencio bajo Franco como infraestructura todavía presente.
 La transición de 1978 fue un acuerdo entre quienes habían sido enemigos: una apertura sin victoria.
-La pertenencia a Europa después de cinco siglos mirando hacia América: inversión en una continuidad nueva.
+La pertenencia a Europa, después de cinco siglos mirando hacia América, es una inversión en una continuidad nueva.
 La paciencia heredada de generaciones que aprendieron a esperar el cambio.
 La historia trama el vínculo cuando la institución vacila.
 
@@ -44,10 +44,10 @@ El Valle de los Caídos, ahora Valle de Cuelgamuros: cruz visible desde cuarenta
 Las placas en las fachadas de Madrid con los nombres de los fusilados, todas en español.
 El Congreso de los Diputados con los agujeros de bala de 1981 todavía visibles.
 La estatua de Federico García Lorca en la Plaza de Santa Ana.
-Las urnas fueron guardadas en cajas en Cataluña el 1 de octubre de 2017.
+El 1 de octubre de 2017 se guardaron las urnas en cajas en Cataluña.
 
 ## Yearbook
-Cada año en español aquí pesa sobre el siguiente y obliga a España a recordar su propio nombre en el siglo venidero.
+Aquí cada año en español pesa sobre el siguiente y obliga a España a recordar su propio nombre en el siglo venidero.
 218 a.C.: Roma desembarca en Empúries. Comienza la conquista de Hispania. Doscientos años para someter la península ibérica entera.
 711: Las tropas omeyas cruzan el Estrecho. Al-Ándalus se establece. España aprende, en su idioma español y bajo dominio extranjero, durante ocho siglos lo que es ser conquistada por otra autoridad.
 1085: Alfonso VI toma Toledo. La Escuela de Traductores reúne a cristianos, judíos y musulmanes en el mismo trabajo.
