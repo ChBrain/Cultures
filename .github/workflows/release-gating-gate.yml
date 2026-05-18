@@ -1,0 +1,53 @@
+name: release-gating gate
+
+# Blocking gate for the culture/release -> main promotion.
+#
+# A culture cannot be promoted to main until its release gating data is
+# complete -- currently, a complete data/countries.json registry entry.
+# This catches the drift class where a culture is developed and promoted
+# but never registered (the Mexico gap). See issue #257.
+#
+# Logic lives in scripts/check_release_gating.py (Python, testable); this
+# workflow only orchestrates: derive the waiting countries from the PR
+# diff and run the check on them.
+#
+# To make this an enforced block, add the job's check name to the branch
+# protection required checks for main.
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    name: release-gating - Registry complete for waiting countries
+    # Only the culture/release -> main promotion is gated. Every other PR
+    # into main (governance, chore) skips this job.
+    if: github.head_ref == 'culture/release'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Full history so origin/<base>...HEAD resolves to the merge base.
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check release gating data for waiting countries
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          SLUGS=$(git diff --name-only "origin/${BASE_REF}...HEAD" \
+            | { grep '^regions/' || true; } \
+            | cut -d/ -f3 \
+            | { grep -E '^[a-z_]+$' || true; } \
+            | sort -u)
+          if [ -z "$SLUGS" ]; then
+            echo "No culture content in this promotion; release gating not applicable."
+            exit 0
+          fi
+          echo "Waiting countries:" $SLUGS
+          python3 scripts/check_release_gating.py $SLUGS
