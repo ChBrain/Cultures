@@ -16,8 +16,13 @@ from data.hofstede_keywords import detect_language
 from data.hofstede_bag_loader import load_bag_for_language
 
 _DIMS = ["PDI", "IDV", "UAI", "MAS", "LTO", "IND"]
-_TOLERANCE_PASS = 10
-_TOLERANCE_WARN = 20
+
+# The derived score must land within ±5 of the declared score. On a PR that
+# changes a country's culture files this is enforced as a hard failure for
+# the changed countries (see _STRICT below); elsewhere -- push, local,
+# full-corpus runs -- it stays advisory (a warning), so a latent gap in an
+# untouched country never blocks unrelated work.
+_TOLERANCE = 5
 
 _SCORE_RE = re.compile(
     r"\|[^|\n]*\b(PDI|IDV|UAI|MAS|LTO|IND)\b[^|\n]*\|"
@@ -82,6 +87,13 @@ if _pr_changed and not _pr_data_changed:
     }
     _COUNTRIES = [d for d in _COUNTRIES if d.name in _pr_slugs]
 
+# Strict (hard-fail) mode: a regions/ PR scoped to specific changed countries
+# -- exactly the case where _COUNTRIES was narrowed just above. Those
+# countries are "in flight" and must meet ±_TOLERANCE. Push / local /
+# data-change runs stay advisory (warn only): a strict ±5 gate must never
+# retroactively fail the whole corpus, only the countries a PR is touching.
+_STRICT = bool(_pr_changed) and not _pr_data_changed
+
 
 @pytest.mark.parametrize("country_dir", _COUNTRIES, ids=[c.name for c in _COUNTRIES])
 def test_derived_within_tolerance(country_dir: Path):
@@ -101,18 +113,20 @@ def test_derived_within_tolerance(country_dir: Path):
         if dim not in declared or dim not in derived:
             continue
         gap = abs(declared[dim] - derived[dim])
-        if gap > _TOLERANCE_WARN:
-            failures.append(
-                f"{dim}: declared={declared[dim]}, derived={derived[dim]}, gap={gap} [FAIL]"
-            )
-        elif gap > _TOLERANCE_PASS:
-            warnings.warn(
-                f"{country_dir.name}: {dim} gap {gap} > ±{_TOLERANCE_PASS} "
-                f"(declared={declared[dim]}, derived={derived[dim]}) [WARN]",
-                stacklevel=2,
-            )
+        if gap <= _TOLERANCE:
+            continue
+        detail = (
+            f"{dim}: declared={declared[dim]}, derived={derived[dim]}, "
+            f"gap={gap} > ±{_TOLERANCE}"
+        )
+        if _STRICT:
+            failures.append(detail)
+        else:
+            warnings.warn(f"{country_dir.name}: {detail} [WARN]", stacklevel=2)
 
     assert not failures, (
-        f"{country_dir.name}: dimension(s) outside tolerance (gap > ±{_TOLERANCE_WARN}):\n"
+        f"{country_dir.name}: dimension(s) outside ±{_TOLERANCE} tolerance "
+        f"-- this PR changes the country's culture files, so the derived "
+        f"Hofstede scores must land within ±{_TOLERANCE} of declared:\n"
         + "\n".join(f"  {f}" for f in failures)
     )
