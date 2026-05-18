@@ -267,6 +267,113 @@ def check_scope(
 
 
 # ---------------------------------------------------------------------------
+# PR base routing
+# ---------------------------------------------------------------------------
+#
+# classify_branch says what KIND a head branch is; allowed_bases says what it
+# is allowed to be PR'd INTO. This is the single source of truth for the
+# integration flow -- the pr-gate base check (tests/validate_pr_base.py), the
+# operation advisor below, and docs/BRANCHING.md all derive their base routing
+# from here, so they cannot drift.
+#
+# The failure this encodes against: a sync of culture/release's content into
+# main, filed as `sync/* -> main`. `sync/*` is the main -> culture/release
+# lane; carrying culture/release UP into main is the release PR, whose head
+# is culture/release itself.
+
+
+def allowed_bases(head: str) -> set[str]:
+    """Return the PR base branches ``head`` is allowed to target.
+
+    An empty set means ``head`` is not a valid PR head at all (``main``).
+    Callers gate on ``base in allowed_bases(head)``.
+
+      culture/<country|region>   -> {culture/release}   funnel through release
+      culture/release            -> {main}              release PR
+      governance/<name>          -> {main}
+      sync/<name>                -> {culture/release}   main -> culture/release
+      chore|fix|feat/*, other    -> {main}
+      main                       -> set()               not a valid head
+    """
+    kind = classify_branch(head)
+    if kind == "main":
+        return set()
+    if kind == "culture":
+        slug = head[len("culture/"):]
+        # culture/release integrates UP into main; country/region branches
+        # must funnel through culture/release first.
+        return {"main"} if slug in WORLD_SLUGS else {"culture/release"}
+    if kind == "sync":
+        return {"culture/release"}
+    # governance and other (chore/fix/feat/...) both target main.
+    return {"main"}
+
+
+def base_remedy(head: str, base: str) -> str | None:
+    """Return a prescriptive fix when ``base`` is wrong for ``head``, else None.
+
+    The single source of the pr-gate base-check teaching output: a rejection
+    names the exact correct head/base pair and how to reach it, not just
+    "wrong base". Returns ``None`` when the pair is valid.
+    """
+    allowed = allowed_bases(head)
+    if not allowed:
+        return (
+            f">>> ERROR: '{head}' is not a valid PR head branch.\n"
+            "\n"
+            "   'main' cannot be a PR head. Move the work onto a culture/*,\n"
+            "   governance/*, sync/*, or chore|fix|feat/* branch.\n"
+            "   Advisor: python tests/branch_scope.py advise --op <operation>"
+        )
+    if base in allowed:
+        return None
+
+    kind = classify_branch(head)
+    lines = [
+        f">>> ERROR: PR base '{base}' is not allowed for head '{head}'.",
+        "",
+        f"   Allowed base for '{head}': {sorted(allowed)}",
+        "",
+    ]
+    if kind == "sync":
+        lines += [
+            "   A sync/* branch funnels main -> culture/release; its only",
+            "   valid base is 'culture/release'.",
+            "",
+            "   To take culture/release CONTENT INTO main you do not want a",
+            "   sync branch at all -- that is the release PR: open a PR with",
+            "   head 'culture/release' and base 'main'. Close this PR and",
+            "   open culture/release -> main instead.",
+        ]
+    elif kind == "culture" and head[len("culture/"):] in WORLD_SLUGS:
+        lines += [
+            "   culture/release is the integration branch; it PRs up into",
+            "   'main'. Retarget this PR's base to 'main'.",
+        ]
+    elif kind == "culture":
+        lines += [
+            "   Country/region culture work funnels through the integration",
+            "   branch first:",
+            "     culture/<slug>  -> culture/release   (this PR)",
+            "     culture/release -> main              (release PR)",
+            "   Retarget this PR's base to 'culture/release'.",
+        ]
+    elif kind == "governance":
+        lines.append(
+            "   Governance changes go directly to main. Retarget base to 'main'.")
+    else:
+        lines.append(
+            "   chore/fix/feat branches target 'main'. Retarget base to 'main'.")
+
+    lines += [
+        "",
+        "   Confirm routing: python tests/branch_scope.py advise --op <operation>",
+        "   Integration flow: docs/BRANCHING.md",
+    ]
+    return "\n".join(lines)
+
+
+# ---------------------------------------------------------------------------
 # Failure diagnosis
 # ---------------------------------------------------------------------------
 #
@@ -502,34 +609,36 @@ class BranchAdvice(NamedTuple):
 
 
 # Operation -> lane. The key is what the contributor is trying to DO.
+# The PR base is NOT stored here -- advise_operation derives it from
+# allowed_bases() so the advisor and the pr-gate base check cannot drift.
 _OPERATIONS: dict[str, dict] = {
     "new-country": dict(
-        kind="culture", branch="culture/<country>", base="culture/release",
+        kind="culture", branch="culture/<country>",
         start="origin/culture/release",
         scope="regions/<region>/<country>/** + safe metadata",
         note="One country's culture package.",
     ),
     "new-region": dict(
-        kind="culture", branch="culture/<region>", base="culture/release",
+        kind="culture", branch="culture/<region>",
         start="origin/culture/release",
         scope="regions/<region>/** + safe metadata",
         note="Culture work spanning several countries in one region.",
     ),
     "release": dict(
-        kind="culture", branch="culture/release", base="main", start="",
+        kind="culture", branch="culture/release", start="",
         scope="regions/** + safe metadata",
         note="culture/release is the long-lived integration branch -- you do "
              "not create it; you PR it into main.",
     ),
     "sync": dict(
         kind="sync", branch="sync/release-from-main-<date>",
-        base="culture/release", start="origin/main",
+        start="origin/main",
         scope="unrestricted (a snapshot of main)",
         note="Funnel main's HEAD into culture/release. The branch IS main's "
              "tip -- it carries no commits of its own.",
     ),
     "governance": dict(
-        kind="governance", branch="governance/<name>", base="main",
+        kind="governance", branch="governance/<name>",
         start="origin/main",
         scope=".githooks/**, .github/workflows/**, validators, the branch "
               "contract, validator data files",
@@ -537,18 +646,18 @@ _OPERATIONS: dict[str, dict] = {
              "contract itself.",
     ),
     "chore": dict(
-        kind="other", branch="chore/<name>", base="main", start="origin/main",
+        kind="other", branch="chore/<name>", start="origin/main",
         scope="anything except regions/** and governance paths",
         note="General tooling or docs -- including agent instruction files "
              "(.github/copilot-instructions.md, .claude/, .gemini/, ...).",
     ),
     "fix": dict(
-        kind="other", branch="fix/<name>", base="main", start="origin/main",
+        kind="other", branch="fix/<name>", start="origin/main",
         scope="anything except regions/** and governance paths",
         note="Bug fix outside culture content and governance.",
     ),
     "feat": dict(
-        kind="other", branch="feat/<name>", base="main", start="origin/main",
+        kind="other", branch="feat/<name>", start="origin/main",
         scope="anything except regions/** and governance paths",
         note="New non-culture, non-governance feature.",
     ),
@@ -590,26 +699,25 @@ def advise_operation(
                 "regions/ -- check the spelling, or create the folder in the "
                 "branch's first commit"
             )
+    # Base is derived from allowed_bases (the routing matrix), never stored
+    # per-operation, so the advisor and the pr-gate base check cannot drift.
+    probe = re.sub(r"<[^>]+>", "x", branch)
+    candidates = allowed_bases(probe)
+    base = sorted(candidates)[0] if candidates else "main"
     return BranchAdvice(
-        operation, spec["kind"], branch, spec["base"],
+        operation, spec["kind"], branch, base,
         spec["start"], scope, spec["note"],
     )
 
 
-def _kind_from_lane(lane: str) -> str:
-    if lane.startswith("culture/"):
-        return "culture"
-    if lane.startswith("governance/"):
-        return "governance"
-    if lane == "(safe metadata)":
-        return "safe"
-    return "other"
+def _lane_base(lane: str) -> str:
+    """PR base for a lane label from lanes_for_files (may hold a <template>).
 
-
-def _base_for_kind(kind: str) -> str:
-    return {"culture": "culture/release", "sync": "culture/release"}.get(
-        kind, "main",
-    )
+    Derived from allowed_bases so the advisor's --files output and the
+    pr-gate base check share one routing source.
+    """
+    candidates = allowed_bases(re.sub(r"<[^>]+>", "x", lane))
+    return sorted(candidates)[0] if candidates else "main"
 
 
 def lane_of_path(path: str, repo_root: Path = _DEFAULT_REPO_ROOT) -> tuple[str, str]:
@@ -689,7 +797,7 @@ def render_files_advice(lanes: dict[str, list[str]]) -> str:
 
     if len(non_safe) == 1:
         lane, files = next(iter(non_safe.items()))
-        base = _base_for_kind(_kind_from_lane(lane))
+        base = _lane_base(lane)
         lines = [f"All files belong to one lane: {lane}  (base: {base})"]
         lines += [f"  {f}" for f in files]
         if safe:
@@ -701,7 +809,7 @@ def render_files_advice(lanes: dict[str, list[str]]) -> str:
         "One PR cannot carry them -- open one PR per lane:",
     ]
     for lane, files in non_safe.items():
-        base = _base_for_kind(_kind_from_lane(lane))
+        base = _lane_base(lane)
         lines.append("")
         lines.append(f"  {lane}  (base: {base})")
         lines += [f"    {f}" for f in files]

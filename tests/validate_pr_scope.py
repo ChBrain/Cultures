@@ -18,6 +18,7 @@ Called from .github/workflows/pr-gate.yml.
 """
 from __future__ import annotations
 
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -51,6 +52,15 @@ def diff_paths(base_ref: str) -> list[str]:
     return [line for line in result.stdout.splitlines() if line]
 
 
+def _write_step_summary(text: str) -> None:
+    """Append the failure report to the GitHub Actions step summary, if in CI."""
+    path = os.environ.get("GITHUB_STEP_SUMMARY")
+    if not path:
+        return
+    with open(path, "a", encoding="utf-8") as fh:
+        fh.write("### pr-gate: diff within branch scope\n\n```\n" + text + "\n```\n")
+
+
 def main(argv: list[str]) -> int:
     if len(argv) != 3:
         print("Usage: validate_pr_scope.py <head_branch> <base_ref>", file=sys.stderr)
@@ -64,27 +74,42 @@ def main(argv: list[str]) -> int:
         print(f"OK: all {len(paths)} changed files within {kind} scope for {head}")
         return 0
 
-    print(f">>> ERROR: PR diff exceeds branch scope for {head} (kind={kind})")
-    print("")
-    print(f"Unsafe files ({len(unsafe)}):")
-    for f in unsafe:
-        print(f"  x {f}")
-    print("")
+    lines = [
+        f">>> ERROR: PR diff exceeds branch scope for {head} (kind={kind})",
+        "",
+        f"Unsafe files ({len(unsafe)}):",
+    ]
+    lines += [f"  x {f}" for f in unsafe]
+    lines.append("")
     if kind == "culture":
         prefix = culture_scope(head)
         if prefix is None:
-            print(f"   Culture slug '{head}' doesn't resolve to a country/region/world.")
-            print( "   Rename the branch or split the work; see branch_scope.culture_scope.")
+            lines += [
+                f"   Culture slug '{head}' doesn't resolve to a country/region/world.",
+                "   Rename the branch or split the work; see branch_scope.culture_scope.",
+            ]
         else:
-            print(f"   Allowed: {prefix}** + " + ", ".join(sorted(SAFE_PATTERNS)))
+            lines.append(f"   Allowed: {prefix}** + " + ", ".join(sorted(SAFE_PATTERNS)))
     elif kind == "governance":
-        print( "   Allowed: governance paths only (GOVERNANCE_DIR_PREFIXES +")
-        print( "            GOVERNANCE_GLOB_PATTERNS in tests/branch_scope.py)")
-        print( "   Non-governance file? Move it to a chore/* branch in a separate PR.")
+        lines += [
+            "   Allowed: governance paths only (GOVERNANCE_DIR_PREFIXES +",
+            "            GOVERNANCE_GLOB_PATTERNS in tests/branch_scope.py)",
+            "   Non-governance file? Move it to a chore/* branch in a separate PR.",
+        ]
     else:
-        print( "   Allowed: anything except regions/** and governance paths.")
-        print( "   regions/** change? Use culture/<slug>.")
-        print( "   Governance change? Use governance/<name>.")
+        lines += [
+            "   Allowed: anything except regions/** and governance paths.",
+            "   regions/** change? Use culture/<slug>.",
+            "   Governance change? Use governance/<name>.",
+        ]
+    lines += [
+        "",
+        "   Route by operation: python tests/branch_scope.py advise --op <operation>",
+        "   or check files directly: python tests/branch_scope.py advise --files <path>...",
+    ]
+    report = "\n".join(lines)
+    print(report)
+    _write_step_summary(report)
     return 1
 
 

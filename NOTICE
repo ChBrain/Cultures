@@ -1,0 +1,31 @@
+NOTICE — Third-party data in this repository
+
+The original works in this repository are licensed under CC BY-NC 4.0
+(see LICENSE). The material listed below is third-party: it is NOT covered
+by that license and retains its own terms.
+
+
+Hofstede cultural-dimension scores
+----------------------------------
+
+Where
+    data/hofstede_scores.json, and any copy or generated view of those
+    scores elsewhere in the repository.
+
+Source
+    The Hofstede model of national culture — the dimension data matrix
+    published at:
+    https://geerthofstede.com/research-and-vsm/dimension-data-matrix/
+
+Rights holder
+    Geert Hofstede BV.
+
+Terms
+    Used under the Hofstede research / non-commercial terms. The Cultures
+    project (KAI HACKS AI) is non-commercial.
+
+    This data is NOT licensed under the repository's CC BY-NC 4.0 license.
+    The permission granted to this project does not transfer to downstream
+    users: anyone reusing this repository for commercial purposes must
+    obtain their own permission directly from Geert Hofstede BV
+    (rights@geerthofstede.nl).

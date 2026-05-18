@@ -23,3 +23,13 @@ They are built from the operating logic of 198 cultures across 5 regions but do 
 No intellectual property in any of the national cultures, historical events, symbols, or identities
 drawn on is claimed. The KAI HACKS AI architecture — its methods, templates, and structural
 elements — is the original contribution claimed under this license.
+
+---
+
+Note on third-party data:
+
+This license, and the original-works claim above, cover the works of KAI HACKS AI
+in this repository. They do not extend to third-party data — see the NOTICE file.
+In particular, the Hofstede cultural-dimension scores (data/hofstede_scores.json
+and any copy or generated view of them) are third-party data, © Geert Hofstede BV,
+used under their research / non-commercial terms and NOT licensed under CC BY-NC 4.0.
