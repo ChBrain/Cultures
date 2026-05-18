@@ -42,7 +42,7 @@ Christiansborg, hvor Folketinget mødes.
 Pavillonen ved Tivoli, åben siden 1843.
 Hjemstavnsmuseer i hver lille by, frivillige passer arven.
 Ved hver større kirke står en mindesten for Anden Verdenskrigs faldne.
-Tre løver pryder alle kommuner, og rigsvåbnet har stået uden afbrydelse siden 1190.
+Tre løver pryder alle kommuner, og rigsvåbnet har stået uændret siden 1190.
 
 ## Yearbook
 793: Vikinger angriber Lindisfarne. Skandinavien træder ind i Europas hukommelse.
@@ -52,7 +52,7 @@ Tre løver pryder alle kommuner, og rigsvåbnet har stået uden afbrydelse siden
 1660: Enevælden indføres. Kongen alene; en institution som siden ofte blev lavet om.
 1814: Norge tabt. Smålandet bliver mindre.
 1849: Grundloven. Frihed, lighed, folkestyre. Borgerne får stemme.
-1864: Slesvig tabt. Det indre vendes opad: hvad ydre er tabt, skal indre genopbygges.
+1864: Slesvig tabt. Det indre vendes opad: hvad der er tabt udadtil, skal genopbygges indadtil.
 1872: Andelsbevægelsen begynder. Bønder slår sig sammen om håndgribelig gevinst her og nu.
 1915: Kvinder får stemmeret. Ligeværd udvides.
 1940-1945: Tysk besættelse. Modstandsbevægelsen vokser frem; jødiske medborgere reddes over Øresund.
