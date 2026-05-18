@@ -11,6 +11,7 @@ hofstede: aggregate
 ## Has
 La jerarquía que no se discute pero se negocia.
 El cargo tiene autoridad. La autoridad tiene obediencia.
+El rango ordena la deferencia.
 Pero el superior que no cuida a los suyos pierde el mando sin perder el título.
 La posición es relación antes que estructura.
 
@@ -33,6 +34,7 @@ Dignidad como valor no negociable.
 Hospitalidad como obligación voluntaria.
 Cuidado hacia los del grupo como condición de pertenencia.
 Conciliación como habilidad, no como debilidad.
+El deber con los suyos como medida de la persona.
 
 La iniciativa personal es respetada cuando responde por lo que hace.
 El criterio propio se gana, no se hereda.
