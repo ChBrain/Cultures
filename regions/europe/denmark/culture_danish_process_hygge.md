@@ -19,6 +19,8 @@ Ikke alle rum.
 Rummet ved det uden personen skal sige det.
 [Janteloven](culture_danish_piece_janteloven.md) er valgfrit her.
 Hygge har ingen regler.
+Stemningen er afslappet.
+Med tolerance for det uplanlagte.
 Reglerne er i pausemodus - ligeværd geninstalleres.
 Hygge opstår når folk vælger at være sammen uden at skulle noget.
 Ikke planlagt.
@@ -42,5 +44,5 @@ Hygge fortsætter kun når alle bliver ved med at vælge det.
 Rummet husker hvem der var fuldt til stede.
 Og hvem der bar frustrationen ind.
 Begge er menneskelige. Begge kan være dansk.
-Men hygge er kun for dem der vælger det gennem nydelse af tilstedeværelsen.
-Fryd findes når omsorg mødes med autonomi.
+Men hygge er kun for dem der vælger det gennem nydelse og fornøjelse af tilstedeværelsen.
+Glæde og fryd findes når omsorg mødes med autonomi.

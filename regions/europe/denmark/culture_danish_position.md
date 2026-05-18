@@ -19,6 +19,7 @@ Din personlige vurdering betyder.
 Dit eget valg betyder.
 Din egen bedømmelse er værdifuld.
 Men alle har samme vurdering - i lighed og ligeværd.
+Medbestemmelse og transparens binder rummet.
 
 Den [danske historie](culture_danish_piece_history.md) ligger under.
 Vedholdenhed gennem generationer.
