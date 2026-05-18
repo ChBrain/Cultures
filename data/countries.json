@@ -1,55 +1,78 @@
 {
-  "version": "1.0",
-  "description": "Canonical country registry. Maps ISO 3166-1 alpha-2 codes to hofstede_scores.json keys, language codes, and approved name sources. Add a country here once — all systems benefit.",
+  "version": "2.0",
+  "description": "Canonical country registry. One entry per culture, shaped to mirror the KAIHACKS download-contract schema (assets/data/available.schema.json): id, name, region, asset (exact release zip filename), anchor (region{iso} | marker{coords}), optional parent. Plus producer-internal fields (language, name_source). The release manifest available.json is generated from this registry.",
   "countries": [
     {
-      "iso": "DE",
-      "key": "germany",
+      "id": "germany",
       "name": "Germany",
+      "region": "europe",
+      "asset": "cultures-europe-germany.zip",
+      "anchor": { "type": "region", "iso": "DE" },
       "language": "de",
       "name_source": "DESTATIS_DE_2023"
     },
     {
-      "iso": "DK",
-      "key": "denmark",
+      "id": "denmark",
       "name": "Denmark",
+      "region": "europe",
+      "asset": "cultures-europe-denmark.zip",
+      "anchor": { "type": "region", "iso": "DK" },
       "language": "da",
       "name_source": "DST_DK_2023"
     },
     {
-      "iso": "NL",
-      "key": "netherlands",
+      "id": "netherlands",
       "name": "Netherlands",
+      "region": "europe",
+      "asset": "cultures-europe-netherlands.zip",
+      "anchor": { "type": "region", "iso": "NL" },
       "language": "nl",
       "name_source": "CBS_NL_2023"
     },
     {
-      "iso": "PL",
-      "key": "poland",
+      "id": "poland",
       "name": "Poland",
+      "region": "europe",
+      "asset": "cultures-europe-poland.zip",
+      "anchor": { "type": "region", "iso": "PL" },
       "language": "pl",
       "name_source": "GUS_PL_2023"
     },
     {
-      "iso": "ES",
-      "key": "spain",
+      "id": "spain",
       "name": "Spain",
+      "region": "europe",
+      "asset": "cultures-europe-spain.zip",
+      "anchor": { "type": "region", "iso": "ES" },
       "language": "es",
       "name_source": "INE_ES_2023"
     },
     {
-      "iso": "FR",
-      "key": "france",
+      "id": "france",
       "name": "France",
+      "region": "europe",
+      "asset": "cultures-europe-france.zip",
+      "anchor": { "type": "region", "iso": "FR" },
       "language": "fr",
       "name_source": "INSEE_FR_2023"
     },
     {
-      "iso": "NG",
-      "key": "nigeria",
+      "id": "nigeria",
       "name": "Nigeria",
+      "region": "africa",
+      "asset": "cultures-africa-nigeria.zip",
+      "anchor": { "type": "region", "iso": "NG" },
       "language": "en",
       "name_source": "Cultures_persona_archetype"
+    },
+    {
+      "id": "mexico",
+      "name": "Mexico",
+      "region": "americas",
+      "asset": "cultures-americas-mexico.zip",
+      "anchor": { "type": "region", "iso": "MX" },
+      "language": "es",
+      "name_source": "INEGI_MX_2023"
     }
   ]
 }
