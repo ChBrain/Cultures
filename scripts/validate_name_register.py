@@ -99,34 +99,10 @@ def persona_files(country_dir: Path) -> list[Path]:
     )
 
 
-def _country_id(c: dict) -> str:
-    """Registry id of a country entry.
-
-    Transitional: the v2 countries.json shape (mirroring the KAIHACKS
-    download contract) names this `id`; v1 used `key`. Both are accepted
-    so this reader and the countries.json restructure can land as the
-    separate-lane PRs the branch contract forces. Collapse to `id` once
-    the v2 registry is on main.
-    """
-    return c.get("id") or c["key"]
-
-
-def _country_iso(c: dict) -> str:
-    """ISO 3166-1 alpha-2 code of a country entry.
-
-    Transitional: v2 nests it in `anchor` ({"type": "region", "iso": ...});
-    v1 carried `iso` at top level. See `_country_id`.
-    """
-    anchor = c.get("anchor")
-    if isinstance(anchor, dict) and "iso" in anchor:
-        return anchor["iso"]
-    return c["iso"]
-
-
 def load_countries() -> dict[str, dict]:
     """Load data/countries.json as an id -> registry-entry map."""
     data = json.loads(COUNTRIES.read_text(encoding="utf-8"))
-    return {_country_id(c): c for c in data.get("countries", [])}
+    return {c["id"]: c for c in data.get("countries", [])}
 
 
 def find_country_dir(slug: str) -> Path:
@@ -161,7 +137,7 @@ def extract_country(slug: str, countries: dict[str, dict]) -> list[dict]:
             "name":            ascii_key(display),
             "given":           display,
             "gender":          gender,
-            "country":         _country_iso(meta),
+            "country":         meta["anchor"]["iso"],
             "persona_file":    str(rel),
             "cultural_source": meta["name_source"],
             "added":           str(date.today()),
