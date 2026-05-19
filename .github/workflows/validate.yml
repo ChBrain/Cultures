@@ -425,6 +425,24 @@ jobs:
       - name: Run audit_readme_bands tests
         run: python -m pytest tests/test_audit_readme_bands.py -v
 
+  cultures-culture-traceability:
+    name: cultures - Culture-set traceability
+    # Gate for REFERENCES.md / README.md / persona-link traceability against
+    # the real culture file set (ChBrain/Cultures#301 rules R4-R6). Independent,
+    # always runs, no deps. The checks are xfail-soft during the corpus
+    # rollout, so this job stays green while per-country drift is corrected.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run culture traceability tests
+        run: python -m pytest tests/test_culture_traceability.py -v
+
   cultures-review-command-tests:
     name: cultures - Review command parser tests
     # Unit-test gate for scripts/parse_review_command.py (the /review
@@ -1043,6 +1061,7 @@ jobs:
       - cultures-culture-branch-base
       - cultures-pr-base-tests
       - cultures-audit-readme-bands-tests
+      - cultures-culture-traceability
       - cultures-review-command-tests
       - cultures-hofstede-readme-updater-tests
       - cultures-history-arc
