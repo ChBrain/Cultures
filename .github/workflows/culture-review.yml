@@ -1,0 +1,193 @@
+name: culture-review
+
+# NLP review of culture content. Runs the khai_tests.review checks
+# (gpt-4o-mini via GitHub Models, no external key) on changed culture
+# files in PRs into culture/release, and posts a PASS/FLAG comment.
+#
+# Checks (universal khai-tier rules; see KAIHACKS khai_tests.review):
+#   - prose naturalness        per-changed-file native-speaker writing
+#   - persona distinctness     a culture's personas aren't the same stereotype
+#   - vocab overlap            a piece/place/process doesn't restate its
+#                              linked position's Has/Orders (DRY R1-R2)
+#   - Shadow != position       persona's Shadow isn't the linked position's
+#                              Loses restated (#290 rule 2)
+#   - persona typicality       persona is typical of the culture (#290 rule 4)
+#
+# Supersedes prose-review.yml -- the prose-naturalness check is now one
+# of five, run through the shared khai_tests.review wheel.
+#
+# Advisory: posts a PR comment, does not block merge. Promotable to a
+# required check once it's proven on real PRs (e.g. ChBrain/Cultures#290).
+
+on:
+  pull_request:
+    branches: [culture/release]
+
+jobs:
+  culture-review:
+    name: Culture content review (NLP)
+    runs-on: ubuntu-latest
+    # Same-repo only -- the GitHub Models call and the KAIHACKS wheel
+    # both need org-scoped tokens; forked PRs cannot run this.
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    permissions:
+      models: read
+      pull-requests: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME"
+
+      - name: Find changed culture files
+        id: changed
+        run: |
+          FILES=$(git diff --name-only --diff-filter=ACMRT "origin/${{ github.base_ref }}...HEAD" \
+            | grep -E '^regions/.*/(culture_|persona_).*\.md$' || true)
+          if [ -z "$FILES" ]; then
+            echo "any=false" >> "$GITHUB_OUTPUT"
+          else
+            {
+              echo "files<<EOF"
+              echo "$FILES"
+              echo "EOF"
+              echo "any=true"
+            } >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run culture review
+        if: steps.changed.outputs.any == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CHANGED_FILES: ${{ steps.changed.outputs.files }}
+        run: |
+          python3 <<'PYEOF' > /tmp/review.md
+          # Dispatcher: groups changed files by country, calls the five
+          # khai_tests.review checks with the right inputs, concatenates
+          # markdown for one PR comment. Inline (governance-scoped via
+          # this workflow file) -- scripts/ orchestration scripts are
+          # not yet in GOVERNANCE_GLOB_PATTERNS.
+          import os
+          import subprocess
+          from collections import defaultdict
+          from pathlib import Path
+
+          changed = [f for f in os.environ.get("CHANGED_FILES", "").splitlines() if f]
+          by_dir = defaultdict(list)
+          for f in changed:
+              by_dir[Path(f).parent].append(Path(f))
+
+
+          def is_persona(name: str) -> bool:
+              return (
+                  "_persona_" in name
+                  or "_male_" in name
+                  or "_female_" in name
+                  or name.startswith("persona_")
+              )
+
+
+          def is_position(name: str) -> bool:
+              # The main culture-level position: culture_<adj>_position.md.
+              # Sub-positions (culture_*_position_language.md) keep their
+              # _position_ infix; only the bare _position.md is the parent.
+              return name.endswith("_position.md") and "_position_" not in name
+
+
+          def run(*args):
+              return subprocess.run(
+                  ["python3", "-m", "khai_tests.review", *args],
+                  capture_output=True, text=True, check=False,
+              ).stdout
+
+          print("## khai_tests.review on this PR\n")
+          for d, changed_in_dir in sorted(by_dir.items()):
+              country = d.name
+              display = country.replace("_", " ").title()
+              all_files = sorted(d.glob("culture_*.md")) + sorted(d.glob("persona_*.md"))
+              personas = [f for f in all_files if is_persona(f.name)]
+              positions = [f for f in all_files if is_position(f.name)]
+              position = positions[0] if positions else None
+              others = [
+                  f for f in all_files
+                  if not is_persona(f.name) and not is_position(f.name)
+              ]
+
+              print(f"### `{country}`\n")
+
+              # prose-naturalness: only on files this PR actually changed
+              prose_args = []
+              for f in changed_in_dir:
+                  prose_args += ["--file", str(f)]
+              if prose_args:
+                  print(run("prose", *prose_args))
+
+              # persona-distinct: needs at least two personas in the culture
+              if len(personas) >= 2:
+                  print(run(
+                      "persona-distinct",
+                      "--culture", display,
+                      "--files", *[str(p) for p in personas],
+                  ))
+
+              # shadow-not-position + typical-of: need the culture's position
+              if position:
+                  for ps in personas:
+                      print(run(
+                          "shadow-not-position",
+                          "--persona", str(ps),
+                          "--position", str(position),
+                      ))
+                      print(run(
+                          "typical-of",
+                          "--file", str(ps),
+                          "--of", f"{display} culture",
+                      ))
+
+              # vocab-overlap: each non-persona, non-position file vs the position
+              if position:
+                  for f in others:
+                      print(run(
+                          "vocab-overlap",
+                          "--file", str(f),
+                          "--position", str(position),
+                      ))
+
+              print()
+
+          print("---")
+          print("*Advisory -- does not block merge. Built on `khai_tests.review`.*")
+          PYEOF
+          cat /tmp/review.md
+
+      - name: Post PR comment
+        if: steps.changed.outputs.any == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('/tmp/review.md', 'utf8');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });

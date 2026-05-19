@@ -30,6 +30,14 @@ culture content. So governance edits are walled into their own kind:
   governance     ``governance/<name>``       governance paths + safe metadata
   other          ``chore/*``, ``fix/*``, …   everything except regions/** and
                                               governance paths
+  fork           ``fork/<name>``             regions/** + safe metadata only
+
+The ``fork`` kind is the lane for external / contributor culture content.
+It is the narrowest write scope in the repo - culture files under
+``regions/**`` and nothing else: no engine, no scripts, no validators, no
+workflows, no governance data. A contribution that arrives as a GitHub fork
+PR is re-homed onto a ``fork/<name>`` branch so it runs under the full
+same-repo gate set before it can reach ``culture/release``.
 
 Used by:
 - .githooks/pre-commit (local enforcement, all four directions)
@@ -63,10 +71,22 @@ GOVERNANCE_BRANCH_PATTERN = re.compile(r"^governance/[a-z0-9][a-z0-9_.-]*$")
 # identical to main, scope is unrestricted (anything main has is allowed).
 SYNC_BRANCH_PATTERN = re.compile(r"^sync/[a-z0-9][a-z0-9_.-]*$")
 
-# World-level integration slug: may touch all of regions/**.
-# This is the integration target feature branches merge into;
-# everything else under culture/* must resolve to a country or region.
+# Fork branches carry external / contributor culture content. They are
+# confined to regions/** -- the narrowest write scope -- so an outside
+# contribution cannot touch anything executable (hooks, workflows,
+# validators) or any governance data. <name> is the contributor handle.
+FORK_BRANCH_PATTERN = re.compile(r"^fork/[a-z0-9][a-z0-9_.-]*$")
+
+# World-level integration slug: may touch the whole product -- regions/**
+# AND engine/**. This is the integration target feature branches merge into;
+# everything else under culture/* must resolve to a country, region, or the
+# engine slug.
 WORLD_SLUGS = frozenset({"release"})
+
+# The engine slug. culture/engine resolves to engine/** -- the shared
+# scaffold every culture runs on. It is product content, not infrastructure:
+# a culture/engine branch PRs into culture/release like any culture branch.
+ENGINE_SLUG = "engine"
 
 # Metadata files allowed on culture branches alongside regions/** changes.
 # Exact path match - `subdir/.gitignore` is NOT safe; only the listed paths.
@@ -117,6 +137,7 @@ GOVERNANCE_GLOB_PATTERNS = (
     "scripts/audit_readme_bands.py",
     "scripts/update_hofstede_readme.py",
     "scripts/migrate_footer_to_frontmatter.py",
+    "scripts/build_zips.py",
     "data/hofstede_denylist.yaml",
     "data/hofstede_keywords.py",
     "data/hofstede_scores.json",
@@ -132,7 +153,7 @@ _DEFAULT_REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 def classify_branch(branch: str) -> str:
-    """Return 'main', 'culture', 'governance', 'sync', or 'other'."""
+    """Return 'main', 'culture', 'governance', 'sync', 'fork', or 'other'."""
     if branch == "main":
         return "main"
     if CULTURE_BRANCH_PATTERN.match(branch):
@@ -141,6 +162,8 @@ def classify_branch(branch: str) -> str:
         return "governance"
     if SYNC_BRANCH_PATTERN.match(branch):
         return "sync"
+    if FORK_BRANCH_PATTERN.match(branch):
+        return "fork"
     return "other"
 
 
@@ -189,26 +212,33 @@ def _world_topology(repo_root: Path) -> tuple[set[str], dict[str, str]]:
 def culture_scope(
     branch_name: str,
     repo_root: Path = _DEFAULT_REPO_ROOT,
-) -> str | None:
-    """Resolve a ``culture/<slug>`` branch to its allowed path prefix.
+) -> tuple[str, ...] | None:
+    """Resolve a ``culture/<slug>`` branch to its allowed path prefixes.
 
-    Returns the prefix that every staged file under regions/ must start
-    with, or ``None`` if the slug doesn't resolve to a known world,
-    region, or country. Resolution order is world > region > country, so
-    a slug that collides between layers always picks the broader scope
-    (the broader name is what a maintainer would type for the broader
-    branch).
+    Returns the tuple of prefixes every staged file must start with, or
+    ``None`` if the slug doesn't resolve to a known world, region,
+    country, or the engine. The product is ``engine/`` + ``regions/``:
+
+      release  -> ('regions/', 'engine/')   world: the whole product
+      engine   -> ('engine/',)              the shared scaffold
+      <region> -> ('regions/<region>/',)
+      <country>-> ('regions/<region>/<country>/',)
+
+    Resolution order is world > engine > region > country, so a slug that
+    collides between layers always picks the broader scope.
     """
     if not CULTURE_BRANCH_PATTERN.match(branch_name):
         return None
     slug = branch_name[len("culture/"):]
     if slug in WORLD_SLUGS:
-        return "regions/"
+        return ("regions/", "engine/")
+    if slug == ENGINE_SLUG:
+        return ("engine/",)
     region_slugs, country_to_region = _world_topology(repo_root)
     if slug in region_slugs:
-        return f"regions/{slug}/"
+        return (f"regions/{slug}/",)
     if slug in country_to_region:
-        return f"regions/{country_to_region[slug]}/{slug}/"
+        return (f"regions/{country_to_region[slug]}/{slug}/",)
     return None
 
 
@@ -224,38 +254,58 @@ def check_scope(
     keeping this helper print-free makes it easy to unit-test and to
     reuse from CI.
 
-    Culture branches resolve to a country, region, or world-level prefix
-    via ``culture_scope``. If ``branch_name`` is missing or its slug
-    doesn't resolve, every staged file outside SAFE_PATTERNS is flagged
-    as unsafe so the caller can surface the missing-context error rather
-    than silently widening scope.
+    Culture branches resolve to a country, region, engine, or world-level
+    set of prefixes via ``culture_scope``. If ``branch_name`` is missing or
+    its slug doesn't resolve, every staged file outside SAFE_PATTERNS is
+    flagged as unsafe so the caller can surface the missing-context error
+    rather than silently widening scope.
 
     Governance branches may only touch governance paths (plus the
     SAFE_PATTERNS root files like ``.validation-stamp``). Other branches
-    may touch anything except ``regions/`` and governance paths - this is
-    the tightening that protects the gates from silent edits.
+    may touch anything except ``regions/``, ``engine/`` and governance
+    paths - regions/ and engine/ are the product (culture lane); governance
+    is the gates. This is the tightening that protects both from silent
+    edits.
+
+    Fork branches are the mirror of that: ``regions/**`` plus safe
+    metadata and nothing else, so an external contribution is confined
+    to culture content and cannot reach an executable or governance path.
 
     'main' is gated separately (no commits at all) and is treated as a
     no-op here so a dry-run on main doesn't claim scope violations.
     """
     if branch_kind == "culture":
-        prefix = culture_scope(branch_name, repo_root) if branch_name else None
-        if prefix is None:
+        prefixes = culture_scope(branch_name, repo_root) if branch_name else None
+        if prefixes is None:
             unsafe = [f for f in staged if f not in SAFE_PATTERNS]
         else:
             unsafe = [
                 f for f in staged
-                if not f.startswith(prefix) and f not in SAFE_PATTERNS
+                if not any(f.startswith(p) for p in prefixes)
+                and f not in SAFE_PATTERNS
             ]
+    elif branch_kind == "fork":
+        # Fork branches carry external culture content: regions/** only,
+        # plus safe metadata. Everything else -- engine, scripts, tests,
+        # workflows, governance data -- is out of scope, so an outside
+        # contribution cannot reach an executable or rule-defining surface.
+        unsafe = [
+            f for f in staged
+            if not f.startswith("regions/") and f not in SAFE_PATTERNS
+        ]
     elif branch_kind == "governance":
         unsafe = [
             f for f in staged
             if not is_governance_path(f) and f not in SAFE_PATTERNS
         ]
     elif branch_kind == "other":
+        # regions/ and engine/ are the product (culture lane); governance
+        # paths are the gates. A chore/fix/feat branch may touch none of them.
         unsafe = [
             f for f in staged
-            if f.startswith("regions/") or is_governance_path(f)
+            if f.startswith("regions/")
+            or f.startswith("engine/")
+            or is_governance_path(f)
         ]
     elif branch_kind == "sync":
         # Sync branches carry main's content unchanged into culture/release.
@@ -292,6 +342,7 @@ def allowed_bases(head: str) -> set[str]:
       culture/release            -> {main}              release PR
       governance/<name>          -> {main}
       sync/<name>                -> {culture/release}   main -> culture/release
+      fork/<name>                -> {culture/release}   external culture content
       chore|fix|feat/*, other    -> {main}
       main                       -> set()               not a valid head
     """
@@ -304,6 +355,10 @@ def allowed_bases(head: str) -> set[str]:
         # must funnel through culture/release first.
         return {"main"} if slug in WORLD_SLUGS else {"culture/release"}
     if kind == "sync":
+        return {"culture/release"}
+    if kind == "fork":
+        # Fork branches carry external culture content; like culture/<country>
+        # branches they funnel through the integration branch.
         return {"culture/release"}
     # governance and other (chore/fix/feat/...) both target main.
     return {"main"}
@@ -318,37 +373,58 @@ def base_remedy(head: str, base: str) -> str | None:
     """
     allowed = allowed_bases(head)
     if not allowed:
+        # head is 'main' -- not a valid PR head at all. This is the one
+        # remedy that is NOT fixable in place: a PR's head branch is fixed
+        # at creation, so the PR has to be re-opened from a real branch.
         return (
             f">>> ERROR: '{head}' is not a valid PR head branch.\n"
             "\n"
-            "   'main' cannot be a PR head. Move the work onto a culture/*,\n"
+            "   'main' cannot be a PR head. The work must sit on a culture/*,\n"
             "   governance/*, sync/*, or chore|fix|feat/* branch.\n"
-            "   Advisor: python tests/branch_scope.py advise --op <operation>"
+            "\n"
+            "   Fixable in place: NO. A PR's head branch cannot be changed\n"
+            "   after the PR is opened -- retargeting the base will not help.\n"
+            "   Close this PR and open a new one from a correctly-kinded\n"
+            "   branch.\n"
+            "\n"
+            "   Pick the branch by operation:\n"
+            "     python tests/branch_scope.py advise --op <operation>\n"
+            "   It prints the branch name, the base, and the git commands.\n"
+            "\n"
+            "   Common case -- a main -> culture/release sync: the head is a\n"
+            "   sync/* branch, a snapshot of main. Run:\n"
+            "     git branch sync/main-to-release-<date> origin/main\n"
+            "     git push origin sync/main-to-release-<date>\n"
+            "   then open sync/main-to-release-<date> -> culture/release."
         )
     if base in allowed:
         return None
 
     kind = classify_branch(head)
+    target = sorted(allowed)[0]  # every valid head has exactly one allowed base
     lines = [
         f">>> ERROR: PR base '{base}' is not allowed for head '{head}'.",
         "",
         f"   Allowed base for '{head}': {sorted(allowed)}",
         "",
+        "   Fixable in place: YES. The head branch is valid; only the base is",
+        f"   wrong. Retarget this PR's base to '{target}' -- in the PR's GitHub",
+        f"   UI, or:  gh pr edit <pr-number> --base {target}",
+        "",
     ]
     if kind == "sync":
         lines += [
-            "   A sync/* branch funnels main -> culture/release; its only",
-            "   valid base is 'culture/release'.",
+            "   A sync/* branch funnels main -> culture/release; 'culture/release'",
+            "   is its only valid base.",
             "",
-            "   To take culture/release CONTENT INTO main you do not want a",
-            "   sync branch at all -- that is the release PR: open a PR with",
-            "   head 'culture/release' and base 'main'. Close this PR and",
-            "   open culture/release -> main instead.",
+            "   (If you meant to take culture/release CONTENT INTO main, that is",
+            "   the release PR, not a sync -- its head is 'culture/release'",
+            "   itself. That needs a different head, so close this PR and open",
+            "   culture/release -> main instead.)",
         ]
     elif kind == "culture" and head[len("culture/"):] in WORLD_SLUGS:
         lines += [
-            "   culture/release is the integration branch; it PRs up into",
-            "   'main'. Retarget this PR's base to 'main'.",
+            "   culture/release is the integration branch; it PRs up into 'main'.",
         ]
     elif kind == "culture":
         lines += [
@@ -356,18 +432,33 @@ def base_remedy(head: str, base: str) -> str | None:
             "   branch first:",
             "     culture/<slug>  -> culture/release   (this PR)",
             "     culture/release -> main              (release PR)",
-            "   Retarget this PR's base to 'culture/release'.",
+        ]
+        if base not in ("main", "culture/release"):
+            lines += [
+                "",
+                f"   '{base}' is not an integration branch. If you based this on",
+                "   another feature branch because your culture content links",
+                "   files that branch adds (e.g. engine/* files), that is a",
+                "   sequencing dependency, not a base: engine work reaches",
+                "   culture/release via engine -> main -> sync. Base on",
+                "   culture/release and wait for the sync to carry those files",
+                "   down -- do not stack on the feature branch (validate.yml",
+                "   does not even run for a PR based outside main/culture/release).",
+            ]
+    elif kind == "fork":
+        lines += [
+            "   A fork/* branch carries external culture content; like a",
+            "   culture/<country> branch it funnels through culture/release.",
         ]
     elif kind == "governance":
-        lines.append(
-            "   Governance changes go directly to main. Retarget base to 'main'.")
+        lines.append("   Governance changes integrate directly into main.")
     else:
-        lines.append(
-            "   chore/fix/feat branches target 'main'. Retarget base to 'main'.")
+        lines.append("   chore/fix/feat branches integrate directly into main.")
 
     lines += [
         "",
-        "   Confirm routing: python tests/branch_scope.py advise --op <operation>",
+        "   Confirm routing before retargeting:",
+        "     python tests/branch_scope.py check-pr --head <head> --base <base>",
         "   Integration flow: docs/BRANCHING.md",
     ]
     return "\n".join(lines)
@@ -626,9 +717,17 @@ _OPERATIONS: dict[str, dict] = {
     ),
     "release": dict(
         kind="culture", branch="culture/release", start="",
-        scope="regions/** + safe metadata",
+        scope="regions/** + engine/** + safe metadata",
         note="culture/release is the long-lived integration branch -- you do "
              "not create it; you PR it into main.",
+    ),
+    "engine": dict(
+        kind="culture", branch="culture/engine",
+        start="origin/culture/release",
+        scope="engine/** + safe metadata",
+        note="The shared engine -- the scaffold every culture runs on. "
+             "Product content, not infrastructure: a culture-lane branch "
+             "that PRs into culture/release like culture/<country>.",
     ),
     "sync": dict(
         kind="sync", branch="sync/release-from-main-<date>",
@@ -636,6 +735,14 @@ _OPERATIONS: dict[str, dict] = {
         scope="unrestricted (a snapshot of main)",
         note="Funnel main's HEAD into culture/release. The branch IS main's "
              "tip -- it carries no commits of its own.",
+    ),
+    "fork": dict(
+        kind="fork", branch="fork/<name>",
+        start="origin/culture/release",
+        scope="regions/** + safe metadata only",
+        note="External / contributor culture content. The narrowest write "
+             "scope -- culture files only, nothing executable or governance. "
+             "Re-home a fork PR's commits here so they run the full gate set.",
     ),
     "governance": dict(
         kind="governance", branch="governance/<name>",
@@ -689,9 +796,9 @@ def advise_operation(
     scope = spec["scope"]
     if operation in ("new-country", "new-region") and slug:
         branch = f"culture/{slug}"
-        prefix = culture_scope(branch, repo_root)
-        if prefix is not None:
-            scope = f"{prefix}** + safe metadata"
+        prefixes = culture_scope(branch, repo_root)
+        if prefixes is not None:
+            scope = " + ".join(f"{p}**" for p in prefixes) + " + safe metadata"
         else:
             noun = "country" if operation == "new-country" else "region"
             scope = (
@@ -731,6 +838,8 @@ def lane_of_path(path: str, repo_root: Path = _DEFAULT_REPO_ROOT) -> tuple[str, 
     """
     if path in SAFE_PATTERNS:
         return ("(safe metadata)", "safe")
+    if path.startswith("engine/"):
+        return (f"culture/{ENGINE_SLUG}", "culture")
     if path.startswith("regions/"):
         parts = path.split("/")
         region_slugs, country_to_region = _world_topology(repo_root)
@@ -827,15 +936,25 @@ def render_files_advice(lanes: dict[str, list[str]]) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
-    """CLI: `python tests/branch_scope.py advise --op OP | --files PATH...`."""
+    """CLI for the branch advisor and the pre-PR routing check.
+
+      advise   --op OPERATION | --files PATH...   which branch/base to use
+      check-pr --head BRANCH  --base BRANCH       is this head/base legal?
+
+    `check-pr` is the pre-flight: run it before opening a PR so an illegal
+    head/base pair is caught here, not from red CI afterward. It shares
+    `base_remedy()` with the pr-gate base check, so the guidance is
+    identical before and after.
+    """
     parser = argparse.ArgumentParser(
         prog="branch_scope.py",
         description=(
-            "Branch advisor -- before `git checkout -b`, ask which branch "
-            "and base an operation requires."
+            "Branch advisor and pre-PR routing check. Before `git checkout "
+            "-b`, ask which branch an operation needs; before opening a PR, "
+            "check the head/base pair."
         ),
     )
-    parser.add_argument("mode", choices=["advise"])
+    parser.add_argument("mode", choices=["advise", "check-pr"])
     parser.add_argument(
         "--op", metavar="OPERATION",
         help="intended operation: " + ", ".join(valid_operations()),
@@ -848,7 +967,24 @@ def main(argv: list[str] | None = None) -> int:
         "--files", nargs="+", metavar="PATH",
         help="repo-relative paths -- report which lane(s) they belong to",
     )
+    parser.add_argument(
+        "--head", metavar="BRANCH", help="PR head branch, for check-pr",
+    )
+    parser.add_argument(
+        "--base", metavar="BRANCH", help="PR base branch, for check-pr",
+    )
     args = parser.parse_args(argv)
+
+    if args.mode == "check-pr":
+        if not args.head or not args.base:
+            parser.error("check-pr needs --head BRANCH and --base BRANCH")
+        remedy = base_remedy(args.head, args.base)
+        if remedy is None:
+            print(f"OK: base '{args.base}' is allowed for head "
+                  f"'{args.head}'.")
+            return 0
+        print(remedy)
+        return 1
 
     if args.op:
         advice = advise_operation(args.op, args.slug)

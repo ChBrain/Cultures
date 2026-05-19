@@ -17,6 +17,7 @@ Run: python -m pytest tests/test_validate_pr_base.py
 """
 from __future__ import annotations
 
+import re
 import sys
 from pathlib import Path
 
@@ -25,7 +26,7 @@ import pytest
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
-from branch_scope import allowed_bases  # noqa: E402
+from branch_scope import allowed_bases, base_remedy  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -95,3 +96,47 @@ def test_other_routes_to_main(head):
 
 def test_main_is_invalid_head():
     assert allowed_bases("main") == set()
+
+
+# ---------------------------------------------------------------------------
+# validate.yml trigger must not drift from the allowed-base set
+# ---------------------------------------------------------------------------
+
+def test_validate_yml_runs_for_exactly_the_allowed_bases():
+    """validate.yml triggers on a fixed branch set; allowed_bases() routes
+    PRs to a base set. If the two drift, a PR can target a base the base
+    check accepts while validate.yml never runs for it -- the #290 class
+    (a PR with zero content validation)."""
+    text = (HERE.parent / ".github" / "workflows" / "validate.yml").read_text(
+        encoding="utf-8"
+    )
+    m = re.search(r"pull_request:\s*\n\s*branches:\s*\[([^\]]*)\]", text)
+    assert m, "validate.yml: could not find the pull_request branches trigger"
+    triggers = {b.strip() for b in m.group(1).split(",") if b.strip()}
+    routed: set[str] = set()
+    for head in ("culture/germany", "culture/release", "governance/x",
+                 "sync/x", "fork/x", "chore/x"):
+        routed |= allowed_bases(head)
+    assert triggers == routed, (
+        f"validate.yml triggers on {sorted(triggers)} but allowed_bases() "
+        f"routes PRs to {sorted(routed)} -- they must match, or a PR can "
+        f"target a base where validate.yml never runs."
+    )
+
+
+# ---------------------------------------------------------------------------
+# base_remedy names the engine-stacking sequencing trap
+# ---------------------------------------------------------------------------
+
+def test_base_remedy_flags_culture_stacked_on_feature_branch():
+    """A culture branch based on a non-integration branch (e.g. stacked on
+    an engine PR because its content links that engine's files) gets the
+    sequencing guidance, not just 'retarget to culture/release'."""
+    msg = base_remedy("culture/germany", "engine/language-process-ladder")
+    assert msg is not None
+    assert "sequencing dependency" in msg
+    assert "engine -> main -> sync" in msg
+
+
+def test_base_remedy_culture_into_release_is_clean():
+    assert base_remedy("culture/germany", "culture/release") is None

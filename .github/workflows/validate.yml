@@ -23,7 +23,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.9)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -49,7 +49,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.9)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -75,7 +75,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.9)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -101,7 +101,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.9)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -127,7 +127,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.9)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -153,7 +153,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.9)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -179,7 +179,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.9)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -425,6 +425,24 @@ jobs:
       - name: Run audit_readme_bands tests
         run: python -m pytest tests/test_audit_readme_bands.py -v
 
+  cultures-culture-traceability:
+    name: cultures - Culture-set traceability
+    # Gate for REFERENCES.md / README.md / persona-link traceability against
+    # the real culture file set (ChBrain/Cultures#301 rules R4-R6). Independent,
+    # always runs, no deps. The checks are xfail-soft during the corpus
+    # rollout, so this job stays green while per-country drift is corrected.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run culture traceability tests
+        run: python -m pytest tests/test_culture_traceability.py -v
+
   cultures-review-command-tests:
     name: cultures - Review command parser tests
     # Unit-test gate for scripts/parse_review_command.py (the /review
@@ -495,6 +513,76 @@ jobs:
       - name: Run history-arc tests
         run: python -m pytest tests/test_history_arc.py -v
 
+  cultures-language-process-ladder:
+    name: cultures - Language-process ladder
+    # Always-run gate for the engine language-as-process ladder (issue #281).
+    # The 21 ladder files under engine/ are universal solution-grade culture
+    # content, but khai does not see engine files (--khai-files is regions/-
+    # scoped), so the ladder's structural contract -- completeness, the IDLE
+    # section set, Scope: Universal, the link graph -- is enforced here.
+    # Skips cleanly until the ladder lands (PR #283).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest pyyaml
+      - name: Run language-process ladder tests
+        run: python -m pytest tests/test_language_process_ladder.py -v
+
+  cultures-zip-build:
+    name: cultures - Zip build
+    # Runs the real release zip build (scripts/build_zips.py) and validates
+    # every produced zip. build-zips.yml only fires on release/dispatch, so
+    # this is what proves the build is sound on a PR.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest pyyaml
+      - name: Run zip-build tests
+        run: python -m pytest tests/test_build_zips.py -v
+
+  cultures-hofstede-score-home:
+    name: cultures - Hofstede score home
+    # Single-home gate for Hofstede scores: data/hofstede_scores.json is
+    # complete and authoritative, and no bag has drifted from it.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest pyyaml
+      - name: Run Hofstede score-home tests
+        run: python -m pytest tests/test_hofstede_score_home.py -v
+
+  cultures-validator-wiring:
+    name: cultures - Validator wiring
+    # Meta-gate: every tests/test_*.py is invoked by a validate.yml job.
+    # A validator is dead weight until a job runs it; this fails when a
+    # test file is neither wired nor explicitly exempted.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run validator-wiring tests
+        run: python -m pytest tests/test_validate_wiring.py -v
+
   cultures-metadata-format:
     name: cultures - Metadata format
     # Always-run guard for the footer -> YAML-frontmatter migration. Per
@@ -517,7 +605,8 @@ jobs:
   cultures-language-preflight:
     name: cultures - Language pre-flight
     # Always-run pre-flight: every country README's **Language(s):** slug
-    # must already appear in data/language_policy.yaml. Mirrors the
+    # must appear in data/language_policy.yaml, and every country's
+    # data/countries.json language must be unlocked via iso_map. Mirrors the
     # cultures-audit-readme-bands-tests / cultures-history-arc pattern: independent,
     # always runs, no setup-job dependency. Fast (no lingua, no whl
     # install) -- under 30 seconds.
@@ -549,8 +638,8 @@ jobs:
           python-version: '3.11'
       - name: Install pytest + pyyaml
         run: pip install pytest pyyaml
-      - name: Run registry pre-flight
-        run: python -m pytest tests/test_language.py::test_readme_language_in_registry -v
+      - name: Run registry + unlock pre-flight
+        run: python -m pytest tests/test_language.py -k "registry or unlocked or iso_map" -v
 
   setup:
     name: Setup - Compute changed files
@@ -592,7 +681,11 @@ jobs:
           RANGE="origin/${{ github.base_ref }}...HEAD"
           # --diff-filter=ACMRT skips deletions; the validator must not be handed paths that no longer exist.
           ALL_CHANGED=$(git diff --name-only --diff-filter=ACMRT "$RANGE")
-          FILES=$(echo "$ALL_CHANGED" | { grep -E '^regions/.*\.md$' || true; } | tr '\n' ' ' | sed 's/ *$//')
+          # khai is path-independent: it classifies a file from its `khai:`
+          # declaration, not its location. engine/*.md is solution-grade
+          # culture content, so it is handed to the same validators (khai,
+          # link integrity) as regions/*.md content.
+          FILES=$(echo "$ALL_CHANGED" | { grep -E '^(regions|engine)/.*\.md$' || true; } | tr '\n' ' ' | sed 's/ *$//')
           ANY=$(if [ -z "$FILES" ]; then echo "false"; else echo "true"; fi)
           DATA_CHANGED=$(if echo "$ALL_CHANGED" | grep -qx 'data/hofstede_scores.json'; then echo "true"; else echo "false"; fi)
           echo "any=$ANY" >> "$GITHUB_OUTPUT"
@@ -686,7 +779,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.9)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -727,7 +820,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.9)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -753,7 +846,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.9)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -827,7 +920,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.9)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -968,9 +1061,14 @@ jobs:
       - cultures-culture-branch-base
       - cultures-pr-base-tests
       - cultures-audit-readme-bands-tests
+      - cultures-culture-traceability
       - cultures-review-command-tests
       - cultures-hofstede-readme-updater-tests
       - cultures-history-arc
+      - cultures-language-process-ladder
+      - cultures-zip-build
+      - cultures-hofstede-score-home
+      - cultures-validator-wiring
       - cultures-metadata-format
       - cultures-language-preflight
       - setup
@@ -997,6 +1095,29 @@ jobs:
         if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
         run: |
           echo "::error::One or more validate.yml checks failed - see the jobs above."
+          exit 1
+      - name: Fail if a khai check skipped on a same-repo content PR
+        # khai jobs legitimately skip on fork PRs (a fork gets no KAIHACKS
+        # secret) and when no regions/*.md changed. But on a same-repo PR
+        # that DID change culture content, every khai job must actually
+        # run -- a skip there means the khai validation silently did not
+        # happen, and the step above (failure/cancelled only) would let it
+        # pass green. This converts that silent skip to red. Fork PRs are
+        # exempt by the head.repo condition, so they still skip cleanly.
+        if: >-
+          github.event.pull_request.head.repo.full_name == github.repository
+          && needs.setup.outputs.any == 'true'
+          && (needs.khai-encoding.result == 'skipped'
+              || needs.khai-process.result == 'skipped'
+              || needs.khai-position.result == 'skipped'
+              || needs.khai-piece.result == 'skipped'
+              || needs.khai-place.result == 'skipped'
+              || needs.khai-persona.result == 'skipped'
+              || needs.khai-language.result == 'skipped'
+              || needs.khai-links.result == 'skipped'
+              || needs.khai-plagiarism.result == 'skipped')
+        run: |
+          echo "::error::A khai validation job was skipped on a same-repo content PR -- khai must run on culture content. See the skipped khai-* jobs above."
           exit 1
       - name: All clear
         run: echo "All validate.yml checks passed or were not applicable."

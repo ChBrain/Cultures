@@ -1,8 +1,16 @@
+---
+khai: position
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: '2026-05-19'
+---
 # Position: Male
 
 ## Owner
-- **Project:** Cultures
-- **Scope:** Universal
+- Project: Cultures
+- Scope: Universal
 
 ## Has
 The body that is read as a claim before it speaks.
@@ -24,7 +32,3 @@ On the loss of that option:
 occupies the position deliberately
 or pretends it is not there.
 The position does not disappear either way.
-
----
-
-v0.1.0 - KAI Worlds

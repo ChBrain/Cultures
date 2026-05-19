@@ -9,15 +9,15 @@ for humans and AI agents; the executable source is
 The repo enforces a strict branch-scope contract:
 
 - `main` is protected - direct commits are rejected.
-- Culture content (`regions/**`) is walled off from infrastructure changes so
-  a refactor cannot accidentally touch culture data.
+- The product (`regions/**` plus the shared engine `engine/**`) is walled off
+  from infrastructure changes so a refactor cannot accidentally touch it.
 - Validators, hooks, and workflow definitions (**governance**) are walled off
   from generic tooling work so an automated contributor (or an LLM) cannot
   silently weaken the gates that protect culture content.
 
 Every branch is classified by its name. `.githooks/pre-commit` rejects
-out-of-scope commits locally; CI mirrors the same classifier. The four kinds
-and their scope rules are below.
+out-of-scope commits locally; CI mirrors the same classifier. The branch
+kinds and their scope rules are below.
 
 ## Pre-flight: ask the advisor
 
@@ -32,13 +32,34 @@ python tests/branch_scope.py advise --files <path> [<path> ...]
 ```
 
 - `--op` routes by *operation* - `new-country`, `new-region`, `release`,
-  `sync`, `governance`, `chore`, `fix`, `feat` - and prints the branch name,
-  the required base, and the `git checkout -b` command.
+  `sync`, `fork`, `governance`, `chore`, `fix`, `feat` - and prints the branch
+  name, the required base, and the `git checkout -b` command.
 - `--files` reports which lane a set of paths belongs to, and refuses a set
   that spans lanes with `SPLIT REQUIRED` plus the per-lane breakdown.
 
 The advisor is the inverse of the classifier: the classifier rejects a wrong
 branch name after the fact; the advisor hands you the right one up front.
+
+### Before you open the PR
+
+`advise` routes the *branch*; `check-pr` checks the *PR*. Before opening a
+pull request, confirm the head/base pair:
+
+```
+python tests/branch_scope.py check-pr --head <head-branch> --base <base-branch>
+```
+
+It exits 0 if the routing is legal, or prints the prescriptive remedy and
+exits 1 - the same `base_remedy()` the `pr-gate` base check runs, so the
+guidance is identical before and after. Running it first turns a red CI
+check into a one-line local check.
+
+A routing failure always states whether it is **fixable in place**:
+
+- A wrong *base* is fixable - retarget the PR's base branch.
+- A wrong *head* is not. `main` is never a valid PR head, and a PR's head
+  branch cannot be changed after the PR is created. That PR must be closed
+  and re-opened from a correctly-kinded branch.
 
 ## Branch kinds
 
@@ -47,10 +68,12 @@ branch name after the fact; the advisor hands you the right one up front.
 | `main` | exact `main` | — (not a PR head) | nothing - direct commits forbidden | n/a |
 | culture (country) | `culture/<country>` | `culture/release` | `regions/<region>/<country>/**` + safe metadata | yes (±10 gap) |
 | culture (region) | `culture/<region>` | `culture/release` | `regions/<region>/**` + safe metadata | yes (±10 gap) |
-| culture (world) | `culture/release` | `main` | `regions/**` + safe metadata | yes (±10 gap) |
+| culture (world) | `culture/release` | `main` | `regions/**` + `engine/**` + safe metadata | yes (±10 gap) |
+| culture (engine) | `culture/engine` | `culture/release` | `engine/**` + safe metadata | n/a |
 | governance | `governance/<name>` | `main` | governance paths + safe metadata | n/a |
 | sync | `sync/<name>` | `culture/release` | unrestricted (snapshot of `main`) | n/a |
-| other | `chore/*`, `fix/*`, `feat/*`, … | `main` | everything **except** `regions/**` **and except** governance paths | n/a |
+| fork | `fork/<name>` | `culture/release` | `regions/**` + safe metadata **only** | yes (±10 gap) |
+| other | `chore/*`, `fix/*`, `feat/*`, … | `main` | everything **except** `regions/**`, `engine/**`, **and** governance paths | n/a |
 
 The pattern is anchored. `feat/culture-x`, `cultures/x`, and `culture/Denmark`
 (uppercase) all classify as `other` and are blocked from `regions/`.
@@ -64,16 +87,28 @@ enforces. Note the two directions are different lanes: `sync/<name>` carries
 
 ## Culture slug resolution
 
-`culture/<slug>` is resolved against the on-disk `regions/` tree:
+The product is `regions/**` (per-country culture content) plus `engine/**`
+(the shared scaffold every culture runs on -- positions, processes, the
+deployment files). A `culture/<slug>` branch resolves to the part of the
+product it owns:
 
-- `<slug>` = `release` -> world-level -> may touch `regions/**`.
-- `<slug>` matches a region folder -> region-level -> may touch `regions/<slug>/**`.
-- `<slug>` matches a country folder -> country-level -> may touch `regions/<region>/<slug>/**`.
+- `<slug>` = `release` -> world-level -> the whole product: `regions/**` + `engine/**`.
+- `<slug>` = `engine` -> the shared engine -> `engine/**`.
+- `<slug>` matches a region folder -> region-level -> `regions/<slug>/**`.
+- `<slug>` matches a country folder -> country-level -> `regions/<region>/<slug>/**`.
 - Otherwise: unknown slug -> reject (typo does not silently widen scope).
 
 A `culture/germany` branch cannot touch Denmark even though both live under
-`regions/europe/`. For multi-country work in one PR, use `culture/<region>` or
-`culture/release`.
+`regions/europe/`, and it cannot touch `engine/**` -- the engine is shared,
+not Germany's. For the shared engine use `culture/engine`; for multi-country
+work in one PR use `culture/<region>` or `culture/release`.
+
+`engine/**` is product content, not infrastructure: it rides the culture
+lane (`culture/engine -> culture/release -> main`), never a `governance/*`
+branch. The *file architecture* of the engine -- the schema its files follow
+-- is the global khai contract, shared across every KAI world and validated
+by the `khai-tests` suite. This repo carries one world's engine, not the
+schema.
 
 ## Culture branch base
 
@@ -116,6 +151,7 @@ Files that define or enforce repository rules. Editing any of these requires a
 - `scripts/setup-hooks.sh`, `scripts/setup-hooks.bat` - hook installation
 - `scripts/audit_readme_bands.py` - canonical Hofstede band contract
 - `scripts/update_hofstede_readme.py` - deterministic README Hofstede-tables updater
+- `scripts/build_zips.py` - the release zip build engine
 - `data/hofstede_denylist.yaml`, `data/hofstede_keywords.py` - validator inputs
 - `data/hofstede_scores.json` - Hofstede Insights reference dataset
 - `data/hofstede_bag_loader.py` - bag-validation infrastructure
@@ -151,6 +187,48 @@ a sync: it is the release PR, opened with head `culture/release` and base
 `pr-gate` base check; `python tests/branch_scope.py advise --op release`
 prescribes the correct routing.
 
+### Runbook: sync `main` into `culture/release`
+
+```
+git fetch origin
+git branch sync/release-from-main-<date> origin/main
+git push origin sync/release-from-main-<date>
+```
+
+Then open a PR with head `sync/release-from-main-<date>` and base
+`culture/release`. The head is a *snapshot* of `main` - no commits are
+authored on it. `python tests/branch_scope.py advise --op sync` prints the
+same, dated for today.
+
+`main` itself cannot be the PR head: it is not a valid head, and a head is
+fixed at creation. A sync PR opened from `main` directly fails the `pr-gate`
+base check and cannot be retargeted out of it - close it and re-open from
+the `sync/<name>` branch above. Confirm before opening:
+`python tests/branch_scope.py check-pr --head sync/release-from-main-<date> --base culture/release`.
+
+## Fork branches
+
+`fork/<name>` is the lane for **external / contributor culture content** -
+work that originates outside the maintainer's own branches (typically a
+GitHub fork PR). `<name>` is the contributor handle.
+
+It is the **narrowest write scope in the repo**: `regions/**` plus safe
+metadata, and nothing else - no engine, no scripts, no validators, no
+workflows, no governance data. A fork branch that touches any of those is
+rejected by the scope check. The point is containment: an outside
+contribution cannot reach an executable or rule-defining surface, so it
+cannot weaken a gate or exfiltrate a secret through CI.
+
+A fork PR cannot run the private `khai` jobs (a fork gets no `KAIHACKS`
+secret). The workflow is therefore: **re-home** the contribution onto a
+`fork/<name>` branch in this repo, where it runs the full same-repo gate
+set, before it reaches `culture/release`. A `fork/<name>` branch carries
+culture content, so it is held to the culture gates (Hofstede ±10 included)
+and targets `culture/release`, exactly like a `culture/<country>` branch.
+
+Before re-homing, review the diff: if it is purely `regions/**` it is inert
+content; anything outside `regions/**` must be treated as untrusted code.
+
 ## Worktree operations
 
 Branching policy and scope constraints are defined in this document.
@@ -174,7 +252,7 @@ Authoritative list: `SAFE_PATTERNS` in
 
 If a change spans two kinds, split it into separate branches/PRs:
 
-1. Culture content -> `culture/<country>` (or `<region>`, `release`)
+1. Culture content -> `culture/<country>` (or `<region>`, `release`); shared engine -> `culture/engine`
 2. Validator / hook / workflow changes -> `governance/<name>`
 3. General tooling / docs -> `chore/<name>`
 4. Bug fixes outside culture and governance -> `fix/<name>`

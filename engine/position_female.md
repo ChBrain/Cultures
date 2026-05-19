@@ -1,8 +1,16 @@
+---
+khai: position
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: '2026-05-19'
+---
 # Position: Female
 
 ## Owner
-- **Project:** Cultures
-- **Scope:** Universal
+- Project: Cultures
+- Scope: Universal
 
 ## Has
 The body that is read as an invitation before it speaks.
@@ -24,7 +32,3 @@ On the loss of that certainty:
 names it
 or works around it so fluently
 that she forgets the detour is not the road.
-
----
-
-v0.1.0 - KAI Worlds

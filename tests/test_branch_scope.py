@@ -27,6 +27,7 @@ from branch_scope import (  # noqa: E402
     is_governance_path,
     lane_of_path,
     lanes_for_files,
+    main as branch_scope_main,
     misbased_commits,
     render_files_advice,
     render_misbased_branch,
@@ -143,15 +144,39 @@ def test_classify_sync_near_misses_are_other(branch):
     assert classify_branch(branch) == "other"
 
 
+@pytest.mark.parametrize("branch", [
+    "fork/alice",
+    "fork/contrib-bob",
+    "fork/jane_doe",
+    "fork/x",
+])
+def test_classify_fork(branch):
+    assert classify_branch(branch) == "fork"
+
+
+@pytest.mark.parametrize("branch", [
+    "fork",
+    "fork/",
+    "fork/Alice",
+    " fork/x",
+    "fork/x ",
+    "fork-x",
+    "forks/x",
+])
+def test_classify_fork_near_misses_are_other(branch):
+    """Typos must NOT be 'fork' - fall through to 'other' (safer default)."""
+    assert classify_branch(branch) == "other"
+
+
 # ---------------------------------------------------------------------------
 # culture_scope
 # ---------------------------------------------------------------------------
 
 @pytest.mark.parametrize("branch,expected", [
-    ("culture/germany",     "regions/europe/germany/"),
-    ("culture/denmark",     "regions/europe/denmark/"),
-    ("culture/netherlands", "regions/europe/netherlands/"),
-    ("culture/poland",      "regions/europe/poland/"),
+    ("culture/germany",     ("regions/europe/germany/",)),
+    ("culture/denmark",     ("regions/europe/denmark/",)),
+    ("culture/netherlands", ("regions/europe/netherlands/",)),
+    ("culture/poland",      ("regions/europe/poland/",)),
 ])
 def test_culture_scope_country(branch, expected):
     assert culture_scope(branch) == expected
@@ -159,11 +184,17 @@ def test_culture_scope_country(branch, expected):
 
 @pytest.mark.parametrize("region", ["europe", "africa", "americas", "asia", "oceania"])
 def test_culture_scope_region(region):
-    assert culture_scope(f"culture/{region}") == f"regions/{region}/"
+    assert culture_scope(f"culture/{region}") == (f"regions/{region}/",)
 
 
 def test_culture_scope_world_release():
-    assert culture_scope("culture/release") == "regions/"
+    """World level owns the whole product: regions/** and engine/**."""
+    assert culture_scope("culture/release") == ("regions/", "engine/")
+
+
+def test_culture_scope_engine_slug():
+    """culture/engine resolves to the shared engine tree."""
+    assert culture_scope("culture/engine") == ("engine/",)
 
 
 @pytest.mark.parametrize("branch", [
@@ -250,6 +281,57 @@ def test_check_scope_world_release_allows_all():
     ], "culture/release")
     assert ok
     assert unsafe == []
+
+
+def test_check_scope_world_release_allows_engine():
+    """The product is regions/ + engine/, so world level owns engine/ too."""
+    ok, unsafe = check_scope("culture", [
+        "regions/europe/germany/culture_german_position.md",
+        "engine/position_business_english.md",
+        "engine/claude/instructions.md",
+    ], "culture/release")
+    assert ok
+    assert unsafe == []
+
+
+def test_check_scope_culture_engine_allows_engine():
+    ok, unsafe = check_scope("culture", [
+        "engine/position_business_english.md",
+        "engine/stack.md",
+        "engine/copilot/README.md",
+    ], "culture/engine")
+    assert ok
+    assert unsafe == []
+
+
+def test_check_scope_culture_engine_blocks_regions():
+    """culture/engine owns engine/ only -- not country culture content."""
+    ok, unsafe = check_scope("culture", [
+        "engine/position_male.md",
+        "regions/europe/germany/culture_german_position.md",
+    ], "culture/engine")
+    assert not ok
+    assert unsafe == ["regions/europe/germany/culture_german_position.md"]
+
+
+def test_check_scope_culture_country_blocks_engine():
+    """A country branch cannot touch the shared engine -- it is not theirs."""
+    ok, unsafe = check_scope("culture", [
+        "regions/europe/germany/culture_german_position.md",
+        "engine/position_male.md",
+    ], "culture/germany")
+    assert not ok
+    assert unsafe == ["engine/position_male.md"]
+
+
+def test_check_scope_other_blocks_engine():
+    """engine/ is product (culture lane); a chore/fix/feat branch cannot touch it."""
+    ok, unsafe = check_scope("other", [
+        "engine/stack.md",
+        "ARCHITECTURE.md",
+    ])
+    assert not ok
+    assert unsafe == ["engine/stack.md"]
 
 
 def test_check_scope_culture_allows_lock_index():
@@ -455,6 +537,40 @@ def test_check_scope_governance_blocks_non_governance_infra():
 
 
 # ---------------------------------------------------------------------------
+# check_scope - fork branches
+# ---------------------------------------------------------------------------
+
+def test_check_scope_fork_allows_regions():
+    ok, unsafe = check_scope("fork", [
+        "regions/europe/germany/culture_german_position.md",
+        "regions/asia/japan/README.md",
+        ".validation-stamp",
+    ], "fork/alice")
+    assert ok
+    assert unsafe == []
+
+
+def test_check_scope_fork_blocks_engine_and_infra():
+    ok, unsafe = check_scope("fork", [
+        "regions/europe/germany/culture_german_position.md",
+        "engine/process_speaking.md",
+        "tests/test_x.py",
+        ".github/workflows/validate.yml",
+        "scripts/anything.py",
+    ], "fork/alice")
+    assert not ok
+    assert "engine/process_speaking.md" in unsafe
+    assert "tests/test_x.py" in unsafe
+    assert ".github/workflows/validate.yml" in unsafe
+    assert "scripts/anything.py" in unsafe
+    assert "regions/europe/germany/culture_german_position.md" not in unsafe
+
+
+def test_fork_allowed_base_is_culture_release():
+    assert allowed_bases("fork/alice") == {"culture/release"}
+
+
+# ---------------------------------------------------------------------------
 # Locked sets - any change here is a contract change
 # ---------------------------------------------------------------------------
 
@@ -560,6 +676,7 @@ def test_governance_glob_patterns_locked():
         "scripts/audit_readme_bands.py",
         "scripts/update_hofstede_readme.py",
         "scripts/migrate_footer_to_frontmatter.py",
+        "scripts/build_zips.py",
         "data/hofstede_denylist.yaml",
         "data/hofstede_keywords.py",
         "data/hofstede_scores.json",
@@ -778,10 +895,12 @@ def test_render_misbased_branch_respects_base_ref():
     ("new-region", "culture", "culture/release"),
     ("release", "culture", "main"),
     ("sync", "sync", "culture/release"),
+    ("fork", "fork", "culture/release"),
     ("governance", "governance", "main"),
     ("chore", "other", "main"),
     ("fix", "other", "main"),
     ("feat", "other", "main"),
+    ("engine", "culture", "culture/release"),
 ])
 def test_advise_operation_kind_and_base(operation, kind, base):
     advice = advise_operation(operation)
@@ -798,7 +917,7 @@ def test_advise_operation_unknown_returns_none():
 def test_valid_operations_is_the_registry():
     ops = valid_operations()
     assert set(ops) == {
-        "new-country", "new-region", "release", "sync",
+        "new-country", "new-region", "release", "engine", "sync", "fork",
         "governance", "chore", "fix", "feat",
     }
 
@@ -844,6 +963,8 @@ def test_render_operation_advice_release_has_no_create_command():
 @pytest.mark.parametrize("path,lane,kind", [
     ("regions/europe/germany/culture_german_position.md", "culture/germany", "culture"),
     ("regions/africa/nigeria/README.md", "culture/nigeria", "culture"),
+    ("engine/position_business_english.md", "culture/engine", "culture"),
+    ("engine/claude/instructions.md", "culture/engine", "culture"),
     (".github/workflows/validate.yml", "governance/<name>", "governance"),
     ("tests/validate_language.py", "governance/<name>", "governance"),
     ("tests/branch_scope.py", "governance/<name>", "governance"),
@@ -950,3 +1071,56 @@ def test_base_remedy_main_is_not_a_valid_head():
     msg = base_remedy("main", "main")
     assert msg is not None
     assert "not a valid PR head" in msg
+
+
+# ---------------------------------------------------------------------------
+# base_remedy - every failure states whether it is fixable in place
+# ---------------------------------------------------------------------------
+
+def test_base_remedy_main_head_is_not_fixable_in_place():
+    """head=main must be marked not fixable: a PR's head branch is immutable,
+    so retargeting cannot help -- the PR has to be re-opened. This pins the
+    #296 class, where the failure did not say 'stop, close and re-open' and
+    the PR got worked in place instead."""
+    msg = base_remedy("main", "culture/release")
+    assert msg is not None
+    assert "Fixable in place: NO" in msg
+    assert "cannot be changed" in msg
+    assert "Close this PR" in msg
+
+
+def test_base_remedy_wrong_base_is_fixable_in_place():
+    """A wrong base on a valid head must be marked fixable -- retarget."""
+    msg = base_remedy("culture/germany", "main")
+    assert msg is not None
+    assert "Fixable in place: YES" in msg
+    assert "Retarget" in msg
+
+
+# ---------------------------------------------------------------------------
+# check-pr CLI - the pre-PR routing check
+# ---------------------------------------------------------------------------
+
+def test_check_pr_cli_accepts_legal_pair(capsys):
+    rc = branch_scope_main(
+        ["check-pr", "--head", "sync/x", "--base", "culture/release"])
+    assert rc == 0
+    assert "OK" in capsys.readouterr().out
+
+
+def test_check_pr_cli_rejects_main_head(capsys):
+    rc = branch_scope_main(
+        ["check-pr", "--head", "main", "--base", "culture/release"])
+    assert rc == 1
+    assert "not a valid PR head" in capsys.readouterr().out
+
+
+def test_check_pr_cli_prints_exactly_base_remedy(capsys):
+    """check-pr and the pr-gate base check must share one code path -- the
+    CLI prints exactly base_remedy(), so guidance cannot drift between the
+    pre-flight and CI."""
+    rc = branch_scope_main(
+        ["check-pr", "--head", "culture/germany", "--base", "main"])
+    assert rc == 1
+    assert capsys.readouterr().out.strip() == base_remedy(
+        "culture/germany", "main")

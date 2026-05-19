@@ -1,8 +1,17 @@
-﻿# Process: The World is Spinning
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-19'
+---
+# Process: The World is Spinning
 ## The day that was already turning.
 
 ## Owner
-- **Project:** Cultures
+- Project: Cultures
+- Scope: Universal
 
 ---
 
@@ -29,8 +38,3 @@ With it, the room was already occupied before the persona arrived.
 What moved becomes the Has the next session opens with.
 What did not move remains as resistance the next session presses against.
 The loop closes here and opens again at Initiated by.
-
----
-*process_world_is_spinning.md - 03.04.2026*
-
-v0.2.0 - KAI Worlds
