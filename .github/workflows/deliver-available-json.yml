@@ -1,0 +1,77 @@
+name: Deliver available.json to KAIHACKS
+
+# Producer side of the Cultures <-> KAIHACKS download contract.
+#
+# On a Cultures release, regenerate the download manifest from
+# data/countries.json and open a PR against ChBrain/KAIHACKS changing only
+# kaihacks.ai/cultures/public_html/assets/data/available.json.
+#
+# Idempotent: peter-evans/create-pull-request opens no PR when the
+# regenerated manifest is byte-identical to what KAIHACKS already has.
+#
+# Auth: the cross-repo write needs a PAT -- the default GITHUB_TOKEN is
+# scoped to this repo only. Create a repo secret `KAIHACKS`: a fine-grained
+# PAT scoped to ChBrain/KAIHACKS with Contents + Pull requests = write.
+
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'Cultures release tag for manifest provenance'
+        required: false
+        default: ''
+  release:
+    types: [created]
+
+permissions:
+  contents: read
+
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Cultures
+        uses: actions/checkout@v4
+        with:
+          path: cultures
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Checkout KAIHACKS
+        uses: actions/checkout@v4
+        with:
+          repository: ChBrain/KAIHACKS
+          token: ${{ secrets.KAIHACKS }}
+          path: kaihacks
+
+      - name: Regenerate available.json
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.release || github.ref_name }}
+        run: |
+          python cultures/scripts/generate_available_json.py \
+            --release "$RELEASE_TAG" \
+            --out kaihacks/kaihacks.ai/cultures/public_html/assets/data/available.json
+
+      - name: Open KAIHACKS PR if the manifest changed
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.KAIHACKS }}
+          path: kaihacks
+          base: main
+          branch: cultures/available-json-${{ github.event.release.tag_name || github.run_id }}
+          commit-message: 'chore: sync Cultures download manifest'
+          title: 'chore: update Cultures download manifest (available.json)'
+          body: |
+            Automated regeneration of `available.json` from the Cultures
+            release flow -- `data/countries.json` projected to the download
+            contract shape.
+
+            Generated from Cultures release
+            `${{ github.event.release.tag_name || inputs.release || github.ref_name }}`.
+
+            Opened only because the regenerated manifest differs from the
+            current one (regeneration is idempotent).
+          labels: cultures-sync
+          draft: false

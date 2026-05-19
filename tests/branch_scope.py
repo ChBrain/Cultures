@@ -30,6 +30,14 @@ culture content. So governance edits are walled into their own kind:
   governance     ``governance/<name>``       governance paths + safe metadata
   other          ``chore/*``, ``fix/*``, …   everything except regions/** and
                                               governance paths
+  fork           ``fork/<name>``             regions/** + safe metadata only
+
+The ``fork`` kind is the lane for external / contributor culture content.
+It is the narrowest write scope in the repo - culture files under
+``regions/**`` and nothing else: no engine, no scripts, no validators, no
+workflows, no governance data. A contribution that arrives as a GitHub fork
+PR is re-homed onto a ``fork/<name>`` branch so it runs under the full
+same-repo gate set before it can reach ``culture/release``.
 
 Used by:
 - .githooks/pre-commit (local enforcement, all four directions)
@@ -62,6 +70,12 @@ GOVERNANCE_BRANCH_PATTERN = re.compile(r"^governance/[a-z0-9][a-z0-9_.-]*$")
 # into culture/release can be reviewed and audited. Because the content is
 # identical to main, scope is unrestricted (anything main has is allowed).
 SYNC_BRANCH_PATTERN = re.compile(r"^sync/[a-z0-9][a-z0-9_.-]*$")
+
+# Fork branches carry external / contributor culture content. They are
+# confined to regions/** -- the narrowest write scope -- so an outside
+# contribution cannot touch anything executable (hooks, workflows,
+# validators) or any governance data. <name> is the contributor handle.
+FORK_BRANCH_PATTERN = re.compile(r"^fork/[a-z0-9][a-z0-9_.-]*$")
 
 # World-level integration slug: may touch all of regions/**.
 # This is the integration target feature branches merge into;
@@ -117,6 +131,7 @@ GOVERNANCE_GLOB_PATTERNS = (
     "scripts/audit_readme_bands.py",
     "scripts/update_hofstede_readme.py",
     "scripts/migrate_footer_to_frontmatter.py",
+    "scripts/build_zips.py",
     "data/hofstede_denylist.yaml",
     "data/hofstede_keywords.py",
     "data/hofstede_scores.json",
@@ -132,7 +147,7 @@ _DEFAULT_REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 def classify_branch(branch: str) -> str:
-    """Return 'main', 'culture', 'governance', 'sync', or 'other'."""
+    """Return 'main', 'culture', 'governance', 'sync', 'fork', or 'other'."""
     if branch == "main":
         return "main"
     if CULTURE_BRANCH_PATTERN.match(branch):
@@ -141,6 +156,8 @@ def classify_branch(branch: str) -> str:
         return "governance"
     if SYNC_BRANCH_PATTERN.match(branch):
         return "sync"
+    if FORK_BRANCH_PATTERN.match(branch):
+        return "fork"
     return "other"
 
 
@@ -235,6 +252,10 @@ def check_scope(
     may touch anything except ``regions/`` and governance paths - this is
     the tightening that protects the gates from silent edits.
 
+    Fork branches are the mirror of that: ``regions/**`` plus safe
+    metadata and nothing else, so an external contribution is confined
+    to culture content and cannot reach an executable or governance path.
+
     'main' is gated separately (no commits at all) and is treated as a
     no-op here so a dry-run on main doesn't claim scope violations.
     """
@@ -247,6 +268,15 @@ def check_scope(
                 f for f in staged
                 if not f.startswith(prefix) and f not in SAFE_PATTERNS
             ]
+    elif branch_kind == "fork":
+        # Fork branches carry external culture content: regions/** only,
+        # plus safe metadata. Everything else -- engine, scripts, tests,
+        # workflows, governance data -- is out of scope, so an outside
+        # contribution cannot reach an executable or rule-defining surface.
+        unsafe = [
+            f for f in staged
+            if not f.startswith("regions/") and f not in SAFE_PATTERNS
+        ]
     elif branch_kind == "governance":
         unsafe = [
             f for f in staged
@@ -292,6 +322,7 @@ def allowed_bases(head: str) -> set[str]:
       culture/release            -> {main}              release PR
       governance/<name>          -> {main}
       sync/<name>                -> {culture/release}   main -> culture/release
+      fork/<name>                -> {culture/release}   external culture content
       chore|fix|feat/*, other    -> {main}
       main                       -> set()               not a valid head
     """
@@ -304,6 +335,10 @@ def allowed_bases(head: str) -> set[str]:
         # must funnel through culture/release first.
         return {"main"} if slug in WORLD_SLUGS else {"culture/release"}
     if kind == "sync":
+        return {"culture/release"}
+    if kind == "fork":
+        # Fork branches carry external culture content; like culture/<country>
+        # branches they funnel through the integration branch.
         return {"culture/release"}
     # governance and other (chore/fix/feat/...) both target main.
     return {"main"}
@@ -357,6 +392,24 @@ def base_remedy(head: str, base: str) -> str | None:
             "     culture/<slug>  -> culture/release   (this PR)",
             "     culture/release -> main              (release PR)",
             "   Retarget this PR's base to 'culture/release'.",
+        ]
+        if base not in ("main", "culture/release"):
+            lines += [
+                "",
+                f"   '{base}' is not an integration branch. If you based this",
+                "   on another feature branch because your culture content",
+                "   links files that branch adds (e.g. engine/* files), that",
+                "   is a sequencing dependency, not a base: engine work reaches",
+                "   culture/release via engine -> main -> sync. Base on",
+                "   culture/release and wait for the sync to carry those files",
+                "   down -- do not stack on the feature branch (validate.yml",
+                "   does not even run for a PR based outside main/culture/release).",
+            ]
+    elif kind == "fork":
+        lines += [
+            "   A fork/* branch carries external culture content; like a",
+            "   culture/<country> branch it funnels through the integration",
+            "   branch. Retarget this PR's base to 'culture/release'.",
         ]
     elif kind == "governance":
         lines.append(
@@ -636,6 +689,14 @@ _OPERATIONS: dict[str, dict] = {
         scope="unrestricted (a snapshot of main)",
         note="Funnel main's HEAD into culture/release. The branch IS main's "
              "tip -- it carries no commits of its own.",
+    ),
+    "fork": dict(
+        kind="fork", branch="fork/<name>",
+        start="origin/culture/release",
+        scope="regions/** + safe metadata only",
+        note="External / contributor culture content. The narrowest write "
+             "scope -- culture files only, nothing executable or governance. "
+             "Re-home a fork PR's commits here so they run the full gate set.",
     ),
     "governance": dict(
         kind="governance", branch="governance/<name>",

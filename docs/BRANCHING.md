@@ -16,8 +16,8 @@ The repo enforces a strict branch-scope contract:
   silently weaken the gates that protect culture content.
 
 Every branch is classified by its name. `.githooks/pre-commit` rejects
-out-of-scope commits locally; CI mirrors the same classifier. The four kinds
-and their scope rules are below.
+out-of-scope commits locally; CI mirrors the same classifier. The branch
+kinds and their scope rules are below.
 
 ## Pre-flight: ask the advisor
 
@@ -32,8 +32,8 @@ python tests/branch_scope.py advise --files <path> [<path> ...]
 ```
 
 - `--op` routes by *operation* - `new-country`, `new-region`, `release`,
-  `sync`, `governance`, `chore`, `fix`, `feat` - and prints the branch name,
-  the required base, and the `git checkout -b` command.
+  `sync`, `fork`, `governance`, `chore`, `fix`, `feat` - and prints the branch
+  name, the required base, and the `git checkout -b` command.
 - `--files` reports which lane a set of paths belongs to, and refuses a set
   that spans lanes with `SPLIT REQUIRED` plus the per-lane breakdown.
 
@@ -50,6 +50,7 @@ branch name after the fact; the advisor hands you the right one up front.
 | culture (world) | `culture/release` | `main` | `regions/**` + safe metadata | yes (±10 gap) |
 | governance | `governance/<name>` | `main` | governance paths + safe metadata | n/a |
 | sync | `sync/<name>` | `culture/release` | unrestricted (snapshot of `main`) | n/a |
+| fork | `fork/<name>` | `culture/release` | `regions/**` + safe metadata **only** | yes (±10 gap) |
 | other | `chore/*`, `fix/*`, `feat/*`, … | `main` | everything **except** `regions/**` **and except** governance paths | n/a |
 
 The pattern is anchored. `feat/culture-x`, `cultures/x`, and `culture/Denmark`
@@ -116,6 +117,7 @@ Files that define or enforce repository rules. Editing any of these requires a
 - `scripts/setup-hooks.sh`, `scripts/setup-hooks.bat` - hook installation
 - `scripts/audit_readme_bands.py` - canonical Hofstede band contract
 - `scripts/update_hofstede_readme.py` - deterministic README Hofstede-tables updater
+- `scripts/build_zips.py` - the release zip build engine
 - `data/hofstede_denylist.yaml`, `data/hofstede_keywords.py` - validator inputs
 - `data/hofstede_scores.json` - Hofstede Insights reference dataset
 - `data/hofstede_bag_loader.py` - bag-validation infrastructure
@@ -150,6 +152,29 @@ a sync: it is the release PR, opened with head `culture/release` and base
 `main` (no intermediate branch). Filing that as `sync/* -> main` fails the
 `pr-gate` base check; `python tests/branch_scope.py advise --op release`
 prescribes the correct routing.
+
+## Fork branches
+
+`fork/<name>` is the lane for **external / contributor culture content** -
+work that originates outside the maintainer's own branches (typically a
+GitHub fork PR). `<name>` is the contributor handle.
+
+It is the **narrowest write scope in the repo**: `regions/**` plus safe
+metadata, and nothing else - no engine, no scripts, no validators, no
+workflows, no governance data. A fork branch that touches any of those is
+rejected by the scope check. The point is containment: an outside
+contribution cannot reach an executable or rule-defining surface, so it
+cannot weaken a gate or exfiltrate a secret through CI.
+
+A fork PR cannot run the private `khai` jobs (a fork gets no `KAIHACKS`
+secret). The workflow is therefore: **re-home** the contribution onto a
+`fork/<name>` branch in this repo, where it runs the full same-repo gate
+set, before it reaches `culture/release`. A `fork/<name>` branch carries
+culture content, so it is held to the culture gates (Hofstede ±10 included)
+and targets `culture/release`, exactly like a `culture/<country>` branch.
+
+Before re-homing, review the diff: if it is purely `regions/**` it is inert
+content; anything outside `regions/**` must be treated as untrusted code.
 
 ## Worktree operations
 

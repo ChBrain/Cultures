@@ -27,12 +27,21 @@ import yaml
 _ROOT = Path(__file__).resolve().parent.parent
 _HOME = _ROOT / "data" / "hofstede_scores.json"
 _CATALOG = _ROOT / "data" / "hofstede_sources.yaml"
+_COUNTRIES = _ROOT / "data" / "countries.json"
 
 _DIMS = ("PDI", "IDV", "UAI", "MAS", "LTO", "IND")
 
 
 def _home_scores() -> dict[str, dict]:
     return json.loads(_HOME.read_text(encoding="utf-8"))["scores"]
+
+
+def _registered_ids() -> list[str]:
+    """Country ids registered in data/countries.json."""
+    if not _COUNTRIES.is_file():
+        return []
+    data = json.loads(_COUNTRIES.read_text(encoding="utf-8"))
+    return sorted(c["id"] for c in data.get("countries", []) if c.get("id"))
 
 
 def _bags_with_score_block() -> list[Path]:
@@ -73,6 +82,54 @@ def test_bag_score_block_matches_home(bag_path):
         f"{country}: hofstede_bag.yaml score block {bag_six} has drifted from "
         f"the home {_HOME.name} {home_six}. The home is the single source of "
         f"truth - correct the bag, or migrate the country (drop the block)."
+    )
+
+
+_HOME_IDS = sorted(_home_scores())
+_REGISTERED_IDS = _registered_ids()
+
+
+@pytest.mark.parametrize("country", _HOME_IDS or [None])
+def test_home_entry_complete(country):
+    """Every hofstede_scores.json entry carries all six dims + a source.
+
+    Once a country is migrated the home is its only score source -- the
+    README score table is gone and the bag's score block is dropped, so
+    test_bag_score_block_matches_home no longer covers it. Nothing else
+    validates the home, so it is validated here: a missing dimension or a
+    dropped source in the home would otherwise pass silently.
+    """
+    if country is None:
+        pytest.skip("data/hofstede_scores.json has no score entries")
+    entry = _home_scores()[country]
+    missing = [d for d in _DIMS if not isinstance(entry.get(d), int)]
+    assert not missing, (
+        f"{country}: hofstede_scores.json entry missing or non-integer "
+        f"dimension(s): {missing}"
+    )
+    out_of_range = {d: entry[d] for d in _DIMS if not 0 <= entry[d] <= 120}
+    assert not out_of_range, (
+        f"{country}: Hofstede score(s) outside the 0-120 range: {out_of_range}"
+    )
+    source = entry.get("source")
+    assert isinstance(source, str) and source.strip(), (
+        f"{country}: hofstede_scores.json entry has no 'source' attribution"
+    )
+
+
+@pytest.mark.parametrize("country", _REGISTERED_IDS or [None])
+def test_registered_country_has_home_entry(country):
+    """Every country registered in countries.json has canonical scores.
+
+    A registered country's Hofstede scores live only in the home; if the
+    entry is absent, the derived gate (test_hofstede_derived) silently
+    skips that country. This closes that gap at the registry boundary.
+    """
+    if country is None:
+        pytest.skip("no countries registered in data/countries.json")
+    assert country in _home_scores(), (
+        f"{country}: registered in data/countries.json but absent from "
+        f"{_HOME.name} -- the single home must carry its Hofstede scores"
     )
 
 

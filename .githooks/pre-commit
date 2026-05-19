@@ -129,6 +129,18 @@ def main() -> int:
             print( "           tests/test_*.py, tests/validate_*.py, scripts/validate*,")
             print( "           data/hofstede_{denylist,keywords,scores,bag_loader}.*")
             print( "  Other:   use chore/<name> for non-governance tooling/docs")
+        elif branch_kind == "fork":
+            print(">>> ERROR: Fork branch out of scope")
+            print("")
+            print("Non-culture files detected (a fork/* branch is culture content only):")
+            for f in unsafe_files:
+                print(f"  x {f}")
+            print("")
+            print(f"  Branch:  {current_branch}")
+            print( "  Rule:    fork/<name> may only touch regions/** + safe metadata")
+            print( "  Reason:  the external-contributor lane is confined to culture")
+            print( "           content -- no engine, scripts, validators, workflows,")
+            print( "           or governance data")
         else:
             print(">>> ERROR: Non-culture/non-governance branch out of scope")
             print("")
@@ -152,8 +164,17 @@ def main() -> int:
         f for f in staged.splitlines()
         if f.endswith(".md") and f.startswith("regions/")
     ]
+    # engine/*.md is solution-grade content too. CI validates it -- the
+    # validate.yml setup scope is (regions|engine)/*.md -- so the hook
+    # mirrors that locally: link integrity and the ladder gate run on
+    # staged engine markdown the same way they run on regions content.
+    staged_engine = [
+        f for f in staged.splitlines()
+        if f.endswith(".md") and f.startswith("engine/")
+    ]
 
     if staged_content:
+        # L1-L4 orchestrator: regions culture content only.
         result = subprocess.run(
             [sys.executable, "scripts/validate.py", *staged_content],
             capture_output=True,
@@ -167,8 +188,9 @@ def main() -> int:
             print("")
             return 1
 
-        # Local parity for link integrity: run the same in-repo link test on
-        # the staged markdown scope before push.
+    # Link integrity: the same in-repo link test CI runs, over staged
+    # regions/ and engine/ markdown -- the hook is the local mirror of CI.
+    if staged_content or staged_engine:
         result = subprocess.run(
             [
                 sys.executable,
@@ -177,7 +199,7 @@ def main() -> int:
                 "-q",
                 "tests/test_links.py",
                 "--khai-roots=engine",
-                f"--khai-files={' '.join(staged_content)}",
+                f"--khai-files={' '.join(staged_content + staged_engine)}",
             ],
             capture_output=True,
             text=True,
@@ -193,9 +215,33 @@ def main() -> int:
             print("")
             return 1
 
-    # On culture branches: also run Hofstede validation
-    # Culture content must maintain declared dimension alignment (±10 gap tolerance)
-    if branch_kind == "culture":
+    # Engine ladder gate: when engine markdown is staged, mirror the
+    # validate.yml ladder job locally. Guarded on the test file existing
+    # so the hook stays correct on branches predating the ladder gate.
+    if staged_engine and (REPO_ROOT / "tests" / "test_language_process_ladder.py").is_file():
+        result = subprocess.run(
+            [
+                sys.executable, "-m", "pytest", "-q",
+                "tests/test_language_process_ladder.py",
+            ],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if result.returncode != 0:
+            print(">>> ENGINE LADDER VALIDATION FAILED")
+            print("")
+            if result.stdout.strip():
+                print(result.stdout.strip())
+            if result.stderr.strip():
+                print(result.stderr.strip())
+            print("")
+            return 1
+
+    # On culture and fork branches: also run Hofstede validation.
+    # Culture content must maintain declared dimension alignment; a fork/*
+    # branch carries culture content too, so it is held to the same gates.
+    if branch_kind in ("culture", "fork"):
         # Language gate: the staged country's README-declared language must
         # be registered in data/language_policy.yaml ("already working")
         # before its culture content can land. The orchestrator above only
@@ -215,6 +261,33 @@ def main() -> int:
             )
             if result.returncode != 0:
                 print(">>> LANGUAGE REGISTRY CHECK FAILED")
+                print("")
+                if result.stdout.strip():
+                    print(result.stdout.strip())
+                if result.stderr.strip():
+                    print(result.stderr.strip())
+                print("")
+                return 1
+
+            # Language unlock gate: the staged country's language in
+            # data/countries.json must be unlocked (its ISO code maps,
+            # via data/language_policy.yaml iso_map, onto a registered
+            # lingua name). This is the data-keyed pre-flight -- culture
+            # work must not start on a country whose language the
+            # validator cannot actually check.
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    "tests/validate_language.py",
+                    "--check-unlocked",
+                    *staged_content,
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            if result.returncode != 0:
+                print(">>> LANGUAGE UNLOCK CHECK FAILED")
                 print("")
                 if result.stdout.strip():
                     print(result.stdout.strip())

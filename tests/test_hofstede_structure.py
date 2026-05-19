@@ -81,12 +81,19 @@ _COUNTRIES = _country_dirs()
 
 @pytest.mark.parametrize("country_dir", _COUNTRIES, ids=[c.name for c in _COUNTRIES])
 def test_hofstede_section(country_dir: Path):
+    """Old architecture: the README carries a ## Hofstede section.
+
+    Once a country is migrated (issue #257) its README carries no Hofstede
+    section -- the docs-Hofstede-free gate (test_hofstede_reference.py)
+    enforces the migrated state. A missing section is therefore a skip
+    here, not a failure; the sibling structure checks already skip the
+    same way.
+    """
     readme = country_dir / "README.md"
     if not readme.is_file():
         pytest.skip("no README")
-    assert re.search(r"##\s+Hofstede", readme.read_text(encoding="utf-8"), re.IGNORECASE), (
-        f"{country_dir.name}: README missing ## Hofstede section"
-    )
+    if not re.search(r"##\s+Hofstede", readme.read_text(encoding="utf-8"), re.IGNORECASE):
+        pytest.skip("no ## Hofstede section -- migrated to the new architecture")
 
 
 @pytest.mark.parametrize("country_dir", _COUNTRIES, ids=[c.name for c in _COUNTRIES])
