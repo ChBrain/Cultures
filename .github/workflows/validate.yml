@@ -495,6 +495,26 @@ jobs:
       - name: Run history-arc tests
         run: python -m pytest tests/test_history_arc.py -v
 
+  cultures-language-process-ladder:
+    name: cultures - Language-process ladder
+    # Always-run gate for the engine language-as-process ladder (issue #281).
+    # The 21 ladder files under engine/ are universal solution-grade culture
+    # content, but khai does not see engine files (--khai-files is regions/-
+    # scoped), so the ladder's structural contract -- completeness, the IDLE
+    # section set, Scope: Universal, the link graph -- is enforced here.
+    # Skips cleanly until the ladder lands (PR #283).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest pyyaml
+      - name: Run language-process ladder tests
+        run: python -m pytest tests/test_language_process_ladder.py -v
+
   cultures-metadata-format:
     name: cultures - Metadata format
     # Always-run guard for the footer -> YAML-frontmatter migration. Per
@@ -972,6 +992,7 @@ jobs:
       - cultures-review-command-tests
       - cultures-hofstede-readme-updater-tests
       - cultures-history-arc
+      - cultures-language-process-ladder
       - cultures-metadata-format
       - cultures-language-preflight
       - setup
