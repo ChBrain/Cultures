@@ -1,6 +1,11 @@
 ---
 khai: piece
 hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-19'
 ---
 # Piece: The Hawker Centre
 
