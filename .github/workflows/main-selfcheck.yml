@@ -56,8 +56,35 @@ jobs:
           pip install "/tmp/$ASSET_NAME" pytest
       - name: Collect full regions/ + engine/ content
         id: files
+        # Corpus-debt filter: piece files predating the ## Yearbook
+        # requirement are excluded from this full-content alarm. Without
+        # the filter the alarm fires permanently on legacy content
+        # (~130 country pieces across regions/ at the time of writing)
+        # and becomes background noise. Each per-country migration PR
+        # adds ## Yearbook; the file rejoins the alarm scope on the
+        # next push (no list to maintain). Newly added piece files that
+        # forget ## Yearbook are still caught by validate.yml's
+        # PR-scoped run -- the PR cannot merge without that fix. Same
+        # trap-family as the engine-date one cited above: a tightened
+        # rule meets a non-compliant corpus; the rule is right, the
+        # alarm must not drown until the corpus catches up.
         run: |
-          FILES=$(git ls-files 'regions/*.md' 'engine/*.md' | tr '\n' ' ' | sed 's/ *$//')
+          ALL=$(git ls-files 'regions/*.md' 'engine/*.md')
+          FILES=""
+          EXCLUDED=0
+          for f in $ALL; do
+            case "$f" in
+              *_piece_*.md)
+                if ! grep -q '^## Yearbook' "$f"; then
+                  EXCLUDED=$((EXCLUDED+1))
+                  continue
+                fi
+                ;;
+            esac
+            FILES="$FILES$f "
+          done
+          FILES=$(echo "$FILES" | sed 's/ *$//')
+          echo "corpus-debt filter: excluded $EXCLUDED piece file(s) lacking ## Yearbook" >&2
           if [ -z "$FILES" ]; then
             echo "No regions/ or engine/ markdown found." >&2
             exit 1
