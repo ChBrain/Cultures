@@ -129,6 +129,18 @@ def main() -> int:
             print( "           tests/test_*.py, tests/validate_*.py, scripts/validate*,")
             print( "           data/hofstede_{denylist,keywords,scores,bag_loader}.*")
             print( "  Other:   use chore/<name> for non-governance tooling/docs")
+        elif branch_kind == "fork":
+            print(">>> ERROR: Fork branch out of scope")
+            print("")
+            print("Non-culture files detected (a fork/* branch is culture content only):")
+            for f in unsafe_files:
+                print(f"  x {f}")
+            print("")
+            print(f"  Branch:  {current_branch}")
+            print( "  Rule:    fork/<name> may only touch regions/** + safe metadata")
+            print( "  Reason:  the external-contributor lane is confined to culture")
+            print( "           content -- no engine, scripts, validators, workflows,")
+            print( "           or governance data")
         else:
             print(">>> ERROR: Non-culture/non-governance branch out of scope")
             print("")
@@ -226,9 +238,10 @@ def main() -> int:
             print("")
             return 1
 
-    # On culture branches: also run Hofstede validation
-    # Culture content must maintain declared dimension alignment (±10 gap tolerance)
-    if branch_kind == "culture":
+    # On culture and fork branches: also run Hofstede validation.
+    # Culture content must maintain declared dimension alignment; a fork/*
+    # branch carries culture content too, so it is held to the same gates.
+    if branch_kind in ("culture", "fork"):
         # Language gate: the staged country's README-declared language must
         # be registered in data/language_policy.yaml ("already working")
         # before its culture content can land. The orchestrator above only
