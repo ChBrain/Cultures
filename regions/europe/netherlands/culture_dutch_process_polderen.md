@@ -30,7 +30,7 @@ Dat weet iedereen. Niemand hoeft het te zeggen.
 De medezeggenschap van elke partij in het overleven.
 
 ## Echo
-Wat stand hield wordt de basis van de volgende collegiale sessie.
-Wat niet stand hield blijft drukken.
-De polder is nooit af. Overleg herhaalt.
-De lus sluit hier en opent opnieuw bij Initiated by.
+Wat stand hield wordt de basis van de volgende sessie.
+Wat niet stand hield blijft drukken tot de tafel het opnieuw oppakt.
+De polder is nooit af. Het water onderhandelt niet.
+De volgende kamer erft het akkoord en de scherpe kanten ervan.

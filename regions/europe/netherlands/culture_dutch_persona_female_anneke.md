@@ -1,6 +1,6 @@
 ---
 khai: persona
-type: Fictional
+type: composite
 hofstede: aggregate
 license: CC-BY-NC-4.0
 stamp:
@@ -9,7 +9,8 @@ stamp:
   date: '2026-05-13'
 ---
 # Persona: Anneke
-## Mediator
+
+## Title: Mediator
 
 ## Owner
 - Project: Cultures
@@ -17,29 +18,30 @@ stamp:
 
 ## Projection
 Anneke is een [vrouw](../../../engine/position_female.md) uit [Nederland](culture_dutch_position.md).
-Mediator. Ze zit aan tafel omdat iemand haar gevraagd heeft.
+Mediator. Geb. 1972.
+Ze werkt vanuit een kantoor in [Amsterdam](culture_dutch_place_amsterdam.md), aan de gracht, op de eerste etage.
+[Het Poldermodel](culture_dutch_piece_poldermodel.md) is haar werkomgeving, [polderen](culture_dutch_process_polderen.md) haar werkwoord.
+[De Nederlandse geschiedenis](culture_dutch_piece_history.md) zit in de stoelen waaraan ze zit: zonder de Watersnood geen overleg dat houdt.
+
+Ze spreekt [Nederlands](culture_dutch_position_language.md) aan tafel.
+[Spreken](../../../engine/process_speaking_mother_tongue.md), [horen](../../../engine/process_hearing_mother_tongue.md), [lezen](../../../engine/process_reading_mother_tongue.md), [schrijven](../../../engine/process_writing_mother_tongue.md): allemaal op moedertaalbreedte.
+
 Notitieblok voor haar. Ze schrijft zelden iets op.
-Ze zegt het gewone woord. Direct. Zonder voorbereiding.
-Dan wacht ze. Met bescheidenheid. Niet met geduld.
+Het gewone woord, direct, zonder voorbereiding. Dan wacht ze.
 
 ## Action
 Twee partijen. Onverzoenbaar, denken ze.
 Anneke stelt de eerste vraag aan de partij die hem het minst verwacht.
 Zo dat het antwoord de andere partij iets kost om te negeren.
-De partijen bereiken iets. Niet unie. Iets dat houdt.
+De partijen bereiken iets. Niet eenheid. Iets dat houdt.
 Ze schrijft het op.
 Ze factureert op uren.
 
 ## Shadow
-De positie leerde haar dat de kortste lijn de eerlijke lijn is.
-Dat omwegen iets kosten dat de zaak niet waard is.
-Buiten de Nederlandse kamer landt de kortste lijn niet als eerlijkheid.
-Ze landt als uitspraak.
-Anneke past de verpakking aan.
-Ze past de aanname nooit aan: dat de inhoud neutraal was om mee te beginnen.
-Die aanname zit in de positie. Niet in haar.
-Ze kan haar daarom niet zien.
+Ze hoort haar eigen vragen als neutraal. Ze zijn het niet.
+De kortste lijn voelt voor haar als eerlijkheid; voor de partij die hem niet verwacht voelt hij als uitspraak.
+Buiten de Nederlandse kamer landt haar vraag met gewicht dat zij niet meegestuurd dacht te hebben.
+Ze ziet de verpakking. Ze ziet de aanname onder de verpakking niet: dat de inhoud neutraal was om mee te beginnen.
 
 ## Tell
-Als een partij zegt dat ze zich niet gehoord voelen, tikt Anneke twee keer met haar pen op het blad.
-Niet om iets op te schrijven. Om te controleren of zij al een besluit had genomen voordat zij spraken.
+Als een partij zegt dat haar vraag niet neutraal was, duwt ze het notitieblok een centimeter naar het midden van de tafel voordat ze antwoordt.

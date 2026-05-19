@@ -65,14 +65,14 @@ Filename convention: `culture_<culture>_<TYPE>_<NAME>` where TYPE is one of the 
 
 | File | TYPE | Status | Notes |
 |------|------|--------|-------|
-| culture_dutch_position_language.md | position | ✅ Validated | All dimensions within tolerance |
-| culture_dutch_piece_history.md | piece | ✅ Validated | Broad Dutch history: Romeinse limes -> 2024, 26 dated entries |
-| culture_dutch_position.md | position | ✅ Validated | All dimensions within tolerance |
-| culture_dutch_process_polderen.md | process | ✅ Validated | All dimensions within tolerance |
-| culture_dutch_piece_poldermodel.md | piece | ✅ Validated | All dimensions within tolerance |
-| culture_dutch_place_amsterdam.md | place | ✅ Validated | All dimensions within tolerance |
-| culture_dutch_persona_female_anneke.md | persona | ✅ Validated | Mediator. Tell redesigned. |
-| culture_dutch_persona_male_jeroen.md | persona | ✅ Validated | Journalist. Tell redesigned. |
+| [culture_dutch_position_language.md](culture_dutch_position_language.md) | position | ✅ Complete | Nederlands (Dutch) linguistic anchor; directness, autonomy of the word |
+| [culture_dutch_piece_history.md](culture_dutch_piece_history.md) | piece | ✅ Complete | 26 Yearbook entries 57 BC to 2024: water, tolerance, polder continuity |
+| [culture_dutch_position.md](culture_dutch_position.md) | position | ✅ Complete | Nederlandse position: flat room, Poldermodel, tolerance from necessity |
+| [culture_dutch_process_polderen.md](culture_dutch_process_polderen.md) | process | ✅ Complete | Polderen: negotiation when the dike asks everyone |
+| [culture_dutch_piece_poldermodel.md](culture_dutch_piece_poldermodel.md) | piece | ✅ Complete | 20 Yearbook entries 1287-2024: from Sint-Luciavloed to 2024 |
+| [culture_dutch_place_amsterdam.md](culture_dutch_place_amsterdam.md) | place | ✅ Complete | Amsterdam: grachtengordel, gedoogkoffieshop, the short line in built form |
+| [culture_dutch_persona_female_anneke.md](culture_dutch_persona_female_anneke.md) | persona | ✅ Complete | Mediator: projection, action, shadow, tell |
+| [culture_dutch_persona_male_jeroen.md](culture_dutch_persona_male_jeroen.md) | persona | ✅ Complete | Journalist: projection, action, shadow, tell |
 
 ## Content
 
@@ -82,11 +82,11 @@ Filename convention: `culture_<culture>_<TYPE>_<NAME>` where TYPE is one of the 
 - **History**: [culture_dutch_piece_history.md](culture_dutch_piece_history.md) - From Romeinse limes to 2024 - water as governance, tolerance as infrastructure, the Polder Model's institutional continuity
 - **Position**: [culture_dutch_position.md](culture_dutch_position.md) - De platte kamer, het Poldermodel, tolerantie uit noodzaak
 - **Process**: [culture_dutch_process_polderen.md](culture_dutch_process_polderen.md) - Polderen - negotiation when the stakes are shared (water)
-- **Piece**: [culture_dutch_piece_poldermodel.md](culture_dutch_piece_poldermodel.md) - The Polder Model - load-bearing framework (1421-2024)
+- **Piece**: [culture_dutch_piece_poldermodel.md](culture_dutch_piece_poldermodel.md) - The Polder Model - load-bearing framework (1287-2024)
 - **Place**: [culture_dutch_place_amsterdam.md](culture_dutch_place_amsterdam.md) - Amsterdam - canal belt infrastructure and tolerance logic
 - **Personas**:
-  - [Anneke (Female)](culture_dutch_persona_female_anneke.md) - Mediator. The shortest line. Notitieblok. Tell shows her blind spot.
-  - [Jeroen (Male)](culture_dutch_persona_male_jeroen.md) - Journalist. Says what he sees. Footnotes matter. Tell shows his blind spot.
+  - [Anneke (Female)](culture_dutch_persona_female_anneke.md) - Mediator. The shortest line. The blind spot in that line.
+  - [Jeroen (Male)](culture_dutch_persona_male_jeroen.md) - Journalist. Says what he sees. The chair he sat in stays invisible to him.
 
 ---
 
@@ -94,4 +94,4 @@ Filename convention: `culture_<culture>_<TYPE>_<NAME>` where TYPE is one of the 
 
 See [REFERENCES.md](REFERENCES.md)
 
-*v0.1.0 - KAI Cultures*
+*v0.2.0 - Kai Schlueter - Cultures - May 2026*

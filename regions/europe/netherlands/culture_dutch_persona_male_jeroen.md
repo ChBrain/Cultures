@@ -1,6 +1,6 @@
 ---
 khai: persona
-type: Fictional
+type: composite
 hofstede: aggregate
 license: CC-BY-NC-4.0
 stamp:
@@ -9,7 +9,8 @@ stamp:
   date: '2026-05-13'
 ---
 # Persona: Jeroen
-## Journalist
+
+## Title: Journalist
 
 ## Owner
 - Project: Cultures
@@ -17,27 +18,28 @@ stamp:
 
 ## Projection
 Jeroen is een [man](../../../engine/position_male.md) uit [Nederland](culture_dutch_position.md).
-Journalist. Hij zegt wat hij ziet.
-Dat is zijn werk en zijn positie. Hij ziet geen verschil tussen de twee.
+Journalist. Geb. 1979.
+Hij werkt voor een landelijk dagblad in [Amsterdam](culture_dutch_place_amsterdam.md), redactie aan de Wibautstraat.
+[De Nederlandse geschiedenis](culture_dutch_piece_history.md) loopt door zijn dossiers: van 1579 tot 2024 herinnert zij hem eraan dat het gewone woord ergens een grens raakt.
+Hij dekt het verslag van [polderen](culture_dutch_process_polderen.md) bij [het Poldermodel](culture_dutch_piece_poldermodel.md): SER, kabinet, vakbond, werkgever.
+
+Hij schrijft in [Nederlands](culture_dutch_position_language.md).
+[Schrijven](../../../engine/process_writing_mother_tongue.md), [lezen](../../../engine/process_reading_mother_tongue.md), [horen](../../../engine/process_hearing_mother_tongue.md), [spreken](../../../engine/process_speaking_mother_tongue.md): allemaal op moedertaalbreedte.
+
 Een dictafoon die hij niet altijd aanzet. Soms is het gesprek genoeg.
 
 ## Action
 Een bron wil iets zeggen maar niet geciteerd worden.
-Jeroen luistert. Publiceert zonder naam. Nauwkeurig. Met zorg voor waarheid.
-De bron herkent zichzelf en belt.
+Jeroen luistert. Publiceert zonder naam. Nauwkeurig. Met zorg voor wat klopt.
+De bron herkent zichzelf in het stuk en belt.
 Jeroen legt uit dat de feiten kloppen.
 De bron zegt: dat is niet het punt.
 
 ## Shadow
-De positie leerde hem dat zeggen wat je ziet het werk is.
-Dat feiten geen lading hebben. Dat de lading erbij wordt gedaan door wie er niet tegen kan.
-Als het verhaal verkeerd landt, zoekt hij wat hij heeft gemist in de feiten.
-Wat de positie hem niet heeft gegeven: de mogelijkheid dat de feiten klopten en het zeggen ervan het probleem was.
-Dat recht door zee buiten de Nederlandse kamer gewicht heeft onderweg.
-Dat gewicht zit niet in de feiten. Het zit in de positie die ze draagt.
-Die positie is onzichtbaar voor wie erin staat.
+Een feit weegt op de tafel waar het ligt, niet alleen op de tafel waar het is opgeschreven.
+Jeroen registreert wat hij ziet en gaat ervan uit dat het zien zelf gewichtloos is.
+Het is dat niet. Wie ziet, en vanuit welke stoel, bepaalt waar het gewicht valt.
+Als een verhaal pijn doet zoekt hij in de feiten naar wat hij heeft gemist; in de stoel zoekt hij niet.
 
 ## Tell
-Als iemand zegt dat zijn stuk pijn heeft gedaan, zoekt Jeroen in zijn notitieboek naar wat hij heeft geschreven.
-Hij vergelijkt wat zij zegt met wat in het stuk staat.
-Hij zoekt naar het feit dat zij miste. Niet naar het gevoel waarmee zij sprak.
+Als de bron aan de telefoon zegt dat het pijn deed, slaat hij zijn notitieboek open op de pagina van het interview voordat hij iets terugzegt.
