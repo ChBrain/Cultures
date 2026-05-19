@@ -321,6 +321,7 @@ def allowed_bases(head: str) -> set[str]:
       culture/release            -> {main}              release PR
       governance/<name>          -> {main}
       sync/<name>                -> {culture/release}   main -> culture/release
+      fork/<name>                -> {culture/release}   external culture content
       chore|fix|feat/*, other    -> {main}
       main                       -> set()               not a valid head
     """
@@ -333,6 +334,10 @@ def allowed_bases(head: str) -> set[str]:
         # must funnel through culture/release first.
         return {"main"} if slug in WORLD_SLUGS else {"culture/release"}
     if kind == "sync":
+        return {"culture/release"}
+    if kind == "fork":
+        # Fork branches carry external culture content; like culture/<country>
+        # branches they funnel through the integration branch.
         return {"culture/release"}
     # governance and other (chore/fix/feat/...) both target main.
     return {"main"}
@@ -386,6 +391,12 @@ def base_remedy(head: str, base: str) -> str | None:
             "     culture/<slug>  -> culture/release   (this PR)",
             "     culture/release -> main              (release PR)",
             "   Retarget this PR's base to 'culture/release'.",
+        ]
+    elif kind == "fork":
+        lines += [
+            "   A fork/* branch carries external culture content; like a",
+            "   culture/<country> branch it funnels through the integration",
+            "   branch. Retarget this PR's base to 'culture/release'.",
         ]
     elif kind == "governance":
         lines.append(
@@ -665,6 +676,14 @@ _OPERATIONS: dict[str, dict] = {
         scope="unrestricted (a snapshot of main)",
         note="Funnel main's HEAD into culture/release. The branch IS main's "
              "tip -- it carries no commits of its own.",
+    ),
+    "fork": dict(
+        kind="fork", branch="fork/<name>",
+        start="origin/culture/release",
+        scope="regions/** + safe metadata only",
+        note="External / contributor culture content. The narrowest write "
+             "scope -- culture files only, nothing executable or governance. "
+             "Re-home a fork PR's commits here so they run the full gate set.",
     ),
     "governance": dict(
         kind="governance", branch="governance/<name>",

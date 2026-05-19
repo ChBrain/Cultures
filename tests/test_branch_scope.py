@@ -143,6 +143,30 @@ def test_classify_sync_near_misses_are_other(branch):
     assert classify_branch(branch) == "other"
 
 
+@pytest.mark.parametrize("branch", [
+    "fork/alice",
+    "fork/contrib-bob",
+    "fork/jane_doe",
+    "fork/x",
+])
+def test_classify_fork(branch):
+    assert classify_branch(branch) == "fork"
+
+
+@pytest.mark.parametrize("branch", [
+    "fork",
+    "fork/",
+    "fork/Alice",
+    " fork/x",
+    "fork/x ",
+    "fork-x",
+    "forks/x",
+])
+def test_classify_fork_near_misses_are_other(branch):
+    """Typos must NOT be 'fork' - fall through to 'other' (safer default)."""
+    assert classify_branch(branch) == "other"
+
+
 # ---------------------------------------------------------------------------
 # culture_scope
 # ---------------------------------------------------------------------------
@@ -452,6 +476,40 @@ def test_check_scope_governance_blocks_non_governance_infra():
     assert "ARCHITECTURE.md" in unsafe
     assert "scripts/audit-germany.py" in unsafe
     assert "tests/branch_scope.py" not in unsafe
+
+
+# ---------------------------------------------------------------------------
+# check_scope - fork branches
+# ---------------------------------------------------------------------------
+
+def test_check_scope_fork_allows_regions():
+    ok, unsafe = check_scope("fork", [
+        "regions/europe/germany/culture_german_position.md",
+        "regions/asia/japan/README.md",
+        ".validation-stamp",
+    ], "fork/alice")
+    assert ok
+    assert unsafe == []
+
+
+def test_check_scope_fork_blocks_engine_and_infra():
+    ok, unsafe = check_scope("fork", [
+        "regions/europe/germany/culture_german_position.md",
+        "engine/process_speaking.md",
+        "tests/test_x.py",
+        ".github/workflows/validate.yml",
+        "scripts/anything.py",
+    ], "fork/alice")
+    assert not ok
+    assert "engine/process_speaking.md" in unsafe
+    assert "tests/test_x.py" in unsafe
+    assert ".github/workflows/validate.yml" in unsafe
+    assert "scripts/anything.py" in unsafe
+    assert "regions/europe/germany/culture_german_position.md" not in unsafe
+
+
+def test_fork_allowed_base_is_culture_release():
+    assert allowed_bases("fork/alice") == {"culture/release"}
 
 
 # ---------------------------------------------------------------------------
@@ -778,6 +836,7 @@ def test_render_misbased_branch_respects_base_ref():
     ("new-region", "culture", "culture/release"),
     ("release", "culture", "main"),
     ("sync", "sync", "culture/release"),
+    ("fork", "fork", "culture/release"),
     ("governance", "governance", "main"),
     ("chore", "other", "main"),
     ("fix", "other", "main"),
@@ -798,7 +857,7 @@ def test_advise_operation_unknown_returns_none():
 def test_valid_operations_is_the_registry():
     ops = valid_operations()
     assert set(ops) == {
-        "new-country", "new-region", "release", "sync",
+        "new-country", "new-region", "release", "sync", "fork",
         "governance", "chore", "fix", "feat",
     }
 
