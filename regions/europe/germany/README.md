@@ -4,7 +4,7 @@
 
 ## Culture Map
 
-A German persona has a gender: [Brigitte](culture_german_persona_female_brigitte.md) is [female](../../../engine/position_female.md), [Christian](culture_german_persona_male_christian.md) is [male](../../../engine/position_male.md). Each speaks [Hochdeutsch](culture_german_position_language.md) and holds the [German cultural position](culture_german_position.md).
+A German persona — [Brigitte](culture_german_persona_female_brigitte.md) or [Christian](culture_german_persona_male_christian.md) — carries a [gender](../../../engine/claude/README.md) from the culture engine, speaks [Hochdeutsch](culture_german_position_language.md), and holds the [German cultural position](culture_german_position.md).
 
 The cultural position has a primary [place](culture_german_place_berlin.md), utilizes a primary [piece](culture_german_piece_autobahn.md), runs a primary [process](culture_german_process_erinnern.md), and moves through its [history](culture_german_piece_history.md).
 
