@@ -1,16 +1,14 @@
 # Germany - Culture Content
 
+[**Download germany.zip**](https://github.com/ChBrain/Cultures/releases/latest/download/germany.zip) - all culture files plus the engine stack and instructions, flattened for a single upload.
+
 **Language(s):** German (Hochdeutsch)
 
 ## Culture Map
 
-A German persona, [Brigitte](culture_german_persona_female_brigitte.md) or [Christian](culture_german_persona_male_christian.md), carries a [gender](../../../engine/claude/README.md) from the culture engine, speaks [Hochdeutsch](culture_german_position_language.md), and holds the [German cultural position](culture_german_position.md).
+Germany has two personas, [Brigitte](culture_german_persona_female_brigitte.md) and [Christian](culture_german_persona_male_christian.md). Each persona carries a gender from the [culture engine](../../../engine/), speaks [Hochdeutsch](culture_german_position_language.md), and holds the [German cultural position](culture_german_position.md).
 
 The cultural position has a primary [place](culture_german_place_berlin.md), utilizes a primary [piece](culture_german_piece_autobahn.md), runs a primary [process](culture_german_process_erinnern.md), and moves through its [history](culture_german_piece_history.md).
-
-## Download
-
-[**germany.zip**](https://github.com/ChBrain/Cultures/releases/latest/download/germany.zip) - all culture files + engine stack + instructions, flattened for Claude.ai.
 
 ## Content Audit Status
 
