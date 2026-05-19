@@ -77,10 +77,16 @@ SYNC_BRANCH_PATTERN = re.compile(r"^sync/[a-z0-9][a-z0-9_.-]*$")
 # validators) or any governance data. <name> is the contributor handle.
 FORK_BRANCH_PATTERN = re.compile(r"^fork/[a-z0-9][a-z0-9_.-]*$")
 
-# World-level integration slug: may touch all of regions/**.
-# This is the integration target feature branches merge into;
-# everything else under culture/* must resolve to a country or region.
+# World-level integration slug: may touch the whole product -- regions/**
+# AND engine/**. This is the integration target feature branches merge into;
+# everything else under culture/* must resolve to a country, region, or the
+# engine slug.
 WORLD_SLUGS = frozenset({"release"})
+
+# The engine slug. culture/engine resolves to engine/** -- the shared
+# scaffold every culture runs on. It is product content, not infrastructure:
+# a culture/engine branch PRs into culture/release like any culture branch.
+ENGINE_SLUG = "engine"
 
 # Metadata files allowed on culture branches alongside regions/** changes.
 # Exact path match - `subdir/.gitignore` is NOT safe; only the listed paths.
@@ -206,26 +212,33 @@ def _world_topology(repo_root: Path) -> tuple[set[str], dict[str, str]]:
 def culture_scope(
     branch_name: str,
     repo_root: Path = _DEFAULT_REPO_ROOT,
-) -> str | None:
-    """Resolve a ``culture/<slug>`` branch to its allowed path prefix.
+) -> tuple[str, ...] | None:
+    """Resolve a ``culture/<slug>`` branch to its allowed path prefixes.
 
-    Returns the prefix that every staged file under regions/ must start
-    with, or ``None`` if the slug doesn't resolve to a known world,
-    region, or country. Resolution order is world > region > country, so
-    a slug that collides between layers always picks the broader scope
-    (the broader name is what a maintainer would type for the broader
-    branch).
+    Returns the tuple of prefixes every staged file must start with, or
+    ``None`` if the slug doesn't resolve to a known world, region,
+    country, or the engine. The product is ``engine/`` + ``regions/``:
+
+      release  -> ('regions/', 'engine/')   world: the whole product
+      engine   -> ('engine/',)              the shared scaffold
+      <region> -> ('regions/<region>/',)
+      <country>-> ('regions/<region>/<country>/',)
+
+    Resolution order is world > engine > region > country, so a slug that
+    collides between layers always picks the broader scope.
     """
     if not CULTURE_BRANCH_PATTERN.match(branch_name):
         return None
     slug = branch_name[len("culture/"):]
     if slug in WORLD_SLUGS:
-        return "regions/"
+        return ("regions/", "engine/")
+    if slug == ENGINE_SLUG:
+        return ("engine/",)
     region_slugs, country_to_region = _world_topology(repo_root)
     if slug in region_slugs:
-        return f"regions/{slug}/"
+        return (f"regions/{slug}/",)
     if slug in country_to_region:
-        return f"regions/{country_to_region[slug]}/{slug}/"
+        return (f"regions/{country_to_region[slug]}/{slug}/",)
     return None
 
 
@@ -241,16 +254,18 @@ def check_scope(
     keeping this helper print-free makes it easy to unit-test and to
     reuse from CI.
 
-    Culture branches resolve to a country, region, or world-level prefix
-    via ``culture_scope``. If ``branch_name`` is missing or its slug
-    doesn't resolve, every staged file outside SAFE_PATTERNS is flagged
-    as unsafe so the caller can surface the missing-context error rather
-    than silently widening scope.
+    Culture branches resolve to a country, region, engine, or world-level
+    set of prefixes via ``culture_scope``. If ``branch_name`` is missing or
+    its slug doesn't resolve, every staged file outside SAFE_PATTERNS is
+    flagged as unsafe so the caller can surface the missing-context error
+    rather than silently widening scope.
 
     Governance branches may only touch governance paths (plus the
     SAFE_PATTERNS root files like ``.validation-stamp``). Other branches
-    may touch anything except ``regions/`` and governance paths - this is
-    the tightening that protects the gates from silent edits.
+    may touch anything except ``regions/``, ``engine/`` and governance
+    paths - regions/ and engine/ are the product (culture lane); governance
+    is the gates. This is the tightening that protects both from silent
+    edits.
 
     Fork branches are the mirror of that: ``regions/**`` plus safe
     metadata and nothing else, so an external contribution is confined
@@ -260,13 +275,14 @@ def check_scope(
     no-op here so a dry-run on main doesn't claim scope violations.
     """
     if branch_kind == "culture":
-        prefix = culture_scope(branch_name, repo_root) if branch_name else None
-        if prefix is None:
+        prefixes = culture_scope(branch_name, repo_root) if branch_name else None
+        if prefixes is None:
             unsafe = [f for f in staged if f not in SAFE_PATTERNS]
         else:
             unsafe = [
                 f for f in staged
-                if not f.startswith(prefix) and f not in SAFE_PATTERNS
+                if not any(f.startswith(p) for p in prefixes)
+                and f not in SAFE_PATTERNS
             ]
     elif branch_kind == "fork":
         # Fork branches carry external culture content: regions/** only,
@@ -283,9 +299,13 @@ def check_scope(
             if not is_governance_path(f) and f not in SAFE_PATTERNS
         ]
     elif branch_kind == "other":
+        # regions/ and engine/ are the product (culture lane); governance
+        # paths are the gates. A chore/fix/feat branch may touch none of them.
         unsafe = [
             f for f in staged
-            if f.startswith("regions/") or is_governance_path(f)
+            if f.startswith("regions/")
+            or f.startswith("engine/")
+            or is_governance_path(f)
         ]
     elif branch_kind == "sync":
         # Sync branches carry main's content unchanged into culture/release.
@@ -697,9 +717,17 @@ _OPERATIONS: dict[str, dict] = {
     ),
     "release": dict(
         kind="culture", branch="culture/release", start="",
-        scope="regions/** + safe metadata",
+        scope="regions/** + engine/** + safe metadata",
         note="culture/release is the long-lived integration branch -- you do "
              "not create it; you PR it into main.",
+    ),
+    "engine": dict(
+        kind="culture", branch="culture/engine",
+        start="origin/culture/release",
+        scope="engine/** + safe metadata",
+        note="The shared engine -- the scaffold every culture runs on. "
+             "Product content, not infrastructure: a culture-lane branch "
+             "that PRs into culture/release like culture/<country>.",
     ),
     "sync": dict(
         kind="sync", branch="sync/release-from-main-<date>",
@@ -768,9 +796,9 @@ def advise_operation(
     scope = spec["scope"]
     if operation in ("new-country", "new-region") and slug:
         branch = f"culture/{slug}"
-        prefix = culture_scope(branch, repo_root)
-        if prefix is not None:
-            scope = f"{prefix}** + safe metadata"
+        prefixes = culture_scope(branch, repo_root)
+        if prefixes is not None:
+            scope = " + ".join(f"{p}**" for p in prefixes) + " + safe metadata"
         else:
             noun = "country" if operation == "new-country" else "region"
             scope = (
@@ -810,6 +838,8 @@ def lane_of_path(path: str, repo_root: Path = _DEFAULT_REPO_ROOT) -> tuple[str, 
     """
     if path in SAFE_PATTERNS:
         return ("(safe metadata)", "safe")
+    if path.startswith("engine/"):
+        return (f"culture/{ENGINE_SLUG}", "culture")
     if path.startswith("regions/"):
         parts = path.split("/")
         region_slugs, country_to_region = _world_topology(repo_root)

@@ -82,14 +82,16 @@ def main(argv: list[str]) -> int:
     lines += [f"  x {f}" for f in unsafe]
     lines.append("")
     if kind == "culture":
-        prefix = culture_scope(head)
-        if prefix is None:
+        prefixes = culture_scope(head)
+        if prefixes is None:
             lines += [
-                f"   Culture slug '{head}' doesn't resolve to a country/region/world.",
+                f"   Culture slug '{head}' doesn't resolve to a country/region/"
+                "world/engine.",
                 "   Rename the branch or split the work; see branch_scope.culture_scope.",
             ]
         else:
-            lines.append(f"   Allowed: {prefix}** + " + ", ".join(sorted(SAFE_PATTERNS)))
+            allowed = " + ".join(f"{p}**" for p in prefixes)
+            lines.append(f"   Allowed: {allowed} + " + ", ".join(sorted(SAFE_PATTERNS)))
     elif kind == "governance":
         lines += [
             "   Allowed: governance paths only (GOVERNANCE_DIR_PREFIXES +",
