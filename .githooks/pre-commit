@@ -164,8 +164,17 @@ def main() -> int:
         f for f in staged.splitlines()
         if f.endswith(".md") and f.startswith("regions/")
     ]
+    # engine/*.md is solution-grade content too. CI validates it -- the
+    # validate.yml setup scope is (regions|engine)/*.md -- so the hook
+    # mirrors that locally: link integrity and the ladder gate run on
+    # staged engine markdown the same way they run on regions content.
+    staged_engine = [
+        f for f in staged.splitlines()
+        if f.endswith(".md") and f.startswith("engine/")
+    ]
 
     if staged_content:
+        # L1-L4 orchestrator: regions culture content only.
         result = subprocess.run(
             [sys.executable, "scripts/validate.py", *staged_content],
             capture_output=True,
@@ -179,8 +188,9 @@ def main() -> int:
             print("")
             return 1
 
-        # Local parity for link integrity: run the same in-repo link test on
-        # the staged markdown scope before push.
+    # Link integrity: the same in-repo link test CI runs, over staged
+    # regions/ and engine/ markdown -- the hook is the local mirror of CI.
+    if staged_content or staged_engine:
         result = subprocess.run(
             [
                 sys.executable,
@@ -189,7 +199,7 @@ def main() -> int:
                 "-q",
                 "tests/test_links.py",
                 "--khai-roots=engine",
-                f"--khai-files={' '.join(staged_content)}",
+                f"--khai-files={' '.join(staged_content + staged_engine)}",
             ],
             capture_output=True,
             text=True,
@@ -197,6 +207,29 @@ def main() -> int:
         )
         if result.returncode != 0:
             print(">>> LINK VALIDATION FAILED")
+            print("")
+            if result.stdout.strip():
+                print(result.stdout.strip())
+            if result.stderr.strip():
+                print(result.stderr.strip())
+            print("")
+            return 1
+
+    # Engine ladder gate: when engine markdown is staged, mirror the
+    # validate.yml ladder job locally. Guarded on the test file existing
+    # so the hook stays correct on branches predating the ladder gate.
+    if staged_engine and (REPO_ROOT / "tests" / "test_language_process_ladder.py").is_file():
+        result = subprocess.run(
+            [
+                sys.executable, "-m", "pytest", "-q",
+                "tests/test_language_process_ladder.py",
+            ],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if result.returncode != 0:
+            print(">>> ENGINE LADDER VALIDATION FAILED")
             print("")
             if result.stdout.strip():
                 print(result.stdout.strip())
