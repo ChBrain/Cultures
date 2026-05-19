@@ -1,6 +1,6 @@
 # Germany - Culture Content
 
-**Language:** German (Hochdeutsch)
+**Language(s):** German (Hochdeutsch)
 
 ## Culture Map
 
