@@ -1,4 +1,5 @@
 """L4f: Derived Hofstede scores vs declared — keyword scoring across all culture files."""
+import json
 import os
 import re
 import sys
@@ -24,11 +25,15 @@ _DIMS = ["PDI", "IDV", "UAI", "MAS", "LTO", "IND"]
 # untouched country never blocks unrelated work.
 _TOLERANCE = 5
 
-_SCORE_RE = re.compile(
-    r"\|[^|\n]*\b(PDI|IDV|UAI|MAS|LTO|IND)\b[^|\n]*\|"
-    r"\s*(\d+)\s*\|",
-    re.IGNORECASE,
-)
+# Declared scores come from data/hofstede_scores.json -- the single home for
+# Hofstede data. A migrated country's README no longer carries a score table
+# (test_hofstede_reference enforces that), so the README is not a usable
+# source. Reading the canonical scores keyed by country id means migrated
+# countries are checked, not skipped: the ±5 gate applies everywhere.
+_SCORES_PATH = _ROOT / "data" / "hofstede_scores.json"
+_SCORES: dict[str, dict] = json.loads(
+    _SCORES_PATH.read_text(encoding="utf-8")
+).get("scores", {})
 
 
 def _country_dirs() -> list[Path]:
@@ -47,27 +52,34 @@ def _country_dirs() -> list[Path]:
     return countries
 
 
-def _declared(readme_text: str) -> dict[str, int]:
-    return {
-        m.group(1).upper(): int(m.group(2))
-        for m in _SCORE_RE.finditer(readme_text)
-    }
+def _declared(country_id: str) -> dict[str, int]:
+    """Declared Hofstede scores for a country from the single home."""
+    entry = _SCORES.get(country_id, {})
+    return {dim: entry[dim] for dim in _DIMS if isinstance(entry.get(dim), int)}
 
 
-def _derived(country_dir: Path, language: str) -> dict[str, int]:
+def _derived(country_dir: Path, language: str) -> dict[str, int | None]:
+    """Derived score per dimension from culture-file keyword density.
+
+    A dimension maps to ``None`` when the content has zero keyword hits
+    for it (high + low == 0): the score is unverifiable, not 50. Folding
+    no-signal into a mid-range default let a dimension the content never
+    expresses pass the ±tolerance gate whenever its declared score sat
+    near 50. The caller treats ``None`` as a gate failure.
+    """
     keywords = load_bag_for_language(language, country_folder=country_dir, fallback=True)
     all_text = "".join(
-        f.read_text(encoding="utf-8").lower()
+        f.read_text(encoding="utf-8", errors="replace").lower()
         for f in country_dir.glob("culture_*.md")
     )
-    scores: dict[str, int] = {}
+    scores: dict[str, int | None] = {}
     for dim in _DIMS:
         if dim not in keywords:
             continue
         high = sum(1 for kw in keywords[dim]["high"] if re.search(r"\b" + re.escape(kw) + r"\b", all_text))
         low = sum(1 for kw in keywords[dim]["low"] if re.search(r"\b" + re.escape(kw) + r"\b", all_text))
         total = high + low
-        scores[dim] = 50 if total == 0 else int(high / total * 100)
+        scores[dim] = None if total == 0 else int(high / total * 100)
     return scores
 
 
@@ -97,14 +109,14 @@ _STRICT = bool(_pr_changed) and not _pr_data_changed
 
 @pytest.mark.parametrize("country_dir", _COUNTRIES, ids=[c.name for c in _COUNTRIES])
 def test_derived_within_tolerance(country_dir: Path):
-    readme = country_dir / "README.md"
-    if not readme.is_file():
-        pytest.skip("no README")
-    declared = _declared(readme.read_text(encoding="utf-8"))
+    declared = _declared(country_dir.name)
     if not declared:
-        pytest.skip("no declared scores")
+        pytest.skip("no declared scores in data/hofstede_scores.json")
 
-    all_text = "".join(f.read_text(encoding="utf-8") for f in country_dir.glob("culture_*.md"))
+    all_text = "".join(
+        f.read_text(encoding="utf-8", errors="replace")
+        for f in country_dir.glob("culture_*.md")
+    )
     language = detect_language(all_text)
     derived = _derived(country_dir, language)
 
@@ -112,21 +124,29 @@ def test_derived_within_tolerance(country_dir: Path):
     for dim in _DIMS:
         if dim not in declared or dim not in derived:
             continue
-        gap = abs(declared[dim] - derived[dim])
-        if gap <= _TOLERANCE:
-            continue
-        detail = (
-            f"{dim}: declared={declared[dim]}, derived={derived[dim]}, "
-            f"gap={gap} > ±{_TOLERANCE}"
-        )
+        if derived[dim] is None:
+            detail = (
+                f"{dim}: declared={declared[dim]}, derived=<no signal> "
+                f"-- the culture content carries no {dim} keyword, so the "
+                f"declared score cannot be verified"
+            )
+        else:
+            gap = abs(declared[dim] - derived[dim])
+            if gap <= _TOLERANCE:
+                continue
+            detail = (
+                f"{dim}: declared={declared[dim]}, derived={derived[dim]}, "
+                f"gap={gap} > ±{_TOLERANCE}"
+            )
         if _STRICT:
             failures.append(detail)
         else:
             warnings.warn(f"{country_dir.name}: {detail} [WARN]", stacklevel=2)
 
     assert not failures, (
-        f"{country_dir.name}: dimension(s) outside ±{_TOLERANCE} tolerance "
-        f"-- this PR changes the country's culture files, so the derived "
-        f"Hofstede scores must land within ±{_TOLERANCE} of declared:\n"
+        f"{country_dir.name}: dimension(s) failed the derived-score gate "
+        f"-- this PR changes the country's culture files, so every Hofstede "
+        f"dimension must be expressed in the content and derive within "
+        f"±{_TOLERANCE} of declared:\n"
         + "\n".join(f"  {f}" for f in failures)
     )
