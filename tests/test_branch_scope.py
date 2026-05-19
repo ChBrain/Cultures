@@ -173,10 +173,10 @@ def test_classify_fork_near_misses_are_other(branch):
 # ---------------------------------------------------------------------------
 
 @pytest.mark.parametrize("branch,expected", [
-    ("culture/germany",     "regions/europe/germany/"),
-    ("culture/denmark",     "regions/europe/denmark/"),
-    ("culture/netherlands", "regions/europe/netherlands/"),
-    ("culture/poland",      "regions/europe/poland/"),
+    ("culture/germany",     ("regions/europe/germany/",)),
+    ("culture/denmark",     ("regions/europe/denmark/",)),
+    ("culture/netherlands", ("regions/europe/netherlands/",)),
+    ("culture/poland",      ("regions/europe/poland/",)),
 ])
 def test_culture_scope_country(branch, expected):
     assert culture_scope(branch) == expected
@@ -184,11 +184,17 @@ def test_culture_scope_country(branch, expected):
 
 @pytest.mark.parametrize("region", ["europe", "africa", "americas", "asia", "oceania"])
 def test_culture_scope_region(region):
-    assert culture_scope(f"culture/{region}") == f"regions/{region}/"
+    assert culture_scope(f"culture/{region}") == (f"regions/{region}/",)
 
 
 def test_culture_scope_world_release():
-    assert culture_scope("culture/release") == "regions/"
+    """World level owns the whole product: regions/** and engine/**."""
+    assert culture_scope("culture/release") == ("regions/", "engine/")
+
+
+def test_culture_scope_engine_slug():
+    """culture/engine resolves to the shared engine tree."""
+    assert culture_scope("culture/engine") == ("engine/",)
 
 
 @pytest.mark.parametrize("branch", [
@@ -275,6 +281,57 @@ def test_check_scope_world_release_allows_all():
     ], "culture/release")
     assert ok
     assert unsafe == []
+
+
+def test_check_scope_world_release_allows_engine():
+    """The product is regions/ + engine/, so world level owns engine/ too."""
+    ok, unsafe = check_scope("culture", [
+        "regions/europe/germany/culture_german_position.md",
+        "engine/position_business_english.md",
+        "engine/claude/instructions.md",
+    ], "culture/release")
+    assert ok
+    assert unsafe == []
+
+
+def test_check_scope_culture_engine_allows_engine():
+    ok, unsafe = check_scope("culture", [
+        "engine/position_business_english.md",
+        "engine/stack.md",
+        "engine/copilot/README.md",
+    ], "culture/engine")
+    assert ok
+    assert unsafe == []
+
+
+def test_check_scope_culture_engine_blocks_regions():
+    """culture/engine owns engine/ only -- not country culture content."""
+    ok, unsafe = check_scope("culture", [
+        "engine/position_male.md",
+        "regions/europe/germany/culture_german_position.md",
+    ], "culture/engine")
+    assert not ok
+    assert unsafe == ["regions/europe/germany/culture_german_position.md"]
+
+
+def test_check_scope_culture_country_blocks_engine():
+    """A country branch cannot touch the shared engine -- it is not theirs."""
+    ok, unsafe = check_scope("culture", [
+        "regions/europe/germany/culture_german_position.md",
+        "engine/position_male.md",
+    ], "culture/germany")
+    assert not ok
+    assert unsafe == ["engine/position_male.md"]
+
+
+def test_check_scope_other_blocks_engine():
+    """engine/ is product (culture lane); a chore/fix/feat branch cannot touch it."""
+    ok, unsafe = check_scope("other", [
+        "engine/stack.md",
+        "ARCHITECTURE.md",
+    ])
+    assert not ok
+    assert unsafe == ["engine/stack.md"]
 
 
 def test_check_scope_culture_allows_lock_index():
@@ -843,6 +900,7 @@ def test_render_misbased_branch_respects_base_ref():
     ("chore", "other", "main"),
     ("fix", "other", "main"),
     ("feat", "other", "main"),
+    ("engine", "culture", "culture/release"),
 ])
 def test_advise_operation_kind_and_base(operation, kind, base):
     advice = advise_operation(operation)
@@ -859,7 +917,7 @@ def test_advise_operation_unknown_returns_none():
 def test_valid_operations_is_the_registry():
     ops = valid_operations()
     assert set(ops) == {
-        "new-country", "new-region", "release", "sync", "fork",
+        "new-country", "new-region", "release", "engine", "sync", "fork",
         "governance", "chore", "fix", "feat",
     }
 
@@ -905,6 +963,8 @@ def test_render_operation_advice_release_has_no_create_command():
 @pytest.mark.parametrize("path,lane,kind", [
     ("regions/europe/germany/culture_german_position.md", "culture/germany", "culture"),
     ("regions/africa/nigeria/README.md", "culture/nigeria", "culture"),
+    ("engine/position_business_english.md", "culture/engine", "culture"),
+    ("engine/claude/instructions.md", "culture/engine", "culture"),
     (".github/workflows/validate.yml", "governance/<name>", "governance"),
     ("tests/validate_language.py", "governance/<name>", "governance"),
     ("tests/branch_scope.py", "governance/<name>", "governance"),

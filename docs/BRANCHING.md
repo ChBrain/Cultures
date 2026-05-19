@@ -9,8 +9,8 @@ for humans and AI agents; the executable source is
 The repo enforces a strict branch-scope contract:
 
 - `main` is protected - direct commits are rejected.
-- Culture content (`regions/**`) is walled off from infrastructure changes so
-  a refactor cannot accidentally touch culture data.
+- The product (`regions/**` plus the shared engine `engine/**`) is walled off
+  from infrastructure changes so a refactor cannot accidentally touch it.
 - Validators, hooks, and workflow definitions (**governance**) are walled off
   from generic tooling work so an automated contributor (or an LLM) cannot
   silently weaken the gates that protect culture content.
@@ -68,11 +68,12 @@ A routing failure always states whether it is **fixable in place**:
 | `main` | exact `main` | — (not a PR head) | nothing - direct commits forbidden | n/a |
 | culture (country) | `culture/<country>` | `culture/release` | `regions/<region>/<country>/**` + safe metadata | yes (±10 gap) |
 | culture (region) | `culture/<region>` | `culture/release` | `regions/<region>/**` + safe metadata | yes (±10 gap) |
-| culture (world) | `culture/release` | `main` | `regions/**` + safe metadata | yes (±10 gap) |
+| culture (world) | `culture/release` | `main` | `regions/**` + `engine/**` + safe metadata | yes (±10 gap) |
+| culture (engine) | `culture/engine` | `culture/release` | `engine/**` + safe metadata | n/a |
 | governance | `governance/<name>` | `main` | governance paths + safe metadata | n/a |
 | sync | `sync/<name>` | `culture/release` | unrestricted (snapshot of `main`) | n/a |
 | fork | `fork/<name>` | `culture/release` | `regions/**` + safe metadata **only** | yes (±10 gap) |
-| other | `chore/*`, `fix/*`, `feat/*`, … | `main` | everything **except** `regions/**` **and except** governance paths | n/a |
+| other | `chore/*`, `fix/*`, `feat/*`, … | `main` | everything **except** `regions/**`, `engine/**`, **and** governance paths | n/a |
 
 The pattern is anchored. `feat/culture-x`, `cultures/x`, and `culture/Denmark`
 (uppercase) all classify as `other` and are blocked from `regions/`.
@@ -86,16 +87,28 @@ enforces. Note the two directions are different lanes: `sync/<name>` carries
 
 ## Culture slug resolution
 
-`culture/<slug>` is resolved against the on-disk `regions/` tree:
+The product is `regions/**` (per-country culture content) plus `engine/**`
+(the shared scaffold every culture runs on -- positions, processes, the
+deployment files). A `culture/<slug>` branch resolves to the part of the
+product it owns:
 
-- `<slug>` = `release` -> world-level -> may touch `regions/**`.
-- `<slug>` matches a region folder -> region-level -> may touch `regions/<slug>/**`.
-- `<slug>` matches a country folder -> country-level -> may touch `regions/<region>/<slug>/**`.
+- `<slug>` = `release` -> world-level -> the whole product: `regions/**` + `engine/**`.
+- `<slug>` = `engine` -> the shared engine -> `engine/**`.
+- `<slug>` matches a region folder -> region-level -> `regions/<slug>/**`.
+- `<slug>` matches a country folder -> country-level -> `regions/<region>/<slug>/**`.
 - Otherwise: unknown slug -> reject (typo does not silently widen scope).
 
 A `culture/germany` branch cannot touch Denmark even though both live under
-`regions/europe/`. For multi-country work in one PR, use `culture/<region>` or
-`culture/release`.
+`regions/europe/`, and it cannot touch `engine/**` -- the engine is shared,
+not Germany's. For the shared engine use `culture/engine`; for multi-country
+work in one PR use `culture/<region>` or `culture/release`.
+
+`engine/**` is product content, not infrastructure: it rides the culture
+lane (`culture/engine -> culture/release -> main`), never a `governance/*`
+branch. The *file architecture* of the engine -- the schema its files follow
+-- is the global khai contract, shared across every KAI world and validated
+by the `khai-tests` suite. This repo carries one world's engine, not the
+schema.
 
 ## Culture branch base
 
@@ -239,7 +252,7 @@ Authoritative list: `SAFE_PATTERNS` in
 
 If a change spans two kinds, split it into separate branches/PRs:
 
-1. Culture content -> `culture/<country>` (or `<region>`, `release`)
+1. Culture content -> `culture/<country>` (or `<region>`, `release`); shared engine -> `culture/engine`
 2. Validator / hook / workflow changes -> `governance/<name>`
 3. General tooling / docs -> `chore/<name>`
 4. Bug fixes outside culture and governance -> `fix/<name>`
