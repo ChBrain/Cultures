@@ -85,4 +85,4 @@ These dimensions inform the **[Language](culture_spanish_position_language.md)**
 
 *Audited May 14, 2026 (re-derived after L4-bag-quality fix; all 6 dimensions ±5 EXCELLENT)*
 
-*v0.2.1 - Kai Schlueter - Cultures - May 2026*
+*v0.2.0 - Kai Schlueter - Cultures - May 2026*
