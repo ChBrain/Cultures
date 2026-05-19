@@ -4,6 +4,8 @@ Covers what khai component tests do NOT check:
   - Owner block format (Project: Cultures + Culture/Scope)
   - Required sections appear in canonical order
   - Persona Projection contains gender and culture position links
+  - Persona `type` value, one-line Title, stamp.date quoting (PR-scoped)
+  - Persona Projection language-ladder completeness (PR-scoped)
 
 Cultures layers specialized kind names on top of KAI's 5 generic
 component structures. The alias map below resolves Cultures-specific
@@ -136,3 +138,135 @@ def test_persona_projection_links(md_file: Path):
     assert has_culture_pos, (
         f"{md_file.name}: Projection missing link to culture_*_position.md"
     )
+
+
+# --- Frontmatter and ladder rules (PR-scoped via --khai-files) -------------
+#
+# Enforced per-PR, not repo-wide: these iterate the files in --khai-files
+# (the changed culture files for the PR) rather than the global md_file
+# fixture. Repo-wide enforcement would retroactively fail the countries
+# migrated before these rules existed; PR scoping challenges each country
+# when its own migration PR runs. Mirrors test_no_orphans in test_links.py.
+
+_LADDER_CHANNELS = ("speaking", "hearing", "writing", "reading")
+_VALID_PERSONA_TYPES = frozenset({"composite"})
+
+
+def _frontmatter(text: str) -> str | None:
+    """Return the raw YAML frontmatter block, or None if the file has none."""
+    m = re.match(r"^---\n(.*?)\n---\n", text, re.DOTALL)
+    return m.group(1) if m else None
+
+
+def _khai_files(pytestconfig) -> list[Path]:
+    """The .md files passed via --khai-files, as resolved paths."""
+    try:
+        raw = pytestconfig.getoption("--khai-files") or ""
+    except ValueError:
+        raw = ""
+    root = Path(pytestconfig.rootdir)
+    return [(root / part).resolve() for part in raw.split() if part.endswith(".md")]
+
+
+def test_persona_type(pytestconfig):
+    """Persona `type` is lowercase and in the allowed set (`composite`)."""
+    files = _khai_files(pytestconfig)
+    if not files:
+        pytest.skip("--khai-files not provided; PR-scoped check")
+    failures: list[str] = []
+    for f in files:
+        if not f.exists() or _component_type(f) != "persona":
+            continue
+        fm = _frontmatter(f.read_text(encoding="utf-8", errors="replace"))
+        if fm is None:
+            continue
+        m = re.search(r"^type:[ \t]*(\S+)[ \t]*$", fm, re.MULTILINE)
+        if not m:
+            failures.append(f"{f.name}: persona frontmatter missing 'type:'")
+            continue
+        value = m.group(1)
+        if value != value.lower():
+            failures.append(f"{f.name}: type must be lowercase; got {value!r}")
+        elif value not in _VALID_PERSONA_TYPES:
+            failures.append(
+                f"{f.name}: type must be one of "
+                f"{sorted(_VALID_PERSONA_TYPES)}; got {value!r}"
+            )
+    assert not failures, "persona type:\n  " + "\n  ".join(failures)
+
+
+def test_persona_title_one_line(pytestconfig):
+    """Persona Title is a single line: `## Title: <role>`."""
+    files = _khai_files(pytestconfig)
+    if not files:
+        pytest.skip("--khai-files not provided; PR-scoped check")
+    failures: list[str] = []
+    for f in files:
+        if not f.exists() or _component_type(f) != "persona":
+            continue
+        text = f.read_text(encoding="utf-8", errors="replace")
+        if not re.search(r"^## Title\b", text, re.MULTILINE):
+            continue
+        if re.search(r"^## Title[ \t]*$", text, re.MULTILINE):
+            failures.append(
+                f"{f.name}: Title must be one line '## Title: <role>', "
+                f"not '## Title' with the role on the next line"
+            )
+        elif not re.search(r"^## Title: \S.*$", text, re.MULTILINE):
+            failures.append(f"{f.name}: Title must match '## Title: <role>'")
+    assert not failures, "persona Title:\n  " + "\n  ".join(failures)
+
+
+def test_stamp_date_quoted(pytestconfig):
+    """stamp.date is a quoted ISO string: `date: 'YYYY-MM-DD'`."""
+    files = _khai_files(pytestconfig)
+    if not files:
+        pytest.skip("--khai-files not provided; PR-scoped check")
+    failures: list[str] = []
+    for f in files:
+        if not f.exists() or _component_type(f) is None:
+            continue
+        fm = _frontmatter(f.read_text(encoding="utf-8", errors="replace"))
+        if fm is None:
+            continue
+        m = re.search(r"^[ \t]*date:[ \t]*(.+?)[ \t]*$", fm, re.MULTILINE)
+        if not m:
+            continue
+        if not re.fullmatch(r"'\d{4}-\d{2}-\d{2}'", m.group(1)):
+            failures.append(
+                f"{f.name}: stamp.date must be a quoted ISO date "
+                f"'YYYY-MM-DD'; got {m.group(1)!r}"
+            )
+    assert not failures, "stamp.date:\n  " + "\n  ".join(failures)
+
+
+def test_persona_projection_ladder(pytestconfig):
+    """If a persona's Projection adopts the language ladder, it covers all
+    four channels. Skip-tolerant per file: a persona with no ladder links is
+    not yet migrated and is not failed."""
+    files = _khai_files(pytestconfig)
+    if not files:
+        pytest.skip("--khai-files not provided; PR-scoped check")
+    failures: list[str] = []
+    for f in files:
+        if not f.exists() or _component_type(f) != "persona":
+            continue
+        text = f.read_text(encoding="utf-8", errors="replace")
+        m = re.search(r"^## Projection$(.+?)^##", text, re.MULTILINE | re.DOTALL)
+        if not m:
+            continue
+        proj = m.group(1)
+        found = {
+            ch for ch in _LADDER_CHANNELS
+            if re.search(rf"process_{ch}_[a-z_]+\.md", proj)
+        }
+        if not found:
+            continue  # ladder not adopted yet
+        missing = [ch for ch in _LADDER_CHANNELS if ch not in found]
+        if missing:
+            failures.append(
+                f"{f.name}: Projection uses the language ladder but is "
+                f"missing channel(s) {missing}; a persona that adopts the "
+                f"ladder covers all four {list(_LADDER_CHANNELS)}"
+            )
+    assert not failures, "Projection ladder:\n  " + "\n  ".join(failures)
