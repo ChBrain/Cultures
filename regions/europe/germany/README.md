@@ -26,6 +26,14 @@ Filename convention: `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5
 | `culture_german_persona_female_brigitte.md` | persona | Brigitte - Rechtsanwältin (b. 1960) |
 | `culture_german_persona_male_christian.md` | persona | Christian - Softwareentwickler (b. 1985) |
 
+## Culture Map
+
+The culture reads as a connected flow:
+
+- A **persona** - [Brigitte](culture_german_persona_female_brigitte.md) or [Christian](culture_german_persona_male_christian.md), each with a gender - carries the culture.
+- A persona speaks the **[language](culture_german_position_language.md)** and holds the **[cultural position](culture_german_position.md)**.
+- The position sits in its **[capital](culture_german_place_berlin.md)**, expresses a **[piece](culture_german_piece_autobahn.md)**, runs a **[process](culture_german_process_erinnern.md)**, and moves through its **[history](culture_german_piece_history.md)**.
+
 ## Content Audit Status
 
 | File | TYPE | Status | Notes |
