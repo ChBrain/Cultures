@@ -1,30 +1,12 @@
 # Germany - Culture Content
 
-**Language(s):** German (Hochdeutsch)
+**Language:** German (Hochdeutsch)
 
-This folder contains culture content for Germany: the German language (Hochdeutsch), the historical arc, the cultural position, the process of reckoning (Erinnern), an artifact (the Autobahn), a place (Berlin), and two personas embodying the culture.
+Culture content for Germany - the language, the historical arc, the cultural position, the process of reckoning (Erinnern), an artifact (the Autobahn), the capital (Berlin), and two personas.
 
-## Quick Start
+## Download
 
-Download the complete Germany culture package for Claude.ai:
-- [**germany.zip**](https://github.com/ChBrain/Cultures/releases/latest/download/germany.zip) - All culture files + engine stack + instructions
-
-The zip contains all culture files flattened at root level with links rewritten for Claude consumption.
-
-## Content Overview
-
-Filename convention: `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5 KAI structural types (process, position, piece, place, persona). Single-instance kinds (language, history) drop the redundant country suffix.
-
-| File | TYPE | Purpose |
-|------|------|---------|
-| `culture_german_position_language.md` | position | Standard German (Hochdeutsch) - linguistic anchor |
-| `culture_german_piece_history.md` | piece | The arc of German history (9 AD to today) |
-| `culture_german_position.md` | position | German cultural position (state role) - narrative anchor |
-| `culture_german_process_erinnern.md` | process | Erinnern - reckoning with history |
-| `culture_german_piece_autobahn.md` | piece | Autobahn - the federal road network as cultural artifact |
-| `culture_german_place_berlin.md` | place | Berlin - capital city as geographical anchor |
-| `culture_german_persona_female_brigitte.md` | persona | Brigitte - Rechtsanwältin (b. 1960) |
-| `culture_german_persona_male_christian.md` | persona | Christian - Softwareentwickler (b. 1985) |
+[**germany.zip**](https://github.com/ChBrain/Cultures/releases/latest/download/germany.zip) - all culture files + engine stack + instructions, flattened for Claude.ai.
 
 ## Culture Map
 
@@ -48,7 +30,5 @@ The culture reads as a connected flow:
 | culture_german_persona_male_christian.md | persona | ✅ Complete | Softwareentwickler: projection, action, shadow, tell |
 
 ---
-
-Audited May 13, 2026
 
 *v0.2.0 - Kai Schlueter - Cultures - May 2026*
