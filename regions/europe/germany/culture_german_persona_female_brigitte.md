@@ -1,17 +1,16 @@
 ---
 khai: persona
-type: Fictional
+type: composite
 hofstede: aggregate
 license: CC-BY-NC-4.0
 stamp:
   owner: KAI HACKS AI
   version: v0.2.0
-  date: '2026-05-13'
+  date: '2026-05-19'
 ---
 # Persona: Brigitte
 
-## Title
-Rechtsanwältin
+## Title: Rechtsanwältin
 
 ## Owner
 - Project: Cultures
@@ -23,6 +22,12 @@ Rechtsanwältin.
 Geb. 1960.
 Sie trägt keine Brille bei der Arbeit.
 Sie trägt ihre Haare geschnitten, kurz.
+
+Deutsch ist ihre Muttersprache.
+Englisch liest sie den Buchstaben des Vertrags und [folgt dem Wortlaut](../../../engine/process_reading_followed.md); die Wendung dahinter entgeht ihr.
+Sie schreibt es [aus Vorlagen zusammengesetzt](../../../engine/process_writing_copied.md), Satz für Satz geprüft.
+Gesprochen trägt sie das Englische wie [ein Werkzeug](../../../engine/process_speaking_carried.md): sie verhandelt das Geschäft, den Streit führt sie darin nicht.
+Sie [folgt dem Gesagten](../../../engine/process_hearing_followed.md) und nicht dem, was darunter liegt.
 
 ## Action
 Sie liest den Fall zweimal.

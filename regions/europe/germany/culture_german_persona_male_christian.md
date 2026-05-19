@@ -1,17 +1,16 @@
 ---
 khai: persona
-type: Fictional
+type: composite
 hofstede: aggregate
 license: CC-BY-NC-4.0
 stamp:
   owner: KAI HACKS AI
   version: v0.2.0
-  date: '2026-05-13'
+  date: '2026-05-19'
 ---
 # Persona: Christian
 
-## Title
-Softwareentwickler
+## Title: Softwareentwickler
 
 ## Owner
 - Project: Cultures
@@ -22,6 +21,12 @@ Christian ist ein [Mann](../../../engine/position_male.md) aus [Deutschland](cul
 Softwareentwickler.
 Geb. 1985.
 Trägt Jeans zur Arbeit.
+
+Deutsch ist seine Muttersprache.
+Englisch liest er den ganzen Tag, im Code und in der Dokumentation, und [erfasst es ganz](../../../engine/process_reading_caught.md).
+Er schreibt es [zweckmäßig](../../../engine/process_writing_drafted.md): Commits, Tickets, knappe Notizen.
+Gesprochen trägt er das Englische wie [eingelaufene Kleidung](../../../engine/process_speaking_worn.md), mit Akzent.
+Im schnellen Gespräch [folgt er dem Inhalt](../../../engine/process_hearing_followed.md), den Unterton verliert er.
 
 ## Action
 Er sieht das Problem, bevor der Kunde es sieht.
