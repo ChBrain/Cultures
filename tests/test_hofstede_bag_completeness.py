@@ -19,9 +19,12 @@ REGIONS = REPO_ROOT / "regions"
 def find_countries_with_content() -> dict[Path, list[Path]]:
     """Map each country folder under regions/ to the list of culture content files.
 
-    A country has "content" if it contains at least one `culture_*.md` or
-    `persona_*.md` file. Skips README, REFERENCES, decisions, and all
-    hofstede_*.{yaml,md} files since those are bag artifacts, not content.
+    A country has "content" if it contains at least one `culture_*.md`
+    file. Skips README, REFERENCES, decisions, persona files, and all
+    hofstede_*.{yaml,md} files since those are not scored culture content.
+
+    Personas are excluded: a persona inhabits a culture, it is not the
+    culture, so it carries no culture_ prefix and feeds no Hofstede bag.
     """
     if not REGIONS.exists():
         return {}
@@ -29,8 +32,8 @@ def find_countries_with_content() -> dict[Path, list[Path]]:
     countries: dict[Path, list[Path]] = {}
     for md_file in REGIONS.rglob("*.md"):
         name = md_file.name
-        # Positive match: only culture_*.md and persona_*.md count as content.
-        if not (name.startswith("culture_") or name.startswith("persona_")):
+        # Positive match: only culture_*.md counts as scored culture content.
+        if not name.startswith("culture_"):
             continue
 
         # regions/<region>/<country>/<file>.md → country folder is parts[:3]
@@ -116,11 +119,11 @@ class TestBagCompleteness:
             country_folder = marker.parent
             content = [
                 f for f in country_folder.glob("*.md")
-                if f.name.startswith("culture_") or f.name.startswith("persona_")
+                if f.name.startswith("culture_")
             ]
             assert content, (
                 f"{country_folder.relative_to(REPO_ROOT)}/.no-bag-yet exists "
-                f"but no culture_*.md or persona_*.md files found alongside."
+                f"but no culture_*.md files found alongside."
             )
 
     def test_exempted_countries_are_visible(self):
