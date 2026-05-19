@@ -1,6 +1,11 @@
 ---
 khai: position
 hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-19'
 ---
 # Position: Polish
 
@@ -26,6 +31,10 @@ Indywidualność w kręgu nie znika. Służy całości.
 Podległość jest przejrzysta: każdy zna swój rząd odpowiedzialności.
 Posłuszeństwo wobec kręgu i jego zasad to fundament zaufania.
 Niezależność jest ceniona, w granicach zobowiązania.
+Prawo pisane jest ważne, lecz krąg odczytuje je razem z kontekstem.
+Każdy przepis budzi pytanie: kto go napisał, kto go egzekwuje.
+Planowanie długoterminowe jest narzędziem, nie ozdobą; procedura chroni przed przypadkiem.
+Regulacja sektorowa po 1989 stała się codziennością: kto pracuje, ten zna paragrafy swojej dziedziny.
 
 ## Orders
 Zaufaj komu znasz. Tylko temu.
