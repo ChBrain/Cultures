@@ -9,6 +9,21 @@ _ROOT = Path(__file__).resolve().parent.parent
 _SECTION_RE = re.compile(r"##\s+(Content\s+)?Audit\s+Status\s*\n", re.IGNORECASE)
 _HEADER_RE = re.compile(r"File.*Type", re.IGNORECASE)
 _SEP_RE = re.compile(r"^\s*\|\s*-+")
+_LINK_RE = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
+
+
+def _cell_filename(cell: str) -> str:
+    """Filename from an audit-table File cell.
+
+    The cell may be a bare name, a backticked name, or a markdown link
+    ``[name](target)`` -- links give the reader navigation. The link
+    target is the file path; everything reduces to the basename.
+    """
+    cell = cell.strip()
+    m = _LINK_RE.search(cell)
+    if m:
+        cell = m.group(1).split("#", 1)[0]
+    return Path(cell.strip().strip("`").strip()).name
 
 
 def _country_dirs() -> list[Path]:
@@ -54,7 +69,7 @@ def _audit_files(text: str) -> set[str]:
         if line.strip().startswith("|") and line.strip().endswith("|"):
             cells = [c.strip() for c in line.split("|")]
             if len(cells) > 1 and cells[1]:
-                name = cells[1].strip("`")
+                name = _cell_filename(cells[1])
                 if not name.endswith(".md"):
                     name += ".md"
                 files.add(name)
@@ -90,3 +105,16 @@ def test_no_missing_audit_entries(country_dir: Path):
     assert not missing, (
         f"{country_dir.name}/README.md: files on disk missing from audit table: {missing}"
     )
+
+
+def test_audit_files_parses_linked_cells():
+    table = (
+        "## Content Audit Status\n\n"
+        "| File | TYPE | Status |\n"
+        "|------|------|--------|\n"
+        "| [culture_x_position.md](culture_x_position.md) | position | ok |\n"
+        "| `culture_x_place_y.md` | place | ok |\n"
+    )
+    assert _audit_files(table) == {
+        "culture_x_position.md", "culture_x_place_y.md",
+    }
