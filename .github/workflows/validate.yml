@@ -517,7 +517,8 @@ jobs:
   cultures-language-preflight:
     name: cultures - Language pre-flight
     # Always-run pre-flight: every country README's **Language(s):** slug
-    # must already appear in data/language_policy.yaml. Mirrors the
+    # must appear in data/language_policy.yaml, and every country's
+    # data/countries.json language must be unlocked via iso_map. Mirrors the
     # cultures-audit-readme-bands-tests / cultures-history-arc pattern: independent,
     # always runs, no setup-job dependency. Fast (no lingua, no whl
     # install) -- under 30 seconds.
@@ -549,8 +550,8 @@ jobs:
           python-version: '3.11'
       - name: Install pytest + pyyaml
         run: pip install pytest pyyaml
-      - name: Run registry pre-flight
-        run: python -m pytest tests/test_language.py::test_readme_language_in_registry -v
+      - name: Run registry + unlock pre-flight
+        run: python -m pytest tests/test_language.py -k "registry or unlocked or iso_map" -v
 
   setup:
     name: Setup - Compute changed files

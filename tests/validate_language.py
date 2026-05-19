@@ -39,6 +39,7 @@ from findings import Issue  # noqa: E402
 
 ROOT = HERE.parent
 POLICY_PATH = ROOT / "data" / "language_policy.yaml"
+COUNTRIES_PATH = ROOT / "data" / "countries.json"
 
 
 def _lingua_language_map():
@@ -73,9 +74,11 @@ def _lingua_language_map():
 def load_policy(path: Path = POLICY_PATH) -> dict:
     """Load and validate data/language_policy.yaml.
 
-    Returns ``{languages, prose_sections, min_span_words}``. Raises
-    ValueError if the file is missing or malformed -- the validator
-    can't run without a policy.
+    Returns ``{languages, prose_sections, min_span_words, iso_map}``.
+    Raises ValueError if the file is missing or malformed -- the
+    validator can't run without a policy. ``iso_map`` (ISO 639-1 code ->
+    lingua name) may be empty; the unlock gate flags that, it is not a
+    hard load error.
     """
     if not path.is_file():
         raise ValueError(
@@ -100,10 +103,16 @@ def load_policy(path: Path = POLICY_PATH) -> dict:
         raise ValueError(f"{path}: `prose_sections` must be a non-empty list.")
     if not isinstance(min_words, int) or min_words < 1:
         raise ValueError(f"{path}: `min_span_words` must be a positive integer.")
+    iso_map_raw = raw.get("iso_map") or {}
+    if not isinstance(iso_map_raw, dict):
+        raise ValueError(
+            f"{path}: `iso_map` must be a mapping of ISO code -> language name."
+        )
     return {
         "languages": [s.lower() for s in languages],
         "prose_sections": {s.lower() for s in sections},
         "min_span_words": min_words,
+        "iso_map": {str(k).lower(): str(v).lower() for k, v in iso_map_raw.items()},
     }
 
 
@@ -306,6 +315,81 @@ def _readme_registry_violations(
                     "`data/language_policy.yaml` + lingua mapping in "
                     "tests/validate_language.py (governance/* PR)"
                 ),
+            ))
+    return issues
+
+
+# ---------------------------------------------------------------------
+# Country language unlock gate
+# ---------------------------------------------------------------------
+
+# The README cross-check above keys off a hand-written `**Language(s):**`
+# line. This gate keys off data instead: data/countries.json records each
+# country's language as an ISO 639-1 code, and a language is *unlocked*
+# only when that code maps -- via the policy iso_map -- onto a lingua name
+# in the `languages` registry. Culture work must not start on a country
+# whose language is not unlocked: the per-file detector would silently
+# fall back to english and pass content it cannot actually validate.
+
+PLACEHOLDERS = {"", "todo", "tbd"}
+
+
+def load_countries(path: Path = COUNTRIES_PATH) -> list[dict]:
+    """data/countries.json as a list of entries; [] if the file is absent."""
+    if not path.is_file():
+        return []
+    import json
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return data.get("countries", []) if isinstance(data, dict) else []
+
+
+def country_language_unlocked_violations(
+    policy: dict, country_ids: set[str] | None = None
+) -> list[Issue]:
+    """Flag countries in countries.json whose language is not unlocked.
+
+    ``country_ids`` scopes the check; ``None`` checks every registered
+    country. The pre-commit hook passes the staged country so a culture
+    commit is gated on its own language without flagging unrelated ones.
+    """
+    issues: list[Issue] = []
+    iso_map = policy["iso_map"]
+    registry = set(policy["languages"])
+    for entry in load_countries():
+        cid = entry.get("id")
+        if not cid or (country_ids is not None and cid not in country_ids):
+            continue
+        raw_iso = entry.get("language")
+        iso = str(raw_iso).strip().lower() if raw_iso is not None else ""
+        if iso in PLACEHOLDERS:
+            issues.append(Issue(
+                error=f"data/countries.json '{cid}': no `language` set",
+                verdict="set `language` to the country's ISO 639-1 code",
+            ))
+            continue
+        name = iso_map.get(iso)
+        if name is None:
+            issues.append(Issue(
+                error=(
+                    f"data/countries.json '{cid}': language {iso!r} is not "
+                    f"unlocked -- no iso_map entry in data/language_policy.yaml"
+                ),
+                verdict=(
+                    f"before starting culture work on '{cid}', add "
+                    f"`{iso}: <lingua-name>` to iso_map in "
+                    "data/language_policy.yaml, register the name in "
+                    "`languages`, and add its lingua.Language mapping in "
+                    "tests/validate_language.py (one governance/* PR)"
+                ),
+            ))
+            continue
+        if name not in registry:
+            issues.append(Issue(
+                error=(
+                    f"data/countries.json '{cid}': language {iso!r} maps to "
+                    f"{name!r}, which is not in the `languages` registry"
+                ),
+                verdict=f"add {name!r} to `languages` in data/language_policy.yaml",
             ))
     return issues
 
@@ -620,6 +704,12 @@ def main(argv: list[str] | None = None) -> int:
              "skip per-file language detection",
     )
     parser.add_argument(
+        "--check-unlocked", action="store_true",
+        help="only run the country language unlock gate against "
+             "data/countries.json (scoped to the countries owning any "
+             "given files, or all countries when none are given)",
+    )
+    parser.add_argument(
         "--explain", action="store_true",
         help="diagnostic mode: dump every detected language span per "
              "section for the given files. Useful for LLM-driven authoring "
@@ -649,6 +739,24 @@ def main(argv: list[str] | None = None) -> int:
             for line in explain(Path(arg)):
                 print(line)
         return 0
+
+    if args.check_unlocked:
+        if args.files:
+            ids: set[str] = set()
+            for arg in args.files:
+                owner = _country_dir_for(Path(arg))
+                if owner is not None:
+                    ids.add(owner.name)
+            unlocked_issues = country_language_unlocked_violations(policy, ids)
+        else:
+            unlocked_issues = country_language_unlocked_violations(policy)
+        for issue in unlocked_issues:
+            print(f"FAIL {issue.error}")
+            if issue.verdict:
+                print(f"  verdict: {issue.verdict}")
+        if not unlocked_issues:
+            print("OK: country languages unlocked")
+        return 1 if unlocked_issues else 0
 
     # README registry cross-check runs in all detection modes -- it
     # catches the silent-fallback bug that motivated Phase 1 and costs
