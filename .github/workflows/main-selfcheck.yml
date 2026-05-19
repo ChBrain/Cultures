@@ -45,7 +45,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.9)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.10)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
