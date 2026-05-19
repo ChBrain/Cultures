@@ -644,6 +644,7 @@ def test_is_governance_path_glob_files(path):
     "scripts/deploy_culture.py",
     "scripts/scaffold_country.py",
     "scripts/findings.py",
+    "scripts/prose_review.py",
     "tests/PLAN.md",
     "tests/README.md",
     "tests/findings.py",
