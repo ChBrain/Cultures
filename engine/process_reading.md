@@ -4,7 +4,7 @@ license: CC-BY-NC-4.0
 stamp:
   owner: KAI HACKS AI
   version: v0.1.0
-  date: 2026-05-19
+  date: '2026-05-19'
 ---
 # Process: Reading
 
