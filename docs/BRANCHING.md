@@ -117,6 +117,7 @@ Files that define or enforce repository rules. Editing any of these requires a
 - `scripts/setup-hooks.sh`, `scripts/setup-hooks.bat` - hook installation
 - `scripts/audit_readme_bands.py` - canonical Hofstede band contract
 - `scripts/update_hofstede_readme.py` - deterministic README Hofstede-tables updater
+- `scripts/build_zips.py` - the release zip build engine
 - `data/hofstede_denylist.yaml`, `data/hofstede_keywords.py` - validator inputs
 - `data/hofstede_scores.json` - Hofstede Insights reference dataset
 - `data/hofstede_bag_loader.py` - bag-validation infrastructure
