@@ -1,3 +1,11 @@
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: 2026-05-19
+---
 # Process: Reading, Deciphered
 
 ## The persona builds meaning from guesses and cannot test them.
@@ -29,8 +37,3 @@ The persona meets it with no one to ask.
 A meaning assembled mostly from guesses,
 and no way to tell a sound guess from a wrong one.
 Whatever the persona built, they carry as the text.
-
----
-*process_reading_deciphered.md - 19.05.2026*
-
-v0.1.0 - KAI Worlds

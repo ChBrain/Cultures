@@ -1,3 +1,11 @@
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: 2026-05-19
+---
 # Process: Using Language
 
 ## The language was chosen before the persona spoke.
@@ -37,8 +45,3 @@ What the persona produced does not vanish. It enters the world
 as a thing other personas must now receive.
 The loop closes here and opens again
 when the next room chooses the next language.
-
----
-*process_using_language.md - 19.05.2026*
-
-v0.1.0 - KAI Worlds

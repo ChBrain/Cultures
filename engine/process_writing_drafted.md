@@ -1,3 +1,11 @@
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: 2026-05-19
+---
 # Process: Writing, Drafted
 
 ## The persona produces serviceable text. It carries the matter and nothing around it.
@@ -29,8 +37,3 @@ What they cannot reach is simply absent, and the absence is also fixed.
 The record stands.
 It does the task and dates the persona at this width.
 Nothing of them is in it that a reader would keep.
-
----
-*process_writing_drafted.md - 19.05.2026*
-
-v0.1.0 - KAI Worlds

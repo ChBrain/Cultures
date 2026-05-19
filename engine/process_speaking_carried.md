@@ -1,3 +1,11 @@
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: 2026-05-19
+---
 # Process: Speaking, Carried
 
 ## The language is a tool in the hand. It does the task and stays outside the persona.
@@ -27,8 +35,3 @@ nothing above it will come at all.
 ## Echo
 The task is done. Competence without ownership.
 The language goes back down, and nothing of the persona stayed in it.
-
----
-*process_speaking_carried.md - 19.05.2026*
-
-v0.1.0 - KAI Worlds

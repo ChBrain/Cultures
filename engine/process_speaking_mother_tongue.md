@@ -1,3 +1,11 @@
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: 2026-05-19
+---
 # Process: Speaking, Mother Tongue
 
 ## The persona does not speak the language. The language speaks the persona.
@@ -31,8 +39,3 @@ The floor.
 What was said here cannot be unsaid or reframed.
 The other languages resume on top of it.
 It does not translate.
-
----
-*process_speaking_mother_tongue.md - 19.05.2026*
-
-v0.1.0 - KAI Worlds

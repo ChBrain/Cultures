@@ -1,3 +1,11 @@
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: 2026-05-19
+---
 # Process: Hearing, Decoded
 
 ## The language arrives faster than the persona can take it apart.
@@ -27,8 +35,3 @@ The guess is most of what they receive.
 A handful of words and the shape around the hole.
 What they missed, they do not know they missed,
 and the room has already moved past it.
-
----
-*process_hearing_decoded.md - 19.05.2026*
-
-v0.1.0 - KAI Worlds

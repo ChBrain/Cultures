@@ -1,3 +1,11 @@
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: 2026-05-19
+---
 # Process: Reading
 
 ## The persona meets a language fixed by a hand that is not in the room.
@@ -36,8 +44,3 @@ Meaning the persona reached by themselves,
 or a meaning they built wrong and cannot tell from a right one.
 The misreading leaves the room with the persona
 and is carried forward as if it were the text.
-
----
-*process_reading.md - 19.05.2026*
-
-v0.1.0 - KAI Worlds

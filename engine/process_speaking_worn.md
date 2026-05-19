@@ -1,3 +1,11 @@
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: 2026-05-19
+---
 # Process: Speaking, Worn
 
 ## The language fits like clothing. It moves with the persona, and slips at the seams.
@@ -28,8 +36,3 @@ as a foreigner.
 Mostly it held.
 The slip is filed, by the persona and sometimes by the room.
 The persona stays, and knows the language is worn, not grown.
-
----
-*process_speaking_worn.md - 19.05.2026*
-
-v0.1.0 - KAI Worlds

@@ -1,3 +1,11 @@
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: 2026-05-19
+---
 # Process: Reading, Caught
 
 ## The persona reads the writer's hand, and re-reads the seam to be sure.
@@ -30,8 +38,3 @@ Almost all of it landed, the intent with the text.
 The re-read passages are filed.
 The persona knows what the object is,
 and what the writer was, when they wrote it.
-
----
-*process_reading_caught.md - 19.05.2026*
-
-v0.1.0 - KAI Worlds

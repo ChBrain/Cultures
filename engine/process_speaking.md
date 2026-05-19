@@ -1,3 +1,11 @@
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: 2026-05-19
+---
 # Process: Speaking
 
 ## The language goes into the room, now, with no time to assemble it.
@@ -38,8 +46,3 @@ What the language could not carry stays behind
 as the thing the persona did not manage to say.
 The width the persona spoke at is now known to the room,
 and the room does not forget it.
-
----
-*process_speaking.md - 19.05.2026*
-
-v0.1.0 - KAI Worlds

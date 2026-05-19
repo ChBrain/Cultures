@@ -1,3 +1,11 @@
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: 2026-05-19
+---
 # Process: Speaking, Borrowed
 
 ## The persona assembles the language across the widest gap, in a moment too short for it.
@@ -27,8 +35,3 @@ The persona reaches for a word, and the room has already moved.
 Fatigue. The sentence that did not land.
 The persona leaves the exchange smaller than they entered it,
 and the room has filed them at this width.
-
----
-*process_speaking_borrowed.md - 19.05.2026*
-
-v0.1.0 - KAI Worlds

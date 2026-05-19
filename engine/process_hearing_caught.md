@@ -1,3 +1,11 @@
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: 2026-05-19
+---
 # Process: Hearing, Caught
 
 ## The persona receives the room whole, and reconstructs the seam a half-second late.
@@ -28,8 +36,3 @@ a beat drops, and the persona reconstructs it a half-second late.
 Almost all of it landed, the undertone with the text.
 The half-second of reconstruction is filed.
 The persona knows they received the room, not merely heard it.
-
----
-*process_hearing_caught.md - 19.05.2026*
-
-v0.1.0 - KAI Worlds

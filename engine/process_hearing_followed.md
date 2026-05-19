@@ -1,3 +1,11 @@
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: 2026-05-19
+---
 # Process: Hearing, Followed
 
 ## The persona keeps up with the surface and not with what rides under it.
@@ -27,8 +35,3 @@ these pass at a speed the persona cannot open in time.
 The persona has the message and not its weight.
 They answer the words, and miss that they were being tested,
 or spared, or warned.
-
----
-*process_hearing_followed.md - 19.05.2026*
-
-v0.1.0 - KAI Worlds

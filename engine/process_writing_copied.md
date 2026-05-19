@@ -1,3 +1,11 @@
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: 2026-05-19
+---
 # Process: Writing, Copied
 
 ## The persona builds the sentence from models, not from themselves.
@@ -29,8 +37,3 @@ for a reader who has all the time in the world to find them.
 An object that does its minimum and shows its making.
 Anyone who reads it at a closer width
 reads the persona's effort before they read the message.
-
----
-*process_writing_copied.md - 19.05.2026*
-
-v0.1.0 - KAI Worlds

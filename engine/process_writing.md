@@ -1,3 +1,11 @@
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: 2026-05-19
+---
 # Process: Writing
 
 ## The language goes into an object that will outlive the room.
@@ -38,8 +46,3 @@ whether the persona is present or not.
 It is met later through [Reading](process_reading.md),
 in any room and any session after this one,
 by a persona the writer will never meet.
-
----
-*process_writing.md - 19.05.2026*
-
-v0.1.0 - KAI Worlds

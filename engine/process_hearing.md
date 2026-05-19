@@ -1,3 +1,11 @@
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: 2026-05-19
+---
 # Process: Hearing
 
 ## The language arrives at the room's speed and will not wait.
@@ -36,8 +44,3 @@ What got inside before the persona could hold it off.
 What they missed, they do not know they missed.
 The room moves on at its own speed, carrying the part the persona lost,
 and does not return it.
-
----
-*process_hearing.md - 19.05.2026*
-
-v0.1.0 - KAI Worlds

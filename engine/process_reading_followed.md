@@ -1,3 +1,11 @@
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: 2026-05-19
+---
 # Process: Reading, Followed
 
 ## The persona reads what is stated, and not what the text assumes.
@@ -29,8 +37,3 @@ It states and does not point, and the persona reads only what is stated.
 The persona has the content and not the writer's intent.
 They act on the letter of the object,
 and miss that it was a warning, a courtesy, or a trap.
-
----
-*process_reading_followed.md - 19.05.2026*
-
-v0.1.0 - KAI Worlds

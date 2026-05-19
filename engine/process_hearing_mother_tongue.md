@@ -1,3 +1,11 @@
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: 2026-05-19
+---
 # Process: Hearing, Mother Tongue
 
 ## It lands at full size, with no buffer in front of it.
@@ -30,8 +38,3 @@ lands at full size with nothing in front of it.
 It is inside before it can be held off.
 It cannot be un-heard or set at a distance.
 The persona carries it at the size it arrived.
-
----
-*process_hearing_mother_tongue.md - 19.05.2026*
-
-v0.1.0 - KAI Worlds

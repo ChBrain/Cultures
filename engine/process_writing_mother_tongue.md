@@ -1,3 +1,11 @@
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: 2026-05-19
+---
 # Process: Writing, Mother Tongue
 
 ## The object hides nothing, and fixes what it shows.
@@ -29,8 +37,3 @@ including what they would have managed anywhere else.
 An object that does not translate.
 It carries the persona's floor into rooms the persona will never enter,
 unguarded, and cannot be revised into distance once it is read.
-
----
-*process_writing_mother_tongue.md - 19.05.2026*
-
-v0.1.0 - KAI Worlds

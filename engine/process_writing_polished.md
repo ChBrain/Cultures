@@ -1,3 +1,11 @@
+---
+khai: process
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: 2026-05-19
+---
 # Process: Writing, Polished
 
 ## The object means to pass. To one reader it does not.
@@ -32,8 +40,3 @@ To one it did not, and that reader holds an object
 that will not change on re-reading.
 The persona is placed precisely, in their absence,
 by a thing they polished.
-
----
-*process_writing_polished.md - 19.05.2026*
-
-v0.1.0 - KAI Worlds
