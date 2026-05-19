@@ -1024,5 +1024,28 @@ jobs:
         run: |
           echo "::error::One or more validate.yml checks failed - see the jobs above."
           exit 1
+      - name: Fail if a khai check skipped on a same-repo content PR
+        # khai jobs legitimately skip on fork PRs (a fork gets no KAIHACKS
+        # secret) and when no regions/*.md changed. But on a same-repo PR
+        # that DID change culture content, every khai job must actually
+        # run -- a skip there means the khai validation silently did not
+        # happen, and the step above (failure/cancelled only) would let it
+        # pass green. This converts that silent skip to red. Fork PRs are
+        # exempt by the head.repo condition, so they still skip cleanly.
+        if: >-
+          github.event.pull_request.head.repo.full_name == github.repository
+          && needs.setup.outputs.any == 'true'
+          && (needs.khai-encoding.result == 'skipped'
+              || needs.khai-process.result == 'skipped'
+              || needs.khai-position.result == 'skipped'
+              || needs.khai-piece.result == 'skipped'
+              || needs.khai-place.result == 'skipped'
+              || needs.khai-persona.result == 'skipped'
+              || needs.khai-language.result == 'skipped'
+              || needs.khai-links.result == 'skipped'
+              || needs.khai-plagiarism.result == 'skipped')
+        run: |
+          echo "::error::A khai validation job was skipped on a same-repo content PR -- khai must run on culture content. See the skipped khai-* jobs above."
+          exit 1
       - name: All clear
         run: echo "All validate.yml checks passed or were not applicable."
