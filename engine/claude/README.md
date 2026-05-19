@@ -1,13 +1,20 @@
-# Claude.ai Instructions
+# Claude.ai Project
 
-To use these culture files with Claude.ai:
+Run a culture as a Claude.ai project.
 
-1. Download and extract the culture zip (e.g., `europe.zip`)
-2. Upload the extracted files to Claude as a project
-3. **In the instructions field, copy and paste `instructions.md` as-is**
-4. Do not edit or summarize the instructions
-5. Include the `stack.md`, culture files, and engine scaffold files in your project
+## Setup
 
-The instructions define how the personas operate within the cultural architecture. They must be exact.
+1. Download the targeted zip for this deployment (see below).
+2. Upload the extracted culture files to Claude as a project.
+3. In the project instructions field, paste `instructions.md` from this
+   folder in as-is; do not edit or summarize it.
+4. Include `stack.md` and the engine scaffold files in the project.
 
-*v0.2.2 - KAI Cultures*
+The instructions define how the personas operate within the cultural
+architecture. They must be exact.
+
+## Download
+
+_Targeted zip for the Claude.ai Project -- stub, lands with the release pipeline._
+
+*v0.2.3 - KAI Cultures*
