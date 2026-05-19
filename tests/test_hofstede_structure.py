@@ -63,7 +63,11 @@ def _country_dirs() -> list[Path]:
                 continue
             if not (country_dir / "README.md").is_file():
                 continue
-            content = list(country_dir.glob("culture_*.md")) + list(country_dir.glob("persona_*.md"))
+            # Only culture_*.md counts as scored culture content. Personas
+            # are not culture files -- they inhabit a culture, they are not
+            # the culture -- so they carry no culture_ prefix and stay out
+            # of the Hofstede aggregate. See test_no_persona_wears_culture_prefix.
+            content = list(country_dir.glob("culture_*.md"))
             if content:
                 countries.append(country_dir)
     return countries
@@ -167,3 +171,40 @@ def test_hofstede_signal_footer(country_dir: Path):
         ).get("hofstede")
     ]
     assert not missing, f"{country_dir.name}: missing Hofstede signal footer in: {missing}"
+
+
+@pytest.mark.xfail(
+    strict=False,
+    reason="v2-migrated cultures still carry culture_*_persona_* names; flips "
+           "green as the persona stream renames them to <adjective>_persona_*",
+)
+def test_no_persona_wears_culture_prefix():
+    """The culture_ prefix marks a *true culture file* - one that defines the
+    culture and feeds its Hofstede aggregate.
+
+    A persona inhabits a culture; it is not the culture. So a persona must
+    never be named culture_*, which would silently pull it into the
+    culture_*-scoped Hofstede collectors (_country_dirs here,
+    find_countries_with_content in test_hofstede_bag_completeness). Personas
+    are named <adjective>_persona_* and stay out of scoring.
+
+    Detection is by declared khai type, not filename: a culture_*.md file
+    that declares `khai: persona` is the violation. This is the governance
+    guard for the persona-naming rule; the per-culture renames that satisfy
+    it are culture-scope work.
+    """
+    regions = _ROOT / "regions"
+    if not regions.is_dir():
+        pytest.skip("no regions/ folder yet")
+    violations = [
+        str(f.relative_to(_ROOT))
+        for f in sorted(regions.rglob("culture_*.md"))
+        if read_metadata(
+            f.read_text(encoding="utf-8", errors="replace")
+        ).get("khai", "").strip().lower() == "persona"
+    ]
+    assert not violations, (
+        "persona files must not carry the culture_ prefix - they are not true "
+        "culture files and must stay out of Hofstede scoring. Rename to "
+        "<adjective>_persona_*:\n  " + "\n  ".join(violations)
+    )
