@@ -57,23 +57,6 @@
 
 ---
 
-## Hofstede Dimensions Sourcing
-
-### Germany's Scores (Empirical Research)
-
-| Dimension | Score | Source | Publication |
-|-----------|-------|--------|-------------|
-| Power Distance (PDI) | 35 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Individualism (IDV) | 67 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Uncertainty Avoidance (UAI) | 65 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Masculinity (MAS) | 66 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Long-Term Orientation (LTO) | 83 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Indulgence (IND) | 40 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-
-**Status:** Empirical - All scores derived from Hofstede's peer-reviewed multi-country research.
-
----
-
 ## Verified Facts by File
 
 ### `culture_german_position.md` - German Culture Position
