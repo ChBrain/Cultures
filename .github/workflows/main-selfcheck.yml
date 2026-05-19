@@ -1,0 +1,79 @@
+name: main self-check
+
+# Post-merge full-content re-validation of the integration branches.
+#
+# validate.yml's content validators are diff-scoped: the `setup` job hands
+# them only the regions/ + engine/ files a PR changed. That leaves a gap.
+# If a validator's --khai-files scope is widened, or a rule tightened, in
+# one PR while non-compliant files already sit inside the new scope, no PR
+# diff ever re-checks those files -- so `main` can come to carry content
+# its own validators reject, and the next unlucky PR inherits a red base.
+#
+# (ChBrain/Cultures #293: test_stamp_date_quoted shipped together with an
+# engine/ scope widening, leaving 24 pre-existing unquoted engine dates
+# that no diff re-validated. The sync PR #296 was the first to surface it.)
+#
+# This workflow runs the khai structural validators against the FULL
+# regions/ + engine/ content on every push to an integration branch. A red
+# run means the branch is self-inconsistent: its own validators reject its
+# own files. Fix forward immediately -- the fix is a normal PR.
+#
+# It deliberately does not reproduce validate.yml's whole suite. The gap is
+# specific to the --khai-files-scoped structural validators, so this checks
+# exactly those, full-scope. It is detection, not prevention: the repo does
+# not require branches up to date before merge (that causes the re-stale
+# treadmill), so a self-inconsistent merge cannot be blocked -- only made
+# loud the instant it lands.
+
+on:
+  push:
+    branches: [main, culture/release]
+
+permissions:
+  contents: read
+
+jobs:
+  selfcheck:
+    name: main self-check - khai structural validators (full content)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install khai-tests
+        run: |
+          RELEASE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.9)
+          ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
+          ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
+          ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
+          curl -sL \
+            -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o "/tmp/$ASSET_NAME"
+          pip install "/tmp/$ASSET_NAME" pytest
+      - name: Collect full regions/ + engine/ content
+        id: files
+        run: |
+          FILES=$(git ls-files 'regions/*.md' 'engine/*.md' | tr '\n' ' ' | sed 's/ *$//')
+          if [ -z "$FILES" ]; then
+            echo "No regions/ or engine/ markdown found." >&2
+            exit 1
+          fi
+          echo "files=$FILES" >> "$GITHUB_OUTPUT"
+      - name: khai encoding + component validators, full content
+        run: |
+          python -m pytest --pyargs \
+            khai_tests.test_khai_encoding \
+            khai_tests.components.test_khai_process \
+            khai_tests.components.test_khai_position \
+            khai_tests.components.test_khai_piece \
+            khai_tests.components.test_khai_place \
+            khai_tests.components.test_khai_persona \
+            --khai-files="${{ steps.files.outputs.files }}" -v
+      - name: cultures section structure, full content
+        run: |
+          python -m pytest tests/test_sections.py \
+            --khai-files="${{ steps.files.outputs.files }}" -v

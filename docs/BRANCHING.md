@@ -40,6 +40,27 @@ python tests/branch_scope.py advise --files <path> [<path> ...]
 The advisor is the inverse of the classifier: the classifier rejects a wrong
 branch name after the fact; the advisor hands you the right one up front.
 
+### Before you open the PR
+
+`advise` routes the *branch*; `check-pr` checks the *PR*. Before opening a
+pull request, confirm the head/base pair:
+
+```
+python tests/branch_scope.py check-pr --head <head-branch> --base <base-branch>
+```
+
+It exits 0 if the routing is legal, or prints the prescriptive remedy and
+exits 1 - the same `base_remedy()` the `pr-gate` base check runs, so the
+guidance is identical before and after. Running it first turns a red CI
+check into a one-line local check.
+
+A routing failure always states whether it is **fixable in place**:
+
+- A wrong *base* is fixable - retarget the PR's base branch.
+- A wrong *head* is not. `main` is never a valid PR head, and a PR's head
+  branch cannot be changed after the PR is created. That PR must be closed
+  and re-opened from a correctly-kinded branch.
+
 ## Branch kinds
 
 | Kind | Pattern | PR base | Allowed paths | Hofstede check |
@@ -152,6 +173,25 @@ a sync: it is the release PR, opened with head `culture/release` and base
 `main` (no intermediate branch). Filing that as `sync/* -> main` fails the
 `pr-gate` base check; `python tests/branch_scope.py advise --op release`
 prescribes the correct routing.
+
+### Runbook: sync `main` into `culture/release`
+
+```
+git fetch origin
+git branch sync/release-from-main-<date> origin/main
+git push origin sync/release-from-main-<date>
+```
+
+Then open a PR with head `sync/release-from-main-<date>` and base
+`culture/release`. The head is a *snapshot* of `main` - no commits are
+authored on it. `python tests/branch_scope.py advise --op sync` prints the
+same, dated for today.
+
+`main` itself cannot be the PR head: it is not a valid head, and a head is
+fixed at creation. A sync PR opened from `main` directly fails the `pr-gate`
+base check and cannot be retargeted out of it - close it and re-open from
+the `sync/<name>` branch above. Confirm before opening:
+`python tests/branch_scope.py check-pr --head sync/release-from-main-<date> --base culture/release`.
 
 ## Fork branches
 
