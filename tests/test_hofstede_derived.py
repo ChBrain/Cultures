@@ -1,4 +1,5 @@
 """L4f: Derived Hofstede scores vs declared — keyword scoring across all culture files."""
+import json
 import os
 import re
 import sys
@@ -24,11 +25,15 @@ _DIMS = ["PDI", "IDV", "UAI", "MAS", "LTO", "IND"]
 # untouched country never blocks unrelated work.
 _TOLERANCE = 5
 
-_SCORE_RE = re.compile(
-    r"\|[^|\n]*\b(PDI|IDV|UAI|MAS|LTO|IND)\b[^|\n]*\|"
-    r"\s*(\d+)\s*\|",
-    re.IGNORECASE,
-)
+# Declared scores come from data/hofstede_scores.json -- the single home for
+# Hofstede data. A migrated country's README no longer carries a score table
+# (test_hofstede_reference enforces that), so the README is not a usable
+# source. Reading the canonical scores keyed by country id means migrated
+# countries are checked, not skipped: the ±5 gate applies everywhere.
+_SCORES_PATH = _ROOT / "data" / "hofstede_scores.json"
+_SCORES: dict[str, dict] = json.loads(
+    _SCORES_PATH.read_text(encoding="utf-8")
+).get("scores", {})
 
 
 def _country_dirs() -> list[Path]:
@@ -47,17 +52,16 @@ def _country_dirs() -> list[Path]:
     return countries
 
 
-def _declared(readme_text: str) -> dict[str, int]:
-    return {
-        m.group(1).upper(): int(m.group(2))
-        for m in _SCORE_RE.finditer(readme_text)
-    }
+def _declared(country_id: str) -> dict[str, int]:
+    """Declared Hofstede scores for a country from the single home."""
+    entry = _SCORES.get(country_id, {})
+    return {dim: entry[dim] for dim in _DIMS if isinstance(entry.get(dim), int)}
 
 
 def _derived(country_dir: Path, language: str) -> dict[str, int]:
     keywords = load_bag_for_language(language, country_folder=country_dir, fallback=True)
     all_text = "".join(
-        f.read_text(encoding="utf-8").lower()
+        f.read_text(encoding="utf-8", errors="replace").lower()
         for f in country_dir.glob("culture_*.md")
     )
     scores: dict[str, int] = {}
@@ -97,14 +101,14 @@ _STRICT = bool(_pr_changed) and not _pr_data_changed
 
 @pytest.mark.parametrize("country_dir", _COUNTRIES, ids=[c.name for c in _COUNTRIES])
 def test_derived_within_tolerance(country_dir: Path):
-    readme = country_dir / "README.md"
-    if not readme.is_file():
-        pytest.skip("no README")
-    declared = _declared(readme.read_text(encoding="utf-8"))
+    declared = _declared(country_dir.name)
     if not declared:
-        pytest.skip("no declared scores")
+        pytest.skip("no declared scores in data/hofstede_scores.json")
 
-    all_text = "".join(f.read_text(encoding="utf-8") for f in country_dir.glob("culture_*.md"))
+    all_text = "".join(
+        f.read_text(encoding="utf-8", errors="replace")
+        for f in country_dir.glob("culture_*.md")
+    )
     language = detect_language(all_text)
     derived = _derived(country_dir, language)
 
