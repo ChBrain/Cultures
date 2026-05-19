@@ -30,6 +30,14 @@ culture content. So governance edits are walled into their own kind:
   governance     ``governance/<name>``       governance paths + safe metadata
   other          ``chore/*``, ``fix/*``, …   everything except regions/** and
                                               governance paths
+  fork           ``fork/<name>``             regions/** + safe metadata only
+
+The ``fork`` kind is the lane for external / contributor culture content.
+It is the narrowest write scope in the repo - culture files under
+``regions/**`` and nothing else: no engine, no scripts, no validators, no
+workflows, no governance data. A contribution that arrives as a GitHub fork
+PR is re-homed onto a ``fork/<name>`` branch so it runs under the full
+same-repo gate set before it can reach ``culture/release``.
 
 Used by:
 - .githooks/pre-commit (local enforcement, all four directions)
@@ -62,6 +70,12 @@ GOVERNANCE_BRANCH_PATTERN = re.compile(r"^governance/[a-z0-9][a-z0-9_.-]*$")
 # into culture/release can be reviewed and audited. Because the content is
 # identical to main, scope is unrestricted (anything main has is allowed).
 SYNC_BRANCH_PATTERN = re.compile(r"^sync/[a-z0-9][a-z0-9_.-]*$")
+
+# Fork branches carry external / contributor culture content. They are
+# confined to regions/** -- the narrowest write scope -- so an outside
+# contribution cannot touch anything executable (hooks, workflows,
+# validators) or any governance data. <name> is the contributor handle.
+FORK_BRANCH_PATTERN = re.compile(r"^fork/[a-z0-9][a-z0-9_.-]*$")
 
 # World-level integration slug: may touch all of regions/**.
 # This is the integration target feature branches merge into;
@@ -132,7 +146,7 @@ _DEFAULT_REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 def classify_branch(branch: str) -> str:
-    """Return 'main', 'culture', 'governance', 'sync', or 'other'."""
+    """Return 'main', 'culture', 'governance', 'sync', 'fork', or 'other'."""
     if branch == "main":
         return "main"
     if CULTURE_BRANCH_PATTERN.match(branch):
@@ -141,6 +155,8 @@ def classify_branch(branch: str) -> str:
         return "governance"
     if SYNC_BRANCH_PATTERN.match(branch):
         return "sync"
+    if FORK_BRANCH_PATTERN.match(branch):
+        return "fork"
     return "other"
 
 
@@ -235,6 +251,10 @@ def check_scope(
     may touch anything except ``regions/`` and governance paths - this is
     the tightening that protects the gates from silent edits.
 
+    Fork branches are the mirror of that: ``regions/**`` plus safe
+    metadata and nothing else, so an external contribution is confined
+    to culture content and cannot reach an executable or governance path.
+
     'main' is gated separately (no commits at all) and is treated as a
     no-op here so a dry-run on main doesn't claim scope violations.
     """
@@ -247,6 +267,15 @@ def check_scope(
                 f for f in staged
                 if not f.startswith(prefix) and f not in SAFE_PATTERNS
             ]
+    elif branch_kind == "fork":
+        # Fork branches carry external culture content: regions/** only,
+        # plus safe metadata. Everything else -- engine, scripts, tests,
+        # workflows, governance data -- is out of scope, so an outside
+        # contribution cannot reach an executable or rule-defining surface.
+        unsafe = [
+            f for f in staged
+            if not f.startswith("regions/") and f not in SAFE_PATTERNS
+        ]
     elif branch_kind == "governance":
         unsafe = [
             f for f in staged
