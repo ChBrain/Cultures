@@ -223,6 +223,33 @@ def main() -> int:
                 print("")
                 return 1
 
+            # Language unlock gate: the staged country's language in
+            # data/countries.json must be unlocked (its ISO code maps,
+            # via data/language_policy.yaml iso_map, onto a registered
+            # lingua name). This is the data-keyed pre-flight -- culture
+            # work must not start on a country whose language the
+            # validator cannot actually check.
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    "tests/validate_language.py",
+                    "--check-unlocked",
+                    *staged_content,
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            if result.returncode != 0:
+                print(">>> LANGUAGE UNLOCK CHECK FAILED")
+                print("")
+                if result.stdout.strip():
+                    print(result.stdout.strip())
+                if result.stderr.strip():
+                    print(result.stderr.strip())
+                print("")
+                return 1
+
         culture_files = [
             f for f in staged_content
             if "culture_" in f

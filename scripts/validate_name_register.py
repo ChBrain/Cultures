@@ -100,9 +100,9 @@ def persona_files(country_dir: Path) -> list[Path]:
 
 
 def load_countries() -> dict[str, dict]:
-    """Load data/countries.json as a slug -> {iso, name, name_source, ...} map."""
+    """Load data/countries.json as an id -> registry-entry map."""
     data = json.loads(COUNTRIES.read_text(encoding="utf-8"))
-    return {c["key"]: c for c in data.get("countries", [])}
+    return {c["id"]: c for c in data.get("countries", [])}
 
 
 def find_country_dir(slug: str) -> Path:
@@ -137,7 +137,7 @@ def extract_country(slug: str, countries: dict[str, dict]) -> list[dict]:
             "name":            ascii_key(display),
             "given":           display,
             "gender":          gender,
-            "country":         meta["iso"],
+            "country":         meta["anchor"]["iso"],
             "persona_file":    str(rel),
             "cultural_source": meta["name_source"],
             "added":           str(date.today()),

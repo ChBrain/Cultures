@@ -26,6 +26,21 @@ languages:
   - polish
   - spanish
 
+# ISO 639-1 code -> lingua language name. data/countries.json stores each
+# country's language as an ISO code; this maps it onto the names in
+# `languages` above. A country whose ISO code is missing here is NOT
+# unlocked: the language pre-flight gate blocks culture work on it until
+# the code is mapped and the name is registered above. Every value must
+# appear in `languages`.
+iso_map:
+  en: english
+  fr: french
+  de: german
+  nl: dutch
+  da: danish
+  pl: polish
+  es: spanish
+
 # Section headings (##) whose body gets language-checked. Names match
 # case-insensitively against the heading text. Anything not listed is
 # treated as structured data and skipped.
