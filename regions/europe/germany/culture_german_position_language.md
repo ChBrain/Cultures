@@ -5,7 +5,7 @@ license: CC-BY-NC-4.0
 stamp:
   owner: KAI HACKS AI
   version: v0.2.0
-  date: '2026-05-13'
+  date: '2026-05-20'
 ---
 # Language: Hochdeutsch
 
@@ -25,10 +25,7 @@ Präzision über Wärme. Klarheit über Charme.
 Es ist kein Dialekt. Es ist ein System.
 Jedes Wort hat seinen Platz. Jeder Satz hat seine Struktur.
 Regelwerk für die Klarheit.
-
-Disziplin in der Sprache, Disziplin im Denken.
-Selbstkontrolle beginnt mit dem, was man sagt.
-Die Sprache ist Werk, nicht Spiel.
+Sprache ist Werk, nicht Spiel.
 
 ## Orders
 Sprich klar.
