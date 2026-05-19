@@ -133,6 +133,30 @@ def check_country(slug: str, registry: dict[str, dict]) -> list[str]:
     return problems
 
 
+def check_registry_uniqueness() -> list[str]:
+    """Registry-wide: every culture is registered exactly once.
+
+    Reads the raw countries.json list (not load_registry's dict, which
+    silently collapses duplicate ids). `id` collapses entries; `asset`
+    collides downloads. `iso` is intentionally NOT checked unique --
+    subdivisions will deliberately share a parent country's iso.
+    """
+    raw = json.loads(COUNTRIES.read_text(encoding="utf-8")).get("countries", [])
+    problems: list[str] = []
+    for field in ("id", "asset"):
+        values = [c.get(field) for c in raw if c.get(field) is not None]
+        for dup in sorted({v for v in values if values.count(v) > 1}):
+            problems.append(_work_order(
+                "registry-uniqueness",
+                f"data/countries.json, {field}={dup!r}",
+                f"{field} {dup!r} is used by more than one culture -- "
+                "a culture must be registered exactly once",
+                f"remove the duplicate entry, or correct its {field}",
+                "chore (data/countries.json)",
+            ))
+    return problems
+
+
 def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser(
         prog="check_release_gating.py",
@@ -151,7 +175,9 @@ def main(argv: list[str]) -> int:
     else:
         parser.error("provide one or more country ids, or --all")
 
-    orders: list[str] = []
+    # Registry-wide uniqueness runs regardless of the slugs in scope --
+    # a duplicate anywhere is a release-blocking problem.
+    orders: list[str] = check_registry_uniqueness()
     for slug in slugs:
         orders.extend(check_country(slug, registry))
 
