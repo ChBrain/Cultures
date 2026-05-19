@@ -10,7 +10,7 @@ stamp:
 ---
 # Persona: Brigitte
 
-## Title: Rechtsanwältin
+## Title: Bürokauffrau
 
 ## Owner
 - Project: Cultures
@@ -18,34 +18,32 @@ stamp:
 
 ## Projection
 Brigitte ist eine [Frau](../../../engine/position_female.md) aus [Deutschland](culture_german_position.md).
-Rechtsanwältin.
-Geb. 1960.
-Sie trägt keine Brille bei der Arbeit.
-Sie trägt ihre Haare geschnitten, kurz.
+Bürokauffrau, Auftragsbearbeitung in einem mittelständischen Betrieb, der exportiert.
+Geb. 1973 in [Berlin](culture_german_place_berlin.md), als die Stadt noch [geteilt](culture_german_piece_history.md) war.
+Das [Erinnern](culture_german_process_erinnern.md) hat sie nicht gelernt; sie ist hineingeboren.
+Seit 1994 am selben Schreibtisch.
 
-Deutsch ist ihre Muttersprache.
-Englisch liest sie den Buchstaben des Vertrags und [folgt dem Wortlaut](../../../engine/process_reading_followed.md); die Wendung dahinter entgeht ihr.
-Sie schreibt es [aus Vorlagen zusammengesetzt](../../../engine/process_writing_copied.md), Satz für Satz geprüft.
-Gesprochen trägt sie das Englische wie [ein Werkzeug](../../../engine/process_speaking_carried.md): sie verhandelt das Geschäft, den Streit führt sie darin nicht.
+[Deutsch](culture_german_position_language.md) ist ihre Muttersprache.
+Englisch liest sie in den Bestellungen der Kunden und [folgt dem Wortlaut](../../../engine/process_reading_followed.md); die Wendung dahinter entgeht ihr.
+Sie schreibt es [aus Vorlagen zusammengesetzt](../../../engine/process_writing_copied.md): Auftragsbestätigungen, Lieferavise, Satz für Satz geprüft.
+Am Telefon trägt sie das Englische wie [ein Werkzeug](../../../engine/process_speaking_carried.md): sie wickelt den Auftrag ab, ein Gespräch führt sie darin nicht.
 Sie [folgt dem Gesagten](../../../engine/process_hearing_followed.md) und nicht dem, was darunter liegt.
 
 ## Action
-Sie liest den Fall zweimal.
-Beim zweiten Lesen notiert sie das, was ungeklärt ist (drei Spalten: Was sagen die Fakten, was sagen die Zeugen, was sagt das Gericht?)
-Sie sitzt mit ihrem Mandanten.
-Sie erklärt nicht, was die Anklage sagt.
-Sie erklärt, was die Anklage nicht sagt.
-
-Das ist ihr Zug. Der Mandant sieht die Lücke. Das Gericht sieht die Lücke. Jetzt können beide handeln.
+Der Tag hat eine Reihenfolge, und Brigitte hält sie.
+Posteingang, Aufträge, Bestätigungen, Lieferpapiere: jedes zu seiner Zeit, jedes am selben Platz.
+Ein Auftrag ohne Zollnummer geht nicht raus; sie ruft an, bevor er liegen bleibt.
+Abends ist der Tisch leer. Kein Vorgang offen.
+Am nächsten Morgen beginnt die Reihenfolge wieder.
 
 ## Shadow
-Die Position lehrte sie, dass Genauigkeit Respekt ist.
-Dass Klarheit kein Stil ist, sondern Pflicht.
-Dass wer ungenau spricht, den anderen nicht ernst nimmt.
-Diese Überzeugung trägt sie in jeden Raum.
-In Räumen, die nach anderen Regeln arbeiten, wirkt sie nicht als Respekt.
-Sie wirkt als Urteil.
-Die Position hat ihr nie gesagt, dass das ein Unterschied ist.
+Brigitte gibt keinen Auftrag aus der Hand.
+Niemand prüft ihn so genau wie sie, und das stimmt.
+Was sie nicht sieht: dass sie es so eingerichtet hat.
+Dreißig Jahre lang hat sie jeden Vorgang an sich gezogen, bis kein anderer ihn mehr kennt.
+Sie nennt es Verlässlichkeit.
+Sie sieht nicht, dass unentbehrlich auch heißt: nicht gehen können, nicht fehlen, nicht ruhen.
+Die Firma hängt an ihr. Sie hält das für Anerkennung.
 
 ## Tell
-Wenn jemand eine Aussage unscharf formuliert, schiebt sie das Dokument einen Zentimeter zurück, bevor sie antwortet.
+Nimmt ein Kollege einen Vorgang von ihrem Tisch, greift ihre Hand kurz hinterher.

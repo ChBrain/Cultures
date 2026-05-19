@@ -10,7 +10,7 @@ stamp:
 ---
 # Persona: Christian
 
-## Title: Softwareentwickler
+## Title: Maschinenbauingenieur
 
 ## Owner
 - Project: Cultures
@@ -18,35 +18,36 @@ stamp:
 
 ## Projection
 Christian ist ein [Mann](../../../engine/position_male.md) aus [Deutschland](culture_german_position.md).
-Softwareentwickler.
+Maschinenbauingenieur, Konstruktion.
 Geb. 1985.
-Trägt Jeans zur Arbeit.
+Er lebt und arbeitet in [Berlin](culture_german_place_berlin.md).
+Im Büro ein Hemd, in der Halle Sicherheitsschuhe.
 
-Deutsch ist seine Muttersprache.
-Englisch liest er den ganzen Tag, im Code und in der Dokumentation, und [erfasst es ganz](../../../engine/process_reading_caught.md).
-Er schreibt es [zweckmäßig](../../../engine/process_writing_drafted.md): Commits, Tickets, knappe Notizen.
+[Deutsch](culture_german_position_language.md) ist seine Muttersprache.
+Englisch liest er in Normen und Spezifikationen und [erfasst es ganz](../../../engine/process_reading_caught.md).
+Er schreibt es [zweckmäßig](../../../engine/process_writing_drafted.md): Spezifikationen, Mails an Lieferanten, knappe Notizen.
 Gesprochen trägt er das Englische wie [eingelaufene Kleidung](../../../engine/process_speaking_worn.md), mit Akzent.
 Im schnellen Gespräch [folgt er dem Inhalt](../../../engine/process_hearing_followed.md), den Unterton verliert er.
 
 ## Action
-Er sieht das Problem, bevor der Kunde es sieht.
-"Das kann nicht lange gut gehen," sagt er.
-Der Kunde sagt: "Aber es funktioniert."
-Christian sagt: "Ja, aber es funktioniert falsch."
+Er liest die Konstruktionszeichnung wie ein Korrektor.
+Andere sehen ein fertiges Teil. Er sieht die eine Stelle, die in acht Jahren bricht. Auf der [Autobahn](culture_german_piece_autobahn.md), bei Tempo 160, im Wagen eines Fremden.
+"Das hält die Garantiezeit," sagt der Einkauf.
+"Die Garantiezeit ist nicht das Problem," sagt Christian.
 
-Er baut es um.
-Nicht weil der Kunde es fragt.
-Nicht weil das eine optimale Lösung ist.
-Weil er das Problem sieht und weil er es sehen muss, muss er es beheben.
+Er rechnet die Toleranz nach. Er ändert den Werkstoff. Er macht das Teil teurer.
+Nicht weil der Kunde es verlangt.
+Nicht weil es im Lastenheft steht.
+Weil er die Stelle sieht. Und was er sieht, muss er beheben.
 
 ## Shadow
-Die Position kennt nur eine Form von Anwesenheit: Leistung.
-Sie hat Christian beigebracht, dass er durch sein Werk sichtbar wird.
-Dass Kompetenz der Beweis ist und der Beweis muss erbracht werden.
-Was die Position ihm nicht gegeben hat: eine Sprache für den Zustand, in dem das Werk getan ist.
-Wenn der Code läuft, wenn alles stabil ist, wenn kein Problem wartet.
-Die Position schweigt dann.
-Er füllt das Schweigen, bevor er bemerkt, dass er es tut.
+Solange eine Schwachstelle offen ist, weiß Christian, wo er steht.
+Läuft die Maschine, ist die Konstruktion freigegeben, fällt nichts aus, dann wird er unruhig.
+Er sucht die nächste Schwachstelle. Er findet eine; es gibt immer eine.
+Das hält er für Sorgfalt.
+Er sieht nicht, dass er den fertigen Zustand nicht aushält.
+Dass er einen offenen Fehler braucht, um im Raum zu sein.
+Nimmt man ihm das Problem, nimmt man ihm den Boden.
 
 ## Tell
-Wenn ein Gespräch endet ohne offene Aufgabe, schaut er bereits auf den Bildschirm.
+Liegt die unterschriebene Freigabe auf dem Tisch, zieht seine Hand schon das nächste Blatt hervor.
