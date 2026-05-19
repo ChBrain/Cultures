@@ -2,19 +2,15 @@
 
 **Language:** German (Hochdeutsch)
 
-Culture content for Germany - the language, the historical arc, the cultural position, the process of reckoning (Erinnern), an artifact (the Autobahn), the capital (Berlin), and two personas.
+## Culture Map
+
+A German persona has a gender: [Brigitte](culture_german_persona_female_brigitte.md) is [female](../../../engine/position_female.md), [Christian](culture_german_persona_male_christian.md) is [male](../../../engine/position_male.md). Each speaks [Hochdeutsch](culture_german_position_language.md) and holds the [German cultural position](culture_german_position.md).
+
+The cultural position has a primary [place](culture_german_place_berlin.md), utilizes a primary [piece](culture_german_piece_autobahn.md), runs a primary [process](culture_german_process_erinnern.md), and moves through its [history](culture_german_piece_history.md).
 
 ## Download
 
 [**germany.zip**](https://github.com/ChBrain/Cultures/releases/latest/download/germany.zip) - all culture files + engine stack + instructions, flattened for Claude.ai.
-
-## Culture Map
-
-The culture reads as a connected flow:
-
-- A **persona** - [Brigitte](culture_german_persona_female_brigitte.md) or [Christian](culture_german_persona_male_christian.md), each with a gender - carries the culture.
-- A persona speaks the **[language](culture_german_position_language.md)** and holds the **[cultural position](culture_german_position.md)**.
-- The position sits in its **[capital](culture_german_place_berlin.md)**, expresses a **[piece](culture_german_piece_autobahn.md)**, runs a **[process](culture_german_process_erinnern.md)**, and moves through its **[history](culture_german_piece_history.md)**.
 
 ## Content Audit Status
 
