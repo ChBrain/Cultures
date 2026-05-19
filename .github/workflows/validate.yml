@@ -515,6 +515,56 @@ jobs:
       - name: Run language-process ladder tests
         run: python -m pytest tests/test_language_process_ladder.py -v
 
+  cultures-zip-build:
+    name: cultures - Zip build
+    # Runs the real release zip build (scripts/build_zips.py) and validates
+    # every produced zip. build-zips.yml only fires on release/dispatch, so
+    # this is what proves the build is sound on a PR.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest pyyaml
+      - name: Run zip-build tests
+        run: python -m pytest tests/test_build_zips.py -v
+
+  cultures-hofstede-score-home:
+    name: cultures - Hofstede score home
+    # Single-home gate for Hofstede scores: data/hofstede_scores.json is
+    # complete and authoritative, and no bag has drifted from it.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest pyyaml
+      - name: Run Hofstede score-home tests
+        run: python -m pytest tests/test_hofstede_score_home.py -v
+
+  cultures-validator-wiring:
+    name: cultures - Validator wiring
+    # Meta-gate: every tests/test_*.py is invoked by a validate.yml job.
+    # A validator is dead weight until a job runs it; this fails when a
+    # test file is neither wired nor explicitly exempted.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run validator-wiring tests
+        run: python -m pytest tests/test_validate_wiring.py -v
+
   cultures-metadata-format:
     name: cultures - Metadata format
     # Always-run guard for the footer -> YAML-frontmatter migration. Per
@@ -997,6 +1047,9 @@ jobs:
       - cultures-hofstede-readme-updater-tests
       - cultures-history-arc
       - cultures-language-process-ladder
+      - cultures-zip-build
+      - cultures-hofstede-score-home
+      - cultures-validator-wiring
       - cultures-metadata-format
       - cultures-language-preflight
       - setup
