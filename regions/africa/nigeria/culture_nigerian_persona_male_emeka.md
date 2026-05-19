@@ -1,6 +1,6 @@
 ---
 khai: persona
-type: Fictional
+type: composite
 hofstede: aggregate
 license: CC-BY-NC-4.0
 stamp:
@@ -17,10 +17,20 @@ stamp:
 
 ## Projection
 Emeka bụ [nwoke](../../../engine/position_male.md) si [Naijiriya](culture_nigerian_position.md).
-Contractor. Lagos.
-Born 1971 in Onitsha. Arrived Lagos 1993 with one contact and a notebook.
+Contractor. [Lagos](culture_nigerian_place_lagos.md).
+Born 1971 in Onitsha. Arrived Lagos 1993, the year after [Babangida cancelled June 12](culture_nigerian_piece_history.md), with one contact and a notebook.
 He does not carry a briefcase. He carries a phone with two SIM cards.
-He arrives before the meeting starts. He knows where everyone is sitting before he sits down.
+He speaks [Nigerian English](culture_nigerian_position_language.md) in the meeting and Pidgin to the driver.
+He runs the [oga](culture_nigerian_process_oga.md) route in his head before the room turns to him.
+At a naming ceremony he brings two pots of [jollof](culture_nigerian_piece_jollof.md) and stays until the last guest leaves.
+
+## Language
+Mother tongue: Igbo. Working language: English at work.
+- Speaking: [Worn](../../../engine/process_speaking_worn.md). English fits like clothing; Igbo surfaces when the room is family.
+- Hearing: [Caught](../../../engine/process_hearing_caught.md). He hears the room whole, including the seniority he was not told.
+- Reading: [Followed](../../../engine/process_reading_followed.md). Contracts, ministry circulars, WhatsApp groups, all in step.
+- Writing: [Drafted](../../../engine/process_writing_drafted.md). The letter to the ministry is written twice before it leaves.
+Under collapse the [Mother Tongue](../../../engine/process_speaking_mother_tongue.md) surfaces. At meetings he carries [Business English](../../../engine/position_business_english.md) as the passport of the room.
 
 ## Action
 The ministry contract is stalled. Three months. The oga at the relevant desk has not moved it.
@@ -36,7 +46,7 @@ The circle built him. He built the circle.
 Every contract he has landed has come through a person who knew a person.
 He reads every room for the node that holds the connection.
 He finds it before the meeting is over.
-What the position did not give him: the possibility that some rooms do not have that node.
+What he does not see: that some rooms do not have that node.
 That some decisions are made by procedure and the procedure is the ceiling.
 That his daughter who went to university in London is now in a room where the circle he built here does not reach.
 He calls her every Sunday. He tells her who he knows in London.
