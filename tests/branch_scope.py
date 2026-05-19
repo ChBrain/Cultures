@@ -393,6 +393,18 @@ def base_remedy(head: str, base: str) -> str | None:
             "     culture/release -> main              (release PR)",
             "   Retarget this PR's base to 'culture/release'.",
         ]
+        if base not in ("main", "culture/release"):
+            lines += [
+                "",
+                f"   '{base}' is not an integration branch. If you based this",
+                "   on another feature branch because your culture content",
+                "   links files that branch adds (e.g. engine/* files), that",
+                "   is a sequencing dependency, not a base: engine work reaches",
+                "   culture/release via engine -> main -> sync. Base on",
+                "   culture/release and wait for the sync to carry those files",
+                "   down -- do not stack on the feature branch (validate.yml",
+                "   does not even run for a PR based outside main/culture/release).",
+            ]
     elif kind == "fork":
         lines += [
             "   A fork/* branch carries external culture content; like a",
