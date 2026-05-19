@@ -19,12 +19,16 @@ fail an unrelated PR for a not-yet-built ladder.
 from __future__ import annotations
 
 import re
+import sys
 from pathlib import Path
 
 import pytest
 
 _ROOT = Path(__file__).resolve().parent.parent
 _ENGINE = _ROOT / "engine"
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from culture_metadata import format_of, read_metadata  # noqa: E402
 
 _ROOT_FILE = "process_using_language.md"
 
@@ -133,6 +137,33 @@ def test_ladder_file_scope_universal(fname):
     assert re.search(
         r"^-\s*\*{0,2}Scope:?\*{0,2}\s*Universal\b", text, re.MULTILINE
     ), f"{fname}: Owner block must declare 'Scope: Universal'"
+
+
+@pytest.mark.parametrize("fname", _LADDER)
+def test_ladder_file_declares_khai_process_in_frontmatter(fname):
+    """Every ladder file declares its kind via YAML frontmatter.
+
+    khai is path-independent and declaration-driven: it classifies a file
+    from its `khai:` declaration, not its location. Engine ladder files are
+    Process kind, so each carries frontmatter with `khai: process` -- the
+    same YAML-frontmatter form culture files use. The legacy trailing-footer
+    form is not accepted.
+    """
+    if not _present():
+        pytest.skip("language-process ladder not present yet")
+    path = _ENGINE / fname
+    if not path.is_file():
+        pytest.skip(f"{fname} absent -- caught by test_ladder_complete")
+    text = path.read_text(encoding="utf-8", errors="replace")
+    fmt = format_of(text)
+    assert fmt == "frontmatter", (
+        f"{fname}: metadata must be YAML frontmatter (got {fmt!r}) -- the "
+        f"engine ladder uses the frontmatter form, not the legacy footer"
+    )
+    assert read_metadata(text).get("khai") == "process", (
+        f"{fname}: frontmatter must declare `khai: process` so khai "
+        f"classifies it as a Process component"
+    )
 
 
 # ---------------------------------------------------------------------------

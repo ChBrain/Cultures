@@ -613,7 +613,11 @@ jobs:
           RANGE="origin/${{ github.base_ref }}...HEAD"
           # --diff-filter=ACMRT skips deletions; the validator must not be handed paths that no longer exist.
           ALL_CHANGED=$(git diff --name-only --diff-filter=ACMRT "$RANGE")
-          FILES=$(echo "$ALL_CHANGED" | { grep -E '^regions/.*\.md$' || true; } | tr '\n' ' ' | sed 's/ *$//')
+          # khai is path-independent: it classifies a file from its `khai:`
+          # declaration, not its location. engine/*.md is solution-grade
+          # culture content, so it is handed to the same validators (khai,
+          # link integrity) as regions/*.md content.
+          FILES=$(echo "$ALL_CHANGED" | { grep -E '^(regions|engine)/.*\.md$' || true; } | tr '\n' ' ' | sed 's/ *$//')
           ANY=$(if [ -z "$FILES" ]; then echo "false"; else echo "true"; fi)
           DATA_CHANGED=$(if echo "$ALL_CHANGED" | grep -qx 'data/hofstede_scores.json'; then echo "true"; else echo "false"; fi)
           echo "any=$ANY" >> "$GITHUB_OUTPUT"
