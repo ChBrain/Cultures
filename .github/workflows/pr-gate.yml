@@ -112,7 +112,14 @@ jobs:
             echo "$scope_out"
             echo '```'
             echo
-            echo "Pre-flight next time: \`python tests/branch_scope.py advise --op <operation>\`"
+            echo "Pre-flight next time, before opening the PR:"
+            echo '```'
+            echo "python tests/branch_scope.py check-pr --head <head> --base <base>"
+            echo '```'
+            echo "(or \`advise --op <operation>\` before \`git checkout -b\`)."
+            echo "A failure says whether it is fixable in place -- a wrong base"
+            echo "(retarget the PR) or a wrong head (close and re-open: a PR's"
+            echo "head branch cannot be changed)."
           } > remedy.md
       - name: Post or update PR comment
         uses: actions/github-script@v7

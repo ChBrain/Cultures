@@ -27,6 +27,7 @@ from branch_scope import (  # noqa: E402
     is_governance_path,
     lane_of_path,
     lanes_for_files,
+    main as branch_scope_main,
     misbased_commits,
     render_files_advice,
     render_misbased_branch,
@@ -1010,3 +1011,56 @@ def test_base_remedy_main_is_not_a_valid_head():
     msg = base_remedy("main", "main")
     assert msg is not None
     assert "not a valid PR head" in msg
+
+
+# ---------------------------------------------------------------------------
+# base_remedy - every failure states whether it is fixable in place
+# ---------------------------------------------------------------------------
+
+def test_base_remedy_main_head_is_not_fixable_in_place():
+    """head=main must be marked not fixable: a PR's head branch is immutable,
+    so retargeting cannot help -- the PR has to be re-opened. This pins the
+    #296 class, where the failure did not say 'stop, close and re-open' and
+    the PR got worked in place instead."""
+    msg = base_remedy("main", "culture/release")
+    assert msg is not None
+    assert "Fixable in place: NO" in msg
+    assert "cannot be changed" in msg
+    assert "Close this PR" in msg
+
+
+def test_base_remedy_wrong_base_is_fixable_in_place():
+    """A wrong base on a valid head must be marked fixable -- retarget."""
+    msg = base_remedy("culture/germany", "main")
+    assert msg is not None
+    assert "Fixable in place: YES" in msg
+    assert "Retarget" in msg
+
+
+# ---------------------------------------------------------------------------
+# check-pr CLI - the pre-PR routing check
+# ---------------------------------------------------------------------------
+
+def test_check_pr_cli_accepts_legal_pair(capsys):
+    rc = branch_scope_main(
+        ["check-pr", "--head", "sync/x", "--base", "culture/release"])
+    assert rc == 0
+    assert "OK" in capsys.readouterr().out
+
+
+def test_check_pr_cli_rejects_main_head(capsys):
+    rc = branch_scope_main(
+        ["check-pr", "--head", "main", "--base", "culture/release"])
+    assert rc == 1
+    assert "not a valid PR head" in capsys.readouterr().out
+
+
+def test_check_pr_cli_prints_exactly_base_remedy(capsys):
+    """check-pr and the pr-gate base check must share one code path -- the
+    CLI prints exactly base_remedy(), so guidance cannot drift between the
+    pre-flight and CI."""
+    rc = branch_scope_main(
+        ["check-pr", "--head", "culture/germany", "--base", "main"])
+    assert rc == 1
+    assert capsys.readouterr().out.strip() == base_remedy(
+        "culture/germany", "main")

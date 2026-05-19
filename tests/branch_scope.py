@@ -353,37 +353,58 @@ def base_remedy(head: str, base: str) -> str | None:
     """
     allowed = allowed_bases(head)
     if not allowed:
+        # head is 'main' -- not a valid PR head at all. This is the one
+        # remedy that is NOT fixable in place: a PR's head branch is fixed
+        # at creation, so the PR has to be re-opened from a real branch.
         return (
             f">>> ERROR: '{head}' is not a valid PR head branch.\n"
             "\n"
-            "   'main' cannot be a PR head. Move the work onto a culture/*,\n"
+            "   'main' cannot be a PR head. The work must sit on a culture/*,\n"
             "   governance/*, sync/*, or chore|fix|feat/* branch.\n"
-            "   Advisor: python tests/branch_scope.py advise --op <operation>"
+            "\n"
+            "   Fixable in place: NO. A PR's head branch cannot be changed\n"
+            "   after the PR is opened -- retargeting the base will not help.\n"
+            "   Close this PR and open a new one from a correctly-kinded\n"
+            "   branch.\n"
+            "\n"
+            "   Pick the branch by operation:\n"
+            "     python tests/branch_scope.py advise --op <operation>\n"
+            "   It prints the branch name, the base, and the git commands.\n"
+            "\n"
+            "   Common case -- a main -> culture/release sync: the head is a\n"
+            "   sync/* branch, a snapshot of main. Run:\n"
+            "     git branch sync/main-to-release-<date> origin/main\n"
+            "     git push origin sync/main-to-release-<date>\n"
+            "   then open sync/main-to-release-<date> -> culture/release."
         )
     if base in allowed:
         return None
 
     kind = classify_branch(head)
+    target = sorted(allowed)[0]  # every valid head has exactly one allowed base
     lines = [
         f">>> ERROR: PR base '{base}' is not allowed for head '{head}'.",
         "",
         f"   Allowed base for '{head}': {sorted(allowed)}",
         "",
+        "   Fixable in place: YES. The head branch is valid; only the base is",
+        f"   wrong. Retarget this PR's base to '{target}' -- in the PR's GitHub",
+        f"   UI, or:  gh pr edit <pr-number> --base {target}",
+        "",
     ]
     if kind == "sync":
         lines += [
-            "   A sync/* branch funnels main -> culture/release; its only",
-            "   valid base is 'culture/release'.",
+            "   A sync/* branch funnels main -> culture/release; 'culture/release'",
+            "   is its only valid base.",
             "",
-            "   To take culture/release CONTENT INTO main you do not want a",
-            "   sync branch at all -- that is the release PR: open a PR with",
-            "   head 'culture/release' and base 'main'. Close this PR and",
-            "   open culture/release -> main instead.",
+            "   (If you meant to take culture/release CONTENT INTO main, that is",
+            "   the release PR, not a sync -- its head is 'culture/release'",
+            "   itself. That needs a different head, so close this PR and open",
+            "   culture/release -> main instead.)",
         ]
     elif kind == "culture" and head[len("culture/"):] in WORLD_SLUGS:
         lines += [
-            "   culture/release is the integration branch; it PRs up into",
-            "   'main'. Retarget this PR's base to 'main'.",
+            "   culture/release is the integration branch; it PRs up into 'main'.",
         ]
     elif kind == "culture":
         lines += [
@@ -391,15 +412,14 @@ def base_remedy(head: str, base: str) -> str | None:
             "   branch first:",
             "     culture/<slug>  -> culture/release   (this PR)",
             "     culture/release -> main              (release PR)",
-            "   Retarget this PR's base to 'culture/release'.",
         ]
         if base not in ("main", "culture/release"):
             lines += [
                 "",
-                f"   '{base}' is not an integration branch. If you based this",
-                "   on another feature branch because your culture content",
-                "   links files that branch adds (e.g. engine/* files), that",
-                "   is a sequencing dependency, not a base: engine work reaches",
+                f"   '{base}' is not an integration branch. If you based this on",
+                "   another feature branch because your culture content links",
+                "   files that branch adds (e.g. engine/* files), that is a",
+                "   sequencing dependency, not a base: engine work reaches",
                 "   culture/release via engine -> main -> sync. Base on",
                 "   culture/release and wait for the sync to carry those files",
                 "   down -- do not stack on the feature branch (validate.yml",
@@ -408,19 +428,17 @@ def base_remedy(head: str, base: str) -> str | None:
     elif kind == "fork":
         lines += [
             "   A fork/* branch carries external culture content; like a",
-            "   culture/<country> branch it funnels through the integration",
-            "   branch. Retarget this PR's base to 'culture/release'.",
+            "   culture/<country> branch it funnels through culture/release.",
         ]
     elif kind == "governance":
-        lines.append(
-            "   Governance changes go directly to main. Retarget base to 'main'.")
+        lines.append("   Governance changes integrate directly into main.")
     else:
-        lines.append(
-            "   chore/fix/feat branches target 'main'. Retarget base to 'main'.")
+        lines.append("   chore/fix/feat branches integrate directly into main.")
 
     lines += [
         "",
-        "   Confirm routing: python tests/branch_scope.py advise --op <operation>",
+        "   Confirm routing before retargeting:",
+        "     python tests/branch_scope.py check-pr --head <head> --base <base>",
         "   Integration flow: docs/BRANCHING.md",
     ]
     return "\n".join(lines)
@@ -888,15 +906,25 @@ def render_files_advice(lanes: dict[str, list[str]]) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
-    """CLI: `python tests/branch_scope.py advise --op OP | --files PATH...`."""
+    """CLI for the branch advisor and the pre-PR routing check.
+
+      advise   --op OPERATION | --files PATH...   which branch/base to use
+      check-pr --head BRANCH  --base BRANCH       is this head/base legal?
+
+    `check-pr` is the pre-flight: run it before opening a PR so an illegal
+    head/base pair is caught here, not from red CI afterward. It shares
+    `base_remedy()` with the pr-gate base check, so the guidance is
+    identical before and after.
+    """
     parser = argparse.ArgumentParser(
         prog="branch_scope.py",
         description=(
-            "Branch advisor -- before `git checkout -b`, ask which branch "
-            "and base an operation requires."
+            "Branch advisor and pre-PR routing check. Before `git checkout "
+            "-b`, ask which branch an operation needs; before opening a PR, "
+            "check the head/base pair."
         ),
     )
-    parser.add_argument("mode", choices=["advise"])
+    parser.add_argument("mode", choices=["advise", "check-pr"])
     parser.add_argument(
         "--op", metavar="OPERATION",
         help="intended operation: " + ", ".join(valid_operations()),
@@ -909,7 +937,24 @@ def main(argv: list[str] | None = None) -> int:
         "--files", nargs="+", metavar="PATH",
         help="repo-relative paths -- report which lane(s) they belong to",
     )
+    parser.add_argument(
+        "--head", metavar="BRANCH", help="PR head branch, for check-pr",
+    )
+    parser.add_argument(
+        "--base", metavar="BRANCH", help="PR base branch, for check-pr",
+    )
     args = parser.parse_args(argv)
+
+    if args.mode == "check-pr":
+        if not args.head or not args.base:
+            parser.error("check-pr needs --head BRANCH and --base BRANCH")
+        remedy = base_remedy(args.head, args.base)
+        if remedy is None:
+            print(f"OK: base '{args.base}' is allowed for head "
+                  f"'{args.head}'.")
+            return 0
+        print(remedy)
+        return 1
 
     if args.op:
         advice = advise_operation(args.op, args.slug)
