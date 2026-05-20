@@ -2,7 +2,7 @@
 
 **Authorship:** Kai Schlueter with AI-assisted drafting
 **Content Model:** Hofstede dimensions (empirical) + Culture writing (original expression)
-**Last Updated:** May 13, 2026
+**Last Updated:** May 20, 2026
 
 ---
 
@@ -59,23 +59,6 @@
 | La Vanguardia | Catalan and national perspective | ⭐⭐⭐⭐ |
 | RTVE (Radiotelevisión Española) | Public broadcasting archives | ⭐⭐⭐⭐ |
 | BBC (Spain coverage) | International perspective | ⭐⭐⭐⭐ |
-
----
-
-## Hofstede Dimensions Sourcing
-
-### Spain's Scores (Empirical Research)
-
-| Dimension | Score | Source | Publication |
-|-----------|-------|--------|-------------|
-| Power Distance (PDI) | 57 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Individualism (IDV) | 51 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Uncertainty Avoidance (UAI) | 86 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Masculinity (MAS) | 42 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Long-Term Orientation (LTO) | 48 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Indulgence (IND) | 44 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-
-**Status:** Empirical - All scores derived from Hofstede's peer-reviewed multi-country research.
 
 ---
 
@@ -185,7 +168,7 @@
 
 ## Verified Facts: Persona Declarations
 
-### Alejandro (culture_spanish_persona_male_alejandro.md)
+### Alejandro (spanish_persona_male_alejandro.md)
 
 | Claim | Status | Note |
 |-------|--------|------|
@@ -195,7 +178,7 @@
 | Salida durante la crisis | Plausible | Many Spaniards in his cohort left during the 2008-2014 crisis |
 | All biographical details | Invented | No real person intended or represented |
 
-### Isabel (culture_spanish_persona_female_isabel.md)
+### Isabel (spanish_persona_female_isabel.md)
 
 | Claim | Status | Note |
 |-------|--------|------|
@@ -259,12 +242,13 @@ Any resemblance to specific copyrighted works is unintentional. If you spot pote
 
 ## Notes on Content
 
-- **Filename convention:** Files follow `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5 KAI structural types (process, position, piece, place, persona) matching the file's `*khai: <type>*` footer declaration. Single-instance kinds (language, history) drop the redundant country/variety suffix.
+- **Filename convention:** Files follow `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5 KAI structural types (process, position, piece, place, persona) matching the file's `*khai: <type>*` footer declaration. Single-instance kinds (language, history) drop the redundant country/variety suffix. Personas drop the `culture_` prefix per project convention (issue #302).
 - **Personas (Alejandro, Isabel):** Composite fictional archetypes illustrating cultural values, not biographical individuals. Shadow architecture is Position-shaped same-pole: both personas anchor the dominant cultural anchor (relation-before-procedure, decide-from-position) at moderate-PDI/moderate-IDV intensity; gender is the variation axis. Alejandro carries the cost of total contextual fluency; Isabel carries the cost of having decided before the meeting started.
 - **History (`piece_history.md`) vs Piece (`piece_conquista.md`):** Both use KAI piece structure (`*khai: piece*` footer); the file NAME slot distinguishes the subject. History is the broad arc of defining moments (218 BC to 2024); La Conquista is the discrete colonial encounter still active in the culture (relation with Latin America, the 2021 Mexican apology request, the imperial-cycle memory in language and architecture). The Yearbook of `piece_conquista.md` retains the imperial spine (711, 1492, 1494, 1519, 1532, 1542, 1588, 1600, 1810, 1898, 1992, 2021); `piece_history.md` covers the broader peninsular arc including Roman conquest, Al-Ándalus, Reconquista, Civil War, Franco, transition, and current political tensions.
 - **Hofstede scoring tuning (May 13, 2026):** During the v2 migration, the existing bag was retained as-is and the culture files were tuned with organic nominative bag-word additions (iniciativa, criterio, voluntad, trayectoria, formación, paciencia, inversión, desarrollo, futuro, igualdad, participación, diálogo, mérito, accesibilidad, apertura, tolerancia, cambio, ambición, reconocimiento, cuidado, empatía, disfrute, ocio, discreción) to bring all six derived dimensions within ±5 of declared. All additions are in nominative form, embedded in independently meaningful sentences (organic test pass).
+- **UAI/IND rebalance (May 20, 2026):** After persona rename (issue #302), método added to culture_spanish_process_negociar.md (Direction section, UAI-high anchor) and discreción added to culture_spanish_position.md (Has section, IND-low anchor) to maintain ±5 gap after personas exit Hofstede aggregation scope.
 
 ---
 
-*REFERENCES.md - 13.05.2026*
-*v0.2.0 - KAI Worlds*
+*REFERENCES.md - 20.05.2026*
+*v0.2.1 - KAI Worlds*

@@ -1,6 +1,11 @@
 ---
 khai: process
 hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-19'
 ---
 # Process: Negociar
 
@@ -25,6 +30,7 @@ No hacia la verdad objetiva.
 Hacia lo que sostiene la relación después de que termine la reunión.
 Hacia la familia, el grupo, la comunidad que espera el resultado.
 El diálogo se abre antes que el orden del día. El mérito se reconoce en lo que se concede sin perder cara.
+El método precede al acuerdo: el paso a paso es la garantía de que la palabra dada se podrá cumplir.
 
 ## Lever
 La fuerza: la lealtad al vínculo por encima del resultado inmediato.
