@@ -31,6 +31,7 @@ Indywidualność w kręgu nie znika. Służy całości.
 Podległość jest przejrzysta: każdy zna swój rząd odpowiedzialności.
 Posłuszeństwo wobec kręgu i jego zasad to fundament zaufania.
 Niezależność jest ceniona, w granicach zobowiązania.
+Inicjatywa jest osobista: kto czeka na rozkaz, czeka długo.
 Prawo pisane jest ważne, lecz krąg odczytuje je razem z kontekstem.
 Każdy przepis budzi pytanie: kto go napisał, kto go egzekwuje.
 Planowanie długoterminowe jest narzędziem, nie ozdobą; procedura chroni przed przypadkiem.

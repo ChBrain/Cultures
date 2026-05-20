@@ -185,7 +185,7 @@ Poland's dimension scores are empirical, sourced from Hofstede Insights and the 
 
 ## Verified Facts: Persona Declarations
 
-### Dr. Małgorzata (culture_polish_persona_female_malgorzata.md)
+### Dr. Małgorzata (polish_persona_female_malgorzata.md)
 
 | Claim | Status | Note |
 |-------|--------|------|
@@ -195,7 +195,7 @@ Poland's dimension scores are empirical, sourced from Hofstede Insights and the 
 | Workplace | Warsaw hospital | Consistent with Polish healthcare structure |
 | All biographical details | Invented | No real person intended or represented |
 
-### Tomasz (culture_polish_persona_male_tomasz.md)
+### Tomasz (polish_persona_male_tomasz.md)
 
 | Claim | Status | Note |
 |-------|--------|------|
@@ -264,7 +264,7 @@ Any resemblance to specific copyrighted works is unintentional. If you spot pote
 - **Filename convention:** Files follow `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5 KAI structural types (process, position, piece, place, persona) matching the file's `*khai: <type>*` footer declaration. Single-instance kinds (language, history) drop the redundant country suffix.
 - **Personas (Tomasz, Małgorzata):** Composite fictional archetypes illustrating cultural values, not biographical individuals. Shadow architecture is Position-shaped same-pole (both anchor to the krąg-trust dimension dominant in Polish high-power-distance and moderate-high individualism); gender is the variation axis.
 - **History (`piece_history.md`) vs Piece (`piece_hejnal.md`):** Both use KAI piece structure (`*khai: piece*` footer); the file NAME slot distinguishes the subject. History is the broad arc of defining moments (966 to 2023); hejnal_mariacki is the specific cultural artifact still in active daily circulation (hourly trumpet call from Bazylika Mariacka, broadcast on Polskie Radio Jedynka at noon since 1927).
-- **Piece swap (May 13, 2026):** The original culture package shipped `piece_konstytucja.md` (1997 Constitution) as the piece. Retired during v2 migration because its Yearbook duplicated the broad-arc constitutional moments now in `piece_history.md`, and the constitutional document doesn't satisfy the SKILL.md piece criterion ("currently makes / performs / holds / eats / practices"). Replaced with `piece_hejnal.md` -- a piece that IS currently performed, hourly, daily, observable. All Polish constitutional moments remain as Yearbook entries in `piece_history.md`.
+- **Piece swap (May 13, 2026):** The original culture package shipped `piece_konstytucja.md` (1997 Constitution) as the piece. Retired during v2 migration because its Yearbook duplicated the broad-arc constitutional moments now in `piece_history.md`, and the constitutional document doesn't satisfy the SKILL.md piece criterion ("currently makes / performs / holds / eats / practices"). Replaced with `piece_hejnal.md` - a piece that IS currently performed, hourly, daily, observable. All Polish constitutional moments remain as Yearbook entries in `piece_history.md`.
 
 ---
 

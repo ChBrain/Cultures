@@ -2,16 +2,16 @@
 
 **Scores:** PDI 68 · IDV 60 · UAI 93 · MAS 64 · LTO 38 · IND 29
 **Generated:** 2026-05-11
-**Forked from:** none -- fresh bootstrap
+**Forked from:** none - fresh bootstrap
 **Updated:**
-- 2026-05-13: v2 migration. Persona-anchor filenames updated for TYPE-as-slot rename (`language_polski.md` → `culture_polish_position_language.md`; `persona_malgorzata.md` → `culture_polish_persona_female_malgorzata.md`; `persona_tomasz.md` → `culture_polish_persona_male_tomasz.md`). Piece swap: `piece_konstytucja.md` retired (broad-arc content absorbed into `piece_history.md`); `piece_hejnal.md` added with deliberate UAI-high signal placement (zasada, procedura, porządek, norma) replacing konstytucja's contribution.
-- 2026-05-13 (later): IDV tune-up (Option B from review round 2). Pre-tune-up derived IDV was 45 against declared 60 (gap 15, WARN). Three IDV-high bag words placed in nominative form: `wolność` added to piece_history 1918 Niepodległość Yearbook entry ("Polska wraca na mapę: wolność po stu dwudziestu trzech latach."); `inicjatywa` added to persona_male_tomasz Action ("Inicjatywa jest cała jego."); `determinacja` added to persona_male_tomasz Shadow ("Determinacja jest na rysunku, nie w głosie."). New IDV-high count 8 / IDV-low count 6 / derived 57 / gap 3 / EXCELLENT.
+- 2026-05-13: v2 migration. Persona-anchor filenames updated for TYPE-as-slot rename (`language_polski.md` → `culture_polish_position_language.md`; `persona_malgorzata.md` → `polish_persona_female_malgorzata.md`; `persona_tomasz.md` → `polish_persona_male_tomasz.md`). Piece swap: `piece_konstytucja.md` retired (broad-arc content absorbed into `piece_history.md`); `piece_hejnal.md` added with deliberate UAI-high signal placement (zasada, procedura, porządek, norma) replacing konstytucja's contribution.
+- 2026-05-13 (later): IDV tune-up (Option B from review round 2). Pre-tune-up derived IDV was 45 against declared 60 (gap 15, WARN). Three IDV-high bag words placed in nominative form: `wolność` added to piece_history 1918 Niepodległość Yearbook entry ("Polska wraca na mapę: wolność po stu dwudziestu trzech latach."); `inicjatywa` added to polish_persona_male_tomasz Action ("Inicjatywa jest cała jego."); `determinacja` added to polish_persona_male_tomasz Shadow ("Determinacja jest na rysunku, nie w głosie."). New IDV-high count 8 / IDV-low count 6 / derived 57 / gap 3 / EXCELLENT.
 
 ---
 
 ## Drops from previous bag
 
-No previous bag -- fresh bootstrap.
+No previous bag - fresh bootstrap.
 
 ---
 
@@ -55,7 +55,7 @@ No cross-language divergence detected. No sibling bags for Slavic languages exis
 - **Root-proximity flags (same country):** indywidualność / niezależność / prywatność cluster is clean. Inicjatywa drifts toward MAS-high (competition) but confirmed IDV-high through self-determination framing in persona_male_tomasz Action.
 - **Register spread:** position.md (indywidualność, niezależność), position_language.md (prywatność), process_przetrwanie.md Echo (samorealizacja), piece_history.md (tożsamość in Load Bearing; wolność in 1918 Yearbook entry, added under the Option B IDV tune-up), persona_male_tomasz.md Action (inicjatywa), persona_male_tomasz.md Shadow (determinacja).
 - **Persona-anchor words:** indywidualność, niezależność (position.md); inicjatywa, determinacja (persona_male_tomasz.md); tożsamość, wolność (piece_history.md)
-- **NOTE -- earlier draft staleness:** The pre-2026-05-13 draft of this decision log claimed persona_male_tomasz contained inicjatywa + determinacja in Shadow and przedsiębiorczość in Tell. Carrying forward #107's persona content showed inicjatywa / determinacja / przedsiębiorczość were never actually present in the file. Inicjatywa and determinacja were added in the Option B IDV tune-up commits to fulfil the original spec. Przedsiębiorczość is NOT added (Option B target is gap = 3 EXCELLENT, achieved with just the two persona-anchor additions plus wolność in piece_history).
+- **NOTE - earlier draft staleness:** The pre-2026-05-13 draft of this decision log claimed persona_male_tomasz contained inicjatywa + determinacja in Shadow and przedsiębiorczość in Tell. Carrying forward #107's persona content showed inicjatywa / determinacja / przedsiębiorczość were never actually present in the file. Inicjatywa and determinacja were added in the Option B IDV tune-up commits to fulfil the original spec. Przedsiębiorczość is NOT added (Option B target is gap = 3 EXCELLENT, achieved with just the two persona-anchor additions plus wolność in piece_history).
 
 ### IDV / Low (declared 60)
 - **Multi-word entries:** wzajemna-pomoc (hyphenated compound; not yet present in prose).
@@ -70,7 +70,7 @@ No cross-language divergence detected. No sibling bags for Slavic languages exis
 - **Root-proximity flags (same country):** zasada / procedura / prawo / norma cluster is clean. Dyscyplina drifts toward MAS-high and PDI-high but confirmed UAI-high through uncertainty-avoidance framing in position_language.md.
 - **Register spread:** position_language.md (dyscyplina, norma, ścisłość, porządek), piece_hejnal.md Load Bearing (zasada, procedura), piece_hejnal.md Apparent (porządek, norma), piece_history.md (zasada in 1505 Nihil novi Yearbook entry), process_przetrwanie.md (procedura, dyscyplina), persona files (procedura, in both Tomasz and Małgorzata Shadows).
 - **Persona-anchor words:** zasada (piece_hejnal.md), procedura (piece_hejnal.md)
-- **NOTE -- piece swap 2026-05-13:** The original UAI-high register spread included piece_konstytucja.md (zasada, prawo, procedura). On retirement of the konstytucja piece, those bag words were deliberately re-anchored in piece_hejnal.md to preserve the UAI=93 declared score's coverage: hejnał is a precision ritual (specific hour, cardinal order, mid-note cut-off, 1873 regulamin) carrying the same UAI-high register the constitution did. `prawo` drops out of the spread (not in piece_hejnal.md). Verified at re-derivation 2026-05-13: UAI derived = 93, gap = 0, EXCELLENT.
+- **NOTE - piece swap 2026-05-13:** The original UAI-high register spread included piece_konstytucja.md (zasada, prawo, procedura). On retirement of the konstytucja piece, those bag words were deliberately re-anchored in piece_hejnal.md to preserve the UAI=93 declared score's coverage: hejnał is a precision ritual (specific hour, cardinal order, mid-note cut-off, 1873 regulamin) carrying the same UAI-high register the constitution did. `prawo` drops out of the spread (not in piece_hejnal.md). Verified at re-derivation 2026-05-13: UAI derived = 93, gap = 0, EXCELLENT.
 
 ### UAI / Low (declared 93)
 - **Multi-word entries:** none
