@@ -5,7 +5,7 @@ license: CC-BY-NC-4.0
 stamp:
   owner: KAI HACKS AI
   version: v0.2.0
-  date: '2026-05-13'
+  date: '2026-05-20'
 ---
 # Piece: Autobahn
 
@@ -24,8 +24,8 @@ Jedes Bundesland trägt sein Stück.
 ## Load Bearing
 Ohne sie verliert die [Deutsche](culture_german_position.md) Ingenieurskunst ihre Bühne.
 Die Autobahn ist das Versprechen: *Freie Fahrt für freie Bürger*. Autonomie auf Beton.
-Sie trägt das deutsche Auto, das deutsche Recht, die deutsche Disziplin.
-Leistungsbühne: Vorbeifahren auf der linken Spur, mit Genauigkeit.
+Sie trägt das deutsche Auto und das deutsche Recht.
+Leistungsbühne: Vorbeifahren auf der linken Spur.
 Vorschriftenwerk: Rechtsfahrgebot, Sicherheitsabstand, TÜV-Prüfung.
 Regelwerk und Tempolimit-Aufhebung in Spannung, beide echt.
 Investition über Jahrzehnte: die Republik baut, wartet, erneuert.
@@ -38,8 +38,8 @@ Das weiße A im Quadrat.
 Mercedes, BMW, Porsche, Volkswagen: die Marken auf der linken Spur.
 Das Auto als Statussymbol auf vier Rädern.
 Der TÜV alle zwei Jahre, mit Plakette am Kennzeichen.
-Raststätten mit Bratwurst und Bürokratie in gleicher Disziplin.
-Stau-Meldung im Radio, viertelstündlich, mit Genauigkeit.
+Raststätten: Bratwurst und Bürokratie.
+Stau-Meldung im Radio, viertelstündlich.
 Der Schilderwald: jedes Verbot, jedes Gebot, jede Ausnahme markiert.
 Verkehrswende-Debatten in Berlin; auf der Strecke fährt sie weiter.
 
@@ -53,8 +53,8 @@ Verkehrswende-Debatten in Berlin; auf der Strecke fährt sie weiter.
 1949: Bundesautobahn (BAB) als Begriff. Der neue Bund nimmt das Netz an, mit Distanz zur Vorgeschichte.
 1953: Erste 1.000 Kilometer wieder befahrbar nach dem Krieg.
 1974: Ölkrise. Vier autofreie Sonntage. Die Republik diskutiert ein Tempolimit; lehnt es ab.
-1984: 100 km/h Richtgeschwindigkeit eingeführt; rechtlich unverbindlich, eine Empfehlung mit Genauigkeit.
-1990: Wiedervereinigung. DDR-Autobahnen werden integriert, ausgebaut, mit Ausdauer modernisiert.
+1978: 130 km/h Richtgeschwindigkeit eingeführt; rechtlich unverbindlich.
+1990: Wiedervereinigung. DDR-Autobahnen werden integriert und schrittweise modernisiert.
 1995: Reichweite überschreitet 11.000 km.
 2002: LKW-Maut beschlossen, 2005 eingeführt, schrittweise erweitert.
 2018: Stickoxid-Urteile. Dieselverbot in Städten; auf der Autobahn fährt das System weiter.
