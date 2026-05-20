@@ -13,7 +13,7 @@ The zip contains all culture files flattened at root level with links rewritten 
 
 ## Content Overview
 
-Filename convention: `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5 KAI structural types (process, position, piece, place, persona). Single-instance kinds (language, history) drop the redundant country/variety suffix.
+Filename convention: `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5 KAI structural types (process, position, piece, place, persona). Single-instance kinds (language, history) drop the redundant country/variety suffix. Personas drop the `culture_` prefix per project convention.
 
 | File | TYPE | Purpose |
 |------|------|---------|
@@ -23,8 +23,8 @@ Filename convention: `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5
 | `culture_spanish_process_negociar.md` | process | Negociar - negotiating as cultural process |
 | `culture_spanish_piece_conquista.md` | piece | La Conquista - the discrete colonial encounter still active in the culture |
 | `culture_spanish_place_madrid.md` | place | Madrid - capital city as geographical anchor |
-| `culture_spanish_persona_male_alejandro.md` | persona | Alejandro - traductor e intérprete, b. 1978 |
-| `culture_spanish_persona_female_isabel.md` | persona | Isabel - diplomática, b. 1955 |
+| `spanish_persona_male_alejandro.md` | persona | Alejandro - traductor e intérprete, b. 1978 |
+| `spanish_persona_female_isabel.md` | persona | Isabel - diplomática, b. 1955 |
 
 ## Hofstede Cultural Dimensions
 
@@ -66,7 +66,7 @@ Filename convention: `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5
 
 - **Moderate IND (44)** balances disfrute, placer, ocio, alegría, juerga and diversión with contención, deber, sacrificio, decoro, sobriedad and discreción. Gratification is real and cultural (the late dinner, the long mesa, the terraza in October), but it sits inside a frame of obligation to los suyos and decorum in public.
 
-These dimensions inform the **[Language](culture_spanish_position_language.md)** (Castellano as the acoustic register that places relation before subject), **[History](culture_spanish_piece_history.md)** (the broad arc from Roman conquest through Al-Ándalus, the Reconquista, the imperial cycle, the Civil War, Franco, the transition, EU entry, and the unresolved territorial question), **[Position](culture_spanish_position.md)** (the dual loyalty to jerarquía and to los suyos), **[Process](culture_spanish_process_negociar.md)** (negociar as the recurring cultural movement where the relation outweighs the term), **[Piece](culture_spanish_piece_conquista.md)** (La Conquista as the discrete formative encounter still active in the culture), **[Place](culture_spanish_place_madrid.md)** (Madrid as kilómetro cero), and Personas ([Alejandro](culture_spanish_persona_male_alejandro.md), [Isabel](culture_spanish_persona_female_isabel.md)): how individuals navigate these cultural pressures. Culture files carry standard hofstede sentinel footers linking to this README; scoring is aggregate across all files, not per-file.
+These dimensions inform the **[Language](culture_spanish_position_language.md)** (Castellano as the acoustic register that places relation before subject), **[History](culture_spanish_piece_history.md)** (the broad arc from Roman conquest through Al-Ándalus, the Reconquista, the imperial cycle, the Civil War, Franco, the transition, EU entry, and the unresolved territorial question), **[Position](culture_spanish_position.md)** (the dual loyalty to jerarquía and to los suyos), **[Process](culture_spanish_process_negociar.md)** (negociar as the recurring cultural movement where the relation outweighs the term), **[Piece](culture_spanish_piece_conquista.md)** (La Conquista as the discrete formative encounter still active in the culture), **[Place](culture_spanish_place_madrid.md)** (Madrid as kilómetro cero), and Personas ([Alejandro](spanish_persona_male_alejandro.md), [Isabel](spanish_persona_female_isabel.md)): how individuals navigate these cultural pressures. Culture files carry standard hofstede sentinel footers linking to this README; scoring is aggregate across all files, not per-file.
 
 ## Content Audit Status
 
@@ -78,11 +78,11 @@ These dimensions inform the **[Language](culture_spanish_position_language.md)**
 | culture_spanish_process_negociar.md | process | ✅ Complete | Negociar process (Initiated by / Direction / Lever / Echo) |
 | culture_spanish_piece_conquista.md | piece | ✅ Complete | La Conquista with 12 Yearbook entries 711 to 2021 |
 | culture_spanish_place_madrid.md | place | ✅ Complete | Madrid as social anchor with Shown / Holds / Offers / Withheld |
-| culture_spanish_persona_male_alejandro.md | persona | ✅ Complete | Traductor e intérprete: projection, action, position-shaped shadow, tell |
-| culture_spanish_persona_female_isabel.md | persona | ✅ Complete | Diplomática: projection, action, position-shaped shadow, tell |
+| spanish_persona_male_alejandro.md | persona | ✅ Complete | Traductor e intérprete: projection, action, position-shaped shadow, tell |
+| spanish_persona_female_isabel.md | persona | ✅ Complete | Diplomática: projection, action, position-shaped shadow, tell |
 
 ---
 
-*Audited May 14, 2026 (re-derived after L4-bag-quality fix; all 6 dimensions ±5 EXCELLENT)*
+*Audited May 20, 2026 (persona rename + UAI/IND rebalance; all 6 dimensions ±5 EXCELLENT)*
 
-*v0.2.0 - Kai Schlueter - Cultures - May 2026*
+*v0.2.1 - Kai Schlueter - Cultures - May 2026*

@@ -40,6 +40,7 @@ Hospitalidad como obligación voluntaria.
 Cuidado hacia los del grupo como condición de pertenencia.
 Conciliación como habilidad, no como debilidad.
 El deber con los suyos como medida de la persona.
+La discreción acompaña la palabra: lo que se dice se sostiene, lo que no se dice se respeta.
 
 La iniciativa personal es respetada cuando responde por lo que hace.
 El criterio propio se gana, no se hereda.
