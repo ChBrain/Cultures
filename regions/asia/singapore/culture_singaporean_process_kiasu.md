@@ -45,6 +45,3 @@ The flat secured feeds the next investment.
 What was not secured is noted. The gap between what was achieved and what was available is the data that drives the next cycle.
 The process does not declare victory. It restarts.
 The light closes here and opens again at Initiated by.
-
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-*khai: process*

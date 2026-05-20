@@ -30,8 +30,10 @@ Loyalty to those three people outlasts any policy change.
 The meritocracy.
 Achievement is the promise this position was built on.
 Success is visible, expected, and tracked from the first examination.
+The principle that every citizen starts equal at the school door, even when the home behind it is not.
 Advancement is not modest. It is the point.
 Excellence is not celebrated quietly. It is the evidence that the country's founding wager was correct.
+But the result is held in balance with care for those the system has not lifted: the wellbeing of the slower, the older, the one whose race did not advance with the cohort.
 
 The strategic horizon.
 Thrift not as virtue but as the correct response to the island's situation.
@@ -70,6 +72,3 @@ Finds the person in the new room who understands hierarchy without needing it na
 Routes the loyalty through whatever arrangement the new room makes available.
 The in-group extends or it rebuilds. Both have happened before.
 Frugality in the new context is still the correct response to scarcity, even when the scarcity is social rather than material.
-
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-*khai: position*

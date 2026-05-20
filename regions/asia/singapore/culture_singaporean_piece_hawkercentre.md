@@ -53,6 +53,3 @@ Old men reading newspapers at ten in the morning at a stall that opened at six.
 2020: UNESCO inscribes Singapore Hawker Culture on the Representative List of the Intangible Cultural Heritage of Humanity. The government spent years building the case. The hawkers themselves were not part of the application process.
 2021: The first hawker centre stall run entirely by a robot is reported in the press. The queue is unimpressed.
 2025: The median age of stallholders rises every year. The government runs subsidy programmes to attract younger hawkers. The food continues.
-
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-*khai: piece*

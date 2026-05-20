@@ -45,6 +45,3 @@ The foreign worker dormitory that is not visible from the Supertrees.
 The distance between the National Day Parade on television and the question of who is performing for whom.
 The water in the bay, the water in the Straits, the water that still has to be negotiated with Malaysia on a contract that has no permanent resolution.
 What the city looks like at six in the morning to the man cleaning the pavement before the joggers arrive.
-
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-*khai: place*

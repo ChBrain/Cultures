@@ -53,6 +53,3 @@ The cost is not visible in any standup. It shows up on a Sunday evening when the
 
 ## Tell
 When she is thanked publicly, her right hand lifts an inch from the table toward the colleague to her left before she has finished the next breath.
-
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-*khai: persona*

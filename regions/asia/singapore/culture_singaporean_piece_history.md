@@ -66,6 +66,3 @@ Bukit Timah Nature Reserve: primary rainforest inside a city, continuous since b
 2015: Lee Kuan Yew dies on March 23. Hundreds of thousands queue for hours to pay their respects. The man who built the system is mourned with the kind of grief reserved for the person through whom the entire community understands itself.
 2020: COVID-19. The circuit breaker lockdown. The population complies. The systems built over fifty years hold. The foreign worker dormitory outbreak reveals the limits of what was built and for whom.
 2025: The city continues to plan ahead by decades. The water agreement with Malaysia is a permanent negotiation. The thrift is not a habit. It is still a calculation.
-
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-*khai: piece*

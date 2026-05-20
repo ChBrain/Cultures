@@ -52,6 +52,3 @@ Wei Ming has not noticed that the officer has stopped explaining the timeline to
 
 ## Tell
 When a junior proposes a shorter route to approval, his pen returns to the cap before he looks up from the page.
-
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-*khai: persona*

@@ -61,6 +61,3 @@ The WhatsApp group is that channel.
 The corridor five minutes before the meeting starts.
 The standard register does its work in the room.
 The rest of the work happens before the room opens and after it closes.
-
-*Hofstede signal: this file contributes to the culture's aggregate score. Declared dimensions live in [README.md](README.md).*
-*khai: position*

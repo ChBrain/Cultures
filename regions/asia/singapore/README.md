@@ -39,18 +39,18 @@ Pair is opposing-pole on the IDV dimension (Wei Ming: full IDV-low, circle as in
 
 ---
 
-## Audit Status
+## Content Audit Status
 
-| # | Kind | File | Status |
-|---|---|---|---|
-| 1 | Language | [culture_singaporean_position_language.md](culture_singaporean_position_language.md) | Draft |
-| 2 | History | [culture_singaporean_piece_history.md](culture_singaporean_piece_history.md) | Draft |
-| 3 | Position | [culture_singaporean_position.md](culture_singaporean_position.md) | Draft |
-| 4 | Process | [culture_singaporean_process_kiasu.md](culture_singaporean_process_kiasu.md) | Draft |
-| 5 | Piece | [culture_singaporean_piece_hawkercentre.md](culture_singaporean_piece_hawkercentre.md) | Draft |
-| 6 | Place | [culture_singaporean_place_marinabay.md](culture_singaporean_place_marinabay.md) | Draft |
-| 7 | Male persona | [singaporean_persona_male_weiming.md](singaporean_persona_male_weiming.md) | Draft |
-| 8 | Female persona | [singaporean_persona_female_priya.md](singaporean_persona_female_priya.md) | Draft |
+| File | TYPE | Status | Notes |
+|------|------|--------|-------|
+| [culture_singaporean_position_language.md](culture_singaporean_position_language.md) | position | ✅ Complete | Register-switching, title-before-name, silence after the sentence |
+| [culture_singaporean_piece_history.md](culture_singaporean_piece_history.md) | piece | ✅ Complete | Defining moments across the full arc: 3rd century CE to 2025 |
+| [culture_singaporean_position.md](culture_singaporean_position.md) | position | ✅ Complete | What the culture demands before any person arrives |
+| [culture_singaporean_process_kiasu.md](culture_singaporean_process_kiasu.md) | process | ✅ Complete | Kiasu as calibration, not pathology |
+| [culture_singaporean_piece_hawkercentre.md](culture_singaporean_piece_hawkercentre.md) | piece | ✅ Complete | The one civic space where the hierarchy waits outside |
+| [culture_singaporean_place_marinabay.md](culture_singaporean_place_marinabay.md) | place | ✅ Complete | Reclaimed land performing national confidence |
+| [singaporean_persona_male_weiming.md](singaporean_persona_male_weiming.md) | persona | ✅ Complete | Wei Ming, b.1963, Senior Director |
+| [singaporean_persona_female_priya.md](singaporean_persona_female_priya.md) | persona | ✅ Complete | Priya, b.1991, Head of Product |
 
 ---
 
