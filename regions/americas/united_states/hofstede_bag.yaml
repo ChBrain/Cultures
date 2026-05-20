@@ -1,0 +1,178 @@
+# Hofstede Bag: United States
+#
+# This file is the scoring contract for the country's Hofstede dimensions.
+# Culture files (regions/<region>/<country>/culture_*.md) are written to
+# carry these words organically. Each appearance of a bag word adds to the
+# dimension's score; binary scoring (each word counts once).
+#
+# Schema (Strategy v2): country / language / parent / hofstede_scores / bags.
+# Tests: tests/test_hofstede_bag_shape.py asserts all of these are present.
+
+country: united_states
+language: en
+parent: null
+status: reviewed
+generated: 2026-05-20
+
+hofstede_scores:
+  PDI: 40
+  IDV: 91
+  UAI: 46
+  MAS: 62
+  LTO: 26
+  IND: 68
+
+# Country-specific denylist: words considered for this country's bags but
+# rejected, with the rule that disqualified them. Combined at validation
+# time with data/hofstede_denylist.yaml: a bag word must not appear in
+# either denylist. Each entry's reason is documented in hofstede_decisions.md.
+denylist:
+  - hustle
+  - deference
+  - submission
+  - inequality
+
+bags:
+  PDI:
+    high:
+      - title
+      - seniority
+      - rank
+      - status
+      - supervisor
+      - chairman
+      - senator
+      - hierarchy
+      - sir
+      - protocol
+    low:
+      - first-name
+      - peer
+      - casual
+      - egalitarian
+      - everyone
+      - meritocracy
+      - approachable
+      - accessible
+      - anyone
+      - openness
+
+  IDV:
+    high:
+      - individual
+      - self-reliance
+      - personal
+      - independent
+      - autonomy
+      - private
+      - liberty
+      - initiative
+      - reinvention
+      - self
+    low:
+      - community
+      - collective
+      - solidarity
+      - kinship
+      - belonging
+      - togetherness
+      - we-feeling
+      - communal
+      - clan
+      - tribe
+
+  UAI:
+    high:
+      - regulation
+      - procedure
+      - compliance
+      - standard
+      - precise
+      - inspection
+      - certified
+      - documented
+      - statute
+      - federal
+    low:
+      - flexible
+      - improvise
+      - tolerance
+      - ambiguity
+      - risk
+      - informal
+      - adaptable
+      - workaround
+      - loose
+      - experiment
+
+  MAS:
+    high:
+      - winning
+      - competitive
+      - ambition
+      - achievement
+      - success
+      - top
+      - performance
+      - aggressive
+      - dominant
+      - pitch
+    low:
+      - care
+      - cooperation
+      - modesty
+      - nurture
+      - compassion
+      - gentle
+      - harmony
+      - empathy
+      - kindness
+      - reconciliation
+
+  LTO:
+    high:
+      - long-term
+      - perseverance
+      - investment
+      - patience
+      - thrift
+      - sustained
+      - foresight
+      - accumulated
+      - legacy
+      - prudence
+    low:
+      - immediate
+      - current
+      - present
+      - instant
+      - quick
+      - daily
+      - overnight
+      - fast
+      - today
+      - momentary
+
+  IND:
+    high:
+      - enjoyment
+      - leisure
+      - fun
+      - indulgence
+      - pleasure
+      - freedom
+      - vacation
+      - weekend
+      - optimism
+      - happiness
+    low:
+      - restraint
+      - duty
+      - discipline
+      - sober
+      - moderation
+      - reserved
+      - sacrifice
+      - austerity
+      - self-control
+      - frugal
