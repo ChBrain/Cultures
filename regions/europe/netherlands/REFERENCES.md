@@ -151,7 +151,7 @@
 
 ---
 
-### `culture_dutch_persona_female_anneke.md` & `culture_dutch_persona_male_jeroen.md` - Personas
+### `dutch_persona_female_anneke.md` & `dutch_persona_male_jeroen.md` - Personas
 
 These are fictional personas representing Dutch archetypes. The names, projections, actions, shadows, and tells are creative constructs, not biographical references.
 
