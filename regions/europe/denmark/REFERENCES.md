@@ -59,23 +59,6 @@
 
 ---
 
-## Hofstede Dimensions Sourcing
-
-### Denmark's Scores (Empirical Research)
-
-| Dimension | Score | Source | Publication |
-|-----------|-------|--------|-------------|
-| Power Distance (PDI) | 18 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Individualism (IDV) | 74 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Uncertainty Avoidance (UAI) | 23 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Masculinity (MAS) | 16 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Long-Term Orientation (LTO) | 46 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Indulgence (IND) | 70 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-
-**Status:** Empirical - All scores derived from Hofstede's peer-reviewed multi-country research (1967-2019).
-
----
-
 ## Verified Facts by File
 
 ### `culture_danish_position.md` - Danish Culture Position
