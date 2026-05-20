@@ -61,7 +61,7 @@ jobs:
         id: changed
         run: |
           FILES=$(git diff --name-only --diff-filter=ACMRT "origin/${{ github.base_ref }}...HEAD" \
-            | grep -E '^regions/.*/(culture_|persona_).*\.md$' || true)
+            | grep -E '^regions/.*/(culture_.*\.md|persona_.*\.md|.*_persona_.*\.md)$' || true)
           if [ -z "$FILES" ]; then
             echo "any=false" >> "$GITHUB_OUTPUT"
           else
@@ -122,7 +122,11 @@ jobs:
           for d, changed_in_dir in sorted(by_dir.items()):
               country = d.name
               display = country.replace("_", " ").title()
-              all_files = sorted(d.glob("culture_*.md")) + sorted(d.glob("persona_*.md"))
+              all_files = sorted(set(
+                  list(d.glob("culture_*.md"))
+                  + list(d.glob("persona_*.md"))
+                  + [f for f in d.glob("*_persona_*.md") if not f.name.startswith("culture_")]
+              ))
               personas = [f for f in all_files if is_persona(f.name)]
               positions = [f for f in all_files if is_position(f.name)]
               position = positions[0] if positions else None

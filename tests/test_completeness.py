@@ -18,18 +18,25 @@ unconditionally v2.
 
 Filename convention
 -------------------
-v2 filenames are ``culture_<adj>_<TYPE>_<NAME>.md`` where ``<TYPE>`` is one
-of the 5 KAI structural types (``process``, ``position``, ``piece``,
-``place``, ``persona``) and ``<NAME>`` is the content descriptor. Some
+v2 filenames carry a kind token. For culture content (position, language,
+history, process, piece, place) the form is ``culture_<adj>_<TYPE>_<NAME>.md``.
+For personas the prefix is dropped — personas inhabit a culture, they are
+not a culture, so they stay out of the ``culture_*`` namespace that feeds
+Hofstede aggregation (see ``test_no_persona_wears_culture_prefix``). Some
 content kinds only ever appear once per culture, so the redundant country
 suffix is dropped:
 
     culture_dutch_position_language.md     TYPE=position, NAME=language
     culture_dutch_piece_history.md         TYPE=piece,    NAME=history
-    culture_dutch_persona_male_jeroen.md   TYPE=persona,  NAME=male_jeroen
+    dutch_persona_male_jeroen.md           TYPE=persona,  NAME=male_jeroen
     culture_dutch_piece_poldermodel.md     TYPE=piece,    NAME=poldermodel
     culture_dutch_place_amsterdam.md       TYPE=place,    NAME=amsterdam
     culture_dutch_position.md              TYPE=position, NAME=(none)
+
+During the persona rename rollout (issue #302) ``culture_<adj>_persona_*``
+files are accepted alongside the new ``<adj>_persona_*`` form. ``_v2_files``
+unions both globs so ``test_v2_male``/``test_v2_female`` stay green through
+the per-country rename.
 
 The ``_v2_files`` detector picks up a kind token in either slot: the
 ``_<kind>_<slug>`` infix form for multi-instance kinds, and the trailing
@@ -133,13 +140,22 @@ def _has_kind(name: str, kind: str) -> bool:
 def _v2_files(country_dir: Path) -> dict[str, list[Path]]:
     """v2 file buckets, used by the strict v2 checks.
 
-    Detection is by filename token. See module docstring for the
-    ``culture_<adj>_<TYPE>_<NAME>.md`` convention; ``_has_kind`` accepts
-    both the multi-instance infix form and the single-instance trailing
-    form so the validator stays aligned with the dropped country suffix
-    for ``language`` and ``history``.
+    Detection is by filename token. See module docstring for the v2
+    naming convention; ``_has_kind`` accepts both the multi-instance
+    infix form and the single-instance trailing form so the validator
+    stays aligned with the dropped country suffix for ``language`` and
+    ``history``.
+
+    The glob unions ``culture_*.md`` (culture content) with
+    ``*_persona_*.md`` so the male/female bucket sees personas under
+    either naming form — the legacy ``culture_<adj>_persona_<gender>_*``
+    AND the prefix-free ``<adj>_persona_<gender>_*`` that the persona
+    rename (issue #302) lands per-country.
     """
-    md = list(country_dir.glob("culture_*.md"))
+    md = list(country_dir.glob("culture_*.md")) + [
+        f for f in country_dir.glob("*_persona_*.md")
+        if not f.name.startswith("culture_")
+    ]
     return {
         "language": [f for f in md if _has_kind(f.name, "language")],
         "history":  [f for f in md if _has_kind(f.name, "history")],

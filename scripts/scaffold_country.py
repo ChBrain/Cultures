@@ -168,10 +168,10 @@ The v2 schema requires 8 canonical kinds per country, mapped to the 5 KAI struct
 | `culture_*_process_*.md` | Process | process | Recurring practice or ritual (Is / Drives / Leaves / Ends) |
 | `culture_*_piece_*.md` | Piece | piece | Cultural artifact or concept |
 | `culture_*_place_*.md` | Place | place | Defining geographical location |
-| `culture_*_male_*.md` | Male persona | persona | Male character carrying the culture's position (Projection / Action / Shadow / Tell) |
-| `culture_*_female_*.md` | Female persona | persona | Female character carrying the culture's position |
+| `<adj>_persona_male_*.md` | Male persona | persona | Male character carrying the culture's position (Projection / Action / Shadow / Tell). No `culture_` prefix: personas inhabit a culture, they are not the culture. |
+| `<adj>_persona_female_*.md` | Female persona | persona | Female character carrying the culture's position. No `culture_` prefix. |
 
-> Every `culture_*.md` file ends with a `*khai: <type>*` footer where `<type>` is one of `process`, `position`, `piece`, `place`, `persona`. The declaration tells validators which KAI structural contract to apply -- Cultures-specific kinds (`language`, `history`, `male`, `female`) map to a KAI type via the table above. Filename token and footer must agree.
+> Every `culture_*.md` file ends with a `*khai: <type>*` footer where `<type>` is one of `process`, `position`, `piece`, `place`, `persona`. The declaration tells validators which KAI structural contract to apply -- Cultures-specific kinds (`language`, `history`, `male`, `female`) map to a KAI type via the table above. Filename token and footer must agree. Personas carry the `persona` declaration but stay outside the `culture_` namespace so they do not feed Hofstede aggregation.
 
 {hofstede_section}
 
