@@ -21,7 +21,7 @@
 - Alan Knight, *The Mexican Revolution* (1986) -- historical arc of the Revolution and its institutional legacy
 
 ### Hofstede Sources
-- Hofstede Insights Country Comparison Tool: hofstede-insights.com/country-comparison/mexico -- declared scores PDI 81 / IDV 30 / UAI 82 / MAS 69 / LTO 24 / IND 97
+- Hofstede Insights Country Comparison Tool: hofstede-insights.com/country-comparison/mexico -- Mexico dimensional profile
 - Geert Hofstede, Gert Jan Hofstede, Michael Minkov, *Cultures and Organizations: Software of the Mind* (3rd ed., 2010) -- dimensional framework and Mexico profile
 
 ### Contemporary and Cultural Sources
@@ -33,14 +33,7 @@
 
 ## Hofstede Dimensions Sourcing
 
-| Dimension | Score | Source |
-|---|---|---|
-| PDI | 81 | Hofstede Insights Country Comparison Tool |
-| IDV | 30 | Hofstede Insights Country Comparison Tool |
-| UAI | 82 | Hofstede Insights Country Comparison Tool |
-| MAS | 69 | Hofstede Insights Country Comparison Tool |
-| LTO | 24 | Hofstede Insights Country Comparison Tool |
-| IND | 97 | Hofstede Insights Country Comparison Tool |
+Cultural dimension scores for Mexico are sourced from Hofstede Insights (hofstede-insights.com/country-comparison/mexico) and *Cultures and Organizations* (Hofstede, Hofstede, Minkov 2010). Scores are not reproduced here; they are read from `data/hofstede_scores.json` at validation time.
 
 ---
 
@@ -113,10 +106,10 @@
 | Museo Nacional de Antropología: largest pre-Hispanic collection | Verified -- INAH |
 | Piedra del Sol commonly misidentified as Aztec Calendar | Verified -- INAH |
 
-### culture_mexican_persona_male_rodrigo.md
+### mexican_persona_male_rodrigo.md
 Fictional persona -- illustrative, not biographical. Historical context (1968, Politécnico, PRI era) factually grounded. Character is composite and invented.
 
-### culture_mexican_persona_female_valentina.md
+### mexican_persona_female_valentina.md
 Fictional persona -- illustrative, not biographical. Contemporary context (ITESO, startup ecosystem, NAFTA generation) factually grounded. Character is composite and invented.
 
 ---
