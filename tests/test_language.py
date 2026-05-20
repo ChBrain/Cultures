@@ -100,10 +100,13 @@ def test_readme_language_in_registry(country_dir: Path):
         for chunk in m.group(1).split(",")
         if chunk.split("(")[0].strip()
     ]
-    unknown = [lang for lang in declared if lang not in policy["languages"]]
+    # Accept both lingua-known languages and NLP-routed languages
+    allowed_langs = set(policy["languages"]) | set(policy.get("nlp_languages", []))
+    unknown = [lang for lang in declared if lang not in allowed_langs]
     assert not unknown, (
         f"{country_dir.name}/README.md declares unknown language(s): {unknown}\n"
-        f"  registered: {policy['languages']}"
+        f"  registered (lingua): {policy['languages']}\n"
+        f"  registered (nlp): {policy.get('nlp_languages', [])}"
     )
 
 
