@@ -73,7 +73,10 @@ def is_complete_culture(country: Path) -> bool:
     """A country folder ready to ship: position + 2 personas + place + piece + README."""
     if not country.is_dir():
         return False
-    personas = list(country.glob("culture_*_persona_*.md")) + list(country.glob("persona_*.md"))
+    personas = [
+        p for p in country.glob("*.md")
+        if "_persona_" in p.name or p.name.startswith("persona_")
+    ]
     return (
         any(country.glob("culture_*_position.md"))
         and len(personas) >= 2
