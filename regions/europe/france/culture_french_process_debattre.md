@@ -47,4 +47,5 @@ Ce qui a cédé ne disparaît pas. Il revient reformulé.
 Le débat ne clôt pas. Il reporte.
 La salle se souvient de ce qui a été dit.
 Et de ce qui ne l'a pas été.
+Le dialogue est la sortie haute du débat : ce qui se cherche n'est pas l'écrasement de l'autre mais la phrase commune.
 La boucle se ferme ici et se rouvre à Initiated by.

@@ -7,25 +7,12 @@
 | Hofstede Insights / geerthofstede.com | Official Hofstede | Dimension scores |
 | Hofstede, G., Hofstede, G.J., Minkov, M. (2010). *Cultures and Organizations: Software of the Mind* (3rd ed.). McGraw-Hill. | Academic | Dimension interpretation |
 | Brubaker, R. (1992). *Citizenship and Nationhood in France and Germany*. Harvard University Press. | Academic | PDI/IDV tension; republican universalism |
-| Baubérot, J. (2004). *Laïcité 1905–2005, entre passion et raison*. Seuil. | Academic | Laïcité piece; history file |
+| Baubérot, J. (2004). *Laïcité 1905-2005, entre passion et raison*. Seuil. | Academic | Laïcité piece; history file |
 | Todd, E. (1990). *L'Invention de l'Europe*. Seuil. | Academic | Cultural typology; position file |
 | Ministère de l'Éducation nationale (2015). Circulaire sur la journée de la laïcité. | Institutional | Laïcité piece |
 | Légifrance.gouv.fr - Loi du 9 décembre 1905 concernant la séparation des Églises et de l'État. | Official | Laïcité piece; history file |
 | INSEE - Population and territory statistics. | Official | Place file; history file |
 | Schnapper, D. (1994). *La Communauté des citoyens*. Gallimard. | Academic | Position file; universalism section |
-
----
-
-## Hofstede Dimensions Sourcing
-
-| Dimension | Score | Source |
-|---|---|---|
-| PDI | 68 | Hofstede Insights; confirmed via ResearchGate (2021) and LibreTexts (2025) |
-| IDV | 71 | Hofstede Insights; confirmed via multiple academic replications |
-| MAS | 43 | Hofstede Insights |
-| UAI | 86 | Hofstede Insights; confirmed via ACCA Global reference and salto-youth.net |
-| LTO | 63 | Hofstede Insights |
-| IND | 48 | Hofstede Insights |
 
 ---
 
@@ -116,7 +103,7 @@
 
 ---
 
-### culture_french_persona_male_luc.md & culture_french_persona_female_amina.md - Personas
+### [french_persona_male_luc.md](french_persona_male_luc.md) & [french_persona_female_amina.md](french_persona_female_amina.md) - Personas
 
 These are fictional composite personas representing French archetypes. Names, projections, and actions are creative constructs, not biographical references.
 
@@ -144,4 +131,4 @@ All prose is original. Yearbook entries are factual summaries of historical even
 ---
 
 *REFERENCES.md - France*
-*2026-05-19 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*
+*2026-05-20 | KAI HACKS AI | v0.2.1 | CC-BY-NC-4.0*
