@@ -1,0 +1,180 @@
+# Hofstede Bag: Japan
+#
+# This file is the scoring contract for the country's Hofstede dimensions.
+# Culture files (regions/<region>/<country>/culture_*.md) are written to
+# carry these words organically. Each appearance of a bag word adds to the
+# dimension's score; binary scoring (each word counts once).
+#
+# Schema (Strategy v2): country / language / parent / hofstede_scores / bags.
+# Tests: tests/test_hofstede_bag_shape.py asserts all of these are present.
+
+country: japan
+language: ja
+parent: null
+status: reviewed
+generated: 2026-05-20
+
+hofstede_scores:
+  PDI: 54
+  IDV: 46
+  UAI: 92
+  MAS: 95
+  LTO: 88
+  IND: 42
+
+# Country-specific denylist: words considered for this country's bags but
+# rejected, with the rule that disqualified them. Combined at validation
+# time with data/hofstede_denylist.yaml: a bag word must not appear in
+# either denylist. Each entry's reason is documented in hofstede_decisions.md.
+denylist:
+  - 人間
+  - 関係
+  - 仕事
+  - 会社
+  - 場所
+  - 文化
+
+bags:
+  PDI:
+    high:
+      - 上司
+      - 先輩
+      - 後輩
+      - 立場
+      - 序列
+      - 目上
+      - 身分
+      - 階級
+      - 権威
+      - 敬語
+    low:
+      - 対等
+      - 合議
+      - 横並び
+      - 民主
+      - 公平
+      - 普通選挙
+      - 連邦制
+      - 直接民主制
+      - 草の根
+      - 庶民派
+
+  IDV:
+    high:
+      - 個人
+      - 自分
+      - 自立
+      - 自由
+      - 私的
+      - 独立
+      - 個性
+      - 自己
+      - 主体
+      - 自主
+    low:
+      - 集団
+      - 和
+      - 義理
+      - 仲間
+      - 一体感
+      - 連帯
+      - 帰属
+      - 共同体
+      - 同調
+      - 世間
+
+  UAI:
+    high:
+      - 規則
+      - 手順
+      - 礼儀
+      - 段取り
+      - 確認
+      - 完璧
+      - 精密
+      - 徹底
+      - 整然
+      - 綿密
+    low:
+      - 即興
+      - 柔軟
+      - 適応
+      - 自発
+      - 気軽
+      - 大胆
+      - 冒険
+      - 偶然
+      - 臨機
+      - 試行
+
+  MAS:
+    high:
+      - 努力
+      - 鍛錬
+      - 競争
+      - 成果
+      - 一流
+      - 出世
+      - 勝利
+      - 達成
+      - 実績
+      - 業績
+    low:
+      - 協力
+      - 思いやり
+      - 調和
+      - 慈悲
+      - 譲り合い
+      - 共感
+      - 配慮
+      - 共生
+      - 寛容
+      - 親切
+
+  LTO:
+    high:
+      - 継続
+      - 投資
+      - 蓄積
+      - 我慢
+      - 長期
+      - 修業
+      - 稽古
+      - 将来
+      - 後世
+      - 永続
+    low:
+      - 即時
+      - 短期
+      - 一時
+      - 流行
+      - 慣習
+      - 現状
+      - 目先
+      - 過去
+      - 風習
+      - 旧来
+
+  IND:
+    high:
+      - 喜び
+      - 楽しみ
+      - 余暇
+      - 趣味
+      - 気楽
+      - 笑い
+      - 遊び
+      - 解放
+      - 享楽
+      - 余裕
+    low:
+      - 遠慮
+      - 謙虚
+      - 慎み
+      - 控えめ
+      - 自制
+      - 抑制
+      - 規律
+      - 節度
+      - 真面目
+      - 義務
