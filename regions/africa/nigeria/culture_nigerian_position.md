@@ -20,7 +20,7 @@ Not metaphor. Structure.
 Family first. Extended family. Kinship network. Age grade. Church. Alumni. Ethnic community.
 Multiple circles, each with its own obligation, its own hierarchy, its own claim.
 You are never outside all of them.
-The circle precedes the institution. When the institution fails -- and it will fail -- the circle is already there.
+The circle precedes the institution. When the institution fails - and it will fail - the circle is already there.
 
 The elder.
 Age carries authority before title is established.

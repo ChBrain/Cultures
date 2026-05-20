@@ -29,7 +29,7 @@ Aha ya na-emechi okwu mgbe ọ kpọrọ ya. Mgbe e kpọrọ "Maazị Emeka," n
 Asụsụ nne: Igbo. Asụsụ ọrụ: Bekee.
 - Ikwu okwu: [Worn](../../../engine/process_speaking_worn.md). Bekee dabara ya dị ka uwe; Igbo na-apụta mgbe ụlọ bụ ezinụlọ.
 - Ịnụ ihe: [Caught](../../../engine/process_hearing_caught.md). Ọ na-anụ ụlọ niile, gụnyere ọkwa a na-akọwaghị ya.
-- Ịgụ akwụkwọ: [Followed](../../../engine/process_reading_followed.md). Nkwekọrịta, akwụkwọ ọrụ ndị gọọmenti, otu WhatsApp -- ọ na-eso ha niile.
+- Ịgụ akwụkwọ: [Followed](../../../engine/process_reading_followed.md). Nkwekọrịta, akwụkwọ ọrụ ndị gọọmenti, otu WhatsApp - ọ na-eso ha niile.
 - Ide ihe: [Drafted](../../../engine/process_writing_drafted.md). Akwụkwọ a na-ezigara ụlọ ọrụ gọọmenti, a na-ede ya ugboro abụọ tupu a ezipu ya.
 N'oge ọdịda, [Asụsụ Nne](../../../engine/process_speaking_mother_tongue.md) na-apụta. Na nzukọ, ọ na-eburu [Bekee Azụmahịa](../../../engine/position_business_english.md) dị ka akwụkwọ njem nke ụlọ ahụ.
 

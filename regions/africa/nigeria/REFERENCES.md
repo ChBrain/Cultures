@@ -105,7 +105,7 @@
 | Tone is lexically distinctive in Yoruba (e.g. ọkọ̀ / ọ̀kọ̀ / ọkọ́) | verified | Bamgboṣe 1966 | Tonal minimal pairs are the canonical teaching example |
 | "Èyin" (plural / honorific) vs "o" (singular / familiar) is a productive politeness distinction | verified | Bamgboṣe 2000; sociolinguistic descriptions | Register split on age and rank |
 | Òwe (proverb) functions as conclusive argument, not illustration | verified | Awoyale; Yoruba oral-literature scholarship (Olatunji) | Standard finding in Yoruba rhetoric studies |
-| "Bí òwe, bí òwe, la ń lù ìlù àgbà" -- proverbs are how elders speak | verified | Common Yoruba òwe | Native-speaker confirmation pending in detail |
+| "Bí òwe, bí òwe, la ń lù ìlù àgbà" - proverbs are how elders speak | verified | Common Yoruba òwe | Native-speaker confirmation pending in detail |
 | Aworan (image / picture) as metaphor for speech | verified | Yoruba aesthetics scholarship; Awoyale on figurative density | The "speech as image" frame is a recognised Yoruba rhetorical mode |
 | Greetings precede the matter in Yoruba interaction | verified | Bamgboṣe 2000; sociolinguistic literature | Pan-Nigerian pattern with Yoruba-specific elaboration |
 
@@ -117,10 +117,10 @@
 
 | Fact / Claim | Verification Status | Source | Notes |
 |--------------|---------------------|--------|-------|
-| "Aha gị bụ gịnị?" -- standard Igbo "what is your name?" | verified | Mbah; BBC Igbo register | Name precedes the matter |
+| "Aha gị bụ gịnị?" - standard Igbo "what is your name?" | verified | Mbah; BBC Igbo register | Name precedes the matter |
 | Igbo distinguishes "nke a" (this) and "nke ahụ" (that) with sustained distinction-making | verified | Mbah; Manfredi | Productive deictic split |
 | Igbo kinship lexicon is finer-grained than English (nwanne m, dee m, ada m, ọkpara m) | verified | Mbah; standard descriptive grammar | "Cousin" is not a single Igbo word |
-| "Daalụ" / "Kedụ?" / "Ọ dị mma" -- standard greeting / thanks register | verified | BBC Igbo; everyday Igbo | Living register |
+| "Daalụ" / "Kedụ?" / "Ọ dị mma" - standard greeting / thanks register | verified | BBC Igbo; everyday Igbo | Living register |
 | Igbo title-naming (Maazị, Nze, Ọzọ) carries social weight | verified | Igbo ethnographic literature | Title is placement |
 | Igbo proverbs ("Onye na-eri eri, ọ na-arụ ọrụ") close discussion rather than illustrate | verified | Igbo oral-literature scholarship | Same rhetorical mode as Yoruba òwe |
 
@@ -133,9 +133,9 @@
 | Fact / Claim | Verification Status | Source | Notes |
 |--------------|---------------------|--------|-------|
 | Hausa is the dominant language of northern Nigeria and a major West African lingua franca | verified | Newman 2000; Ethnologue | Spoken across Niger, Chad, Cameroon, Ghana |
-| "Sannu" / "Yaya kake?" / "Lafiya lau" -- standard greeting density | verified | Newman 2000; BBC Hausa | Greetings open every interaction |
-| "In sha Allahu" / "Alhamdulillahi" / "Mashallah" -- Allah-woven everyday speech | verified | Newman 2000; Paden 1973 | Inherited from Hausa Islamic register |
-| "Da kuma" / "amma" / "saboda" / "don haka" -- standard Hausa connectors | verified | Newman 2000 (Encyclopedic Reference Grammar) | Discourse particles in Hausa syntax |
+| "Sannu" / "Yaya kake?" / "Lafiya lau" - standard greeting density | verified | Newman 2000; BBC Hausa | Greetings open every interaction |
+| "In sha Allahu" / "Alhamdulillahi" / "Mashallah" - Allah-woven everyday speech | verified | Newman 2000; Paden 1973 | Inherited from Hausa Islamic register |
+| "Da kuma" / "amma" / "saboda" / "don haka" - standard Hausa connectors | verified | Newman 2000 (Encyclopedic Reference Grammar) | Discourse particles in Hausa syntax |
 | Hausa was historically written in Ajami (Arabic-derived script); Boko (Latin) introduced under colonial rule | verified | Hiskett 1973; Newman 2000 | Ajami remains in Islamiyya schools |
 | Usman Dan Fodio and the Sokoto Caliphate used Ajami in the 19th-century jihad | verified | Hiskett 1973; Last 1967 | Foundational Ajami corpus |
 | Bayero University Kano hosts the leading Hausa academic linguistics department | verified | Bayero University record | Living academic centre |
@@ -228,7 +228,7 @@ These are composite personas representing Nigerian archetypes. Names, projection
 | Mother-tongue prose | Creative + native-speaker reviewable | Authored in Igbo / Yoruba / Hausa per persona; full review pending |
 | Language ladder links | Engine | Reference to `engine/process_*` and `engine/position_business_english.md` |
 | Action / Shadow / Tell | Creative | Fictional narrative grounded in documented circle / fadar Sarki / Lagos-procedure patterns |
-| Hauwa's Sokoto / Sultan / Islamiyya context | Verified general pattern | Last 1967; Paden 1973 -- fadar Sarki as functioning institutional node |
+| Hauwa's Sokoto / Sultan / Islamiyya context | Verified general pattern | Last 1967; Paden 1973 - fadar Sarki as functioning institutional node |
 
 **Audit Status:** Composite personas. No biographical claims to verify. Full mother-tongue prose review pending native-speaker check before production merge.
 
@@ -239,11 +239,11 @@ These are composite personas representing Nigerian archetypes. Names, projection
 - Funke persona, full Yoruba prose (was previously: only Projection first line confirmed clean 2026-05-16). The Stage 3 rewrite moves the whole persona into Yoruba; full re-review required.
 - Emeka persona, full Igbo prose (was previously: only Projection first line confirmed clean 2026-05-16). The Stage 3 rewrite moves the whole persona into Igbo; full re-review required.
 - Hauwa persona, full Hausa prose (new). Full native-speaker review required.
-- `culture_nigerian_position_language_yoruba.md` -- full Yoruba prose review required. Lingua span check (`language: yo`) is the deterministic gate; native review is the qualitative gate.
-- `culture_nigerian_position_language_igbo.md` -- full Igbo prose review required. NLP language_faithful check (`language: ig`) runs in CI; native review is the qualitative gate.
-- `culture_nigerian_position_language_hausa.md` -- full Hausa prose review required. NLP language_faithful check (`language: ha`) runs in CI; native review is the qualitative gate.
-- Igbo proverb in English language file: 'Uchu onye n'eme ya mma' -- native-speaker confirmation still required before production merge.
-- Yoruba proverb in English language file: 'ọmọ tí a kò kọ ni yóò ta ilé tì í' -- native-speaker confirmation still required before production merge.
+- `culture_nigerian_position_language_yoruba.md` - full Yoruba prose review required. Lingua span check (`language: yo`) is the deterministic gate; native review is the qualitative gate.
+- `culture_nigerian_position_language_igbo.md` - full Igbo prose review required. NLP language_faithful check (`language: ig`) runs in CI; native review is the qualitative gate.
+- `culture_nigerian_position_language_hausa.md` - full Hausa prose review required. NLP language_faithful check (`language: ha`) runs in CI; native review is the qualitative gate.
+- Igbo proverb in English language file: 'Uchu onye n'eme ya mma' - native-speaker confirmation still required before production merge.
+- Yoruba proverb in English language file: 'ọmọ tí a kò kọ ni yóò ta ilé tì í' - native-speaker confirmation still required before production merge.
 
 ---
 

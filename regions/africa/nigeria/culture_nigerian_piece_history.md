@@ -26,7 +26,7 @@ The map is colonial. The people predate it by millennia.
 Without this arc the [Nigerian](culture_nigerian_position.md) position loses its ground.
 The circle is not a response to colonial failure. It is older than the colony by a thousand years.
 The Benin Kingdom maintained a continuous court, a continuous art tradition, and a continuous system of governance from the ninth century. The bronzes were not primitive. They were the most technically sophisticated metal casting in the world at the time of their making.
-The Igbo republican tradition -- stateless, merit-based, governed through the Oha na Eze -- is the oldest model of the circle as governance unit on the continent.
+The Igbo republican tradition - stateless, merit-based, governed through the Oha na Eze - is the oldest model of the circle as governance unit on the continent.
 The Oyo Empire at its height administered a territory larger than Britain through a system of checks on royal power that had no European equivalent in the same century.
 The Sokoto Caliphate built a federated Islamic state across the north that survived British conquest by transformation, not erasure.
 The continuity of these systems still shapes the present map of authority.
@@ -37,7 +37,7 @@ The history carries because it has not been told in full. Telling it in full is 
 
 ## Apparent
 Nok terracotta figures in the National Museum Lagos and Jos: seated, standing, hollow-headed, 2500 years old.
-Benin bronzes in the Benin Royal Palace -- and in the British Museum, the Ethnologisches Museum Berlin, the Pitt Rivers Museum Oxford. Repatriation negotiations ongoing.
+Benin bronzes in the Benin Royal Palace - and in the British Museum, the Ethnologisches Museum Berlin, the Pitt Rivers Museum Oxford. Repatriation negotiations ongoing.
 The walls of Benin: the largest earthwork in the world before industrial growth, seen in aerial photos across Edo State.
 Osun-Osogbo Sacred Grove, UNESCO: continuous Yoruba sacred practice, still active.
 The National War Museum in Umuahia: Biafran memorabilia, photographs, the silence around them.
@@ -54,7 +54,7 @@ The naira note: the portraits change with governments. The geometry stays.
 1400: Oyo Empire rises. Cavalry. Trade. A constitutional check on royal power through the Oyo Mesi council. The Alafin can be asked to die by his own chiefs.
 1440: Oba Ewuare the Great expands Benin Kingdom. The palace bronzes reach their classical period. Diplomatic contact with Portugal begins within fifty years.
 1485: Portuguese arrive at Benin. They find a court that receives them as equals, conducts diplomacy, controls trade on its own terms. They want pepper and ivory. Benin wants guns and copper.
-1500s: Atlantic slave trade begins its expansion. The Niger Delta kingdoms -- Calabar, Bonny, Brass -- become intermediaries. The trade reshapes politics, economics, and kinship structures across the region for three centuries.
+1500s: Atlantic slave trade begins its expansion. The Niger Delta kingdoms - Calabar, Bonny, Brass - become intermediaries. The trade reshapes politics, economics, and kinship structures across the region for three centuries.
 1804: Usman dan Fodio launches the Fulani Jihad. The Sokoto Caliphate is established across the north. Federated Islamic governance, scholarship, and law. At its height, the largest state in Africa.
 1807: Britain abolishes the slave trade. The Royal Navy begins patrols. The economy of the Delta kingdoms transforms toward palm oil. British commercial interest intensifies.
 1851: British bombardment of Lagos. The Oba deposed. A treaty state installed. The beginning of formal colonial encroachment.

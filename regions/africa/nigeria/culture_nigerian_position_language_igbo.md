@@ -16,31 +16,31 @@ stamp:
 
 ## Has
 Asụsụ Igbo na-akpọ aha tupu o kwuo okwu.
-"Aha gị bụ gịnị?" -- aha gị bụ gịnị? Onye Igbo na-ajụ aha tupu ya akpọrọ onye.
+"Aha gị bụ gịnị?" - aha gị bụ gịnị? Onye Igbo na-ajụ aha tupu ya akpọrọ onye.
 Aha bụ akụkụ nke onye ahụ. Ọ bụghị mkpọ. Ọ bụ ihe nna nyere, ihe ndị ichie kwere.
 Mgbe a kpọrọ aha gị, e kpọrọ gị niile. Mgbe a hapụrụ aha gị, e hapụrụ gị niile.
 
 Asụsụ a na-ekewa "nke a" na "nke ahụ".
-Nke a -- ihe a, nso m, nke nke aka m. Nke ahụ -- ihe ahụ, n'ebe ahụ, nke onye ọzọ.
+Nke a - ihe a, nso m, nke nke aka m. Nke ahụ - ihe ahụ, n'ebe ahụ, nke onye ọzọ.
 A naghị agbakọ ha. A naghị eche na ha bụ otu ihe.
 Onye Igbo na-eche ihe na ọnọdụ ya, na onye nwe ya, na ebe ọ dị, tupu ya akpọ aha ya.
 Ihe nke aka gị abụghị ihe nke aka m. Ọ bụ ihe a na-akọwa, ọ bụghị ihe a na-ekewa n'enweghị isi.
 
 Mmadụ na-akpọ ibe ya site na ọnọdụ.
-Nna m, nne m, nwanne m, nwanna m, dee m, ada m, ọkpara m -- onye ọ bụla nwere aha n'ezinụlọ.
+Nna m, nne m, nwanne m, nwanna m, dee m, ada m, ọkpara m - onye ọ bụla nwere aha n'ezinụlọ.
 Ọ bụghị "uncle". Nwa nne nna m bụ ihe dị iche site na nwa nna nna m.
 Mgbe Igbo na-akpọ "nwanne m", o kwuru ihe nke onye Bekee na-akpọ "brother" agaghị eburu.
 Asụsụ a na-edobe usoro. Onye nke ọ bụla nọ n'ọnọdụ ya.
 
 Ilu na-akpọ uche.
-"Onye na-eri eri, ọ na-arụ ọrụ" -- onye nke chọrọ iri ga-arụ ọrụ.
-"A naghị akụ aka n'agba ọsọ" -- a naghị agba ọsọ na aka.
+"Onye na-eri eri, ọ na-arụ ọrụ" - onye nke chọrọ iri ga-arụ ọrụ.
+"A naghị akụ aka n'agba ọsọ" - a naghị agba ọsọ na aka.
 Ilu abụghị ihe atụ. Ilu bụ okwu kpọmkwem. Ọ na-emechi mkpari.
 Onye nke na-aghọtaghị ilu, anaghị akpọ ya n'okwu ndị okenye.
 
 Ọ bụ na-ada onye mara mma.
 Asụsụ Igbo na-emepe ụzọ maka ekele, maka nkwado, maka mkparịta ụka mgbe niile.
-"Kedụ?" -- kedụ ka ị mere? "Ọ dị mma" -- ọ dị mma. "Daalụ" -- imeela.
+"Kedụ?" - kedụ ka ị mere? "Ọ dị mma" - ọ dị mma. "Daalụ" - imeela.
 Onye na-aza, a na-aza. Onye na-ajụ, a na-ajụ. Asụsụ na-eme ka ọnụ na-ekwurịta.
 
 ## Orders

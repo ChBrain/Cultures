@@ -28,9 +28,9 @@ A ó kí baba, a ó kí ìyá, a ó kí àgbà, a ó kí ọmọdé.
 Ẹnì kọ̀ọ̀kan ní ìkíni tirẹ̀.
 
 Òwe ló ń gbé ọ̀rọ̀.
-"Bí òwe, bí òwe, la ń lù ìlù àgbà" -- àgbà tí ó mọ̀ ọgbọ́n yóò sọ̀rọ̀ pẹ̀lú òwe, kì í kọ́ ohun tó dúró ní ìta òwe.
+"Bí òwe, bí òwe, la ń lù ìlù àgbà" - àgbà tí ó mọ̀ ọgbọ́n yóò sọ̀rọ̀ pẹ̀lú òwe, kì í kọ́ ohun tó dúró ní ìta òwe.
 "Ọ̀rọ̀ tí a kò bá fi òwe sọ, kì í wọ etí ọmọ Yorùbá."
-Òwe kì í ṣe àpẹẹrẹ. Òwe ní arùmọ̀ -- ó wá ní ìparí, ó gbé ìparí, kò sí ohun tó kù láti ṣàlàyé.
+Òwe kì í ṣe àpẹẹrẹ. Òwe ní arùmọ̀ - ó wá ní ìparí, ó gbé ìparí, kò sí ohun tó kù láti ṣàlàyé.
 Ẹni tí kò gbọ́ òwe kò gbọ́dọ̀ wà nínú ìjíròrò àgbà.
 
 "Èyin" àti "ọ" jẹ́ ìyàtọ̀.
@@ -41,12 +41,12 @@ A kì í sọ "o" sí àgbà bí kò ṣe nínú ipò pàtó ti ìfẹ́.
 
 Àwòrán ni ọ̀rọ̀.
 Èdè Yorùbá ń ya àwòrán ní ìró: àwòrán igi tó dúró nínú afẹ́fẹ́, àwòrán omi tó ń sàn, àwòrán ọjọ́ tí ó ń lọ.
-"Bí ọmọ kò bá jẹ́ tóóro, baba rẹ̀ a jẹ́ aṣiwèrè" -- àwòrán kò sọ pé "ìwà ọmọ ni a ó dá lẹ́bi baba", ó fi àwòrán kún ọ̀rọ̀, ó fi àwòrán pa ariyànjiyàn.
+"Bí ọmọ kò bá jẹ́ tóóro, baba rẹ̀ a jẹ́ aṣiwèrè" - àwòrán kò sọ pé "ìwà ọmọ ni a ó dá lẹ́bi baba", ó fi àwòrán kún ọ̀rọ̀, ó fi àwòrán pa ariyànjiyàn.
 Olùgbọ́ rí àwòrán náà, ó gba òtítọ́ tó wà nínú rẹ̀, kò gbọ́dọ̀ jiyàn pẹ̀lú àwòrán.
 
 ## Orders
 Kí ẹni náà kí ìwọ tó sọ ọ̀rọ̀ rẹ. Bí kò bá kí, dúró.
-Pa ohùn rẹ̀ mọ́ -- ohùn ní ó gbé èdè náà, bí ó bá ṣubú ọ̀rọ̀ ó ti yí padà.
+Pa ohùn rẹ̀ mọ́ - ohùn ní ó gbé èdè náà, bí ó bá ṣubú ọ̀rọ̀ ó ti yí padà.
 
 ## Loses
 Ìjìnlẹ̀ ohùn àti òwe kò rí ojú gbígbé ní ìta yàrá Yorùbá.
