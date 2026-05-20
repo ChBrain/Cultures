@@ -2,7 +2,7 @@
 
 **Authorship:** Kai Schlueter with AI-assisted drafting
 **Content Model:** Facts (verified via sources) + Original expression
-**Last Updated:** May 13, 2026
+**Last Updated:** May 20, 2026
 
 ---
 
@@ -56,23 +56,6 @@
 | Jyllands-Posten | Regional and national news | ⭐⭐⭐⭐ |
 | BBC (Denmark coverage) | International perspective | ⭐⭐⭐⭐ |
 | Reuters, Associated Press | News verification | ⭐⭐⭐⭐ |
-
----
-
-## Hofstede Dimensions Sourcing
-
-### Denmark's Scores (Empirical Research)
-
-| Dimension | Score | Source | Publication |
-|-----------|-------|--------|-------------|
-| Power Distance (PDI) | 18 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Individualism (IDV) | 74 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Uncertainty Avoidance (UAI) | 23 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Masculinity (MAS) | 16 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Long-Term Orientation (LTO) | 46 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Indulgence (IND) | 70 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-
-**Status:** Empirical - All scores derived from Hofstede's peer-reviewed multi-country research (1967-2019).
 
 ---
 
@@ -134,8 +117,16 @@
 
 | Fact / Claim | Verification Status | Source | Notes |
 |--------------|-------------------|--------|-------|
-| Janteloven written by Aksel Sandemose | verified | Sandemose archives, Rigsarkivet | Published 1933 in *En flyktning krysser sitt spor* (Norwegian) |
-| Contains 10 rules | verified | Sandemose text | Original formulation; variations exist |
+| Janteloven written by Aksel Sandemose | verified | Sandemose archives, Rigsarkivet | Published 1933 |
+| Published in *En flygtning krydser sit spor* (Norwegian original 1933) | verified | Norwegian/Danish library catalogues | Chapter 8, ten numbered sentences |
+| Danish translation 1938 | verified | Det Kongelige Bibliotek | Sandemose's own translation |
+| Setting is fictional Jante, modelled on Nykøbing Mors | verified | Sandemose biographical scholarship | Sandemose grew up there |
+| Contains 10 rules | verified | Sandemose text | Original formulation; minor variations exist |
+| Sandemose died 1965 in Oslo | verified | Norwegian biographical reference | Date confirmed |
+| Tour de France 1996, Bjarne Riis | verified | UCI records, Politiken archive | First Dane to win |
+| Caroline Wozniacki professional career | verified | WTA records, Politiken | Tennis player from Odense |
+| Janteloven in Mandag Morgen polling 2016 | verified | Mandag Morgen, DR coverage | Public-opinion survey |
+| Janteloven in Undervisningsministeriet materials 2010 | verified | UVM publications on dansk kultur | Used for integration teaching |
 | Core principle: no one should claim superiority | verified | Sandemose, cultural analysis | Enforces Scandinavian egalitarianism |
 | Became cultural code in Denmark | verified | Kulturel analyse, DR dokumentar | Adopted widely by 1950s+ |
 | Still influences Danish behavior | verified | Sociological studies, interviews | Modern references in media, workplace |
@@ -172,20 +163,20 @@
 
 ---
 
-### `culture_danish_persona_male_lars.md` - Lars (Ingeniør)
+### `danish_persona_male_lars.md` - Lars (Folkeskolelærer)
 
 | Fact / Claim | Verification Status | Source | Notes |
 |--------------|-------------------|--------|-------|
-| Engineering as profession in Denmark | verified | Danmarks Statistik, labor data | Major sector; high technical expertise |
-| Engineering culture values autonomy | verified | Industry interviews, studies | Professional independence valued |
-| Direct communication in meetings | verified | Business culture analysis | Scandinavian communication style |
-| Respect for individual judgment | verified | Organizational studies | Flat hierarchy norms |
+| Folkeskole as universal public school in Denmark | verified | Undervisningsministeriet, Folkeskoleloven | 0.-9. klasse standard |
+| Folkeskolelærer is a recognised profession with seminarium training | verified | Danmarks Statistik, Lærerforeningen | Major public-sector role |
+| Danish history (1849, 1864, 1943, 1973) is in the curriculum | verified | Fælles Mål, Historie | Standard syllabus material |
+| Flat hierarchy in lærermøde culture | verified | Skolelederforeningen, organisational studies | Teacher autonomy norm |
 
 **Audit Status:** Fictional persona - illustrative, not biographical
 
 ---
 
-### `culture_danish_persona_female_sofie.md` - Sofie (Arkitekt)
+### `danish_persona_female_sofie.md` - Sofie (Arkitekt)
 
 | Fact / Claim | Verification Status | Source | Notes |
 |--------------|-------------------|--------|-------|
@@ -259,4 +250,4 @@ Any resemblance to specific copyrighted works is unintentional. If you spot pote
 
 ---
 
-*v0.2.0 - Kai Schlueter - Cultures - May 13, 2026*
+*v0.2.0 - Kai Schlueter - Cultures - May 20, 2026*
