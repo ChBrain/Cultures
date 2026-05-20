@@ -106,10 +106,10 @@ Cultural dimension scores for Mexico are sourced from Hofstede Insights (hofsted
 | Museo Nacional de Antropología: largest pre-Hispanic collection | Verified -- INAH |
 | Piedra del Sol commonly misidentified as Aztec Calendar | Verified -- INAH |
 
-### culture_mexican_persona_male_rodrigo.md
+### mexican_persona_male_rodrigo.md
 Fictional persona -- illustrative, not biographical. Historical context (1968, Politécnico, PRI era) factually grounded. Character is composite and invented.
 
-### culture_mexican_persona_female_valentina.md
+### mexican_persona_female_valentina.md
 Fictional persona -- illustrative, not biographical. Contemporary context (ITESO, startup ecosystem, NAFTA generation) factually grounded. Character is composite and invented.
 
 ---
