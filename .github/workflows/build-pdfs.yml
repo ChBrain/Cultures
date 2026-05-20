@@ -1,5 +1,16 @@
 name: Build PDFs by Region
 
+# Produces the deployment PDFs. The build logic lives in
+# scripts/build_pdfs.py (a tested script -- tests/test_build_pdfs.py
+# runs the script on every PR with pandoc mocked); this workflow is
+# just the trigger + system-package install + upload.
+#
+# scripts/build_pdfs.py and scripts/build_zips.py both import the
+# complete-cultures filter from scripts/culture_completeness.py, so the
+# two pipelines ship the same set. The cross-check that data/countries.json
+# (the website-map registry) stays in lockstep with that set lives in
+# tests/test_culture_completeness_alignment.py.
+
 on:
   workflow_dispatch:
   release:
@@ -14,51 +25,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install dependencies
+      - name: Install system dependencies
         run: |
           sudo apt-get update -q
           sudo apt-get install -y pandoc
           pip install weasyprint
 
       - name: Build PDFs
-        run: |
-          mkdir -p dist
-
-          for region in africa americas asia europe oceania; do
-            echo "Building ${region}..."
-
-            files=$(find regions/${region} -name "*.md" | sort)
-
-            > /tmp/${region}_combined.md
-            prev_country=""
-            for f in $files; do
-              country=$(echo $f | cut -d'/' -f3)
-              if [ "$country" != "$prev_country" ] && [ -n "$prev_country" ]; then
-                echo -e "\n---\n" >> /tmp/${region}_combined.md
-              fi
-              cat "$f" >> /tmp/${region}_combined.md
-              echo -e "\n\n" >> /tmp/${region}_combined.md
-              prev_country=$country
-            done
-
-            pandoc /tmp/${region}_combined.md \
-              --from markdown-yaml_metadata_block \
-              --to pdf \
-              --pdf-engine=weasyprint \
-              --metadata title="Cultures - $(echo ${region} | sed 's/\b\(.\)/\u\1/g')" \
-              --metadata date="$(date +%Y-%m-%d)" \
-              -o dist/cultures-${region}.pdf
-          done
-
-          echo "Building full..."
-          cat /tmp/africa_combined.md /tmp/americas_combined.md /tmp/asia_combined.md /tmp/europe_combined.md /tmp/oceania_combined.md > /tmp/full_combined.md
-          pandoc /tmp/full_combined.md \
-            --from markdown-yaml_metadata_block \
-            --to pdf \
-            --pdf-engine=weasyprint \
-            --metadata title="Cultures - All Regions" \
-            --metadata date="$(date +%Y-%m-%d)" \
-            -o dist/cultures-full.pdf
+        run: python scripts/build_pdfs.py dist
 
       - name: Upload to release
         if: github.event_name == 'release'

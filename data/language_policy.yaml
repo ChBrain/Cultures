@@ -7,12 +7,11 @@
 # exception files; Phase 3 will lift this schema + the validator into the
 # KAIHACKS khai package so other content repos can reuse it.
 
-# Languages this repo is allowed to contain. Each entry must be a lingua
-# language name that validate_language.py knows how to map onto
-# lingua.Language. To add a new language:
-#   1. add the slug here
-#   2. add the lingua.Language entry to _LINGUA_LANGUAGES_BY_NAME in the validator
-# Both changes go in the same governance/* PR.
+# lingua-known languages: deterministic span check via tests/validate_language.py.
+# Adding a new one: also add the lingua.Language entry in _lingua_language_map
+# in tests/validate_language.py, and (when keyword bags exist) the
+# LINGUA_LANGUAGES entry in data/hofstede_keywords.py. All three in the same
+# governance/* PR.
 #
 # Each culture's README declares which of these it uses via
 # `**Language(s):**` -- those declarations are cross-checked against this list
@@ -25,13 +24,30 @@ languages:
   - danish
   - polish
   - spanish
+  - japanese
+  - yoruba
+  - mandarin
+  - tamil
+  - malay
 
-# ISO 639-1 code -> lingua language name. data/countries.json stores each
-# country's language as an ISO code; this maps it onto the names in
-# `languages` above. A country whose ISO code is missing here is NOT
-# unlocked: the language pre-flight gate blocks culture work on it until
-# the code is mapped and the name is registered above. Every value must
-# appear in `languages`.
+# NLP-only languages: lingua-py does not support these, so they go through
+# the khai_tests.review.language_faithful check instead of the lingua span
+# check. The author guarantees the prose IS in the declared language;
+# khai_tests.review checks it advisorily. Adding a new one requires no
+# code change here -- the dispatcher in tests/validate_language.py routes
+# files whose frontmatter language code maps to this list to the NLP path.
+nlp_languages:
+  - igbo
+  - hausa
+  - pidgin    # Nigerian Pidgin
+
+# ISO 639-1 (or 639-3 where 1 doesn't exist, e.g. `pcm`) code -> language
+# name. data/countries.json stores each country's language as an ISO code;
+# this maps it onto the names in `languages` (lingua path) or
+# `nlp_languages` (NLP path). A country whose ISO code is missing here is
+# NOT unlocked: the language pre-flight gate blocks culture work on it
+# until the code is mapped and the name is registered above. Every value
+# must appear in either `languages` or `nlp_languages`.
 iso_map:
   en: english
   fr: french
@@ -40,6 +56,14 @@ iso_map:
   da: danish
   pl: polish
   es: spanish
+  ja: japanese
+  yo: yoruba
+  zh: mandarin
+  ta: tamil
+  ms: malay
+  ig: igbo
+  ha: hausa
+  pcm: pidgin
 
 # Section headings (##) whose body gets language-checked. Names match
 # case-insensitively against the heading text. Anything not listed is

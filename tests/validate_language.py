@@ -37,9 +37,33 @@ sys.path.insert(0, str(HERE))
 
 from findings import Issue  # noqa: E402
 
+# culture_metadata.read_metadata is the single source of truth for parsing
+# the YAML frontmatter / legacy footer; the dispatcher uses it to read
+# each file's `language:` field.
+from culture_metadata import read_metadata  # noqa: E402
+
 ROOT = HERE.parent
 POLICY_PATH = ROOT / "data" / "language_policy.yaml"
 COUNTRIES_PATH = ROOT / "data" / "countries.json"
+
+# Routing constants for ``dispatch_route``. The validator's three-tier
+# dispatch (per the Nigeria mother-tongue arc, Stage 2c):
+#   ROUTE_LINGUA  -> lingua-known language, run the deterministic span check
+#   ROUTE_NLP     -> lingua doesn't know it; the file is gated by the
+#                    khai_tests.review.language_faithful LLM check, fired
+#                    from .github/workflows/culture-review.yml. Locally
+#                    we skip -- there's no key to call the LLM, and the
+#                    author guarantees the prose is in the declared
+#                    language.
+#   ROUTE_UNKNOWN -> ISO code not in the policy iso_map; hard fail.
+#   ROUTE_DEFAULT -> file has no `language:` field; back-compat (en/english,
+#                    routed to lingua).
+ROUTE_LINGUA = "lingua"
+ROUTE_NLP = "nlp"
+ROUTE_UNKNOWN = "unknown"
+ROUTE_DEFAULT = "default"
+
+DEFAULT_LANGUAGE_ISO = "en"
 
 
 def _lingua_language_map():
@@ -64,6 +88,11 @@ def _lingua_language_map():
         "dutch": Language.DUTCH,
         "danish": Language.DANISH,
         "polish": Language.POLISH,
+        "japanese": Language.JAPANESE,
+        "yoruba": Language.YORUBA,
+        "mandarin": Language.CHINESE,
+        "tamil": Language.TAMIL,
+        "malay": Language.MALAY,
     }
 
 
@@ -74,11 +103,13 @@ def _lingua_language_map():
 def load_policy(path: Path = POLICY_PATH) -> dict:
     """Load and validate data/language_policy.yaml.
 
-    Returns ``{languages, prose_sections, min_span_words, iso_map}``.
-    Raises ValueError if the file is missing or malformed -- the
-    validator can't run without a policy. ``iso_map`` (ISO 639-1 code ->
-    lingua name) may be empty; the unlock gate flags that, it is not a
-    hard load error.
+    Returns ``{languages, nlp_languages, prose_sections, min_span_words,
+    iso_map}``. Raises ValueError if the file is missing or malformed --
+    the validator can't run without a policy. ``iso_map`` (ISO code ->
+    language name) may be empty; the unlock gate flags that, it is not
+    a hard load error. ``nlp_languages`` is optional and defaults to
+    ``[]`` -- repos with no NLP-only languages stay on the pure-lingua
+    path.
     """
     if not path.is_file():
         raise ValueError(
@@ -108,8 +139,14 @@ def load_policy(path: Path = POLICY_PATH) -> dict:
         raise ValueError(
             f"{path}: `iso_map` must be a mapping of ISO code -> language name."
         )
+    nlp_languages_raw = raw.get("nlp_languages") or []
+    if not isinstance(nlp_languages_raw, list):
+        raise ValueError(
+            f"{path}: `nlp_languages` must be a list of language names."
+        )
     return {
         "languages": [s.lower() for s in languages],
+        "nlp_languages": [s.lower() for s in nlp_languages_raw],
         "prose_sections": {s.lower() for s in sections},
         "min_span_words": min_words,
         "iso_map": {str(k).lower(): str(v).lower() for k, v in iso_map_raw.items()},
@@ -395,6 +432,119 @@ def country_language_unlocked_violations(
 
 
 # ---------------------------------------------------------------------
+# Per-file dispatcher (Stage 2c of the Nigeria mother-tongue arc)
+# ---------------------------------------------------------------------
+#
+# The repo holds files whose declared language is not supported by lingua
+# (e.g. Igbo, Hausa, Pidgin). Running the lingua span check on those would
+# either crash (no Language enum) or fall through to english and flag every
+# line. The dispatcher routes per file by frontmatter `language:` field:
+#
+#   absent / english       -> lingua path (back-compat for every existing file)
+#   lingua-known language  -> lingua path
+#   NLP-only language      -> skip lingua; the NLP check runs from
+#                             .github/workflows/culture-review.yml on PRs
+#   unknown ISO code       -> hard fail with a named error
+#
+# This module owns routing, not the NLP call itself. The NLP path is the
+# khai_tests.review.language_faithful check, fired from culture-review.yml
+# once Stage 2b pins khai-tests v0.1.12.
+
+
+def _file_language_iso(file_path: Path) -> str | None:
+    """Return the ISO code declared in ``file_path``'s frontmatter, or None.
+
+    Reads YAML frontmatter (or legacy footer) via culture_metadata. The
+    field name is ``language``; absent / non-string values return None.
+    Lowercased + stripped so ``'EN'`` and ``' en '`` both resolve.
+    """
+    try:
+        text = file_path.read_text(encoding="utf-8")
+    except (UnicodeDecodeError, OSError):
+        return None
+    try:
+        meta = read_metadata(text)
+    except Exception:
+        return None
+    raw = meta.get("language") if isinstance(meta, dict) else None
+    if raw is None:
+        return None
+    iso = str(raw).strip().lower()
+    return iso or None
+
+
+def dispatch_route(
+    file_path: Path,
+    policy: dict | None = None,
+) -> tuple[str, str | None, str | None]:
+    """Resolve which validation route ``file_path`` belongs to.
+
+    Returns a ``(route, iso, name)`` triple:
+      route -> one of ROUTE_LINGUA, ROUTE_NLP, ROUTE_UNKNOWN, ROUTE_DEFAULT
+      iso   -> the declared ISO code (or DEFAULT_LANGUAGE_ISO when absent)
+      name  -> the language name from iso_map (None for ROUTE_UNKNOWN
+               when the ISO is unmapped)
+
+    Routing rules:
+      * No `language:` field           -> (ROUTE_DEFAULT, 'en', 'english')
+        back-compat: every existing file in the corpus parses english.
+      * ISO maps to a `languages` entry -> (ROUTE_LINGUA, iso, name)
+      * ISO maps to `nlp_languages`    -> (ROUTE_NLP, iso, name)
+      * ISO not in iso_map             -> (ROUTE_UNKNOWN, iso, None)
+        hard fail: the caller must surface this as an error.
+      * ISO maps to a name that is in neither list -> ROUTE_UNKNOWN
+        (registry drift -- treat the same as a missing iso_map entry)
+    """
+    if policy is None:
+        policy = _policy()
+    iso_map = policy.get("iso_map") or {}
+    languages = set(policy.get("languages") or [])
+    nlp_languages = set(policy.get("nlp_languages") or [])
+
+    declared = _file_language_iso(file_path)
+    if declared is None:
+        iso = DEFAULT_LANGUAGE_ISO
+        name = iso_map.get(iso, "english")
+        return ROUTE_DEFAULT, iso, name
+
+    iso = declared
+    name = iso_map.get(iso)
+    if name is None:
+        return ROUTE_UNKNOWN, iso, None
+    if name in languages:
+        return ROUTE_LINGUA, iso, name
+    if name in nlp_languages:
+        return ROUTE_NLP, iso, name
+    # iso_map points at a name that isn't registered in either list. Treat
+    # this as registry drift -- same surface as an unknown ISO: hard fail.
+    return ROUTE_UNKNOWN, iso, name
+
+
+def unknown_language_issue(file_path: Path, iso: str) -> Issue:
+    """Build the hard-fail Issue for an unknown ISO code in a file.
+
+    Names the file and the offending code so the contributor can either
+    fix the typo or register the language in data/language_policy.yaml.
+    """
+    try:
+        rel = file_path.relative_to(ROOT)
+    except ValueError:
+        rel = file_path
+    return Issue(
+        error=(
+            f"{rel}: frontmatter `language: {iso}` is not registered in "
+            "data/language_policy.yaml (iso_map)"
+        ),
+        verdict=(
+            "either fix the typo in the file's frontmatter, or add "
+            f"`{iso}: <lang-name>` to iso_map in data/language_policy.yaml "
+            "AND register <lang-name> under `languages` (lingua path) or "
+            "`nlp_languages` (NLP path) in the same governance/* PR"
+        ),
+    )
+
+
+# ---------------------------------------------------------------------
 # Detection
 # ---------------------------------------------------------------------
 
@@ -611,9 +761,17 @@ def explain(path: Path) -> list[str]:
 def validate(path: Path) -> list[Issue]:
     """Per-file entry for the orchestrator. Returns one Issue per violation.
 
-    Returns [] when lingua isn't installed (treated as a skip, not a
-    crash). The standalone CLI prints an explicit skip line; the
-    orchestrator simply sees no findings.
+    Routes per file via ``dispatch_route``:
+      ROUTE_DEFAULT / ROUTE_LINGUA -> lingua span check (existing path).
+      ROUTE_NLP                    -> skip; the NLP language_faithful
+                                       check runs from culture-review.yml.
+                                       Locally returns [].
+      ROUTE_UNKNOWN                -> one hard-fail Issue naming the file
+                                       and the unregistered ISO code.
+
+    Returns [] when lingua isn't installed (treated as a skip on the
+    lingua path, not a crash). The standalone CLI prints an explicit
+    skip line; the orchestrator simply sees no findings.
     """
     try:
         text = path.read_text(encoding="utf-8")
@@ -623,6 +781,14 @@ def validate(path: Path) -> list[Issue]:
         policy = _policy()
     except ValueError as e:
         return [Issue(error=str(e), verdict="fix data/language_policy.yaml")]
+    route, iso, _name = dispatch_route(path, policy)
+    if route == ROUTE_UNKNOWN:
+        return [unknown_language_issue(path, iso or "")]
+    if route == ROUTE_NLP:
+        # NLP-only languages bypass lingua entirely. The advisory check
+        # fires from .github/workflows/culture-review.yml on PRs; the
+        # local validator treats it as a clean skip.
+        return []
     detector = _build_detector(policy)
     if detector is None:
         return []
@@ -807,6 +973,15 @@ def main(argv: list[str] | None = None) -> int:
         try:
             text = file_path.read_text(encoding="utf-8")
         except (UnicodeDecodeError, OSError):
+            continue
+        # Per-file dispatch: NLP-only languages skip lingua entirely;
+        # unknown ISO codes hard-fail with a named Issue. Default and
+        # lingua-known languages continue through the span check below.
+        route, iso, _name = dispatch_route(file_path, policy)
+        if route == ROUTE_UNKNOWN:
+            all_issues.append(unknown_language_issue(file_path, iso or ""))
+            continue
+        if route == ROUTE_NLP:
             continue
         allowed = _resolve_allowed_languages(file_path, policy)
         exceptions = _exceptions_for(file_path)

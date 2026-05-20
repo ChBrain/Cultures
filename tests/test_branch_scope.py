@@ -677,6 +677,8 @@ def test_governance_glob_patterns_locked():
         "scripts/update_hofstede_readme.py",
         "scripts/migrate_footer_to_frontmatter.py",
         "scripts/build_zips.py",
+        "scripts/build_pdfs.py",
+        "scripts/culture_completeness.py",
         "data/hofstede_denylist.yaml",
         "data/hofstede_keywords.py",
         "data/hofstede_scores.json",

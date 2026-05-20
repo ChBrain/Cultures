@@ -42,6 +42,18 @@ The ``_v2_files`` detector picks up a kind token in either slot: the
 ``_<kind>_<slug>`` infix form for multi-instance kinds, and the trailing
 ``_<kind>.md`` form for single-instance kinds where the country suffix
 was dropped.
+
+Language bucket -- multi-instance per country
+---------------------------------------------
+
+The ``language`` bucket accepts >=1 file (not exactly-1). A country may
+ship a primary ``culture_<adj>_position_language.md`` AND one or more
+sub-position language files for additional native languages
+(``culture_<adj>_position_language_<sublang>.md``). Both filename forms
+land in the same bucket via ``_has_kind(name, "language")``: the trailing
+``_language.md`` form for the primary, the ``_language_<sublang>`` infix
+form for sub-positions. The v2 check is "at least one"; the per-file
+language dispatch happens in tests/validate_language.py, not here.
 """
 import re
 import sys
@@ -273,6 +285,27 @@ def _v2_require_kind(country_dir: Path, kind: str) -> None:
 @pytest.mark.parametrize("country_dir", _COUNTRIES, ids=[c.name for c in _COUNTRIES])
 def test_v2_language(country_dir: Path):
     _v2_require_kind(country_dir, "language")
+
+
+def test_v2_language_bucket_accepts_multiple_files(tmp_path):
+    """A country may carry >=1 language file: a primary
+    ``culture_<adj>_position_language.md`` plus optional
+    ``culture_<adj>_position_language_<sublang>.md`` per additional
+    native language (the Nigeria mother-tongue arc -- Stage 2c). The
+    v2 language bucket counts both filename forms via _has_kind."""
+    country = tmp_path / "regions" / "africa" / "nigeria"
+    country.mkdir(parents=True)
+    (country / "README.md").write_text("# Nigeria\n**Language(s):** English\n")
+    primary = country / "culture_nigerian_position_language.md"
+    primary.write_text("# english\n")
+    igbo = country / "culture_nigerian_position_language_igbo.md"
+    igbo.write_text("# igbo\n")
+    hausa = country / "culture_nigerian_position_language_hausa.md"
+    hausa.write_text("# hausa\n")
+    bucket = _v2_files(country)["language"]
+    assert set(bucket) == {primary, igbo, hausa}, (
+        f"language bucket must accept multiple files; got {bucket}"
+    )
 
 
 @pytest.mark.parametrize("country_dir", _COUNTRIES, ids=[c.name for c in _COUNTRIES])

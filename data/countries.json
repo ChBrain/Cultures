@@ -73,6 +73,15 @@
       "anchor": { "type": "region", "iso": "MX" },
       "language": "es",
       "name_source": "INEGI_MX_2023"
+    },
+    {
+      "id": "united_states",
+      "name": "United States",
+      "region": "americas",
+      "asset": "cultures-americas-united_states.zip",
+      "anchor": { "type": "region", "iso": "US" },
+      "language": "en",
+      "name_source": "SSA_US_2023"
     }
   ]
 }
