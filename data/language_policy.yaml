@@ -27,6 +27,9 @@ languages:
   - spanish
   - japanese
   - yoruba
+  - mandarin
+  - tamil
+  - malay
 
 # ISO 639-1 code -> lingua language name. data/countries.json stores each
 # country's language as an ISO code; this maps it onto the names in
@@ -44,6 +47,9 @@ iso_map:
   es: spanish
   ja: japanese
   yo: yoruba
+  zh: mandarin
+  ta: tamil
+  ms: malay
 
 # Section headings (##) whose body gets language-checked. Names match
 # case-insensitively against the heading text. Anything not listed is
