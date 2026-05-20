@@ -21,6 +21,17 @@ on:
     branches:
       - culture/release
 
+# Concurrency: when multiple culture PRs land on culture/release in quick
+# succession, each push fires its own run. Without a guard, 7 parallel
+# culture PRs => up to 7 chore/release-gating-* PRs with overlapping
+# countries.json edits. The detect step computes the FULL main <-> release
+# delta, so any single run is naturally cumulative -- only the latest
+# matters. Cancel in-progress runs and let the newest one produce the
+# single PR that covers every culture currently outstanding.
+concurrency:
+  group: release-gating-cultures
+  cancel-in-progress: true
+
 permissions:
   contents: write
   pull-requests: write

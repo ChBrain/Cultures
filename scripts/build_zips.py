@@ -33,7 +33,9 @@ from pathlib import Path
 
 _ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(_ROOT / "tests"))
+sys.path.insert(0, str(_ROOT / "scripts"))
 from culture_metadata import strip_metadata  # noqa: E402
+from culture_completeness import complete_countries, is_complete_culture  # noqa: E402,F401
 
 _REGIONS = _ROOT / "regions"
 _ENGINE = _ROOT / "engine"
@@ -67,35 +69,6 @@ def flatten_links(text: str, target: str = "default") -> str:
 def _ship(text: str, target: str = "default") -> str:
     """Deployment form of a markdown file: metadata stripped, links flat."""
     return flatten_links(strip_metadata(text), target)
-
-
-def is_complete_culture(country: Path) -> bool:
-    """A country folder ready to ship: position + 2 personas + place + piece + README."""
-    if not country.is_dir():
-        return False
-    personas = [
-        p for p in country.glob("*.md")
-        if "_persona_" in p.name or p.name.startswith("persona_")
-    ]
-    return (
-        any(country.glob("culture_*_position.md"))
-        and len(personas) >= 2
-        and any(country.glob("culture_*_place_*.md"))
-        and any(country.glob("culture_*_piece_*.md"))
-        and (country / "README.md").is_file()
-    )
-
-
-def complete_countries() -> list[tuple[str, Path]]:
-    """(region_name, country_dir) for every complete culture, sorted."""
-    out: list[tuple[str, Path]] = []
-    if not _REGIONS.is_dir():
-        return out
-    for region in sorted(p for p in _REGIONS.iterdir() if p.is_dir() and not p.name.startswith(".")):
-        for country in sorted(p for p in region.iterdir() if p.is_dir() and not p.name.startswith(".")):
-            if is_complete_culture(country):
-                out.append((region.name, country))
-    return out
 
 
 def _write_zip(path: Path, items: list[tuple[str, str]]) -> None:

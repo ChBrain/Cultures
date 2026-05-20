@@ -145,13 +145,20 @@ def test_iso_map_present():
 
 
 def test_iso_map_values_registered():
-    registry = set(_VL_POLICY["languages"])
+    """Every iso_map value must appear in `languages` OR `nlp_languages`.
+
+    The Nigeria mother-tongue arc (Stage 2c) added a second registry --
+    NLP-only languages that lingua doesn't support but the workflow's
+    language_faithful LLM check does. Both registries are equally valid
+    homes; only a name in neither is "unregistered".
+    """
+    registry = set(_VL_POLICY["languages"]) | set(_VL_POLICY.get("nlp_languages") or [])
     unregistered = {
         iso: name for iso, name in _VL_POLICY["iso_map"].items()
         if name not in registry
     }
     assert not unregistered, (
-        f"iso_map values not in `languages`: {unregistered}"
+        f"iso_map values not in `languages` or `nlp_languages`: {unregistered}"
     )
 
 

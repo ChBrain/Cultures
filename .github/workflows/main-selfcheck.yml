@@ -29,6 +29,16 @@ on:
   push:
     branches: [main, culture/release]
 
+# Concurrency: this is detection (full-content re-validation), not
+# prevention -- only the latest snapshot of the branch needs to be
+# checked. Cancel any in-flight run when a newer push arrives so we
+# don't waste CI on a stale state. Keyed per branch (main and
+# culture/release each get their own group) so a culture/release push
+# never cancels a main run or vice versa.
+concurrency:
+  group: main-selfcheck-${{ github.ref_name }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
@@ -45,7 +55,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.12)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)

@@ -23,7 +23,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.12)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -49,7 +49,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.12)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -75,7 +75,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.12)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -101,7 +101,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.12)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -127,7 +127,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.12)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -153,7 +153,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.12)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -179,7 +179,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.12)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -530,6 +530,44 @@ jobs:
       - name: Run zip-build tests
         run: python -m pytest tests/test_build_zips.py -v
 
+  cultures-pdf-build:
+    name: cultures - PDF build (smoke)
+    # Smoke-tests scripts/build_pdfs.py with pandoc mocked. The real
+    # release PDF build (build-pdfs.yml) only fires on release/dispatch
+    # and needs the apt-installed pandoc/weasyprint; this gates the
+    # enumeration + markdown-assembly + completeness-filter logic on
+    # every PR.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest pyyaml
+      - name: Run pdf-build smoke tests
+        run: python -m pytest tests/test_build_pdfs.py -v
+
+  cultures-completeness-alignment:
+    name: cultures - Completeness alignment (registry vs shipped)
+    # Cross-check that data/countries.json (the website-map registry)
+    # and the complete-cultures set (zips + PDFs) stay in lockstep.
+    # Catches the drift class where a culture lands in culture/release
+    # but isn't registered (the Mexico gap, #257), or where a registry
+    # entry references a country whose folder is not yet complete.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run completeness-alignment tests
+        run: python -m pytest tests/test_culture_completeness_alignment.py -v
+
   cultures-hofstede-score-home:
     name: cultures - Hofstede score home
     # Single-home gate for Hofstede scores: data/hofstede_scores.json is
@@ -759,7 +797,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.12)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -786,6 +824,26 @@ jobs:
       - name: Run static language checks
         run: python -m pytest tests/test_language.py -v
 
+  cultures-language-dispatch:
+    name: cultures - Language dispatch
+    # Always-run gate for the per-file frontmatter `language:` dispatcher
+    # (Nigeria mother-tongue arc -- Stage 2c). Pins the four routing
+    # outcomes -- absent/lingua-known/NLP-only/unknown -- so a regression
+    # in tests/validate_language.py's dispatch_route surfaces immediately.
+    # Independent, no culture-file dependency. Mirrors the
+    # cultures-history-arc pattern: always runs, fast (no lingua install).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest + pyyaml
+        run: pip install pytest pyyaml
+      - name: Run language-dispatch tests
+        run: python -m pytest tests/test_validate_language_dispatch.py -v
+
   khai-links:
     name: khai - Link rules
     needs: [setup, cultures-language]
@@ -800,7 +858,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.12)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -826,7 +884,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.12)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -900,7 +958,7 @@ jobs:
         run: |
           RELEASE=$(curl -s \
             -H "Authorization: Bearer ${{ secrets.KAIHACKS }}" \
-            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.11)
+            https://api.github.com/repos/ChBrain/KAIHACKS/releases/tags/khai-tests-v0.1.12)
           ASSET_INFO=$(echo "$RELEASE" | python3 -c "import sys,json; a=next(x for x in json.load(sys.stdin)['assets'] if x['name'].endswith('.whl')); print(a['url'],a['name'])")
           ASSET_URL=$(echo "$ASSET_INFO" | cut -d' ' -f1)
           ASSET_NAME=$(echo "$ASSET_INFO" | cut -d' ' -f2)
@@ -1046,6 +1104,8 @@ jobs:
       - cultures-history-arc
       - cultures-language-process-ladder
       - cultures-zip-build
+      - cultures-pdf-build
+      - cultures-completeness-alignment
       - cultures-hofstede-score-home
       - cultures-validator-wiring
       - cultures-metadata-format
@@ -1054,6 +1114,7 @@ jobs:
       - cultures-stamp-check
       - khai-language
       - cultures-language
+      - cultures-language-dispatch
       - khai-links
       - cultures-links
       - cultures-completeness

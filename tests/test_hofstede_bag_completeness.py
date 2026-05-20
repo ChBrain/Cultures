@@ -5,6 +5,7 @@ Run: python3 -m unittest tests.test_hofstede_bag_completeness
 """
 from __future__ import annotations
 
+import sys
 import warnings
 from pathlib import Path
 
@@ -14,6 +15,47 @@ import pytest
 # Anchor at this file so tests work regardless of CWD.
 REPO_ROOT = Path(__file__).resolve().parent.parent
 REGIONS = REPO_ROOT / "regions"
+
+sys.path.insert(0, str(REPO_ROOT / "tests"))
+
+from culture_metadata import read_metadata  # noqa: E402
+from validate_language import load_policy, POLICY_PATH  # noqa: E402
+
+
+# NLP-only language files (Igbo, Hausa, Pidgin, ...) are not "scored
+# culture content" for bag-completeness purposes -- there's no bag for
+# the language, and the NLP language_faithful check (from
+# culture-review.yml) is the gate that covers them. Counting an NLP
+# file as content would force the country to ship a bag for a language
+# no bag exists for.
+try:
+    _POLICY = load_policy(POLICY_PATH)
+    _NLP_LANGUAGES = set(_POLICY.get("nlp_languages") or [])
+    _ISO_MAP = _POLICY.get("iso_map") or {}
+except Exception:
+    _NLP_LANGUAGES = set()
+    _ISO_MAP = {}
+
+
+def _is_nlp_language_file(file_path: Path) -> bool:
+    """True if ``file_path``'s frontmatter declares an NLP-only language."""
+    if not _NLP_LANGUAGES:
+        return False
+    try:
+        text = file_path.read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return False
+    try:
+        meta = read_metadata(text)
+    except Exception:
+        return False
+    if not isinstance(meta, dict):
+        return False
+    raw = meta.get("language")
+    if raw is None:
+        return False
+    iso = str(raw).strip().lower()
+    return _ISO_MAP.get(iso) in _NLP_LANGUAGES
 
 
 def find_countries_with_content() -> dict[Path, list[Path]]:
@@ -34,6 +76,12 @@ def find_countries_with_content() -> dict[Path, list[Path]]:
         name = md_file.name
         # Positive match: only culture_*.md counts as scored culture content.
         if not name.startswith("culture_"):
+            continue
+        # NLP-only language files (e.g. culture_nigerian_position_language_igbo.md)
+        # are gated by the LLM language_faithful check, not by a keyword
+        # bag. Skip them here so a country isn't required to ship a bag
+        # for a language no bag exists for.
+        if _is_nlp_language_file(md_file):
             continue
 
         # regions/<region>/<country>/<file>.md → country folder is parts[:3]
