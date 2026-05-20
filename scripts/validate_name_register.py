@@ -5,7 +5,9 @@ data/names/name_register.json.
 
 The source of truth is the persona file itself, not a hand-authored block:
   - legacy personas:  regions/<region>/<slug>/persona_<name>.md
-  - v2 personas:      regions/<region>/<slug>/culture_<adj>_persona_<gender>_<name>.md
+  - v2 personas:      regions/<region>/<slug>/<adj>_persona_<gender>_<name>.md
+                      (mid-rollout: regions/<region>/<slug>/culture_<adj>_persona_<gender>_<name>.md
+                      remains accepted until each country's persona-rename PR lands)
 
 For each persona file the script reads:
   - name    -- from the `# Persona: <Name>` heading (ASCII-folded for the key)
@@ -42,7 +44,8 @@ COUNTRIES = REPO_ROOT / "data" / "countries.json"
 REGIONS   = REPO_ROOT / "regions"
 
 # A file is a persona file if its name contains "persona" -- this catches
-# every convention (legacy persona_<name>.md, v2 culture_<adj>_persona_<gender>_<name>.md).
+# every convention (legacy persona_<name>.md, v2 <adj>_persona_<gender>_<name>.md,
+# plus the mid-rollout culture_<adj>_persona_<gender>_<name>.md).
 _PERSONA_FILE_RE = re.compile(r"persona", re.IGNORECASE)
 _HEADING_RE = re.compile(r"^#\s+Persona:\s*(?P<name>.+?)\s*$", re.MULTILINE)
 _SHE_RE = re.compile(r"\b(?:she|her|hers|herself)\b", re.IGNORECASE)

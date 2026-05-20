@@ -17,6 +17,7 @@ on:
       - 'regions/**/REFERENCES.md'
       - 'regions/**/persona_*.md'
       - 'regions/**/culture_*_persona_*.md'
+      - 'regions/**/*_persona_*.md'
 
 jobs:
   sync:
