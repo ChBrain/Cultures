@@ -65,6 +65,7 @@ def _lingua_language_map():
         "danish": Language.DANISH,
         "polish": Language.POLISH,
         "japanese": Language.JAPANESE,
+        "yoruba": Language.YORUBA,
     }
 
 
