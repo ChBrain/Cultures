@@ -824,6 +824,26 @@ jobs:
       - name: Run static language checks
         run: python -m pytest tests/test_language.py -v
 
+  cultures-language-dispatch:
+    name: cultures - Language dispatch
+    # Always-run gate for the per-file frontmatter `language:` dispatcher
+    # (Nigeria mother-tongue arc -- Stage 2c). Pins the four routing
+    # outcomes -- absent/lingua-known/NLP-only/unknown -- so a regression
+    # in tests/validate_language.py's dispatch_route surfaces immediately.
+    # Independent, no culture-file dependency. Mirrors the
+    # cultures-history-arc pattern: always runs, fast (no lingua install).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest + pyyaml
+        run: pip install pytest pyyaml
+      - name: Run language-dispatch tests
+        run: python -m pytest tests/test_validate_language_dispatch.py -v
+
   khai-links:
     name: khai - Link rules
     needs: [setup, cultures-language]
@@ -1094,6 +1114,7 @@ jobs:
       - cultures-stamp-check
       - khai-language
       - cultures-language
+      - cultures-language-dispatch
       - khai-links
       - cultures-links
       - cultures-completeness

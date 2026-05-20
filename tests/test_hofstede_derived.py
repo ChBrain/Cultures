@@ -15,6 +15,8 @@ sys.path.insert(0, str(_ROOT))
 
 from data.hofstede_keywords import detect_language
 from data.hofstede_bag_loader import load_bag_for_language
+from culture_metadata import read_metadata
+from validate_language import load_policy, POLICY_PATH
 
 _DIMS = ["PDI", "IDV", "UAI", "MAS", "LTO", "IND"]
 
@@ -52,6 +54,61 @@ def _country_dirs() -> list[Path]:
     return countries
 
 
+# NLP-only languages (Igbo, Hausa, Pidgin, ...) have no keyword bag and
+# the LLM-judged signal isn't a keyword signal. A culture_*.md file whose
+# frontmatter declares one of these languages is skipped from the keyword
+# aggregation -- the lingua-known files in the same country still
+# aggregate, so the country's derived score is computed from the bag
+# language alone, not diluted by content the validator can't score.
+#
+# Resolved once at import time: the policy is governance-tracked, so
+# missing-config means the test suite has bigger problems than NLP
+# routing. Empty list (default policy + no NLP languages) keeps the
+# original behaviour for every existing file.
+try:
+    _POLICY_HF = load_policy(POLICY_PATH)
+    _NLP_LANGUAGES = set(_POLICY_HF.get("nlp_languages") or [])
+    _ISO_MAP = _POLICY_HF.get("iso_map") or {}
+except Exception:
+    _NLP_LANGUAGES = set()
+    _ISO_MAP = {}
+
+
+def _is_nlp_language_file(file_path: Path) -> bool:
+    """True if ``file_path``'s frontmatter declares an NLP-only language."""
+    if not _NLP_LANGUAGES:
+        return False
+    try:
+        text = file_path.read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return False
+    try:
+        meta = read_metadata(text)
+    except Exception:
+        return False
+    if not isinstance(meta, dict):
+        return False
+    raw = meta.get("language")
+    if raw is None:
+        return False
+    iso = str(raw).strip().lower()
+    name = _ISO_MAP.get(iso)
+    return name in _NLP_LANGUAGES
+
+
+def _scored_culture_files(country_dir: Path) -> list[Path]:
+    """Culture files contributing to the country's keyword aggregation.
+
+    Filters NLP-only-language files (Igbo, Hausa, Pidgin, ...): they have
+    no keyword bag and the NLP check from culture-review.yml is the gate
+    for their content, not a keyword count here.
+    """
+    return [
+        f for f in country_dir.glob("culture_*.md")
+        if not _is_nlp_language_file(f)
+    ]
+
+
 def _declared(country_id: str) -> dict[str, int]:
     """Declared Hofstede scores for a country from the single home."""
     entry = _SCORES.get(country_id, {})
@@ -70,7 +127,7 @@ def _derived(country_dir: Path, language: str) -> dict[str, int | None]:
     keywords = load_bag_for_language(language, country_folder=country_dir, fallback=True)
     all_text = "".join(
         f.read_text(encoding="utf-8", errors="replace").lower()
-        for f in country_dir.glob("culture_*.md")
+        for f in _scored_culture_files(country_dir)
     )
     scores: dict[str, int | None] = {}
     for dim in _DIMS:
@@ -115,7 +172,7 @@ def test_derived_within_tolerance(country_dir: Path):
 
     all_text = "".join(
         f.read_text(encoding="utf-8", errors="replace")
-        for f in country_dir.glob("culture_*.md")
+        for f in _scored_culture_files(country_dir)
     )
     language = detect_language(all_text)
     derived = _derived(country_dir, language)
@@ -150,3 +207,97 @@ def test_derived_within_tolerance(country_dir: Path):
         f"±{_TOLERANCE} of declared:\n"
         + "\n".join(f"  {f}" for f in failures)
     )
+
+
+# ---------------------------------------------------------------------------
+# NLP-language skip (Nigeria mother-tongue arc -- Stage 2c)
+# ---------------------------------------------------------------------------
+
+class TestNlpLanguageSkip:
+    """A culture file whose frontmatter declares an NLP-only language
+    (Igbo, Hausa, Pidgin, ...) is excluded from the keyword aggregation:
+    no bag exists for the language, and the LLM-judged signal isn't a
+    keyword signal. The country's derived score is computed from the
+    lingua-known files alone."""
+
+    def _make_country(self, tmp_path: Path) -> Path:
+        country = tmp_path / "regions" / "africa" / "testland"
+        country.mkdir(parents=True)
+        (country / "README.md").write_text("# Testland\n**Language(s):** English\n")
+        return country
+
+    def test_nlp_file_detected(self, tmp_path):
+        """The detector recognises a `language: ig` frontmatter file."""
+        if not _NLP_LANGUAGES:
+            pytest.skip("policy did not load nlp_languages")
+        country = self._make_country(tmp_path)
+        f = country / "culture_x_position_language_igbo.md"
+        f.write_text(
+            "---\nkhai: position\nlanguage: ig\n---\n# body\n",
+            encoding="utf-8",
+        )
+        assert _is_nlp_language_file(f) is True
+
+    def test_lingua_file_not_flagged(self, tmp_path):
+        country = self._make_country(tmp_path)
+        f = country / "culture_x_position_language.md"
+        f.write_text(
+            "---\nkhai: position\nlanguage: en\n---\n# body\n",
+            encoding="utf-8",
+        )
+        assert _is_nlp_language_file(f) is False
+
+    def test_absent_language_field_not_flagged(self, tmp_path):
+        """Back-compat: a file with no `language:` field is not NLP."""
+        country = self._make_country(tmp_path)
+        f = country / "culture_x_position.md"
+        f.write_text(
+            "---\nkhai: position\n---\n# body\n",
+            encoding="utf-8",
+        )
+        assert _is_nlp_language_file(f) is False
+
+    def test_scored_files_omits_nlp(self, tmp_path):
+        """A country with one english file and one Igbo file has the
+        Igbo file dropped from the aggregation set."""
+        if not _NLP_LANGUAGES:
+            pytest.skip("policy did not load nlp_languages")
+        country = self._make_country(tmp_path)
+        en = country / "culture_x_position_language.md"
+        en.write_text(
+            "---\nkhai: position\nlanguage: en\n---\n# english body\n",
+            encoding="utf-8",
+        )
+        ig = country / "culture_x_position_language_igbo.md"
+        ig.write_text(
+            "---\nkhai: position\nlanguage: ig\n---\n# igbo body\n",
+            encoding="utf-8",
+        )
+        scored = set(_scored_culture_files(country))
+        assert scored == {en}, (
+            f"NLP-language file must be excluded from aggregation; got {scored}"
+        )
+
+    def test_country_score_unchanged_when_nlp_added(self, tmp_path):
+        """The whole point of the skip: adding an NLP file must not
+        change the set the keyword aggregator sees."""
+        if not _NLP_LANGUAGES:
+            pytest.skip("policy did not load nlp_languages")
+        country = self._make_country(tmp_path)
+        en = country / "culture_x_position_language.md"
+        en.write_text(
+            "---\nkhai: position\nlanguage: en\n---\n# english body\n",
+            encoding="utf-8",
+        )
+        scored_without = set(_scored_culture_files(country))
+
+        ig = country / "culture_x_position_language_igbo.md"
+        ig.write_text(
+            "---\nkhai: position\nlanguage: ig\n---\n# igbo body\n",
+            encoding="utf-8",
+        )
+        scored_with = set(_scored_culture_files(country))
+        assert scored_without == scored_with, (
+            "Adding an NLP-language file must not change the scored set; "
+            f"without={scored_without} with={scored_with}"
+        )

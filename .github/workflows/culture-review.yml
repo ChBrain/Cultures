@@ -12,6 +12,11 @@ name: culture-review
 #   - Shadow != position       persona's Shadow isn't the linked position's
 #                              Loses restated (#290 rule 2)
 #   - persona typicality       persona is typical of the culture (#290 rule 4)
+#   - language-faithful        when frontmatter language: maps to an
+#                              nlp_languages entry, verify the prose IS
+#                              in that language (lingua doesn't cover it,
+#                              so the LLM is the gate -- Nigeria mother-
+#                              tongue arc Stage 2c)
 #
 # Supersedes prose-review.yml -- the prose-naturalness check is now one
 # of five, run through the shared khai_tests.review wheel.
@@ -87,8 +92,24 @@ jobs:
           # not yet in GOVERNANCE_GLOB_PATTERNS.
           import os
           import subprocess
+          import sys
           from collections import defaultdict
           from pathlib import Path
+
+          # tests/validate_language.py owns the per-file frontmatter
+          # -> route resolution (Stage 2c). Reusing it here keeps the
+          # NLP routing single-sourced -- the workflow can't drift from
+          # the dispatcher.
+          sys.path.insert(0, "tests")
+          try:
+              from validate_language import (
+                  ROUTE_NLP, dispatch_route, load_policy, POLICY_PATH,
+              )
+              _POLICY = load_policy(POLICY_PATH)
+          except Exception:
+              ROUTE_NLP = "nlp"
+              dispatch_route = None
+              _POLICY = None
 
           changed = [f for f in os.environ.get("CHANGED_FILES", "").splitlines() if f]
           by_dir = defaultdict(list)
@@ -117,6 +138,19 @@ jobs:
                   ["python3", "-m", "khai_tests.review", *args],
                   capture_output=True, text=True, check=False,
               ).stdout
+
+
+          def nlp_route_iso(file_path: Path) -> str | None:
+              # Returns the ISO code when the file's frontmatter routes
+              # to the NLP path, else None. The dispatcher is the single
+              # source of truth for "is this an NLP-language file?".
+              if dispatch_route is None or _POLICY is None:
+                  return None
+              try:
+                  route, iso, _ = dispatch_route(file_path, _POLICY)
+              except Exception:
+                  return None
+              return iso if route == ROUTE_NLP else None
 
           print("## khai_tests.review on this PR\n")
           for d, changed_in_dir in sorted(by_dir.items()):
@@ -174,6 +208,22 @@ jobs:
                           "--file", str(f),
                           "--position", str(position),
                       ))
+
+              # language-faithful (Stage 2c): on changed files whose
+              # frontmatter language: routes through the NLP path
+              # (Igbo, Hausa, Pidgin, ...), call khai_tests.review
+              # language-faithful so the LLM gates that the prose is in
+              # the declared language. Lingua-known and default-language
+              # files are gated by tests/validate_language.py instead.
+              for f in changed_in_dir:
+                  iso = nlp_route_iso(f)
+                  if iso is None:
+                      continue
+                  print(run(
+                      "language-faithful",
+                      "--file", str(f),
+                      "--language", iso,
+                  ))
 
               print()
 
