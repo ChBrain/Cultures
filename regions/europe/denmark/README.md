@@ -23,7 +23,7 @@ Filename convention: `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5
 | `culture_danish_process_hygge.md` | process | Hygge - the art of coziness and shared presence |
 | `culture_danish_piece_janteloven.md` | piece | Janteloven (Law of Jante) - social code prohibiting standing out |
 | `culture_danish_place_copenhagen.md` | place | Copenhagen - capital city as social anchor |
-| `culture_danish_persona_male_lars.md` | persona | Lars - Ingeniør (Position-shaped Shadow) |
+| `culture_danish_persona_male_lars.md` | persona | Lars - Folkeskolelærer (Position-shaped Shadow) |
 | `culture_danish_persona_female_sofie.md` | persona | Sofie - Arkitekt (Position-shaped Shadow) |
 
 ## Hofstede Cultural Dimensions - Denmark
@@ -52,7 +52,7 @@ Denmark's cultural profile measured against Hofstede's framework:
 | LTO | 46 | 46 | 0 | ✅ EXCELLENT |
 | IND | 70 | 67 | 3 | ✅ EXCELLENT |
 
-Keyword density analysis validates that content keywords across all files (language, history, position, process, piece, place, personas) align with declared Hofstede scores. Gap tolerance: ±10 PASS, ±5 EXCELLENT. Audited May 13, 2026.
+Keyword density analysis validates that content keywords across all files (language, history, position, process, piece, place, personas) align with declared Hofstede scores. Gap tolerance: ±10 PASS, ±5 EXCELLENT. Audited May 20, 2026.
 
 ### How Dimensions Shape Danish Culture
 
@@ -73,13 +73,13 @@ These dimensions inform the **[Language](culture_danish_position_language.md)** 
 | culture_danish_piece_history.md | piece | ✅ Complete | 19 Yearbook entries 793 AD to 2025: viking arc, smaller-land autonomy through loss, institutional continuity |
 | culture_danish_position.md | position | ✅ Complete | Hofstede dimensions: PDI 18, IDV 74, UAI 23, MAS 16, LTO 46, IND 70 |
 | culture_danish_process_hygge.md | process | ✅ Complete | Hygge process with direction, lever, echo |
-| culture_danish_piece_janteloven.md | piece | ✅ Complete | Janteloven cultural code with yearbook |
+| culture_danish_piece_janteloven.md | piece | ✅ Complete | Janteloven cultural code; 19 Yearbook entries 1700s to 2025 |
 | culture_danish_place_copenhagen.md | place | ✅ Complete | Copenhagen as social anchor with offers and withheld |
-| culture_danish_persona_male_lars.md | persona | ✅ Complete | Ingeniør: projection, action, Position-shaped shadow, physical tell |
+| culture_danish_persona_male_lars.md | persona | ✅ Complete | Folkeskolelærer: projection, action, Position-shaped shadow, physical tell |
 | culture_danish_persona_female_sofie.md | persona | ✅ Complete | Arkitekt: projection, action, Position-shaped shadow, physical tell |
 
 ---
 
-Audited May 13, 2026
+Audited May 20, 2026
 
 *v0.2.0 - Kai Schlueter - Cultures - May 2026*
