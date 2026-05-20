@@ -2,7 +2,7 @@
 
 **Authorship:** KAI HACKS AI with research-assisted drafting
 **Content Model:** Facts (verified via sources) + Original expression
-**Last Updated:** May 19, 2026
+**Last Updated:** May 20, 2026
 
 ---
 
@@ -71,7 +71,7 @@
 | 'No wahala' is a Pidgin expression of acceptance | verified | Nigerian Pidgin lexicon | Multi-valent (acceptance, deferral) |
 | 'E don do' marks present-tense closure in Pidgin | verified | Pidgin lexicon | Conversational marker |
 | Igbo proverb 'Uchu onye n'eme ya mma' | unverified | Folk usage | Native-speaker confirmation pending |
-| Yoruba proverb 'Ọmọ tí a kò kọ ni yóò ta ilé tì í' | unverified | Folk usage | Native-speaker confirmation pending |
+| Yoruba proverb 'ọm᳔ tí a kò k᳔ ni yóò ta ilé tì í' | unverified | Folk usage | Native-speaker confirmation pending |
 
 **Audit Status:** Two proverbs require native-speaker confirmation before production merge
 
@@ -150,7 +150,7 @@
 
 ---
 
-### `culture_nigerian_persona_male_emeka.md` & `culture_nigerian_persona_female_funke.md` - Personas
+### [nigerian_persona_male_emeka.md](nigerian_persona_male_emeka.md) & [nigerian_persona_female_funke.md](nigerian_persona_female_funke.md) - Personas
 
 These are composite personas representing Nigerian archetypes. Names, projections, actions, and biographical details are creative constructs anchored to documented social patterns, not biographical references.
 
@@ -174,13 +174,13 @@ These are composite personas representing Nigerian archetypes. Names, projection
 - Emeka Projection first line (Igbo): 'Emeka bụ nwoke si Naijiriya' - confirmed clean per research session 2026-05-16. Locked.
 - Funke Projection first line (Yoruba): confirmed clean per research session 2026-05-16. Locked.
 - Igbo proverb in language file: 'Uchu onye n'eme ya mma' - native-speaker confirmation still required before production merge.
-- Yoruba proverb in language file: 'Ọmọ tí a kò kọ ni yóò ta ilé tì í' - native-speaker confirmation still required before production merge.
+- Yoruba proverb in language file: 'ọm᳔ tí a kò k᳔ ni yóò ta ilé tì í' - native-speaker confirmation still required before production merge.
 
 ---
 
 ## Score Comparison Note
 
-The Culture Factor country profile for Nigeria (screenshot captured 2026-05-16) shows IDV 0, LTO 8. This package uses Hofstede Insights country-specific scores (IDV 30, LTO 13) as primary source per project decision 2026-05-16. See `hofstede_decisions.md` for the full reasoning.
+The Culture Factor country profile for Nigeria (screenshot captured 2026-05-16) shows IDV 0, LTO 8. This package uses Hofstede Insights country-specific scores as primary source per project decision 2026-05-16. See `hofstede_decisions.md` for the full reasoning.
 
 ---
 
@@ -210,4 +210,4 @@ Any resemblance to specific copyrighted works is unintentional. If you spot pote
 
 ---
 
-*v0.2.0 - KAI HACKS AI - Cultures - May 19, 2026*
+*v0.2.1 - KAI HACKS AI - Cultures - May 20, 2026*

@@ -4,23 +4,23 @@
 Region: Africa
 **Language(s):** English
 Language: English (Nigerian English / Naija Pidgin)
-Version: v0.2.0
-Date: 2026-05-15
+Version: v0.2.1
+Date: 2026-05-20
 
 ---
 
-## Hofstede Scores
+## Content Overview
 
-| Dimension | Score | Level |
-|---|---|---|
-| PDI - Power Distance | 80 | **High** |
-| IDV - Individualism | 30 | **Low** |
-| MAS - Masculinity | 60 | **Moderate** |
-| UAI - Uncertainty Avoidance | 55 | **Moderate** |
-| LTO - Long-Term Orientation | 13 | **Low** |
-| IND - Indulgence | 84 | **High** |
-
-Source: Hofstede Insights (PDI 80, IDV 30, MAS 60, UAI 55, LTO 13, IND 84)
+| # | File | Kind | Purpose |
+|---|---|---|---|
+| 1 | [culture_nigerian_position_language.md](culture_nigerian_position_language.md) | language | Nigerian English and Naija Pidgin as acoustic layer |
+| 2 | [culture_nigerian_piece_history.md](culture_nigerian_piece_history.md) | piece | Nok to Tinubu; the Republic as permanent negotiation |
+| 3 | [culture_nigerian_position.md](culture_nigerian_position.md) | position | Nigerian cultural position - state role, narrative anchor |
+| 4 | [culture_nigerian_process_oga.md](culture_nigerian_process_oga.md) | process | Oga: patron-client as operating system |
+| 5 | [culture_nigerian_piece_jollof.md](culture_nigerian_piece_jollof.md) | piece | Jollof rice as cultural proof of occasion |
+| 6 | [culture_nigerian_place_lagos.md](culture_nigerian_place_lagos.md) | place | Lagos: the city that runs before the state catches up |
+| 7 | [nigerian_persona_male_emeka.md](nigerian_persona_male_emeka.md) | persona | Emeka, contractor, born 1971; built the circle; cannot see the room without one |
+| 8 | [nigerian_persona_female_funke.md](nigerian_persona_female_funke.md) | persona | Funke, lawyer, born 1989; holds both legs; cannot see the junior who was never handed the call path |
 
 ---
 
@@ -28,14 +28,14 @@ Source: Hofstede Insights (PDI 80, IDV 30, MAS 60, UAI 55, LTO 13, IND 84)
 
 | File | Type | Status |
 |---|---|---|
-| culture_nigerian_position_language.md | Language | delivered |
-| culture_nigerian_piece_history.md | History | delivered |
-| culture_nigerian_position.md | Position | delivered |
-| culture_nigerian_process_oga.md | Process | delivered |
-| culture_nigerian_piece_jollof.md | Piece | delivered |
-| culture_nigerian_place_lagos.md | Place | delivered |
-| culture_nigerian_persona_male_emeka.md | Persona (male) | delivered |
-| culture_nigerian_persona_female_funke.md | Persona (female) | delivered |
+| [culture_nigerian_position_language.md](culture_nigerian_position_language.md) | Language | v0.2.0 |
+| [culture_nigerian_piece_history.md](culture_nigerian_piece_history.md) | History | v0.2.0 |
+| [culture_nigerian_position.md](culture_nigerian_position.md) | Position | v0.2.0 |
+| [culture_nigerian_process_oga.md](culture_nigerian_process_oga.md) | Process | v0.2.0 |
+| [culture_nigerian_piece_jollof.md](culture_nigerian_piece_jollof.md) | Piece | v0.2.0 |
+| [culture_nigerian_place_lagos.md](culture_nigerian_place_lagos.md) | Place | v0.2.0 |
+| [nigerian_persona_male_emeka.md](nigerian_persona_male_emeka.md) | Persona (male) | v0.2.0 |
+| [nigerian_persona_female_funke.md](nigerian_persona_female_funke.md) | Persona (female) | v0.2.0 |
 
 ---
 
@@ -78,4 +78,4 @@ Jollof is the piece. The party rice is the proof that the occasion is real.
 
 ---
 
-*2026-05-15 | KAI HACKS AI | v0.2.0 | CC-BY-NC-4.0*
+*2026-05-20 | KAI HACKS AI | v0.2.1 | CC-BY-NC-4.0*
