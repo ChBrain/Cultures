@@ -23,8 +23,8 @@ Filename convention: `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5
 | `culture_danish_process_hygge.md` | process | Hygge - the art of coziness and shared presence |
 | `culture_danish_piece_janteloven.md` | piece | Janteloven (Law of Jante) - social code prohibiting standing out |
 | `culture_danish_place_copenhagen.md` | place | Copenhagen - capital city as social anchor |
-| `culture_danish_persona_male_lars.md` | persona | Lars - Folkeskolelærer (Position-shaped Shadow) |
-| `culture_danish_persona_female_sofie.md` | persona | Sofie - Arkitekt (Position-shaped Shadow) |
+| `danish_persona_male_lars.md` | persona | Lars - Folkeskolelærer (Position-shaped Shadow) |
+| `danish_persona_female_sofie.md` | persona | Sofie - Arkitekt (Position-shaped Shadow) |
 
 ## Hofstede Cultural Dimensions - Denmark
 
@@ -63,7 +63,7 @@ Keyword density analysis validates that content keywords across all files (langu
 - **Low MAS + High IND:** Cooperation over competition; care over conquest. Enjoyment is legitimate. Hygge (present-moment togetherness) is culturally celebrated, not indulgent.
 - **Moderate LTO:** Balance between present-moment focus (hygge, immediate relational warmth) and long-term institutions (welfare state, andelsbevægelsen, pension). Danes invest in the future through collective institutions while living the present.
 
-These dimensions inform the **[Language](culture_danish_position_language.md)** (Dansk as the acoustic register), **[Position](culture_danish_position.md)** (how Denmark operates through equality and autonomy), **[History](culture_danish_piece_history.md)** (the arc that produced today's institutions), **[Process](culture_danish_process_hygge.md)** (hygge as the recurring cultural movement), **[Pieces](culture_danish_piece_janteloven.md)** (Janteloven as cultural code enforcing the paradox), **[Place](culture_danish_place_copenhagen.md)** (Copenhagen as infrastructure reflecting individual choice and shared care), and Personas ([Lars](culture_danish_persona_male_lars.md), [Sofie](culture_danish_persona_female_sofie.md)): how individuals express autonomy while respecting others'. Culture files carry standard hofstede sentinel footers linking to this README; scoring is aggregate across all files, not per-file.
+These dimensions inform the **[Language](culture_danish_position_language.md)** (Dansk as the acoustic register), **[Position](culture_danish_position.md)** (how Denmark operates through equality and autonomy), **[History](culture_danish_piece_history.md)** (the arc that produced today's institutions), **[Process](culture_danish_process_hygge.md)** (hygge as the recurring cultural movement), **[Pieces](culture_danish_piece_janteloven.md)** (Janteloven as cultural code enforcing the paradox), **[Place](culture_danish_place_copenhagen.md)** (Copenhagen as infrastructure reflecting individual choice and shared care), and Personas ([Lars](danish_persona_male_lars.md), [Sofie](danish_persona_female_sofie.md)): how individuals express autonomy while respecting others'. Culture files carry standard hofstede sentinel footers linking to this README; scoring is aggregate across all files, not per-file.
 
 ## Content Audit Status
 
@@ -75,8 +75,8 @@ These dimensions inform the **[Language](culture_danish_position_language.md)** 
 | culture_danish_process_hygge.md | process | ✅ Complete | Hygge process with direction, lever, echo |
 | culture_danish_piece_janteloven.md | piece | ✅ Complete | Janteloven cultural code; 19 Yearbook entries 1700s to 2025 |
 | culture_danish_place_copenhagen.md | place | ✅ Complete | Copenhagen as social anchor with offers and withheld |
-| culture_danish_persona_male_lars.md | persona | ✅ Complete | Folkeskolelærer: projection, action, Position-shaped shadow, physical tell |
-| culture_danish_persona_female_sofie.md | persona | ✅ Complete | Arkitekt: projection, action, Position-shaped shadow, physical tell |
+| danish_persona_male_lars.md | persona | ✅ Complete | Folkeskolelærer: projection, action, Position-shaped shadow, physical tell |
+| danish_persona_female_sofie.md | persona | ✅ Complete | Arkitekt: projection, action, Position-shaped shadow, physical tell |
 
 ---
 

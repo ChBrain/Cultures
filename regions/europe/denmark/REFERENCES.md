@@ -180,7 +180,7 @@
 
 ---
 
-### `culture_danish_persona_male_lars.md` - Lars (Folkeskolelærer)
+### `danish_persona_male_lars.md` - Lars (Folkeskolelærer)
 
 | Fact / Claim | Verification Status | Source | Notes |
 |--------------|-------------------|--------|-------|
@@ -193,7 +193,7 @@
 
 ---
 
-### `culture_danish_persona_female_sofie.md` - Sofie (Arkitekt)
+### `danish_persona_female_sofie.md` - Sofie (Arkitekt)
 
 | Fact / Claim | Verification Status | Source | Notes |
 |--------------|-------------------|--------|-------|

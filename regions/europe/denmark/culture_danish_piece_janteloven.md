@@ -21,6 +21,7 @@ Stederne hvor nogen kunne finde på at træde for langt frem.
 
 ## Load Bearing
 Ti sætninger der ikke skal læres, fordi de allerede ligger i tonen.
+En arv uden testamente, flyttet med fra generation til generation.
 De ophæves aldrig formelt, men ironiseres ofte.
 Smålandets svar på den enkelte der vil tage hele bordet.
 Et fælles fodfeste når roser bliver akavet og kritik bliver høflig.

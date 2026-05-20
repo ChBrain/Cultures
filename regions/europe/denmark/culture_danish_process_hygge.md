@@ -35,7 +35,7 @@ Omsorg ligger i tonen, ikke i ordene.
 Kraften: den danske vinter, lang og mørk, kræver et svar der ikke er underholdning.
 Modstanden: hygge kan ikke bestilles, planlægges, eller forklares til en gæst der spørger.
 Hebelen holder begge ender: presser man, forsvinder den; lader man stå, fylder den selv stuen op.
-En vis besindighed bærer rummet; ingen tager hele midten.
+En vis besindighed bærer rummet, en balance mellem nærvær og stilhed; ingen tager hele midten.
 
 ## Echo
 Lyset slukkes til sidst, kopperne stilles i vasken, nogen siger "tak for i aften."
