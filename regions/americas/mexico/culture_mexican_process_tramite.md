@@ -30,6 +30,7 @@ Y cuando el camino formal se cierra, hacia la persona que conoce a la persona qu
 La fuerza: la certeza de que el procedimiento existe para algo y que seguirlo es el único camino sin consecuencias.
 La resistencia: la certeza, igualmente sólida, de que el procedimiento solo funciona si alguien lo mueve desde adentro.
 El reglamento obliga. El compadrazgo también obliga. Los dos son reales. Los dos tienen precio.
+El esfuerzo sostenido es la moneda del día: mover papeles cuesta trabajo, mover personas cuesta deuda.
 La palanca sostiene los dos: sin el protocolo no hay legitimidad; sin la red no hay movimiento.
 El que solo tiene normas espera. El que solo tiene red, acumula deudas.
 Lo que queda sin decir en la ventanilla a veces se dice en el estacionamiento.

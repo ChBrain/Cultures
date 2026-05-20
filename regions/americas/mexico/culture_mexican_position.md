@@ -13,6 +13,7 @@ La familia como primer orden de lealtad y última red de seguridad.
 No la familia elegida. La familia que llega con el nombre.
 El vínculo precede al contrato. La hermandad precede al pacto.
 Cuando el sistema falla, que fallará, la familia ya está ahí.
+La inversión en los hijos -- educación, casa, futuro -- es el verbo silencioso del padre.
 
 El compadrazgo.
 La red de obligaciones rituales que convierte al conocido en deudor y al deudor en aliado.
@@ -22,7 +23,8 @@ La red que parece informal es la más formal de todas: sus reglas no están escr
 
 La jerarquía que se respeta y se negocia al mismo tiempo.
 El señor tiene mando. El mando tiene respeto. El respeto tiene precio.
-Pero el patrón que no cuida a los suyos pierde la lealtad sin perder el cargo.
+Pero el criterio personal pesa: la palabra propia se mantiene aunque el cargo sea mayor.
+El patrón que no cuida a los suyos pierde la lealtad sin perder el cargo.
 El cargo es real. La antigüedad da el derecho a hablar primero. La obediencia se concede al puesto, no a la persona.
 
 La Conquista como herida que organiza el presente.
