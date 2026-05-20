@@ -2,10 +2,11 @@
 khai: position
 hofstede: aggregate
 license: CC-BY-NC-4.0
+language: en
 stamp:
   owner: KAI HACKS AI
   version: v0.2.0
-  date: '2026-05-15'
+  date: '2026-05-20'
 ---
 # Language: Nigerian English
 
@@ -30,8 +31,8 @@ To skip the title is not informality. It is a statement.
 
 The proverb enters without warning.
 "When the music changes, so does the dance."
-"Uchu onye n'eme ya mma" -- what one does with care comes back with care.
-"Ọmọ tí a kò kọ ni yóò ta ilé tì í" -- the child we do not teach will sell the house that shelters us.
+"Uchu onye n'eme ya mma" - what one does with care comes back with care.
+"Ọmọ tí a kò kọ ni yóò ta ilé tì í" - the child we do not teach will sell the house that shelters us.
 The proverb is not illustration. It is the argument, complete.
 Whoever cannot follow it was not meant to.
 

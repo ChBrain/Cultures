@@ -2,10 +2,11 @@
 khai: piece
 hofstede: aggregate
 license: CC-BY-NC-4.0
+language: en
 stamp:
   owner: KAI HACKS AI
   version: v0.2.0
-  date: '2026-05-15'
+  date: '2026-05-20'
 ---
 # Piece: Jollof
 
@@ -42,7 +43,7 @@ Nigerian diaspora in London, Houston, Toronto, Amsterdam: the pot travels.
 The smell of jollof in a house on a Sunday means the circle is gathering.
 
 ## Yearbook
-14th century: Wolof Empire, Senegambia. Thieboudienne -- rice, fish, vegetables, one pot. The ancestor of all jollof.
+14th century: Wolof Empire, Senegambia. Thieboudienne - rice, fish, vegetables, one pot. The ancestor of all jollof.
 15th century: Portuguese bring tomatoes to West Africa. The ingredient that will define the modern dish does not yet exist in the dish.
 19th century: The dish spreads through trade and migration across West Africa. Each country receives it and changes it. Nigeria takes the long-grain parboiled rice, the scotch bonnet, the heavy tomato base.
 1960: Independence. Nigerian jollof becomes a national dish without being declared one. It was already there.
