@@ -31,6 +31,7 @@ LINGUA_LANGUAGES = {
     "german": Language.GERMAN,
     "danish": Language.DANISH,
     "dutch": Language.DUTCH,
+    "japanese": Language.JAPANESE,
 }
 
 _detector = LanguageDetectorBuilder.from_languages(
@@ -53,6 +54,8 @@ def detect_language(text: str) -> str:
         return "da"
     if detected == Language.DUTCH:
         return "nl"
+    if detected == Language.JAPANESE:
+        return "ja"
     return "en"
 
 
