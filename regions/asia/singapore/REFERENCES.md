@@ -22,7 +22,7 @@ All prose in this package is original. No text has been reproduced from external
 ### Singapore History and Institutions
 - National Archives of Singapore (nas.gov.sg): primary source for dates, institutional founding, and official records cited in the history file.
 - Ministry of National Development Singapore (mnd.gov.sg): source for HDB, CPF, and urban planning institutional facts.
-- Lee Kuan Yew, *From Third World to First: The Singapore Story 1965–2000* (HarperCollins, 2000): primary source for the founding generation's self-account, used to calibrate the LTO-high and PDI-high dimensional signals.
+- Lee Kuan Yew, *From Third World to First: The Singapore Story 1965-2000* (HarperCollins, 2000): primary source for the founding generation's self-account, used to calibrate the LTO-high and PDI-high dimensional signals.
 - Chua Beng Huat, *Communitarian Ideology and Democracy in Singapore* (Routledge, 1995): academic source for collectivism, community ideology, and the IDV-low dimensional signals.
 - UNESCO Intangible Cultural Heritage List, 2020: source for hawker culture inscription. URL: ich.unesco.org.
 
@@ -33,19 +33,6 @@ All prose in this package is original. No text has been reproduced from external
 ### Kiasu
 - Tan, Cheng Han, *Kiasunomics* (World Scientific, 2018): popular academic treatment of kiasu as economic and cultural behaviour in Singapore.
 - Ooi, Can-Seng, *Cultural Tourism and Tourism Cultures* (Copenhagen Business School Press, 2002): comparative context for Singapore's cultural self-image.
-
----
-
-## Hofstede Dimensions Sourcing
-
-| Dimension | Score | Source | Notes |
-|---|---|---|---|
-| PDI | 74 | Hofstede Insights | Confirmed 2026-05-17 |
-| IDV | 20 | Hofstede Insights | Updated October 2023 replication study |
-| UAI | 8 | Hofstede Insights | Confirmed 2026-05-17 |
-| MAS | 48 | Hofstede Insights | Confirmed 2026-05-17 |
-| LTO | 72 | Hofstede Insights | Updated October 2023 replication study |
-| IND | 46 | Hofstede Insights | Predates 2023 update; not revised by it |
 
 ---
 
@@ -67,7 +54,7 @@ All prose in this package is original. No text has been reproduced from external
 | 1819 Raffles arrival and trading post establishment | Verified | NAS |
 | 1867 Crown Colony status | Verified | NAS |
 | 1942 February 15 surrender; 70,000 Allied prisoners | Verified | NAS; Imperial War Museum |
-| 1945 Sook Ching death toll (25,000–50,000) | Verified | NAS; contested range documented |
+| 1945 Sook Ching death toll (25,000-50,000) | Verified | NAS; contested range documented |
 | 1955 CPF establishment under British administration | Verified | CPF Board official history |
 | 1959 self-government; Lee Kuan Yew as PM | Verified | NAS |
 | 1963 merger with Malaysia | Verified | NAS |
@@ -114,10 +101,10 @@ All prose in this package is original. No text has been reproduced from external
 | National Day Parade route | Verified | Ministry of Defence Singapore |
 | Pedestrian bridge connecting both sides | Verified | Urban Redevelopment Authority |
 
-### culture_singaporean_persona_male_weiming.md
+### [singaporean_persona_male_weiming.md](singaporean_persona_male_weiming.md)
 Fictional persona -- illustrative, not biographical. Institutional details (Ministry of National Development, grassroots advisor consultation process) reflect real institutional structures and are used for illustrative accuracy only.
 
-### culture_singaporean_persona_female_priya.md
+### [singaporean_persona_female_priya.md](singaporean_persona_female_priya.md)
 Fictional persona -- illustrative, not biographical. Institutional details (one-north as tech/fintech cluster location) reflect real geography and are used for illustrative accuracy only.
 
 ---
@@ -137,9 +124,9 @@ The following items from hofstede_decisions.md require human confirmation before
 
 ## Last Updated
 
-2026-05-17
+2026-05-20
 
 ---
 
 *KAI HACKS AI -- Culture Package: Singapore*
-*REFERENCES v0.1.0 -- 2026-05-17*
+*REFERENCES v0.2.1 -- 2026-05-20*
