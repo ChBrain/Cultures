@@ -29,6 +29,16 @@ on:
   push:
     branches: [main, culture/release]
 
+# Concurrency: this is detection (full-content re-validation), not
+# prevention -- only the latest snapshot of the branch needs to be
+# checked. Cancel any in-flight run when a newer push arrives so we
+# don't waste CI on a stale state. Keyed per branch (main and
+# culture/release each get their own group) so a culture/release push
+# never cancels a main run or vice versa.
+concurrency:
+  group: main-selfcheck-${{ github.ref_name }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 

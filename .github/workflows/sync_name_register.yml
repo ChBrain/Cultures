@@ -19,6 +19,15 @@ on:
       - 'regions/**/culture_*_persona_*.md'
       - 'regions/**/*_persona_*.md'
 
+# Concurrency: each run handles only its own merge's slice (HEAD~1..HEAD),
+# so runs are NOT cumulative -- cancelling an in-flight run would drop
+# that country's name harvest entirely. Serialize instead: queue runs in
+# order so each gets to read the latest name_register.json and its own
+# slice cleanly, avoiding lost-update conflicts on the registry edits.
+concurrency:
+  group: sync-name-register
+  cancel-in-progress: false
+
 jobs:
   sync:
     runs-on: ubuntu-latest
