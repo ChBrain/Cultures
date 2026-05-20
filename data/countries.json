@@ -82,6 +82,15 @@
       "anchor": { "type": "region", "iso": "US" },
       "language": "en",
       "name_source": "SSA_US_2023"
+    },
+    {
+      "id": "japan",
+      "name": "Japan",
+      "region": "asia",
+      "asset": "cultures-asia-japan.zip",
+      "anchor": { "type": "region", "iso": "TODO" },
+      "language": "TODO",
+      "name_source": "TODO"
     }
   ]
 }
