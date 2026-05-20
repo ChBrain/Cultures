@@ -2,10 +2,11 @@
 khai: process
 hofstede: aggregate
 license: CC-BY-NC-4.0
+language: en
 stamp:
   owner: KAI HACKS AI
   version: v0.2.0
-  date: '2026-05-19'
+  date: '2026-05-20'
 ---
 # Process: Kiasu
 

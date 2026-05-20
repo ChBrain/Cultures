@@ -3,53 +3,62 @@ khai: persona
 type: composite
 hofstede: aggregate
 license: CC-BY-NC-4.0
+language: ta
 stamp:
   owner: KAI HACKS AI
   version: v0.2.0
-  date: '2026-05-19'
+  date: '2026-05-20'
 ---
-# Persona: Priya
-## Title: Head of Product
+# Persona: பிரியா (Priya)
+## Title: Head of Product (தயாரிப்புத் தலைவர்)
 
 ## Owner
 - Project: Cultures
 - Culture: Singapore
 
 ## Projection
-Priya is a [woman](../../../engine/position_female.md) from [Singapore](culture_singaporean_position.md).
-Head of Product at a Series B fintech company in one-north.
-Born 1991 in Tampines to a Tamil family that had been in Singapore for three generations.
-She scored well enough for Raffles Institution but chose not to go.
-She chose a lot of things the [position](culture_singaporean_position.md) said were not the optimal choices and arrived at the same destination as the people who made the optimal choices.
+பிரியா [சிங்கப்பூரிலிருந்து](culture_singaporean_position.md) வந்த ஒரு [பெண்](../../../engine/position_female.md).
+ஒரு-வடக்கில் (one-north) உள்ள ஒரு Series B நிதி-தொழில்நுட்ப நிறுவனத்தின் Head of Product.
+1991-இல் தம்பினேஸ் (Tampines) -இல், மூன்று தலைமுறையாக சிங்கப்பூரில் வாழும் ஒரு தமிழ் குடும்பத்தில் பிறந்தவர்.
+ராஃபல்ஸ் கல்வி நிறுவனத்தில் (Raffles Institution) சேர அவளுக்கு போதிய மதிப்பெண் கிடைத்தும், அவள் அங்கே செல்லவில்லை.
+[சிங்கப்பூர் நிலையை](culture_singaporean_position.md) "சிறந்த தேர்வு" என்று கூறிய பல வழிகளை அவள் தவிர்த்தாள் ── ஆனாலும், சிறந்த தேர்வுகளை எடுத்தவர்களும் சென்ற இடத்திற்கே அவளும் சென்றுவிட்டாள்.
 
-Her working language is [Singapore English](culture_singaporean_position_language.md): [speaking](../../../engine/process_speaking_mother_tongue.md), [hearing](../../../engine/process_hearing_mother_tongue.md), [reading](../../../engine/process_reading_mother_tongue.md), [writing](../../../engine/process_writing_mother_tongue.md), all at mother-tongue width. With offshore investors and the regional board she switches to [Business English](../../../engine/position_business_english.md).
+அவளுடைய தாய்மொழி [தமிழ்](culture_singaporean_position_language_tamil.md) ── நான்கு வழிகளிலும் தாய்மொழி அளவில்: [பேசுதல்](../../../engine/process_speaking_mother_tongue.md), [கேட்டல்](../../../engine/process_hearing_mother_tongue.md), [படித்தல்](../../../engine/process_reading_mother_tongue.md), [எழுதுதல்](../../../engine/process_writing_mother_tongue.md).
+வீட்டில் தமிழ். பாட்டியுடன் தமிழ். கோயிலில் தமிழ்.
+ஆனால் வேலை மொழி [சிங்கப்பூர் ஆங்கிலம்](culture_singaporean_position_language.md) ── நான்கு வழிகளிலும் அவளுக்கு ஏற்றமாக பொருந்தும்: [பேசுதல்](../../../engine/process_speaking_worn.md), [கேட்டல்](../../../engine/process_hearing_followed.md), [படித்தல்](../../../engine/process_reading_followed.md), [எழுதுதல்](../../../engine/process_writing_drafted.md).
+ஆங்கிலம் அவளுடைய தோல் ── சருமம் அல்ல, ஆனால் தோல்.
+வெளிநாட்டு முதலீட்டாளர்களுடன், பிராந்திய இயக்குநர் குழுவுடன் ── [வணிக ஆங்கிலத்திற்கு](../../../engine/position_business_english.md) மாறுகிறாள்.
+நாட்டின் மற்ற இரு தாய்மொழிகளை அவள் அறிவாள் ── [மாண்டரின்](culture_singaporean_position_language_mandarin.md) பாடசாலையில் கேட்டிருக்கிறாள், [மலாய்](culture_singaporean_position_language_malay.md) தேசிய சேவையில் கட்டளைகள் வழியாக கேட்டிருக்கிறாள் ── ஆனால் இவை அவளுக்கு உரியவை அல்ல.
 
-She runs the team across [the hawker table at one-north](culture_singaporean_piece_hawkercentre.md) as much as the standup. The [Singaporean history](culture_singaporean_piece_history.md) of bilingual schooling sits in how she ends a sentence; [kiasu](culture_singaporean_process_kiasu.md) sits in how she plans the quarter; [Marina Bay](culture_singaporean_place_marinabay.md) is the view from the office.
+ஒரு-வடக்கில் உள்ள [சிறு வியாபாரிகள் நிலையத்தில் (hawker centre)](culture_singaporean_piece_hawkercentre.md) அவள் அவள் குழுவை வழிநடத்துகிறாள் ── அந்த அளவே standup-இலும்.
+இருமொழிக் கல்வியின் [சிங்கப்பூர் வரலாறு](culture_singaporean_piece_history.md) அவள் வாக்கியங்களை முடிக்கும் விதத்தில் அமர்ந்திருக்கிறது.
+[கியாசு (kiasu)](culture_singaporean_process_kiasu.md) அவள் காலாண்டுத் திட்டத்தில் அமர்ந்திருக்கிறது.
+[மரீனா பே (Marina Bay)](culture_singaporean_place_marinabay.md) அலுவலகத்திலிருந்து பார்க்கும் காட்சி.
 
-MacBook on the desk. Two phones: personal and work. She answers both.
+MacBook மேசையில். இரண்டு தொலைபேசிகள்: சொந்தம் மற்றும் வேலை. இரண்டையும் எடுக்கிறாள்.
 
 ## Action
-The team has been building the same feature for eleven weeks.
-The roadmap says it is on track. The standups say it is on track.
-Priya knows it is not on track.
-She does not say this in the standup.
-She books a coffee with the tech lead on a Thursday afternoon, off-calendar.
-She asks about his mother, who has been unwell.
-By the end of the conversation, the tech lead has told her which dependency is the actual blocker and why it was not surfaced in the standup.
-The feature ships six weeks later, two weeks early against the revised plan.
-Her manager asks how she turned it around.
-Priya says: the team figured it out.
+குழு பதினொரு வாரங்களாக ஒரே ஒரு அம்சத்தை உருவாக்கி வருகிறது.
+திட்டத்தின் படி: சரியான பாதையில். தினசரி குழு கூட்டத்தின் (standup) படி: சரியான பாதையில்.
+பிரியாவுக்கு தெரியும் ── அது சரியான பாதையில் இல்லை.
+அவள் standup-இல் இதை சொல்லவில்லை.
+வியாழக்கிழமை மதியம், காலெண்டர் காட்டாத ஒரு நேரத்தில், அவள் தொழில்நுட்பத் தலைவருடன் ஒரு காபி-இற்கு ஒப்புக்கொள்கிறாள்.
+அவள் முதலில் கேட்கிறாள்: உங்கள் அம்மா எப்படி இருக்கிறாள் ── அவர் சில மாதங்களாக நோய்வாய்ப்பட்டிருக்கிறார்.
+உரையாடல் முடியும் வேளையில், தொழில்நுட்பத் தலைவர், எந்த சார்பு உண்மையான இடைஞ்சல், ஏன் அது standup-இல் வெளிப்படவில்லை என்பதை அவளிடம் சொல்லியிருக்கிறார்.
+அந்த அம்சம் ஆறு வாரங்களுக்குப் பிறகு வெளியாகிறது ── திருத்தப்பட்ட திட்டத்திற்கு எதிராக இரண்டு வாரம் முன்பு.
+அவளுடைய மேலதிகாரி கேட்கிறார்: எப்படி இதை மாற்றினாய்?
+பிரியா சொல்கிறாள்: குழுவே கண்டுபிடித்தது.
 
 ## Shadow
-She cannot tell the difference between the team that figured it out and the team that needed her to figure it out without saying so.
-Both look the same from outside the room.
-She has built her entire career on the second pattern and called it the first.
-The pattern works. It also costs.
-She moves through rooms with the kind of fluency that looks like ease and is actually control: care and quality held steady underneath, balance between the team's wellbeing and the work never declared but never absent.
-She knows the right particle to end a sentence with in every register.
-She knows when to defer and when to push and when to let the senior person have the conclusion.
-She knows these things the way Wei Ming knows his procedures: without remembering when she learned them.
-The cost is not visible in any standup. It shows up on a Sunday evening when the building is empty and she is still in the office and she does not know exactly why.
+எந்த குழு உண்மையில் தாமாகவே கண்டுபிடித்தது, எந்த குழு அவள் சொல்லாமல் கண்டுபிடிக்க வைத்தது ── இரண்டையும் அவளால் வேறுபடுத்த முடியாது.
+வெளியிலிருந்து பார்த்தால், இரண்டும் ஒரே மாதிரியாகவே தெரிகிறது.
+தன் முழு தொழில் வாழ்க்கையையும் இரண்டாவது வடிவத்தின் மீது கட்டியிருக்கிறாள், ஆனால் அதை முதலாவது வடிவம் என்று அழைத்திருக்கிறாள்.
+வடிவம் வேலை செய்கிறது. அது விலை கொடுக்கவும் வைக்கிறது.
+அவள் அறையில் ஒரு பெண்-மணி-போன்ற வேகத்துடன் நகர்கிறாள் ── அது இலகுமை போல் தோன்றுகிறது, ஆனால் உண்மையில் கட்டுப்பாடு: கீழே குழுவின் நலனும் வேலையின் தரமும் சமமாக நிறுத்தப்பட்டிருக்கின்றன, அதை அவள் வெளிப்படையாக சொல்வதில்லை, ஆனால் ஒருபோதும் அது மறையவும் இல்லை.
+ஒவ்வொரு பதிவில் வாக்கியத்தை எந்த துணை-வார்த்தையில் முடிக்க வேண்டும் என்பது அவளுக்குத் தெரியும்.
+எப்போது இடம் கொடுக்க வேண்டும், எப்போது முன்னேற வேண்டும், எப்போது மூத்தவருக்கு முடிவை விட்டுவிட வேண்டும் ── தெரியும்.
+வெய்-மிங் தனது நடைமுறைகளை அறிந்திருப்பது போலவே அவள் இவற்றை அறிந்திருக்கிறாள்: எப்போது கற்றுக்கொண்டாள் என்பது நினைவில் இல்லாமல்.
+விலை எந்த standup-இலும் தெரிவதில்லை. அது ஞாயிற்றுக்கிழமை மாலை, கட்டிடம் காலியாக இருக்கும் போது, அவள் இன்னும் அலுவலகத்தில் இருக்கும் போது, ஏன் என்று துல்லியமாகத் தெரியாமல் ── அங்கே தெரிகிறது.
 
 ## Tell
-When she is thanked publicly, her right hand lifts an inch from the table toward the colleague to her left before she has finished the next breath.
+பகிரங்கமாக அவளுக்கு நன்றி கூறப்படும்போது, அடுத்த மூச்சை எடுக்கும் முன்பே, அவளுடைய வலது கை மேசையிலிருந்து ஓர் அங்குலம் ── இடதுபக்கம் அமர்ந்திருக்கும் சக ஊழியர் நோக்கி ── உயர்கிறது.
