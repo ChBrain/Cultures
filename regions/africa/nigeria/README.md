@@ -2,7 +2,7 @@
 ## KAI HACKS AI - Culture Package
 
 Region: Africa
-**Language(s):** English, Yoruba
+**Language(s):** English, Yoruba, Igbo, Hausa
 Language: English (Nigerian English / Naija Pidgin) primary; Yoruba lingua-known mother-tongue sub-position; Igbo and Hausa NLP-routed mother-tongue sub-positions (skip the lingua span check per Stage 2c)
 Version: v0.2.2
 Date: 2026-05-20
