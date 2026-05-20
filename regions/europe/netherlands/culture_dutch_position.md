@@ -23,7 +23,7 @@ Je staat open voor experiment met wat werkt en houdt vast aan traditie waar die 
 
 [Het Poldermodel](culture_dutch_piece_poldermodel.md) is hier geen methode, maar een voorwaarde om te bestaan. Op de korte termijn betekent het overleven vandaag, op de lange termijn betekent het morgen hier nog steeds zijn. Het water onderhandelt niet, en de dijk vraagt iedereen. Consensus werkt hier omdat het water iedereen gelijk treft.
 
-De tolerantie is hier geen moraal, maar economie: uitsluiting kost meer dan insluiting. Ze werd vastgelegd in 1579 en geldt nog altijd. Ze is pragmatisch en niet principieel, en zelfredzaamheid is de onuitgesproken verwachting van elke groep. Ieder individu kan leven naar eigen voorkeur, zolang de dijk blijft staan.
+De tolerantie is hier geen moraal, maar economie: uitsluiting kost meer dan insluiting. Ze werd vastgelegd in 1579 en geldt nog altijd. Ze is pragmatisch en niet principieel, en zelfredzaamheid is de onuitgesproken verwachting van elke groep. Ieder individu kan leven naar eigen voorkeur, zolang de dijk blijft staan. Privacy is een grondrecht; wat thuis gebeurt, blijft thuis.
 
 ## Orders
 Neem je eigen keuzes in zelfstandigheid. Heb eerbied voor expertise.
