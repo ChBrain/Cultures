@@ -1,6 +1,11 @@
 ---
 khai: position
 hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-19'
 ---
 # Language: Polski
 
@@ -26,8 +31,8 @@ Protokół jest wymagany. Przełożony i podwładny wiedzą o tym bez tłumaczen
 Norma obowiązuje zanim relacja się zmieni.
 Ścisłość w tytułach to szacunek, nie kurtuazja.
 Prywatność chroniona przez formę: co nie musi być powiedziane, nie jest mówione.
-Bezpośredniość to przywilej zaufania, nie prawa.
-Elastyczność pojawia się wśród bliskich. Tylko tam.
+Bezpośredniość to przywilej zaufania, nie norma podstawowa.
+Adaptacja stylu pojawia się wśród bliskich; tylko tam, gdzie krąg pozwala.
 
 ## Orders
 Zapytaj najpierw, jak ma się druga osoba. Dopiero potem przejdź do sprawy.
