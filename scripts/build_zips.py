@@ -115,11 +115,22 @@ def _read(path: Path) -> str:
 # ---------------------------------------------------------------------------
 
 def _country_culture_items(country: Path) -> list[tuple[str, str]]:
-    """The country's own culture content -- culture_*.md only, shipped."""
-    return [
-        (f.name, _ship(_read(f)))
-        for f in sorted(country.glob("culture_*.md"))
-    ]
+    """The country's own culture content -- shipped.
+
+    Globs ``culture_*.md`` for culture content plus the persona forms that
+    sit outside the ``culture_*`` namespace by design (see #302: personas
+    inhabit a culture, they are not the culture, so they stay out of the
+    Hofstede aggregation glob). Without unioning the persona globs here,
+    the country README's links to renamed personas resolve to nothing
+    inside the shipped zip -- ``test_culture_zips_resolve_mixed_with_engine``
+    catches it.
+    """
+    files = (
+        list(country.glob("culture_*.md"))
+        + list(country.glob("persona_*.md"))
+        + [f for f in country.glob("*_persona_*.md") if not f.name.startswith("culture_")]
+    )
+    return [(f.name, _ship(_read(f))) for f in sorted(set(files))]
 
 
 def build_country_zips(dist: Path) -> list[str]:
