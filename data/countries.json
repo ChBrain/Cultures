@@ -79,9 +79,9 @@
       "name": "United States",
       "region": "americas",
       "asset": "cultures-americas-united_states.zip",
-      "anchor": { "type": "region", "iso": "TODO" },
-      "language": "TODO",
-      "name_source": "TODO"
+      "anchor": { "type": "region", "iso": "US" },
+      "language": "en",
+      "name_source": "SSA_US_2023"
     }
   ]
 }
