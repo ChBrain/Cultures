@@ -25,6 +25,7 @@ languages:
   - danish
   - polish
   - spanish
+  - japanese
 
 # ISO 639-1 code -> lingua language name. data/countries.json stores each
 # country's language as an ISO code; this maps it onto the names in
@@ -40,6 +41,7 @@ iso_map:
   da: danish
   pl: polish
   es: spanish
+  ja: japanese
 
 # Section headings (##) whose body gets language-checked. Names match
 # case-insensitively against the heading text. Anything not listed is
