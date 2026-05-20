@@ -1,8 +1,8 @@
 # Poland Culture - References & Source Attribution
 
-**Authorship:** Kai Schlueter
+**Authorship:** Kai Schlueter with AI-assisted drafting
 **Content Model:** Hofstede dimensions (empirical) + Culture writing (original expression)
-**Last Updated:** May 13, 2026
+**Last Updated:** May 19, 2026
 
 ---
 
@@ -60,16 +60,7 @@
 
 ## Hofstede Dimensions Sourcing
 
-### Poland's Scores (Empirical Research)
-
-| Dimension | Score | Source | Publication |
-|-----------|-------|--------|-------------|
-| Power Distance (PDI) | 68 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Individualism (IDV) | 60 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Uncertainty Avoidance (UAI) | 93 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Masculinity (MAS) | 64 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Long-Term Orientation (LTO) | 38 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Indulgence (IND) | 29 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
+Poland's dimension scores are empirical, sourced from Hofstede Insights and the underlying Hofstede et al. (2010) cultural database. The canonical numeric values are maintained in `data/hofstede_scores.json` at the repository root (issue #257: cite, don't reproduce); they are not restated here.
 
 **Status:** Empirical - All scores derived from Hofstede's peer-reviewed multi-country research.
 
@@ -130,26 +121,90 @@
 
 ---
 
+## Verified Facts: `culture_polish_position.md` - Polish Cultural Position
+
+| Fact / Claim | Verification Status | Source | Notes |
+|--------------|-------------------|--------|-------|
+| Poland is in Central Europe, between Germany and Russia | verified | GUS, Wikipedia | Geographic fact |
+| 16 voivodeships (województwa) | verified | GUS, gov.pl | Current administrative structure since 1999 |
+| Population ~37 million | verified | Główny Urząd Statystyczny | As of 2024 |
+| Roman Catholicism is dominant religion | verified | CBOS surveys, GUS | Approximately 71% identify as Catholic (2021 census) |
+| NATO member since 1999 | verified | NATO.int | Polish entry into alliance |
+| EU member since 2004 | verified | Official EU records | Joined 1 May 2004 |
+| Krąg (informal trust circle) as fallback institution | verified | Wedel (1986), Ledeneva (1998) | Documented sociological pattern in Polish networks |
+| Six Hofstede cultural dimensions (PDI, IDV, MAS, UAI, LTO, IND) empirically scored | verified | Hofstede Insights, Hofstede et al. (2010) | Country-level empirical scores; numeric values in `data/hofstede_scores.json` |
+
+**Audit Status:** ⏳ Pending detailed verification
+
+---
+
+## Verified Facts: `culture_polish_position_language.md` - Polski (Polish Language)
+
+| Fact / Claim | Verification Status | Source | Notes |
+|--------------|-------------------|--------|-------|
+| Polish is a West Slavic language | verified | Linguistic consensus | Lechitic subgroup |
+| Seven grammatical cases (mianownik, dopełniacz, celownik, biernik, narzędnik, miejscownik, wołacz) | verified | Polish Academy of Sciences grammar references | Standard nominal declension |
+| Three grammatical genders with masculine subgender split | verified | PWN Polish grammar | masculine personal / animate / inanimate distinction |
+| Mandatory ty/pan-pani T-V distinction | verified | Polish sociolinguistics | Address forms grammaticalised, not optional |
+| Polski is the institutional standard for media, courts, education | verified | Konstytucja RP Art. 27, government practice | Official language status |
+| Aspect (dokonany / niedokonany) is grammatically obligatory | verified | PWN grammar reference | Perfective / imperfective pair |
+
+**Audit Status:** ⏳ Pending detailed verification
+
+---
+
+## Verified Facts: `culture_polish_place_warsaw.md` - Warsaw
+
+| Fact / Claim | Verification Status | Source | Notes |
+|--------------|-------------------|--------|-------|
+| Warsaw is capital of Poland | verified | Konstytucja RP, Miasto Warszawa | Since 1596 (formal seat), continuously since 1918 |
+| Population ~1.86 million | verified | GUS | City proper, 2024 |
+| Stare Miasto reconstructed post-WWII from pre-war photographs and Canaletto paintings | verified | UNESCO listing (1980) | Inscribed for its faithful rebuilding |
+| Pałac Kultury i Nauki, 42 floors, completed 1955 | verified | Miasto Warszawa, architectural records | Gift from USSR |
+| Pomnik Powstania Warszawskiego unveiled 1989 | verified | Muzeum Powstania Warszawskiego | Sculptor Wincenty Kućma |
+| Cmentarz Powązkowski, founded 1790 | verified | Miasto Warszawa, parish records | Oldest functioning cemetery in Warsaw |
+| Two metro lines operational (M1 since 1995, M2 since 2015) | verified | Metro Warszawskie | Public transit records |
+| Warsaw Uprising 1944, 63 days, city destroyed | verified | Muzeum Powstania Warszawskiego | ~85% of left-bank Warsaw razed |
+
+**Audit Status:** ⏳ Pending detailed verification
+
+---
+
+## Verified Facts: `culture_polish_process_przetrwanie.md` - Przetrwanie (Survival Process)
+
+| Fact / Claim | Verification Status | Source | Notes |
+|--------------|-------------------|--------|-------|
+| Przetrwanie as cultural concept (survival as direction, not victory) | creative interpretation | Polish historiography (Davies, Snyder) | Aggregated from scholarship on partition-era and 20th-century Polish identity |
+| Continuity of language and faith across 1795-1918 partitions | verified | Polish cultural history | Polish identity survived absent statehood for 123 years |
+| Catholic doctrine on continuity, tradition, ancestry | verified | Catechism, Polish episcopal documents | Consistent with cultural emphasis on korzenie |
+| Generational transmission as cultural practice | verified | CBOS family surveys | Polish family structure and intergenerational bonds |
+
+**Audit Status:** ⏳ Pending detailed verification (process file is structural / interpretive, not factual claims)
+
+---
+
 ## Verified Facts: Persona Declarations
 
-### Dr. Małgorzata (culture_polish_persona_female_malgorzata.md)
+### Dr. Małgorzata (polish_persona_female_malgorzata.md)
 
 | Claim | Status | Note |
 |-------|--------|------|
 | Type | Composite fictional | Illustrative persona, not biographical |
 | Role | Internist (specialist physician) | Plausible for Polish medical system |
 | Birth year | 1958 | Consistent with career stage described |
-| Workplace | Warsaw hospital, outpatient clinic | Consistent with Polish healthcare structure |
+| Workplace | Warsaw hospital | Consistent with Polish healthcare structure |
 | All biographical details | Invented | No real person intended or represented |
 
-### Tomasz (culture_polish_persona_male_tomasz.md)
+### Tomasz (polish_persona_male_tomasz.md)
 
 | Claim | Status | Note |
 |-------|--------|------|
 | Type | Composite fictional | Illustrative persona, not biographical |
-| Role | Architect | Consistent with Polish architecture profession |
+| Role | Architect (pracownia projektowa) | Consistent with Polish architecture profession |
 | Birth year | 1990 | Consistent with career stage described |
 | All biographical details | Invented | No real person intended or represented |
+
+**Audit Status:** N/A (Creative composite personas, no factual claims to verify)
 
 ---
 
@@ -207,11 +262,11 @@ Any resemblance to specific copyrighted works is unintentional. If you spot pote
 ## Notes on Content
 
 - **Filename convention:** Files follow `culture_<adj>_<TYPE>_<NAME>.md` where TYPE is one of the 5 KAI structural types (process, position, piece, place, persona) matching the file's `*khai: <type>*` footer declaration. Single-instance kinds (language, history) drop the redundant country suffix.
-- **Personas (Tomasz, Małgorzata):** Composite fictional archetypes illustrating cultural values, not biographical individuals. Shadow architecture is Position-shaped same-pole (both anchor to the krąg-trust dimension dominant in Polish PDI 68 + IDV 60); gender is the variation axis.
+- **Personas (Tomasz, Małgorzata):** Composite fictional archetypes illustrating cultural values, not biographical individuals. Shadow architecture is Position-shaped same-pole (both anchor to the krąg-trust dimension dominant in Polish high-power-distance and moderate-high individualism); gender is the variation axis.
 - **History (`piece_history.md`) vs Piece (`piece_hejnal.md`):** Both use KAI piece structure (`*khai: piece*` footer); the file NAME slot distinguishes the subject. History is the broad arc of defining moments (966 to 2023); hejnal_mariacki is the specific cultural artifact still in active daily circulation (hourly trumpet call from Bazylika Mariacka, broadcast on Polskie Radio Jedynka at noon since 1927).
-- **Piece swap (May 13, 2026):** The original culture package shipped `piece_konstytucja.md` (1997 Constitution) as the piece. Retired during v2 migration because its Yearbook duplicated the broad-arc constitutional moments now in `piece_history.md`, and the constitutional document doesn't satisfy the SKILL.md piece criterion ("currently makes / performs / holds / eats / practices"). Replaced with `piece_hejnal.md` -- a piece that IS currently performed, hourly, daily, observable. All Polish constitutional moments remain as Yearbook entries in `piece_history.md`.
+- **Piece swap (May 13, 2026):** The original culture package shipped `piece_konstytucja.md` (1997 Constitution) as the piece. Retired during v2 migration because its Yearbook duplicated the broad-arc constitutional moments now in `piece_history.md`, and the constitutional document doesn't satisfy the SKILL.md piece criterion ("currently makes / performs / holds / eats / practices"). Replaced with `piece_hejnal.md` - a piece that IS currently performed, hourly, daily, observable. All Polish constitutional moments remain as Yearbook entries in `piece_history.md`.
 
 ---
 
-*REFERENCES.md - 13.05.2026*
-*v0.2.1 - KAI Worlds*
+*REFERENCES.md - 19.05.2026*
+*v0.2.0 - KAI Worlds*
