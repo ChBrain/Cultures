@@ -1,64 +1,101 @@
-﻿# Position: Japanese
-## The harmony that is not the absence of conflict — it is the management of it.
+---
+khai: position
+hofstede: aggregate
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.2.0
+  date: '2026-05-20'
+---
+# Position: 日本人
 
 ## Owner
-- *
+- Project: Cultures
+- Culture: Japan
+
 ## Has
-[The Meiji Restoration](culture_japan_piece_meiji.md).
-The group before the self.
-Not as sacrifice — as architecture.
-The room knows what is required of each person in it
-before anyone speaks.
-This is not conformity.
-It is precision.
-The group reads the situation.
-The situation reads the group.
-The feedback is continuous and mostly silent.
-It exists before the persona arrives.
-The room is already calibrated.
+和。
+集団、まずは集団。
+個人、その後の話。
+立場、序列、身分。位置を確かめてから、声を出す。
+わきまえるべきは、立場。
+読むべきは、場。
+
+上司、先輩、後輩。
+場の序列が、言葉より先に決まっている。
+順序、手順、段取り。礼儀は、その三つの統合。
+規則と礼儀、敬語と身分。同じ実践の四つの面。
+規則、確認、徹底、綿密。整然と精密、これが日々の前提。
+
+本音と建前。
+言うべき事と、言わない事の区別。
+本心は、聞かれた時にだけ出す。
+建前は、場を守るための真心であり、嘘ではない。
+直接性は、誠実ではなく、無作法と読まれる。
+
+努力、鍛錬、継続。競争、勝利、出世、一流、達成。
+完璧を目指す姿勢は、結果ではなく、態度の問題。
+一流。出世。勝利。それ自体は目標ではなく、副産物。
+職人は、自らの仕事を一生かけて磨く。
+成果、業績、実績、達成。年月の積み重ねの帰結であり、競争の結果ではない。
+投資、長期、後世、将来、永続。後世のために、自分が見ない将来へ向けて積む。
+継続、修業、稽古、鍛錬、蓄積。これが長期の手順、永続の道。
+
+しょうがない。
+人の力では変えられない事を、受け入れる姿勢。
+災害、敗戦、地震、津波。
+受け入れて、また始める。
+柔軟。短期ではなく、長期で。
+過去に学び、将来へ繋げる。「目先」を見ず、後世を見る。
+将来は、確約ではなく、責任である。
+
+確認、確認、また確認。
+段取り、手順、礼儀。
+規則は、自由を縛るのではなく、他者への敬意の形。
+完璧、精密、整然、綿密、徹底。社会の前提であり、個人の趣味ではない。
+不確実性を残したまま動かない、それが信頼を生む。
+
+謙虚、慎み、控えめ、節度。
+我慢、遠慮、自制、抑制。
+規律、義務、真面目。
+喜び、楽しみ、笑い、遊び。
+喜び、独占せず、分かち合うもの。
+楽しみ、許されたものであり、当然ではない。
+余暇、余裕、趣味。生活の中に、許された分だけ。
+
+集団、和、義理、世間、仲間。
+共同体、連帯、帰属、一体感、同調。
+個人の自分は、集団の中で初めて意味を持つ。
+
+ただし、上下だけがすべてではない。
+戦後の憲法は、原則として平等。市民、対等、公平。
+同僚、横並び、合議。社内の昼食、町内会、PTA。
+庶民、一般人、市民。敬語の枠の外でも生き続ける感覚。
+民主、合議、平等。上から降りるのではなく、同僚同士で組み上げる手順。
+
+個人、自分。自立、独立、自由。
+個性、自己、主体、自主。私的な選択も、戦後の権利として確かに存在する。
+ただし、それを集団の前で語ることは、別の事である。
 
 ## Orders
-Read the room.
-Not as social skill — as obligation.
-The position does not make room for the person
-who has not read what the situation requires.
-What is needed is known.
-What is known does not need to be said.
-What must be said is said precisely,
-in the register the situation requires,
-to the person the situation designates.
-The position does not explain this.
-It expects fluency.
+場を読め。
+立場、わきまえろ。
+言葉より先に、形を整えよ。
 
 ## Loses
-The direct path.
-They were certain that clarity was the goal —
-that saying the thing plainly
-was a form of respect for the other person's time.
-The Japanese room does not receive directness as clarity.
-It receives it as failure to read —
-as someone who either cannot see
-what is already understood
-or does not care enough to see it.
-The persona says the thing.
-The room continues without them.
-The thing was already known.
-Saying it was the error.
+直接の問い。
+率直に言う事が、敬意の形であると信じていた者。
+日本の部屋は、率直さを明晰さとして受け取らない。
+場を読めなかった証拠として受け取る。
+言われた事は既に知られており、言ったこと自体が誤りだった。
+
+何も言わない権利。
+建前を取り払って、本音だけで生きる選択。
+和は、それを許さない。
 
 ## Drives
-On the loss of the direct path —
-learns to carry the thing without naming it
-until the situation designates the moment.
-The position offers *ma* — the interval,
-the pause that holds meaning.
-The group holds. The form holds.
-What cannot be said directly
-finds its way through the form.
-The form is not decoration.
-It is the channel.
-
----
-*culture_japan_position.md - 07.04.2026*
-*Hofstede anchors: PDI 54, IDV 46, MAS 95, UAI 92, LTO 88*
-
-v0.1.0 - KAI Worlds
+直接の問いを失った場で:
+[根回し](culture_japanese_process_nemawashi.md)を学ぶ。
+言葉が降りる前に、合意は既に組み上がっている。
+[日本の歴史](culture_japanese_piece_history.md)は、その手順を継承する力を貸す。
+形が、言えない事の通路となる。
