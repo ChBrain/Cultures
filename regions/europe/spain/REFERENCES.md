@@ -62,23 +62,6 @@
 
 ---
 
-## Hofstede Dimensions Sourcing
-
-### Spain's Scores (Empirical Research)
-
-| Dimension | Score | Source | Publication |
-|-----------|-------|--------|-------------|
-| Power Distance (PDI) | 57 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Individualism (IDV) | 51 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Uncertainty Avoidance (UAI) | 86 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Masculinity (MAS) | 42 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Long-Term Orientation (LTO) | 48 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-| Indulgence (IND) | 44 | Hofstede Insights | Hofstede et al. (2010), Cultural Database |
-
-**Status:** Empirical - All scores derived from Hofstede's peer-reviewed multi-country research.
-
----
-
 ## Verified Facts: Spanish Language (culture_spanish_position_language.md)
 
 | Claim | Status | Source | Notes |
