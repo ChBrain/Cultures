@@ -14,29 +14,20 @@ stamp:
 - Culture: Germany
 
 ## Has
-Die Norm. Kein Akzent. Keine Färbung.
-Hochdeutsch ist die Sprache der Institution, nicht der Straße.
-Der Rundfunk spricht es. Das Gericht spricht es. Die Schule lehrt es.
-Wer anderes spricht, muss Hochdeutsch können (die Passprüfung der Teilhabe).
+Hochdeutsch ist die Sprache der Institution, nicht der Straße: Rundfunk, Gericht und Schule sprechen es, und wer anderes spricht, muss Hochdeutsch können -- das ist die Passprüfung der Teilhabe.
 
-Genauigkeit in den Wörtern. Nicht nahe bei der Bedeutung, sondern genau bei der Bedeutung.
-Präzision über Wärme. Klarheit über Charme.
+Das Wort sitzt nicht nahe bei der Bedeutung, sondern genau bei ihr -- die Präzision der Hochsprache ist nicht Stil, sondern Schule. Der Konjunktiv hält den Zweifel sichtbar; der Genitiv hält den Besitz präzise; der Dativ und der Akkusativ unterscheiden, wem etwas geschieht und was geschieht.
 
-Es ist kein Dialekt. Es ist ein System.
-Jedes Wort hat seinen Platz. Jeder Satz hat seine Struktur.
-Regelwerk für die Klarheit.
-Sprache ist Werk, nicht Spiel.
+Jeder Satz folgt seiner Struktur: die Klammer hält das Verb am Ende und zwingt den Leser, mitzudenken, bis sie sich schließt. Die zusammengesetzten Wörter (Bundesausbildungsförderungsgesetz, Verkehrswegeplanungsbeschleunigungsgesetz) bauen ihre Bedeutung Glied für Glied.
 
 ## Orders
-Sprich klar.
-Sei präzise.
-Vermeide Mehrdeutigkeit.
+Setze den Konjunktiv, wo du nicht weißt.
+Trenne den Hauptsatz nicht von seinem Verb.
+Lass das Wort sagen, was es sagt.
 
 ## Loses
-Wärme. Privatsphäre. Der Raum, anders zu sein.
+Den Ton, der spielt: Ironie ohne Marker, die Privatsphäre der Färbung, das Weiche zwischen den Wörtern. Wer Hochdeutsch trägt, trägt die Norm, und die Norm hört nicht zu, wenn die Stimme leiser werden möchte.
 
 ## Drives
-Auf dem Verlust von Wärme und Privatem:
-Die Suche nach [Erinnern](culture_german_process_erinnern.md): den Raum zurückzugewinnen, wo Hochdeutsch nicht spricht.
-Im Privaten, im Dialekt, in dem, was kein Standard ist.
-Die Sprache kann nicht alles regeln. Die Seele bleibt frei.
+Auf dem Verlust des Spielerischen:
+Die Suche nach [Erinnern](culture_german_process_erinnern.md), den Raum zurückzugewinnen, wo Hochdeutsch nicht regiert -- im Dialekt, im Privaten, in dem, was kein Standard ist. Die Sprache kann nicht alles regeln; die Seele bleibt frei.

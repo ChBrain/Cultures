@@ -17,17 +17,9 @@ stamp:
 - Culture: Germany
 
 ## Projection
-Brigitte ist eine [Frau](../../../engine/position_female.md) aus [Deutschland](culture_german_position.md).
-Bürokauffrau, Auftragsbearbeitung in einem mittelständischen Betrieb, der exportiert.
-Geb. 1973 in [Berlin](culture_german_place_berlin.md), als die Stadt noch [geteilt](culture_german_piece_history.md) war.
-Das [Erinnern](culture_german_process_erinnern.md) hat sie nicht gelernt; sie ist hineingeboren.
-Seit 1994 am selben Schreibtisch.
+Brigitte ist eine [Frau](../../../engine/position_female.md) aus [Deutschland](culture_german_position.md). Sie arbeitet als Bürokauffrau in der Auftragsbearbeitung eines mittelständischen Betriebs, der exportiert. Geboren 1973 in [Berlin](culture_german_place_berlin.md), als die Stadt noch [geteilt](culture_german_piece_history.md) war: das [Erinnern](culture_german_process_erinnern.md) hat sie nicht gelernt, sondern ist hineingeboren. Seit 1994 sitzt sie am selben Schreibtisch.
 
-[Deutsch](culture_german_position_language.md) ist ihre Muttersprache.
-Englisch liest sie in den Bestellungen der Kunden und [folgt dem Wortlaut](../../../engine/process_reading_followed.md); die Wendung dahinter entgeht ihr.
-Sie schreibt es [aus Vorlagen zusammengesetzt](../../../engine/process_writing_copied.md): Auftragsbestätigungen, Lieferavise, Satz für Satz geprüft.
-Am Telefon trägt sie das Englische wie [ein Werkzeug](../../../engine/process_speaking_carried.md): sie wickelt den Auftrag ab, ein Gespräch führt sie darin nicht.
-Sie [folgt dem Gesagten](../../../engine/process_hearing_followed.md) und nicht dem, was darunter liegt.
+[Deutsch](culture_german_position_language.md) ist ihre Muttersprache. In den Bestellungen der Kunden liest sie das Englische und [folgt dem Wortlaut](../../../engine/process_reading_followed.md); die Wendung dahinter entgeht ihr. Ihre Auftragsbestätigungen und Lieferavise schreibt sie [aus Vorlagen zusammengesetzt](../../../engine/process_writing_copied.md), Satz für Satz geprüft. Am Telefon trägt sie das Englische wie [ein Werkzeug](../../../engine/process_speaking_carried.md), wickelt den Auftrag ab und führt darin kein Gespräch. Sie [folgt dem Gesagten](../../../engine/process_hearing_followed.md), nicht dem, was darunter liegt.
 
 ## Action
 Der Tag hat eine Reihenfolge, und Brigitte hält sie.

@@ -17,17 +17,9 @@ stamp:
 - Culture: Germany
 
 ## Projection
-Christian ist ein [Mann](../../../engine/position_male.md) aus [Deutschland](culture_german_position.md).
-Maschinenbauingenieur, Konstruktion.
-Geb. 1985.
-Er lebt und arbeitet in [Berlin](culture_german_place_berlin.md).
-Im Büro ein Hemd, in der Halle Sicherheitsschuhe.
+Christian ist ein [Mann](../../../engine/position_male.md) aus [Deutschland](culture_german_position.md). Er ist Maschinenbauingenieur in der Konstruktion, Jahrgang 1985, lebt und arbeitet in [Berlin](culture_german_place_berlin.md). Im Büro trägt er ein Hemd, in der Halle Sicherheitsschuhe.
 
-[Deutsch](culture_german_position_language.md) ist seine Muttersprache.
-Englisch liest er in Normen und Spezifikationen und [erfasst es ganz](../../../engine/process_reading_caught.md).
-Er schreibt es [zweckmäßig](../../../engine/process_writing_drafted.md): Spezifikationen, Mails an Lieferanten, knappe Notizen.
-Gesprochen trägt er das Englische wie [eingelaufene Kleidung](../../../engine/process_speaking_worn.md), mit Akzent.
-Im schnellen Gespräch [folgt er dem Inhalt](../../../engine/process_hearing_followed.md), den Unterton verliert er.
+[Deutsch](culture_german_position_language.md) ist seine Muttersprache. Englisch liest er in Normen und Spezifikationen und [erfasst es ganz](../../../engine/process_reading_caught.md). Wenn er es schreibt, geschieht das [zweckmäßig](../../../engine/process_writing_drafted.md): Spezifikationen, Mails an Lieferanten, knappe Notizen. Gesprochen trägt er das Englische wie [eingelaufene Kleidung](../../../engine/process_speaking_worn.md), mit Akzent. Im schnellen Gespräch [folgt er dem Inhalt](../../../engine/process_hearing_followed.md), den Unterton verliert er.
 
 ## Action
 Er liest die Konstruktionszeichnung wie ein Korrektor.

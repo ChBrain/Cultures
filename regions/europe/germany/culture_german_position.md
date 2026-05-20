@@ -23,6 +23,7 @@ Sachkompetenz zählt, aber nicht über Gemeinschaft.
 Verdienst durch Leistung, nicht Konkurrenz um Glanz.
 Das Ergebnis zählt, aber nicht um jeden Preis.
 Gleichberechtigung in der Befragung, wenn alle sich an Regeln halten.
+Mitbestimmung gehört dazu: wer betroffen ist, redet mit.
 Eigeninitiative: Dein eigenes Denken ist Werkzeug.
 
 Aber auch: Entspannung. Freizeit ist heilig. Der Genuss ist erlaubt, zu Hause, nach der Arbeit.
