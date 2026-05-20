@@ -530,6 +530,44 @@ jobs:
       - name: Run zip-build tests
         run: python -m pytest tests/test_build_zips.py -v
 
+  cultures-pdf-build:
+    name: cultures - PDF build (smoke)
+    # Smoke-tests scripts/build_pdfs.py with pandoc mocked. The real
+    # release PDF build (build-pdfs.yml) only fires on release/dispatch
+    # and needs the apt-installed pandoc/weasyprint; this gates the
+    # enumeration + markdown-assembly + completeness-filter logic on
+    # every PR.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest pyyaml
+      - name: Run pdf-build smoke tests
+        run: python -m pytest tests/test_build_pdfs.py -v
+
+  cultures-completeness-alignment:
+    name: cultures - Completeness alignment (registry vs shipped)
+    # Cross-check that data/countries.json (the website-map registry)
+    # and the complete-cultures set (zips + PDFs) stay in lockstep.
+    # Catches the drift class where a culture lands in culture/release
+    # but isn't registered (the Mexico gap, #257), or where a registry
+    # entry references a country whose folder is not yet complete.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run completeness-alignment tests
+        run: python -m pytest tests/test_culture_completeness_alignment.py -v
+
   cultures-hofstede-score-home:
     name: cultures - Hofstede score home
     # Single-home gate for Hofstede scores: data/hofstede_scores.json is
@@ -1046,6 +1084,8 @@ jobs:
       - cultures-history-arc
       - cultures-language-process-ladder
       - cultures-zip-build
+      - cultures-pdf-build
+      - cultures-completeness-alignment
       - cultures-hofstede-score-home
       - cultures-validator-wiring
       - cultures-metadata-format
