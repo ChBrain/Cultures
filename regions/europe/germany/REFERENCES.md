@@ -179,7 +179,7 @@ The Yearbook spans 1909 to 2025. Representative claims below.
 
 ---
 
-### `culture_german_persona_male_christian.md` & `culture_german_persona_female_brigitte.md` - Personas
+### `german_persona_male_christian.md` & `german_persona_female_brigitte.md` - Personas
 
 Fictional personas representing typical German lives. Names, projections, actions,
 shadows and tells are creative constructs, not biographical references.
