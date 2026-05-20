@@ -48,7 +48,7 @@ Le désaccord est respectable s'il est argumenté.
 La concession est possible si elle est raisonnée.
 La position ne se rend pas. Elle se négocie par la force des idées.
 
-Le plaisir n'est pas l'opposé du devoir : la table, la conversation, le temps long du déjeuner -- c'est là que la France se reconstitue.
+Le plaisir n'est pas l'opposé du devoir : la table, la conversation, le temps long du déjeuner -- c'est là que la France se reconstitue. Le loisir tient son rang dans la semaine, protégé par la loi et par l'usage.
 La retenue habite à côté : ce qui se sent ne se montre pas tout.
 
 ## Orders
